@@ -85,27 +85,23 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
   .t-block__title {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 110%;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
     text-align: center;
     align-self: stretch;
     margin: 0;
   }
-  @media (min-width: 768px)  { .t-block__title { font-size: 54px; line-height: 110%; } }
-  @media (min-width: 1280px) { .t-block__title { font-size: 60px; line-height: 69px; } }
-  @media (min-width: 1920px) { .t-block__title { font-size: 90px; line-height: 110%; } }
 
   .t-block__intro {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     text-align: center;
     align-self: stretch;
   }
-  @media (min-width: 1920px) { .t-block__intro { font-size: 23px; line-height: 150%; } }
 
   .t-block__grid {
     display: grid;

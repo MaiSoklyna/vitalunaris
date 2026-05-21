@@ -32,8 +32,10 @@ const {
       <img src={icon} alt={iconAlt} />
     </div>
   )}
-  <Heading level={3} class="offer-card__title">{title}</Heading>
-  <Text size="p2" class="offer-card__body">{description}</Text>
+  <div class="offer-card__title-block">
+    <Heading level={3} class="offer-card__title">{title}</Heading>
+    <Text size="p2" class="offer-card__body">{description}</Text>
+  </div>
 
   {price && (
     <div class="offer-card__price">
@@ -61,6 +63,7 @@ const {
      ============================================================ */
   .offer-card {
     box-sizing: border-box;
+    position: relative;
     background: var(--c-spring-wood);
     color: var(--c-cherrywood);
     border: 0.667px solid var(--c-cherrywood);
@@ -80,17 +83,27 @@ const {
       gap: 48px;
     }
   }
+  /* Desktop++ — Figma "Property 1=Default": 411×628, padding 284 24 24, gap 40, icon absolute */
   @media (min-width: 1920px) {
     .offer-card {
+      width: 411px;
       border-width: 1px;
       border-radius: 25px;
-      padding: 40px 41px;
-      gap: 59px;
+      padding: 284px 24px 24px;
+      gap: 40px;
+      min-height: 628px;
     }
   }
 
-  /* ----- title block (icon + heading + body) ----- */
-  .offer-card > .offer-card__icon ~ .offer-card__title,
+  /* ----- title block: H3 + body, tight 18px gap (Figma Frame 48095967) ----- */
+  .offer-card__title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    align-self: stretch;
+    flex-grow: 1;
+  }
   .offer-card__title { color: var(--c-cherrywood); }
 
   .offer-card__icon {
@@ -104,41 +117,38 @@ const {
   @media (min-width: 1280px) {
     .offer-card__icon { width: 112px; height: 156px; }
   }
+  /* Desktop++ — icon floats above the title-block at top-center */
   @media (min-width: 1920px) {
-    .offer-card__icon { width: 136px; height: 190px; }
+    .offer-card__icon {
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 145px;
+      height: 203px;
+      justify-content: center;
+    }
   }
 
-  /* H3 — Figma 24→32 */
+  /* H3 title */
   .offer-card__title {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 28px;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
     color: var(--c-cherrywood);
     margin: 0;
   }
-  @media (min-width: 1280px) {
-    .offer-card__title { font-size: 28px; line-height: 120%; }
-  }
-  @media (min-width: 1920px) {
-    .offer-card__title { font-size: 32px; line-height: 120%; }
-  }
 
-  /* P2/P3 body — Figma 12→18 */
+  /* Body — P2 per Figma (18px at Desktop++ via --p1-size token) */
   .offer-card__body {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 140%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.4;
     color: var(--c-cherrywood);
     opacity: 1;
-    flex-grow: 1;
-  }
-  @media (min-width: 1280px) {
-    .offer-card__body { font-size: 15px; line-height: 140%; }
-  }
-  @media (min-width: 1920px) {
-    .offer-card__body { font-size: 18px; line-height: 140%; }
+    align-self: stretch;
   }
 
   /* ----- price row — H3 + P2 inline ----- */
@@ -157,26 +167,22 @@ const {
 
   .offer-card__price-value {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 28px;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
     color: var(--c-cherrywood);
     margin: 0;
   }
-  @media (min-width: 1280px) { .offer-card__price-value { font-size: 28px; line-height: 120%; } }
-  @media (min-width: 1920px) { .offer-card__price-value { font-size: 32px; line-height: 120%; } }
 
   .offer-card__price-caption {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 140%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p3-size);
+    line-height: 1.4;
     color: var(--c-cherrywood);
     opacity: 1;
     text-align: right;
   }
-  @media (min-width: 1280px) { .offer-card__price-caption { font-size: 15px; } }
-  @media (min-width: 1920px) { .offer-card__price-caption { font-size: 18px; } }
 
   /* ----- CTA button — full-width, primary cherrywood ----- */
   .offer-card__cta { margin-top: 0; align-self: stretch; width: 100%; }
@@ -185,26 +191,24 @@ const {
     height: 42px;
     min-height: 42px;
     padding: 10px;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: var(--button-size);
+    line-height: 1.2;
     border-radius: 100px;
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
     .offer-card__cta :global(.btn) {
       height: 52px;
       min-height: 52px;
       padding: 16px 32px;
-      font-size: 15px;
-      line-height: 18px;
     }
   }
   @media (min-width: 1920px) {
     .offer-card__cta :global(.btn) {
       height: 61px;
       min-height: 61px;
-      padding: 20px 40px;
-      font-size: 18px;
-      line-height: 21px;
+      padding: 20px;
+      gap: 11.26px;
+      border-width: 1.40784px;
     }
   }
 </style>

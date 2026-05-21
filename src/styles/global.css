@@ -61,7 +61,7 @@
   --c-pale-gold: #FFD869;
   --c-green-yellow: #B4AD27;
   --c-aurora: #87C6B3;
-  --c-white: #FFFFFF;
+  --c-white: #F9F4EE;
   --c-black: #000000;
 
   /* Surfaces */
@@ -80,6 +80,91 @@
   /* Animations */
   --nav-anim-duration: 600ms;
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ========================
+     TYPOGRAPHY SCALE — Desktop++ (default, >1440px)
+     Cascades down via max-width breakpoints below.
+  ======================== */
+
+  /* Headlines */
+  --h1-size: 90px;
+  --h1-italic-size: 90px;
+  --h2-size: 60px;
+  --h3-size: 32px;
+  --h4-size: 24px;
+  --eyebrow-size: 23px;
+
+  /* Paragraph */
+  --p1-size: 18px;
+  --p2-size: 16px;
+  --p3-size: 16px;
+
+  /* Button / Link */
+  --button-size: 18px;
+  --link-size: 18px;
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+}
+
+/* Desktop (≤ 1440px) */
+@media (max-width: 1440px) {
+  :root {
+    --h1-size: 60px;
+    --h1-italic-size: 60px;
+    --h2-size: 60px;
+    --h3-size: 28px;
+    --h4-size: 24px;
+    --eyebrow-size: 20px;
+
+    --p1-size: 18px;
+    --p2-size: 14px;
+    --p3-size: 12px;
+
+    --button-size: 12px;
+    --link-size: 12px;
+  }
+}
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --h1-size: 54px;
+    --h1-italic-size: 54px;
+    --h2-size: 36px;
+    --h3-size: 28px;
+    --h4-size: 24px;
+    --eyebrow-size: 20px;
+
+    --p1-size: 16px;
+    --p2-size: 14px;
+    --p3-size: 12px;
+
+    --button-size: 12px;
+    --link-size: 12px;
+  }
+}
+
+/* Mobile (≤ 640px) — all 12px tokens raised to 16px for legibility */
+@media (max-width: 640px) {
+  :root {
+    --h1-size: 40px;
+    --h1-italic-size: 40px;
+    --h2-size: 32px;
+    --h3-size: 24px;
+    --h4-size: 20px;
+    --eyebrow-size: 18px;
+
+    --p1-size: 16px;
+    --p2-size: 16px;
+    --p3-size: 16px;
+
+    --button-size: 16px;
+    --link-size: 16px;
+  }
 }
 
 /* ============================================================
@@ -112,94 +197,99 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 }
 
 /* ============================================================
-   SEMANTIC TYPOGRAPHY  (.type-*  — mobile-first, scales at md)
-   Mapped from the Figma scale: phone → desktop
+   SEMANTIC TYPOGRAPHY  (.type-*)
+   All sizes driven by the token scale above (--h1-size, --p1-size, etc.)
+   so the values cascade through every breakpoint automatically.
    ============================================================ */
 .type-h1 {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 46px;
+  font-weight: var(--weight-regular);
+  font-size: var(--h1-size);
+  line-height: 1.15;
   letter-spacing: -0.01em;
 }
-@media (min-width: 768px) { .type-h1 { font-size: 60px; line-height: 69px; } }
+
+.type-h1-italic {
+  font-family: 'ES Park TRIAL', serif;
+  font-weight: var(--weight-regular);
+  font-style: italic;
+  font-size: var(--h1-italic-size);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
 
 .type-h2 {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 32px;
+  font-weight: var(--weight-regular);
+  font-size: var(--h2-size);
+  line-height: 1.15;
   letter-spacing: -0.01em;
 }
-@media (min-width: 768px) { .type-h2 { font-size: 40px; line-height: 46px; } }
 
 .type-h3 {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: var(--weight-medium);
+  font-size: var(--h3-size);
   line-height: 1.2;
 }
-@media (min-width: 768px) { .type-h3 { font-size: 28px; line-height: 1.2; } }
 
 .type-h4 {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
+  font-weight: var(--weight-medium);
+  font-size: var(--h4-size);
+  line-height: 1.2;
 }
-@media (min-width: 768px) { .type-h4 { font-size: 24px; line-height: 28px; } }
 
 .type-eyebrow {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: var(--weight-medium);
+  font-size: var(--eyebrow-size);
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-@media (min-width: 768px) { .type-eyebrow { font-size: 18px; line-height: 21px; } }
 
 .type-p1 {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: var(--weight-regular);
+  font-size: var(--p1-size);
   line-height: 1.5;
 }
 
 .type-p2 {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: var(--weight-regular);
+  font-size: var(--p2-size);
   line-height: 1.4;
 }
 
 .type-p3 {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: var(--weight-regular);
+  font-size: var(--p3-size);
   line-height: 1.4;
 }
 
 .type-button {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
+  font-weight: var(--weight-regular);
+  font-size: var(--button-size);
+  line-height: 1.2;
 }
 
 .type-link {
   font-family: 'ES Park TRIAL', serif;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 14px;
+  font-weight: var(--weight-semibold);
+  font-size: var(--link-size);
+  line-height: 1.2;
   color: var(--c-cherrywood);
 }
 
 .type-tag {
   font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
+  font-weight: var(--weight-regular);
+  font-size: var(--p3-size);
+  line-height: 1.25;
   letter-spacing: 0.1em;
 }
 
@@ -237,8 +327,8 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 .btn:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 2px; }
 .btn:disabled, .btn[aria-disabled='true'] { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 
-.btn--lg { padding: 20px 40px; font-size: 18px; line-height: 21px; min-height: 61px; }
-.btn--sm { padding: 12px 24px; font-size: 16px; line-height: 19px; min-height: 46px; }
+.btn--lg { padding: 20px 40px; font-size: var(--button-size); line-height: 1.2; min-height: 61px; }
+.btn--sm { padding: 12px 24px; font-size: var(--button-size); line-height: 1.2; min-height: 46px; }
 
 .btn--primary           { background: var(--c-cherrywood); color: var(--c-spring-wood); }
 .btn--primary:hover     { background: #4A1414; }

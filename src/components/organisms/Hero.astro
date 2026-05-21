@@ -38,11 +38,11 @@ const {
       <Heading level={1} class="hero__title"><Fragment set:html={title} /></Heading>
       {subtitle && <Text size="p1" class="hero__subtitle">{subtitle}</Text>}
       <div class="hero__cta">
-        <Button href={ctaHref} variant="header" size="lg" class="hero__cta-btn">
+        <Button href={ctaHref} variant="primary" size="lg" class="hero__cta-btn">
           {ctaText}
         </Button>
         {secondaryCtaText && secondaryCtaHref && (
-          <Button href={secondaryCtaHref} variant="primary" size="lg" class="hero__cta-btn">
+          <Button href={secondaryCtaHref} variant="header" size="lg" class="hero__cta-btn">
             {secondaryCtaText}
           </Button>
         )}
@@ -55,10 +55,13 @@ const {
   /* ============================================================
      HERO — responsive per Figma specs (360 / 768 / 1280 / 1920)
      ============================================================ */
-  .hero { padding: 96px 0 64px; }
+  .hero { padding: 72px 0 64px; }
   @media (min-width: 768px)  { .hero { padding: 120px 0 80px; } }
   @media (min-width: 1280px) { .hero { padding: 140px 0 100px; } }
-  @media (min-width: 1920px) { .hero { padding: 160px 0 120px; } }
+  /* Desktop++ (≥ 1920px) — Figma section padding */
+  @media (min-width: 1920px) {
+    .hero { padding: 175px 90px 90px 151px; }
+  }
 
   .hero__inner {
     display: grid;
@@ -75,8 +78,20 @@ const {
     .hero__media   { order: 2; }   /* image right of text on desktop */
     .hero__content { order: 1; }
   }
+  /* Desktop++ — horizontal flow, fixed 170px gap, image right of text */
   @media (min-width: 1920px) {
-    .hero__inner { gap: 170px; grid-template-columns: 712px 1fr; }
+    .hero__inner {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 170px;
+      max-width: none;
+      padding: 0;
+    }
+    .hero__content { order: 1; }
+    .hero__media   { order: 2; }
   }
 
   /* ----- TEXT CONTENT ----- */
@@ -86,42 +101,36 @@ const {
     align-items: flex-start;
     gap: 26.67px;
   }
-  @media (min-width: 1920px) { .hero__content { gap: 40px; } }
+  @media (min-width: 1920px) {
+    .hero__content {
+      justify-content: center;
+      gap: 40px;
+      width: 780px;
+      flex: 0 0 780px;
+    }
+  }
 
-  /* Eyebrow — shown at all breakpoints */
+  /* Eyebrow — uses --eyebrow-size token */
   .hero__eyebrow {
     display: block;
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: var(--eyebrow-size);
     line-height: 1.2;
     letter-spacing: 0.08em;
   }
-  @media (min-width: 768px) {
-    .hero__eyebrow {
-      font-size: 18px;
-      line-height: 21px;
-      letter-spacing: normal;
-    }
-  }
-  @media (min-width: 1920px) {
-    .hero__eyebrow { font-size: 23px; line-height: 26px; }
-  }
 
-  /* Title — H1 scale: 40 (360) / 54 (768) / 60 (1280) / 90 (1920) */
+  /* Title — H1 token */
   .hero__title {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 110%;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
     margin: 0;
   }
-  @media (min-width: 768px)  { .hero__title { font-size: 54px; line-height: 110%; } }
-  @media (min-width: 1280px) { .hero__title { font-size: 60px; line-height: 69px; } }
-  @media (min-width: 1920px) { .hero__title { font-size: 90px; line-height: 110%; } }
 
   /* Forced line break before "Systeme" only at tablet (768–1023.98px) */
   .hero__br--md { display: none; }
@@ -129,17 +138,17 @@ const {
     .hero__br--md { display: inline; }
   }
 
-  /* Subtitle — P1 16 / 16 / 16 / 23 */
+  /* Subtitle — P1 token */
   .hero__subtitle {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     max-width: 56ch;
   }
   @media (min-width: 1920px) {
-    .hero__subtitle { font-size: 23px; line-height: 150%; }
+    .hero__subtitle { max-width: 780px; align-self: stretch; }
   }
 
   /* ----- CTA GROUP — Figma Button Group S (gap 12, w=473 at 768) ----- */
@@ -152,11 +161,20 @@ const {
     gap: 12px;
     margin-top: 4px;
   }
-  @media (min-width: 1920px) { .hero__cta { gap: 20px; } }
+  /* Desktop++ Button Group L — 780px wide, 20px gap, no wrap */
+  @media (min-width: 1920px) {
+    .hero__cta {
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 20px;
+      width: 780px;
+      align-self: stretch;
+      height: 61px;
+      margin-top: 0;
+    }
+  }
 
-  /* Each button — Figma spec at w=768:
-     w=231/230, h=42, padding 13.5328px, gap 7.62px,
-     border 0.541px, radius 67.6638px, font 12/14 ES Park TRIAL */
+  /* CTA buttons — size driven by --button-size token */
   .hero__cta-btn {
     box-sizing: border-box;
     display: inline-flex;
@@ -168,9 +186,9 @@ const {
     min-height: 42px;
     height: 42px;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
+    font-weight: var(--weight-regular);
+    font-size: var(--button-size);
+    line-height: 1.2;
     border-radius: 67.6638px;
     border-width: 0.541311px;
     white-space: nowrap;
@@ -180,13 +198,12 @@ const {
   }
   @media (min-width: 1920px) {
     .hero__cta-btn {
-      width: 341px;
+      width: 380px;
+      flex: 1 1 0;
       height: 61px;
       min-height: 61px;
       padding: 20px;
       gap: 11.26px;
-      font-size: 18px;
-      line-height: 21px;
       border-radius: 100px;
       border-width: 0.8px;
     }
@@ -201,5 +218,14 @@ const {
     width: 100%;
   }
   @media (min-width: 1024px) { .hero__media { aspect-ratio: 1 / 1; } }
+  /* Desktop++ media: fixed 748×826 per Figma */
+  @media (min-width: 1920px) {
+    .hero__media {
+      width: 748px;
+      height: 826px;
+      aspect-ratio: auto;
+      flex: 0 0 748px;
+    }
+  }
   .hero__image { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style>

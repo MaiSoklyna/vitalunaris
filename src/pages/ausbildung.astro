@@ -1,0 +1,584 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@organisms/Hero.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import ClaimBlock from '@organisms/ClaimBlock.astro';
+import DarkCtaBlock from '@organisms/DarkCtaBlock.astro';
+import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+const outcomes = [
+  {
+    title: 'Du siehst Systeme.',
+    description: 'Du erkennst, welche unsichtbaren Dynamiken in Familien, Organisationen oder Beziehungen wirken — und wie sie sich auf einzelne Menschen auswirken.',
+    color: 'aurora' as const,
+  },
+  {
+    title: 'Du begleitest sicher.',
+    description: 'Du führst Einzel- und Gruppenaufstellungen durch — mit klarer Haltung, methodischer Sicherheit und dem Wissen, wann du eingreifst und wann du Raum lässt.',
+    color: 'raspberry' as const,
+  },
+  {
+    title: 'Du integrierst das Gelernte.',
+    description: 'Ob du Aufstellen als eigenständige Praxis anbietest oder in deine bestehende Arbeit integrierst — du weisst, wie du es einsetzen kannst und was es braucht.',
+    color: 'purple' as const,
+  },
+  {
+    title: 'Du verstehst dich besser.',
+    description: 'Diese Ausbildung lässt dich nicht unberührt. Wer andere in Systemen begleiten will, muss das eigene System kennen. Das ist kein Nebeneffekt, das ist Teil der Methode.',
+    color: 'gold' as const,
+  },
+];
+
+const stages = [
+  {
+    icon: '/images/ebene/Ebene_2-3.svg',
+    eyebrow: 'Teil 1 — Grundlagen',
+    title: 'Der Einstieg in die systemische Arbeit',
+    body: 'Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.',
+  },
+  {
+    icon: '/images/ebene/Ebene_2-6.svg',
+    eyebrow: 'Teil 2 — Vertiefung',
+    title: 'Vom Verständnis zur Praxis',
+    body: 'Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.',
+  },
+  {
+    icon: '/images/ebene/Ebene_2-8.svg',
+    eyebrow: 'Membership',
+    title: 'In der Praxis bleiben und weiterforschen',
+    body: 'Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen — die das Handwerk lebendig halten und weiter wachsen wollen.',
+  },
+];
+
+const testimonials = [
+  {
+    icon: '/images/ebene/Ebene_2-4.svg',
+    quote: 'Die Ausbildung hat mir nicht nur Werkzeuge gegeben — sie hat meinen Blick auf die Welt verändert. Ich sehe heute Systeme, wo ich früher Zufälle vermutet habe.',
+    name: 'Maria S.',
+  },
+  {
+    icon: '/images/ebene/Ebene_2-5.svg',
+    quote: 'Theres bringt 30 Jahre Erfahrung in jeden Moment. Das spürt man — in der Klarheit, in der Tiefe, in der Sicherheit, die sie ausstrahlt.',
+    name: 'Thomas K.',
+  },
+  {
+    icon: '/images/ebene/Ebene_2-6.svg',
+    quote: 'Was hier passiert, ist mehr als Methodenlernen. Es ist eine Schule des Hinschauens — auf sich selbst, auf andere, auf das, was zwischen uns wirkt.',
+    name: 'Claudia R.',
+  },
+  {
+    icon: '/images/ebene/Ebene_2-7.svg',
+    quote: 'Nach der Ausbildung habe ich angefangen, eigenständig zu arbeiten. Das hätte ich vor zwei Jahren für unmöglich gehalten.',
+    name: 'Lena M.',
+  },
+];
+
+const faqItems = [
+  {
+    question: 'Wie läuft eine systemische Aufstellung ab?',
+    answer: 'Du formulierst dein Anliegen, wir wählen gemeinsam Repräsentant:innen für die wichtigen Elemente deines Systems und stellen sie im Raum auf. Was sich dann zeigt — Bewegungen, Sätze, Bilder — arbeiten wir gemeinsam aus.',
+  },
+  {
+    question: 'Werden die Kosten von der Krankenkasse übernommen?',
+    answer: 'Die Ausbildung ist eine private Weiterbildung und wird in der Regel nicht von der Krankenkasse gedeckt. Manche Zusatzversicherungen oder Arbeitgeber:innen unterstützen Bildungsausgaben — frag im Einzelfall nach.',
+  },
+  {
+    question: 'Für wen ist VitaLunaris geeignet?',
+    answer: 'Für Menschen, die mit Tiefe arbeiten wollen und bereit sind, das eigene System dabei nicht auszublenden. Du brauchst keinen therapeutischen Hintergrund — aber Lebenserfahrung und die Bereitschaft, dich selbst anzusehen.',
+  },
+  {
+    question: 'Wie kann ich einen Termin buchen?',
+    answer: 'Du buchst zuerst ein kostenloses Erstgespräch — online oder vor Ort in Buchs. Dort klären wir gemeinsam, ob die Ausbildung für dich passt und welcher Starttermin sich anbietet.',
+  },
+  {
+    question: 'Wie lange dauert die gesamte Ausbildung?',
+    answer: 'Teil 1 und Teil 2 erstrecken sich gemeinsam über etwa 18 bis 24 Monate — mit monatlichen Modul-Wochenenden, dazwischen Eigenarbeit, Lerngruppen und Praxiseinheiten. Die Membership läuft danach unbefristet weiter.',
+  },
+  {
+    question: 'Brauche ich Vorerfahrung im therapeutischen Bereich?',
+    answer: 'Nein. Was zählt, ist deine Bereitschaft, dich auf systemische Arbeit einzulassen und an dir selbst zu arbeiten. Viele Teilnehmer:innen kommen aus ganz unterschiedlichen Berufen — und genau das macht die Gruppen so reich.',
+  },
+  {
+    question: 'Wie viele Teilnehmer:innen sind in einer Gruppe?',
+    answer: 'Wir arbeiten bewusst in kleinen Gruppen von 8 bis 12 Personen. So bleibt genug Raum für jede:n — beim Aufstellen, im Austausch und in der persönlichen Begleitung durch Theres.',
+  },
+  {
+    question: 'Was kostet die Ausbildung?',
+    answer: 'Die genauen Kosten und Zahlungsoptionen besprechen wir im Erstgespräch — je nachdem, ob du Teil 1 einzeln oder das Gesamtpaket inkl. Membership buchst. Ratenzahlungen sind möglich.',
+  },
+];
+---
+
+<BaseLayout
+  title="Ausbildung – Systemic Soulcoach bei VitaLunaris"
+  description="Die Ausbildung zum Systemic Soulcoach bei Theres Jansen — systemisches Aufstellen lernen aus über 30 Jahren gelebter Praxis."
+  currentPath="/ausbildung"
+>
+  <Hero
+    eyebrow="Ausbildung · Systemic Soulcoach"
+    title="Lerne Aufstellen von jemandem, der es lebt."
+    subtitle="Die Ausbildung zum Systemic Soulcoach bei Theres Jansen — in zwei Teilen, aufgebaut auf über 30 Jahren gelebter Praxis. Für alle, die systemisches Aufstellen nicht nur verstehen, sondern professionell begleiten wollen."
+    ctaText="Jetzt Erstgespräch buchen"
+    ctaHref="/kontakt"
+    image="/images/placeholder/Placeholder_1.jpg"
+  />
+
+  <NarrativeBlock
+    tone="light"
+    imageSide="left"
+    image="/images/placeholder/placeholder-2.jpg"
+    imageAlt=""
+    title="Diese ist für Menschen, die mit Tiefe arbeiten wollen und bereit sind, das eigene System dabei nicht auszublenden."
+  />
+
+  {/* "Nach der Ausbildung arbeitest du anderst." */}
+  <section class="outcomes">
+    <header class="outcomes__header">
+      <Heading level={2} variant="h1" class="outcomes__title">Nach der Ausbildung arbeitest du anderst.</Heading>
+    </header>
+
+    {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1920 */}
+    <div class="outcomes__desktop">
+      <img src="/images/ebene/process-curve.svg" alt="" class="outcomes__curve" />
+      <div class="outcomes__cards">
+        {outcomes.map((o, i) => (
+          <article class={`outcomes__card outcomes__card--${i + 1}`}>
+            <Heading level={3} class="outcomes__card-title">{o.title}</Heading>
+            <Text size="p1" class="outcomes__card-body">{o.description}</Text>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    {/* Mobile/tablet (<1024px): two halves, each with its own curve + 2 cards */}
+    <div class="outcomes__mobile">
+      {[0, 2].map((startIdx) => (
+        <div class="outcomes__mobile-section">
+          <div class="outcomes__mobile-curve">
+            <img
+              src={startIdx === 0 ? '/images/ebene/process-curve-1.svg' : '/images/ebene/process-curve-2.svg'}
+              alt=""
+            />
+          </div>
+          <div class="outcomes__mobile-cards">
+            {outcomes.slice(startIdx, startIdx + 2).map((o) => (
+              <article class="outcomes__mobile-card">
+                <Heading level={3} class="outcomes__card-title">{o.title}</Heading>
+                <Text size="p1" class="outcomes__card-body">{o.description}</Text>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="outcomes__cta">
+      <Button href="/kontakt" variant="primary" size="lg">Jetzt Erstgespräch buchen</Button>
+    </div>
+  </section>
+
+  {/* ============================================================
+       Three-stage cards — "Drei Stufen, ein Weg"
+       ============================================================ */}
+  <section class="stages">
+    <div class="stages__inner">
+      <div class="stages__header">
+        <Heading level={2} variant="h1" class="stages__title">Drei Stufen, ein Weg</Heading>
+        <Text size="p1" class="stages__intro">
+          Die Ausbildung ist in zwei Teile gegliedert, mit einer optionalen Membership für alle, die in der gemeinsamen Praxis bleiben wollen. Jede Stufe baut auf der vorherigen auf.
+        </Text>
+      </div>
+      <div class="stages__grid">
+        {stages.map((s) => (
+          <article class="stage-card">
+            <div class="stage-card__icon"><img src={s.icon} alt="" /></div>
+            <div class="stage-card__text">
+              <Heading variant="eyebrow" class="stage-card__eyebrow">{s.eyebrow}</Heading>
+              <Heading level={3} variant="h2" class="stage-card__title">{s.title}</Heading>
+              <Text size="p1" class="stage-card__body">{s.body}</Text>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <NarrativeBlock
+    tone="purple"
+    imageSide="right"
+    image="/images/placeholder/Placeholder-5.jpg"
+    imageAlt=""
+    mediaAspect="16 / 10"
+    title="Was du in dieser Ausbildung lernst, kommt nicht aus einem Lehrbuch. Es kommt aus über 30 Jahren Praxis."
+    body="Theresia & Axel Jansen · VitaLunaris"
+  />
+
+  <TestimonialsBlock
+    eyebrow="Stimmen"
+    title="Stimmen aus der Ausbildung"
+    testimonials={testimonials}
+  />
+
+  <ClaimBlock
+    title="Mehr Tiefe. Mehr Freude. Mehr Leben."
+    body="Was du in der Ausbildung lernst, verändert nicht nur deine Arbeit, sondern auch dein Verhältnis zu dir selbst und zu anderen. Tiefenpsychologisch fundiert · Systemisch & körperorientiert · Für Einzelpersonen, Paare & Familien."
+    image="/images/ebene/Ebene_2-7.svg"
+    ctaText="Erstgespräch buchen"
+    ctaHref="/kontakt"
+  />
+
+  <DarkCtaBlock
+    eyebrow="Bereit?"
+    title="Bereit, tiefer<br />zu gehen?"
+    body="Wir freuen uns auf dich. Komm in ein unverbindliches Erstgespräch — wir klären gemeinsam, ob die Ausbildung für dich passt."
+    ctaText="Erstgespräch buchen"
+    ctaHref="/kontakt"
+    secondaryCtaText="Alle Angebote"
+    secondaryCtaHref="/angebot"
+    backgroundImage="/images/placeholder/narrative-block-7.jpg"
+  />
+
+  <Faq
+    eyebrow="Häufige Fragen"
+    title="FAQ"
+    items={faqItems}
+  />
+
+  <NewsletterBlock
+    eyebrow="Newsletter"
+    title="Noch nicht sicher?"
+    body="Melde dich für den Newsletter an — wir informieren dich wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern."
+    placeholder="E-mail Adresse"
+    submitText="Anmelden"
+  />
+</BaseLayout>
+
+<style>
+  /* ============================================================
+     OUTCOMES — "Nach der Ausbildung arbeitest du anderst."
+     Mobile/tablet (<1024): two halves with separate curves (-1, -2)
+     Desktop (≥1024): single process-curve.svg
+     Desktop++ (≥1920): cards absolutely positioned per Figma
+     ============================================================ */
+  .outcomes {
+    background: var(--c-spring-wood);
+    padding: 64px 8px;
+    overflow: hidden;
+  }
+  @media (min-width: 768px)  { .outcomes { padding: 96px 8px; } }
+  @media (min-width: 1024px) { .outcomes { padding: 120px 8px; } }
+  /* At ≥1280 and ≥1920 the SVG curve goes edge-to-edge — no horizontal padding */
+  @media (min-width: 1280px) { .outcomes { padding: 120px 0; } }
+  @media (min-width: 1920px) { .outcomes { padding: 92px 0 120px; } }
+
+  .outcomes__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 12px;
+    max-width: 1106px;
+    margin: 0 auto;
+  }
+  .outcomes__title {
+    text-align: center;
+    color: var(--c-cherrywood);
+    margin: 0;
+  }
+
+  /* Outcome card title — tokens for small/tablet, explicit 48/55 at Desktop++ per Figma */
+  .outcomes__card-title {
+    font-family: 'ES Park TRIAL', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h3-size);
+    line-height: 1.2;
+    color: var(--c-cherrywood);
+    margin: 0;
+  }
+  @media (min-width: 1920px) {
+    .outcomes__card-title { font-size: 48px; line-height: 55px; }
+  }
+
+  .outcomes__card-body {
+    color: var(--c-cherrywood);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+  }
+  /* Figma P1 Desktop+ override: 23px / 150% */
+  @media (min-width: 1920px) {
+    .outcomes__card-body { font-size: 23px; line-height: 150%; }
+  }
+
+  .outcomes__cta {
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px 0;
+  }
+
+  /* ----- Desktop (≥1024) — single full curve + 4 cards under it ----- */
+  .outcomes__desktop { display: none; }
+  .outcomes__mobile  { display: block; margin-top: 24px; }
+
+  @media (min-width: 1024px) {
+    .outcomes__desktop { display: block; margin-top: 32px; }
+    .outcomes__mobile  { display: none; }
+
+    /* SVG sits in normal flow below the header, full page width */
+    .outcomes__curve {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+
+    /* Cards row sits BELOW the SVG in normal flow — no overlay */
+    .outcomes__cards {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding: 0 90px;
+      margin-top: 40px;
+      min-height: 0;
+      box-sizing: border-box;
+    }
+    .outcomes__card {
+      position: static;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      color: var(--c-cherrywood);
+    }
+  }
+
+  /* ----- Desktop++ (≥1920) — Figma absolute positioning relative to the section ----- */
+  @media (min-width: 1920px) {
+    .outcomes {
+      position: relative;
+      min-height: 1309px;
+      padding: 92px 0 120px;
+    }
+    .outcomes__header {
+      max-width: 1106px;
+      padding: 0;
+      margin: 0 auto;
+    }
+    .outcomes__desktop {
+      position: static;
+      width: 1920px;
+      max-width: 1920px;
+      margin: 40px auto 0;
+      display: block;
+    }
+    /* SVG flows below the header, full page width */
+    .outcomes__curve {
+      position: static;
+      display: block;
+      width: 1920px;
+      height: auto;
+      margin: 0;
+      max-width: none;
+    }
+    /* Cards positioned at exact Figma section coords */
+    .outcomes__cards {
+      position: static;
+      display: block;
+      padding: 0;
+      margin: 0;
+    }
+    .outcomes__cards::after { content: none; }
+    .outcomes__card {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      height: 427px;
+    }
+    /* outcomes[] order: 1 aurora, 2 raspberry, 3 lavender, 4 gold */
+    .outcomes__card--1 { left: 96px;   top: 717px; width: 386px; }  /* Text 6 — Du siehst Systeme.       */
+    .outcomes__card--2 { left: 529px;  top: 572px; width: 386px; }  /* Text 5 — Du begleitest sicher.    */
+    .outcomes__card--3 { left: 973px;  top: 556px; width: 384px; }  /* Text 4 — Du integrierst das …     */
+    .outcomes__card--4 { left: 1415px; top: 733px; width: 384px; }  /* Text 7 — Du verstehst dich besser.*/
+
+    .outcomes__cta {
+      position: absolute;
+      left: 814px;
+      top: 1144px;
+      width: 270px;
+      padding: 0;
+      justify-content: center;
+    }
+  }
+
+  /* ----- Mobile / tablet (<1024) — two halves, like ProcessSteps ----- */
+  .outcomes__mobile-section { margin-top: 24px; }
+  .outcomes__mobile-section:first-child { margin-top: 0; }
+
+  .outcomes__mobile-curve {
+    width: auto;
+    aspect-ratio: 600 / 130;
+    overflow: visible;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 0;
+    box-sizing: content-box;
+  }
+  @media (min-width: 768px) and (max-width: 1023.98px) {
+    .outcomes__mobile-curve { padding-top: 16px; }
+  }
+  .outcomes__mobile-curve img { display: block; width: 100%; height: 100%; }
+
+  .outcomes__mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px 12px 0;
+  }
+  @media (min-width: 480px) and (max-width: 1023.98px) {
+    .outcomes__mobile-cards {
+      flex-direction: row;
+      gap: 28px;
+      padding: 24px 12px 0;
+      align-items: flex-start;
+    }
+    .outcomes__mobile-cards > .outcomes__mobile-card {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: calc(50% - 14px);
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1023.98px) {
+    .outcomes__mobile-cards {
+      gap: 44px;
+      padding: 32px 44px 0;
+    }
+    .outcomes__mobile-cards > .outcomes__mobile-card {
+      max-width: calc(50% - 22px);
+    }
+  }
+
+  .outcomes__mobile-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    text-align: left;
+    color: var(--c-cherrywood);
+  }
+  @media (min-width: 768px) { .outcomes__mobile-card { gap: 26.67px; } }
+
+  /* ============================================================
+     STAGES — three-card row "Drei Stufen, ein Weg"
+     ============================================================ */
+  .stages {
+    background: var(--c-spring-wood);
+    padding: 64px 20px;
+  }
+  @media (min-width: 768px)  { .stages { padding: 96px 32px; } }
+  @media (min-width: 1280px) { .stages { padding: 120px 60px; } }
+  @media (min-width: 1920px) { .stages { padding: 90px; } }
+
+  .stages__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+  @media (min-width: 1920px) { .stages__inner { gap: 64px; } }
+
+  .stages__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 1080px;
+  }
+  @media (min-width: 768px) { .stages__header { align-items: center; gap: 40px; } }
+
+  .stages__title {
+    color: var(--c-cherrywood);
+    margin: 0;
+    text-align: center;
+    width: 100%;
+  }
+  .stages__intro {
+    color: var(--c-cherrywood);
+    text-align: center;
+    width: 100%;
+  }
+
+  .stages__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+  }
+  @media (min-width: 768px)  { .stages__grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1280px) { .stages__grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .stage-card {
+    box-sizing: border-box;
+    background: var(--c-spring-wood);
+    border: 1px solid var(--c-cherrywood);
+    border-radius: 16.67px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    height: 100%;
+  }
+  @media (min-width: 1280px) { .stage-card { padding: 32px; gap: 48px; border-radius: 20px; } }
+  @media (min-width: 1920px) { .stage-card { padding: 40px 41px; gap: 59px; border-radius: 25px; min-height: 783px; } }
+
+  .stage-card__icon {
+    width: 100px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 1280px) { .stage-card__icon { width: 120px; height: 168px; } }
+  @media (min-width: 1920px) { .stage-card__icon { width: 144px; height: 201px; } }
+  .stage-card__icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .stage-card__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17.55px;
+    align-self: stretch;
+    flex-grow: 1;
+  }
+
+  .stage-card__eyebrow { color: var(--c-cherrywood); align-self: stretch; }
+
+  .stage-card__title {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park TRIAL', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.15;
+    margin: 0;
+    align-self: stretch;
+  }
+
+  .stage-card__body {
+    color: var(--c-cherrywood);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    align-self: stretch;
+  }
+</style>

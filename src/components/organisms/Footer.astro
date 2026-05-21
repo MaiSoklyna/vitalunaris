@@ -178,8 +178,8 @@ const legalLinks = [
     margin: 0;
     max-width: 371px;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
     line-height: 1.5;
     color: var(--c-spring-wood);
   }
@@ -198,9 +198,9 @@ const legalLinks = [
   .footer__col-title {
     margin: 0;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 28px;
+    font-weight: var(--weight-medium);
+    font-size: var(--h4-size);
+    line-height: 1.2;
     color: var(--c-spring-wood);
   }
 
@@ -216,8 +216,8 @@ const legalLinks = [
 
   .footer__link {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: var(--weight-regular);
+    font-size: var(--link-size);
     line-height: 1.5;
     color: var(--c-spring-wood);
     text-decoration: none;
@@ -228,8 +228,8 @@ const legalLinks = [
   .footer__hours {
     margin: 0;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
     line-height: 1.5;
     color: var(--c-spring-wood);
   }
@@ -252,8 +252,8 @@ const legalLinks = [
     gap: 12px;
     flex: 1 1 100%;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
     line-height: 1.5;
     color: var(--c-spring-wood);
     text-decoration: none;
@@ -285,8 +285,8 @@ const legalLinks = [
   .footer__social-label {
     width: 100%;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
     line-height: 1.5;
     color: var(--c-spring-wood);
   }
@@ -342,8 +342,8 @@ const legalLinks = [
   .footer__copy {
     margin: 0;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: var(--weight-regular);
+    font-size: var(--p2-size);
     line-height: 1.5;
     color: var(--c-spring-wood);
     opacity: 0.5;
@@ -356,5 +356,58 @@ const legalLinks = [
     display: flex;
     flex-wrap: wrap;
     gap: 12px 26.67px;
+  }
+
+  /* ============================================================
+     Desktop++ (≥1920) — Figma "Footer" spec
+     Container 1920×1020, padding 90, gap 40, P1 23/150, H3 32/120
+     ============================================================ */
+  @media (min-width: 1920px) {
+    .footer__inner {
+      padding: 90px;
+      gap: 40px;
+    }
+
+    /* Brand column — 778×371, gap 42 */
+    .footer__brand { width: 778px; gap: 42px; }
+    .footer__logo  { width: 269px; height: auto; }
+    .footer__tagline {
+      max-width: 419px;
+      font-size: 23px;
+      line-height: 150%;
+    }
+
+    /* Nav-style columns — 265×371, gap 17.55, H3 32/120 title */
+    .footer__col { width: 265px; gap: 17.55px; }
+    .footer__col-title {
+      font-size: 32px;
+      line-height: 120%;
+      font-weight: var(--weight-medium);
+    }
+    .footer__list { gap: 17.55px; }
+    .footer__link { font-size: 23px; line-height: 150%; }
+    .footer__hours { font-size: 23px; line-height: 150%; }
+
+    /* Contact column — 564×200, gap 30 40 */
+    .footer__contact { width: 564px; gap: 30px 40px; }
+    .footer__contact-row { font-size: 23px; line-height: 150%; }
+    .footer__icon { width: 35px; height: 35px; }
+
+    /* Social column — 177×126, gap 40 */
+    .footer__social { width: 177px; gap: 40px; }
+    .footer__social-label {
+      font-size: 32px;
+      line-height: 120%;
+      font-weight: var(--weight-medium);
+    }
+    .footer__social-icons { gap: 40px; }
+    .footer__social-icon { width: 48px; height: 48px; }
+
+    /* Credits row — 1740 wide, copy + legal P1 23 */
+    .footer__credits { width: 1740px; }
+    .footer__credits-row { gap: 20px; }
+    .footer__copy  { font-size: 23px; line-height: 150%; }
+    .footer__legal { gap: 12px 40px; }
+    .footer__legal .footer__link { font-size: 23px; line-height: 150%; }
   }
 </style>

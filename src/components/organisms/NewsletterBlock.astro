@@ -130,24 +130,21 @@ const {
   .newsletter__title {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 44px;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin: 0;
   }
-  @media (min-width: 768px) { .newsletter__title { font-size: 64px; } }
-  @media (min-width: 1280px) { .newsletter__title { font-size: 90px; } }
 
   .newsletter__body {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
     line-height: 1.5;
     max-width: 720px;
   }
-  @media (min-width: 768px) { .newsletter__body { font-size: 23px; } }
 
   .newsletter__form {
     display: flex;
@@ -181,9 +178,9 @@ const {
     border-radius: 100px;
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.2;
     outline: none;
     transition: border-color 200ms ease, background 200ms ease;
   }
@@ -202,9 +199,9 @@ const {
     border: 1.4px solid var(--c-cherrywood);
     border-radius: 100px;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
+    font-weight: var(--weight-regular);
+    font-size: var(--button-size);
+    line-height: 1.2;
     cursor: pointer;
     transition: background 200ms ease, color 200ms ease, transform 200ms ease;
     white-space: nowrap;

@@ -39,9 +39,8 @@ const { eyebrow, title, intro, steps } = Astro.props;
   <div class="process__container process__container--blocks">
     <div class="process__diagram">
       <div class="process__blocks">
-        {steps.slice(0, 4).map((step, i) => (
+        {steps.slice(0, 4).map((step) => (
           <div class="process__block">
-            <span class="process__number">{i + 1}</span>
             <Heading level={3} class="process__block-title">{step.title}</Heading>
             <Text size="p1" class="process__block-body">{step.description}</Text>
           </div>
@@ -64,9 +63,8 @@ const { eyebrow, title, intro, steps } = Astro.props;
           />
         </div>
         <div class="process__mobile-cards">
-          {steps.slice(startIdx, startIdx + 2).map((step, i) => (
+          {steps.slice(startIdx, startIdx + 2).map((step) => (
             <div class="process__mobile-card">
-              <span class="process__number">{startIdx + i + 1}</span>
               <Heading level={3} class="process__block-title">{step.title}</Heading>
               <Text size="p1" class="process__block-body">{step.description}</Text>
             </div>
@@ -84,6 +82,8 @@ const { eyebrow, title, intro, steps } = Astro.props;
   .process { background: var(--c-spring-wood); padding: 64px 8px; }
   @media (min-width: 768px) { .process { padding: 96px 8px; } }
   @media (min-width: 1024px) { .process { padding: 120px 8px; } }
+  /* Desktop++ — Figma "Text" container is 92px from section top, no side gutter */
+  @media (min-width: 1920px) { .process { padding: 92px 0 120px; } }
 
   .process__container {
     position: relative;
@@ -117,7 +117,7 @@ const { eyebrow, title, intro, steps } = Astro.props;
     .process__header { padding: 0 32px 32px; gap: 32px; max-width: 862px; }
   }
   @media (min-width: 1920px) {
-    .process__header { padding: 0 32px 40px; gap: 40px; }
+    .process__header { padding: 0; gap: 40px; max-width: 1106px; width: 1106px; }
   }
 
   .process__eyebrow { color: var(--c-cherrywood); opacity: 0.7; }
@@ -125,27 +125,18 @@ const { eyebrow, title, intro, steps } = Astro.props;
     color: var(--c-cherrywood);
     text-align: center;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
   }
   .process__intro {
     color: var(--c-cherrywood);
     opacity: 0.9;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     text-align: center;
-  }
-
-  @media (min-width: 768px) {
-    .process__title { font-size: 54px; line-height: 110%; }
-    .process__intro { font-size: 16px; line-height: 150%; }
-  }
-  @media (min-width: 1280px) {
-    .process__title { font-size: 60px; line-height: 69px; }
-    .process__intro { font-size: 16px; line-height: 150%; }
-  }
-  @media (min-width: 1920px) {
-    .process__title { font-size: 90px; line-height: 110%; }
-    .process__intro { font-size: 23px; line-height: 150%; }
   }
 
   /* ============================================================
@@ -161,7 +152,7 @@ const { eyebrow, title, intro, steps } = Astro.props;
     display: none;
   }
   @media (min-width: 1024px) {
-    .process__curve-wrapper--desktop { display: block; }
+    .process__curve-wrapper--desktop { display: block; padding-top: 32px; }
   }
   @media (min-width: 1280px) {
     .process__curve-wrapper--desktop { aspect-ratio: 1280 / 130; }
@@ -180,7 +171,7 @@ const { eyebrow, title, intro, steps } = Astro.props;
   .process__diagram { display: none; }
 
   @media (min-width: 1024px) {
-    .process__container--blocks { display: block; }
+    .process__container--blocks { display: block; padding: 0 90px; }
     .process__diagram { display: block; width: 100%; }
 
     .process__blocks {
@@ -192,6 +183,9 @@ const { eyebrow, title, intro, steps } = Astro.props;
     }
     @media (min-width: 1280px) {
       .process__blocks { min-height: 420px; margin-top: 24px; }
+    }
+    @media (min-width: 1920px) {
+      .process__container--blocks { padding: 0 90px; }
     }
 
     .process__block {
@@ -213,31 +207,25 @@ const { eyebrow, title, intro, steps } = Astro.props;
 
     .process__number {
       font-family: 'ES Park TRIAL', serif;
-      font-weight: 400;
-      font-size: 48px;
+      font-weight: var(--weight-regular);
+      font-size: var(--h1-size);
       line-height: 1.1;
       color: var(--c-cherrywood);
     }
-    @media (min-width: 768px) { .process__number { font-size: 64px; } }
-    @media (min-width: 1280px) { .process__number { font-size: 90px; } }
 
     .process__block-title {
       color: var(--c-cherrywood);
-      font-weight: 500;
-      font-size: 22px;
+      font-weight: var(--weight-medium);
+      font-size: var(--h3-size);
       line-height: 1.2;
     }
-    @media (min-width: 768px) { .process__block-title { font-size: 26px; } }
-    @media (min-width: 1280px) { .process__block-title { font-size: 32px; } }
 
     .process__block-body {
       color: var(--c-cherrywood);
       opacity: 0.9;
-      font-size: 16px;
+      font-size: var(--p1-size);
       line-height: 1.5;
     }
-    @media (min-width: 768px) { .process__block-body { font-size: 19px; } }
-    @media (min-width: 1280px) { .process__block-body { font-size: 23px; } }
   }
 
   /* ============================================================
@@ -316,42 +304,21 @@ const { eyebrow, title, intro, steps } = Astro.props;
   }
   .process__mobile-card .process__number {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 48px;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
     line-height: 1.1;
     color: var(--c-cherrywood);
   }
-  @media (min-width: 768px) {
-    .process__mobile-card .process__number {
-      font-family: 'ES Park TRIAL', serif;
-      font-weight: 400;
-      font-size: 54px;
-      line-height: 110%;
-    }
-  }
   .process__mobile-card .process__block-title {
     color: var(--c-cherrywood);
-    font-weight: 500;
-    font-size: 22px;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
     line-height: 1.2;
-  }
-  @media (min-width: 768px) {
-    .process__mobile-card .process__block-title {
-      font-size: 24px;
-      line-height: 28px;
-      font-weight: 500;
-    }
   }
   .process__mobile-card .process__block-body {
     color: var(--c-cherrywood);
     opacity: 0.9;
-    font-size: 16px;
+    font-size: var(--p1-size);
     line-height: 1.5;
-  }
-  @media (min-width: 768px) {
-    .process__mobile-card .process__block-body {
-      font-size: 16px;
-      line-height: 150%;
-    }
   }
 </style>

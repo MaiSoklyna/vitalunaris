@@ -96,14 +96,12 @@ const stars = Array.from({ length: rating });
     margin: 0;
     color: var(--c-black);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     flex-grow: 1;
     align-self: stretch;
   }
-  @media (min-width: 1024px) { .t-card__quote { font-size: 18px; } }
-  @media (min-width: 1920px) { .t-card__quote { font-size: 23px; line-height: 150%; } }
 
   /* ----- author row ----- */
   .t-card__author {
@@ -127,20 +125,18 @@ const stars = Array.from({ length: rating });
     background: var(--c-pale-gold);
     color: var(--c-black);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
   }
-  @media (min-width: 1024px) { .t-card__avatar { width: 42px; height: 42px; font-size: 19px; } }
-  @media (min-width: 1920px) { .t-card__avatar { width: 48px; height: 48px; font-size: 23px; } }
+  @media (min-width: 1024px) { .t-card__avatar { width: 42px; height: 42px; } }
+  @media (min-width: 1920px) { .t-card__avatar { width: 48px; height: 48px; } }
 
   .t-card__name {
     color: var(--c-black);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
   }
-  @media (min-width: 1024px) { .t-card__name { font-size: 18px; } }
-  @media (min-width: 1920px) { .t-card__name { font-size: 23px; line-height: 150%; } }
 </style>

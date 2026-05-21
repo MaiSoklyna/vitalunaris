@@ -85,18 +85,18 @@ const {
   }
   .narrative--purple.narrative--image-right .narrative__title {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 37px;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.15;
     color: var(--c-white);
     margin: 0;
     align-self: stretch;
   }
   .narrative--purple.narrative--image-right .narrative__body {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 140%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     color: var(--c-white);
     opacity: 1;
     max-width: none;
@@ -129,14 +129,6 @@ const {
       gap: 26.67px;
       max-width: 684px;
     }
-    .narrative--purple.narrative--image-right .narrative__title {
-      font-size: 40px;
-      line-height: 46px;
-    }
-    .narrative--purple.narrative--image-right .narrative__body {
-      font-size: 16px;
-      line-height: 150%;
-    }
     .narrative--purple.narrative--image-right .narrative__media {
       position: absolute;
       z-index: 1;
@@ -158,14 +150,6 @@ const {
       gap: 40px;
       max-width: 1139px;
     }
-    .narrative--purple.narrative--image-right .narrative__title {
-      font-size: 60px;
-      line-height: 69px;
-    }
-    .narrative--purple.narrative--image-right .narrative__body {
-      font-size: 23px;
-      line-height: 150%;
-    }
     .narrative--purple.narrative--image-right .narrative__media {
       top: 317.79px;
       right: 102px;
@@ -175,12 +159,33 @@ const {
     }
   }
 
+  /* Desktop++ (≥1920) — Figma Text spec: width 1139, gap 40, H2 60/69, P1 23/150 */
+  @media (min-width: 1920px) {
+    .narrative--purple.narrative--image-right .narrative__content {
+      width: 1139px;
+      max-width: 1139px;
+      gap: 40px;
+      padding: 0;
+      align-items: flex-start;
+    }
+    .narrative--purple.narrative--image-right .narrative__title {
+      font-size: 60px;
+      line-height: 69px;
+      color: #FFFFFF;
+    }
+    .narrative--purple.narrative--image-right .narrative__body {
+      font-size: 23px;
+      line-height: 150%;
+      color: #FFFFFF;
+    }
+  }
+
   /* image-left + light variant: gold→cream gradient card */
   .narrative--light.narrative--image-left {
     background: linear-gradient(180deg, #FFD869 0%, #F9F4EE 63.8%);
     border-radius: 16.67px;
     margin: 0 16px;
-    padding: 0;
+    padding: 120px 90px;
   }
   @media (min-width: 768px) {
     .narrative--light.narrative--image-left { margin: 0 40px; border-radius: 20px; }
@@ -189,28 +194,31 @@ const {
     .narrative--light.narrative--image-left { margin: 0 60px; border-radius: 25px; }
   }
 
-  /* Inner layout: same image-on-top + text-below composition across breakpoints
-     (Figma 768 frame). Mobile (w=360) uses reduced sizing. */
+  /* Inner layout: text-on-left + image-on-right at ≥768px; stacked on mobile. */
+  /* !important needed to defeat .container-x horizontal padding from global.css */
+  /* max-width: none + width: 100% defeats .max-w-layout cap so the row fills section */
   .narrative--light.narrative--image-left .narrative__inner {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
-    padding: 20px;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100%;
+    margin: 0;
   }
   @media (min-width: 768px) {
     .narrative--light.narrative--image-left .narrative__inner {
       flex-direction: row;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: space-between;
-      align-items: flex-start;
-      align-content: flex-start;
-      padding: 40px;
-      gap: 60px 114.667px;
+      align-items: center;
+      padding: 0 !important;
+      gap: 40px;
     }
   }
 
-  /* Media — image on top, full row. Figma 612x420 at w=768 */
+  /* Media — image on right at ≥768px. Figma 612x420 reference. */
   .narrative--light.narrative--image-left .narrative__media {
     border-radius: 16.67px;
     overflow: hidden;
@@ -220,20 +228,24 @@ const {
   }
   @media (min-width: 768px) {
     .narrative--light.narrative--image-left .narrative__media {
+      order: 1;
+      flex: 1 1 50%;
+      max-width: none;
+      width: 100%;
+      height: auto;
+      aspect-ratio: auto;
       border-radius: 20px;
+      align-self: stretch;
     }
   }
-  @media (min-width: 768px) {
-    .narrative--light.narrative--image-left .narrative__media {
-      flex: 0 0 100%;
-      max-width: 612px;
-      width: 100%;
-      height: 420px;
-      aspect-ratio: auto;
-    }
+  .narrative--light.narrative--image-left .narrative__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
-  /* Text — H1 40/110 mobile → 60/69 at 768+; P1 16/150 */
+  /* Text — H2 40px throughout; P1 16/150 */
   .narrative--light.narrative--image-left .narrative__content {
     display: flex;
     flex-direction: column;
@@ -246,38 +258,31 @@ const {
   }
   @media (min-width: 768px) {
     .narrative--light.narrative--image-left .narrative__content {
+      order: 2;
+      flex: 1 1 50%;
+      max-width: 574px;
       gap: 26.67px;
+      align-self: center;
     }
   }
   .narrative--light.narrative--image-left .narrative__title {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 110%;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.15;
     color: var(--c-cherrywood);
     margin: 0;
     align-self: stretch;
   }
   .narrative--light.narrative--image-left .narrative__body {
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     color: var(--c-cherrywood);
     opacity: 1;
     max-width: none;
     align-self: stretch;
-  }
-
-  @media (min-width: 768px) {
-    .narrative--light.narrative--image-left .narrative__content {
-      flex: 0 0 100%;
-      max-width: 574px;
-    }
-    .narrative--light.narrative--image-left .narrative__title {
-      font-size: 60px;
-      line-height: 69px;
-    }
   }
 
   .narrative__inner {

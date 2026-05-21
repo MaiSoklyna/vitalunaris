@@ -80,13 +80,12 @@ const {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.55;
   }
   .dark-cta__overlay {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(180deg, rgba(96, 29, 29, 0.35) 0%, rgba(96, 29, 29, 0.85) 100%);
+    background: rgba(0, 0, 0, 0.1);
   }
 
   .dark-cta__inner {
@@ -112,30 +111,26 @@ const {
   .dark-cta__title {
     color: var(--c-spring-wood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 110%;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
     text-align: center;
     align-self: stretch;
     margin: 0;
     max-width: none;
   }
-  @media (min-width: 768px)  { .dark-cta__title { font-size: 54px; line-height: 110%; } }
-  @media (min-width: 1280px) { .dark-cta__title { font-size: 60px; line-height: 69px; } }
-  @media (min-width: 1920px) { .dark-cta__title { font-size: 90px; line-height: 110%; } }
 
   .dark-cta__body {
     margin: 0;
     color: var(--c-spring-wood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     text-align: center;
     align-self: stretch;
     max-width: none;
   }
-  @media (min-width: 1920px) { .dark-cta__body { font-size: 23px; line-height: 150%; } }
 
   /* ----- Button Group White L ----- */
   .dark-cta__cta {
@@ -155,7 +150,7 @@ const {
   }
   @media (min-width: 1920px) { .dark-cta__cta { gap: 20px; } }
 
-  /* Common button frame */
+  /* Common button frame — size driven by --button-size token */
   .dark-cta__cta :global(.dark-cta__btn) {
     box-sizing: border-box;
     display: inline-flex;
@@ -169,9 +164,9 @@ const {
     width: 100%;
     max-width: 343px;
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
+    font-weight: var(--weight-regular);
+    font-size: var(--button-size);
+    line-height: 1.2;
     border-radius: 67.66px;
     text-align: center;
   }
@@ -180,8 +175,6 @@ const {
       height: 50px;
       min-height: 50px;
       padding: 14px 28px;
-      font-size: 16px;
-      line-height: 19px;
       border-radius: 100px;
     }
   }
@@ -191,8 +184,6 @@ const {
       height: 54.79px;
       min-height: 54.79px;
       padding: 16.8941px;
-      font-size: 18px;
-      line-height: 21px;
     }
   }
 

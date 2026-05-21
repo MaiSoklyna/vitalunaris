@@ -114,27 +114,23 @@ const {
   .claim__title {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 110%;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
     margin: 0;
     align-self: stretch;
     max-width: none;
   }
-  @media (min-width: 768px)  { .claim__title { font-size: 54px; line-height: 110%; } }
-  @media (min-width: 1280px) { .claim__title { font-size: 60px; line-height: 69px; } }
-  @media (min-width: 1920px) { .claim__title { font-size: 90px; line-height: 110%; } }
 
   .claim__body {
     margin: 0;
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     align-self: stretch;
   }
-  @media (min-width: 1920px) { .claim__body { font-size: 23px; line-height: 150%; } }
 
   /* ----- CTA — Primary Button L ----- */
   .claim__cta { margin-top: 0; }
@@ -147,8 +143,8 @@ const {
     padding: 13.5328px 24px;
     height: 42px;
     min-height: 42px;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: var(--button-size);
+    line-height: 1.2;
     border-radius: 67.66px;
     background: var(--c-cherrywood);
     color: var(--c-spring-wood);
@@ -158,8 +154,6 @@ const {
       height: 52px;
       min-height: 52px;
       padding: 16px 32px;
-      font-size: 15px;
-      line-height: 18px;
       border-radius: 100px;
     }
   }
@@ -169,8 +163,6 @@ const {
       height: 61px;
       min-height: 61px;
       padding: 20px 40px;
-      font-size: 18px;
-      line-height: 21px;
       border-radius: 100px;
     }
   }

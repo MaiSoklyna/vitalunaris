@@ -65,22 +65,19 @@ const { eyebrow, title, intro, offers } = Astro.props;
   .offer-block__title {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 110%;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.15;
     text-align: center;
     align-self: stretch;
     margin: 0;
   }
-  @media (min-width: 1280px) {
-    .offer-block__title { font-size: 60px; line-height: 69px; }
-  }
   .offer-block__intro {
     color: var(--c-cherrywood);
     font-family: 'ES Park TRIAL', serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
     text-align: center;
     align-self: stretch;
   }
@@ -92,5 +89,11 @@ const { eyebrow, title, intro, offers } = Astro.props;
   }
   @media (min-width: 640px)  { .offer-block__grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) { .offer-block__grid { grid-template-columns: repeat(4, 1fr); gap: 13.33px; } }
-  @media (min-width: 1920px) { .offer-block__grid { gap: 20px; } }
+  @media (min-width: 1920px) {
+    .offer-block__grid {
+      grid-template-columns: repeat(4, 411px);
+      justify-content: center;
+      gap: 20px;
+    }
+  }
 </style>
