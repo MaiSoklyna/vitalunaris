@@ -22,7 +22,7 @@ const {
   image,
   imageAlt = '',
   imageSide = 'right',
-  ctaText = 'Mehr lesen',
+  ctaText = 'Mehr über uns',
   ctaHref = '/kontakt',
 } = Astro.props;
 ---
@@ -30,7 +30,7 @@ const {
 <section class={`feat-t feat-t--image-${imageSide}`}>
   <div class="feat-t__inner">
     <div class="feat-t__content">
-      {eyebrow && <Heading variant="eyebrow" class="feat-t__eyebrow">{eyebrow}</Heading>}
+    
       <Heading level={2} variant="h1" class="feat-t__name"><Fragment set:html={name} /></Heading>
       {role && <p class="feat-t__role">{role}</p>}
       <p class="feat-t__quote"><Fragment set:html={quote} /></p>

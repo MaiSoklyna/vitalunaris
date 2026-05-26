@@ -82,6 +82,7 @@ const { eyebrow, title, intro, steps } = Astro.props;
   .process { background: var(--c-spring-wood); padding: 64px 8px; }
   @media (min-width: 768px) { .process { padding: 96px 8px; } }
   @media (min-width: 1024px) { .process { padding: 120px 8px; } }
+  @media (min-width: 1280px) { .process { padding: 0; margin: 0; } }
   /* Desktop++ — Figma "Text" container is 92px from section top, no side gutter */
   @media (min-width: 1920px) { .process { padding: 92px 0 120px; } }
 
@@ -91,6 +92,7 @@ const { eyebrow, title, intro, steps } = Astro.props;
     max-width: 1280px;
     margin: 0 auto;
   }
+  @media (min-width: 1920px) { .process__container { max-width: none; } }
 
   /* ============================================================
      HEADER
@@ -182,10 +184,16 @@ const { eyebrow, title, intro, steps } = Astro.props;
       margin-top: 16px;
     }
     @media (min-width: 1280px) {
-      .process__blocks { min-height: 420px; margin-top: 24px; }
+      .process__blocks { min-height: 302px; margin-top: 24px; }
     }
     @media (min-width: 1920px) {
-      .process__container--blocks { padding: 0 90px; }
+      .process__container--blocks { padding: 0; }
+      .process__blocks { min-height: 302px; }
+      .process__block { width: 384px; }
+      .process__block:nth-child(1) { left: 96px;   top: 161px; }
+      .process__block:nth-child(2) { left: 529px;  top: 16px; }
+      .process__block:nth-child(3) { left: 973px;  top: 0; }
+      .process__block:nth-child(4) { left: 1415px; top: 177px; }
     }
 
     .process__block {

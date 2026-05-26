@@ -9,7 +9,12 @@
       "Bash(git push *)",
       "Bash(curl *)",
       "Bash(npx astro *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(timeout 10 bash -c \"npx astro dev --port 4321 2>&1 | head -20\")",
+      "Bash(exit 0)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(npx astro build 2>&1 | Select-Object -Last 20)",
+      "PowerShell(npx astro build 2>&1 | Select-Object -Last 10)"
     ]
   }
 }

@@ -91,7 +91,8 @@ const isActive = (href: string) =>
     transition: padding 300ms ease;
   }
   @media (min-width: 768px)  { .nav { padding: 12px 16px 0; } }
-  @media (min-width: 1280px) { .nav { padding: 32px 48px 0; } }
+  @media (min-width: 1280px) { .nav { padding: 16px 32px; } }
+  @media (min-width: 1920px) { .nav { padding: 32px 48px 0; } }
 
   .nav__inner {
     display: flex;
@@ -115,6 +116,12 @@ const isActive = (href: string) =>
       padding: 4px 12px;
       min-height: 48px;
       border-radius: 24px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .nav__inner {
+      min-height: 60px;
+      border-radius: 12px;
     }
   }
   /* Desktop++ (≥ 1920px) — Figma Header spec */
@@ -156,7 +163,7 @@ const isActive = (href: string) =>
       flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
-      gap: 24px;
+      gap: 13px;
       padding: 0;
     }
   }
@@ -183,6 +190,7 @@ const isActive = (href: string) =>
   }
   .nav__link:hover { opacity: 0.7; }
   .nav__link--active { font-weight: 600; }
+  @media (min-width: 1280px) { .nav__link { font-size: 16px; } }
 
   /* ---------- COMPACT TRIGGER + DROPDOWN ( < 1024px ) ---------- */
   .nav__compact {

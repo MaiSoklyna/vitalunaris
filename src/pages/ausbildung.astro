@@ -357,6 +357,43 @@ const faqItems = [
     }
   }
 
+  /* ----- Desktop (≥1280) — curved card positioning scaled from 1920 layout ----- */
+  @media (min-width: 1280px) {
+    .outcomes {
+      position: relative;
+      min-height: 873px;
+    }
+    .outcomes__desktop {
+      position: static;
+      width: 100%;
+    }
+    .outcomes__cards {
+      position: static;
+      display: block;
+      padding: 0;
+      margin: 0;
+    }
+    .outcomes__card {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .outcomes__card--1 { left: 64px;  top: 478px; width: 257px; }
+    .outcomes__card--2 { left: 353px; top: 381px; width: 257px; }
+    .outcomes__card--3 { left: 649px; top: 371px; width: 256px; }
+    .outcomes__card--4 { left: 943px; top: 489px; width: 256px; }
+    .outcomes__cta {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 763px;
+      padding: 0;
+    }
+  }
+
   /* ----- Desktop++ (≥1920) — Figma absolute positioning relative to the section ----- */
   @media (min-width: 1920px) {
     .outcomes {
@@ -415,6 +452,7 @@ const faqItems = [
       width: 270px;
       padding: 0;
       justify-content: center;
+      transform: none;
     }
   }
 
@@ -526,7 +564,7 @@ const faqItems = [
     width: 100%;
   }
   @media (min-width: 768px)  { .stages__grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1280px) { .stages__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1280px) { .stages__grid { grid-template-columns: repeat(3, 1fr); gap: 13px; } }
 
   .stage-card {
     box-sizing: border-box;
@@ -540,7 +578,7 @@ const faqItems = [
     gap: 32px;
     height: 100%;
   }
-  @media (min-width: 1280px) { .stage-card { padding: 32px; gap: 48px; border-radius: 20px; } }
+  @media (min-width: 1280px) { .stage-card { padding: 27px; gap: 48px; border-radius: 20px; } }
   @media (min-width: 1920px) { .stage-card { padding: 40px 41px; gap: 59px; border-radius: 25px; min-height: 783px; } }
 
   .stage-card__icon {
@@ -564,6 +602,7 @@ const faqItems = [
   }
 
   .stage-card__eyebrow { color: var(--c-cherrywood); align-self: stretch; }
+  @media (min-width: 1280px) { .stage-card__eyebrow { font-size: 18px; } }
 
   .stage-card__title {
     color: var(--c-cherrywood);
@@ -574,6 +613,7 @@ const faqItems = [
     margin: 0;
     align-self: stretch;
   }
+  @media (min-width: 1280px) { .stage-card__title { font-size: 40px; } }
 
   .stage-card__body {
     color: var(--c-cherrywood);
@@ -581,4 +621,5 @@ const faqItems = [
     line-height: 1.5;
     align-self: stretch;
   }
+  @media (min-width: 1280px) { .stage-card__body { font-size: 16px; } }
 </style>

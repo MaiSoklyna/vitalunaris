@@ -143,24 +143,37 @@ const {
 
   @media (min-width: 1280px) {
     .narrative--purple.narrative--image-right .narrative__inner {
-      padding: 90px;
-      min-height: 1080px;
+      padding: 60px;
+      min-height: 720px;
     }
     .narrative--purple.narrative--image-right .narrative__content {
-      gap: 40px;
-      max-width: 1139px;
+      gap: 26.67px;
+      max-width: 759.33px;
+    }
+    .narrative--purple.narrative--image-right .narrative__title {
+      font-size: 40px;
+      line-height: 46px;
+    }
+    .narrative--purple.narrative--image-right .narrative__body {
+      font-size: 16px;
+      line-height: 150%;
     }
     .narrative--purple.narrative--image-right .narrative__media {
-      top: 317.79px;
-      right: 102px;
-      width: 990px;
-      height: 617px;
-      border-radius: 25px;
+      top: 211.86px;
+      left: 552px;
+      right: auto;
+      width: 660px;
+      height: 411.33px;
+      border-radius: 16.6667px;
     }
   }
 
   /* Desktop++ (≥1920) — Figma Text spec: width 1139, gap 40, H2 60/69, P1 23/150 */
   @media (min-width: 1920px) {
+    .narrative--purple.narrative--image-right .narrative__inner {
+      padding: 90px;
+      min-height: 1080px;
+    }
     .narrative--purple.narrative--image-right .narrative__content {
       width: 1139px;
       max-width: 1139px;
@@ -178,6 +191,14 @@ const {
       line-height: 150%;
       color: #FFFFFF;
     }
+    .narrative--purple.narrative--image-right .narrative__media {
+      top: 317.79px;
+      left: 828px;
+      right: auto;
+      width: 990px;
+      height: 617px;
+      border-radius: 25px;
+    }
   }
 
   /* image-left + light variant: gold→cream gradient card */
@@ -191,7 +212,7 @@ const {
     .narrative--light.narrative--image-left { margin: 0 40px; border-radius: 20px; }
   }
   @media (min-width: 1280px) {
-    .narrative--light.narrative--image-left { margin: 0 60px; border-radius: 25px; }
+    .narrative--light.narrative--image-left { margin: 0 60px; border-radius: 25px; padding: 80px 60px; }
   }
 
   /* Inner layout: text-on-left + image-on-right at ≥768px; stacked on mobile. */
@@ -273,6 +294,9 @@ const {
     color: var(--c-cherrywood);
     margin: 0;
     align-self: stretch;
+  }
+  @media (min-width: 1280px) {
+    .narrative--light.narrative--image-left .narrative__title { font-size: 40px; line-height: 46px; }
   }
   .narrative--light.narrative--image-left .narrative__body {
     font-family: 'ES Park TRIAL', serif;
