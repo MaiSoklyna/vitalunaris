@@ -1,0 +1,212 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+interface Props {
+  categoryMeta: string;
+  durationMeta: string;
+  title: string;
+  description?: string;
+  price: string;
+  ctaText?: string;
+  ctaHref?: string;
+  image: string;
+  imageAlt?: string;
+}
+
+const {
+  categoryMeta,
+  durationMeta,
+  title,
+  description,
+  price,
+  ctaText = 'Jetzt buchen',
+  ctaHref = '/kontakt',
+  image,
+  imageAlt = '',
+} = Astro.props;
+---
+
+<section class="course-hero">
+  <div class="course-hero__inner">
+    <div class="course-hero__content">
+      <div class="course-hero__meta">
+        <Heading variant="eyebrow" class="course-hero__category">{categoryMeta}</Heading>
+        <Text size="p2" class="course-hero__duration">{durationMeta}</Text>
+      </div>
+      <Heading level={1} class="course-hero__title">
+        <Fragment set:html={title} />
+      </Heading>
+      {description && <Text size="p1" class="course-hero__desc">{description}</Text>}
+      <Heading level={3} class="course-hero__price">{price}</Heading>
+      <div class="course-hero__cta">
+        <Button href={ctaHref} variant="primary" size="lg">{ctaText}</Button>
+      </div>
+    </div>
+    <div class="course-hero__media">
+      <img src={image} alt={imageAlt} class="course-hero__image" />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     COURSE HERO — responsive (360 / 768 / 1280 / 1920)
+     ============================================================ */
+
+  /* ----- SECTION ----- */
+  .course-hero {
+    background: var(--c-spring-wood);
+    padding: 40px 20px;
+  }
+  @media (min-width: 768px) {
+    .course-hero { padding: 60px 32px; }
+  }
+  @media (min-width: 1280px) {
+    .course-hero { padding: 60px; }
+  }
+  @media (min-width: 1920px) {
+    .course-hero { padding: 90px; }
+  }
+
+  /* ----- INNER ----- */
+  .course-hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1740px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .course-hero__inner {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .course-hero__inner { gap: 170px; }
+  }
+
+  /* ----- CONTENT ----- */
+  .course-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .course-hero__content {
+      flex: 1 1 45%;
+      max-width: 560px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .course-hero__content { gap: 32px; }
+  }
+  @media (min-width: 1920px) {
+    .course-hero__content {
+      gap: 40px;
+      width: 813px;
+      max-width: 813px;
+      flex: none;
+    }
+  }
+
+  /* ----- META ROW ----- */
+  .course-hero__meta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    align-self: stretch;
+  }
+  @media (min-width: 1920px) {
+    .course-hero__meta { gap: 80px; }
+  }
+
+  /* Category */
+  .course-hero__category {
+    color: var(--c-cherrywood);
+    flex: 1;
+  }
+
+  /* Duration */
+  .course-hero__duration {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p2-size);
+    line-height: 1.4;
+    color: var(--c-cherrywood);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ----- TITLE ----- */
+  .course-hero__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    color: var(--c-cherrywood);
+    margin: 0;
+    align-self: stretch;
+  }
+
+  /* ----- DESCRIPTION ----- */
+  .course-hero__desc {
+    font-family: 'ES Park', serif;
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: var(--c-cherrywood);
+    align-self: stretch;
+  }
+
+  /* ----- PRICE ----- */
+  .course-hero__price {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
+    color: var(--c-cherrywood);
+    margin: 0;
+  }
+
+  /* ----- MEDIA ----- */
+  .course-hero__media {
+    width: 100%;
+    border-radius: 16.67px;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .course-hero__media {
+      flex: 1 1 45%;
+      max-width: none;
+      border-radius: 20px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .course-hero__media {
+      width: 858px;
+      flex: none;
+      border-radius: 25px;
+    }
+  }
+
+  /* ----- IMAGE ----- */
+  .course-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 858 / 868;
+  }
+</style>

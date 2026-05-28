@@ -42,7 +42,7 @@ const { eyebrow, title, intro, offers } = Astro.props;
   .offer-block { background: var(--c-spring-wood); padding: 60px 20px; }
   @media (min-width: 768px)  { .offer-block { padding: 60px 32px; } }
   @media (min-width: 1024px) { .offer-block { padding: 80px 40px; } }
-  @media (min-width: 1280px) { .offer-block { padding: 60px; } }
+  @media (min-width: 1280px) { .offer-block { padding: 60px 0; } }
   @media (min-width: 1920px) { .offer-block { padding: 90px; } }
 
   /* Header — Figma spec: centered, gap 26.67px, H1 60/69 Cherrywood, P1 16/150 Cherrywood */
@@ -64,7 +64,7 @@ const { eyebrow, title, intro, offers } = Astro.props;
   }
   .offer-block__title {
     color: var(--c-cherrywood);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--h2-size);
     line-height: 1.15;
@@ -74,7 +74,7 @@ const { eyebrow, title, intro, offers } = Astro.props;
   }
   .offer-block__intro {
     color: var(--c-cherrywood);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
     line-height: 1.5;
@@ -88,7 +88,7 @@ const { eyebrow, title, intro, offers } = Astro.props;
     gap: 13.33px;
   }
   @media (min-width: 640px)  { .offer-block__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .offer-block__grid { grid-template-columns: repeat(4, 1fr); gap: 13.33px; } }
+  @media (min-width: 1024px) { .offer-block__grid { grid-template-columns: repeat(4, 1fr); gap: 13px; } }
   @media (min-width: 1920px) {
     .offer-block__grid {
       grid-template-columns: repeat(4, 411px);

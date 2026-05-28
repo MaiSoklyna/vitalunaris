@@ -11,7 +11,7 @@ const navLinks = [
   { href: '/ueber-uns', label: 'Über uns' },
   { href: '/praxisangebote', label: 'Praxisangebote' },
   { href: '/ausbildung', label: 'Ausbildung' },
-  { href: '/workshops-events', label: 'Workshops & Events' },
+  { href: '/workshops', label: 'Workshops & Events' },
   { href: '/membership', label: 'Membership' },
   { href: '/wissen', label: 'Wissen' },
   { href: '/jawort-by-jansen', label: 'JaWort by Jansen' },
@@ -109,27 +109,27 @@ const isActive = (href: string) =>
       #E1E2FC 78.48%,
       #8E84B6 108.81%),
       #F9F4EE;
-    border-radius: 16px;
+    border-radius: 12px;
   }
   @media (min-width: 1024px) {
     .nav__inner {
       padding: 4px 12px;
       min-height: 48px;
-      border-radius: 24px;
+      border-radius: 16px;
     }
   }
   @media (min-width: 1280px) {
     .nav__inner {
       min-height: 60px;
-      border-radius: 12px;
+      border-radius: 20px;
     }
   }
   /* Desktop++ (≥ 1920px) — Figma Header spec */
   @media (min-width: 1920px) {
     .nav__inner {
-      padding: 20px 0;
+      padding: 0 0;
       gap: 20px;
-      min-height: 90px;
+      height: 90px;
       border-radius: 24px;
     }
   }
@@ -148,9 +148,9 @@ const isActive = (href: string) =>
   @media (min-width: 768px) {
     .nav__logo-img { width: 163.24px; height: 30px; }
   }
-  /* Desktop++ logo: Group 12 = 217.65×40, wrapper padding 20px 43px */
+  /* Desktop++ logo */
   @media (min-width: 1920px) {
-    .nav__logo { padding: 20px 43px; }
+    .nav__logo { padding: 0 43px; }
     .nav__logo-img { width: 217.65px; height: 40px; }
   }
 
@@ -168,17 +168,17 @@ const isActive = (href: string) =>
     }
   }
   @media (min-width: 1440px) { .nav__pill { gap: 32px; } }
-  /* Desktop++ menu pill: padding 20px 40px, gap 32, ~90px tall */
+  /* Desktop++ menu pill */
   @media (min-width: 1920px) {
     .nav__pill {
-      padding: 20px 40px;
+      padding: 0 40px;
       gap: 32px;
-      min-height: 90px;
+      height: 90px;
     }
   }
 
   .nav__link {
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-size: var(--link-size);
     font-weight: var(--weight-regular);
     line-height: 1.2;
@@ -268,7 +268,7 @@ const isActive = (href: string) =>
   }
 
   .nav__dropdown-link {
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-size: var(--link-size);
     font-weight: var(--weight-medium);
     color: var(--c-cherrywood);

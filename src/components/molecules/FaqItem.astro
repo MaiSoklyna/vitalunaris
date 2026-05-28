@@ -27,10 +27,10 @@ const { question, answer, open = false } = Astro.props;
 
 <style>
   .faq-item {
-    border-top: 1px solid var(--c-cherrywood);
+    border-top: 1px solid currentColor;
   }
   .faq-item:last-of-type {
-    border-bottom: 1px solid var(--c-cherrywood);
+    border-bottom: 1px solid currentColor;
   }
 
   .faq-item__summary {
@@ -41,17 +41,17 @@ const { question, answer, open = false } = Astro.props;
     justify-content: space-between;
     gap: 24px;
     padding: 24px 0;
-    color: var(--c-cherrywood);
+    color: inherit;
   }
   .faq-item__summary::-webkit-details-marker { display: none; }
   .faq-item__summary::marker { content: ''; }
 
   .faq-item__question {
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--h4-size);
     line-height: 1.3;
-    color: var(--c-cherrywood);
+    color: inherit;
   }
 
   .faq-item__icon {
@@ -59,7 +59,7 @@ const { question, answer, open = false } = Astro.props;
     flex-shrink: 0;
     width: 30px;
     height: 30px;
-    color: var(--c-cherrywood);
+    color: inherit;
   }
   .faq-item__bar {
     position: absolute;
@@ -85,7 +85,7 @@ const { question, answer, open = false } = Astro.props;
 
   .faq-item__answer {
     padding-bottom: 24px;
-    color: var(--c-cherrywood);
+    color: inherit;
     opacity: 0.85;
     max-width: 72ch;
   }

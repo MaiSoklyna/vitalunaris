@@ -1,0 +1,65 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  active?: boolean;
+  class?: string;
+}
+
+const { label, href, active = false, class: className } = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const classes = ['pill', active && 'pill--active', className].filter(Boolean).join(' ');
+---
+
+<Tag class={classes} {...(href ? { href } : { type: 'button' })}>
+  {label}
+</Tag>
+
+<style>
+  .pill {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--button-size);
+    line-height: 21px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--c-cherrywood);
+    border: 1px solid var(--c-cherrywood);
+    background: transparent;
+    border-radius: 16px;
+    white-space: nowrap;
+    padding: 12px 32px;
+    height: 44px;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .pill--active {
+    background: var(--c-cherrywood);
+    color: var(--c-spring-wood);
+  }
+
+  .pill:not(.pill--active):hover {
+    background: rgba(96, 29, 29, 0.08);
+  }
+
+  @media (min-width: 768px) {
+    .pill {
+      padding: 16px 48px;
+      height: 52px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .pill {
+      padding: 20px 75px;
+      height: 61px;
+    }
+  }
+</style>

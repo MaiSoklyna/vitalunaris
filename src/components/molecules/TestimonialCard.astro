@@ -24,7 +24,7 @@ const stars = Array.from({ length: rating });
         <svg class="t-card__star" viewBox="0 0 32 31" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M16 0 L19.6 10.4 L30.7 10.7 L21.8 17.4 L25 28.1 L16 21.8 L7 28.1 L10.2 17.4 L1.3 10.7 L12.4 10.4 Z"
-            fill="#EC9F27"
+            fill="#601D1D"
           />
         </svg>
       ))}
@@ -55,13 +55,14 @@ const stars = Array.from({ length: rating });
     justify-content: center;
     align-items: center;
     background: var(--c-white);
+    border: 0.8px solid var(--c-cherrywood);
     border-radius: 16.67px;
     padding: 24px;
     height: 100%;
     min-height: 320px;
   }
-  @media (min-width: 1024px) { .t-card { padding: 32px; min-height: 380px; border-radius: 20px; } }
-  @media (min-width: 1920px) { .t-card { padding: 40px; min-height: 478px; border-radius: 25px; } }
+  @media (min-width: 1024px) { .t-card { padding: 32px; min-height: 380px; border-radius: 20px; border-width: 1px; } }
+  @media (min-width: 1920px) { .t-card { padding: 40px; min-height: 478px; border-radius: 25px; border-width: 1.25px; } }
 
   .t-card__inner {
     display: flex;
@@ -95,7 +96,7 @@ const stars = Array.from({ length: rating });
   .t-card__quote {
     margin: 0;
     color: var(--c-black);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
     line-height: 1.5;
@@ -124,7 +125,7 @@ const stars = Array.from({ length: rating });
     border-radius: 9999px;
     background: var(--c-pale-gold);
     color: var(--c-black);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
     line-height: 1.5;
@@ -134,7 +135,7 @@ const stars = Array.from({ length: rating });
 
   .t-card__name {
     color: var(--c-black);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
     line-height: 1.5;

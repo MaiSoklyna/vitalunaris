@@ -1,0 +1,230 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import PillButton from '@molecules/PillButton.astro';
+
+interface Pill {
+  label: string;
+  href?: string;
+  active?: boolean;
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  pills: Pill[];
+  workshopTitle?: string;
+  workshopDescription?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  pills,
+  workshopTitle,
+  workshopDescription,
+} = Astro.props;
+---
+
+<section class="workshops-hero">
+  <div class="workshops-hero__inner">
+    <div class="workshops-hero__text">
+      {eyebrow && <Heading variant="eyebrow" class="workshops-hero__eyebrow">{eyebrow}</Heading>}
+      <Heading level={1} class="workshops-hero__title">
+        <Fragment set:html={title} />
+      </Heading>
+      {subtitle && <Text size="p1" class="workshops-hero__subtitle">{subtitle}</Text>}
+    </div>
+
+    <div class="workshops-hero__pills">
+      {pills.map(p => <PillButton label={p.label} href={p.href} active={p.active} />)}
+    </div>
+
+    <div class="workshops-hero__card">
+      {workshopTitle && <Heading level={2} class="workshops-hero__card-title">{workshopTitle}</Heading>}
+      {workshopDescription && <Text size="p1" class="workshops-hero__card-desc">{workshopDescription}</Text>}
+      <div class="workshops-hero__calendar">
+        <Heading level={2} class="workshops-hero__calendar-title">Kalenderansicht</Heading>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     WORKSHOPS HERO — responsive (360 / 768 / 1280 / 1920)
+     ============================================================ */
+
+  /* ----- SECTION ----- */
+  .workshops-hero {
+    background: var(--c-spring-wood);
+    padding: 40px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .workshops-hero { padding: 60px 32px 80px; }
+  }
+  @media (min-width: 1280px) {
+    .workshops-hero { padding: 60px 60px 90px; }
+  }
+  @media (min-width: 1920px) {
+    .workshops-hero { padding: 90px 90px 120px; }
+  }
+
+  /* ----- INNER ----- */
+  .workshops-hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+  }
+  @media (min-width: 1920px) {
+    .workshops-hero__inner { gap: 64px; }
+  }
+
+  /* ----- TEXT BLOCK ----- */
+  .workshops-hero__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 720px;
+  }
+  @media (min-width: 1920px) {
+    .workshops-hero__text {
+      gap: 40px;
+      max-width: 1080px;
+    }
+  }
+
+  /* ----- EYEBROW ----- */
+  .workshops-hero__eyebrow {
+    color: var(--c-cherrywood);
+    text-align: center;
+    align-self: stretch;
+  }
+
+  /* ----- TITLE ----- */
+  .workshops-hero__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    color: var(--c-cherrywood);
+    margin: 0;
+    text-align: center;
+    align-self: stretch;
+  }
+
+  /* ----- SUBTITLE ----- */
+  .workshops-hero__subtitle {
+    font-family: 'ES Park', serif;
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: var(--c-cherrywood);
+    text-align: center;
+    align-self: stretch;
+  }
+
+  /* ----- PILLS ROW ----- */
+  .workshops-hero__pills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+    justify-content: center;
+  }
+  @media (min-width: 1280px) {
+    .workshops-hero__pills { gap: 20px; }
+  }
+  @media (min-width: 1920px) {
+    .workshops-hero__pills { gap: 24px; }
+  }
+
+  /* ----- CARD ----- */
+  .workshops-hero__card {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    border: 1px solid var(--c-cherrywood);
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 24px;
+  }
+  @media (min-width: 768px) {
+    .workshops-hero__card {
+      padding: 32px;
+      border-radius: 36px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .workshops-hero__card { padding: 36px; }
+  }
+  @media (min-width: 1920px) {
+    .workshops-hero__card {
+      padding: 44px 48px;
+      border-radius: 48px;
+    }
+  }
+
+  /* ----- CARD TITLE ----- */
+  .workshops-hero__card-title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.15;
+    color: var(--c-cherrywood);
+    margin: 0 0 12px;
+  }
+
+  /* ----- CARD DESCRIPTION ----- */
+  .workshops-hero__card-desc {
+    font-family: 'ES Park', serif;
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: var(--c-cherrywood);
+    margin: 0 0 20px;
+  }
+
+  /* ----- CALENDAR PLACEHOLDER ----- */
+  .workshops-hero__calendar {
+    background: var(--c-cherrywood);
+    border-radius: 16px;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .workshops-hero__calendar { min-height: 400px; }
+  }
+  @media (min-width: 1280px) {
+    .workshops-hero__calendar {
+      min-height: 500px;
+      border-radius: 20px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .workshops-hero__calendar { min-height: 747px; }
+  }
+
+  /* ----- CALENDAR TITLE ----- */
+  .workshops-hero__calendar-title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.15;
+    color: var(--c-spring-wood);
+    text-align: center;
+  }
+</style>

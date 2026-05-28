@@ -28,7 +28,7 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"ES Park TRIAL"', 'Georgia', 'serif'],
+        display: ['"ES Park"', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {

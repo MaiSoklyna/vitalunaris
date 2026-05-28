@@ -1,0 +1,215 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CourseHero from '@organisms/CourseHero.astro';
+import InfoCardsRow from '@organisms/InfoCardsRow.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import EventCard from '@molecules/EventCard.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+
+export function getStaticPaths() {
+  const courses = [
+    {
+      slug: 'nummerologie-august',
+      categoryMeta: 'NUMMEROLOGIE | August | 12.8.2026',
+      durationMeta: '90 Min. | Online',
+      title: 'Ich bin der Titel des Kurses',
+      description: 'Odio cras proin proin sit quis fringilla aliquet. Consectetur elementum viverra egestas egestas nulla ullamcorper varius quam.',
+      price: '120 CHF',
+      image: '/images/placeholder/Placeholder_1.jpg',
+    },
+  ];
+  return courses.map(course => ({
+    params: { slug: course.slug },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+
+const infoCards = [
+  { eyebrow: 'WANN?', body: 'Der Kurs findet am 12.8.2026 statt' },
+  { eyebrow: 'WO?', body: 'Online' },
+  { eyebrow: 'WAS?', body: 'Nummerologie Grundlagen' },
+];
+
+const testimonials = [
+  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
+  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Thomas K.' },
+  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Claudia R.' },
+  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Lena M.' },
+];
+
+const furtherCourses = [
+  {
+    image: '/images/placeholder/Placeholder_1.jpg',
+    title: 'Individuelle Tiefenarbeit',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
+    price: '120 CHF',
+    duration: '90 Min. | Online',
+    ctaText: 'Mehr erfahren',
+    ctaHref: '/kurs/nummerologie-august',
+  },
+  {
+    image: '/images/placeholder/Placeholder_1.jpg',
+    title: 'Individuelle Tiefenarbeit',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
+    price: '120 CHF',
+    duration: '90 Min. | Online',
+    ctaText: 'Mehr erfahren',
+    ctaHref: '/kurs/nummerologie-august',
+  },
+  {
+    image: '/images/placeholder/Placeholder_1.jpg',
+    title: 'Individuelle Tiefenarbeit',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
+    price: '120 CHF',
+    duration: '90 Min. | Online',
+    ctaText: 'Mehr erfahren',
+    ctaHref: '/kurs/nummerologie-august',
+  },
+];
+
+const faqItems = [
+  { question: 'Wie läuft eine systemische Aufstellung ab?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.' },
+  { question: 'Werden die Kosten von der Krankenkasse übernommen?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.' },
+  { question: 'Für wen ist VitaLunaris geeignet?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.' },
+  { question: 'Wie kann ich einen Termin buchen?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.' },
+];
+---
+
+<BaseLayout
+  title={course.title + ' – VitaLunaris'}
+  currentPath={'/kurs/' + course.slug}
+>
+  <CourseHero
+    categoryMeta={course.categoryMeta}
+    durationMeta={course.durationMeta}
+    title={course.title}
+    description={course.description}
+    price={course.price}
+    image={course.image}
+  />
+
+  <InfoCardsRow cards={infoCards} />
+
+  <NarrativeBlock
+    tone="lavender-gradient"
+    imageSide="left"
+    eyebrow="WAS WIR ANSCHAUEN"
+    title="Lorem ipsum dolor sit amet"
+    body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    image="/images/placeholder/placeholder-2.jpg"
+  />
+
+  <TestimonialsBlock
+    title="Was Menschen sagen"
+    testimonials={testimonials}
+  />
+
+  <section class="further-courses">
+    <div class="further-courses__inner">
+      <div class="further-courses__header">
+        <Heading level={2} variant="h1" class="further-courses__title">Weitere Kurse & Events</Heading>
+        <Text size="p1" class="further-courses__subtitle">Odio cras proin proin sit quis fringilla aliquet. Consectetur elementum viverra egestas egestas nulla ullamcorper varius quam.</Text>
+      </div>
+      <div class="further-courses__grid">
+        {furtherCourses.map(c => <EventCard {...c} />)}
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faqItems} />
+
+  <NewsletterBlock
+    eyebrow="Newsletter"
+    title="Impulse für deine<br />innere Reise."
+    body="Einmal im Monat: Gedanken, Übungen und Einladungen — sorgfältig kuratiert, nie aufdringlich."
+    placeholder="deine@email.ch"
+    submitText="Abonnieren"
+  />
+</BaseLayout>
+
+<style>
+  /* ============================================================
+     FURTHER COURSES — responsive (360 / 768 / 1280 / 1920)
+     ============================================================ */
+
+  .further-courses {
+    background: var(--c-spring-wood);
+    padding: 60px 20px;
+  }
+  @media (min-width: 768px) {
+    .further-courses { padding: 60px 32px; }
+  }
+  @media (min-width: 1280px) {
+    .further-courses { padding: 60px; }
+  }
+  @media (min-width: 1920px) {
+    .further-courses { padding: 90px 90px 120px; }
+  }
+
+  /* ----- INNER ----- */
+  .further-courses__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  @media (min-width: 1920px) {
+    .further-courses__inner { gap: 64px; }
+  }
+
+  /* ----- HEADER ----- */
+  .further-courses__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  @media (min-width: 1920px) {
+    .further-courses__header { gap: 40px; }
+  }
+
+  /* ----- TITLE ----- */
+  .further-courses__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    color: var(--c-cherrywood);
+    margin: 0;
+    text-align: center;
+  }
+
+  /* ----- SUBTITLE ----- */
+  .further-courses__subtitle {
+    font-family: 'ES Park', serif;
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: var(--c-cherrywood);
+    text-align: center;
+    max-width: 1080px;
+  }
+
+  /* ----- GRID ----- */
+  .further-courses__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+  @media (min-width: 640px) {
+    .further-courses__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .further-courses__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 1920px) {
+    .further-courses__grid { gap: 20px; }
+  }
+</style>

@@ -1,8 +1,9 @@
 ---
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
 
-type Tone = 'light' | 'purple' | 'gold';
+type Tone = 'light' | 'purple' | 'gold' | 'lavender-gradient';
 type ImageSide = 'left' | 'right';
 
 interface Props {
@@ -16,6 +17,8 @@ interface Props {
   attribution?: string;
   /** CSS aspect-ratio for the media (e.g. "4/5", "16/10", "4/3"). Default portrait 4/5. */
   mediaAspect?: string;
+  ctaText?: string;
+  ctaHref?: string;
 }
 
 const {
@@ -28,6 +31,8 @@ const {
   tone = 'light',
   attribution,
   mediaAspect = '4 / 5',
+  ctaText,
+  ctaHref,
 } = Astro.props;
 ---
 
@@ -45,6 +50,11 @@ const {
       </Heading>
       {body && <Text size="p1" class="narrative__body">{body}</Text>}
       {attribution && <Text size="p2" class="narrative__attribution">{attribution}</Text>}
+      {ctaText && ctaHref && (
+        <div class="narrative__cta">
+          <Button href={ctaHref} variant="primary" size="lg">{ctaText}</Button>
+        </div>
+      )}
     </div>
   </div>
 </section>
@@ -84,7 +94,7 @@ const {
     color: var(--c-white);
   }
   .narrative--purple.narrative--image-right .narrative__title {
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--h2-size);
     line-height: 1.15;
@@ -93,7 +103,7 @@ const {
     align-self: stretch;
   }
   .narrative--purple.narrative--image-right .narrative__body {
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
     line-height: 1.5;
@@ -206,13 +216,16 @@ const {
     background: linear-gradient(180deg, #FFD869 0%, #F9F4EE 63.8%);
     border-radius: 16.67px;
     margin: 0 16px;
-    padding: 120px 90px;
+    padding: 48px 24px;
   }
   @media (min-width: 768px) {
-    .narrative--light.narrative--image-left { margin: 0 40px; border-radius: 20px; }
+    .narrative--light.narrative--image-left { margin: 0 40px; border-radius: 20px; padding: 64px 40px; }
   }
   @media (min-width: 1280px) {
-    .narrative--light.narrative--image-left { margin: 0 60px; border-radius: 25px; padding: 80px 60px; }
+    .narrative--light.narrative--image-left { margin: 0 60px; border-radius: 25px; padding: 90px 60px; }
+  }
+  @media (min-width: 1920px) {
+    .narrative--light.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: 25px; }
   }
 
   /* Inner layout: text-on-left + image-on-right at ≥768px; stacked on mobile. */
@@ -238,6 +251,18 @@ const {
       gap: 40px;
     }
   }
+  @media (min-width: 1280px) {
+    .narrative--light.narrative--image-left .narrative__inner {
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .narrative--light.narrative--image-left .narrative__inner {
+      flex-wrap: wrap;
+      align-content: space-between;
+      gap: 170px 172px;
+    }
+  }
 
   /* Media — image on right at ≥768px. Figma 612x420 reference. */
   .narrative--light.narrative--image-left .narrative__media {
@@ -257,6 +282,21 @@ const {
       aspect-ratio: auto;
       border-radius: 20px;
       align-self: stretch;
+    }
+  }
+  @media (min-width: 1280px) {
+    .narrative--light.narrative--image-left .narrative__media {
+      border-radius: 25px;
+      aspect-ratio: 620 / 830;
+    }
+  }
+  @media (min-width: 1920px) {
+    .narrative--light.narrative--image-left .narrative__media {
+      flex: none;
+      width: 620px;
+      height: 830px;
+      aspect-ratio: auto;
+      border-radius: 25px;
     }
   }
   .narrative--light.narrative--image-left .narrative__image {
@@ -287,7 +327,7 @@ const {
     }
   }
   .narrative--light.narrative--image-left .narrative__title {
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--h2-size);
     line-height: 1.15;
@@ -296,10 +336,29 @@ const {
     align-self: stretch;
   }
   @media (min-width: 1280px) {
-    .narrative--light.narrative--image-left .narrative__title { font-size: 40px; line-height: 46px; }
+    .narrative--light.narrative--image-left .narrative__content {
+      max-width: none;
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .narrative--light.narrative--image-left .narrative__content {
+      flex: none;
+      width: 712px;
+      max-width: 712px;
+      gap: 40px;
+    }
+    .narrative--light.narrative--image-left .narrative__title {
+      font-size: 60px;
+      line-height: 69px;
+    }
+    .narrative--light.narrative--image-left .narrative__body {
+      font-size: 23px;
+      line-height: 150%;
+    }
   }
   .narrative--light.narrative--image-left .narrative__body {
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
     line-height: 1.5;
@@ -309,6 +368,301 @@ const {
     align-self: stretch;
   }
 
+  /* ============================================================
+     Purple + image-left — text on right, image on left, lavender bg
+     Mobile (360): stacked column
+     Tablet (768): flex row, image left + text right
+     Desktop (1280): proportional sizing
+     Desktop++ (1920): full Figma spec
+     ============================================================ */
+  .narrative--purple.narrative--image-left { padding: 0; background: var(--c-lavender); color: var(--c-white); }
+  .narrative--purple.narrative--image-left .narrative__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: none !important;
+    width: 100%;
+    margin: 0;
+  }
+  .narrative--purple.narrative--image-left .narrative__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    color: var(--c-white);
+  }
+  .narrative--purple.narrative--image-left .narrative__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    color: var(--c-white);
+    margin: 0;
+    align-self: stretch;
+  }
+  .narrative--purple.narrative--image-left .narrative__body {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: var(--c-white);
+    opacity: 1;
+    max-width: none;
+  }
+  .narrative--purple.narrative--image-left .narrative__media {
+    border-radius: 16.67px;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: auto;
+    align-self: stretch;
+  }
+  .narrative--purple.narrative--image-left .narrative__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .narrative--purple.narrative--image-left .narrative__inner {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 90px 60px;
+      gap: 40px;
+    }
+    .narrative--purple.narrative--image-left .narrative__media {
+      order: 0;
+      flex: 1 1 50%;
+      border-radius: 20px;
+    }
+    .narrative--purple.narrative--image-left .narrative__content {
+      order: 1;
+      flex: 1 1 50%;
+      gap: 26.67px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .narrative--purple.narrative--image-left .narrative__inner {
+      padding: 60px;
+      gap: 40px;
+    }
+    .narrative--purple.narrative--image-left .narrative__media {
+      border-radius: 25px;
+    }
+    .narrative--purple.narrative--image-left .narrative__content {
+      max-width: none;
+      gap: 40px;
+    }
+    .narrative--purple.narrative--image-left .narrative__title {
+      font-size: 40px;
+      line-height: 1.1;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .narrative--purple.narrative--image-left .narrative__inner {
+      padding: 90px 104px 90px 241px;
+      gap: 300px;
+    }
+    .narrative--purple.narrative--image-left .narrative__media {
+      flex: none;
+      width: 510px;
+      height: 832px;
+      aspect-ratio: auto;
+      border-radius: 25px;
+    }
+    .narrative--purple.narrative--image-left .narrative__content {
+      flex: none;
+      width: 844px;
+      max-width: 844px;
+      gap: 40px;
+    }
+    .narrative--purple.narrative--image-left .narrative__title {
+      font-size: 60px;
+      line-height: 1.1;
+    }
+    .narrative--purple.narrative--image-left .narrative__body {
+      font-size: 23px;
+      line-height: 150%;
+    }
+  }
+
+  /* ============================================================
+     Lavender-gradient + image-left — mirrors light+image-left
+     but uses a lavender→cream gradient background
+     ============================================================ */
+  .narrative--lavender-gradient { background: linear-gradient(180deg, #8E84B6 0%, #F9F4EE 63.8%); color: var(--c-cherrywood); }
+
+  .narrative--lavender-gradient.narrative--image-left {
+    background: linear-gradient(180deg, #8E84B6 0%, #F9F4EE 63.8%);
+    border-radius: 16.67px;
+    margin: 0 16px;
+    padding: 48px 24px;
+  }
+  @media (min-width: 768px) {
+    .narrative--lavender-gradient.narrative--image-left { margin: 0 40px; border-radius: 20px; padding: 64px 40px; }
+  }
+  @media (min-width: 1280px) {
+    .narrative--lavender-gradient.narrative--image-left { margin: 0 60px; border-radius: 25px; padding: 90px 60px; }
+  }
+  @media (min-width: 1920px) {
+    .narrative--lavender-gradient.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: 25px; }
+  }
+
+  .narrative--lavender-gradient.narrative--image-left .narrative__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100%;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__inner {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 !important;
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__inner {
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__inner {
+      flex-wrap: wrap;
+      align-content: space-between;
+      gap: 170px 172px;
+    }
+  }
+
+  .narrative--lavender-gradient.narrative--image-left .narrative__media {
+    border-radius: 16.67px;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 612 / 420;
+    align-self: stretch;
+  }
+  @media (min-width: 768px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__media {
+      order: 1;
+      flex: 1 1 50%;
+      max-width: none;
+      width: 100%;
+      height: auto;
+      aspect-ratio: auto;
+      border-radius: 20px;
+      align-self: stretch;
+    }
+  }
+  @media (min-width: 1280px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__media {
+      border-radius: 25px;
+      aspect-ratio: 620 / 830;
+    }
+  }
+  @media (min-width: 1920px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__media {
+      flex: none;
+      width: 620px;
+      height: 830px;
+      aspect-ratio: auto;
+      border-radius: 25px;
+    }
+  }
+  .narrative--lavender-gradient.narrative--image-left .narrative__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .narrative--lavender-gradient.narrative--image-left .narrative__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+  }
+  @media (min-width: 768px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__content {
+      order: 2;
+      flex: 1 1 50%;
+      max-width: 574px;
+      gap: 26.67px;
+      align-self: center;
+    }
+  }
+  @media (min-width: 1280px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__content {
+      max-width: none;
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__content {
+      flex: none;
+      width: 712px;
+      max-width: 712px;
+      gap: 40px;
+    }
+  }
+  .narrative--lavender-gradient.narrative--image-left .narrative__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.15;
+    color: var(--c-cherrywood);
+    margin: 0;
+    align-self: stretch;
+  }
+  @media (min-width: 1920px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__title {
+      font-size: 60px;
+      line-height: 69px;
+    }
+  }
+  .narrative--lavender-gradient.narrative--image-left .narrative__body {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: var(--c-cherrywood);
+    opacity: 1;
+    max-width: none;
+    align-self: stretch;
+  }
+  @media (min-width: 1920px) {
+    .narrative--lavender-gradient.narrative--image-left .narrative__body {
+      font-size: 23px;
+      line-height: 150%;
+    }
+  }
+
+  /* ============================================================
+     CTA button
+     ============================================================ */
+  .narrative__cta { margin-top: 0; }
+
+  /* ============================================================
+     Generic / fallback rules (must come last)
+     ============================================================ */
   .narrative__inner {
     display: grid;
     grid-template-columns: 1fr;

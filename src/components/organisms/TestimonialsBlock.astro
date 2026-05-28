@@ -61,8 +61,15 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
     width: 100%;
   }
   @media (min-width: 1024px) { .t-block__inner { gap: 64px; } }
-  @media (min-width: 1280px) { .t-block__inner { gap: 80px; } }
-  @media (min-width: 1920px) { .t-block__inner { gap: 90px; } }
+  @media (min-width: 1280px) {
+    .t-block__inner {
+      gap: 80px;
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  @media (min-width: 1920px) { .t-block__inner { gap: 64px; max-width: none; padding-left: 0; padding-right: 0; } }
 
   .t-block__header {
     display: flex;
@@ -84,7 +91,7 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
   }
   .t-block__title {
     color: var(--c-cherrywood);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--h1-size);
     line-height: 1.1;
@@ -95,7 +102,7 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
 
   .t-block__intro {
     color: var(--c-cherrywood);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
     line-height: 1.5;

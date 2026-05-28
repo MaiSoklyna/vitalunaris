@@ -13,16 +13,17 @@ interface Props {
   title?: string;
   intro?: string;
   items: Question[];
+  theme?: 'light' | 'dark';
 }
 
-const { eyebrow, title = 'FAQ', intro, items } = Astro.props;
+const { eyebrow, title = 'FAQ', intro, items, theme = 'light' } = Astro.props;
 
 const mid = Math.ceil(items.length / 2);
 const columnA = items.slice(0, mid);
 const columnB = items.slice(mid);
 ---
 
-<section class="faq">
+<section class={`faq ${theme === 'dark' ? 'faq--dark' : ''}`}>
   <div class="faq__inner max-w-layout container-x">
     <header class="faq__header">
       {eyebrow && <Heading variant="eyebrow" class="faq__eyebrow">{eyebrow}</Heading>}
@@ -69,7 +70,7 @@ const columnB = items.slice(mid);
   .faq__eyebrow { color: var(--c-cherrywood); opacity: 0.7; }
   .faq__title {
     color: var(--c-cherrywood);
-    font-family: 'ES Park TRIAL', serif;
+    font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--h1-size);
     line-height: 1.1;
@@ -90,5 +91,20 @@ const columnB = items.slice(mid);
   .faq__column {
     display: flex;
     flex-direction: column;
+  }
+
+  /* Dark theme variant */
+  .faq--dark {
+    background: var(--c-cherrywood);
+    color: var(--c-spring-wood);
+  }
+  .faq--dark .faq__eyebrow {
+    color: var(--c-spring-wood);
+  }
+  .faq--dark .faq__title {
+    color: var(--c-spring-wood);
+  }
+  .faq--dark .faq__intro {
+    color: var(--c-spring-wood);
   }
 </style>

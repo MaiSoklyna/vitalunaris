@@ -1,0 +1,127 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+
+interface InfoCard {
+  eyebrow: string;
+  body: string;
+}
+
+interface Props {
+  cards: InfoCard[];
+}
+
+const { cards } = Astro.props;
+---
+
+<section class="info-cards">
+  <div class="info-cards__inner">
+    {cards.map(card => (
+      <article class="info-cards__card">
+        <div class="info-cards__card-inner">
+          <Heading variant="eyebrow" class="info-cards__eyebrow">{card.eyebrow}</Heading>
+          <Text size="p1" class="info-cards__body">{card.body}</Text>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .info-cards {
+    background: var(--c-spring-wood);
+    padding: 0 20px 40px;
+  }
+
+  .info-cards__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 100%;
+    max-width: 1740px;
+    margin: 0 auto;
+  }
+
+  .info-cards__card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: var(--c-spring-wood);
+    border: 0.667px solid var(--c-cherrywood);
+    border-radius: 16.67px;
+    padding: 24px;
+    width: 100%;
+  }
+
+  .info-cards__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .info-cards__eyebrow {
+    color: var(--c-cherrywood);
+  }
+
+  .info-cards__body {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: #000000;
+  }
+
+  @media (min-width: 640px) {
+    .info-cards__inner {
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    .info-cards__card {
+      flex: 1 1 0%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .info-cards {
+      padding: 0 32px 60px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .info-cards {
+      padding: 0 60px 60px;
+    }
+
+    .info-cards__card {
+      border-width: 1px;
+      border-radius: 20px;
+      padding: 32px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .info-cards {
+      padding: 0 90px 90px;
+    }
+
+    .info-cards__inner {
+      gap: 22px;
+    }
+
+    .info-cards__card {
+      border-width: 1.25px;
+      border-radius: 25px;
+      padding: 40px;
+    }
+
+    .info-cards__card-inner {
+      gap: 30px;
+    }
+  }
+</style>

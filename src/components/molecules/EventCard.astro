@@ -1,0 +1,201 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+interface Props {
+  image: string;
+  imageAlt?: string;
+  title: string;
+  description: string;
+  price: string;
+  duration: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  image,
+  imageAlt = '',
+  title,
+  description,
+  price,
+  duration,
+  ctaText = 'Mehr erfahren',
+  ctaHref = '/angebot',
+} = Astro.props;
+---
+
+<article class="event-card">
+  <div class="event-card__title-block">
+    <div class="event-card__image-wrap">
+      <img src={image} alt={imageAlt} class="event-card__image" />
+    </div>
+    <Heading level={3} class="event-card__title">{title}</Heading>
+    <Text size="p2" class="event-card__body">{description}</Text>
+  </div>
+  <div class="event-card__meta">
+    <Heading level={4} class="event-card__price">{price}</Heading>
+    <Text size="p2" class="event-card__duration">{duration}</Text>
+  </div>
+  <div class="event-card__cta">
+    <Button href={ctaHref} variant="primary" size="lg" fullWidth>{ctaText}</Button>
+  </div>
+</article>
+
+<style>
+  .event-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--c-spring-wood);
+    color: var(--c-cherrywood);
+    border: 0.667px solid var(--c-cherrywood);
+    border-radius: 16.67px;
+    padding: 26.67px 27.33px;
+    gap: 39.33px;
+    height: 100%;
+  }
+  @media (min-width: 1280px) {
+    .event-card {
+      border-width: 0.8px;
+      border-radius: 20px;
+      padding: 32px 33px;
+      gap: 47px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .event-card {
+      border-width: 1px;
+      border-radius: 25px;
+      padding: 40px 41px;
+      gap: 59px;
+    }
+  }
+
+  /* ----- title block: image + H3 + body ----- */
+  .event-card__title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+  @media (min-width: 1920px) {
+    .event-card__title-block {
+      gap: 17.55px;
+    }
+  }
+
+  /* ----- image ----- */
+  .event-card__image-wrap {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: unset;
+    height: 200px;
+  }
+  @media (min-width: 1280px) {
+    .event-card__image-wrap {
+      border-radius: 13px;
+      height: 250px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .event-card__image-wrap {
+      border-radius: 16px;
+      height: 308px;
+    }
+  }
+  .event-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ----- title ----- */
+  .event-card__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
+    color: var(--c-cherrywood);
+    margin: 0;
+  }
+
+  /* ----- body ----- */
+  .event-card__body {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p2-size);
+    line-height: 1.4;
+    color: var(--c-cherrywood);
+    align-self: stretch;
+  }
+
+  /* ----- meta row: price + duration ----- */
+  .event-card__meta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+  }
+  @media (min-width: 1920px) {
+    .event-card__meta {
+      gap: 80px;
+    }
+  }
+
+  .event-card__price {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
+    color: var(--c-cherrywood);
+    margin: 0;
+  }
+
+  .event-card__duration {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p2-size);
+    line-height: 1.4;
+    color: var(--c-cherrywood);
+    text-align: right;
+  }
+
+  /* ----- CTA button — full-width ----- */
+  .event-card__cta {
+    align-self: stretch;
+    width: 100%;
+  }
+  .event-card__cta :global(.btn) {
+    width: 100%;
+    height: 42px;
+    min-height: 42px;
+    padding: 10px;
+    font-size: var(--button-size);
+    line-height: 1.2;
+    border-radius: 100px;
+  }
+  @media (min-width: 1024px) {
+    .event-card__cta :global(.btn) {
+      height: 52px;
+      min-height: 52px;
+      padding: 16px 32px;
+    }
+  }
+  @media (min-width: 1920px) {
+    .event-card__cta :global(.btn) {
+      height: 61px;
+      min-height: 61px;
+      padding: 20px 40px;
+      gap: 12px;
+    }
+  }
+</style>

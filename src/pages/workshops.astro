@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import WorkshopsHero from '@organisms/WorkshopsHero.astro';
+import ReviewCard from '@molecules/ReviewCard.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import FeaturedTestimonial from '@organisms/FeaturedTestimonial.astro';
+import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+
+const pills = [
+  { label: 'Monatsworkshops', active: true },
+  { label: 'Systemisches Aufstellen' },
+  { label: 'Hypnose' },
+  { label: 'Nummerologie' },
+  { label: 'Infoanlässe' },
+];
+
+const reviews = [
+  {
+    quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
+    name: 'Maria S.',
+  },
+  {
+    quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
+    name: 'Thomas K.',
+  },
+  {
+    quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
+    name: 'Claudia R.',
+  },
+];
+
+const faqItems = [
+  { question: 'Wie läuft eine systemische Aufstellung ab?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { question: 'Werden die Kosten von der Krankenkasse übernommen?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { question: 'Für wen ist VitaLunaris geeignet?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { question: 'Wie kann ich einen Termin buchen?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+];
+---
+
+<BaseLayout
+  title="VitaLunaris – Workshops & Events"
+  currentPath="/workshops"
+>
+  <WorkshopsHero
+    eyebrow="Workshops & Events"
+    title="Workshops &<br />Events"
+    subtitle="Entdecke unsere monatlichen Workshops, Aufstellungen und Infoanlässe — online und vor Ort."
+    pills={pills}
+  />
+
+  <section class="reviews-block">
+    <div class="reviews-block__grid">
+      {reviews.map(r => <ReviewCard quote={r.quote} name={r.name} />)}
+    </div>
+  </section>
+
+  <NarrativeBlock
+    tone="purple"
+    imageSide="left"
+    image="/images/ebene/Ebene_2-6.svg"
+    imageAlt=""
+    title="Lorem ipsum dolor sit amet"
+    body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, deserunt mollit anim id est laborum. At vero eos et accusamus et iusto odio."
+    ctaText="Erstgespräch buchen"
+    ctaHref="/kontakt"
+  />
+
+  <FeaturedTestimonial
+    name="Theresia & Axel<br />Jansen"
+    role=""
+    quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt."
+    image="/images/placeholder/placeholder-4.jpg"
+    imageSide="right"
+    ctaText="Mehr über uns"
+    ctaHref="/kontakt"
+  />
+
+  <Faq theme="dark" title="FAQ" items={faqItems} />
+
+  <NewsletterBlock
+    eyebrow="Newsletter"
+    title="Impulse für deine<br />Seele"
+    body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    placeholder="deine@email.ch"
+    submitText="Anmelden"
+  />
+</BaseLayout>
+
+<style>
+  /* ============================================================
+     REVIEWS BLOCK — inline section with gradient background
+     ============================================================ */
+  .reviews-block {
+    background: linear-gradient(180deg, #F9F4EE 57.41%, #8E84B6 100%);
+    padding: 60px 20px;
+  }
+  @media (min-width: 1920px) {
+    .reviews-block {
+      padding: 90px 20px;
+    }
+  }
+
+  .reviews-block__grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 13px;
+    max-width: var(--max-w-layout, 1440px);
+    margin: 0 auto;
+  }
+  @media (min-width: 640px) {
+    .reviews-block__grid {
+      flex-direction: row;
+    }
+    .reviews-block__grid > :global(*) {
+      flex: 1 1 calc(33.333% - 15px);
+    }
+  }
+  @media (min-width: 1920px) {
+    .reviews-block__grid {
+      gap: 22px;
+    }
+  }
+</style>

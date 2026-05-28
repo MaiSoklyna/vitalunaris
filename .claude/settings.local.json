@@ -14,7 +14,11 @@
       "Bash(exit 0)",
       "PowerShell(Get-Content *)",
       "PowerShell(npx astro build 2>&1 | Select-Object -Last 20)",
-      "PowerShell(npx astro build 2>&1 | Select-Object -Last 10)"
+      "PowerShell(npx astro build 2>&1 | Select-Object -Last 10)",
+      "Bash(copy \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\ES Park\\\\ES Park\\\\Web Licences\\\\woff2\\\\ESPark-Regular.woff2\" \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\fonts\\\\ESPark-Regular.woff2\")",
+      "Bash(copy \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\ES Park\\\\ES Park\\\\Web Licences\\\\woff2\\\\ESPark-Italic.woff2\" \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\fonts\\\\ESPark-Italic.woff2\")",
+      "Bash(copy \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\ES Park\\\\ES Park\\\\Web Licences\\\\woff\\\\ESPark-Regular.woff\" \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\fonts\\\\ESPark-Regular.woff\")",
+      "Bash(copy \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\ES Park\\\\ES Park\\\\Web Licences\\\\woff\\\\ESPark-Italic.woff\" \"D:\\\\Tanner\\\\vitalunaris\\\\public\\\\fonts\\\\ESPark-Italic.woff\")"
     ]
   }
 }

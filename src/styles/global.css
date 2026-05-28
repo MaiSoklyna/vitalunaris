@@ -3,48 +3,22 @@
 @tailwind utilities;
 
 /* ============================================================
-   FONT FACES — ES Park TRIAL (display) + Inter (body)
+   FONT FACES — ES Park (display) + Inter (body)
    ============================================================ */
 @font-face {
-  font-family: 'ES Park TRIAL';
-  src: url('/fonts/ESParkTRIAL-Regular.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'ES Park';
+  src: url('/fonts/ESPark-Regular.woff2') format('woff2'),
+       url('/fonts/ESPark-Regular.woff') format('woff');
+  font-weight: 100 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ES Park TRIAL';
-  src: url('/fonts/ESParkTRIAL-Italic.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'ES Park';
+  src: url('/fonts/ESPark-Italic.woff2') format('woff2'),
+       url('/fonts/ESPark-Italic.woff') format('woff');
+  font-weight: 100 700;
   font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'ES Park TRIAL';
-  src: url('/fonts/ESParkTRIAL-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'ES Park TRIAL';
-  src: url('/fonts/ESParkTRIAL-Semibold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'ES Park TRIAL';
-  src: url('/fonts/ESParkTRIAL-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'ES Park TRIAL';
-  src: url('/fonts/ESParkTRIAL-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
   font-display: swap;
 }
 
@@ -95,9 +69,9 @@
   --eyebrow-size: 23px;
 
   /* Paragraph */
-  --p1-size: 18px;
-  --p2-size: 16px;
-  --p3-size: 16px;
+  --p1-size: 23px;
+  --p2-size: 18px;
+  --p3-size: 12px;
 
   /* Button / Link */
   --button-size: 18px;
@@ -115,13 +89,13 @@
   :root {
     --h1-size: 60px;
     --h1-italic-size: 60px;
-    --h2-size: 60px;
+    --h2-size: 40px;
     --h3-size: 28px;
     --h4-size: 24px;
-    --eyebrow-size: 20px;
+    --eyebrow-size: 18px;
 
-    --p1-size: 18px;
-    --p2-size: 14px;
+    --p1-size: 16px;
+    --p2-size: 16px;
     --p3-size: 12px;
 
     --button-size: 12px;
@@ -137,14 +111,14 @@
     --h2-size: 36px;
     --h3-size: 28px;
     --h4-size: 24px;
-    --eyebrow-size: 20px;
+    --eyebrow-size: 18px;
 
     --p1-size: 16px;
     --p2-size: 14px;
     --p3-size: 12px;
 
-    --button-size: 12px;
-    --link-size: 12px;
+    --button-size: 16px;
+    --link-size: 16px;
   }
 }
 
@@ -181,12 +155,13 @@ html {
 
 body {
   margin: 0;
-  font-family: 'ES Park TRIAL', Georgia, serif;
+  font-family: 'ES Park', Georgia, serif;
   background: var(--bg-page);
   color: var(--fg-default);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 img, svg, video { display: block; max-width: 100%; height: auto; }
@@ -202,7 +177,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
    so the values cascade through every breakpoint automatically.
    ============================================================ */
 .type-h1 {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-regular);
   font-size: var(--h1-size);
   line-height: 1.15;
@@ -210,7 +185,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 }
 
 .type-h1-italic {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-regular);
   font-style: italic;
   font-size: var(--h1-italic-size);
@@ -219,7 +194,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 }
 
 .type-h2 {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-regular);
   font-size: var(--h2-size);
   line-height: 1.15;
@@ -227,21 +202,21 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 }
 
 .type-h3 {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-medium);
   font-size: var(--h3-size);
   line-height: 1.2;
 }
 
 .type-h4 {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-medium);
   font-size: var(--h4-size);
   line-height: 1.2;
 }
 
 .type-eyebrow {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-medium);
   font-size: var(--eyebrow-size);
   line-height: 1.2;
@@ -250,35 +225,35 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 }
 
 .type-p1 {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-regular);
   font-size: var(--p1-size);
   line-height: 1.5;
 }
 
 .type-p2 {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-regular);
   font-size: var(--p2-size);
   line-height: 1.4;
 }
 
 .type-p3 {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-regular);
   font-size: var(--p3-size);
   line-height: 1.4;
 }
 
 .type-button {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-regular);
   font-size: var(--button-size);
   line-height: 1.2;
 }
 
 .type-link {
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: var(--weight-semibold);
   font-size: var(--link-size);
   line-height: 1.2;
@@ -314,7 +289,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: 'ES Park TRIAL', serif;
+  font-family: 'ES Park', serif;
   font-weight: 400;
   text-align: center;
   text-decoration: none;
