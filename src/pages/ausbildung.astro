@@ -272,9 +272,7 @@ const faqItems = [
   }
   @media (min-width: 768px)  { .outcomes { padding: 96px 8px; } }
   @media (min-width: 1024px) { .outcomes { padding: 120px 8px; } }
-  /* At ≥1280 and ≥1920 the SVG curve goes edge-to-edge — no horizontal padding */
-  @media (min-width: 1280px) { .outcomes { padding: 120px 0; } }
-  @media (min-width: 1920px) { .outcomes { padding: 92px 0 120px; } }
+  /* ≥1072 the curve goes edge-to-edge — handled in the arc block below */
 
   .outcomes__header {
     display: flex;
@@ -290,7 +288,7 @@ const faqItems = [
     margin: 0;
   }
 
-  /* Outcome card title — tokens for small/tablet, explicit 48/55 at Desktop++ per Figma */
+  /* Outcome card title — token base (mobile/tablet); desktop arc scales it fluidly below */
   .outcomes__card-title {
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
@@ -299,18 +297,11 @@ const faqItems = [
     color: var(--c-cherrywood);
     margin: 0;
   }
-  @media (min-width: 1920px) {
-    .outcomes__card-title { font-size: 48px; line-height: 55px; }
-  }
 
   .outcomes__card-body {
     color: var(--c-cherrywood);
     font-size: var(--p1-size);
     line-height: 1.5;
-  }
-  /* Figma P1 Desktop+ override: 23px / 150% */
-  @media (min-width: 1920px) {
-    .outcomes__card-body { font-size: 23px; line-height: 150%; }
   }
 
   .outcomes__cta {
@@ -319,7 +310,7 @@ const faqItems = [
     padding: 24px 12px 0;
   }
 
-  /* ----- Desktop (≥1024) — single full curve + 4 cards under it ----- */
+  /* ----- Desktop toggle (≥1024): show single curve, hide the mobile halves ----- */
   .outcomes__desktop { display: none; }
   .outcomes__mobile  { display: block; margin-top: 24px; }
 
@@ -334,8 +325,11 @@ const faqItems = [
       height: auto;
       margin: 0;
     }
+  }
 
-    /* Cards row sits BELOW the SVG in normal flow — no overlay */
+  /* ----- Desktop grid (1024–1071): flat 4-col row under the curve -----
+     Below the arc breakpoint the cards stack in a simple grid so they never crowd. */
+  @media (min-width: 1024px) and (max-width: 1071.98px) {
     .outcomes__cards {
       position: relative;
       display: grid;
@@ -357,102 +351,59 @@ const faqItems = [
     }
   }
 
-  /* ----- Desktop (≥1280) — curved card positioning scaled from 1920 layout ----- */
-  @media (min-width: 1280px) {
+  /* ============================================================
+     Desktop arc (≥1072 → desktop++) — ONE fluid proportional system.
+     The 1280 and 1920 Figma layouts are proportionally identical, so a single
+     canvas-relative rule reproduces both exactly and keeps every card glued to
+     the curve at all widths in between. The canvas (--cv) caps at 1920px and is
+     centred beyond that (--cx) so the layout freezes at the Figma desktop++ size.
+     Fractions below are the Figma coords ÷ 1920 (= ÷ 1280 — same ratios).
+     ============================================================ */
+  @media (min-width: 1072px) {
     .outcomes {
       position: relative;
-      min-height: 873px;
+      --cv: min(100vw, 1920px);             /* design canvas width            */
+      --cx: calc((100vw - var(--cv)) / 2);  /* 0 below 1920, centres beyond   */
+      min-height: calc(0.68177 * var(--cv));
+      padding: 120px 0;
     }
+    .outcomes__header { max-width: 1106px; padding: 0 12px; margin: 0 auto; }
+
     .outcomes__desktop {
       position: static;
       width: 100%;
+      max-width: 1920px;
+      margin: 32px auto 0;
     }
-    .outcomes__cards {
-      position: static;
-      display: block;
-      padding: 0;
-      margin: 0;
-    }
+    .outcomes__curve { max-width: none; }
+
+    .outcomes__cards { position: static; display: block; padding: 0; margin: 0; }
+
     .outcomes__card {
       position: absolute;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: flex-start;
-      gap: 16px;
+      gap: clamp(16px, 2.1vw, 40px);
+      color: var(--c-cherrywood);
     }
-    .outcomes__card--1 { left: 64px;  top: 478px; width: 257px; }
-    .outcomes__card--2 { left: 353px; top: 381px; width: 257px; }
-    .outcomes__card--3 { left: 649px; top: 371px; width: 256px; }
-    .outcomes__card--4 { left: 943px; top: 489px; width: 256px; }
+    /* outcomes[] order: 1 aurora · 2 raspberry · 3 lavender · 4 gold */
+    .outcomes__card--1 { left: calc(var(--cx) + 0.05000 * var(--cv)); top: calc(0.37344 * var(--cv)); width: calc(0.20104 * var(--cv)); } /* Du siehst Systeme.        */
+    .outcomes__card--2 { left: calc(var(--cx) + 0.27552 * var(--cv)); top: calc(0.29792 * var(--cv)); width: calc(0.20104 * var(--cv)); } /* Du begleitest sicher.     */
+    .outcomes__card--3 { left: calc(var(--cx) + 0.50677 * var(--cv)); top: calc(0.28958 * var(--cv)); width: calc(0.20000 * var(--cv)); } /* Du integrierst das …      */
+    .outcomes__card--4 { left: calc(var(--cx) + 0.73698 * var(--cv)); top: calc(0.38177 * var(--cv)); width: calc(0.20000 * var(--cv)); } /* Du verstehst dich besser. */
+
+    /* Text scales with the canvas, capped at the Figma desktop++ sizes */
+    .outcomes__card-title { font-size: clamp(28px, 2.5vw, 48px); line-height: 1.15; }
+    .outcomes__card-body  { font-size: clamp(16px, 1.2vw, 23px); line-height: 1.5; }
+
     .outcomes__cta {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: 763px;
-      padding: 0;
-    }
-  }
-
-  /* ----- Desktop++ (≥1920) — Figma absolute positioning relative to the section ----- */
-  @media (min-width: 1920px) {
-    .outcomes {
-      position: relative;
-      min-height: 1309px;
-      padding: 92px 0 120px;
-    }
-    .outcomes__header {
-      max-width: 1106px;
-      padding: 0;
-      margin: 0 auto;
-    }
-    .outcomes__desktop {
-      position: static;
-      width: 1920px;
-      max-width: 1920px;
-      margin: 40px auto 0;
-      display: block;
-    }
-    /* SVG flows below the header, full page width */
-    .outcomes__curve {
-      position: static;
-      display: block;
-      width: 1920px;
-      height: auto;
-      margin: 0;
-      max-width: none;
-    }
-    /* Cards positioned at exact Figma section coords */
-    .outcomes__cards {
-      position: static;
-      display: block;
-      padding: 0;
-      margin: 0;
-    }
-    .outcomes__cards::after { content: none; }
-    .outcomes__card {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 40px;
-      height: 427px;
-    }
-    /* outcomes[] order: 1 aurora, 2 raspberry, 3 lavender, 4 gold */
-    .outcomes__card--1 { left: 96px;   top: 717px; width: 386px; }  /* Text 6 — Du siehst Systeme.       */
-    .outcomes__card--2 { left: 529px;  top: 572px; width: 386px; }  /* Text 5 — Du begleitest sicher.    */
-    .outcomes__card--3 { left: 973px;  top: 556px; width: 384px; }  /* Text 4 — Du integrierst das …     */
-    .outcomes__card--4 { left: 1415px; top: 733px; width: 384px; }  /* Text 7 — Du verstehst dich besser.*/
-
-    .outcomes__cta {
-      position: absolute;
-      left: 814px;
-      top: 1144px;
-      width: 270px;
+      top: calc(0.59583 * var(--cv));
       padding: 0;
       justify-content: center;
-      transform: none;
     }
   }
 
