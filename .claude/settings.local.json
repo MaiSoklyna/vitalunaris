@@ -28,7 +28,8 @@
       "Bash(pkill -f \"astro preview\")",
       "Bash(git -C D:/Tanner/vitalunaris status --short)",
       "Bash(sed -n '1,40p' src/components/organisms/WorkshopsHero.astro)",
-      "Bash(sed -n '1,40p' src/components/molecules/EventCard.astro)"
+      "Bash(sed -n '1,40p' src/components/molecules/EventCard.astro)",
+      "Bash(git check-ignore *)"
     ]
   }
 }
