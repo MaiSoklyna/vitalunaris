@@ -9,6 +9,8 @@ interface Props {
   title: string;
   description?: string;
   price: string;
+  /** Optional fine-print note shown below the price (e.g. add-on options). */
+  note?: string;
   ctaText?: string;
   ctaHref?: string;
   image: string;
@@ -21,6 +23,7 @@ const {
   title,
   description,
   price,
+  note,
   ctaText = 'Jetzt buchen',
   ctaHref = '/kontakt',
   image,
@@ -38,6 +41,7 @@ const {
       {description && <Text size="p1" class="course-hero__desc">{description}</Text>}
       {durationMeta && <Text size="p2" class="course-hero__duration">{durationMeta}</Text>}
       <Heading level={3} class="course-hero__price">{price}</Heading>
+      {note && <Text size="p3" class="course-hero__note">{note}</Text>}
       <div class="course-hero__cta">
         <Button href={ctaHref} variant="primary" size="lg">{ctaText}</Button>
       </div>
@@ -150,6 +154,17 @@ const {
     line-height: 1.2;
     color: var(--c-cherrywood);
     margin: 0;
+  }
+
+  /* ----- NOTE (fine-print add-on options below price) ----- */
+  .course-hero__note {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--p3-size);
+    line-height: 1.2;
+    color: var(--c-cherrywood);
+    align-self: stretch;
+    max-width: 56ch;
   }
 
   /* ----- MEDIA (mirrors Hero) ----- */

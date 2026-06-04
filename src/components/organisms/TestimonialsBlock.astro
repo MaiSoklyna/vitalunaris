@@ -27,11 +27,48 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
       {intro && <Text size="p1" class="t-block__intro">{intro}</Text>}
     </header>
 
-    <div class="t-block__grid">
-      {testimonials.map((t) => <TestimonialCard {...t} />)}
+    <div class="t-block__carousel" data-t-carousel>
+      <div class="t-block__track" data-t-track>
+        {testimonials.map((t) => <TestimonialCard {...t} />)}
+      </div>
+
+      <button
+        type="button"
+        class="t-block__next"
+        data-t-next
+        aria-label="Weitere Stimmen anzeigen"
+      >
+        <img src="/images/symbol/Button.svg" alt="" width="80" height="80" aria-hidden="true" />
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  function initTestimonialCarousel() {
+    document.querySelectorAll('[data-t-carousel]').forEach((root) => {
+      const track = root.querySelector('[data-t-track]');
+      const next = root.querySelector('[data-t-next]');
+      if (!track || !next || next.dataset.bound) return;
+      next.dataset.bound = 'true';
+
+      next.addEventListener('click', () => {
+        const card = track.querySelector('.t-card');
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        const step = card ? card.offsetWidth + gap : track.clientWidth;
+        const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+        if (atEnd) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: step, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  initTestimonialCarousel();
+  document.addEventListener('astro:page-load', initTestimonialCarousel);
+</script>
 
 <style>
   /* ============================================================
@@ -110,13 +147,68 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
     align-self: stretch;
   }
 
-  .t-block__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+  /* ----- carousel ----- */
+  .t-block__carousel {
+    position: relative;
     width: 100%;
   }
-  @media (min-width: 640px)  { .t-block__grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
-  @media (min-width: 1024px) { .t-block__grid { grid-template-columns: repeat(4, 1fr); gap: 18px; } }
-  @media (min-width: 1920px) { .t-block__grid { gap: 22px; } }
+
+  /* horizontal scroll track: cards scroll left → right, snap into place */
+  .t-block__track {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    /* leave room so the floating next button never sits on top of text */
+    padding-bottom: 4px;
+    scrollbar-width: none;            /* Firefox */
+    -ms-overflow-style: none;         /* IE/Edge */
+  }
+  .t-block__track::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+  @media (min-width: 640px)  { .t-block__track { gap: 18px; } }
+  @media (min-width: 1920px) { .t-block__track { gap: 22px; } }
+
+  /* each card is a fixed-width, non-shrinking slide.
+     Figma w=1920: content area 1740px holds ~3 cards of 576.5px (gap 22).
+     => show 1 (peek) on phones, 2 on small tablets, 3 from 1024px up. */
+  .t-block__track > :global(.t-card) {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
+  @media (min-width: 640px)  { .t-block__track > :global(.t-card) { flex: 0 0 calc((100% - 18px) / 2); } }
+  @media (min-width: 1024px) { .t-block__track > :global(.t-card) { flex: 0 0 calc((100% - 2 * 18px) / 3); } }
+  @media (min-width: 1920px) { .t-block__track > :global(.t-card) { flex: 0 0 calc((100% - 2 * 22px) / 3); } }
+
+  /* ----- next button (circular cherrywood arrow — SVG from Figma) ----- */
+  .t-block__next {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    display: block;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 100px;
+    box-shadow: 0 6px 20px rgba(96, 29, 29, 0.25);
+    transition: transform 0.2s ease;
+    z-index: 2;
+  }
+  .t-block__next img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .t-block__next:hover { transform: translateY(-50%) scale(1.06); }
+  .t-block__next:active { transform: translateY(-50%) scale(0.96); }
+  .t-block__next:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 3px; }
+  @media (min-width: 1024px) { .t-block__next { width: 64px; height: 64px; right: 8px; } }
+  @media (min-width: 1920px) { .t-block__next { width: 80px; height: 80px; } }
 </style>

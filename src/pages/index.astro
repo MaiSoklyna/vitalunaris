@@ -13,23 +13,23 @@ import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 
 const offers = [
   {
-    icon: '/images/ebene/Ebene_2-3.svg',
+    icon: '/images/ebene/Ebene-14.svg',
     title: 'Ich will Systemisches Aufstellen lernen',
-    description: 'Du willst systemisches Aufstellen nicht nur erleben, sondern auch selber anwenden oder sogar weitergeben. Die Ausbildung zum Systemic Soulcoach gibt dir das Handwerk und die Tiefe dafür.',
+    description: 'Du willst systemisches Aufstellen nicht nur selbst erleben, sondern auch anwenden oder weitergeben. Wir begleiten dich Schritt für Schritt – von deiner eigenen Aufstellungsreise bis zur Ausbildung zum Systemic Soulcoach. So erhältst du das Handwerk und die Tiefe, die es für eine gute Begleitung braucht.',
     ctaText: 'Zu den Ausbildungen →',
     ctaHref: '/ausbildung',
   },
   {
-    icon: '/images/ebene/Ebene_2-8.svg',
+    icon: '/images/ebene/Ebene_2.svg',
     title: 'Ich will meine Praxis vertiefen oder Neues lernen',
-    description: 'Aus unserem Jahrzehntelangen Erfahrungsschatz geben wir unser Wissen weiter. Wir bieten Weiterbildungen und Kurse in verschiedenen systemischen Bereichen an: Aufstellen, Hypnose, Numerologie, EFT und vieles mehr.',
+    description: 'Du möchtest neue Methoden kennenlernen oder dein bestehendes Wissen erweitern? Aus unserem jahrzehntelangen Erfahrungsschatz geben wir praxisnahes Wissen weiter – in Weiterbildungen und Kursen rund um systemisches Aufstellen, Numerologie, EFT, Hypnotic Selfcare und weitere spannende Themen.',
     ctaText: 'Zu den Workshops & Kursen →',
     ctaHref: '/workshops',
   },
   {
-    icon: '/images/ebene/Ebene_2-6.svg',
-    title: 'Ich suche eine Veränderung in meinem Leben',
-    description: 'Etwas in deinem Leben fühlt sich fest an — eine Beziehung, eine Entscheidung, ein Muster, das sich wiederholt. Es gibt verschiedene Wege, das sichtbar und veränderbar zu machen.',
+    icon: '/images/ebene/Ebene_2-8.svg',  
+    title: 'Ich suche Veränderung oder Unterstützung',
+    description: 'Etwas in deinem Leben fühlt sich nicht mehr stimmig an. Vielleicht zeigt sich ein Muster, das sich wiederholt, oder du stehst vor einer wichtigen Entscheidung. Es gibt verschiedene Wege, Klarheit zu gewinnen, neue Perspektiven zu entdecken und wieder in Bewegung zu kommen.',
     ctaText: 'Unsere Praxisangebote →',
     ctaHref: '/praxisangebote',
   },
@@ -60,24 +60,24 @@ const steps = [
 
 const testimonials = [
   {
-    icon: '/images/ebene/Ebene_2-4.svg',
-    quote: 'Bei VitaLunaris habe ich erfahren, wie kraftvoll es ist, sich selbst wirklich zuzuhören. Eine Begleitung, die berührt.',
-    name: 'Maria S.',
+    
+    quote: '“Nach einer sehr schweren Zeit in meinem Leben fand ich bei VitaLunaris einen geschützten Raum für meinen Weg. Durch die Begleitung von Theresia wurden Zusammenhänge sichtbar, die ich vorher nicht erkennen konnte. Schritt für Schritt fand ich zurück zu Vertrauen, Zuversicht und neuer Lebensfreude. Dafür bin ich von Herzen dankbar."',
+    name: 'Claudia N.',
   },
   {
-    icon: '/images/ebene/Ebene_2-5.svg',
-    quote: 'Klar, präsent und ohne Esoterik-Floskeln. Genau das, was ich gebraucht habe, um durch eine schwierige Phase zu gehen.',
-    name: 'Thomas K.',
+    
+    quote: '"Ich stand vor einer wichtigen Entscheidung für meine Zukunft und war unsicher, welchen Weg ich einschlagen sollte. Das Numeroskop von Axel hat mir neue Perspektiven eröffnet und mir geholfen, meine Stärken und Möglichkeiten klarer zu erkennen. Heute weiss ich, dass ich die richtige Entscheidung getroffen habe, und bin sehr dankbar für diese Begleitung."',
+    name: 'Erika B. ',
   },
   {
-    icon: '/images/ebene/Ebene_2-6.svg',
-    quote: 'Ein Raum, in dem ich endlich aufhören durfte, stark zu sein — und dadurch wieder Kraft gefunden habe.',
-    name: 'Claudia R.',
+
+    quote: '"Ich hätte nie gedacht, dass man mit ein bisschen Klopfen so viel erreichen kann. Schon nach dem EFT-Grundkurs konnte ich die Methode in vielen Alltagssituationen anwenden. Besonders schön ist, dass inzwischen auch meine Kinder begeistert mitklopfen und EFT vor Prüfungen oder in stressigen Situationen für sich nutzen. Dieser Kurs war eine echte Bereicherung für unsere ganze Familie."',
+    name: 'Ramona K.',
   },
   {
-    icon: '/images/ebene/Ebene_2-7.svg',
-    quote: 'Die Begleitung hat mein Verhältnis zu mir selbst verändert. Mehr Tiefe, mehr Freude, mehr Leben — wie versprochen.',
-    name: 'Lena M.',
+    
+    quote: '"Die Ausbildung zum Systemic Soulcoach war für mich weit mehr als eine Ausbildung. Durch die Aufstellungsarbeit habe ich erkannt, dass etwas, das ich jahrelang als Schwäche betrachtet hatte, in Wahrheit ein grosses Potenzial in sich trägt.Theresia hält einen unglaublich sicheren und vertrauensvollen Raum, sodass man sich wirklich auf die eigenen Prozesse einlassen kann. Man spürt ihre Erfahrung in jedem Moment.”',
+    name: 'Corina B.',
   },
 ];
 
@@ -130,11 +130,12 @@ const faqItems = [
 
   <NarrativeBlock
     tone="light"
-    imageSide="left"
+    imageSide="left"   
     image="/images/placeholder/Placeholder-6.jpg" 
     imageAlt=""
-    title="Wissen, das nicht nur aus Büchern kommt."
-    body="Systemisches Aufstellen macht sichtbar, was unter der Oberfläche wirkt. Muster in Familien, in Beziehungen, im eigenen Körper — sie lassen sich erkennen, verstehen und verändern. Theres Jansen arbeitet seit über 30 Jahren in der Heilkunde. Körperlich wie energetisch. Was sie lehrt und begleitet, hat sie selbst durchlebt, verfeinert und tausende Male in der Praxis bewährt. Das ist der Unterschied zwischen Wissen und Erfahrung."
+    title="Mehr als eine Praxis. <br/> Ein Ort wo Erfahrung auf Tiefe trifft."
+    body="VitaLunaris ist aus über 30 Jahren Erfahrung in der Begleitung von Menschen gewachsen. Ein Ort für alle, die verstehen möchten, warum sich manche Themen im Leben wiederholen, weshalb Beziehungen herausfordernd sein können oder was hinter den eigenen Herausforderungen und Lebenswegen wirkt – und für jene, die diese Arbeit selbst erlernen und weitergeben möchten.
+           <br/> <br/> Systemisches Aufstellen, Hypnose und Numerologie sind für uns keine Gegensätze. Sie sind verschiedene Wege, Zusammenhänge sichtbar zu machen, neue Perspektiven zu gewinnen und Veränderung möglich werden zu lassen."
   />
 
   <NarrativeBlock
@@ -153,14 +154,6 @@ const faqItems = [
     testimonials={testimonials}
   />
 
-  <ClaimBlock
-    title="Mehr Tiefe. Mehr Freude. Mehr Leben."
-    body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Tiefenpsychologisch fundiert · Systemisch & körperorientiert · Für Einzelpersonen, Paare & Familien."
-    image="/images/ebene/Ebene_2-7.svg"
-    ctaText="Erstgespräch buchen"
-    ctaHref="/kontakt"
-  />
-
   <FeaturedTestimonial
     eyebrow="Klient:innen-Stimme"
     name="Theresia & Axel<br />Jansen"
@@ -169,17 +162,6 @@ const faqItems = [
     image="/images/placeholder/placeholder-4.jpg"
     imageSide="right"
   />
-
-  <DarkCtaBlock
-    eyebrow="Bereit?"
-    title="Bereit, tiefer<br />zu gehen?"
-    body="Wenn du das Gefühl hast, dass jetzt der richtige Moment ist — komm in ein unverbindliches Erstgespräch. Wir klären gemeinsam, was du brauchst."
-    ctaText="Erstgespräch buchen"
-    ctaHref="/kontakt"
-    backgroundImage="/images/placeholder/narrative-block-7.jpg"
-  />
-
- 
 
   <NewsletterBlock
     eyebrow="Newsletter"

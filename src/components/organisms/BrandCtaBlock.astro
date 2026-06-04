@@ -1,0 +1,122 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  /** Decorative brand graphic shown beside the text. */
+  graphic?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  body,
+  ctaText = 'Termin buchen',
+  ctaHref = '/kontakt',
+  graphic = '/images/ebene/Ebene_2-12.svg',
+} = Astro.props;
+---
+
+<section class="brand-cta">
+  <div class="brand-cta__inner">
+    <div class="brand-cta__art" aria-hidden="true">
+      <img src={graphic} alt="" class="brand-cta__art-img" loading="lazy" decoding="async" />
+    </div>
+
+    <div class="brand-cta__content">
+      {eyebrow && <Heading variant="eyebrow" class="brand-cta__eyebrow">{eyebrow}</Heading>}
+      <Heading level={2} variant="h1" class="brand-cta__title">
+        <Fragment set:html={title} />
+      </Heading>
+      {body && <Text size="p1" class="brand-cta__body">{body}</Text>}
+      <div class="brand-cta__cta">
+        <Button href={ctaHref} variant="primary" size="lg">{ctaText}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     BRAND CTA — Pale Gold band, brand graphic + text + button.
+     Mobile: stacked, centered. ≥1024px: graphic left, text right.
+     ============================================================ */
+  /* Full-bleed Pale Gold band; all padding lives on the inner so the
+     background spans edge-to-edge. Figma Narrative Block 5 (w=1920):
+     padding 90px 104px 90px 241px (asymmetric: left > right), gap 300. */
+  .brand-cta { background: var(--c-pale-gold); overflow: hidden; }
+
+  .brand-cta__inner {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 56px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+  @media (min-width: 768px) {
+    .brand-cta__inner { padding: 72px 32px; }
+  }
+  @media (min-width: 1024px) {
+    .brand-cta__inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      padding: 80px 64px 80px 96px;
+      gap: clamp(48px, 9vw, 160px);
+    }
+  }
+  @media (min-width: 1280px) {
+    .brand-cta__inner { padding: 90px 80px 90px 160px; gap: clamp(80px, 14vw, 260px); }
+  }
+  @media (min-width: 1920px) {
+    .brand-cta__inner { padding: 90px 104px 90px 241px; gap: 300px; }
+  }
+
+  /* Decorative graphic — Figma Ebene_2: 379.81 × 619.6, rotated -9.4° */
+  .brand-cta__art {
+    flex: 0 0 auto;
+    width: clamp(180px, 22vw, 379.81px);
+    aspect-ratio: 379.81 / 619.6;
+    transform: rotate(-9.4deg);
+  }
+  .brand-cta__art-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .brand-cta__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    max-width: 844px;
+  }
+  @media (min-width: 1024px) { .brand-cta__content { align-items: flex-start; gap: 40px; } }
+
+  .brand-cta__eyebrow { color: var(--c-cherrywood); opacity: 0.8; }
+  .brand-cta__title {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+  .brand-cta__body {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+  }
+  @media (min-width: 1024px) { .brand-cta__body { max-width: 654px; } }
+  .brand-cta__cta { margin-top: 4px; }
+</style>

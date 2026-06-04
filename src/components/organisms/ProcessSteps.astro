@@ -1,34 +1,45 @@
 ---
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
 
 interface Step {
+  /** Optional ordinal label (e.g. "01") shown above the title. */
+  number?: string;
   title: string;
   description: string;
-  color: 'purple' | 'raspberry' | 'aurora' | 'gold';
+  color?: 'purple' | 'raspberry' | 'aurora' | 'gold';
 }
 
 interface Props {
   eyebrow?: string;
-  title: string;
+  title?: string;
   intro?: string;
   steps: Step[];
+  /** Optional CTA button centered below the steps. */
+  ctaText?: string;
+  ctaHref?: string;
 }
 
-const { eyebrow, title, intro, steps } = Astro.props;
+const { eyebrow, title, intro, steps, ctaText, ctaHref = '/kontakt' } = Astro.props;
+const hasHeader = Boolean(eyebrow || title || intro);
 ---
 
 <section class="process">
-  <!-- HEADER (all widths) -->
-  <div class="process__container">
-    <header class="process__header">
-      {eyebrow && <Heading variant="eyebrow" class="process__eyebrow">{eyebrow}</Heading>}
-      <Heading level={2} variant="h1" class="process__title">
-        <Fragment set:html={title} />
-      </Heading>
-      {intro && <Text size="p1" class="process__intro">{intro}</Text>}
-    </header>
-  </div>
+  {hasHeader && (
+    <!-- HEADER (all widths) -->
+    <div class="process__container">
+      <header class="process__header">
+        {eyebrow && <Heading variant="eyebrow" class="process__eyebrow">{eyebrow}</Heading>}
+        {title && (
+          <Heading level={2} variant="h1" class="process__title">
+            <Fragment set:html={title} />
+          </Heading>
+        )}
+        {intro && <Text size="p1" class="process__intro">{intro}</Text>}
+      </header>
+    </div>
+  )}
 
   <!-- DESKTOP (≥ 768px): single full-bleed curve -->
   <div class="process__curve-wrapper process__curve-wrapper--desktop">
@@ -41,6 +52,7 @@ const { eyebrow, title, intro, steps } = Astro.props;
       <div class="process__blocks">
         {steps.slice(0, 4).map((step) => (
           <div class="process__block">
+            {step.number && <span class="process__number">{step.number}</span>}
             <Heading level={3} class="process__block-title">{step.title}</Heading>
             <Text size="p1" class="process__block-body">{step.description}</Text>
           </div>
@@ -65,6 +77,7 @@ const { eyebrow, title, intro, steps } = Astro.props;
         <div class="process__mobile-cards">
           {steps.slice(startIdx, startIdx + 2).map((step) => (
             <div class="process__mobile-card">
+              {step.number && <span class="process__number">{step.number}</span>}
               <Heading level={3} class="process__block-title">{step.title}</Heading>
               <Text size="p1" class="process__block-body">{step.description}</Text>
             </div>
@@ -73,16 +86,22 @@ const { eyebrow, title, intro, steps } = Astro.props;
       </div>
     ))}
   </div>
+
+  {ctaText && (
+    <div class="process__cta">
+      <Button href={ctaHref} variant="primary" size="lg">{ctaText}</Button>
+    </div>
+  )}
 </section>
 
 <style>
   /* ============================================================
      SECTION  (Spring Wood; 8px side safe-area)
      ============================================================ */
-  .process { background: var(--c-spring-wood); padding: 64px 8px; }
+  .process { background: var(--c-spring-wood); padding: 64px 8px; overflow: hidden; }
   @media (min-width: 768px) { .process { padding: 96px 8px; } }
   @media (min-width: 1024px) { .process { padding: 120px 8px; } }
-  @media (min-width: 1280px) { .process { padding: 0; margin: 0; } }
+  @media (min-width: 1280px) { .process { padding: 80px 0; margin: 0; } }
   /* Desktop++ — Figma "Text" container is 92px from section top, no side gutter */
   @media (min-width: 1920px) { .process { padding: 92px 0 120px; } }
 
@@ -199,13 +218,15 @@ const { eyebrow, title, intro, steps } = Astro.props;
     .process__block {
       position: absolute;
       width: 18%;
+      min-width: 0;
+      overflow-wrap: break-word;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       text-align: left;
       gap: 16px;
     }
-    @media (min-width: 1280px) { .process__block { gap: 40px; } }
+    @media (min-width: 1280px) { .process__block { gap: 16px; } }
 
     /* ∩ Arch (low – high – high – low) */
     .process__block:nth-child(1) { left: 0;   top: 60px; }
@@ -308,8 +329,20 @@ const { eyebrow, title, intro, steps } = Astro.props;
     text-align: left;
   }
   @media (min-width: 768px) {
-    .process__mobile-card { gap: 26.67px; }
+    .process__mobile-card { gap: 12px; }
   }
+
+  /* ============================================================
+     CTA — optional button centered below the steps
+     ============================================================ */
+  .process__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+  @media (min-width: 768px)  { .process__cta { margin-top: 40px; } }
+  @media (min-width: 1024px) { .process__cta { margin-top: 48px; } }
+  @media (min-width: 1280px) { .process__cta { margin-top: 56px; } }
   .process__mobile-card .process__number {
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);

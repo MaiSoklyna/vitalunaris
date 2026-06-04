@@ -29,7 +29,12 @@
       "Bash(git -C D:/Tanner/vitalunaris status --short)",
       "Bash(sed -n '1,40p' src/components/organisms/WorkshopsHero.astro)",
       "Bash(sed -n '1,40p' src/components/molecules/EventCard.astro)",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(python3 -c \"import PIL; print\\(PIL.__version__\\)\")",
+      "Bash(where chrome *)",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Read(//c/Program Files \\(x86\\)/Microsoft/Edge/Application/**)",
+      "Bash(powershell -Command 'Get-NetTCPConnection -LocalPort 4399 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }')"
     ]
   }
 }

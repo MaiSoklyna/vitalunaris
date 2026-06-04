@@ -1,0 +1,75 @@
+---
+interface Photo {
+  src: string;
+  alt?: string;
+}
+
+interface Props {
+  photos: Photo[];
+}
+
+const { photos } = Astro.props;
+---
+
+<section class="photo-strip" aria-label="Impressionen">
+  <ul class="photo-strip__track scrollbar-hide">
+    {photos.map((p) => (
+      <li class="photo-strip__item">
+        <img src={p.src} alt={p.alt ?? ''} class="photo-strip__img" loading="lazy" decoding="async" />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  /* ============================================================
+     PHOTO STRIP — horizontal gallery of images.
+     Mobile/tablet: horizontal scroll-snap carousel.
+     Desktop (≥1024px): equal-width row, no scroll.
+     ============================================================ */
+  .photo-strip {
+    background: var(--c-spring-wood);
+    padding: 24px 0;
+  }
+  @media (min-width: 768px)  { .photo-strip { padding: 32px 0; } }
+  @media (min-width: 1280px) { .photo-strip { padding: 40px 0; } }
+
+  .photo-strip__track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  @media (min-width: 768px)  { .photo-strip__track { gap: 16px; } }
+  @media (min-width: 1280px) { .photo-strip__track { gap: 20px; } }
+  @media (min-width: 1920px) { .photo-strip__track { gap: 22px; } }
+
+  .photo-strip__item {
+    flex: 0 0 auto;
+    width: 64%;
+    max-width: 320px;
+    scroll-snap-align: start;
+  }
+  @media (min-width: 480px) { .photo-strip__item { width: 42%; } }
+  @media (min-width: 768px) { .photo-strip__item { width: 30%; } }
+  /* Desktop: 5 equal columns fill the row, no horizontal scroll */
+  @media (min-width: 1024px) {
+    .photo-strip__track { overflow-x: visible; }
+    .photo-strip__item { flex: 1 1 0; width: auto; max-width: none; }
+  }
+
+  .photo-strip__img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+    background: rgba(96, 29, 29, 0.06);
+  }
+  @media (min-width: 1280px) { .photo-strip__img { border-radius: 16px; } }
+  @media (min-width: 1920px) { .photo-strip__img { border-radius: 20px; } }
+</style>

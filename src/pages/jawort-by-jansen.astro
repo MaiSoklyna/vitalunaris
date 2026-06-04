@@ -1,0 +1,252 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import PhotoStrip from '@molecules/PhotoStrip.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import PersonBio from '@organisms/PersonBio.astro';
+import Faq from '@organisms/Faq.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+const prices = [
+  { label: 'Freie Trauungen', value: 'ab CHF 1’800.–' },
+  { label: 'Kinderwillkommensfeiern', value: 'ab CHF 950.–' },
+  { label: 'Eheversprechenerneuerung', value: 'auf Anfrage' },
+];
+
+const galleryPhotos = [
+  { src: '/images/cards/card-4.jpg', alt: 'Freie Trauung — Umarmung' },
+  { src: '/images/cards/card-5.jpg', alt: 'Redner während der Zeremonie' },
+  { src: '/images/cards/card-6.jpg', alt: 'Zeremonie im Innenraum' },
+  { src: '/images/cards/card-9.jpg', alt: 'Berührender Moment der Feier' },
+  { src: '/images/cards/card-8.jpg', alt: 'Gemeinsame Freude' },
+];
+
+const testimonials = [
+  { quote: '«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Ihr Gespür für Menschen und die Zeit, die sie sich für unsere Geschichte genommen hat, haben uns überzeugt. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat — ein sehr emotionaler Moment. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»', name: 'Raffaella & Luca' },
+  { quote: '«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Besonders dankbar bin ich ihr, dass sie mich vor der Zeremonie so liebevoll abgeholt hat — dadurch konnte ich den Moment wirklich geniessen. Während der Rede hing ich förmlich an ihren Lippen. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»', name: 'Sandy & Michael' },
+  { quote: '«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Theresia hat mich bereits auf dem Weg zum Wunschkind begleitet. Umso berührender, dass sie nun auch unsere Tochter in dieser Welt willkommen geheissen hat. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»', name: 'Saskia & Benjamin' },
+  { quote: '«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»', name: 'Janina & Marc' },
+];
+
+const faqItems = [
+  { question: 'Wie läuft die Vorbereitung einer freien Trauung ab?', answer: 'Wir starten mit einem kostenlosen Kennenlerngespräch. Danach lernen wir uns und eure Geschichte kennen, ich schreibe eure persönliche Rede und wir stimmen Ablauf, Ort und Wünsche gemeinsam ab — bis sich alles für euch stimmig anfühlt.' },
+  { question: 'Wie persönlich wird die Traurede?', answer: 'Sehr persönlich. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl — so, dass ihr euch in jedem Wort wiederfindet. Keine Floskeln, keine Vorlagen von der Stange.' },
+  { question: 'Kann die Zeremonie humorvoll sein?', answer: 'Unbedingt. Romantisch, feierlich, berührend oder herrlich unkompliziert — eure Zeremonie darf so einzigartig sein wie ihr. Wir finden gemeinsam den richtigen Ton.' },
+  { question: 'Wie lange dauert eine freie Trauung?', answer: 'Eine Zeremonie dauert in der Regel 30 bis 45 Minuten. Die genaue Länge gestalten wir gemeinsam — je nachdem, wie viel Raum eure Geschichte und eure Rituale brauchen.' },
+  { question: 'Führst du auch Kinderwillkommensfeiern durch?', answer: 'Ja. Eine Kinderwillkommensfeier heisst einen neuen kleinen Menschen liebevoll im Kreis seiner Herzensmenschen willkommen — frei gestaltet und ganz auf euch zugeschnitten.' },
+  { question: 'In welcher Region bist du als Rednerin unterwegs?', answer: 'Ich bin in der ganzen Deutschschweiz für euch unterwegs — vom Weingut über den See bis in die Berge. Sprecht mich einfach auf euren Wunschort an.' },
+];
+---
+
+<BaseLayout
+  title="Jawort by Jansen — Freie Trauungen & Zeremonien | VitaLunaris"
+  description="Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Theresia Jansen erzählt eure Geschichte — für Zeremonien, die berühren und lange nachklingen."
+  currentPath="/jawort-by-jansen"
+>
+  {/* ===================== Hero ===================== */}
+  <section class="jw-hero">
+    <div class="jw-hero__inner">
+      <div class="jw-hero__content">
+        <Heading variant="eyebrow" class="jw-hero__eyebrow">Jawort by Jansen | Theresia Jansen</Heading>
+        <Heading level={1} class="jw-hero__title">Zeremonien voller Persönlichkeit und Emotion.</Heading>
+        <Text size="p1" class="jw-hero__desc">
+          Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl – für Zeremonien, die berühren und lange nachklingen.
+        </Text>
+
+        <div class="jw-hero__notes">
+          <Text size="p2" class="jw-hero__note">
+            Alternativ schreibe ich eure persönliche Rede — und eine vertraute Person führt die Zeremonie durch. Ich begleite gerne auch die Vorbereitung. Preis auf Anfrage. Da jede Zeremonie einzigartig ist, berate ich euch gerne persönlich und finden gemeinsam die passende Lösung für eure Wünsche und euer Budget.
+          </Text>
+        </div>
+
+        <div class="jw-hero__cta">
+          <Button href="/kontakt" variant="primary" size="lg">Kostenloses Kennenlerngespräch anfragen</Button>
+        </div>
+
+        <dl class="jw-hero__prices">
+          {prices.map((p) => (
+            <div class="jw-hero__price">
+              <dt class="jw-hero__price-label">{p.label}</dt>
+              <dd class="jw-hero__price-value">{p.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="jw-hero__media"> 
+        <img src="/images/placeholder/Placeholder-18.jpg" alt="Theresia Jansen während einer freien Trauung" class="jw-hero__image" />
+      </div>
+    </div>
+  </section>
+
+  {/* ===================== Was ist eine freie Trauung? (gold, image left) ===================== */}
+  <NarrativeBlock
+    tone="light"
+    imageSide="left"
+    image="/images/placeholder/Placeholder-19.jpg"
+    imageAlt=""
+    eyebrow="Freie Trauung"
+    title="Was ist eine freie Trauung?"
+    body={`Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt. Es gibt keine starren Vorgaben, keine festen Abläufe und keine Konventionen, die erfüllt werden müssen. Gemeinsam gestalten wir eine Zeremonie, die sich für euch richtig anfühlt.<br /><br />Ob auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe.`}
+    ctaText="Zeremonie anfragen"
+    ctaHref="/kontakt"
+  />
+
+  {/* ===================== Gallery ===================== */}
+  <PhotoStrip photos={galleryPhotos} />
+
+  {/* ===================== Was ist eine Kinderwillkommensfeier? (lavender, image left) ===================== */}
+  <NarrativeBlock
+    tone="lavender-gradient"
+    imageSide="left"
+    image="/images/placeholder/Placeholder-28.jpg"
+    imageAlt=""
+    eyebrow="Kinderwillkommensfeier"
+    title="Was ist eine Kinderwillkommensfeier?"
+    body={`Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen — nicht nach Tradition oder Vorgabe, sondern so, wie es zu euch passt.<br /><br />Mit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben. Eltern, Grosseltern, Gotti und Götti, Geschwister oder Freunde können aktiv einbezogen werden — ein gemeinsamer Willkommensgruss, voller Liebe und guter Wünsche für seinen Lebensweg.<br /><br />Denn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein.`}
+    ctaText="Zeremonie anfragen"
+    ctaHref="/kontakt"
+  />
+
+  {/* ===================== Testimonials ===================== */}
+  <TestimonialsBlock title="Was Paare und Eltern sagen" testimonials={testimonials} />
+
+  {/* ===================== Bio ===================== */}
+  <PersonBio
+    eyebrow="Wer euch begleitet"
+    name="Theresia Jansen"
+    paragraphs={[
+      'Ich bin nicht einfach da, um eine schöne Rede zu halten. Ich bin da, um eure Geschichte einzufangen — mit Zeit, Aufmerksamkeit und echtem Interesse daran, was euch wichtig ist.',
+      'Ihr entscheidet, wie eure Feier klingen darf: humorvoll oder romantisch, klassisch oder frei, leicht oder tief. Nichts muss. Alles darf stimmig sein. Durch meine langjährige Arbeit mit Menschen bringe ich mit, was an diesem Tag besonders wertvoll ist: Ruhe, Präsenz und Halt. Wenn die Nervosität gross ist oder die Emotionen hochkommen, bin ich da — geerdet und mit offenem Herzen.',
+      'Mein Ziel ist nicht die perfekte Rede. Mein Ziel ist, dass ihr euch in diesem Moment wiederfindet und sagen könnt: «Das sind wir. Genau so haben wir es uns gewünscht.»',
+      'Ob freie Trauung, Kinderwillkommensfeier oder Eheversprechen — ich freue mich darauf, eure Geschichte kennenzulernen. Herzlich, Theresia Jansen',
+    ]}
+    image="/images/placeholder/Placeholder-8.jpg"
+    imageSide="right"
+  />
+
+  {/* ===================== FAQ ===================== */}
+  <Faq title="FAQ" items={faqItems} />
+</BaseLayout>
+
+<style>
+  /* ============================================================
+     JAWORT HERO — text left (eyebrow, title, desc, 3-price row,
+     CTA, fine-print notes) + portrait image right.
+     Mirrors CourseHero spacing; top padding clears the fixed nav.
+     ============================================================ */
+  .jw-hero { background: var(--c-spring-wood); padding: 72px 20px 64px; }
+  @media (min-width: 768px)  { .jw-hero { padding: 120px 32px 80px; } }
+  @media (min-width: 1280px) { .jw-hero { padding: 80px 60px; } }
+  @media (min-width: 1920px) { .jw-hero { padding: 175px 90px 90px; } }
+
+  .jw-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1740px;
+    margin: 0 auto;
+  }
+  .jw-hero__media   { order: 0; }
+  .jw-hero__content { order: 1; }
+  @media (min-width: 1024px) {
+    .jw-hero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; }
+    .jw-hero__media   { order: 2; }
+    .jw-hero__content { order: 1; }
+  }
+  @media (min-width: 1920px) { .jw-hero__inner { gap: 120px; } }
+
+  .jw-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+  }
+  @media (min-width: 1280px) { .jw-hero__content { gap: 28px; } }
+  @media (min-width: 1920px) { .jw-hero__content { gap: 32px; } }
+
+  .jw-hero__eyebrow { color: var(--c-cherrywood); align-self: stretch; }
+  .jw-hero__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    color: var(--c-cherrywood);
+    margin: 0;
+    align-self: stretch;
+  }
+  .jw-hero__desc {
+    font-family: 'ES Park', serif;
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: var(--c-cherrywood);
+    align-self: stretch;
+  }
+
+  /* ----- price row (3 columns) ----- */
+  .jw-hero__prices {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-self: stretch;
+  }
+  @media (min-width: 560px) {
+    .jw-hero__prices { flex-direction: row; flex-wrap: wrap; gap: 24px 40px; }
+  }
+  @media (min-width: 1280px) { .jw-hero__prices { gap: 24px 56px; } }
+
+  .jw-hero__price { display: flex; flex-direction: column; gap: 4px; }
+  .jw-hero__price-label {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p3-size);
+    line-height: 1.4;
+    color: var(--c-cherrywood);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .jw-hero__price-value {
+    margin: 0;
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
+    color: var(--c-cherrywood);
+  }
+
+  .jw-hero__cta { align-self: flex-start; }
+
+  /* ----- fine-print notes ----- */
+  .jw-hero__notes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-self: stretch;
+  }
+  .jw-hero__note {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p2-size);
+    line-height: 1.5;
+    color: var(--c-cherrywood);
+    opacity: 0.8;
+    max-width: 64ch;
+  }
+
+  /* ----- media ----- */
+  .jw-hero__media {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 25px;
+    background: var(--c-pale-gold);
+  }
+  @media (min-width: 1024px) { .jw-hero__media { aspect-ratio: 4 / 5; align-self: stretch; } }
+  .jw-hero__image { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>

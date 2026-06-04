@@ -1,21 +1,44 @@
 ---
 const year = new Date().getFullYear();
 
-const navLinks = [
-  { href: '/', label: 'Startseite' },
-  { href: '/angebot', label: 'Angebote' },
-  { href: '/ueber-uns', label: 'Über uns' },
-  { href: '/#prozess', label: 'Prozess' },
-  { href: '/#testimonials', label: 'Testimonials' },
-  { href: '/#faq', label: 'FAQ' },
-];
-
-const offerLinks = [
-  { href: '/angebot#einzelsitzung', label: 'Einzelsitzung' },
-  { href: '/angebot#paarsitzung', label: 'Paarsitzung' },
-  { href: '/angebot#familienkonstellation', label: 'Familienkonstellation' },
-  { href: '/angebot#retreat', label: 'Retreat & Intensivtag' },
-  { href: '/kontakt', label: 'Erstgespräch (kostenfrei)' },
+/* Nav columns mirror the main navigation (Footer.jpg layout). */
+const columns = [
+  {
+    title: 'Ausbildung',
+    links: [
+      { href: '/uebersicht', label: 'Übersicht' },
+      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulcoach Level 1' },
+      { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach Level 2' },
+      { href: '/ausbildung/infoanlaesse', label: 'Infoanlässe' },
+    ],
+  },
+  {
+    title: 'Kurse',
+    links: [
+      { href: '/workshops-kurse/kalender-uebersicht', label: 'Kalender & Übersicht' },
+      { href: '/workshops-kurse/aktueller-monatsworkshop', label: 'Monatsworkshop' },
+    ],
+  },
+  {
+    title: 'Praxisangebote',
+    links: [
+      { href: '/praxisangebote', label: 'Übersicht' },
+      { href: '/praxisangebote/aufstellungen', label: '1:1 Aufstellungen' },
+      { href: '/praxisangebote/hypnose', label: 'Hypnose' },
+      { href: '/praxisangebote/numerologieberatung', label: 'Numerologieberatung' },
+      { href: '/praxisangebote/fussreflexzonenbehandlung', label: 'Fussreflexzonen' },
+      { href: '/jawort-by-jansen', label: 'Jawort by Jansen' },
+    ],
+  },
+  {
+    title: 'Weiteres',
+    links: [
+      { href: '/ueber-uns', label: 'Über uns' },
+      { href: '/neuigkeiten', label: 'News' },
+      { href: '/wissen/journal', label: 'Journal' },
+      { href: '/wissen/lebenszahlrechner', label: 'Lebenszahlrechner' },
+    ],
+  },
 ];
 
 const legalLinks = [
@@ -28,91 +51,82 @@ const legalLinks = [
 
 <footer class="footer">
   <div class="footer__inner">
-    <div class="footer__brand">
-      <img src="/logo/logo-compact.svg" alt="VitaLunaris" class="footer__logo" />
-      <p class="footer__tagline">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua.
-      </p>
-    </div>
-
-    <div class="footer__col">
-      <h4 class="footer__col-title">Navigation</h4>
-      <ul class="footer__list">
-        {navLinks.map(({ href, label }) => (
-          <li><a href={href} class="footer__link">{label}</a></li>
-        ))}
-      </ul>
-    </div>
-
-    <div class="footer__col">
-      <h4 class="footer__col-title">Angebote</h4>
-      <ul class="footer__list">
-        {offerLinks.map(({ href, label }) => (
-          <li><a href={href} class="footer__link">{label}</a></li>
-        ))}
-      </ul>
-    </div>
-
-    <div class="footer__col">
-      <h4 class="footer__col-title">Öffnungszeiten</h4>
-      <p class="footer__hours">
-        Montag – Freitag<br />09:00 – 18:00 Uhr<br /><br />Samstag<br />Nach Vereinbarung
-      </p>
-    </div>
-
-    <div class="footer__contact">
-      <a class="footer__contact-row" href="mailto:info@vitalunaris.ch">
-        <span class="footer__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2" />
-            <path d="M2 7l10 7 10-7" />
-          </svg>
-        </span>
-        <span>info@vitalunaris.ch</span>
+    <!-- Top: brand + nav columns -->
+    <div class="footer__top">
+      <a href="/" class="footer__brand" aria-label="VitaLunaris – Startseite">
+        <img src="/logo/logo-compact.svg" alt="VitaLunaris" class="footer__logo" />
       </a>
 
-      <div class="footer__contact-row">
-        <span class="footer__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" />
-          </svg>
-        </span>
-        <span>
-          Theresia Jansen <a href="tel:+41792917402" class="footer__link">+41 792 917 402</a><br />
-          Axel Jansen <a href="tel:+41797849130" class="footer__link">+41 797 849 130</a>
-        </span>
+      <nav class="footer__cols" aria-label="Footer-Navigation">
+        {columns.map((col) => (
+          <div class="footer__col">
+            <h4 class="footer__col-title">{col.title}</h4>
+            <ul class="footer__list">
+              {col.links.map(({ href, label }) => (
+                <li><a href={href} class="footer__link">{label}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Middle: contact (left) + social (right) -->
+    <div class="footer__mid">
+      <div class="footer__contact">
+        <a class="footer__contact-row footer__contact-row--email" href="mailto:info@vitalunaris.ch">
+          <span class="footer__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="M2 7l10 7 10-7" />
+            </svg>
+          </span>
+          <span>info@vitalunaris.ch</span>
+        </a>
+
+        <div class="footer__contact-row">
+          <span class="footer__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" />
+            </svg>
+          </span>
+          <span>
+            Theresia Jansen&nbsp;&nbsp;<a href="tel:+41792917402" class="footer__link">+41 792 917 402</a><br />
+            Axel Jansen&nbsp;&nbsp;<a href="tel:+41797849130" class="footer__link">+41 797 849 130</a>
+          </span>
+        </div>
+
+        <div class="footer__contact-row">
+          <span class="footer__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z" />
+              <circle cx="12" cy="9" r="3" />
+            </svg>
+          </span>
+          <span>Eichenaustrasse 32, CH-9470 Buchs</span>
+        </div>
       </div>
 
-      <div class="footer__contact-row">
-        <span class="footer__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z" />
-            <circle cx="12" cy="9" r="3" />
-          </svg>
-        </span>
-        <span>Eichenaustrasse 32, CH-9470 Buchs</span>
+      <div class="footer__social">
+        <span class="footer__social-label">Follow us</span>
+        <div class="footer__social-icons">
+          <a href="#" class="footer__social-icon" aria-label="Facebook">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+              <path d="M18.5 16h3l.5-4h-3.5V9.5c0-1.2.4-2 2-2h1.5v-3.4C21.7 4 20.5 4 19.4 4c-3 0-5 1.8-5 5v3H11v4h3.4V28h4.1V16z"/>
+            </svg>
+          </a>
+          <a href="#" class="footer__social-icon footer__social-icon--outline" aria-label="Instagram">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="6" y="6" width="20" height="20" rx="5" />
+              <circle cx="16" cy="16" r="5" />
+              <circle cx="22" cy="10" r="1" fill="currentColor" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
 
-    <div class="footer__social">
-      <span class="footer__social-label">Follow us</span>
-      <div class="footer__social-icons">
-        <a href="#" class="footer__social-icon" aria-label="Facebook">
-          <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-            <path d="M18.5 16h3l.5-4h-3.5V9.5c0-1.2.4-2 2-2h1.5v-3.4C21.7 4 20.5 4 19.4 4c-3 0-5 1.8-5 5v3H11v4h3.4V28h4.1V16z"/>
-          </svg>
-        </a>
-        <a href="#" class="footer__social-icon footer__social-icon--outline" aria-label="Instagram">
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <rect x="6" y="6" width="20" height="20" rx="5" />
-            <circle cx="16" cy="16" r="5" />
-            <circle cx="22" cy="10" r="1" fill="currentColor" />
-          </svg>
-        </a>
-      </div>
-    </div>
-
+    <!-- Credits -->
     <div class="footer__credits">
       <hr class="footer__divider" />
       <div class="footer__credits-row">
@@ -144,65 +158,76 @@ const legalLinks = [
     flex-direction: column;
     gap: 40px;
   }
-  @media (min-width: 768px) { .footer__inner { padding: 40px; } }
-  @media (min-width: 1280px) {
-    .footer__inner {
-      padding: 60px;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-      align-content: space-between;
-      gap: 40px 26.67px;
-    }
-  }
-  @media (min-width: 1920px) { .footer__inner { padding: 90px; } }
+  @media (min-width: 768px)  { .footer__inner { padding: 40px; gap: 48px; } }
+  @media (min-width: 1280px) { .footer__inner { padding: 60px; gap: 56px; } }
+  /* Desktop+ Figma: padding 90, gap 32 between the three frames */
+  @media (min-width: 1920px) { .footer__inner { padding: 90px; gap: 32px; } }
 
-  /* ----- Brand column ----- */
-  .footer__brand {
+  /* ----- Top: brand + nav columns ----- */
+  .footer__top {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 28px;
+    gap: 40px;
     width: 100%;
   }
-  @media (min-width: 1280px) { .footer__brand { width: 575px; } }
+  @media (min-width: 1024px) {
+    .footer__top {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 48px;
+    }
+  }
+  /* Desktop+ Figma: top frame 1740 wide, gap 40, brand column 354 */
+  @media (min-width: 1920px) { .footer__top { gap: 40px; } }
 
+  .footer__brand {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: flex-start;
+  }
+  @media (min-width: 1920px) { .footer__brand { width: 354px; } }
   .footer__logo {
-    width: 179px;
+    width: 140px;
     height: auto;
     filter: brightness(0) invert(1);
   }
+  @media (min-width: 1024px) { .footer__logo { width: 200px; } }
+  @media (min-width: 1920px) { .footer__logo { width: 269px; } }
 
-  .footer__tagline {
-    margin: 0;
-    max-width: 371px;
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--p1-size);
-    line-height: 1.5;
-    color: var(--c-spring-wood);
+  /* Nav columns grid: 2-up on small screens, 4-up from 1024 */
+  .footer__cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+    width: 100%;
+  }
+  @media (min-width: 1024px) {
+    .footer__cols {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      flex: 1;
+    }
   }
 
-  /* ----- Nav-style columns ----- */
   .footer__col {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 11.7px;
-    width: 100%;
+    min-width: 0;
   }
-  @media (min-width: 640px) { .footer__col { width: calc((100% - 26.67px) / 2); } }
-  @media (min-width: 1280px) { .footer__col { width: 176.67px; } }
+  @media (min-width: 1920px) { .footer__col { gap: 17.55px; } }
 
   .footer__col-title {
-    margin: 0;
+    margin: 0 0 4px;
     font-family: 'ES Park', serif;
     font-weight: var(--weight-medium);
     font-size: var(--h4-size);
     line-height: 1.2;
     color: var(--c-spring-wood);
   }
+  @media (min-width: 1920px) { .footer__col-title { font-size: 32px; line-height: 120%; margin: 0 0 6px; } }
 
   .footer__list {
     list-style: none;
@@ -213,6 +238,7 @@ const legalLinks = [
     gap: 11.7px;
     width: 100%;
   }
+  @media (min-width: 1920px) { .footer__list { gap: 17.55px; } }
 
   .footer__link {
     font-family: 'ES Park', serif;
@@ -224,33 +250,36 @@ const legalLinks = [
     transition: opacity 200ms ease;
   }
   .footer__link:hover { opacity: 0.7; text-decoration: underline; }
+  @media (min-width: 1920px) { .footer__link { font-size: 23px; line-height: 150%; } }
 
-  .footer__hours {
-    margin: 0;
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--p1-size);
-    line-height: 1.5;
-    color: var(--c-spring-wood);
-  }
-
-  /* ----- Contact ----- */
-  .footer__contact {
+  /* ----- Middle: contact + social ----- */
+  .footer__mid {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: flex-start;
-    gap: 20px 26.67px;
+    flex-direction: column;
+    gap: 40px;
     width: 100%;
   }
-  @media (min-width: 1280px) { .footer__contact { width: 376px; } }
+  @media (min-width: 768px) {
+    .footer__mid {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+    }
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  @media (min-width: 1920px) { .footer__contact { gap: 30px; } }
 
   .footer__contact-row {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    flex: 1 1 100%;
+    gap: 16px;
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--p1-size);
@@ -258,8 +287,11 @@ const legalLinks = [
     color: var(--c-spring-wood);
     text-decoration: none;
   }
+  @media (min-width: 1920px) { .footer__contact-row { font-size: 23px; line-height: 150%; gap: 40px; } }
   .footer__contact-row a { color: inherit; text-decoration: none; }
   .footer__contact-row a:hover { text-decoration: underline; }
+  .footer__contact-row--email span:last-child { text-decoration: underline; }
+  .footer__contact-row--email:hover span:last-child { opacity: 0.7; }
 
   .footer__icon {
     flex-shrink: 0;
@@ -268,33 +300,34 @@ const legalLinks = [
     height: 23.33px;
     color: var(--c-spring-wood);
   }
+  @media (min-width: 1920px) { .footer__icon { width: 35px; height: 35px; } }
   .footer__icon svg { width: 100%; height: 100%; }
 
-  /* ----- Social ----- */
+  /* ----- Social (right) ----- */
+  /* Figma: block sits at the right (space-between), contents left-aligned within 177px */
   .footer__social {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: flex-start;
-    align-content: flex-start;
-    gap: 16px 26.67px;
-    width: 100%;
+    gap: 20px;
   }
-  @media (min-width: 1280px) { .footer__social { width: 118px; } }
+  @media (min-width: 1920px) { .footer__social { width: 177px; gap: 40px; } }
 
   .footer__social-label {
-    width: 100%;
     font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--p1-size);
-    line-height: 1.5;
+    font-weight: var(--weight-medium);
+    font-size: var(--h4-size);
+    line-height: 1.2;
     color: var(--c-spring-wood);
   }
+  @media (min-width: 1920px) { .footer__social-label { font-size: 32px; line-height: 120%; } }
 
   .footer__social-icons {
     display: flex;
-    gap: 14px;
+    gap: 20px;
   }
+  @media (min-width: 1920px) { .footer__social-icons { gap: 40px; } }
+
   .footer__social-icon {
     display: inline-flex;
     align-items: center;
@@ -305,6 +338,7 @@ const legalLinks = [
     transition: opacity 200ms ease;
   }
   .footer__social-icon:hover { opacity: 0.7; }
+  @media (min-width: 1920px) { .footer__social-icon { width: 48px; height: 48px; } }
   .footer__social-icon svg { width: 100%; height: 100%; }
 
   /* ----- Credits ----- */
@@ -314,6 +348,7 @@ const legalLinks = [
     flex-direction: column;
     gap: 20px;
   }
+  @media (min-width: 1920px) { .footer__credits { gap: 28px; } }
 
   .footer__divider {
     width: 100%;
@@ -321,7 +356,10 @@ const legalLinks = [
     margin: 0;
     border: 0;
     border-top: 0.67px solid var(--c-spring-wood);
+    opacity: 0.6;
   }
+  /* Figma "Line 6": solid 1px Spring Wood */
+  @media (min-width: 1920px) { .footer__divider { border-top-width: 1px; opacity: 1; } }
 
   .footer__credits-row {
     display: flex;
@@ -335,7 +373,7 @@ const legalLinks = [
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
-      gap: 20px 13.33px;
+      gap: 20px 40px;
     }
   }
 
@@ -348,6 +386,7 @@ const legalLinks = [
     color: var(--c-spring-wood);
     opacity: 0.5;
   }
+  @media (min-width: 1920px) { .footer__copy { font-size: 23px; line-height: 150%; } }
 
   .footer__legal {
     list-style: none;
@@ -357,57 +396,6 @@ const legalLinks = [
     flex-wrap: wrap;
     gap: 12px 26.67px;
   }
-
-  /* ============================================================
-     Desktop++ (≥1920) — Figma "Footer" spec
-     Container 1920×1020, padding 90, gap 40, P1 23/150, H3 32/120
-     ============================================================ */
-  @media (min-width: 1920px) {
-    .footer__inner {
-      padding: 90px;
-      gap: 40px;
-    }
-
-    /* Brand column — 778×371, gap 42 */
-    .footer__brand { width: 778px; gap: 42px; }
-    .footer__logo  { width: 269px; height: auto; }
-    .footer__tagline {
-      max-width: 419px;
-      font-size: 23px;
-      line-height: 150%;
-    }
-
-    /* Nav-style columns — 265×371, gap 17.55, H3 32/120 title */
-    .footer__col { width: 265px; gap: 17.55px; }
-    .footer__col-title {
-      font-size: 32px;
-      line-height: 120%;
-      font-weight: var(--weight-medium);
-    }
-    .footer__list { gap: 17.55px; }
-    .footer__link { font-size: 23px; line-height: 150%; }
-    .footer__hours { font-size: 23px; line-height: 150%; }
-
-    /* Contact column — 564×200, gap 30 40 */
-    .footer__contact { width: 564px; gap: 30px 40px; }
-    .footer__contact-row { font-size: 23px; line-height: 150%; }
-    .footer__icon { width: 35px; height: 35px; }
-
-    /* Social column — 177×126, gap 40 */
-    .footer__social { width: 177px; gap: 40px; }
-    .footer__social-label {
-      font-size: 32px;
-      line-height: 120%;
-      font-weight: var(--weight-medium);
-    }
-    .footer__social-icons { gap: 40px; }
-    .footer__social-icon { width: 48px; height: 48px; }
-
-    /* Credits row — 1740 wide, copy + legal P1 23 */
-    .footer__credits { width: 1740px; }
-    .footer__credits-row { gap: 20px; }
-    .footer__copy  { font-size: 23px; line-height: 150%; }
-    .footer__legal { gap: 12px 40px; }
-    .footer__legal .footer__link { font-size: 23px; line-height: 150%; }
-  }
+  @media (min-width: 768px) { .footer__legal { gap: 12px 56px; } }
+  @media (min-width: 1920px) { .footer__legal .footer__link { font-size: 23px; line-height: 150%; } }
 </style>

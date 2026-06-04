@@ -1,0 +1,109 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CourseHero from '@organisms/CourseHero.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import ProcessSteps from '@organisms/ProcessSteps.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import PersonBio from '@organisms/PersonBio.astro';
+import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
+import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+
+const steps = [
+  { number: '01', title: 'Buchen', description: 'Termin anfragen per Kontaktformular oder E-Mail. Behandlungen finden ausschliesslich in Präsenz statt.' },
+  { number: '02', title: 'Ankommen', description: 'Kurzes Eingangsgespräch: Wie geht es dir? Marlen stimmt die Behandlung auf dein aktuelles Befinden ab.' },
+  { number: '03', title: 'Behandlung', description: 'Tiefe Entspannung durch gezielte Reflexzonenmassage. Marlen arbeitet intuitiv und präzise — dein Körper zeigt, was er braucht.' },
+  { number: '04', title: 'Nachruhen', description: 'Nach der Behandlung kurz zur Ruhe kommen. Viel Wasser trinken — der Körper braucht Zeit, um das Erlebte zu integrieren.' },
+];
+
+const testimonials = [
+  { quote: 'Ich bin tief entspannt und mit klarem Kopf gegangen. Marlens Hände wissen genau, wo sie hinmüssen.', name: 'Maria S.' },
+  { quote: 'Schon nach der ersten Behandlung hat sich meine Verdauung spürbar reguliert. Ich komme regelmässig wieder.', name: 'Thomas K.' },
+  { quote: 'Eine Stunde echter Erholung — körperlich und innerlich. Selten so gut betreut gefühlt.', name: 'Claudia R.' },
+  { quote: 'Marlen verbindet Fachwissen mit grosser Achtsamkeit. Absolut empfehlenswert.', name: 'Lena M.' },
+];
+
+const faqItems = [
+  { question: 'Wie wirkt Fussreflexzonenmassage?', answer: 'Über die Reflexzonen der Füsse lassen sich Organe, Drüsen und das Nervensystem ansprechen. Das fördert Entspannung, regt die Selbstheilungskräfte an und bringt den Körper ins Gleichgewicht.' },
+  { question: 'Wie lange dauert eine Behandlung?', answer: 'Eine Einzelsitzung dauert rund 90 Minuten, inklusive Eingangsgespräch und Nachruhen.' },
+  { question: 'Findet die Behandlung vor Ort statt?', answer: 'Ja. Fussreflexzonenmassage ist eine Körperbehandlung und findet ausschliesslich in Präsenz in der Praxis statt.' },
+  { question: 'Für wen ist die Behandlung geeignet?', answer: 'Für alle, die tiefe Entspannung, energetische Balance und Regeneration suchen. Bei bestimmten Vorerkrankungen klären wir das vorab im Gespräch.' },
+  { question: 'Werden die Kosten von der Krankenkasse übernommen?', answer: 'Je nach Zusatzversicherung ist eine Beteiligung möglich. Bitte kläre die Bedingungen im Einzelfall mit deiner Versicherung.' },
+  { question: 'Wie oft sollte ich kommen?', answer: 'Das ist individuell. Manche kommen zur Erholung einmalig, andere regelmässig zur Begleitung — wir finden gemeinsam deinen Rhythmus.' },
+];
+---
+
+<BaseLayout
+  title="Fussreflexzonenmassage mit Marlen Berger | VitaLunaris"
+  description="Fussreflexzonenmassage mit Marlen Berger — ganzheitliche Behandlung über die Reflexzonen der Füsse für tiefe Entspannung und energetische Balance."
+  currentPath="/praxisangebote/fussreflexzonenbehandlung"
+>
+  <CourseHero
+    categoryMeta="Körperarbeit | Fussreflexzonenmassage"
+    title="Fussreflexzonen-<br />massage mit Marlen Berger"
+    description="Die Füsse sind eine Landkarte des Körpers. Über ihre Reflexzonen lassen sich Organe, Drüsen und das Nervensystem erreichen — für tiefe Entspannung, energetische Balance und ganzheitliche Regeneration."
+    durationMeta="Einzelsitzung | 90 Min. | Vor Ort"
+    price="270 CHF"
+    ctaText="Termin buchen"
+    ctaHref="/kontakt"
+    image="/images/placeholder/Placeholder-11.jpg"
+  />
+
+  {/* ===================== Wie sie wirkt (gold gradient, image left) ===================== */}
+  <NarrativeBlock
+    tone="light"
+    imageSide="left"
+    image="/images/placeholder/Placeholder-15.jpg"
+    imageAlt=""
+    title="Reflexzonenmassage — wie sie wirkt."
+    body="Die Fussreflexzonenmassage basiert auf dem Prinzip, dass jeder Bereich des Körpers einer Zone an den Füssen entspricht. Durch gezielte Massagegriffe werden diese Zonen stimuliert — das regt Selbstheilungskräfte an und bringt das System ins Gleichgewicht. Marlen verbindet klassische Reflexzonentherapie mit einem ganzheitlichen Körperverständnis. Jede Behandlung ist individuell — angepasst an dein Befinden und das, was dein Körper gerade braucht."
+  />
+
+  {/* ===================== Process ===================== */}
+  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref="/kontakt" />
+
+  {/* ===================== Lavender quote ===================== */}
+  <NarrativeBlock
+    tone="purple"
+    imageSide="right"
+    image="/images/placeholder/Placeholder-10.jpg"
+    imageAlt=""
+    title={`„Der Körper trägt, was der Kopf längst vergessen hat. Über die Füsse finden wir zurück in die Ruhe.”`}
+    body="Marlen Berger"
+  />
+
+  {/* ===================== Testimonials ===================== */}
+  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
+
+  {/* ===================== Bio ===================== */}
+  <PersonBio
+    eyebrow="Deine Therapeutin"
+    name="Marlen Berger"
+    paragraphs={[
+      'Ich arbeite seit vielen Jahren mit den Händen — und glaube daran, dass der Körper eine eigene Sprache spricht, wenn wir ihm zuhören.',
+      'In der Fussreflexzonenmassage verbinde ich fundiertes Fachwissen mit Intuition und grosser Achtsamkeit. Mein Ziel ist es, dir einen Raum zu geben, in dem du wirklich loslassen kannst.',
+    ]}
+    image="/images/placeholder/placeholder-4.jpg"
+    imageSide="right"
+  />
+
+  {/* ===================== Brand CTA ===================== */}
+  <BrandCtaBlock
+    title="Bereit, tiefer<br />zu gehen?"
+    body="Ein konkretes Thema, ein geschützter Raum, eine Sitzung die wirklich etwas bewegt. Theresia begleitet dich — in deinem Tempo, auf deiner Tiefe."
+    ctaText="Termin buchen"
+    ctaHref="/kontakt"
+  />
+
+  {/* ===================== FAQ ===================== */}
+  <Faq title="FAQ" items={faqItems} />
+
+  {/* ===================== Newsletter ===================== */}
+  <NewsletterBlock
+    eyebrow="Newsletter"
+    title="Erforsche die Systeme<br />deiner Seele"
+    body="Unser Newsletter ist kein gewöhnlicher Newsletter. Vielleicht möchtest du dich weiterlesen, anlehnen und neue Perspektiven entdecken. In meinem Newsletter teile ich regelmässig Inspirationen, Erfahrungen aus meiner Arbeit, systemische Gedankenanstösse und kleine Impulse für mehr Klarheit, Leichtigkeit und innere Balance."
+    placeholder="E-mail Adresse"
+    submitText="Newsletter anmelden"
+  />
+</BaseLayout>

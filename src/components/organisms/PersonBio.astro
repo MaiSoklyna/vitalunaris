@@ -1,0 +1,104 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+
+type ImageSide = 'left' | 'right';
+
+interface Props {
+  eyebrow?: string;
+  name: string;
+  /** One or more body paragraphs. */
+  paragraphs: string[];
+  image: string;
+  imageAlt?: string;
+  imageSide?: ImageSide;
+}
+
+const {
+  eyebrow,
+  name,
+  paragraphs,
+  image,
+  imageAlt = '',
+  imageSide = 'right',
+} = Astro.props;
+---
+
+<section class={`bio bio--image-${imageSide}`}>
+  <div class="bio__inner">
+    <div class="bio__content">
+      {eyebrow && <Heading variant="eyebrow" class="bio__eyebrow">{eyebrow}</Heading>}
+      <Heading level={2} variant="h1" class="bio__name"><Fragment set:html={name} /></Heading>
+      {paragraphs.map((p) => <Text size="p1" class="bio__body">{p}</Text>)}
+    </div>
+
+    <div class="bio__media">
+      <img src={image} alt={imageAlt || name} class="bio__image" loading="lazy" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     PERSON BIO — therapist intro: eyebrow + name + paragraphs,
+     portrait image to the side. Mirrors the site's "lehrerin"
+     pattern (Spring Wood, text + portrait), without a CTA.
+     ============================================================ */
+  .bio { background: var(--c-spring-wood); padding: 60px 20px; }
+  @media (min-width: 768px)  { .bio { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .bio { padding: 90px 60px; } }
+  @media (min-width: 1920px) { .bio { padding: 90px; } }
+
+  .bio__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 1740px;
+    margin: 0 auto;
+  }
+  @media (min-width: 1024px) {
+    .bio__inner { flex-direction: row; align-items: center; gap: 64px; }
+    .bio--image-right .bio__media   { order: 2; }
+    .bio--image-right .bio__content { order: 1; }
+    .bio--image-left  .bio__media   { order: 1; }
+    .bio--image-left  .bio__content { order: 2; }
+  }
+  @media (min-width: 1920px) { .bio__inner { gap: 100px; } }
+
+  .bio__media {
+    flex: 0 0 auto;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16.67px;
+    background: var(--c-pale-gold);
+    aspect-ratio: 4 / 5;
+    order: -1;
+  }
+  @media (min-width: 1024px) { .bio__media { width: 46%; border-radius: 20px; order: 0; } }
+  @media (min-width: 1920px) { .bio__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
+  .bio__image { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .bio__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  @media (min-width: 1024px) { .bio__content { gap: 26.67px; } }
+  @media (min-width: 1920px) { .bio__content { gap: 32px; max-width: 813px; } }
+
+  .bio__eyebrow { color: var(--c-cherrywood); }
+  .bio__name {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+  .bio__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
+</style>

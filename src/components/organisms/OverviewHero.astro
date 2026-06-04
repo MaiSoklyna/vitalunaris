@@ -6,13 +6,20 @@ interface Props {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  /** Optional decorative brand graphic shown centered above the eyebrow. */
+  graphic?: string;
 }
 
-const { eyebrow, title, subtitle } = Astro.props;
+const { eyebrow, title, subtitle, graphic } = Astro.props;
 ---
 
 <section class="ovh">
   <div class="ovh__inner">
+    {graphic && (
+      <div class="ovh__art" aria-hidden="true">
+        <img src={graphic} alt="" class="ovh__art-img" loading="eager" decoding="async" />
+      </div>
+    )}
     {eyebrow && <Heading variant="eyebrow" class="ovh__eyebrow">{eyebrow}</Heading>}
     <Heading level={1} class="ovh__title"><Fragment set:html={title} /></Heading>
     {subtitle && <Text size="p1" class="ovh__subtitle">{subtitle}</Text>}
@@ -43,6 +50,15 @@ const { eyebrow, title, subtitle } = Astro.props;
   }
   @media (min-width: 1280px) { .ovh__inner { gap: 32px; } }
   @media (min-width: 1920px) { .ovh__inner { gap: 40px; max-width: 1280px; } }
+
+  .ovh__art {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 4px;
+  }
+  @media (min-width: 768px)  { .ovh__art { width: 88px; height: 88px; } }
+  @media (min-width: 1920px) { .ovh__art { width: 110px; height: 110px; } }
+  .ovh__art-img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
   .ovh__eyebrow {
     display: block;

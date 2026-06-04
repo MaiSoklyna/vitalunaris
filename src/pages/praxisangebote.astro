@@ -1,0 +1,191 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import OverviewHero from '@organisms/OverviewHero.astro';
+import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+const offers = [
+  {
+    eyebrow: 'Systemisches Aufstellen | Theresia Jansen',
+    title: '1:1 Aufstellung',
+    body: 'Ob Familienmuster, Beziehungsdynamiken, Kinderwunsch oder berufliche Entscheidungen — im geschützten Einzelsetting erhält dein Anliegen den Raum, den es braucht. Gemeinsam machen wir verborgene Dynamiken sichtbar und bringen Bewegung in das, was festgefahren scheint. Für mehr Klarheit, neue Perspektiven und stimmige nächste Schritte.',
+    image: '/images/placeholder/Placeholder-20.jpg',
+    secondaryHref: '/praxisangebote/aufstellungen',
+  },
+  {
+    eyebrow: 'Hypnose | Axel Jansen',
+    title: 'Hypnose-Sitzung',
+    body: 'Veränderung beginnt dort, wo Verstand und Unterbewusstsein zusammenarbeiten.Systemic Hypno verbindet Hypnose, Energiearbeit und systemisches Denken zu einer tiefen und gleichzeitig sanften Begleitung. Alte Muster, Blockaden und belastende Emotionen dürfen sich lösen – damit neue Möglichkeiten entstehen können.',
+    image: '/images/placeholder/Placeholder-21.jpg',
+    secondaryHref: '/praxisangebote/hypnose',
+  },
+  {
+    eyebrow: 'Numerologie | Axel Jansen',
+    title: 'Numerologie-Beratung',
+    body: 'Dein Geburtsdatum erzählt mehr über dich, als du vielleicht vermutest.Die Numerologie kann helfen, Talente, Stärken, Herausforderungen und wiederkehrende Lebensthemen besser zu verstehen. Oft entstehen dadurch neue Perspektiven auf das eigene Leben, Beziehungen oder aktuelle Entscheidungen.', 
+    image: '/images/placeholder/Placeholder-22.jpg',
+    secondaryHref: '/praxisangebote/numerologieberatung',
+  },
+  {
+    eyebrow: 'Körperarbeit | Marlen Berger',
+    title: 'Fussreflexzonenmassage',
+    body: 'Marlens Methode ist intensiver und wirkungsvoller als klassische Fussreflexzonen. Sie arbeitet präzise, spürbar und intuitiv – nach den Prinzipien der TCM, mit einem Stäbchen für noch tiefere Wirkung.Hilfreich bei körperlichen Beschwerden, Nervensystem-Entlastung sowie hormonellen und emotionalen Themen.',
+    image: '/images/placeholder/Placeholder-23.jpg',
+    secondaryHref: '/praxisangebote/fussreflexzonenbehandlung',
+  },
+];
+---
+
+<BaseLayout
+  title="Praxisangebote | VitaLunaris"
+  description="Persönliche Begleitung auf allen Ebenen — Einzelaufstellungen, Hypnose, Numerologie und Fussreflexzonenmassage bei VitaLunaris in Buchs."
+  currentPath="/praxisangebote"
+>
+  <OverviewHero
+    graphic="/images/ebene/Ebene_2.svg"
+    eyebrow="VitaLunaris Praxisangebote"
+    title={`Persönliche Begleitung.<br /><em>Auf allen Ebenen.</em>`}
+    subtitle="In unseren Einzelsitzungen, Behandlungen und Beratungen begleiten wir dich persönlich und individuell – mit Zeit, Aufmerksamkeit und einem offenen Blick für das, was sich zeigen möchte. Gemeinsam erforschen wir die verborgenen Dynamiken hinter deinen Herausforderungen, Beziehungen und Lebenssituationen. Denn was erkannt wird, kann sich verändern. Für mehr Klarheit, innere Balance und neue Perspektiven auf deinem Weg."
+  />
+
+  {/* ===================== Offer rows ===================== */}
+  <section class="offers">
+    <div class="offers__inner">
+      {offers.map((o) => (
+        <PracticeOfferRow
+          eyebrow={o.eyebrow}
+          title={o.title}
+          body={o.body}
+          image={o.image}
+          primaryText="Termin buchen"
+          primaryHref="/kontakt"
+          secondaryText="Mehr erfahren"
+          secondaryHref={o.secondaryHref}
+        />
+      ))}
+
+      {/* Jawort — dark variant */}
+      <PracticeOfferRow
+        tone="dark"
+        eyebrow="Zeremonien | Theresia & Axel Jansen"
+        title="Jawort by Jansen"
+        body="Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit.Als freie Rednerin gestalte ich Zeremonien, die berühren, verbinden und in Erinnerung bleiben. Gemeinsam erschaffen wir einen Moment, der so einzigartig ist wie die Menschen, um die es geht."
+        image="/images/placeholder/Placeholder-18.jpg"
+        secondaryText="Mehr erfahren"
+        secondaryHref="/jawort-by-jansen"
+      />
+    </div>
+  </section>
+
+  {/* ===================== Wo Wissen auf Erfahrung trifft ===================== */}
+  <section class="welcome">
+    <div class="welcome__inner">
+      <div class="welcome__content">
+        <Heading variant="eyebrow" class="welcome__eyebrow">Willkommen bei VitaLunaris</Heading>
+        <Heading level={2} variant="h1" class="welcome__title">Wo Wissen auf<br />Erfahrung trifft.</Heading>
+        <Text size="p1" class="welcome__body">
+          VitaLunaris ist mehr als eine Praxis — es ist ein Ort, wo systemisches und energetisches Wissen zusammenkommen. Theresia und Axel Jansen begleiten Menschen mit über 30 Jahren Erfahrung: in Aufstellungen, Heilkunde, Hypnose und Numerologie. In der Deutschschweiz verwurzelt. Für alle, die tiefer schauen wollen.
+        </Text>
+        <div class="welcome__cta">
+          <Button href="/ueber-uns" variant="primary" size="lg">Mehr über VitaLunaris</Button>
+        </div>
+      </div>
+      <div class="welcome__media">
+        <img src="/images/placeholder/placeholder-4.jpg" alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  {/* ===================== Newsletter ===================== */}
+  <NewsletterBlock
+    eyebrow="Newsletter"
+    title="Impulse für deine<br />Seele"
+    body="Unser Newsletter ist kein gewöhnlicher Newsletter.Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia.Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.<br/><br/>Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox."
+    placeholder="E-mail Adresse"
+    submitText="Kostenlos abonnieren"
+  />
+</BaseLayout>
+
+<style>
+  /* ============================================================
+     OFFERS — stacked offer-row cards
+     ============================================================ */
+  .offers { background: var(--c-spring-wood); padding: 8px 20px 60px; }
+  @media (min-width: 768px)  { .offers { padding: 8px 32px 80px; } }
+  @media (min-width: 1280px) { .offers { padding: 16px 60px 90px; } }
+  @media (min-width: 1920px) { .offers { padding: 16px 90px 120px; } }
+
+  .offers__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (min-width: 1280px) { .offers__inner { gap: 32px; } }
+
+  /* ============================================================
+     WELCOME — "Wo Wissen auf Erfahrung trifft." (text left / image right,
+     cream → gold gradient)
+     ============================================================ */
+  .welcome {
+    background: linear-gradient(180deg, #F9F4EE 35%, #FFD869 100%);
+    padding: 60px 20px;
+  }
+  @media (min-width: 768px)  { .welcome { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .welcome { padding: 100px 60px; } }
+  @media (min-width: 1920px) { .welcome { padding: 120px 90px; } }
+
+  .welcome__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  @media (min-width: 1024px) {
+    .welcome__inner { flex-direction: row; align-items: center; gap: 64px; }
+  }
+  @media (min-width: 1920px) { .welcome__inner { gap: 120px; } }
+
+  .welcome__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  @media (min-width: 1024px) { .welcome__content { gap: 26.67px; max-width: 620px; } }
+  @media (min-width: 1920px) { .welcome__content { gap: 32px; max-width: 760px; } }
+
+  .welcome__eyebrow { color: var(--c-cherrywood); }
+  .welcome__title {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+  .welcome__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
+  .welcome__cta { margin-top: 8px; }
+
+  .welcome__media {
+    flex: 0 0 auto;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16.67px;
+    background: var(--c-pale-gold);
+    aspect-ratio: 4 / 3;
+    order: -1;
+  }
+  @media (min-width: 1024px) { .welcome__media { width: 48%; border-radius: 20px; order: 0; aspect-ratio: 16 / 12; } }
+  @media (min-width: 1920px) { .welcome__media { width: 820px; border-radius: 25px; aspect-ratio: 820 / 620; } }
+  .welcome__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>

@@ -1,0 +1,102 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CourseHero from '@organisms/CourseHero.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import ProcessSteps from '@organisms/ProcessSteps.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import PersonBio from '@organisms/PersonBio.astro';
+import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
+import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+
+const steps = [
+  { number: '01', title: 'Buchen', description: 'Termin anfragen und dein Anliegen kurz beschreiben. So kann Axel die Sitzung optimal vorbereiten.' },
+  { number: '02', title: 'Erstgespräch', description: 'Was bringt dich hierher? Was soll sich verändern? Axel hört zu und klärt das Ziel — bevor der eigentliche Prozess beginnt.' },
+  { number: '03', title: 'Sitzung', description: 'Geführte Induktion in einen Trancezustand. Axel arbeitet präzise am verinnerten Thema — tief, sicher, wirkungsvoll.' },
+  { number: '04', title: 'Verankerung', description: 'Das neue Muster wird verankert. Axel begleitet den Ausklang — du gehst mit dem, was sich verändert hat.' },
+];
+
+const testimonials = [
+  { quote: '«Ich kam wegen meiner Flugangst zu Axel. Nach der Sitzung konnte ich den Flug völlig entspannt geniessen — überrascht, wie ruhig ich blieb und wie schön Fliegen eigentlich sein kann. Eine grosse Erleichterung. Vielen Herzlichen Dank!»', name: 'Gabriela B.' },
+  { quote: '«Ich wollte endlich mit dem Rauchen aufhören — vor allem wegen meiner Kinder.«Ich wollte endlich mit dem Rauchen aufhören — vor allem wegen meiner Kinder. Ehrlich gesagt hatte ich nicht erwartet, dass es so schnell geht. Bereits nach dem Vorgespräch spürte ich einen Unterschied. Die Zigarette schmeckte anders, der Geruch danach störte mich — als wäre ich bereits Nichtraucherin. Ich hätte nie gedacht, dass sich etwas, das mich so lange begleitet hat, so leicht verändern kann.»', name: 'Barbara S.' },
+  { quote: '«Wir kamen zu Axel, weil unser Sohn in der Schule grosse Schwierigkeiten hatte. Schon nach der ersten Sitzung fühlte er sich verstanden — Axels ruhige Art tat ihm unglaublich gut. Mit der Zeit gewann er mehr Sicherheit, schaffte den Übertritt in die Oberstufe und überraschte uns mit seiner Entwicklung. Besonders berührt hat uns, dass er von sich aus noch einmal zu Axel wollte — weil er sich dort sicher und wohl fühlte.»', name: 'Familie A &  K.' },
+  { quote: '«Ich kam wegen meiner Flugangst zu Axel. Nach der Sitzung konnte ich den Flug völlig entspannt geniessen — überrascht, wie ruhig ich blieb und wie schön Fliegen eigentlich sein kann. Eine grosse Erleichterung. Vielen Herzlichen Dank!»', name: 'Gabriela B.' },
+];
+
+const faqItems = [
+  { question: 'Verliere ich während der Hypnose die Kontrolle?', answer: 'Nein. Du bleibst jederzeit bei Bewusstsein und in Kontrolle. Trance ist kein Kontrollverlust, sondern ein Zustand tiefer, fokussierter Entspannung.' },
+  { question: 'Wie fühlt sich eine Trance an?', answer: 'Wie ein Zustand tiefer Entspannung bei wacher, fokussierter Aufmerksamkeit — ähnlich dem Moment kurz vor dem Einschlafen, nur klar und präsent.' },
+  { question: 'Ist Systemic Hypno auch bei Ängsten oder Gewohnheiten geeignet?', answer: 'Ja. Ängste, Gewohnheiten, Stress und belastende Muster lassen sich in Trance besonders gut bearbeiten — dort, wo sie verankert sind.' },
+  { question: 'Muss ich mein Problem genau benennen können?', answer: 'Nein. Oft genügt das Gefühl, dass sich etwas verändern will. Im Erstgespräch klären wir gemeinsam dein Anliegen, bevor die eigentliche Arbeit beginnt.' },
+  { question: 'Wie viele Sitzungen sind sinnvoll?', answer: 'Das hängt vom Thema ab. Manche Anliegen lösen sich in einer einzigen Sitzung, andere begleiten wir über mehrere Termine — in deinem Tempo.' },
+  { question: 'Kann Systemic Hypno eine medizinische oder psychotherapeutische Behandlung ersetzen?', answer: 'Nein. Systemic Hypno ist persönliche Entwicklung und Begleitung. Bei Bedarf ersetzt sie keine ärztliche oder psychotherapeutische Behandlung.' },
+  { question: 'Gibt es Themen, die sich besonders gut für Systemic Hypno eignen?', answer: 'Stress und Erschöpfung, Ängste, Schlaf, Gewohnheiten, Selbstvertrauen und innere Klarheit — überall dort, wo Verstand und Unterbewusstsein zusammenarbeiten dürfen.' },
+];
+---
+
+<BaseLayout
+  title="Hypnose-Sitzung mit Axel Jansen | VitaLunaris"
+  description="Klinische Hypnose mit Axel Jansen — ein wissenschaftlich anerkanntes Verfahren für tiefe Veränderung. Präzise, seriös, nachhaltig."
+  currentPath="/praxisangebote/hypnose"
+>
+  <CourseHero
+    categoryMeta="Hypnose | SYSTEMIC HYPNO SITZUNG" Systemic Hypno  mit Axel Jansen
+    title="Systemic Hypno<br />mit Axel Jansen"
+    description="Hypnose hat nichts mit Kontrollverlust oder Bühnenshows zu tun. Sie ist eine bewährte Methode, um mit dem Unterbewusstsein zu arbeiten und nachhaltig Systemic Hypno verbindet Hypnose und Energiearbeit, sowie systemisches Denken zu einer sanften, zugleich wirkungsvollen Begleitung."
+    durationMeta="Einzelsitzung | 60–75  Min. | Vor Ort"
+    price="CHF 180.–"
+    ctaText="Termin buchen"
+    ctaHref="/kontakt"
+    image="/images/placeholder/Placeholder-9.jpg"
+  />
+
+  {/* ===================== Wie sie funktioniert (lavender gradient, image left) ===================== */}
+  <NarrativeBlock
+    tone="lavender-gradient"
+    imageSide="left"
+    image="/images/placeholder/Placeholder-21.jpg"  
+    imageAlt=""
+    title="Wie funktioniert Systemic Hypno?" 
+    body="Viele Muster, Überzeugungen und Verhaltensweisen entstehen nicht auf der Ebene des bewussten Verstandes. Deshalb lassen sie sich oft auch nicht allein durch Nachdenken verändern.In einem entspannten Trancezustand wird der Zugang zum Unterbewusstsein erleichtert. Du bleibst dabei jederzeit bei Bewusstsein, ansprechbar und in Kontrolle.<br/><br/>Axel arbeitet nicht nur mit dem Symptom, sondern betrachtet auch die Zusammenhänge dahinter. Deshalb verbindet er Hypnose mit systemischem Denken, Energiearbeit und Zahlenenergie.<br/><br/>So können neue Perspektiven entstehen, innere Blockaden erkannt und Veränderungsprozesse auf einer tieferen Ebene unterstützt werden.Alles geschieht achtsam, in deinem Tempo und nur mit dem, was für dich stimmig ist."
+
+  />
+
+  {/* ===================== Process ===================== */}
+  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref="/kontakt" />
+
+  {/* ===================== Testimonials ===================== */}
+  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
+
+  {/* ===================== Bio ===================== */}
+  <PersonBio
+    eyebrow="wer dich begleitet"
+    name="Axel Jansen"
+    paragraphs={[
+      'Ich arbeite dort, wo Themen tiefer liegen als im Kopf. Viele Herausforderungen lassen sich nicht durch Nachdenken allein lösen — oft wirken unbewusste Muster im Hintergrund. Ich verbinde Hypnose, Energiearbeit, Zahlenenergie und systemisches Denken und interessiere mich nicht nur für das Symptom, sondern für das, was dahinter wirkt.',
+      'Was ich weitergebe, stammt aus vielen Jahren Erfahrung und der Überzeugung, dass Veränderung möglich ist — wenn wir bereit sind, genauer hinzuschauen.',
+      'Mir ist wichtig, einen Raum zu schaffen, in dem Veränderung ohne Druck entstehen darf — achtsam, respektvoll und in deinem Tempo.',
+    ]}
+    image="/images/persons/AxelJansen.jpg" 
+    imageSide="right"
+  />
+
+  {/* ===================== Brand CTA ===================== */}
+  <BrandCtaBlock
+    title="Bereit, tiefer<br />zu gehen?"
+    body="Veränderung tritt nicht ein, wenn du es erzwingst — sondern wenn du loslässt. Axel begleitet dich dorthin."
+    ctaText="Termin buchen"
+    ctaHref="/kontakt"
+  />
+
+  {/* ===================== FAQ ===================== */}
+  <Faq title="FAQ" items={faqItems} />
+
+  {/* ===================== Newsletter ===================== */}
+  <NewsletterBlock
+    eyebrow="Newsletter"
+    title="Was, wenn hinter deinem Thema mehr steckt?<br />"
+    body="Manche Antworten finden wir nicht durch mehr Nachdenken — sondern indem wir Zusammenhänge erkennen. In unserem Newsletter teilen wir Impulse zu systemischem Denken, Numerologie, Hypnose und den unsichtbaren Dynamiken des Lebens. Für Menschen, die neugierig geblieben sind."
+    placeholder="E-mail Adresse"
+    submitText="Kostenlos anmelden"
+  />
+</BaseLayout>
