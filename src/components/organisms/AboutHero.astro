@@ -50,10 +50,14 @@ const {
      Top padding clears the fixed Navigation. Spring Wood surface.
      Responsive: 360 / 768 / 1024 / 1280 / 1920.
      ============================================================ */
-  .about-hero { background: var(--c-spring-wood); padding: 120px 20px 56px; }
-  @media (min-width: 768px)  { .about-hero { padding: 160px 32px 72px; } }
-  @media (min-width: 1280px) { .about-hero { padding: 180px 60px 90px; } }
-  @media (min-width: 1920px) { .about-hero { padding: 220px 90px 120px; } }
+  .about-hero { background: var(--c-spring-wood); padding: 60px 20px 56px; }
+  @media (min-width: 768px)  { .about-hero { padding: 90px 32px 72px; } }
+  /* At exactly 1280 the fixed nav is shorter — use a tighter 90px top. */
+  @media (min-width: 1280px) { .about-hero { padding: 90px 60px 90px; } }
+  /* From 1290 up the full 180px top clearance applies. */
+  @media (min-width: 1290px) { .about-hero { padding: 120px 60px 90px; } }
+  /* 1920+ keeps the 60px left/right of 1919 (only top/bottom grow). */
+  @media (min-width: 1920px) { .about-hero { padding: 160px 90px 120px; } }
 
   .about-hero__inner {
     display: flex;
@@ -70,7 +74,9 @@ const {
     .about-hero--image-left  .about-hero__media   { order: 1; }
     .about-hero--image-left  .about-hero__content { order: 2; }
   }
-  @media (min-width: 1920px) { .about-hero__inner { gap: 100px; } }
+  /* 1920+: content + image cap below the 1740 inner width, so push the
+     leftover space into the middle (image flush right) instead of after it. */
+  @media (min-width: 1920px) { .about-hero__inner { gap: 100px; justify-content: space-between; } }
 
   /* ----- content ----- */
   .about-hero__content {
