@@ -1,0 +1,154 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+
+interface ValueCard {
+  /** Path to a decorative icon/illustration (SVG). */
+  icon?: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  /** Centered section heading above the cards. */
+  title?: string;
+  cards: ValueCard[];
+}
+
+const { eyebrow, title, cards } = Astro.props;
+---
+
+<section class="values">
+  <div class="values__inner">
+    {(eyebrow || title) && (
+      <header class="values__head">
+        {eyebrow && <Heading variant="eyebrow" class="values__eyebrow">{eyebrow}</Heading>}
+        {title && (
+          <Heading level={2} variant="h1" class="values__title">
+            <Fragment set:html={title} />
+          </Heading>
+        )}
+      </header>
+    )}
+
+    <ul class="values__grid" role="list">
+      {cards.map((card) => (
+        <li class="values__card">
+          {card.icon && (
+            <span class="values__icon" aria-hidden="true">
+              <img src={card.icon} alt="" loading="lazy" decoding="async" />
+            </span>
+          )}
+          <Heading level={3} variant="h3" class="values__card-title">
+            <Fragment set:html={card.title} />
+          </Heading>
+          <Text size="p1" class="values__card-body">{card.body}</Text>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     VALUE CARDS — centered section heading + a row of value cards,
+     each with a brand icon, serif title and body. Reuses the
+     Spring Wood surface + Cherrywood outline of the design system.
+     Responsive: stacks on mobile, 3-up from 768px.
+     ============================================================ */
+  .values { background: var(--c-spring-wood); padding: 60px 20px; }
+  @media (min-width: 768px)  { .values { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .values { padding: 90px 60px; } }
+  @media (min-width: 1920px) { .values { padding: 120px 90px; } }
+
+  .values__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  @media (min-width: 1280px) { .values__inner { gap: 56px; } }
+
+  .values__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    max-width: 900px;
+  }
+  .values__eyebrow { color: var(--c-cherrywood); }
+  .values__title {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  /* ----- grid ----- */
+  .values__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 768px)  { .values__grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+  @media (min-width: 1280px) { .values__grid { gap: 24px; } }
+  @media (min-width: 1920px) { .values__grid { gap: 32px; } }
+
+  /* ----- card ----- */
+  .values__card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    height: 100%;
+    background: var(--c-spring-wood);
+    border: 0.667px solid var(--c-cherrywood);
+    border-radius: 16.67px;
+    padding: 32px 24px;
+  }
+  @media (min-width: 1280px) {
+    .values__card { border-width: 1px; border-radius: 20px; padding: 40px 32px; gap: 24px; }
+  }
+  @media (min-width: 1920px) {
+    .values__card { border-width: 1.25px; border-radius: 25px; padding: 48px 40px; gap: 28px; }
+  }
+
+  .values__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+  }
+  @media (min-width: 1280px) { .values__icon { width: 64px; height: 64px; } }
+  @media (min-width: 1920px) { .values__icon { width: 72px; height: 72px; } }
+  .values__icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .values__card-title {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h3-size);
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .values__card-body {
+    color: var(--c-cherrywood);
+    font-size: var(--p2-size);
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

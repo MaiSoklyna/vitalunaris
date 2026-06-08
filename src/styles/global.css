@@ -280,6 +280,19 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
+/* Visually hidden but available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ============================================================
    BUTTON BASE (used by atoms/Button.astro)
    BEM: btn (block), btn__icon (element), btn--<variant> / btn--<size> (modifiers)

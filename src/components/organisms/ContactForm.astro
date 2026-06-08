@@ -1,0 +1,199 @@
+---
+interface Props {
+  /** Inbox the message is sent to (opens the visitor's mail client). */
+  recipient?: string;
+  emailPlaceholder?: string;
+  firstNamePlaceholder?: string;
+  lastNamePlaceholder?: string;
+  messagePlaceholder?: string;
+  submitText?: string;
+  /** Optional form action; defaults to a client-side mailto handler. */
+  action?: string;
+}
+
+const {
+  recipient = 'info@vitalunaris.ch',
+  emailPlaceholder = 'E-mail Adresse',
+  firstNamePlaceholder = 'Vorname',
+  lastNamePlaceholder = 'Nachname',
+  messagePlaceholder = 'Nachricht',
+  submitText = 'Senden',
+  action = '#',
+} = Astro.props;
+---
+
+<section class="contact-form">
+  <form
+    class="contact-form__form"
+    action={action}
+    method="POST"
+    novalidate
+    data-contact-form
+    data-recipient={recipient}
+  >
+    <div class="contact-form__field">
+      <label for="contact-email" class="sr-only">E-Mail-Adresse</label>
+      <input
+        id="contact-email"
+        type="email"
+        name="email"
+        class="contact-form__input"
+        placeholder={emailPlaceholder}
+        required
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="contact-form__field">
+      <label for="contact-first" class="sr-only">Vorname</label>
+      <input
+        id="contact-first"
+        type="text"
+        name="firstName"
+        class="contact-form__input"
+        placeholder={firstNamePlaceholder}
+        autocomplete="given-name"
+      />
+    </div>
+
+    <div class="contact-form__field">
+      <label for="contact-last" class="sr-only">Nachname</label>
+      <input
+        id="contact-last"
+        type="text"
+        name="lastName"
+        class="contact-form__input"
+        placeholder={lastNamePlaceholder}
+        autocomplete="family-name"
+      />
+    </div>
+
+    <div class="contact-form__field">
+      <label for="contact-message" class="sr-only">Nachricht</label>
+      <textarea
+        id="contact-message"
+        name="message"
+        class="contact-form__input contact-form__textarea"
+        placeholder={messagePlaceholder}
+        rows="5"
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit" class="contact-form__submit">{submitText}</button>
+  </form>
+</section>
+
+<script>
+  function initContactForms() {
+    document.querySelectorAll('[data-contact-form]').forEach((form) => {
+      if ((form as HTMLElement).dataset.bound) return;
+      (form as HTMLElement).dataset.bound = 'true';
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const el = form as HTMLFormElement;
+        const email = (el.querySelector('[name="email"]') as HTMLInputElement | null);
+        const message = (el.querySelector('[name="message"]') as HTMLTextAreaElement | null);
+
+        if (!email?.checkValidity()) { email?.reportValidity(); return; }
+        if (!message?.checkValidity()) { message?.reportValidity(); return; }
+
+        const firstName = (el.querySelector('[name="firstName"]') as HTMLInputElement | null)?.value.trim() ?? '';
+        const lastName = (el.querySelector('[name="lastName"]') as HTMLInputElement | null)?.value.trim() ?? '';
+        const recipient = el.dataset.recipient || 'info@vitalunaris.ch';
+        const name = [firstName, lastName].filter(Boolean).join(' ');
+
+        const subject = name ? `Kontaktanfrage von ${name}` : 'Kontaktanfrage';
+        const lines = [
+          message.value.trim(),
+          '',
+          '—',
+          name && `Name: ${name}`,
+          `E-Mail: ${email.value.trim()}`,
+        ].filter(Boolean);
+
+        window.location.href =
+          `mailto:${recipient}` +
+          `?subject=${encodeURIComponent(subject)}` +
+          `&body=${encodeURIComponent(lines.join('\n'))}`;
+      });
+    });
+  }
+
+  initContactForms();
+  document.addEventListener('astro:page-load', initContactForms);
+</script>
+
+<style>
+  /* ============================================================
+     CONTACT FORM — centered single-column form on Spring Wood.
+     Inputs mirror the design-system pill field (transparent fill,
+     Cherrywood outline) used by the newsletter block.
+     Sits directly beneath OverviewHero, so top padding is minimal.
+     ============================================================ */
+  .contact-form { background: var(--c-spring-wood); padding: 0 20px 64px; }
+  @media (min-width: 768px)  { .contact-form { padding: 0 32px 90px; } }
+  @media (min-width: 1280px) { .contact-form { padding: 0 60px 110px; } }
+  @media (min-width: 1920px) { .contact-form { padding: 0 90px 140px; } }
+
+  .contact-form__form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 100%;
+    max-width: 642px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) { .contact-form__form { gap: 16px; } }
+
+  .contact-form__field { display: flex; width: 100%; }
+
+  .contact-form__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 30px;
+    background: transparent;
+    border: 0.8px solid var(--c-cherrywood);
+    border-radius: 100px;
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.3;
+    outline: none;
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+  @media (min-width: 768px) { .contact-form__input { padding: 20px 30px; } }
+
+  .contact-form__input::placeholder { color: var(--c-cherrywood); opacity: 0.5; }
+  .contact-form__input:focus {
+    background: rgba(96, 29, 29, 0.04);
+    border-color: var(--c-cherrywood);
+  }
+
+  .contact-form__textarea {
+    min-height: 180px;
+    border-radius: 25px;
+    resize: vertical;
+  }
+  @media (min-width: 1280px) { .contact-form__textarea { min-height: 220px; } }
+
+  .contact-form__submit {
+    width: 100%;
+    padding: 20px 30px;
+    background: var(--c-cherrywood);
+    color: var(--c-spring-wood);
+    border: 0.8px solid var(--c-cherrywood);
+    border-radius: 100px;
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--button-size);
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .contact-form__submit:hover { background: #4A1414; }
+  .contact-form__submit:active { transform: scale(0.99); }
+  .contact-form__submit:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 2px; }
+</style>

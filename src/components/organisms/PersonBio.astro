@@ -7,6 +7,8 @@ type ImageSide = 'left' | 'right';
 interface Props {
   eyebrow?: string;
   name: string;
+  /** Optional discipline / role line shown beneath the name. */
+  role?: string;
   /** One or more body paragraphs. */
   paragraphs: string[];
   image: string;
@@ -17,6 +19,7 @@ interface Props {
 const {
   eyebrow,
   name,
+  role,
   paragraphs,
   image,
   imageAlt = '',
@@ -29,7 +32,8 @@ const {
     <div class="bio__content">
       {eyebrow && <Heading variant="eyebrow" class="bio__eyebrow">{eyebrow}</Heading>}
       <Heading level={2} variant="h1" class="bio__name"><Fragment set:html={name} /></Heading>
-      {paragraphs.map((p) => <Text size="p1" class="bio__body">{p}</Text>)}
+      {role && <Text size="p2" class="bio__role">{role}</Text>}
+      {paragraphs.map((p) => <Text size="p1" class="bio__body"><Fragment set:html={p} /></Text>)}
     </div>
 
     <div class="bio__media">
@@ -99,6 +103,13 @@ const {
     font-size: var(--h1-size);
     line-height: 1.1;
     margin: 0;
+  }
+  .bio__role {
+    color: var(--c-cherrywood);
+    font-size: var(--p2-size);
+    line-height: 1.4;
+    opacity: 0.7;
+    margin-top: -8px;
   }
   .bio__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
 </style>

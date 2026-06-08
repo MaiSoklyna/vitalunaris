@@ -212,7 +212,7 @@ const faqItems = [
         <Heading variant="eyebrow" class="infoanlass__eyebrow">Infoanlass | 12.08.2026</Heading>
         <Heading level={2} variant="h1" class="infoanlass__title">Komm zum<br />nächsten Infoanlass<br />am 12.08.2026</Heading>
         <Text size="p1" class="infoanlass__body">Lorem ipsum dolor sit amet. Online.</Text>
-        <form class="infoanlass__form" action="#" method="POST" novalidate>
+        <form class="infoanlass__form" action="#" method="POST" novalidate data-mailto-form data-recipient="info@vitalunaris.ch" data-subject="Anmeldung Infoanlass — Systemic Soulcoach Level 2">
           <label for="infoanlass-email" class="infoanlass__label">E-Mail-Adresse</label>
           <input
             id="infoanlass-email"
@@ -228,6 +228,38 @@ const faqItems = [
       </div>
     </div>
   </section>
+
+  <script>
+    function initMailtoForms() {
+      document.querySelectorAll('[data-mailto-form]').forEach((form) => {
+        const el = form as HTMLFormElement & { dataset: DOMStringMap };
+        if (el.dataset.bound) return;
+        el.dataset.bound = 'true';
+
+        el.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const input = el.querySelector('input[type="email"]') as HTMLInputElement | null;
+          const email = input?.value.trim();
+          if (!email || !input?.checkValidity()) { input?.reportValidity(); return; }
+
+          const recipient = el.dataset.recipient || 'info@vitalunaris.ch';
+          const subject = el.dataset.subject || 'Anmeldung';
+          const lines = [
+            'Ich möchte mich für den Infoanlass anmelden.',
+            '',
+            `E-Mail-Adresse: ${email}`,
+          ];
+          window.location.href =
+            `mailto:${recipient}` +
+            `?subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(lines.join('\n'))}`;
+        });
+      });
+    }
+
+    initMailtoForms();
+    document.addEventListener('astro:page-load', initMailtoForms);
+  </script>
 </BaseLayout>
 
 <style>

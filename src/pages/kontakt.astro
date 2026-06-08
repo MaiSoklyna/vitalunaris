@@ -1,0 +1,20 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import OverviewHero from '@organisms/OverviewHero.astro';
+import ContactForm from '@organisms/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Kontakt | VitaLunaris"
+  description="Hast du Fragen zu einem Angebot, der Ausbildung oder einem Workshop? Schreib uns — wir melden uns innert 24 Stunden."
+  currentPath="/kontakt"
+>
+  <OverviewHero
+    graphic="/images/ebene/Ebene_2-8.svg"
+    eyebrow="VitaLunaris Kontakt"
+    title="Hast du Fragen?"
+    subtitle="Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden."
+  />
+
+  <ContactForm recipient="info@vitalunaris.ch" submitText="Senden" />
+</BaseLayout>
