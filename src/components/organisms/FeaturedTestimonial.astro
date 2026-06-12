@@ -12,6 +12,8 @@ interface Props {
   imageSide?: 'left' | 'right';
   ctaText?: string;
   ctaHref?: string;
+  /** Background tone. Defaults to the Figma pale-gold. */
+  tone?: 'pale-gold' | 'spring-wood';
 }
 
 const {
@@ -24,10 +26,11 @@ const {
   imageSide = 'right',
   ctaText = 'Mehr über uns',
   ctaHref = '/kontakt',
+  tone = 'pale-gold',
 } = Astro.props;
 ---
 
-<section class={`feat-t feat-t--image-${imageSide}`}>
+<section class={`feat-t feat-t--image-${imageSide} feat-t--${tone}`}>
   <div class="feat-t__inner">
     <div class="feat-t__content">
     
@@ -57,6 +60,7 @@ const {
     background: var(--c-pale-gold);
     padding: 60px 20px;
   }
+  .feat-t--spring-wood { background: var(--c-spring-wood); }
   @media (min-width: 768px)  { .feat-t { padding: 80px 32px; } }
   @media (min-width: 1024px) { .feat-t { padding: 90px 48px; } }
   @media (min-width: 1280px) { .feat-t { padding: 90px 60px; } }

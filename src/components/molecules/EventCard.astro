@@ -147,6 +147,9 @@ const {
   }
 
   /* ----- meta row: price + duration ----- */
+  /* margin-top: auto pushes the meta + CTA group to the bottom of the card,
+     so the button sits on the same line across cards regardless of how long
+     the description is. The card's bottom padding stays below the button. */
   .event-card__meta {
     display: flex;
     flex-direction: row;
@@ -154,6 +157,7 @@ const {
     align-items: center;
     gap: 40px;
     align-self: stretch;
+    margin-top: auto;
   }
   @media (min-width: 1920px) {
     .event-card__meta {

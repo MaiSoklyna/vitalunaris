@@ -7,6 +7,10 @@ interface Pill {
   label: string;
   href?: string;
   active?: boolean;
+  /** Card heading shown when this pill is selected. */
+  title?: string;
+  /** Card description shown when this pill is selected. */
+  description?: string;
 }
 
 interface Props {
@@ -29,6 +33,11 @@ const {
   workshopDescription,
   logo,
 } = Astro.props;
+
+// The card mirrors the active pill's content; fall back to explicit props.
+const activePill = pills.find((p) => p.active) ?? pills[0];
+const cardTitle = activePill?.title ?? workshopTitle;
+const cardDescription = activePill?.description ?? workshopDescription;
 ---
 
 <section class="workshops-hero">
@@ -42,17 +51,49 @@ const {
       {subtitle && <Text size="p1" class="workshops-hero__subtitle">{subtitle}</Text>}
     </div>
 
-    <div class="workshops-hero__pills">
-      {pills.map(p => <PillButton label={p.label} href={p.href} active={p.active} />)}
+    <div class="workshops-hero__pills" data-workshops-pills>
+      {pills.map(p => (
+        <PillButton
+          label={p.label}
+          active={p.active}
+          data-pill
+          data-title={p.title ?? ''}
+          data-description={p.description ?? ''}
+        />
+      ))}
     </div>
 
     <div class="workshops-hero__card">
-      {workshopTitle && <Heading level={2} class="workshops-hero__card-title">{workshopTitle}</Heading>}
-      {workshopDescription && <Text size="p1" class="workshops-hero__card-desc">{workshopDescription}</Text>}
+      {cardTitle && <Heading level={2} class="workshops-hero__card-title" data-card-title>{cardTitle}</Heading>}
+      {cardDescription && <Text size="p1" class="workshops-hero__card-desc" data-card-desc>{cardDescription}</Text>}
       <slot name="calendar" />
     </div>
   </div>
 </section>
+
+<script>
+  // Switch the card title/description when a pill is selected.
+  document.querySelectorAll<HTMLElement>('.workshops-hero').forEach((hero) => {
+    const pills = hero.querySelectorAll<HTMLElement>('[data-pill]');
+    const titleEl = hero.querySelector<HTMLElement>('[data-card-title]');
+    const descEl = hero.querySelector<HTMLElement>('[data-card-desc]');
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const title = pill.dataset.title;
+        const description = pill.dataset.description;
+
+        pills.forEach((p) => p.classList.remove('pill--active'));
+        pill.classList.add('pill--active');
+
+        if (titleEl && title) titleEl.textContent = title;
+        if (descEl && description) descEl.textContent = description;
+      });
+    });
+  });
+</script>
 
 <style>
   /* ============================================================

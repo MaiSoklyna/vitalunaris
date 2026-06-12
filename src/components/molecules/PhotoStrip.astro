@@ -6,26 +6,40 @@ interface Photo {
 
 interface Props {
   photos: Photo[];
+  /** Seconds for one full loop. Larger = slower. */
+  speed?: number;
 }
 
-const { photos } = Astro.props;
+const { photos, speed = 40 } = Astro.props;
+
+// Duplicate the set so the track can scroll seamlessly (translateX -50% lands
+// exactly on the start of the second copy).
+const loop = [...photos, ...photos];
 ---
 
 <section class="photo-strip" aria-label="Impressionen">
-  <ul class="photo-strip__track scrollbar-hide">
-    {photos.map((p) => (
-      <li class="photo-strip__item">
-        <img src={p.src} alt={p.alt ?? ''} class="photo-strip__img" loading="lazy" decoding="async" />
-      </li>
-    ))}
-  </ul>
+  <div class="photo-strip__viewport">
+    <ul class="photo-strip__track" style={`--photo-strip-speed:${speed}s`}>
+      {loop.map((p, i) => (
+        <li class="photo-strip__item" aria-hidden={i >= photos.length ? 'true' : undefined}>
+          <img
+            src={p.src}
+            alt={i >= photos.length ? '' : (p.alt ?? '')}
+            class="photo-strip__img"
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
 </section>
 
 <style>
   /* ============================================================
-     PHOTO STRIP — horizontal gallery of images.
-     Mobile/tablet: horizontal scroll-snap carousel.
-     Desktop (≥1024px): equal-width row, no scroll.
+     PHOTO STRIP — seamless auto-scrolling marquee of images.
+     The track holds two copies of the photo set and translates
+     from 0 → -50% on an infinite linear loop. Pauses on hover.
      ============================================================ */
   .photo-strip {
     background: var(--c-spring-wood);
@@ -34,33 +48,36 @@ const { photos } = Astro.props;
   @media (min-width: 768px)  { .photo-strip { padding: 32px 0; } }
   @media (min-width: 1280px) { .photo-strip { padding: 40px 0; } }
 
+  .photo-strip__viewport {
+    overflow: hidden;
+  }
+
   .photo-strip__track {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    width: max-content;
+    animation: photo-strip-scroll var(--photo-strip-speed, 40s) linear infinite;
+    will-change: transform;
   }
-  @media (min-width: 768px)  { .photo-strip__track { gap: 16px; } }
-  @media (min-width: 1280px) { .photo-strip__track { gap: 20px; } }
-  @media (min-width: 1920px) { .photo-strip__track { gap: 22px; } }
+  .photo-strip:hover .photo-strip__track {
+    animation-play-state: paused;
+  }
 
+  /* Equal trailing margin on every item (incl. the last) keeps the two
+     copies symmetric so the -50% loop point is perfectly seamless. */
   .photo-strip__item {
     flex: 0 0 auto;
-    width: 64%;
+    width: 64vw;
     max-width: 320px;
-    scroll-snap-align: start;
+    margin-right: 12px;
   }
-  @media (min-width: 480px) { .photo-strip__item { width: 42%; } }
-  @media (min-width: 768px) { .photo-strip__item { width: 30%; } }
-  /* Desktop: 5 equal columns fill the row, no horizontal scroll */
-  @media (min-width: 1024px) {
-    .photo-strip__track { overflow-x: visible; }
-    .photo-strip__item { flex: 1 1 0; width: auto; max-width: none; }
-  }
+  @media (min-width: 480px)  { .photo-strip__item { width: 42vw; } }
+  @media (min-width: 768px)  { .photo-strip__item { width: 30vw; max-width: none; margin-right: 16px; } }
+  @media (min-width: 1024px) { .photo-strip__item { width: 20vw; } }
+  @media (min-width: 1280px) { .photo-strip__item { margin-right: 20px; } }
+  @media (min-width: 1920px) { .photo-strip__item { margin-right: 22px; } }
 
   .photo-strip__img {
     width: 100%;
@@ -72,4 +89,16 @@ const { photos } = Astro.props;
   }
   @media (min-width: 1280px) { .photo-strip__img { border-radius: 16px; } }
   @media (min-width: 1920px) { .photo-strip__img { border-radius: 20px; } }
+
+  /* Loop moves the track left → right (content enters from the left). */
+  @keyframes photo-strip-scroll {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+
+  /* Respect users who prefer reduced motion: stop the animation. */
+  @media (prefers-reduced-motion: reduce) {
+    .photo-strip__track { animation: none; }
+    .photo-strip__viewport { overflow-x: auto; }
+  }
 </style>

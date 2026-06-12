@@ -1,0 +1,239 @@
+---
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+
+interface Props {
+  /** Optional brand symbol shown centered above the eyebrow. */
+  logo?: string;
+  eyebrow?: string;
+  title: string;
+  /** One or more centered intro paragraphs. */
+  paragraphs?: string[];
+  placeholder?: string;
+  submitText?: string;
+  action?: string;
+  /** Inbox the signup is sent to (opens the visitor's mail client). */
+  recipient?: string;
+}
+
+const {
+  logo,
+  eyebrow,
+  title,
+  paragraphs = [],
+  placeholder = 'E-mail Adresse',
+  submitText = 'Zum Newsletter anmelden',
+  action = '#',
+  recipient = 'info@vitalunaris.ch',
+} = Astro.props;
+---
+
+<section class="news-hero">
+  <div class="news-hero__inner">
+    {logo && <img src={logo} alt="" aria-hidden="true" class="news-hero__logo" />}
+    {eyebrow && <Heading variant="eyebrow" class="news-hero__eyebrow">{eyebrow}</Heading>}
+
+    <Heading level={1} class="news-hero__title">
+      <Fragment set:html={title} />
+    </Heading>
+
+    {paragraphs.length > 0 && (
+      <div class="news-hero__copy">
+        {paragraphs.map((p) => (
+          <Text size="p1" class="news-hero__body"><Fragment set:html={p} /></Text>
+        ))}
+      </div>
+    )}
+
+    <form
+      class="news-hero__form"
+      action={action}
+      method="POST"
+      novalidate
+      data-newsletter-form
+      data-recipient={recipient}
+    >
+      <label for="news-hero-email" class="news-hero__label sr-only">E-Mail-Adresse</label>
+      <input
+        id="news-hero-email"
+        type="email"
+        name="email"
+        class="news-hero__input"
+        placeholder={placeholder}
+        required
+        autocomplete="email"
+      />
+      <button type="submit" class="news-hero__submit">{submitText}</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  function initNewsletterForms() {
+    document.querySelectorAll('[data-newsletter-form]').forEach((form) => {
+      if (form.dataset.bound) return;
+      form.dataset.bound = 'true';
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = form.querySelector('input[type="email"]');
+        const email = input?.value.trim();
+        if (!email || !input.checkValidity()) {
+          input?.reportValidity();
+          return;
+        }
+
+        const recipient = form.dataset.recipient || 'info@vitalunaris.ch';
+        const subject = 'Newsletter-Anmeldung';
+        const lines = [
+          'Ich möchte den VitaLunaris-Newsletter abonnieren.',
+          '',
+          `E-Mail-Adresse: ${email}`,
+        ];
+        const href =
+          `mailto:${recipient}` +
+          `?subject=${encodeURIComponent(subject)}` +
+          `&body=${encodeURIComponent(lines.join('\n'))}`;
+
+        window.location.href = href;
+      });
+    });
+  }
+
+  initNewsletterForms();
+  document.addEventListener('astro:page-load', initNewsletterForms);
+</script>
+
+<style>
+  /* ============================================================
+     NEWS HERO — centered newsletter signup on Spring Wood.
+     Logo → eyebrow → H1 → intro paragraphs → email + submit.
+     ============================================================ */
+  .news-hero {
+    background: var(--c-spring-wood);
+    /* Top padding clears the fixed nav. */
+    padding: 100px 20px 60px;
+    display: flex;
+    justify-content: center;
+  }
+  @media (min-width: 768px)  { .news-hero { padding: 140px 32px 80px; } }
+  @media (min-width: 1280px) { .news-hero { padding: 160px 60px 100px; } }
+  @media (min-width: 1920px) { .news-hero { padding: 180px 90px 120px; } }
+
+  .news-hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 860px;
+  }
+  @media (min-width: 1280px) { .news-hero__inner { gap: 32px; } }
+
+  .news-hero__logo {
+    display: block;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 4px;
+  }
+  @media (min-width: 1280px) { .news-hero__logo { width: 64px; height: 64px; } }
+
+  .news-hero__eyebrow {
+    color: var(--c-cherrywood);
+    text-align: center;
+  }
+
+  .news-hero__title {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--c-cherrywood);
+    margin: 0;
+    text-align: center;
+  }
+  .news-hero__title :global(em) { font-style: italic; }
+
+  .news-hero__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 720px;
+  }
+
+  .news-hero__body {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* ----- form: stacked input + button, centered ----- */
+  .news-hero__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 480px;
+    margin-top: 8px;
+  }
+
+  .news-hero__label.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .news-hero__input {
+    width: 100%;
+    height: 56px;
+    padding: 18px 28px;
+    background: transparent;
+    border: 0.8px solid var(--c-cherrywood);
+    border-radius: 100px;
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.2;
+    outline: none;
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+  @media (min-width: 1280px) { .news-hero__input { height: 61px; padding: 20px 30px; } }
+  .news-hero__input::placeholder { color: var(--c-cherrywood); opacity: 0.5; }
+  .news-hero__input:focus {
+    background: rgba(96, 29, 29, 0.04);
+    border-color: var(--c-cherrywood);
+  }
+
+  .news-hero__submit {
+    width: 100%;
+    height: 56px;
+    padding: 18px 28px;
+    background: var(--c-cherrywood);
+    color: var(--c-spring-wood);
+    border: 1.4px solid var(--c-cherrywood);
+    border-radius: 100px;
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--button-size);
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+    white-space: nowrap;
+  }
+  @media (min-width: 1280px) { .news-hero__submit { height: 61px; padding: 20px 30px; } }
+  .news-hero__submit:hover { background: #4A1414; }
+  .news-hero__submit:active { transform: scale(0.98); }
+</style>

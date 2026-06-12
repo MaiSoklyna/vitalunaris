@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import NewsletterHero from '@organisms/NewsletterHero.astro';
+---
+
+<BaseLayout
+  title="News | VitaLunaris"
+  description="Bleib dabei — bei VitaLunaris gibt es immer etwas Neues. Kurstermine, Podcast-Episoden, Inspirationen und Einblicke hinter die Kulissen, direkt in deiner Inbox."
+  currentPath="/neuigkeiten"
+>
+  <NewsletterHero
+    logo="images/ebene/Ebene_2.svg" 
+    eyebrow="VitaLunaris News"
+    title={`Bleib dabei, bei uns gibts<br />immer etwas Neues`}
+    paragraphs={[
+      'Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.',
+      'Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.',
+    ]}
+    placeholder="E-mail Adresse"
+    submitText="Zum Newsletter anmelden"
+  />
+</BaseLayout>

@@ -1,206 +1,215 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import CourseHero from '@organisms/CourseHero.astro';
-import InfoCardsRow from '@organisms/InfoCardsRow.astro';
-import NarrativeBlock from '@organisms/NarrativeBlock.astro';
-import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import WorkshopsHero from '@organisms/WorkshopsHero.astro';
+import WorkshopsCalendar from '@organisms/WorkshopsCalendar.astro';
 import EventCard from '@molecules/EventCard.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import FeaturedTestimonial from '@organisms/FeaturedTestimonial.astro';
 import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
-import Button from '@atoms/Button.astro';
 
-const infoCards = [
-  { eyebrow: 'Wann?', body: 'Der Kurs findet am 12.8.2026 um 16:30 Uhr statt und dauert 2.5 h.' },
-  { eyebrow: 'Wo?', body: 'Online via Zoom, den Link bekommst du nach der Anmeldung per E-Mail.' },
-  { eyebrow: 'Für wen?', body: 'Für Menschen, die neugierig sind, erste Erfahrungen mit systemischer Arbeit machen möchten und spüren, dass sich etwas bewegen will, der Verstand es aber nicht erklären kann.' },
+const pills = [
+  {
+    label: 'Alle',
+    title: 'Alle Angebote',
+    description: 'Von Monatsworkshops über systemisches Aufstellen, Hypnose und Numerologie bis hin zu Infoanlässen — hier findest du alle unsere Kurse und Workshops auf einen Blick.',
+  },
+  {
+    label: 'Monats-Workshops',
+    active: true,
+    title: 'Monats-Workshops',
+    description: 'Unsere Monatsworkshops orientieren sich am Rhythmus der Jahreszeiten und den Themen, die Menschen gerade bewegen — von persönlicher Entwicklung über Nervensystem und Energiearbeit bis hin zu Numerologie und praktischen Alltagswerkzeugen.',
+  },
+  {
+    label: 'Systemisches Aufstellen',
+    title: 'Systemisches Aufstellen',
+    description: 'Verstehen, was unter der Oberfläche wirkt. Unsere Kurse führen dich Schritt für Schritt in die Welt der systemischen Aufstellungsarbeit — praxisnah, erfahrungsbasiert und offen für alle.',
+  },
+  {
+    label: 'Hypnose',
+    title: 'Hypnose',
+    description: 'Der Zugang zu tieferen Schichten beginnt im Inneren. Unsere Hypnose-Kurse verbinden Theorie und Erleben — für alle, die diese wirkungsvolle Methode kennenlernen oder vertiefen möchten.',
+  },
+  {
+    label: 'Numerologie',
+    title: 'Numerologie',
+    description: 'Zahlen erzählen Geschichten. Unsere Kurse zeigen dir, wie du Muster, Potenziale und Zusammenhänge lesen kannst — überraschend präzise und sofort anwendbar.',
+  },
+  {
+    label: 'Infoanlässe',
+    title: 'Infoanlässe',
+    description: 'Du spürst, dass da mehr ist — und möchtest wissen, wohin der Weg führen könnte. Unsere Infoanlässe geben dir einen ersten ehrlichen Einblick in die Ausbildung Systemic Soulwork, ohne Druck und ohne Verpflichtung.',
+  },
+];
+
+/* Calendar: a 30-day month whose 1st falls on Saturday (column index 5). */
+const calendarEvents = [
+  { day: 5, label: 'Im Rhythmus des Sommers', color: 'gold' as const, href: '/kurs/nummerologie-august' },
+  { day: 12, label: 'Offener Aufstellungsabend', color: 'raspberry' as const, href: '/kurs/nummerologie-august' },
+  { day: 19, label: 'Hypnose-Schnupperkurs', color: 'lavender' as const, href: '/kurs/nummerologie-august' },
+  { day: 25, label: 'Infoanlass Systemische Ausbildung', color: 'fire' as const, href: '/kurs/nummerologie-august' },
+];
+
+const upcoming = [
+  {
+    image: '/images/placeholder/Placeholder-12.jpg',
+    eyebrow: 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026',
+    title: 'SoilTapping Einführungskurs',
+    description: 'In diesem September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT Meridian-Klopfen – eine sanfte und effektive Methode, um innere Ruhe, Sicherheit und Vertrauen in dir zu stärken.',
+    price: 'CHF 66.–',
+    duration: '120 Min. | Online',
+    ctaText: 'Mehr entdecken',
+    ctaHref: '/workshops-kurse/soultap-gegen-angst',
+  },
+  {
+    image: '/images/placeholder/Placeholder-29.jpg',
+    eyebrow: 'MONATS-WORKSHOP | OKTOBER | 22.10.2026',
+    title: 'Im Vagusnerv liegt die Ruhe',
+    description: 'Aktiviere und entspanne deinen Vagusnerv in diesem Oktober-Workshop. Lerne wirkungsvolle Techniken kennen, die dich unterstützen, dein Nervensystem zu stabilisieren und mehr Gelassenheit in deinen Alltag zu bringen.',
+    price: 'CHF 66.–',
+    duration: '210 Min. | Online',
+    ctaText: 'Mehr entdecken',
+    ctaHref: '/workshops-kurse/vagusnerv-ruhe',
+  },
+  {
+    image: '/images/placeholder/Placeholder-31.jpg',
+    eyebrow: 'MONATS-WORKSHOP | NOVEMBER | 24.11.2026',
+    title: 'Cool down for Christmas',
+    description: 'Bleibe in der hektischen Weihnachtszeit entspannt. Dieser November-Workshop hilft dir, dich bewusst zu entschleunigen und ruhiger in die Feiertage zu gehen.',
+    price: 'CHF 66.–',
+    duration: '210 Min. | Online',
+    ctaText: 'Mehr entdecken',
+    ctaHref: '/workshops-kurse/cool-down-for-christmas',
+  },
 ];
 
 const testimonials = [
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
-];
-
-const furtherCourses = [
-  {
-    image: '/images/placeholder/Placeholder-12.jpg',
-    eyebrow: 'Systemisches Aufstellen | 28.6.2026 18:00',
-    title: 'Lorem ipsum dolor sit amet',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
-    price: '120 CHF',
-    duration: '90 Min. | Online',
-    ctaHref: '/kurs/nummerologie-august',
-  },
-  {
-    image: '/images/placeholder/Placeholder-14.jpg',
-    eyebrow: 'Systemisches Aufstellen | 28.6.2026 18:00',
-    title: 'Lorem ipsum dolor sit amet',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
-    price: '120 CHF',
-    duration: '90 Min. | Online',
-    ctaHref: '/kurs/nummerologie-august',
-  },
-  {
-    image: '/images/placeholder/Placeholder-13.jpg',
-    eyebrow: 'Systemisches Aufstellen | 28.6.2026 18:00',
-    title: 'Lorem ipsum dolor sit amet',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.',
-    price: 'Kostenlos :)',
-    duration: '90 Min. | Online',
-    ctaHref: '/kurs/nummerologie-august',
-  },
+  { quote: '„Der Numerologie-Workshop hat mich wirklich überrascht. Anfangs war ich einfach neugierig – doch plötzlich ergaben viele Verhaltensweisen einen ganz neuen Sinn. Besonders die Analyse im Schulalltag war für mich unglaublich hilfreich. Sie hat mir gezeigt, wie ich meine Schüler besser verstehen und gezielter auf ihre Bedürfnisse eingehen kann. Ein Workshop voller Aha-Momente und neuer Perspektiven.“', name: 'Marianne S.' },
+  { quote: '„Ich bin ohne große Erwartungen in den Numerologie-Workshop gestartet – und wurde umso positiver überrascht. Der Workshop war sehr strukturiert und bot gleichzeitig viel Raum für persönliche Entwicklung. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Man spürt sofort, wie viel Erfahrung und Herzblut in diesem Kurs steckt. Vielen Dank für diese inspirierende Erfahrung.“', name: 'Marina C.' },
+  { quote: '„Ich bin noch immer beeindruckt, wie viel Kraft hinter diesem einfachen Klopftechnik-Konzept steckt. Der Kurs war informativ, abwechslungsreich und die Zeit ist wie im Flug vergangen. Besonders wertvoll: Die Werkzeuge lassen sich direkt im Alltag anwenden – für mich selbst und meine Familie. Ein praxisnaher Kurs, den ich von Herzen weiterempfehle.“', name: 'Sandra M.' },
+  { quote: '„SoulReset hat mich absolut begeistert. Die Atemübungen und das Tapping haben mir geholfen, Druck abzubauen und wieder mehr Ruhe zu finden. Viele der Übungen konnte ich direkt in meinen Alltag integrieren – besonders im Familienleben spüre ich deutlich mehr Gelassenheit und weniger Stress. Praktische und wirkungsvolle Tools, die sich leicht umsetzen lassen. Vielen Dank!“', name: 'Desiree Z.' },
 ];
 
 const faqItems = [
   { question: 'Für wen sind die Workshops geeignet?', answer: 'Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.' },
   { question: 'Was ist der Unterschied zwischen einem Workshop und der Ausbildung?', answer: 'Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.' },
-  { question: 'Brauche ich Vorkenntnisse für den Kurs?', answer: 'Nein. Der Kurs ist so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
-  { question: 'Wie melde ich mich an?', answer: 'Du klickst auf «Jetzt anmelden», füllst das kurze Formular aus und erhältst alle Infos sowie den Zoom-Link per E-Mail.' },
+  { question: 'Brauche ich Vorkenntnisse für die Monats-Workshops?', answer: 'Nein. Die Monats-Workshops sind so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
+  { question: 'Wie melde ich mich an?', answer: 'Du wählst deinen Workshop im Kalender, klickst auf «Mehr erfahren» und meldest dich direkt an. Bei Fragen erreichst du uns jederzeit.' },
   { question: 'Werden die Kosten von der Krankenkasse übernommen?', answer: 'Workshops sind in der Regel keine kassenpflichtige Leistung. Manche Zusatzversicherungen unterstützen Bildungsangebote — frag im Einzelfall nach.' },
   { question: 'Kann ich einen Workshop stornieren?', answer: 'Ja, bis zu einer bestimmten Frist vor Beginn. Die genauen Bedingungen findest du in der Anmeldebestätigung.' },
-  { question: 'Gibt es auch Online-Formate?', answer: 'Ja. Dieser Kurs findet online via Zoom statt — den Link bekommst du nach der Anmeldung per E-Mail.' },
+  { question: 'Gibt es auch Online-Formate?', answer: 'Ja. Viele Workshops bieten wir online oder hybrid an — du siehst das Format jeweils direkt beim Termin im Kalender.' },
   { question: 'Was passiert wenn ein Workshop ausgebucht ist?', answer: 'Du kannst dich auf die Warteliste setzen. Wird ein Platz frei oder kommt ein Zusatztermin, informieren wir dich zuerst.' },
 ];
 ---
 
 <BaseLayout
-  title="Einführung ins Systemische Aufstellen – Kalender & Übersicht | VitaLunaris"
-  description="Einführung ins Systemische Aufstellen — ein Online-Workshop für alle, die erste Erfahrungen mit systemischer Arbeit machen möchten. Termine, Details und Anmeldung."
+  title="Workshops & Kurse | VitaLunaris"
+  description="Tauche ein in die Systeme der Seele mit Theres und Axel — Monats-Workshops, systemisches Aufstellen, Hypnose und Numerologie. Kalender & Übersicht aller Termine."
   currentPath="/workshops-kurse/kalender-uebersicht"
 >
-  <CourseHero
-    categoryMeta="Workshop | Systemisches Aufstellen | 12.8.2026"
-    durationMeta="12.8.2026 16:30 Uhr | 90 Min | online | max. 5 Teilnehmer"
-    title="Einführung ins<br />Systemische Aufstellen"
-    description="In diesem Einführungskurs lernst du Schritt für Schritt die Grundlagen des systemischen Aufstellens kennen — auf eine ruhige und zugängliche Weise, die dich nicht überfordert."
-    price="188 CHF"
-    ctaText="Jetzt anmelden"
-    ctaHref="/kontakt"
-    image="/images/placeholder/Placeholder-12.jpg"
-  />
+  <WorkshopsHero
+    logo="/logo/logo-compact.svg"
+    eyebrow="Workshops & Kurse"
+    title={`Tauche ein in die<br /><em>Systeme der Seele</em> mit<br />Theres und Axel`}
+    subtitle="Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung."
+    pills={pills}
+  >
+    <WorkshopsCalendar slot="calendar" daysInMonth={30} firstWeekday={5} events={calendarEvents} />
+  </WorkshopsHero>
 
-  <InfoCardsRow cards={infoCards} />
-
-  {/* ===================== Was wir anschauen — lavender ===================== */}
-  <NarrativeBlock
-    tone="lavender-gradient"
-    imageSide="left"
-    image="/images/placeholder/placeholder-3.jpg"
-    imageAlt=""
-    eyebrow="Was wir anschauen"
-    title="Lorem ipsum dolor sit amet"
-    body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-  />
-
-  {/* ===================== Was Menschen zu unseren Kursen sagen ===================== */}
-  <TestimonialsBlock
-    title="Was Menschen zu unseren Kursen sagen"
-    testimonials={testimonials}
-  />
-
-  {/* ===================== Theresia & Axel Jansen — gold ===================== */}
-  <section class="about">
-    <div class="about__inner">
-      <div class="about__content">
-        <Heading level={2} variant="h1" class="about__name">Theresia &<br /><em>Axel Jansen</em></Heading>
-        <Text size="p1" class="about__body">
-          Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In ihren Workshops verbindet sie Aufstellungen, EFT, Nervensystem-Arbeit und Heilkunde zu einem Erfahrungsraum der seinesgleichen sucht.
-        </Text>
-        <Text size="p1" class="about__body">
-          Axel Jansen bringt Hypnose und Numerologie in Workshops ein, die gleichermassen präzise wie zugänglich sind. Zahlenmagie ohne Kitsch, Hypnose ohne Bühnentricks. Zusammen bieten Theres und Axel ein Spektrum, das in dieser Form in der Deutschschweiz einzigartig ist.
-        </Text>
-        <div class="about__cta">
-          <Button href="/ueber-uns" variant="primary" size="lg">Mehr über uns</Button>
-        </div>
-      </div>
-      <div class="about__media">
-        <img src="/images/placeholder/placeholder-4.jpg" alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
+  {/* ===================== Nächste Kurse und Workshops ===================== */}
+  <section class="upcoming">
+    <div class="upcoming__inner">
+      <Heading level={2} variant="h1" class="upcoming__title">Nächste Kurse und Workshops:</Heading>
+      <div class="upcoming__grid">
+        {upcoming.map((e) => <EventCard {...e} />)}
       </div>
     </div>
   </section>
 
-  {/* ===================== Weitere Kurse und Workshops — dark ===================== */}
-  <section class="further">
-    <div class="further__inner">
-      <Heading level={2} variant="h1" class="further__title">Weitere Kurse und Workshops:</Heading>
-      <div class="further__grid">
-        {furtherCourses.map((e) => <EventCard {...e} />)}
+  {/* ===================== Testimonials ===================== */}
+  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
+
+  {/* ===================== Tiefes Wissen — lavender ===================== */}
+  <section class="deep">
+    <div class="deep__inner">
+      <div class="deep__art" aria-hidden="true">
+        <img src="/images/ebene/Ebene_2-12.svg" alt="" class="deep__art-img" loading="lazy" decoding="async" />
+      </div>
+      <div class="deep__content">
+        <Heading level={2} variant="h1" class="deep__title">Tiefes Wissen, das nicht nur erklärt wird</Heading>
+        <Text size="p1" class="deep__body">Unsere Workshops und Kurse sind kein Frontalunterricht. Sie sind Erfahrungsräume, in denen Wissen lebendig wird. Räume, in denen du Zusammenhänge nicht nur verstehst, sondern selbst erlebst. Denn manches kann erklärt werden. Anderes erschliesst sich erst, wenn wir es fühlen, beobachten und erfahren.</Text>
+        <Text size="p1" class="deep__body">Ob du zum ersten Mal mit systemischer Arbeit, Numerologie oder Energiearbeit in Berührung kommst oder dein Wissen vertiefen möchtest – hier findest du Formate, die praxisnah, inspirierend und nachhaltig sind.Lernen darf berühren. Lernen darf verändern. Lernen darf Freude machen.</Text>
       </div>
     </div>
   </section>
 
-  {/* ===================== FAQ ===================== */}
-  <Faq title="FAQ" items={faqItems} />
+  {/* ===================== Theresia & Axel Jansen ===================== */}
+  <FeaturedTestimonial
+    name={`Theresia &<br /><em>Axel Jansen</em>`}
+    role=""
+    tone="spring-wood"
+    quote={`Was unsere Workshops besonders macht, ist nicht nur das Wissen — sondern die Erfahrung, aus der es entstanden ist. Seit Jahrzehnten begleiten wir Menschen in Veränderungsprozessen. Nicht in der Theorie, sondern im echten Leben.<br /><br />Theresia bringt Erfahrung aus systemischer Arbeit, Körperarbeit und Nervensystemwissen ein. Axel ergänzt durch Numerologie, Hypnose und seine Fähigkeit, komplexe Zusammenhänge alltagstauglich zu vermitteln.<br /><br />Gemeinsam schaffen wir Lernräume, in denen Menschen nicht nur Neues erfahren, sondern wachsen können. Denn Wissen wird erst nachhaltig, wenn es erlebt wird.`}
+    image="/images/placeholder/placeholder-4.jpg"
+    imageSide="right"
+    ctaText="Mehr über uns"
+    ctaHref="/ueber-uns"
+  />
+
+  {/* ===================== FAQ (dark) ===================== */}
+  <Faq theme="dark" title="FAQ" items={faqItems} />
+
+  {/* ===================== Newsletter ===================== */}
+  <NewsletterBlock
+    eyebrow="Newsletter"
+    title="Ein Blick hinter die <br />Kulissen"
+    body="Im Newsletter teilen wir Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind.I m Newsletter teile ich Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind. Wenn dich Workshops, Kurse oder die Ausbildung interessieren, bist du hier genau richtig."
+    placeholder="E-mail Adresse"
+    submitText="Anmelden"
+  />
 </BaseLayout>
 
 <style>
   /* ============================================================
-     ABOUT — "Theresia & Axel Jansen" (Pale Gold, text left / image right)
+     UPCOMING — "Nächste Kurse und Workshops:" (3 event cards)
      ============================================================ */
-  .about { background: var(--c-spring-wood); padding: 60px 20px; }
-  @media (min-width: 768px)  { .about { padding: 80px 32px; } }
-  @media (min-width: 1280px) { .about { padding: 90px 60px; } }
-  @media (min-width: 1920px) { .about { padding: 90px; } }
+  .upcoming { background: var(--c-spring-wood); padding: 40px 20px 60px; }
+  @media (min-width: 768px)  { .upcoming { padding: 40px 32px 80px; } }
+  @media (min-width: 1280px) { .upcoming { padding: 40px 60px 90px; } }
+  @media (min-width: 1920px) { .upcoming { padding: 40px 90px 120px; } }
 
-  .about__inner {
+  .upcoming__inner {
+    max-width: 1740px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    max-width: 1740px;
-    margin: 0 auto;
   }
-  @media (min-width: 1024px) { .about__inner { flex-direction: row; align-items: center; gap: 64px; } }
-  @media (min-width: 1920px) { .about__inner { gap: 100px; } }
+  @media (min-width: 1920px) { .upcoming__inner { gap: 64px; } }
 
-  .about__media {
-    flex: 0 0 auto;
+  .upcoming__title { color: var(--c-cherrywood); text-align: center; margin: 0; }
+
+  .upcoming__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
     width: 100%;
-    overflow: hidden;
-    border-radius: 16.67px;
-    background: rgba(96, 29, 29, 0.06);
-    aspect-ratio: 4 / 5;
-    order: -1;
   }
-  @media (min-width: 1024px) { .about__media { width: 46%; border-radius: 20px; order: 0; } }
-  @media (min-width: 1920px) { .about__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
-  .about__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  .about__content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 20px;
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-  @media (min-width: 1024px) { .about__content { gap: 26.67px; } }
-  @media (min-width: 1920px) { .about__content { gap: 32px; max-width: 813px; } }
-
-  .about__name {
-    color: var(--c-cherrywood);
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--h1-size);
-    line-height: 1.1;
-    margin: 0;
-  }
-  .about__name :global(em) { font-style: italic; }
-  .about__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
-  .about__cta { margin-top: 8px; }
+  @media (min-width: 640px)  { .upcoming__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
+  @media (min-width: 1024px) { .upcoming__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
   /* ============================================================
-     FURTHER — "Weitere Kurse und Workshops:" (Cherrywood, 3 cards)
+     DEEP — "Tiefes Wissen, das nicht nur erklärt wird" (lavender)
      ============================================================ */
-  .further { background: var(--c-cherrywood); padding: 60px 20px; }
-  @media (min-width: 768px)  { .further { padding: 80px 32px; } }
-  @media (min-width: 1280px) { .further { padding: 90px 60px; } }
-  @media (min-width: 1920px) { .further { padding: 120px 90px; } }
+  .deep { background: var(--c-lavender); color: var(--c-white); padding: 64px 20px; overflow: hidden; }
+  @media (min-width: 768px)  { .deep { padding: 96px 32px; } }
+  @media (min-width: 1280px) { .deep { padding: 120px 60px; } }
+  @media (min-width: 1920px) { .deep { padding: 150px 90px; } }
 
-  .further__inner {
+  .deep__inner {
     max-width: 1740px;
     margin: 0 auto;
     display: flex;
@@ -208,21 +217,37 @@ const faqItems = [
     align-items: center;
     gap: 48px;
   }
-  @media (min-width: 1920px) { .further__inner { gap: 64px; } }
+  @media (min-width: 1024px) {
+    .deep__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: 80px; }
+  }
+  @media (min-width: 1920px) { .deep__inner { gap: 160px; } }
 
-  .further__title {
-    color: var(--c-spring-wood);
-    text-align: center;
+  /* Decorative brand graphic */
+  .deep__art {
+    flex: 0 0 auto;
+    width: 240px;
+    height: 240px;
+  }
+  @media (min-width: 1280px) { .deep__art { width: 320px; height: 320px; } }
+  @media (min-width: 1920px) { .deep__art { width: 380px; height: 380px; } }
+  .deep__art-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  .deep__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 760px;
+  }
+  @media (min-width: 1024px) { .deep__content { gap: 32px; } }
+
+  .deep__title {
+    color: var(--c-white);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
     margin: 0;
-    max-width: 862px;
   }
-
-  .further__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    width: 100%;
-  }
-  @media (min-width: 640px)  { .further__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
-  @media (min-width: 1024px) { .further__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .deep__body { color: var(--c-white); font-size: var(--p1-size); line-height: 1.5; }
 </style>

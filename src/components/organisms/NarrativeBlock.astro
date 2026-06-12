@@ -10,6 +10,11 @@ interface Props {
   eyebrow?: string;
   title: string;
   body?: string;
+  /** Optional bullet list rendered between body and attribution. */
+  bullets?: string[];
+  /** Optional grouped content (each with a subheading) rendered after body.
+      A group renders as a bullet list (`items`) or a plain inline line (`text`). */
+  bulletGroups?: { heading?: string; items?: string[]; text?: string }[];
   image?: string;
   imageAlt?: string;
   imageSide?: ImageSide;
@@ -25,6 +30,8 @@ const {
   eyebrow,
   title,
   body,
+  bullets,
+  bulletGroups,
   image,
   imageAlt = '',
   imageSide = 'left',
@@ -48,7 +55,31 @@ const {
       <Heading level={2} variant="h1" class="narrative__title">
         <Fragment set:html={title} />
       </Heading>
+      {bullets && bullets.length > 0 && (
+        <ul class="narrative__list">
+          {bullets.map((item) => (
+            <li class="narrative__list-item"><Fragment set:html={item} /></li>
+          ))}
+        </ul>
+      )}
       {body && <Text size="p1" class="narrative__body"><Fragment set:html={body} /></Text>}
+      {bulletGroups && bulletGroups.length > 0 && (
+        <div class="narrative__groups">
+          {bulletGroups.map((group) => (
+            <div class="narrative__group">
+              {group.heading && <Text size="p1" class="narrative__group-heading">{group.heading}</Text>}
+              {group.items && group.items.length > 0 && (
+                <ul class="narrative__list">
+                  {group.items.map((item) => (
+                    <li class="narrative__list-item"><Fragment set:html={item} /></li>
+                  ))}
+                </ul>
+              )}
+              {group.text && <Text size="p1" class="narrative__group-text"><Fragment set:html={group.text} /></Text>}
+            </div>
+          ))}
+        </div>
+      )}
       {attribution && <Text size="p2" class="narrative__attribution">{attribution}</Text>}
       {ctaText && ctaHref && (
         <div class="narrative__cta">
@@ -632,7 +663,9 @@ const {
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: space-between;
-      align-items: center;
+      /* flex-start so the image keeps its own (shorter) height instead of
+         stretching to match the taller text column — per Figma spec. */
+      align-items: flex-start;
       padding: 0 !important;
       gap: 40px;
     }
@@ -660,13 +693,16 @@ const {
   @media (min-width: 768px) {
     .narrative--lavender-gradient.narrative--image-left .narrative__media {
       order: 1;
-      flex: 1 1 50%;
-      max-width: none;
+      /* Image column tracks the Figma 620:712 image:text ratio. Its height
+         comes from the portrait aspect-ratio, NOT from the text column, and
+         align-self: flex-start keeps it top-aligned without stretching. */
+      flex: 0 1 46%;
+      max-width: 620px;
       width: 100%;
       height: auto;
-      aspect-ratio: auto;
+      aspect-ratio: 620 / 830;
       border-radius: 20px;
-      align-self: stretch;
+      align-self: flex-start;
     }
   }
   @media (min-width: 1280px) {
@@ -704,10 +740,11 @@ const {
   @media (min-width: 768px) {
     .narrative--lavender-gradient.narrative--image-left .narrative__content {
       order: 2;
-      flex: 1 1 50%;
-      max-width: 574px;
+      flex: 1 1 54%;
+      max-width: 712px;
       gap: 26.67px;
-      align-self: center;
+      /* Top-aligned with the image (Figma container align-items: flex-start). */
+      align-self: flex-start;
     }
   }
   @media (min-width: 1280px) {
@@ -914,4 +951,69 @@ const {
   .narrative__title { color: currentColor; }
   .narrative__body { color: currentColor; opacity: 0.9; max-width: 56ch; }
   .narrative__attribution { color: currentColor; opacity: 0.7; margin-top: 8px; }
+
+  /* ============================================================
+     Bullet list (optional `bullets` prop) — inherits the variant's
+     currentColor + P1 typography, custom dot marker per the design.
+     ============================================================ */
+  .narrative__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: stretch;
+    width: 100%;
+  }
+  .narrative__list-item {
+    position: relative;
+    padding-left: 28px;
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: currentColor;
+  }
+  .narrative__list-item::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  @media (min-width: 1280px) { .narrative__list { gap: 16px; } }
+
+  /* Grouped bullet lists (optional `bulletGroups` prop): subheading + list */
+  .narrative__groups {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-self: stretch;
+    width: 100%;
+  }
+  @media (min-width: 1280px) { .narrative__groups { gap: 32px; } }
+  .narrative__group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  @media (min-width: 1280px) { .narrative__group { gap: 16px; } }
+  .narrative__group-heading {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: currentColor;
+  }
+  .narrative__group-text {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    color: currentColor;
+  }
 </style>

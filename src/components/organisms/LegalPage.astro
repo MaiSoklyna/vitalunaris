@@ -1,0 +1,162 @@
+---
+/* ============================================================
+   LEGAL PAGE — shared shell for AGB, Impressum & Datenschutz.
+   Renders the hero (eyebrow + serif title) on a Spring-Wood
+   surface, then a single narrow prose column for the legal copy.
+
+   Page authors pass an optional `lead` slot (address / contact /
+   "Stand" block shown above the divider) and the default slot for
+   the numbered sections. Prose elements are styled globally but
+   scoped under `.legal__prose`, so plain semantic HTML
+   (h2, p, ul, strong …) renders correctly without extra classes.
+   ============================================================ */
+import Heading from '@atoms/Heading.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  /** Whether to show the divider between the lead block and the body. */
+  divider?: boolean;
+}
+
+const { eyebrow = 'VitaLunaris', title, divider = true } = Astro.props;
+const hasLead = Astro.slots.has('lead');
+---
+
+<section class="legal">
+  <div class="legal__inner">
+    <header class="legal__head">
+      {eyebrow && <Heading variant="eyebrow" class="legal__eyebrow">{eyebrow}</Heading>}
+      <Heading level={1} class="legal__title">{title}</Heading>
+    </header>
+
+    {hasLead && (
+      <div class="legal__lead">
+        <slot name="lead" />
+      </div>
+    )}
+
+    {divider && <hr class="legal__divider" />}
+
+    <div class="legal__prose">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ----- surface + spacing (top padding clears the fixed nav) ----- */
+  .legal { background: var(--c-spring-wood); padding: 72px 20px 64px; }
+  @media (min-width: 768px)  { .legal { padding: 120px 32px 80px; } }
+  @media (min-width: 1280px) { .legal { padding: 140px 60px 96px; } }
+  @media (min-width: 1920px) { .legal { padding: 175px 90px 120px; } }
+
+  .legal__inner {
+    max-width: 760px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .legal__head {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (min-width: 768px) { .legal__head { gap: 20px; margin-bottom: 40px; } }
+
+  .legal__eyebrow { color: var(--c-cherrywood); }
+  .legal__title {
+    color: var(--c-cherrywood);
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  /* ----- lead block (address / contact / date) ----- */
+  .legal__lead {
+    color: var(--c-cherrywood);
+    font-size: var(--p1-size);
+    line-height: 1.6;
+  }
+
+  .legal__divider {
+    height: 0;
+    margin: 32px 0;
+    border: 0;
+    border-top: 1px solid var(--c-cherrywood);
+    opacity: 0.2;
+  }
+  @media (min-width: 768px) { .legal__divider { margin: 40px 0; } }
+
+  .legal__prose {
+    color: var(--c-cherrywood);
+    font-size: var(--p1-size);
+    line-height: 1.65;
+  }
+</style>
+
+<!-- Prose typography: scoped under .legal__prose, applied to plain slotted HTML -->
+<style is:global>
+  .legal__lead p { margin: 0 0 4px; }
+  .legal__lead p:last-child { margin-bottom: 0; }
+  .legal__lead a { color: inherit; text-decoration: underline; }
+  .legal__lead a:hover { opacity: 0.7; }
+
+  .legal__prose > :first-child { margin-top: 0; }
+  .legal__prose > :last-child { margin-bottom: 0; }
+
+  .legal__prose h2 {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
+    color: var(--c-cherrywood);
+    margin: 48px 0 16px;
+  }
+  @media (min-width: 768px) { .legal__prose h2 { margin: 56px 0 20px; } }
+
+  .legal__prose h3 {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--h4-size);
+    line-height: 1.25;
+    color: var(--c-cherrywood);
+    margin: 32px 0 12px;
+  }
+
+  .legal__prose p { margin: 0 0 16px; }
+
+  .legal__prose strong { font-weight: var(--weight-semibold); }
+
+  .legal__prose a { color: var(--c-cherrywood); text-decoration: underline; }
+  .legal__prose a:hover { opacity: 0.7; }
+
+  .legal__prose ul {
+    margin: 0 0 16px;
+    padding-left: 1.4em;
+    list-style: none;
+  }
+  .legal__prose ul li {
+    position: relative;
+    margin: 0 0 10px;
+    padding-left: 0.4em;
+  }
+  .legal__prose ul li::before {
+    content: '';
+    position: absolute;
+    left: -0.9em;
+    top: 0.7em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--c-cherrywood);
+  }
+
+  .legal__prose hr {
+    height: 0;
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid var(--c-cherrywood);
+    opacity: 0.15;
+  }
+</style>

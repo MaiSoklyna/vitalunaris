@@ -1,0 +1,81 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import LegalPage from '@organisms/LegalPage.astro';
+---
+
+<BaseLayout
+  title="Datenschutzerklärung | VitaLunaris"
+  description="Datenschutzerklärung von VitaLunaris – wie wir Personendaten auf vitalunaris.com erheben und verwenden (nDSG / DSGVO)."
+  currentPath="/datenschutz"
+>
+  <LegalPage eyebrow="VitaLunaris" title="Datenschutzerklärung">
+    <div slot="lead">
+      <p><strong>Verantwortliche Stelle:</strong></p>
+      <p>VitaLunaris</p>
+      <p>Theresia Jansen</p>
+      <p>Eichenaustrasse 32</p>
+      <p>CH-9470 Buchs SG</p>
+      <p>E-Mail: <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a></p>
+      <p>Telefon: <a href="tel:+41815991402">081 599 14 02</a></p>
+      <p>&nbsp;</p>
+      <p>Letzte Aktualisierung: 12. Juni 2026</p>
+    </div>
+
+    <h2>1. Allgemein</h2>
+    <p>Diese Datenschutzerklärung erläutert, welche Personendaten wir auf dieser Website (www.vitalunaris.com) erheben und wie wir sie verwenden. Es gilt das Schweizer Datenschutzgesetz (nDSG) sowie, soweit anwendbar, die EU-Datenschutz-Grundverordnung (DSGVO).</p>
+
+    <h2>2. Hosting</h2>
+    <p>Diese Website wird über Cloudflare Workers (Cloudflare, Inc., USA) bereitgestellt. Cloudflare verarbeitet dabei technisch bedingt IP-Adressen zur Auslieferung der Inhalte und zum Schutz vor Angriffen. Cloudflare ist unter dem EU-U.S. Data Privacy Framework zertifiziert.</p>
+
+    <h2>3. Analyse und Tracking</h2>
+    <p>Wir verwenden Alchemy Scribe, ein eigenes Analyse-System (Server: opus.alchemy.zuerich), zur Auswertung der Websitenutzung. Dabei werden erhoben:</p>
+    <ul>
+      <li>Seitenaufrufe und Verweildauer</li>
+      <li>Anonyme Besucher-ID (Session-basiert)</li>
+      <li>Geräteinformationen (Browser, Betriebssystem, Bildschirmgrösse)</li>
+      <li>Referrer (woher Du kommst)</li>
+      <li>Scroll-Tiefe und Klickverhalten</li>
+    </ul>
+    <p><strong>Rechtsgrundlage:</strong> Berechtigtes Interesse (Art. 31 Abs. 1 nDSG). Statistik-Tracking ist standardmässig aktiv.</p>
+    <p><strong>Personalisierung</strong> (z. B. Verknüpfung mit E-Mail-Adresse, sitzungsübergreifende Wiedererkennung) erfolgt nur mit Deiner ausdrücklichen Einwilligung.</p>
+    <p><strong>Fingerprinting:</strong> Zur Zusammenführung von Sitzungen wird ein Browser-Fingerprint erstellt. Dies erfolgt nur bei aktiver Statistik-Einwilligung.</p>
+    <p>Du kannst Deine Einwilligung jederzeit widerrufen.</p>
+
+    <h2>4. Kontaktformulare und Datenerfassung</h2>
+    <p>Wenn Du ein Formular auf dieser Website ausfüllst, werden die von Dir eingegebenen Daten (z. B. Name, E-Mail-Adresse, Telefonnummer, Nachricht) an unseren Server (opus.alchemy.zuerich) übermittelt und dort gespeichert.</p>
+    <p><strong>Zweck:</strong> Bearbeitung von Kontakt- und Terminanfragen sowie Anmeldungen zu Workshops und Online-Kursen.</p>
+    <p><strong>Rechtsgrundlage:</strong> Einwilligung bzw. vorvertragliche Massnahmen.</p>
+    <p><strong>Speicherort:</strong> Schweiz / EU (Render, Hetzner).</p>
+    <p><strong>Aufbewahrung:</strong> Deine Daten werden gespeichert, bis Du die Löschung verlangst oder der Zweck der Speicherung entfällt.</p>
+    <p>Angaben zu Deiner Gesundheit, die Du uns im Rahmen einer Anfrage oder Behandlung mitteilst, behandeln wir besonders vertraulich. Sie werden ausschliesslich zur Leistungserbringung verwendet und nicht an Dritte weitergegeben.</p>
+
+    <h2>5. Terminbuchung</h2>
+    <p>Für die Online-Terminbuchung verwenden wir ein eigenes Buchungssystem (Alchemy Calendar). Dabei werden erhoben:</p>
+    <ul>
+      <li>Name, E-Mail-Adresse, Telefonnummer</li>
+      <li>Gewünschter Termin und Terminart</li>
+      <li>Optionale Nachricht</li>
+    </ul>
+    <p>Termine werden mit Google Calendar synchronisiert. Terminerinnerungen können per SMS (Twilio) versendet werden.</p>
+    <p><strong>Rechtsgrundlage:</strong> Vertragliche Erfüllung.</p>
+
+    <h2>6. Zahlungsabwicklung</h2>
+    <p>Zahlungen werden über Payrexx (Thurgauerstrasse 80, 8050 Zürich) abgewickelt. Payrexx verarbeitet Deine Zahlungsdaten direkt. Wir erhalten eine Bestätigung der Zahlung, jedoch keine Kreditkarten- oder Bankdaten.</p>
+    <p><strong>Rechtsgrundlage:</strong> Vertragliche Erfüllung.</p>
+
+    <h2>7. Deine Rechte</h2>
+    <p>Du hast das Recht auf:</p>
+    <ul>
+      <li><strong>Auskunft</strong> über die zu Deiner Person gespeicherten Daten</li>
+      <li><strong>Berichtigung</strong> unrichtiger Daten</li>
+      <li><strong>Löschung</strong> Deiner Daten («Recht auf Vergessenwerden»)</li>
+      <li><strong>Widerspruch</strong> gegen die Verarbeitung</li>
+      <li><strong>Datenportabilität</strong> (Herausgabe in maschinenlesbarem Format)</li>
+      <li><strong>Widerruf</strong> erteilter Einwilligungen (jederzeit, ohne Angabe von Gründen)</li>
+    </ul>
+    <p>Kontakt für Datenschutzanfragen: <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a></p>
+
+    <h2>8. Änderungen</h2>
+    <p>Wir können diese Datenschutzerklärung jederzeit anpassen. Die aktuelle Version gilt ab dem oben genannten Datum.</p>
+  </LegalPage>
+</BaseLayout>
