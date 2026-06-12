@@ -11,87 +11,103 @@ import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 
 const steps = [
   { number: '01', title: 'Buchen', description: 'Termin anfragen per Kontaktformular oder E-Mail. Behandlungen finden ausschliesslich in Präsenz statt.' },
-  { number: '02', title: 'Ankommen', description: 'Kurzes Eingangsgespräch: Wie geht es dir? Marlen stimmt die Behandlung auf dein aktuelles Befinden ab.' },
+  { number: '02', title: 'Ankommen', description: 'Kurzes Erstgespräch: Wie geht es dir? Was beschäftigt dich? Marlen stimmt die Behandlung auf dein aktuelles Befinden ab.' },
   { number: '03', title: 'Behandlung', description: 'Tiefe Entspannung durch gezielte Reflexzonenmassage. Marlen arbeitet intuitiv und präzise — dein Körper zeigt, was er braucht.' },
   { number: '04', title: 'Nachruhen', description: 'Nach der Behandlung kurz zur Ruhe kommen. Viel Wasser trinken — der Körper braucht Zeit, um das Erlebte zu integrieren.' },
 ];
 
 const testimonials = [
-  { quote: 'Ich bin tief entspannt und mit klarem Kopf gegangen. Marlens Hände wissen genau, wo sie hinmüssen.', name: 'Maria S.' },
-  { quote: 'Schon nach der ersten Behandlung hat sich meine Verdauung spürbar reguliert. Ich komme regelmässig wieder.', name: 'Thomas K.' },
-  { quote: 'Eine Stunde echter Erholung — körperlich und innerlich. Selten so gut betreut gefühlt.', name: 'Claudia R.' },
-  { quote: 'Marlen verbindet Fachwissen mit grosser Achtsamkeit. Absolut empfehlenswert.', name: 'Lena M.' },
+  { quote: '„Eine wunderbare Behandlung und eine rundum positive Erfahrung. Marlen arbeitet mit viel Herz, Feingefühl und Achtsamkeit. Man fühlt sich sofort wohl und gut aufgehoben. Sie ist nicht nur fachlich kompetent, sondern auch ein unglaublich herzlicher und liebenswerter Mensch. Von Herzen danke.“', name: 'Susanna H.' },
+  { quote: '„Die Behandlung war unglaublich wohltuend. Schon nach wenigen Minuten konnte ich abschalten und tief entspannen. Nach dem Termin fühlte ich mich leichter, ruhiger und gleichzeitig voller Energie. Es war, als hätte mein Körper endlich die Möglichkeit bekommen, durchzuatmen. Eine wunderbare Erfahrung.“', name: 'Ursula B.' },
+  { quote: '„Als ausgebildete Fussreflexzonentherapeutin hat mich Marlens Behandlung zutiefst überrascht. Diese Reflexologie empfand ich als deutlich intensiver und tiefgründiger — besonders die Arbeit nach TCM-Prinzipien und mit dem Reflexologie-Stäbchen. Bereits nach der ersten Behandlung schlief ich endlich wieder erholsam, fühlte mich energetisch gestärkt und meine Verdauung verbesserte sich spürbar. Eine Erfahrung, die weit über das hinausgeht, was ich bisher kannte.“', name: 'Theresia Jansen' },
+  { quote: '„Nach wenigen Behandlungen wurde ich endlich frei von meinen schmerzhaften Nierensteinen. Vielen Dank.“', name: 'Erika N.' },
 ];
 
 const faqItems = [
-  { question: 'Wie wirkt Fussreflexzonenmassage?', answer: 'Über die Reflexzonen der Füsse lassen sich Organe, Drüsen und das Nervensystem ansprechen. Das fördert Entspannung, regt die Selbstheilungskräfte an und bringt den Körper ins Gleichgewicht.' },
-  { question: 'Wie lange dauert eine Behandlung?', answer: 'Eine Einzelsitzung dauert rund 90 Minuten, inklusive Eingangsgespräch und Nachruhen.' },
-  { question: 'Findet die Behandlung vor Ort statt?', answer: 'Ja. Fussreflexzonenmassage ist eine Körperbehandlung und findet ausschliesslich in Präsenz in der Praxis statt.' },
-  { question: 'Für wen ist die Behandlung geeignet?', answer: 'Für alle, die tiefe Entspannung, energetische Balance und Regeneration suchen. Bei bestimmten Vorerkrankungen klären wir das vorab im Gespräch.' },
-  { question: 'Werden die Kosten von der Krankenkasse übernommen?', answer: 'Je nach Zusatzversicherung ist eine Beteiligung möglich. Bitte kläre die Bedingungen im Einzelfall mit deiner Versicherung.' },
-  { question: 'Wie oft sollte ich kommen?', answer: 'Das ist individuell. Manche kommen zur Erholung einmalig, andere regelmässig zur Begleitung — wir finden gemeinsam deinen Rhythmus.' },
+  { question: 'Für wen eignet sich die Fussreflexzonen-Therapie?', answer: 'Für alle, die tiefe Entspannung, energetische Balance und Regeneration suchen. Bei bestimmten Vorerkrankungen klären wir das vorab im Gespräch.' },
+  { question: 'Ist die Behandlung schmerzhaft?', answer: 'Nein. Die Behandlung ist sanft und wohltuend. Einzelne Reflexzonen können sich kurz intensiver anfühlen — Marlen passt den Druck jederzeit deinem Empfinden an.' },
+  { question: 'Was ist der Unterschied zur klassischen Fussmassage?', answer: 'Eine klassische Fussmassage entspannt vor allem die Muskulatur. Die Reflexologie spricht über die Reflexzonen gezielt Organe, Drüsen sowie das Nerven- und Lymphsystem an und arbeitet zusätzlich nach TCM-Prinzipien.' },
+  { question: 'Was macht Marlens Behandlung besonders?', answer: 'Marlen verbindet mehrere Methoden — unter anderem Reflexologie nach Schwester Jeannine, Fussreflexzonen-Therapie nach Marquardt und Lymphaktivierung — zu einer ganzheitlichen, intuitiv abgestimmten Behandlung.' },
+  { question: 'Wie viele Behandlungen sind sinnvoll?', answer: 'Das ist individuell. Manche kommen einmalig zur Erholung, andere regelmässig zur Begleitung — gemeinsam finden wir deinen Rhythmus.' },
+  { question: 'Muss ich etwas Spezielles zur Behandlung mitbringen?', answer: 'Nein. Komm einfach so, wie du bist. Plane nach der Behandlung etwas Zeit zum Nachruhen ein und trinke danach ausreichend Wasser.' },
 ];
 ---
 
 <BaseLayout
-  title="Fussreflexzonenmassage mit Marlen Berger | VitaLunaris"
-  description="Fussreflexzonenmassage mit Marlen Berger — ganzheitliche Behandlung über die Reflexzonen der Füsse für tiefe Entspannung und energetische Balance."
+  title="Fussreflexzonenmassage bei Marlen Berger | VitaLunaris"
+  description="Fussreflexzonenmassage bei Marlen Berger — ganzheitliche Behandlung über die Reflexzonen der Füsse für tiefe Entspannung und energetische Balance."
   currentPath="/praxisangebote/fussreflexzonenbehandlung"
 >
   <CourseHero
     categoryMeta="Körperarbeit | Fussreflexzonenmassage"
-    title="Fussreflexzonen-<br />massage mit Marlen Berger"
+    title="Fussreflexzonenmassage<br />bei Marlen Berger"
     description="Die Füsse sind eine Landkarte des Körpers. Über ihre Reflexzonen lassen sich Organe, Drüsen und das Nervensystem erreichen — für tiefe Entspannung, energetische Balance und ganzheitliche Regeneration."
-    durationMeta="Einzelsitzung | 90 Min. | Vor Ort"
-    price="270 CHF"
-    ctaText="Termin buchen"
+    durationMeta="60 Min."
+    price="CHF 140.–"
+    note="75 Min. · CHF 175.–"
+    ctaText="Termin anfragen"
     ctaHref="/kontakt"
-    image="/images/placeholder/Placeholder-11.jpg"
+    image="/images/placeholder/Placeholder-34.jpg"
   />
 
   {/* ===================== Wie sie wirkt (gold gradient, image left) ===================== */}
   <NarrativeBlock
     tone="light"
     imageSide="left"
-    image="/images/placeholder/Placeholder-15.jpg"
+    image="/images/placeholder/placeholder-2.jpg"
     imageAlt=""
-    title="Reflexzonenmassage — wie sie wirkt."
-    body="Die Fussreflexzonenmassage basiert auf dem Prinzip, dass jeder Bereich des Körpers einer Zone an den Füssen entspricht. Durch gezielte Massagegriffe werden diese Zonen stimuliert — das regt Selbstheilungskräfte an und bringt das System ins Gleichgewicht. Marlen verbindet klassische Reflexzonentherapie mit einem ganzheitlichen Körperverständnis. Jede Behandlung ist individuell — angepasst an dein Befinden und das, was dein Körper gerade braucht."
+    title="Reflexologie – mehr als klassische Fussmassage"
+    body="Die Reflexologie verbindet das Wissen der klassischen Fussreflexzonen-Therapie mit den Grundlagen der Traditionellen Chinesischen Medizin (TCM) und betrachtet den Menschen als Ganzes.<br /><br />Über die Reflexzonen an den Füssen können Organe, Drüsen, das Lymphsystem und das Nervensystem gezielt angesprochen werden. Spezielle Druck- und Grifftechniken unterstützen die natürlichen Regulations- und Selbstheilungskräfte des Körpers.<br /><br />Marlen verbindet verschiedene Methoden zu einer ganzheitlichen Behandlung:"
+    bulletGroups={[
+      {
+        items: [
+          'Reflexologie nach Schwester Jeannine und Pater Eugster',
+          'Fussreflexzonen-Therapie nach Marquardt',
+          'Fussbehandlung nach Pater Eugster',
+          'Lymphaktivierung über die Reflexzonen am Fuss',
+        ],
+      },
+      {
+        text: 'Das Ziel: Körperliche Beschwerden sanft zu beheben oder zu lindern, ein besseres inneres Gleichgewicht und die Unterstützung des natürlichen Wohlbefindens.',
+      },
+    ]}
   />
 
   {/* ===================== Process ===================== */}
-  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref="/kontakt" />
+  <ProcessSteps steps={steps} ctaText="Termin anfragen" ctaHref="/kontakt" />
 
   {/* ===================== Lavender quote ===================== */}
   <NarrativeBlock
     tone="purple"
     imageSide="right"
-    image="/images/placeholder/Placeholder-10.jpg"
+    image="/images/placeholder/Placeholder-36.jpg"
     imageAlt=""
-    title={`„Der Körper trägt, was der Kopf längst vergessen hat. Über die Füsse finden wir zurück in die Ruhe.”`}
+    title={`„Unsere Füsse tragen uns täglich durchs Leben und verdienen mehr Aufmerksamkeit, als wir ihnen oft schenken. Manchmal beginnt Veränderung dort, wo wir uns bewusst Zeit für uns selbst nehmen.”`}
     body="Marlen Berger"
   />
 
   {/* ===================== Testimonials ===================== */}
-  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
+  <TestimonialsBlock title="Was Kundinnen sagen" testimonials={testimonials} />
 
   {/* ===================== Bio ===================== */}
   <PersonBio
-    eyebrow="Deine Therapeutin"
+    eyebrow="Wer dich begleitet"
     name="Marlen Berger"
     paragraphs={[
-      'Ich arbeite seit vielen Jahren mit den Händen — und glaube daran, dass der Körper eine eigene Sprache spricht, wenn wir ihm zuhören.',
-      'In der Fussreflexzonenmassage verbinde ich fundiertes Fachwissen mit Intuition und grosser Achtsamkeit. Mein Ziel ist es, dir einen Raum zu geben, in dem du wirklich loslassen kannst.',
+      'Die Faszination für die Reflexologie begleitet mich schon seit vielen Jahren. Mich begeistert, wie viel sich über die Füsse erreichen lässt und wie positiv Menschen auf eine gezielte Reflexzonen-Behandlung reagieren.',
+      'Besonders berührt mich immer wieder, wenn Entspannung, Wohlbefinden und neue Energie spürbar werden und körperliche Beschwerden sanft gelöst werden.',
+      'In meiner Arbeit verbinde ich verschiedene Methoden der Reflexologie, darunter die Reflexologie nach Schwester Jeannine, die klassische Fussreflexzonen-Therapie sowie weitere ganzheitliche Ansätze.',
+      'Mir ist wichtig, dass du dich während der Behandlung wohl, gesehen und gut aufgehoben fühlst. Denn echte Regeneration beginnt dort, wo wir zur Ruhe kommen dürfen.',
     ]}
-    image="/images/placeholder/placeholder-4.jpg"
+    image="/images/persons/MarlenBerger.jpg"
     imageSide="right"
   />
 
   {/* ===================== Brand CTA ===================== */}
   <BrandCtaBlock
     title="Bereit, tiefer<br />zu gehen?"
-    body="Ein konkretes Thema, ein geschützter Raum, eine Sitzung die wirklich etwas bewegt. Theresia begleitet dich — in deinem Tempo, auf deiner Tiefe."
-    ctaText="Termin buchen"
+    body="Gönne dir eine Behandlung, die wirklich tief wirkt — körperlich, energetisch, ganzheitlich. Marlen ist da."
+    ctaText="Termin anfragen"
     ctaHref="/kontakt"
   />
 
@@ -101,9 +117,9 @@ const faqItems = [
   {/* ===================== Newsletter ===================== */}
   <NewsletterBlock
     eyebrow="Newsletter"
-    title="Erforsche die Systeme<br />deiner Seele"
-    body="Unser Newsletter ist kein gewöhnlicher Newsletter. Vielleicht möchtest du dich weiterlesen, anlehnen und neue Perspektiven entdecken. In meinem Newsletter teile ich regelmässig Inspirationen, Erfahrungen aus meiner Arbeit, systemische Gedankenanstösse und kleine Impulse für mehr Klarheit, Leichtigkeit und innere Balance."
-    placeholder="E-mail Adresse"
-    submitText="Newsletter anmelden"
+    title="Von Herzen empfohlen"
+    body="Als begeisterte Leserin freue ich mich jede Woche auf den VitaLunaris-Newsletter. Besonders liebe ich die Mischung aus persönlichen Geschichten, wertvollen Impulsen und Axels Zahlenmagie für das Wochenende.<br /><br />Oft genügt ein einziger Gedanke, um etwas in Bewegung zu bringen. Vielleicht ist auch für dich genau der richtige Impuls dabei."
+    placeholder="E-Mail Adresse"
+    submitText="Kostenlos anmelden"
   />
 </BaseLayout>

@@ -55,7 +55,9 @@ const stars = Array.from({ length: rating });
     border: 0.8px solid var(--c-cherrywood);
     border-radius: 16.67px;
     padding: 24px;
-    height: 100%;
+    /* No explicit height — `align-items: stretch` on the track equalizes
+       every card to the tallest one. Setting height:100% here would resolve
+       to content height and defeat the stretch (cards ended up uneven). */
     min-height: 320px;
   }
   @media (min-width: 1024px) { .t-card { padding: 32px; min-height: 480px; border-radius: 20px; border-width: 1px; } }

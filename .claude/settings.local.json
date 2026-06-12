@@ -38,7 +38,8 @@
       "Bash(node -e \"console.log\\(require\\('fs'\\).statSync\\('public/Über uns.jpg'\\).size\\)\")",
       "Bash(node -e \"try{require\\('sharp'\\);console.log\\('sharp ok'\\)}catch\\(e\\){console.log\\('no sharp'\\)}\")",
       "Bash(node *)",
-      "PowerShell(git status --short; \"---BRANCH---\"; git branch --show-current)"
+      "PowerShell(git status --short; \"---BRANCH---\"; git branch --show-current)",
+      "WebFetch(domain:vitalunarisk.onrender.com)"
     ]
   }
 }

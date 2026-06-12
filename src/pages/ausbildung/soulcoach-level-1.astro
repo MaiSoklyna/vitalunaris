@@ -4,6 +4,7 @@ import Hero from '@organisms/Hero.astro';
 import NarrativeBlock from '@organisms/NarrativeBlock.astro';
 import InfoCardsRow from '@organisms/InfoCardsRow.astro';
 import Faq from '@organisms/Faq.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
@@ -140,26 +141,7 @@ const faqItems = [
   </section>
 
   {/* ===================== Stimmen aus der Ausbildung ===================== */}
-  <section class="reviews">
-    <div class="reviews__inner">
-      <Heading level={2} variant="h1" class="reviews__title">Stimmen aus<br />der Ausbildung</Heading>
-      <div class="reviews__grid">
-        {reviews.map((r) => (
-          <article class="review-card">
-            <div class="review-card__stars" aria-label="5 von 5 Sternen">
-              {[0, 1, 2, 3, 4].map(() => (
-                <svg class="review-card__star" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path d="M10 1l2.47 5.27L18 7.09l-4 4.06.95 5.85L10 14.27 5.05 17l.95-5.85-4-4.06 5.53-.82L10 1z" />
-                </svg>
-              ))}
-            </div>
-            <Text size="p1" class="review-card__quote">{r.quote}</Text>
-            <Text size="p1" class="review-card__name">{r.name}</Text>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} />
 
   {/* ===================== Theresia Jansen — gold, image right ===================== */}
   <section class="lehrerin">
@@ -426,61 +408,6 @@ const faqItems = [
     color: var(--c-cherrywood);
   }
   @media (min-width: 768px) { .outcomes__mobile-card { gap: 26.67px; } }
-
-  /* ============================================================
-     REVIEWS — "Stimmen aus der Ausbildung" (star cards, cream→gold)
-     ============================================================ */
-  .reviews {
-    background: linear-gradient(180deg, #F9F4EE 55%, #FFD869 100%);
-    padding: 60px 20px;
-  }
-  @media (min-width: 768px)  { .reviews { padding: 80px 32px; } }
-  @media (min-width: 1280px) { .reviews { padding: 90px 60px; } }
-
-  .reviews__inner {
-    max-width: 1740px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-  }
-  .reviews__title { color: var(--c-cherrywood); text-align: center; margin: 0; max-width: 862px; }
-
-  .reviews__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    width: 100%;
-  }
-  @media (min-width: 640px)  { .reviews__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
-  @media (min-width: 1024px) { .reviews__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-
-  .review-card {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    background: var(--c-spring-wood);
-    border: 1px solid var(--c-cherrywood);
-    border-radius: 16.67px;
-    padding: 24px;
-    height: 100%;
-  }
-  @media (min-width: 1280px) { .review-card { border-radius: 20px; padding: 32px; gap: 24px; } }
-
-  .review-card__stars { display: flex; flex-direction: row; gap: 4px; color: var(--c-cherrywood); }
-  .review-card__star { display: block; }
-
-  .review-card__quote { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; flex-grow: 1; }
-  .review-card__name {
-    color: var(--c-cherrywood);
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-medium);
-    font-size: var(--p1-size);
-    line-height: 1.5;
-  }
 
   /* ============================================================
      LEHRERIN — "Theresia Jansen" (Pale Gold, text left / image right)
