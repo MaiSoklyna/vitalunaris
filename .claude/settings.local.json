@@ -39,7 +39,14 @@
       "Bash(node -e \"try{require\\('sharp'\\);console.log\\('sharp ok'\\)}catch\\(e\\){console.log\\('no sharp'\\)}\")",
       "Bash(node *)",
       "PowerShell(git status --short; \"---BRANCH---\"; git branch --show-current)",
-      "WebFetch(domain:vitalunarisk.onrender.com)"
+      "WebFetch(domain:vitalunarisk.onrender.com)",
+      "Bash(find src/pages -ipath '*wissen*' -o -iname '*journal*' -o -iname '*lebenszahl*')",
+      "Bash(ls -la src/pages/wissen)",
+      "Bash(cat .mcp.json)",
+      "Bash(ls -la .claude/)",
+      "Bash(ls -la .claude/commands/)",
+      "Bash(which stone *)",
+      "Bash(grep -rli \"stone\" .claude/ .mcp.json package.json)"
     ]
   }
 }
