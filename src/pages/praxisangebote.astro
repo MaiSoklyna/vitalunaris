@@ -14,6 +14,7 @@ const offers = [
     body: 'Ob Familienmuster, Beziehungsdynamiken, Kinderwunsch oder berufliche Entscheidungen — im geschützten Einzelsetting erhält dein Anliegen den Raum, den es braucht. Gemeinsam machen wir verborgene Dynamiken sichtbar und bringen Bewegung in das, was festgefahren scheint. Für mehr Klarheit, neue Perspektiven und stimmige nächste Schritte.',
     image: '/images/placeholder/Placeholder-20.jpg',
     secondaryHref: '/praxisangebote/aufstellungen',
+    bookingHref: 'https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825',
   },
   {
     eyebrow: 'Hypnose | Axel Jansen',
@@ -21,6 +22,7 @@ const offers = [
     body: 'Veränderung beginnt dort, wo Verstand und Unterbewusstsein zusammenarbeiten.Systemic Hypno verbindet Hypnose, Energiearbeit und systemisches Denken zu einer tiefen und gleichzeitig sanften Begleitung. Alte Muster, Blockaden und belastende Emotionen dürfen sich lösen – damit neue Möglichkeiten entstehen können.',
     image: '/images/placeholder/Placeholder-21.jpg',
     secondaryHref: '/praxisangebote/hypnose',
+    bookingHref: 'https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9',
   },
   {
     eyebrow: 'Numerologie | Axel Jansen',
@@ -28,6 +30,7 @@ const offers = [
     body: 'Dein Geburtsdatum erzählt mehr über dich, als du vielleicht vermutest.Die Numerologie kann helfen, Talente, Stärken, Herausforderungen und wiederkehrende Lebensthemen besser zu verstehen. Oft entstehen dadurch neue Perspektiven auf das eigene Leben, Beziehungen oder aktuelle Entscheidungen.', 
     image: '/images/placeholder/Placeholder-22.jpg',
     secondaryHref: '/praxisangebote/numerologieberatung',
+    bookingHref: 'https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9',
   },
   {
     eyebrow: 'Körperarbeit | Marlen Berger',
@@ -35,6 +38,7 @@ const offers = [
     body: 'Marlens Methode ist intensiver und wirkungsvoller als klassische Fussreflexzonen. Sie arbeitet präzise, spürbar und intuitiv – nach den Prinzipien der TCM, mit einem Stäbchen für noch tiefere Wirkung.Hilfreich bei körperlichen Beschwerden, Nervensystem-Entlastung sowie hormonellen und emotionalen Themen.',
     image: '/images/placeholder/Placeholder-23.jpg',
     secondaryHref: '/praxisangebote/fussreflexzonenbehandlung',
+    bookingHref: 'https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3533b6af7ab',
   },
 ];
 ---
@@ -61,7 +65,7 @@ const offers = [
           body={o.body}
           image={o.image}
           primaryText="Termin buchen"
-          primaryHref="/kontakt"
+          primaryHref={o.bookingHref}
           secondaryText="Mehr erfahren"
           secondaryHref={o.secondaryHref}
         />

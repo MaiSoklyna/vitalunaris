@@ -9,6 +9,8 @@ import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 
+const bookingUrl = 'https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3533b6af7ab';
+
 const steps = [
   { number: '01', title: 'Buchen', description: 'Termin anfragen per Kontaktformular oder E-Mail. Behandlungen finden ausschliesslich in Präsenz statt.' },
   { number: '02', title: 'Ankommen', description: 'Kurzes Erstgespräch: Wie geht es dir? Was beschäftigt dich? Marlen stimmt die Behandlung auf dein aktuelles Befinden ab.' },
@@ -46,7 +48,7 @@ const faqItems = [
     price="CHF 140.–"
     note="75 Min. · CHF 175.–"
     ctaText="Termin anfragen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
     image="/images/placeholder/Placeholder-34.jpg"
   />
 
@@ -74,7 +76,7 @@ const faqItems = [
   />
 
   {/* ===================== Process ===================== */}
-  <ProcessSteps steps={steps} ctaText="Termin anfragen" ctaHref="/kontakt" />
+  <ProcessSteps steps={steps} ctaText="Termin anfragen" ctaHref={bookingUrl} />
 
   {/* ===================== Lavender quote ===================== */}
   <NarrativeBlock
@@ -108,7 +110,7 @@ const faqItems = [
     title="Bereit, tiefer<br />zu gehen?"
     body="Gönne dir eine Behandlung, die wirklich tief wirkt — körperlich, energetisch, ganzheitlich. Marlen ist da."
     ctaText="Termin anfragen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
   />
 
   {/* ===================== FAQ ===================== */}

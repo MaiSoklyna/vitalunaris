@@ -61,12 +61,12 @@
   ======================== */
 
   /* Headlines */
-  --h1-size: 90px;
-  --h1-italic-size: 90px;
+  --h1-size: 80px;
+  --h1-italic-size: 80px;
   --h2-size: 60px;
   --h3-size: 32px;
   --h4-size: 24px;
-  --eyebrow-size: 23px;
+  --eyebrow-size: 23px; 
 
   /* Paragraph */
   --p1-size: 23px;

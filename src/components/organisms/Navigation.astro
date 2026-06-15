@@ -54,14 +54,6 @@ const navLinks: NavLink[] = [
       { href: '/jawort-by-jansen', label: 'Jawort by Jansen' },
     ],
   },
-  {
-    href: '/wissen',
-    label: 'Wissen',
-    children: [
-      { href: '/wissen/journal', label: 'Journal' },
-      { href: '/wissen/lebenszahlrechner', label: 'Lebenszahlrechner' },
-    ],
-  },
   { href: '/neuigkeiten', label: 'News' },
   { href: '/ueber-uns', label: 'Über uns' },
   { href: '/kontakt', label: 'Kontakt' },
@@ -125,7 +117,7 @@ const isGroupActive = (item: NavLink) =>
       )}
     </nav>
 
-    <!-- Compact menu trigger (< 1024px): hover/focus reveals the dropdown nav -->
+    <!-- Mobile/tablet fullscreen menu ( < 1280px ): accordions, one open at a time -->
     <div class="nav__compact" data-compact-menu>
       <button
         type="button"
@@ -135,38 +127,62 @@ const isGroupActive = (item: NavLink) =>
         aria-controls="compact-menu"
         data-menu-toggle
       >
-        <img src="/images/symbol/Menu.svg" alt="" class="nav__menu-icon" />
+        <svg class="nav__menu-icon nav__menu-icon--open" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+        <svg class="nav__menu-icon nav__menu-icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
       </button>
 
-      <div id="compact-menu" class="nav__dropdown" role="menu" aria-hidden="true">
-        {navLinks.map((item) => (
-          <>
-            <a
-              href={item.href}
-              role="menuitem"
-              class={`nav__dropdown-link ${isGroupActive(item) ? 'nav__dropdown-link--active' : ''}`}
-            >
-              {item.label}
-            </a>
-            {item.children?.map((child) => (
+      <div id="compact-menu" class="nav__overlay" role="dialog" aria-modal="true" aria-label="Hauptnavigation" aria-hidden="true">
+        <nav class="nav__overlay-nav" aria-label="Hauptnavigation">
+          {navLinks.map((item) =>
+            item.children ? (
+              <div class="nav__acc" data-acc>
+                <button
+                  type="button"
+                  class={`nav__acc-trigger ${isGroupActive(item) ? 'nav__acc-trigger--active' : ''}`}
+                  aria-expanded="false"
+                  data-acc-trigger
+                >
+                  <span>{item.label}</span>
+                  <svg class="nav__acc-caret" width="14" height="9" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                    <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="nav__acc-panel" data-acc-panel>
+                  <div class="nav__acc-panel-inner">
+                    {item.children.map((child) => (
+                      <a
+                        href={child.disabled ? undefined : child.href}
+                        aria-disabled={child.disabled ? 'true' : undefined}
+                        tabindex={child.disabled ? -1 : undefined}
+                        class={`nav__acc-link ${child.disabled ? 'nav__acc-link--disabled' : ''} ${
+                          isActive(child.href) && !child.disabled ? 'nav__acc-link--active' : ''
+                        }`}
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
               <a
-                href={child.disabled ? undefined : child.href}
-                role="menuitem"
-                aria-disabled={child.disabled ? 'true' : undefined}
-                class={`nav__dropdown-link nav__dropdown-link--sub ${
-                  child.disabled ? 'nav__dropdown-link--disabled' : ''
-                } ${isActive(child.href) && !child.disabled ? 'nav__dropdown-link--active' : ''}`}
+                href={item.href}
+                class={`nav__overlay-link ${isActive(item.href) ? 'nav__overlay-link--active' : ''}`}
               >
-                {child.label}
+                {item.label}
               </a>
-            ))}
-          </>
-        ))}
-        <div class="nav__dropdown-cta">
-          <Button href="/kontakt" variant="header" size="sm" fullWidth>
-            Termin buchen
-          </Button>
-        </div>
+            )
+          )}
+          <div class="nav__overlay-cta">
+            <Button href="/kontakt" variant="header" size="sm" fullWidth>
+              Termin buchen
+            </Button>
+          </div>
+        </nav>
       </div>
     </div>
   </div>
@@ -373,7 +389,7 @@ const isGroupActive = (item: NavLink) =>
   .nav__menu-link--active { font-weight: 600; }
   .nav__menu-link--disabled { opacity: 0.2; pointer-events: none; cursor: default; }
 
-  /* ---------- COMPACT TRIGGER + DROPDOWN ( < 1024px ) ---------- */
+  /* ---------- MOBILE / TABLET FULLSCREEN MENU ( < 1280px ) ---------- */
   .nav__compact {
     position: relative;
     display: inline-flex;
@@ -382,6 +398,8 @@ const isGroupActive = (item: NavLink) =>
   @media (min-width: 1280px) { .nav__compact { display: none; } }
 
   .nav__menu-btn {
+    position: relative;
+    z-index: 110; /* stays above the overlay so it doubles as the close button */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -398,77 +416,121 @@ const isGroupActive = (item: NavLink) =>
   }
   .nav__menu-icon { width: 24px; height: 24px; display: block; }
   @media (min-width: 768px) { .nav__menu-icon { width: 32px; height: 32px; } }
+  /* Icon swap: hamburger by default, X when the menu is open */
+  .nav__menu-icon--close { display: none; }
+  .nav__compact.is-open .nav__menu-icon--open { display: none; }
+  .nav__compact.is-open .nav__menu-icon--close { display: block; }
 
-  /* Dropdown — revealed on hover/focus AND when toggled open */
-  .nav__dropdown {
-    position: absolute;
-    top: calc(100% + 12px);
-    right: 0;
-    min-width: 220px;
+  /* Fullscreen overlay */
+  .nav__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 12px;
-    background: rgba(249, 244, 238, 0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(96, 29, 29, 0.12);
-    border-radius: 20px;
-    box-shadow: 0 12px 32px rgba(96, 29, 29, 0.12);
+    padding: 88px 20px 40px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--c-spring-wood);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
-    transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+    transition: opacity 280ms ease, transform 280ms ease, visibility 280ms ease;
   }
-  /* Hover bridge so cursor moving from button to dropdown doesn't lose focus */
-  .nav__dropdown::before {
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: 0;
-    right: 0;
-    height: 12px;
-  }
+  @media (min-width: 768px) { .nav__overlay { padding: 116px 40px 48px; } }
 
-  .nav__compact:hover .nav__dropdown,
-  .nav__compact:focus-within .nav__dropdown,
-  .nav__compact.is-open .nav__dropdown {
+  .nav__compact.is-open .nav__overlay {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
-  .nav__compact:hover .nav__dropdown,
-  .nav__compact:focus-within .nav__dropdown,
-  .nav__compact.is-open .nav__dropdown {
-    pointer-events: auto;
-  }
-  .nav__compact:hover .nav__dropdown[aria-hidden='true'],
-  .nav__compact:focus-within .nav__dropdown[aria-hidden='true'],
-  .nav__compact.is-open .nav__dropdown[aria-hidden='true'] {
-    /* visibility override is sufficient; aria attr is updated by JS for screen-readers */
+
+  .nav__overlay-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
   }
 
-  .nav__dropdown-link {
+  /* Shared baseline for top-level links and accordion triggers */
+  .nav__overlay-link,
+  .nav__acc-trigger {
     font-family: 'ES Park', serif;
-    font-size: var(--link-size);
-    font-weight: var(--weight-medium);
+    font-weight: var(--weight-regular);
+    font-size: 24px;
+    line-height: 1.3;
     color: var(--c-cherrywood);
     text-decoration: none;
-    padding: 10px 14px;
-    border-radius: 12px;
-    transition: background 180ms ease;
   }
-  .nav__dropdown-link:hover { background: rgba(96, 29, 29, 0.08); }
-  .nav__dropdown-link--active { font-weight: 600; }
-  /* Nested sub-pages: indented + lighter, font-size stays on global token */
-  .nav__dropdown-link--sub {
-    padding-left: 28px;
-    font-weight: var(--weight-regular);
-    opacity: 0.85;
+  @media (min-width: 768px) {
+    .nav__overlay-link,
+    .nav__acc-trigger { font-size: 28px; }
   }
-  .nav__dropdown-link--disabled { opacity: 0.2; pointer-events: none; }
 
-  .nav__dropdown-cta { margin-top: 8px; padding: 0 4px 4px; }
+  .nav__overlay-link {
+    display: block;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(96, 29, 29, 0.15);
+  }
+  .nav__overlay-link--active { font-weight: 600; }
+
+  .nav__acc { border-bottom: 1px solid rgba(96, 29, 29, 0.15); }
+
+  .nav__acc-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 16px 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+  .nav__acc-trigger--active { font-weight: 600; }
+
+  .nav__acc-caret {
+    flex-shrink: 0;
+    color: var(--c-cherrywood);
+    transition: transform 240ms ease;
+  }
+  .nav__acc.is-open .nav__acc-caret { transform: rotate(180deg); }
+
+  /* Animate open/close via grid-template-rows 0fr → 1fr */
+  .nav__acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 280ms ease;
+  }
+  .nav__acc.is-open .nav__acc-panel { grid-template-rows: 1fr; }
+
+  .nav__acc-panel-inner {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav__acc-link {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--c-cherrywood);
+    opacity: 0.85;
+    text-decoration: none;
+    padding: 10px 0 10px 16px;
+  }
+  @media (min-width: 768px) { .nav__acc-link { font-size: 20px; } }
+  .nav__acc-link:last-child { padding-bottom: 18px; }
+  .nav__acc-link--active { font-weight: 600; opacity: 1; }
+  .nav__acc-link--disabled { opacity: 0.25; pointer-events: none; }
+
+  .nav__overlay-cta { margin-top: 32px; }
+
+  /* Lock background scroll while the fullscreen menu is open */
+  :global(body.nav-open) { overflow: hidden; }
 </style>
 
 <script>
@@ -478,11 +540,25 @@ const isGroupActive = (item: NavLink) =>
   const toggle = compact?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const dropdown = document.getElementById('compact-menu');
 
+  // Accordion items inside the fullscreen overlay: only one open at a time.
+  const accordions = Array.from(dropdown?.querySelectorAll<HTMLElement>('[data-acc]') ?? []);
+
+  function closeAccordions(except?: HTMLElement) {
+    accordions.forEach((acc) => {
+      if (acc === except) return;
+      acc.classList.remove('is-open');
+      acc.querySelector('[data-acc-trigger]')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   function setMenu(open: boolean) {
     if (!compact || !toggle || !dropdown) return;
     compact.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
     dropdown.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('nav-open', open);
+    if (!open) closeAccordions();
   }
 
   toggle?.addEventListener('click', () => {
@@ -490,7 +566,17 @@ const isGroupActive = (item: NavLink) =>
     setMenu(!open);
   });
 
-  // close when a dropdown link is clicked
+  accordions.forEach((acc) => {
+    const trigger = acc.querySelector<HTMLButtonElement>('[data-acc-trigger]');
+    trigger?.addEventListener('click', () => {
+      const open = !acc.classList.contains('is-open');
+      closeAccordions(acc); // enforce single-open
+      acc.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  // close the overlay when any navigation link is clicked
   dropdown?.querySelectorAll('a').forEach((a) =>
     a.addEventListener('click', () => setMenu(false))
   );

@@ -32,7 +32,7 @@ const {
     <div class="bio__content">
       {eyebrow && <Heading variant="eyebrow" class="bio__eyebrow">{eyebrow}</Heading>}
       <Heading level={2} variant="h1" class="bio__name"><Fragment set:html={name} /></Heading>
-      {role && <Text size="p2" class="bio__role">{role}</Text>}
+      {role && <Text size="p2" class="bio__role"><Fragment set:html={role} /></Text>}
       {paragraphs.map((p) => <Text size="p1" class="bio__body"><Fragment set:html={p} /></Text>)}
     </div>
 

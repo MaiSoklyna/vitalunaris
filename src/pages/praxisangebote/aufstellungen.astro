@@ -11,6 +11,8 @@ import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 
+const bookingUrl = 'https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825';
+
 const steps = [
   { number: '01', title: 'Buchen', description: 'Du kannst hier direkt einen Termin buchen, vor Ort oder Online.' },
   { number: '02', title: 'Thema klären', description: 'Was bringst du mit? Was soll sich zeigen? Theresia hört zu und hilft, das Thema systemisch zu fassen.' },
@@ -58,7 +60,7 @@ const faqItems = [
     price="CHF 244.–"
     note="Optional: Begleitender Online-Support 7 Tage Online-Support zur Stabilisierung und Begleitung nach der Sitzung: CHF 77.–30 Tage Online-Support für eine tiefere Integration und persönliche Begleitung im Alltag: CHF 222.–"
     ctaText="Termin buchen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
     image="/images/placeholder/placeholder-2.jpg"
   />
 
@@ -76,7 +78,7 @@ const faqItems = [
   
 
   {/* ===================== Process ===================== */}
-  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref="/kontakt" />
+  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref={bookingUrl} />
 
   {/* ===================== Lavender quote ===================== */}
   <NarrativeBlock
@@ -109,7 +111,7 @@ const faqItems = [
     title="Bereit, tiefer<br />zu gehen?"
     body="Ein konkretes Thema, ein gewisses Gefühl, eine Sehnsucht. Theresia begleitet dich, die wirklich etwas bewegt. Termin buchen — in deinem Tempo, auf deinem Weg."
     ctaText="Termin buchen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
   />
 
   {/* ===================== FAQ ===================== */}

@@ -9,6 +9,8 @@ import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 
+const bookingUrl = 'https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9';
+
 const steps = [
   { number: '01', title: 'Buchen', description: 'Termin anfragen und dein vollständiges Geburtsdatum sowie deinen Geburtsnamen mitteilen. Axel bereitet die Beratung individuell vor.' },
   { number: '02', title: 'Vorbereitung', description: 'Axel berechnet und analysiert deine Zahlen im Vorfeld — damit die Beratungszeit vollständig für das Gespräch genutzt wird.' },
@@ -44,7 +46,7 @@ const faqItems = [
     durationMeta="Einzelsitzung | 90 Min. | Online oder in der Praxis"
     price="CHF 180.–"
     ctaText="Termin buchen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
     image="/images/placeholder/Placeholder-26.jpg"
   />
 
@@ -59,7 +61,7 @@ const faqItems = [
   />
 
   {/* ===================== Process ===================== */}
-  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref="/kontakt" />
+  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref={bookingUrl} />
 
   {/* ===================== Testimonials ===================== */}
   <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
@@ -82,7 +84,7 @@ const faqItems = [
     title="Bereit, tiefer<br />zu gehen?"
     body="Deine Zahlen verraten mehr über dich als du denkst. Axel liest sie — klar, direkt, ohne Hokuspokus."
     ctaText="Termin buchen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
   />
 
   {/* ===================== FAQ ===================== */}

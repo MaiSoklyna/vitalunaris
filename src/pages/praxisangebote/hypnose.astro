@@ -9,6 +9,8 @@ import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 
+const bookingUrl = 'https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9';
+
 const steps = [
   { number: '01', title: 'Buchen', description: 'Termin anfragen und dein Anliegen kurz beschreiben. So kann Axel die Sitzung optimal vorbereiten.' },
   { number: '02', title: 'Erstgespräch', description: 'Was bringt dich hierher? Was soll sich verändern? Axel hört zu und klärt das Ziel — bevor der eigentliche Prozess beginnt.' },
@@ -46,7 +48,7 @@ const faqItems = [
     durationMeta="Einzelsitzung | 60–75  Min. | Vor Ort"
     price="CHF 180.–"
     ctaText="Termin buchen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
     image="/images/placeholder/Placeholder-9.jpg"
   />
 
@@ -62,7 +64,7 @@ const faqItems = [
   />
 
   {/* ===================== Process ===================== */}
-  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref="/kontakt" />
+  <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref={bookingUrl} />
 
   {/* ===================== Testimonials ===================== */}
   <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
@@ -85,7 +87,7 @@ const faqItems = [
     title="Bereit, tiefer<br />zu gehen?"
     body="Veränderung tritt nicht ein, wenn du es erzwingst — sondern wenn du loslässt. Axel begleitet dich dorthin."
     ctaText="Termin buchen"
-    ctaHref="/kontakt"
+    ctaHref={bookingUrl}
   />
 
   {/* ===================== FAQ ===================== */}
