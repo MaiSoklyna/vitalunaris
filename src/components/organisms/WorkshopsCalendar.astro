@@ -2,81 +2,187 @@
 type ChipColor = 'gold' | 'raspberry' | 'lavender' | 'fire';
 
 interface CalEvent {
-  day: number;
+  /** ISO date, YYYY-MM-DD */
+  date: string;
   label: string;
   color?: ChipColor;
   href?: string;
 }
 
 interface Props {
-  /** Number of days in the displayed month. */
-  daysInMonth?: number;
-  /** Column (0 = Mo … 6 = So) that day 1 falls in. */
-  firstWeekday?: number;
   events?: CalEvent[];
   weekdayLabels?: string[];
+  /** Optional empty-state line when there are no scheduled events. */
+  emptyLabel?: string;
 }
 
 const {
-  daysInMonth = 30,
-  firstWeekday = 5,
   events = [],
   weekdayLabels = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+  emptyLabel = 'Aktuell sind keine Termine ausgeschrieben.',
 } = Astro.props;
 
-const eventsByDay = new Map<number, CalEvent[]>();
-for (const ev of events) {
-  const list = eventsByDay.get(ev.day) ?? [];
-  list.push(ev);
-  eventsByDay.set(ev.day, list);
+const MONTH_NAMES = [
+  'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',
+];
+
+/* Keep only well-formed ISO dates, then build a continuous run of months
+   from the first to the last event so the calendar pages month by month. */
+const valid = events.filter((e) => /^\d{4}-\d{2}-\d{2}/.test(e.date));
+const monthKeys: string[] = [];
+if (valid.length) {
+  const sorted = [...new Set(valid.map((e) => e.date.slice(0, 7)))].sort();
+  let [y, m] = sorted[0].split('-').map(Number);
+  const [ey, em] = sorted[sorted.length - 1].split('-').map(Number);
+  while (y < ey || (y === ey && m <= em)) {
+    monthKeys.push(`${y}-${String(m).padStart(2, '0')}`);
+    if (++m > 12) { m = 1; y++; }
+  }
 }
 
-// Leading blank cells + the numbered days, padded to a full final week.
-const cells: (number | null)[] = [
-  ...Array.from({ length: firstWeekday }, () => null),
-  ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
-];
-while (cells.length % 7 !== 0) cells.push(null);
+function buildMonth(key: string) {
+  const [year, month] = key.split('-').map(Number); // month is 1–12
+  const monthIndex = month - 1;
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const firstWeekday = (new Date(year, monthIndex, 1).getDay() + 6) % 7; // Mon = 0
+
+  const cells: (number | null)[] = [
+    ...Array.from({ length: firstWeekday }, () => null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ];
+  while (cells.length % 7 !== 0) cells.push(null);
+
+  const byDay = new Map<number, CalEvent[]>();
+  for (const ev of valid) {
+    if (ev.date.slice(0, 7) !== key) continue;
+    const day = Number(ev.date.slice(8, 10));
+    byDay.set(day, [...(byDay.get(day) ?? []), ev]);
+  }
+
+  return { key, label: `${MONTH_NAMES[monthIndex]} ${year}`, cells, byDay };
+}
+
+const months = monthKeys.map(buildMonth);
 ---
 
-<div class="cal">
-  <div class="cal__scroll">
-    <div class="cal__grid">
-      <div class="cal__weekdays">
-        {weekdayLabels.map((d) => <span class="cal__weekday">{d}</span>)}
-      </div>
-      <div class="cal__days">
-        {cells.map((cell) =>
-          cell === null ? (
-            <div class="cal__cell cal__cell--empty" aria-hidden="true"></div>
-          ) : (
-            <div class="cal__cell">
-              <span class="cal__date">{cell}</span>
-              {eventsByDay.get(cell)?.map((ev) => {
-                const Tag = ev.href ? 'a' : 'span';
-                return (
-                  <Tag
-                    class={`cal__event cal__event--${ev.color ?? 'gold'}`}
-                    {...(ev.href ? { href: ev.href } : {})}
-                  >
-                    {ev.label}
-                  </Tag>
-                );
-              })}
-            </div>
-          )
-        )}
+{months.length === 0 ? (
+  <div class="cal cal--empty"><p>{emptyLabel}</p></div>
+) : (
+  <div class="cal" data-cal>
+    <div class="cal__bar">
+      <button type="button" class="cal__nav" data-cal-prev aria-label="Vorheriger Monat">&lsaquo;</button>
+      <span class="cal__label" data-cal-label aria-live="polite">{months[0].label}</span>
+      <button type="button" class="cal__nav" data-cal-next aria-label="Nächster Monat">&rsaquo;</button>
+    </div>
+
+    <div class="cal__scroll">
+      <div class="cal__grid">
+        <div class="cal__weekdays">
+          {weekdayLabels.map((d) => <span class="cal__weekday">{d}</span>)}
+        </div>
+
+        {months.map((month, i) => (
+          <div class="cal__days" data-cal-panel data-cal-label={month.label} hidden={i !== 0}>
+            {month.cells.map((cell) =>
+              cell === null ? (
+                <div class="cal__cell cal__cell--empty" aria-hidden="true"></div>
+              ) : (
+                <div class="cal__cell">
+                  <span class="cal__date">{cell}</span>
+                  {month.byDay.get(cell)?.map((ev) => {
+                    const Tag = ev.href ? 'a' : 'span';
+                    return (
+                      <Tag
+                        class={`cal__event cal__event--${ev.color ?? 'gold'}`}
+                        {...(ev.href ? { href: ev.href } : {})}
+                      >
+                        {ev.label}
+                      </Tag>
+                    );
+                  })}
+                </div>
+              )
+            )}
+          </div>
+        ))}
       </div>
     </div>
   </div>
-</div>
+)}
+
+<script>
+  function initCalendar(root: HTMLElement) {
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-cal-panel]'));
+    const label = root.querySelector<HTMLElement>('[data-cal-label]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-cal-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-cal-next]');
+    if (!panels.length) return;
+
+    let i = panels.findIndex((p) => !p.hidden);
+    if (i < 0) i = 0;
+
+    const show = (n: number) => {
+      i = Math.max(0, Math.min(panels.length - 1, n));
+      panels.forEach((p, idx) => { p.hidden = idx !== i; });
+      if (label) label.textContent = panels[i].dataset.calLabel ?? '';
+      if (prev) prev.disabled = i === 0;
+      if (next) next.disabled = i === panels.length - 1;
+    };
+
+    prev?.addEventListener('click', () => show(i - 1));
+    next?.addEventListener('click', () => show(i + 1));
+    show(i);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-cal]').forEach(initCalendar);
+</script>
 
 <style>
   /* ============================================================
-     WORKSHOPS CALENDAR — month grid with event chips.
-     Scrolls horizontally on narrow screens so columns stay aligned.
+     WORKSHOPS CALENDAR — real, date-driven month grid.
+     Pages month by month; scrolls horizontally on narrow screens.
      ============================================================ */
   .cal { width: 100%; }
+
+  /* Month navigation bar */
+  .cal__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .cal__label {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--h4-size);
+    color: var(--c-cherrywood);
+    text-align: center;
+    flex: 1;
+  }
+
+  .cal__nav {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--c-cherrywood);
+    background: transparent;
+    border: 1px solid rgba(96, 29, 29, 0.3);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background 200ms ease, opacity 200ms ease;
+  }
+  .cal__nav:hover { background: rgba(96, 29, 29, 0.08); }
+  .cal__nav:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 2px; }
+  .cal__nav:disabled { opacity: 0.25; cursor: default; }
+
   .cal__scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
   .cal__grid {
@@ -87,12 +193,14 @@ while (cells.length % 7 !== 0) cells.push(null);
   }
   @media (min-width: 1280px) { .cal__grid { min-width: 0; border-radius: 16px; } }
 
-  /* Weekday header row */
+  /* Weekday header row + day grid */
   .cal__weekdays,
   .cal__days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
   }
+  /* hidden month panels must stay hidden despite display:grid */
+  .cal__days[hidden] { display: none; }
 
   .cal__weekdays { background: #EFE7DA; }
 
@@ -124,7 +232,6 @@ while (cells.length % 7 !== 0) cells.push(null);
   @media (min-width: 1280px) { .cal__cell { min-height: 132px; padding: 16px; } }
   .cal__cell:nth-child(7n) { border-right: 0; }
 
-  /* Leading blanks before day 1 get the muted fill from the design */
   .cal__cell--empty { background: #F2EADF; }
 
   .cal__date {
@@ -154,4 +261,16 @@ while (cells.length % 7 !== 0) cells.push(null);
   .cal__event--raspberry { background: rgba(159, 75, 103, 0.18); color: var(--c-raspberry); }
   .cal__event--lavender  { background: rgba(142, 132, 182, 0.22); color: var(--c-lavender); }
   .cal__event--fire      { background: rgba(236, 159, 39, 0.20); color: var(--c-fire); }
+
+  .cal--empty {
+    padding: 32px;
+    text-align: center;
+    border: 1px dashed rgba(96, 29, 29, 0.3);
+    border-radius: 16px;
+  }
+  .cal--empty p {
+    font-family: 'ES Park', serif;
+    color: var(--c-cherrywood);
+    font-size: var(--p1-size);
+  }
 </style>

@@ -9,6 +9,7 @@ import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
+import { workshopEvents } from '../../data/workshops';
 
 const pills = [
   {
@@ -44,19 +45,20 @@ const pills = [
   },
 ];
 
-/* Calendar: a 30-day month whose 1st falls on Saturday (column index 5). */
-const calendarEvents = [
-  { day: 5, label: 'Im Rhythmus des Sommers', color: 'gold' as const, href: '/kurs/nummerologie-august' },
-  { day: 12, label: 'Offener Aufstellungsabend', color: 'raspberry' as const, href: '/kurs/nummerologie-august' },
-  { day: 19, label: 'Hypnose-Schnupperkurs', color: 'lavender' as const, href: '/kurs/nummerologie-august' },
-  { day: 25, label: 'Infoanlass Systemische Ausbildung', color: 'fire' as const, href: '/kurs/nummerologie-august' },
-];
+/* Calendar events derived from the real workshop schedule
+   (src/data/workshops.ts) — each chip links to its detail page. */
+const calendarEvents = workshopEvents.map((w) => ({
+  date: w.date,
+  label: w.title,
+  color: w.color,
+  href: `/workshops-kurse/${w.slug}`,
+}));
 
 const upcoming = [
   {
     image: '/images/placeholder/Placeholder-12.jpg',
     eyebrow: 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026',
-    title: 'SoilTapping Einführungskurs',
+    title: 'SoulTap Einführungskurs',
     description: 'In diesem September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT Meridian-Klopfen – eine sanfte und effektive Methode, um innere Ruhe, Sicherheit und Vertrauen in dir zu stärken.',
     price: 'CHF 66.–',
     duration: '120 Min. | Online',
@@ -116,7 +118,7 @@ const faqItems = [
     subtitle="Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung."
     pills={pills}
   >
-    <WorkshopsCalendar slot="calendar" daysInMonth={30} firstWeekday={5} events={calendarEvents} />
+    <WorkshopsCalendar slot="calendar" events={calendarEvents} />
   </WorkshopsHero>
 
   {/* ===================== Nächste Kurse und Workshops ===================== */}
