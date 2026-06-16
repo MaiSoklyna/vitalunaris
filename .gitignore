@@ -9,3 +9,6 @@ dist
 # Local reference asset, not part of the site
 /public/Narrative Block 10.png
 notetmr.txt
+
+# Alchemy Labs credentials
+.env.alchemy*

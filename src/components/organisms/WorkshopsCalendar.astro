@@ -183,15 +183,20 @@ const months = monthKeys.map(buildMonth);
   .cal__nav:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 2px; }
   .cal__nav:disabled { opacity: 0.25; cursor: default; }
 
-  .cal__scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-  .cal__grid {
-    min-width: 680px;
+  /* Border + rounding live on the fixed scroll frame (not the scrolling
+     grid) so the calendar always has a clean rectangular frame and no
+     stray vertical line slides into view when scrolled on narrow screens. */
+  .cal__scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border: 1px solid rgba(96, 29, 29, 0.18);
     border-radius: 12px;
-    overflow: hidden;
   }
-  @media (min-width: 1280px) { .cal__grid { min-width: 0; border-radius: 16px; } }
+  @media (min-width: 1280px) { .cal__scroll { border-radius: 16px; } }
+
+  .cal__grid { min-width: 680px; }
+  @media (min-width: 1280px) { .cal__grid { min-width: 0; } }
 
   /* Weekday header row + day grid */
   .cal__weekdays,
