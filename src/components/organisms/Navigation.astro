@@ -1,6 +1,4 @@
 ---
-import Button from '@atoms/Button.astro';
-
 interface Props {
   currentPath?: string;
 }
@@ -177,11 +175,6 @@ const isGroupActive = (item: NavLink) =>
               </a>
             )
           )}
-          <div class="nav__overlay-cta">
-            <Button href="/kontakt" variant="header" size="sm" fullWidth>
-              Termin buchen
-            </Button>
-          </div>
         </nav>
       </div>
     </div>
@@ -526,8 +519,6 @@ const isGroupActive = (item: NavLink) =>
   .nav__acc-link:last-child { padding-bottom: 18px; }
   .nav__acc-link--active { font-weight: 600; opacity: 1; }
   .nav__acc-link--disabled { opacity: 0.25; pointer-events: none; }
-
-  .nav__overlay-cta { margin-top: 32px; }
 
   /* Lock background scroll while the fullscreen menu is open */
   :global(body.nav-open) { overflow: hidden; }
