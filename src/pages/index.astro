@@ -6,7 +6,6 @@ import OfferCardsBlock from '@organisms/OfferCardsBlock.astro';
 import ProcessSteps from '@organisms/ProcessSteps.astro';
 import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import ClaimBlock from '@organisms/ClaimBlock.astro';
-import FeaturedTestimonial from '@organisms/FeaturedTestimonial.astro';
 import DarkCtaBlock from '@organisms/DarkCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
@@ -107,19 +106,18 @@ const faqItems = [
 
 <BaseLayout
   title="VitaLunaris – Erforsche die Systeme der Seele"
-  description="VitaLunaris in Zürich begleitet dich in Tiefenarbeit, Integration und Transformation — mit klarem Vorgehen und geschützten Räumen."
+  description="VitaLunaris in Buchs SG begleitet dich in Tiefenarbeit, Integration und Transformation — mit klarem Vorgehen und geschützten Räumen."
   currentPath="/"
 >
   <Hero
     eyebrow="Willkommen bei VitaLunaris"
-    title='Erforsche die<br class="hero__br--md" /> Systeme der .
-    <br class="hero__br--md"/>Seele'
+    title="Erforsche die<br class='hero__br--md' /> Systeme der<br class='hero__br--md' />Seele"
     subtitle="VitaLunaris ist dein Ort für systemische Aufstellungsarbeit, Hypnose, Numerologie und persönliche Entwicklung. Hier verbinden sich systemisches Wissen, intuitive Wahrnehmung und die Erfahrung aus jahrzehntelanger Arbeit mit Menschen – getragen von Theresia und Axel Jansen."
     ctaText="Zu den Ausbildungen"
     ctaHref="/ausbildung"
     secondaryCtaText="Zu den Angeboten"
     secondaryCtaHref="/praxisangebote"
-    image="/images/placeholder/Placeholder_1.jpg" 
+    image="/images/placeholder/Placeholder_1.jpg"
   />
   
 
@@ -152,15 +150,6 @@ const faqItems = [
     eyebrow="Stimmen"
     title="Was Menschen sagen."
     testimonials={testimonials}
-  />
-
-  <FeaturedTestimonial
-    eyebrow="Klient:innen-Stimme"
-    name="Theresia & Axel<br />Jansen"
-    role="Klient:innen seit 2024"
-    quote="Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet. <br/> <br/> Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen. So entstehen Räume für Erkenntnis und neue Perspektiven – ehrlich, menschlich, mit echter Lebenserfahrung."
-    image="/images/placeholder/placeholder-4.jpg"
-    imageSide="right"
   />
 
   <NewsletterBlock
