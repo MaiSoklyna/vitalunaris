@@ -46,7 +46,8 @@
       "Bash(ls -la .claude/)",
       "Bash(ls -la .claude/commands/)",
       "Bash(which stone *)",
-      "Bash(grep -rli \"stone\" .claude/ .mcp.json package.json)"
+      "Bash(grep -rli \"stone\" .claude/ .mcp.json package.json)",
+      "PowerShell(git commit *)"
     ]
   }
 }
