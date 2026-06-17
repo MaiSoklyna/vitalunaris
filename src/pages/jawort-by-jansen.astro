@@ -170,7 +170,7 @@ const faqItems = [
 
   .jw-hero__inner {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 40px;
     align-items: center;
     max-width: 1740px;
@@ -191,7 +191,12 @@ const faqItems = [
     align-items: flex-start;
     justify-content: center;
     gap: 24px;
+    min-width: 0;            /* allow column to shrink below content min-width */
   }
+  /* Long German words must wrap instead of forcing the column past the viewport */
+  .jw-hero__eyebrow,
+  .jw-hero__title,
+  .jw-hero__desc { overflow-wrap: break-word; }
   @media (min-width: 1280px) { .jw-hero__content { gap: 28px; } }
   @media (min-width: 1920px) { .jw-hero__content { gap: 32px; } }
 
