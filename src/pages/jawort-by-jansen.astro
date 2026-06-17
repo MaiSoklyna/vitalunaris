@@ -80,7 +80,7 @@ const faqItems = [
         </div>
 
         <div class="jw-hero__cta">
-          <Button href="#termin" variant="primary" size="lg">Kostenloses Kennenlerngespräch anfragen</Button>
+          <Button href="#termin" variant="primary" size="lg">Kennenlerngespräch anfragen</Button>
         </div>
 
         <dl class="jw-hero__prices">
@@ -108,8 +108,8 @@ const faqItems = [
     eyebrow="Freie Trauung"
     title="Was ist eine freie Trauung?"
     body={`Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt. Es gibt keine starren Vorgaben, keine festen Abläufe und keine Konventionen, die erfüllt werden müssen. Gemeinsam gestalten wir eine Zeremonie, die sich für euch richtig anfühlt.<br /><br />Ob auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe.`}
-    ctaText="Zeremonie anfragen"
-    ctaHref="/kontakt"
+    ctaText="Kennenlerngespräch anfragen"
+    ctaHref="#termin"
   />
 
   {/* ===================== Gallery ===================== */}
@@ -124,8 +124,8 @@ const faqItems = [
     eyebrow="Kinderwillkommensfeier"
     title="Was ist eine Kinderwillkommensfeier?"
     body={`Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen — nicht nach Tradition oder Vorgabe, sondern so, wie es zu euch passt.<br /><br />Mit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben. Eltern, Grosseltern, Gotti und Götti, Geschwister oder Freunde können aktiv einbezogen werden — ein gemeinsamer Willkommensgruss, voller Liebe und guter Wünsche für seinen Lebensweg.<br /><br />Denn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein.`}
-    ctaText="Zeremonie anfragen"
-    ctaHref="/kontakt"
+    ctaText="Kennenlerngespräch anfragen"
+    ctaHref="#termin"
   />
 
   {/* ===================== Testimonials ===================== */}
@@ -150,7 +150,7 @@ const faqItems = [
     slug="jawort-erstgespraech"
     eyebrow="Kennenlerngespräch"
     title="Buche dein kostenloses Kennenlerngespräch"
-    intro="45 Minuten, unverbindlich. Wir lernen uns kennen und sprechen über deine Zeremonie."
+    intro="45 Minuten, online und unverbindlich. Wir lernen uns in Ruhe kennen und sprechen über eure Zeremonie."
   />
 
   {/* ===================== FAQ ===================== */}
@@ -251,7 +251,18 @@ const faqItems = [
     color: var(--c-cherrywood);
   }
 
-  .jw-hero__cta { align-self: flex-start; }
+  /* Mobile: stretch the CTA full-width and let the long label wrap so it
+     never runs past the screen edge on narrow phones (<=390px). */
+  .jw-hero__cta { align-self: stretch; width: 100%; }
+  .jw-hero__cta :global(.btn) {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .jw-hero__cta { align-self: flex-start; width: auto; }
+    .jw-hero__cta :global(.btn) { width: auto; white-space: nowrap; }
+  }
 
   /* ----- fine-print notes ----- */
   .jw-hero__notes {
