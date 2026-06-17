@@ -236,10 +236,15 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
   .t-block__nav:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 3px; }
   @media (min-width: 1024px) {
     .t-block__nav { width: 64px; height: 64px; }
-    .t-block__next { right: 8px; }
-    .t-block__prev { left: 8px; }
+    /* Inset the cards so the arrows sit in a side gutter, not over the text. */
+    .t-block__carousel { padding-inline: 88px; }
+    .t-block__next { right: 0; }
+    .t-block__prev { left: 0; }
   }
-  @media (min-width: 1920px) { .t-block__nav { width: 80px; height: 80px; } }
+  @media (min-width: 1920px) {
+    .t-block__nav { width: 80px; height: 80px; }
+    .t-block__carousel { padding-inline: 112px; }
+  }
 
   /* ----- Mobile: full-bleed to the screen edge, swipe instead of arrows -----
      The floating arrows sit on top of the card text on phones, and the
