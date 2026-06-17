@@ -19,7 +19,41 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonical = new URL(currentPath, Astro.site ?? 'https://vitalunaris.ch').toString();
+const siteBase = (Astro.site ?? new URL('https://vitalunaris.ch')).toString().replace(/\/$/, '');
+const canonical = new URL(currentPath, siteBase + '/').toString();
+const ogImageAbs = new URL(ogImage, siteBase + '/').toString();
+
+// Site-wide organization / local-business structured data (helps Google + AI engines).
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'ProfessionalService'],
+  '@id': siteBase + '/#organization',
+  name: 'VitaLunaris',
+  description:
+    'Systemische Praxis und Ausbildung von Theresia & Axel Jansen in Buchs SG: systemisches Aufstellen, Hypnose, Numerologie, Fussreflexzonenmassage und die Ausbildung zum Systemic Soulcoach.',
+  url: siteBase + '/',
+  email: 'info@vitalunaris.ch',
+  telephone: '+41792917402',
+  image: siteBase + '/logo/logo.svg',
+  logo: siteBase + '/logo/logo.svg',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Eichenaustrasse 32',
+    postalCode: '9470',
+    addressLocality: 'Buchs',
+    addressRegion: 'SG',
+    addressCountry: 'CH',
+  },
+  areaServed: 'CH',
+  founder: [
+    { '@type': 'Person', name: 'Theresia Jansen' },
+    { '@type': 'Person', name: 'Axel Jansen' },
+  ],
+  sameAs: [
+    'https://www.facebook.com/JansenBuchs/',
+    'https://www.instagram.com/vitalunaris_by_jansen/',
+  ],
+};
 
 // Alchemy Scribe — first-party analytics; also drives auto-resize of embedded Alchemy form iframes.
 const trackingApiUrl = import.meta.env.PUBLIC_TRACKING_API_URL || 'https://opus.alchemy.zuerich';
@@ -38,11 +72,19 @@ const trackingSiteId = import.meta.env.PUBLIC_TRACKING_SITE_ID || 'site_vitaluna
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VitaLunaris" />
+    <meta property="og:locale" content="de_CH" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageAbs} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <!-- Structured data: organization / local business -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logo/logo-compact.svg" />
