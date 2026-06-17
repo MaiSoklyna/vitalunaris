@@ -15,6 +15,8 @@ interface Props {
   imageSide?: ImageSide;
   /** Aspect ratio of the media frame. Default landscape-ish portrait. */
   mediaAspect?: string;
+  /** object-position focal point for the mobile (cropped) hero image. */
+  imageFocus?: string;
 }
 
 const {
@@ -25,10 +27,11 @@ const {
   imageAlt = '',
   imageSide = 'right',
   mediaAspect = '5 / 6',
+  imageFocus = 'center 30%',
 } = Astro.props;
 ---
 
-<section class={`about-hero about-hero--image-${imageSide}`}>
+<section class={`about-hero about-hero--image-${imageSide}`} style={`--hero-focus: ${imageFocus};`}>
   <div class="about-hero__inner">
     <div class="about-hero__content">
       {eyebrow && <Heading variant="eyebrow" class="about-hero__eyebrow">{eyebrow}</Heading>}
@@ -115,4 +118,10 @@ const {
   @media (min-width: 1024px) { .about-hero__media { width: 46%; border-radius: 20px; } }
   @media (min-width: 1920px) { .about-hero__media { width: 711px; border-radius: 25px; } }
   .about-hero__image { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Mobile: ~half height, focal point on the face (overrides the inline aspect-ratio) */
+  @media (max-width: 767.98px) {
+    .about-hero__media { aspect-ratio: 8 / 5 !important; }
+    .about-hero__image { object-position: var(--hero-focus, center 30%); }
+  }
 </style>
