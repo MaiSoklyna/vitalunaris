@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
-import ContactForm from '@organisms/ContactForm.astro';
+
+/* Alchemy Labs contact form (Vorname / Nachname / E-Mail / Nachricht).
+   Submissions land in Alchemy; Scribe auto-resizes the iframe. */
+const formSrc = 'https://opus.alchemy.zuerich/api/f/eX1ELfx8zRe-Z6qYT4RayA/page';
 ---
 
 <BaseLayout
@@ -16,5 +19,30 @@ import ContactForm from '@organisms/ContactForm.astro';
     subtitle="Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden."
   />
 
-  <ContactForm recipient="info@vitalunaris.ch" submitText="Senden" />
+  <section class="kontakt-form">
+    <div class="kontakt-form__inner">
+      <iframe
+        class="kontakt-form__frame"
+        src={formSrc}
+        title="Kontaktformular"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  /* Sits directly beneath OverviewHero; spring-wood so the form blends in. */
+  .kontakt-form { background: var(--c-spring-wood); padding: 0 20px 64px; }
+  @media (min-width: 768px)  { .kontakt-form { padding: 0 32px 90px; } }
+  @media (min-width: 1280px) { .kontakt-form { padding: 0 60px 110px; } }
+  .kontakt-form__inner { max-width: 642px; margin: 0 auto; }
+  .kontakt-form__frame {
+    width: 100%;
+    height: 720px;          /* sensible default before Scribe sizes it */
+    min-height: 560px;
+    border: 0;
+    display: block;
+    transition: height 200ms ease;
+  }
+</style>
