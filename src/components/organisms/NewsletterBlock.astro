@@ -112,6 +112,12 @@ const formSrc = `https://opus.alchemy.zuerich/api/f/${FORM_EMBED}/page`;
     right: -12.01%;
   }
 
+  /* The corner flourishes are sized/placed for the wide desktop card; on the
+     tall narrow mobile card they bleed in as clipped fragments. Hide them. */
+  @media (max-width: 767.98px) {
+    .newsletter__decor { display: none; }
+  }
+
   .newsletter__content {
     position: relative;
     z-index: 1;
