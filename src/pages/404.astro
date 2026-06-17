@@ -1,0 +1,61 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+---
+
+<BaseLayout
+  title="Seite nicht gefunden – VitaLunaris"
+  description="Diese Seite gibt es nicht (mehr). Finde zurück zur Startseite von VitaLunaris."
+  currentPath="/404"
+>
+  <section class="notfound">
+    <div class="notfound__inner">
+      <Heading variant="eyebrow" class="notfound__eyebrow">Fehler 404</Heading>
+      <Heading level={1} class="notfound__title">Diese Seite<br />gibt es nicht.</Heading>
+      <Text size="p1" class="notfound__body">
+        Vielleicht hat sich der Link verändert oder die Seite ist umgezogen. Finde zurück zum Anfang — oder schreib uns, wenn du etwas Bestimmtes suchst.
+      </Text>
+      <div class="notfound__cta">
+        <Button href="/" variant="primary" size="lg">Zur Startseite</Button>
+        <Button href="/kontakt" variant="header" size="lg">Kontakt</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound { background: var(--c-spring-wood); padding: 140px 20px 100px; }
+  @media (min-width: 768px) { .notfound { padding: 180px 32px 120px; } }
+
+  .notfound__inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  @media (min-width: 768px) { .notfound__inner { gap: 32px; } }
+
+  .notfound__eyebrow { color: var(--c-cherrywood); }
+  .notfound__title {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+  .notfound__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
+
+  .notfound__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+  @media (min-width: 640px) { .notfound__cta { flex-direction: row; align-items: center; gap: 20px; width: auto; } }
+</style>
