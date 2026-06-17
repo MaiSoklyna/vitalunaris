@@ -47,11 +47,23 @@ const pills = [
 
 /* Calendar events derived from the real workshop schedule
    (src/data/workshops.ts) — each chip links to its detail page. */
-const calendarEvents = workshopEvents.map((w) => ({
+const toCalEvent = (w: (typeof workshopEvents)[number]) => ({
   date: w.date,
   label: w.title,
   color: w.color,
   href: `/workshops-kurse/${w.slug}`,
+});
+
+/* One calendar dataset per filter pill: "Alle" shows every course, each
+   named category shows only the courses that belong to it. The label
+   maps to the pill so the hero can show/hide the matching calendar. */
+const calendars = pills.map((p) => ({
+  category: p.label,
+  active: Boolean(p.active),
+  events:
+    p.label === 'Alle'
+      ? workshopEvents.map(toCalEvent)
+      : workshopEvents.filter((w) => w.category === p.label).map(toCalEvent),
 }));
 
 const upcoming = [
@@ -118,7 +130,20 @@ const faqItems = [
     subtitle="Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung."
     pills={pills}
   >
-    <WorkshopsCalendar slot="calendar" events={calendarEvents} />
+    <Fragment slot="calendar">
+      {calendars.map((c) => (
+        <div class="cal-panel" data-cal-category={c.category} hidden={!c.active}>
+          <WorkshopsCalendar
+            events={c.events}
+            emptyLabel={
+              c.category === 'Alle'
+                ? 'Aktuell sind keine Kurse geplant.'
+                : `Aktuell sind keine Kurse zur Kategorie ${c.category} geplant.`
+            }
+          />
+        </div>
+      ))}
+    </Fragment>
   </WorkshopsHero>
 
   {/* ===================== Nächste Kurse und Workshops ===================== */}

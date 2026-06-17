@@ -57,6 +57,7 @@ const cardDescription = activePill?.description ?? workshopDescription;
           label={p.label}
           active={p.active}
           data-pill
+          data-category={p.label}
           data-title={p.title ?? ''}
           data-description={p.description ?? ''}
         />
@@ -72,11 +73,13 @@ const cardDescription = activePill?.description ?? workshopDescription;
 </section>
 
 <script>
-  // Switch the card title/description when a pill is selected.
+  // Switch the card title/description AND the matching category calendar
+  // when a pill is selected.
   document.querySelectorAll<HTMLElement>('.workshops-hero').forEach((hero) => {
     const pills = hero.querySelectorAll<HTMLElement>('[data-pill]');
     const titleEl = hero.querySelector<HTMLElement>('[data-card-title]');
     const descEl = hero.querySelector<HTMLElement>('[data-card-desc]');
+    const panels = hero.querySelectorAll<HTMLElement>('[data-cal-category]');
 
     pills.forEach((pill) => {
       pill.addEventListener('click', (e) => {
@@ -84,12 +87,18 @@ const cardDescription = activePill?.description ?? workshopDescription;
 
         const title = pill.dataset.title;
         const description = pill.dataset.description;
+        const category = pill.dataset.category;
 
         pills.forEach((p) => p.classList.remove('pill--active'));
         pill.classList.add('pill--active');
 
         if (titleEl && title) titleEl.textContent = title;
         if (descEl && description) descEl.textContent = description;
+
+        // Show only the calendar for the selected category.
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.calCategory !== category;
+        });
       });
     });
   });
