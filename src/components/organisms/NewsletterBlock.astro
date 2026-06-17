@@ -18,12 +18,14 @@ const {
   eyebrow,
   title,
   body,
-  placeholder = 'E-Mail Adresse',
-  submitText = 'Anmelden',
-  action = '#',
-  recipient = 'info@vitalunaris.ch',
   privacyText,
 } = Astro.props;
+
+/* Single Alchemy Labs newsletter form for the whole site. Submitting writes
+   the lead into Alchemy (replaces the old mailto). Scribe (loaded in
+   BaseLayout) auto-resizes the iframe to the form's height. */
+const FORM_EMBED = 'UuYncQmBeBO5V0a5rByUZw';
+const formSrc = `https://opus.alchemy.zuerich/api/f/${FORM_EMBED}/page`;
 ---
 
 <section class="newsletter">
@@ -48,60 +50,19 @@ const {
       </Heading>
       {body && <Text size="p1" class="newsletter__body"><Fragment set:html={body} /></Text>}
 
-      <form class="newsletter__form" action={action} method="POST" novalidate data-newsletter-form data-recipient={recipient}>
-        <label for="newsletter-email" class="newsletter__label sr-only">E-Mail-Adresse</label>
-        <input
-          id="newsletter-email"
-          type="email"
-          name="email"
-          class="newsletter__input"
-          placeholder={placeholder}
-          required
-          autocomplete="email"
-        />
-        <button type="submit" class="newsletter__submit">{submitText}</button>
-      </form>
+      <div class="newsletter__form-wrap">
+        <iframe
+          class="newsletter__frame"
+          src={formSrc}
+          title="Newsletter-Anmeldung"
+          loading="lazy"
+        ></iframe>
+      </div>
 
       {privacyText && <Text size="p3" class="newsletter__privacy">{privacyText}</Text>}
     </div>
   </div>
 </section>
-
-<script>
-  function initNewsletterForms() {
-    document.querySelectorAll('[data-newsletter-form]').forEach((form) => {
-      if (form.dataset.bound) return;
-      form.dataset.bound = 'true';
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const input = form.querySelector('input[type="email"]');
-        const email = input?.value.trim();
-        if (!email || !input.checkValidity()) {
-          input?.reportValidity();
-          return;
-        }
-
-        const recipient = form.dataset.recipient || 'info@vitalunaris.ch';
-        const subject = 'Newsletter-Anmeldung';
-        const lines = [
-          'Ich möchte den VitaLunaris-Newsletter abonnieren.',
-          '',
-          `E-Mail-Adresse: ${email}`,
-        ];
-        const href =
-          `mailto:${recipient}` +
-          `?subject=${encodeURIComponent(subject)}` +
-          `&body=${encodeURIComponent(lines.join('\n'))}`;
-
-        window.location.href = href;
-      });
-    });
-  }
-
-  initNewsletterForms();
-  document.addEventListener('astro:page-load', initNewsletterForms);
-</script>
 
 <style>
   .newsletter {
@@ -186,69 +147,20 @@ const {
     text-align: center;
   }
 
-  .newsletter__form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  /* Alchemy newsletter form (iframed hosted page; Scribe auto-resizes height).
+     Form background is spring-wood, so it blends into the card seamlessly. */
+  .newsletter__form-wrap {
     width: 100%;
     max-width: 706px;
   }
-  @media (min-width: 640px) {
-    .newsletter__form { flex-direction: row; align-items: center; gap: 16px; }
-  }
-
-  .newsletter__label.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
+  .newsletter__frame {
+    width: 100%;
+    height: 220px;          /* sensible default before Scribe sizes it */
+    min-height: 180px;
     border: 0;
+    display: block;
+    transition: height 200ms ease;
   }
-
-  .newsletter__input {
-    flex-grow: 1;
-    height: 61px;
-    padding: 20px 30px;
-    background: transparent;
-    border: 0.8px solid var(--c-cherrywood);
-    border-radius: 100px;
-    color: var(--c-cherrywood);
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--p1-size);
-    line-height: 1.2;
-    outline: none;
-    transition: border-color 200ms ease, background 200ms ease;
-  }
-  .newsletter__input::placeholder { color: var(--c-cherrywood); opacity: 0.5; }
-  .newsletter__input:focus {
-    background: rgba(96, 29, 29, 0.04);
-    border-color: var(--c-cherrywood);
-  }
-
-  .newsletter__submit {
-    flex-shrink: 0;
-    height: 61px;
-    padding: 20px 30px;
-    background: var(--c-cherrywood);
-    color: var(--c-spring-wood);
-    border: 1.4px solid var(--c-cherrywood);
-    border-radius: 100px;
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--button-size);
-    line-height: 1.2;
-    cursor: pointer;
-    transition: background 200ms ease, color 200ms ease, transform 200ms ease;
-    white-space: nowrap;
-  }
-  @media (min-width: 640px) { .newsletter__submit { min-width: 139px; } }
-  .newsletter__submit:hover { background: #4A1414; }
-  .newsletter__submit:active { transform: scale(0.98); }
 
   .newsletter__privacy { color: var(--c-cherrywood); opacity: 0.6; margin-top: 4px; }
 </style>

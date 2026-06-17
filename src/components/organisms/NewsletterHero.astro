@@ -21,11 +21,12 @@ const {
   eyebrow,
   title,
   paragraphs = [],
-  placeholder = 'E-mail Adresse',
-  submitText = 'Zum Newsletter anmelden',
-  action = '#',
-  recipient = 'info@vitalunaris.ch',
 } = Astro.props;
+
+/* Same Alchemy Labs newsletter form as NewsletterBlock (leads land in
+   Alchemy; Scribe auto-resizes the iframe). */
+const FORM_EMBED = 'UuYncQmBeBO5V0a5rByUZw';
+const formSrc = `https://opus.alchemy.zuerich/api/f/${FORM_EMBED}/page`;
 ---
 
 <section class="news-hero">
@@ -45,64 +46,16 @@ const {
       </div>
     )}
 
-    <form
-      class="news-hero__form"
-      action={action}
-      method="POST"
-      novalidate
-      data-newsletter-form
-      data-recipient={recipient}
-    >
-      <label for="news-hero-email" class="news-hero__label sr-only">E-Mail-Adresse</label>
-      <input
-        id="news-hero-email"
-        type="email"
-        name="email"
-        class="news-hero__input"
-        placeholder={placeholder}
-        required
-        autocomplete="email"
-      />
-      <button type="submit" class="news-hero__submit">{submitText}</button>
-    </form>
+    <div class="news-hero__form-wrap">
+      <iframe
+        class="news-hero__frame"
+        src={formSrc}
+        title="Newsletter-Anmeldung"
+        loading="lazy"
+      ></iframe>
+    </div>
   </div>
 </section>
-
-<script>
-  function initNewsletterForms() {
-    document.querySelectorAll('[data-newsletter-form]').forEach((form) => {
-      if (form.dataset.bound) return;
-      form.dataset.bound = 'true';
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const input = form.querySelector('input[type="email"]');
-        const email = input?.value.trim();
-        if (!email || !input.checkValidity()) {
-          input?.reportValidity();
-          return;
-        }
-
-        const recipient = form.dataset.recipient || 'info@vitalunaris.ch';
-        const subject = 'Newsletter-Anmeldung';
-        const lines = [
-          'Ich möchte den VitaLunaris-Newsletter abonnieren.',
-          '',
-          `E-Mail-Adresse: ${email}`,
-        ];
-        const href =
-          `mailto:${recipient}` +
-          `?subject=${encodeURIComponent(subject)}` +
-          `&body=${encodeURIComponent(lines.join('\n'))}`;
-
-        window.location.href = href;
-      });
-    });
-  }
-
-  initNewsletterForms();
-  document.addEventListener('astro:page-load', initNewsletterForms);
-</script>
 
 <style>
   /* ============================================================
@@ -173,67 +126,18 @@ const {
     margin: 0;
   }
 
-  /* ----- form: stacked input + button, centered ----- */
-  .news-hero__form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  /* ----- Alchemy newsletter form (iframed; Scribe auto-resizes) ----- */
+  .news-hero__form-wrap {
     width: 100%;
     max-width: 480px;
     margin-top: 8px;
   }
-
-  .news-hero__label.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
+  .news-hero__frame {
+    width: 100%;
+    height: 220px;          /* sensible default before Scribe sizes it */
+    min-height: 180px;
     border: 0;
+    display: block;
+    transition: height 200ms ease;
   }
-
-  .news-hero__input {
-    width: 100%;
-    height: 56px;
-    padding: 18px 28px;
-    background: transparent;
-    border: 0.8px solid var(--c-cherrywood);
-    border-radius: 100px;
-    color: var(--c-cherrywood);
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--p1-size);
-    line-height: 1.2;
-    outline: none;
-    transition: border-color 200ms ease, background 200ms ease;
-  }
-  @media (min-width: 1280px) { .news-hero__input { height: 61px; padding: 20px 30px; } }
-  .news-hero__input::placeholder { color: var(--c-cherrywood); opacity: 0.5; }
-  .news-hero__input:focus {
-    background: rgba(96, 29, 29, 0.04);
-    border-color: var(--c-cherrywood);
-  }
-
-  .news-hero__submit {
-    width: 100%;
-    height: 56px;
-    padding: 18px 28px;
-    background: var(--c-cherrywood);
-    color: var(--c-spring-wood);
-    border: 1.4px solid var(--c-cherrywood);
-    border-radius: 100px;
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--button-size);
-    line-height: 1.2;
-    cursor: pointer;
-    transition: background 200ms ease, color 200ms ease, transform 200ms ease;
-    white-space: nowrap;
-  }
-  @media (min-width: 1280px) { .news-hero__submit { height: 61px; padding: 20px 30px; } }
-  .news-hero__submit:hover { background: #4A1414; }
-  .news-hero__submit:active { transform: scale(0.98); }
 </style>
