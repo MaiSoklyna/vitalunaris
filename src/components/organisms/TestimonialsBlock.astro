@@ -240,4 +240,23 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
     .t-block__prev { left: 8px; }
   }
   @media (min-width: 1920px) { .t-block__nav { width: 80px; height: 80px; } }
+
+  /* ----- Mobile: full-bleed to the screen edge, swipe instead of arrows -----
+     The floating arrows sit on top of the card text on phones, and the
+     container padding boxes the slider in. Break the carousel out to the
+     full viewport width (first card still aligns with the content margin),
+     and hide the arrows — the track is swipeable via scroll-snap. */
+  @media (max-width: 767.98px) {
+    .t-block__carousel {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+    }
+    .t-block__track {
+      padding-left: 20px;
+      padding-right: 20px;
+      scroll-padding-left: 20px;
+    }
+    .t-block__nav { display: none; }
+  }
 </style>

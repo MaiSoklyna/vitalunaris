@@ -392,4 +392,12 @@ const hasHeader = Boolean(eyebrow || title || intro);
     .process--3 .process__mobile-cards { flex-direction: column; padding: 16px 0 0; }
     .process--3 .process__mobile-cards > .process__mobile-card { max-width: none; }
   }
+
+  /* 3-step mobile/tablet: the step text was sitting at the section's 8px
+     safe-area — cramped against the screen edge and misaligned with the
+     centered title (which sits at ~20px). Give it a matching side margin. */
+  @media (max-width: 1023.98px) {
+    .process--3 .process__mobile-cards { padding-left: 20px; padding-right: 20px; }
+    .process--3 .process__cta { padding-left: 20px; padding-right: 20px; box-sizing: border-box; }
+  }
 </style>
