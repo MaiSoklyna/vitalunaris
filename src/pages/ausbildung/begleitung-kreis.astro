@@ -1,0 +1,196 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@organisms/Hero.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import InfoCardsRow from '@organisms/InfoCardsRow.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+/* ----- "Alles was du wissen musst." — fact cards ----- */
+const infoCards = [
+  { eyebrow: 'Nächster Start', body: 'Immer' },
+  { eyebrow: 'Dauer', body: 'Kontinuierlich' },
+  { eyebrow: 'Gruppenformat', body: 'offline & online' },
+  { eyebrow: 'Investition', body: 'CHF 120 pro Monat' },
+];
+---
+
+<BaseLayout
+  title="Begleitung & Circle – VitaLunaris"
+  description="Der Begleitung & Circle von VitaLunaris: einmal im Monat online oder vor Ort gemeinsam aufstellen, üben und austauschen. Exklusiv für Absolventinnen der Ausbildung Systemic Soulwork Level 1 oder Systemic Soulcoach Level 2."
+  currentPath="/ausbildung/begleitung-kreis"
+>
+  <Hero
+    eyebrow="Systemic Soulcoach · Begleitung & Circle"
+    title="Die Ausbildung endet.<br />Der Weg geht weiter."
+    subtitle="Einmal im Monat treffen wir uns online oder vor Ort zum gemeinsamen Aufstellen, Üben, Vertiefen und Austauschen. Für alle, die das Gelernte lebendig halten, Sicherheit gewinnen und sich gemeinsam mit anderen weiterentwickeln möchten.<br /><br />Zugang exklusiv für Absolventinnen mit abgeschlossener Ausbildung Systemic Soulwork Level 1 oder Systemic Soulcoach Level 2."
+    ctaText="Jetzt für den Circle anmelden"
+    ctaHref="/kontakt"
+    image="/images/placeholder/Placeholder-9.jpg"
+  />
+
+  {/* ===================== Narrative — lavender gradient ===================== */}
+  <NarrativeBlock
+    tone="lavender-gradient"
+    imageSide="left"
+    image="/images/placeholder/Placeholder-12.jpg"
+    imageAlt=""
+    title="In der Praxis bleiben. Weiterlernen. Weiterwachsen."
+    body="Viele Ausbildungen enden mit einem Zertifikat. Die eigentliche Entwicklung beginnt oft erst danach.<br /><br />Genau dafür haben wir den Begleitung & Circle geschaffen. Einmal im Monat treffen wir uns online oder vor Ort — zum gemeinsamen Aufstellen, Üben und Austauschen. Ein geschützter Raum für Fragen aus der Praxis, eigene Themen und die Weiterentwicklung deiner Fähigkeiten als Begleiterin."
+    bulletGroups={[
+      {
+        heading: 'Das erwartet dich:',
+        items: [
+          'Monatliche Treffen online oder in der Praxis',
+          'Gemeinsame Aufstellungen und Praxisübungen',
+          'Austausch mit anderen Systemic Soulcoaches',
+          'Raum für Fragen aus der eigenen Begleitungspraxis',
+          'Persönliche und fachliche Weiterentwicklung',
+        ],
+      },
+    ]}
+  />
+
+  {/* ===================== Theresia Jansen — gold, image right ===================== */}
+  <section class="lehrerin">
+    <div class="lehrerin__inner">
+      <div class="lehrerin__content">
+        <Heading variant="eyebrow" class="lehrerin__eyebrow">Theresia Jansen</Heading>
+        <Heading level={2} variant="h1" class="lehrerin__name">Das Handwerk von jemandem, der es täglich lebt.</Heading>
+        <Text size="p1" class="lehrerin__body">
+          Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. Im Circle gibt sie weiter, was sie selbst erprobt und verfeinert hat — kein importiertes Curriculum, sondern gelebte Praxis aus der Deutschschweiz.
+        </Text>
+        <Text size="p1" class="lehrerin__body">
+          Im Circle begegnet dir Theresia auf Augenhöhe: als erfahrene Begleiterin, die mit dir übt, deine Fragen aus der Praxis aufnimmt und dich Schritt für Schritt weiterwachsen lässt.
+        </Text>
+      </div>
+      <div class="lehrerin__media">
+        <img src="/images/placeholder/placeholder-4.jpg" alt="Theresia Jansen" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  {/* ===================== Alles was du wissen musst. ===================== */}
+  <section class="wissen">
+    <div class="wissen__inner">
+      <Heading level={2} variant="h1" class="wissen__title">Alles was du wissen musst.</Heading>
+    </div>
+  </section>
+
+  <InfoCardsRow cards={infoCards} />
+
+  <section class="wissen-foot">
+    <div class="wissen-foot__inner">
+      <Text size="p1" class="wissen-foot__caption">
+        Zugang exklusiv für Absolventinnen mit abgeschlossener Ausbildung oder Systemic Soulwork Level 1 oder Systemic Soulcoach Level 2.<br />
+        Man kann jederzeit auch wieder austreten.
+      </Text>
+      <div class="wissen-foot__cta">
+        <Button href="/kontakt" variant="primary" size="lg" class="wissen-foot__btn">Jetzt für den Circle anmelden</Button>
+        <Button href="/kontakt" variant="header" size="lg" class="wissen-foot__btn">Fragen? Schreib uns.</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ============================================================
+     LEHRERIN — "Theresia Jansen" (Pale Gold, text left / image right)
+     ============================================================ */
+  .lehrerin { background: var(--c-pale-gold); padding: 60px 20px; }
+  @media (min-width: 768px)  { .lehrerin { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .lehrerin { padding: 90px 60px; } }
+  @media (min-width: 1920px) { .lehrerin { padding: 90px; } }
+
+  .lehrerin__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 1740px;
+    margin: 0 auto;
+  }
+  @media (min-width: 1024px) { .lehrerin__inner { flex-direction: row; align-items: center; gap: 64px; } }
+  @media (min-width: 1920px) { .lehrerin__inner { gap: 100px; } }
+
+  .lehrerin__media {
+    flex: 0 0 auto;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16.67px;
+    background: rgba(96, 29, 29, 0.06);
+    aspect-ratio: 4 / 5;
+    order: -1;
+  }
+  @media (min-width: 1024px) { .lehrerin__media { width: 46%; border-radius: 20px; order: 0; } }
+  @media (min-width: 1920px) { .lehrerin__media { width: 683px; border-radius: 25px; aspect-ratio: 683 / 830; } }
+  .lehrerin__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .lehrerin__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  @media (min-width: 1024px) { .lehrerin__content { gap: 26.67px; } }
+  @media (min-width: 1920px) { .lehrerin__content { gap: 40px; max-width: 820px; } }
+
+  .lehrerin__eyebrow { color: var(--c-cherrywood); }
+  .lehrerin__name {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+  @media (min-width: 1920px) { .lehrerin__name { font-size: 60px; line-height: 1.1; } }
+  .lehrerin__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
+
+  /* ============================================================
+     WISSEN — "Alles was du wissen musst." (header + cards + footer)
+     ============================================================ */
+  .wissen { background: var(--c-spring-wood); padding: 60px 20px 32px; }
+  @media (min-width: 768px)  { .wissen { padding: 80px 32px 40px; } }
+  @media (min-width: 1280px) { .wissen { padding: 90px 60px 48px; } }
+  @media (min-width: 1920px) { .wissen { padding: 120px 90px 64px; } }
+
+  .wissen__inner { max-width: 1740px; margin: 0 auto; }
+  .wissen__title { color: var(--c-cherrywood); text-align: center; margin: 0; }
+
+  .wissen-foot { background: var(--c-spring-wood); padding: 8px 20px 60px; }
+  @media (min-width: 768px)  { .wissen-foot { padding: 8px 32px 80px; } }
+  @media (min-width: 1280px) { .wissen-foot { padding: 8px 60px 90px; } }
+  @media (min-width: 1920px) { .wissen-foot { padding: 8px 90px 120px; } }
+
+  .wissen-foot__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  .wissen-foot__caption { color: var(--c-cherrywood); text-align: center; }
+
+  .wissen-foot__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+  @media (min-width: 640px) { .wissen-foot__cta { flex-direction: row; justify-content: center; gap: 20px; } }
+  .wissen-foot__cta :global(.btn) {
+    width: 100%;
+    max-width: 350px;
+    height: 52px;
+    min-height: 52px;
+    padding: 16px 28px;
+    border-radius: 100px;
+  }
+</style>

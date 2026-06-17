@@ -25,7 +25,7 @@ const { eyebrow, title, intro, steps, ctaText, ctaHref = '/kontakt' } = Astro.pr
 const hasHeader = Boolean(eyebrow || title || intro);
 ---
 
-<section class="process">
+<section class={`process${steps.length === 3 ? ' process--3' : ''}`}>
   {hasHeader && (
     <!-- HEADER (all widths) -->
     <div class="process__container">
@@ -43,7 +43,7 @@ const hasHeader = Boolean(eyebrow || title || intro);
 
   <!-- DESKTOP (≥ 768px): single full-bleed curve -->
   <div class="process__curve-wrapper process__curve-wrapper--desktop">
-    <img src="/images/ebene/process-curve.svg" alt="" class="process__curve" loading="lazy" decoding="async" />
+    <img src={steps.length === 3 ? '/images/ebene/process-curve-3.svg' : '/images/ebene/process-curve.svg'} alt="" class="process__curve" loading="lazy" decoding="async" />
   </div>
 
   <!-- DESKTOP (≥ 768px): 4 staggered blocks -->
@@ -361,5 +361,35 @@ const hasHeader = Boolean(eyebrow || title || intro);
     opacity: 0.9;
     font-size: var(--p1-size);
     line-height: 1.5;
+  }
+
+  /* ============================================================
+     3-STEP VARIANT — even thirds in normal flow (no overlap),
+     middle column raised to follow the dome, CTA clears below.
+     ============================================================ */
+  @media (min-width: 1024px) {
+    .process--3 .process__blocks {
+      position: static;
+      display: flex;
+      flex-direction: row;
+      gap: 48px;
+      min-height: 0;
+      margin-top: 24px;
+      align-items: flex-start;
+    }
+    .process--3 .process__block {
+      position: static;
+      width: auto;
+      flex: 1 1 0;
+    }
+    .process--3 .process__block:nth-child(1),
+    .process--3 .process__block:nth-child(3) { margin-top: 56px; }
+  }
+
+  /* 3-step on mobile/tablet: clean vertical stack, no split half-curves */
+  .process--3 .process__mobile-curve { display: none; }
+  @media (min-width: 480px) and (max-width: 1023.98px) {
+    .process--3 .process__mobile-cards { flex-direction: column; padding: 16px 0 0; }
+    .process--3 .process__mobile-cards > .process__mobile-card { max-width: none; }
   }
 </style>

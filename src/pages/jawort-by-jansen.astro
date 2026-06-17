@@ -4,6 +4,7 @@ import NarrativeBlock from '@organisms/NarrativeBlock.astro';
 import PhotoStrip from '@molecules/PhotoStrip.astro';
 import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import PersonBio from '@organisms/PersonBio.astro';
+import CalendarBooking from '@organisms/CalendarBooking.astro';
 import Faq from '@organisms/Faq.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
@@ -79,7 +80,7 @@ const faqItems = [
         </div>
 
         <div class="jw-hero__cta">
-          <Button href="/kontakt" variant="primary" size="lg">Kostenloses Kennenlerngespräch anfragen</Button>
+          <Button href="#termin" variant="primary" size="lg">Kostenloses Kennenlerngespräch anfragen</Button>
         </div>
 
         <dl class="jw-hero__prices">
@@ -142,6 +143,14 @@ const faqItems = [
     ]}
     image="/images/placeholder/Placeholder-8.jpg"
     imageSide="right"
+  />
+
+  {/* ===================== Termin buchen ===================== */}
+  <CalendarBooking
+    slug="jawort-erstgespraech"
+    eyebrow="Kennenlerngespräch"
+    title="Buche dein kostenloses Kennenlerngespräch"
+    intro="45 Minuten, unverbindlich. Wir lernen uns kennen und sprechen über deine Zeremonie."
   />
 
   {/* ===================== FAQ ===================== */}

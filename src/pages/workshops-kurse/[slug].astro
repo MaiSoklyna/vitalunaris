@@ -9,6 +9,8 @@ import Faq from '@organisms/Faq.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import WorkshopCheckout from '@organisms/WorkshopCheckout.astro';
+import { workshopEvents } from '../../data/workshops';
 
 /* ============================================================
    Monthly workshops (September / October / November).
@@ -228,6 +230,10 @@ export function getStaticPaths() {
 
 const { workshop, furtherCourses } = Astro.props;
 
+/* On-site checkout: is this workshop sold via Alchemy Commerce? */
+const wsEvent = workshopEvents.find((w) => w.slug === workshop.slug);
+const hasCheckout = Boolean(wsEvent?.productId);
+
 /* Shared "Was Teilnehmer sagen" reviews — same set as the
    Kalender & Übersicht page (workshops-kurse/kalender-uebersicht). */
 const testimonials = [
@@ -261,12 +267,14 @@ const faqItems = [
     title={workshop.heroTitle}
     description={workshop.heroDescription}
     price={workshop.price}
-    ctaText={workshop.ctaText ?? 'Jetzt anmelden'}
-    ctaHref={workshop.ctaHref ?? '/kontakt'}
+    ctaText={hasCheckout ? 'Jetzt anmelden' : (workshop.ctaText ?? 'Jetzt anmelden')}
+    ctaHref={hasCheckout ? '#anmelden' : (workshop.ctaHref ?? '/kontakt')}
     image={workshop.heroImage}
   />
 
   <InfoCardsRow cards={workshop.infoCards} />
+
+  <WorkshopCheckout slug={workshop.slug} />
 
   {/* ===================== Was wir anschauen — lavender ===================== */}
   <NarrativeBlock

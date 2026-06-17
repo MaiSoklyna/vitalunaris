@@ -1,0 +1,100 @@
+---
+/* ============================================================
+   CALENDAR BOOKING — embeds an Alchemy Labs (CalDAV) booking
+   widget for a given meeting type. Anchor id="termin" so CTAs
+   can link to it with href="#termin".
+   ============================================================ */
+interface Props {
+  /** Meeting-type slug in Alchemy Labs Calendar */
+  slug: string;
+  /** Workspace calendar integration id (required for workspace-scoped meeting types) */
+  integrationId?: string;
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+}
+
+const {
+  slug,
+  integrationId = 'e94d4be1-8cc0-4d98-9ca4-1d92fdba339e',
+  eyebrow = 'Termin buchen',
+  title = 'Buche dein Gespräch',
+  intro,
+} = Astro.props;
+
+const src = `https://opus.alchemy.zuerich/api/calendar/embed/${slug}?integration_id=${integrationId}`;
+---
+
+<section class="booking" id="termin">
+  <div class="booking__inner">
+    <div class="booking__head">
+      <span class="booking__eyebrow">{eyebrow}</span>
+      <h2 class="booking__title">{title}</h2>
+      {intro && <p class="booking__intro">{intro}</p>}
+    </div>
+    <div class="booking__frame-wrap">
+      <iframe class="booking__frame" src={src} title={title} loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking { background: var(--c-spring-wood); padding: 60px 20px; }
+  @media (min-width: 768px)  { .booking { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .booking { padding: 90px 60px; } }
+
+  .booking__inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .booking__head {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .booking__eyebrow {
+    font-family: 'ES Park', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-cherrywood);
+    font-weight: var(--weight-medium);
+    font-size: var(--eyebrow-size);
+  }
+  .booking__title {
+    font-family: 'ES Park', serif;
+    color: var(--c-cherrywood);
+    font-weight: var(--weight-regular);
+    font-size: var(--h2-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+  .booking__intro {
+    font-family: 'ES Park', serif;
+    color: var(--c-cherrywood);
+    font-size: var(--p1-size);
+    line-height: 1.5;
+    max-width: 58ch;
+    margin: 0;
+  }
+
+  .booking__frame-wrap {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(96, 29, 29, 0.12);
+  }
+  .booking__frame {
+    width: 100%;
+    min-height: 780px;
+    border: 0;
+    display: block;
+  }
+</style>

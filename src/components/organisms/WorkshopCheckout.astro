@@ -1,0 +1,91 @@
+---
+/* ============================================================
+   WORKSHOP CHECKOUT — embeds the hosted Alchemy registration form
+   (Name / Telefon / E-Mail) with the workshop's commerce product
+   attached. Submitting the form creates the order and redirects to
+   the zahls.ch payment page right inside the iframe (zahls allows
+   framing), then to /danke. Anchor id="anmelden".
+   Renders nothing if the workshop has no form configured.
+   ============================================================ */
+import { workshopEvents } from '../../data/workshops';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+const event = workshopEvents.find((w) => w.slug === slug);
+const embed = event?.formEmbed;
+const isFree = Boolean(event?.free);
+const price = event?.price;
+
+const src = `https://opus.alchemy.zuerich/api/f/${embed}/page`;
+---
+
+{embed && (
+  <section class="wco" id="anmelden">
+    <div class="wco__inner">
+      <div class="wco__head">
+        <span class="wco__eyebrow">Anmeldung</span>
+        <h2 class="wco__title">Jetzt anmelden{isFree ? '' : ` — ${price}`}</h2>
+        <p class="wco__intro">
+          {isFree
+            ? 'Trag dich kostenlos ein — du erhältst alle Infos und den Zugang per E-Mail.'
+            : 'Trag dich ein und schliesse die Zahlung sicher über zahls.ch ab. Danach erhältst du alle Infos und den Zoom-Link per E-Mail.'}
+        </p>
+      </div>
+      <div class="wco__frame-wrap">
+        <iframe
+          class="wco__frame"
+          src={src}
+          title="Anmeldung & Zahlung"
+          loading="lazy"
+          allow="payment"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .wco { background: var(--c-spring-wood); padding: 60px 20px; }
+  @media (min-width: 768px)  { .wco { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .wco { padding: 90px 60px; } }
+
+  .wco__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  .wco__head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .wco__eyebrow {
+    font-family: 'ES Park', serif; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--c-cherrywood); font-weight: var(--weight-medium); font-size: var(--eyebrow-size);
+  }
+  .wco__title {
+    font-family: 'ES Park', serif; color: var(--c-cherrywood); font-weight: var(--weight-regular);
+    font-size: var(--h2-size); line-height: 1.1; margin: 0;
+  }
+  .wco__intro {
+    font-family: 'ES Park', serif; color: var(--c-cherrywood); font-size: var(--p1-size);
+    line-height: 1.5; max-width: 52ch; margin: 0;
+  }
+
+  .wco__frame-wrap {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(96, 29, 29, 0.12);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .wco__frame {
+    width: 100%;
+    height: 600px;          /* sensible default before Scribe sizes it to the form */
+    min-height: 320px;
+    border: 0;
+    display: block;
+    transition: height 200ms ease;
+  }
+</style>

@@ -3,6 +3,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@organisms/Hero.astro';
 import NarrativeBlock from '@organisms/NarrativeBlock.astro';
 import InfoCardsRow from '@organisms/InfoCardsRow.astro';
+import ProcessSteps from '@organisms/ProcessSteps.astro';
+import CalendarBooking from '@organisms/CalendarBooking.astro';
 import Faq from '@organisms/Faq.astro';
 import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import Heading from '@atoms/Heading.astro';
@@ -12,20 +14,20 @@ import Button from '@atoms/Button.astro';
 /* ----- "Wir schauen auf:" — outcomes arc (4 cards) ----- */
 const outcomes = [
   {
-    title: 'Aufstellungsbrett',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 1 — Aufstellen & Wahrnehmen',
+    description: 'Das Aufstellungsbrett, Raumaufstellungen und Bodenanker: Du lernst, systemische Prozesse sichtbar zu machen, Dynamiken im Raum wahrzunehmen und Aufstellungen sicher anzuleiten.',
   },
   {
-    title: 'Prozessführung & Gruppenleitung',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 2 — Nervensystem & Tiefe',
+    description: 'Wie Veränderungsprozesse auf das Nervensystem wirken, wie du Intuition und systemische Wahrnehmung verbindest — und Menschen sicher durch emotionale Prozesse begleitest.',
   },
   {
-    title: 'Coaching-Haltung & Ethik',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 3 — Energie & Ahnenlinien',
+    description: 'Energetische Dynamiken wahrnehmen, Ahnenlinien einbeziehen und auch bei komplexen oder herausfordernden Themen den Überblick behalten.',
   },
   {
-    title: 'Nervensystem & Trauma',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 4 — Prozessführung & Abschluss',
+    description: 'Deinen eigenen Stil als Coach entwickeln, Sicherheit in der Gesprächsführung gewinnen — und alle Inhalte für die eigenständige Arbeit integrieren.',
   },
 ];
 
@@ -47,22 +49,22 @@ const reviews = [
 
 /* ----- "Alles was du wissen musst." — fact cards ----- */
 const infoCards = [
-  { eyebrow: 'Nächster Start', body: '1.8.2026' },
+  { eyebrow: 'Nächster Start', body: 'Noch unbekannt' },
   { eyebrow: 'Dauer', body: '3 Monate' },
-  { eyebrow: 'Gruppenformat', body: 'offline & online' },
-  { eyebrow: 'Investition', body: 'CHF 6200.–' },
+  { eyebrow: 'Durchführung', body: 'online oder hybrid, max. 6 Personen' },
+  { eyebrow: 'Investition', body: 'CHF 5200.–' },
 ];
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
 const faqItems = [
-  { question: 'Was ist eine systemische Ausbildung?', answer: 'Eine systemische Ausbildung lehrt, Menschen nicht isoliert, sondern im Kontext ihrer Beziehungen und Systeme zu begleiten. Du lernst, unsichtbare Dynamiken sichtbar und damit veränderbar zu machen.' },
-  { question: 'Warum brauche ich Level 1 als Voraussetzung?', answer: 'Weil die eigene Selbsterfahrung die Grundlage für alles ist, was in Level 2 gezeigt wird. Du kannst andere nur dorthin begleiten, wo du selbst schon warst.' },
-  { question: 'Für wen ist Level 2 geeignet?', answer: 'Für alle, die nach Level 1 systemisch begleiten möchten — ob als Erweiterung einer bestehenden Praxis oder als neuer beruflicher Weg.' },
-  { question: 'Was kann ich nach Level 2 tun?', answer: 'Du kannst eigenständig systemisch begleiten — Einzel- und Gruppenaufstellungen führen und die Methode in deine Arbeit integrieren oder als eigene Praxis anbieten.' },
+  { question: 'Muss ich Level 1 gemacht haben?', answer: 'Ja. Level 2 baut direkt auf der Selbsterfahrung aus Level 1 auf — du kannst andere nur dorthin begleiten, wo du selbst schon warst. Eine vergleichbare systemische Selbsterfahrungsausbildung ist nach Rücksprache möglich.' },
+  { question: 'Kann ich rein online teilnehmen?', answer: 'Ja. Es gibt eine separate Online-Gruppe. Das ändert nichts am Umfang oder Startdatum.' },
   { question: 'Bekomme ich ein Zertifikat?', answer: 'Ja. Nach erfolgreichem Abschluss von Level 2 erhältst du ein Zertifikat als Systemic Soulcoach.' },
-  { question: 'Wie ist das Format aufgebaut?', answer: 'Wir kombinieren Präsenztage in der Gruppe mit Online-Anteilen — so bleibt Tiefe in der Begegnung erhalten und der Rahmen trotzdem zugänglich.' },
-  { question: 'Was kostet Level 2?', answer: 'Die Investition für Level 2 beträgt CHF 6200.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch.' },
-  { question: 'Lorem ipsum dolor sit?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { question: 'Kann ich danach selbständig als Coach arbeiten?', answer: 'Ja. Nach Level 2 verfügst du über das Wissen, die Praxis und die Sicherheit, um eigenständig systemisch zu begleiten — als eigene Praxis oder integriert in deine bestehende Tätigkeit.' },
+  { question: 'Welche Vorkenntnisse brauche ich über Level 1 hinaus?', answer: 'Keine weiteren formalen. Du bringst das Fundament aus Level 1 mit — den Rest entwickeln wir gemeinsam, Schritt für Schritt, von der Teilnehmerin zur Coachin.' },
+  { question: 'Wie gross ist die Gruppe?', answer: 'Bewusst klein: maximal 6 Personen. So bleibt genug Raum für jede:n — beim Aufstellen, im Austausch und in der persönlichen Begleitung durch Theresia.' },
+  { question: 'Was kostet Level 2 und wie wird bezahlt?', answer: 'Die Investition für Level 2 beträgt CHF 5200.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch.' },
+  { question: 'Was wenn ich schon eine vergleichbare systemische Selbsterfahrungsausbildung wie Level 1 gemacht habe?', answer: 'Dann ist ein Einstieg in Level 2 nach Rücksprache möglich. Melde dich für ein Vorgespräch — wir schauen gemeinsam, ob die Grundlage passt.' },
 ];
 ---
 
@@ -73,10 +75,10 @@ const faqItems = [
 >
   <Hero
     eyebrow="Ausbildung · Systemic Soulcoach Level 2 · 3 Monate"
-    title="Vertiefe deine<br />systemische Praxis"
-    subtitle="Level 2 ist die professionelle Ausbildung für Absolvent:innen von Level 1. In drei Monaten lernst du, andere systemisch zu begleiten — mit Methode, Haltung und dem Fundament eigener Erfahrung."
+    title="Vertiefe deine systemische Praxis<br />und gib sie weiter."
+    subtitle="Level 2 ist die professionelle Ausbildung für Absolvent:innen von Level 1. In drei Monaten lernst du, andere systemisch zu begleiten — mit Methode, Haltung und dem Fundament eigener Erfahrung. Du hast erlebt, wie tiefgreifend systemische Arbeit sein kann. Jetzt lernst du, andere auf diesem Weg zu begleiten."
     ctaText="Jetzt für Level 2 anmelden"
-    ctaHref="/kontakt"
+    ctaHref="#termin"
     image="/images/placeholder/Placeholder-8.jpg"
   />
 
@@ -87,13 +89,13 @@ const faqItems = [
     image="/images/placeholder/Placeholder-11.jpg"
     imageAlt=""
     title="Was du in dir entfaltet hast, kannst du jetzt für andere öffnen."
-    body="Level 2 baut direkt auf Level 1 auf — und ist ausschliesslich für Absolvent:innen zugänglich. Nicht als formale Hürde, sondern weil die eigene Selbsterfahrung die Grundlage für alles ist, was in Level 2 gezeigt wird. Du hast dein eigenes System kennengelernt. Du weisst, wie es sich anfühlt, wenn etwas sich löst. Level 2 gibt dir das Handwerk, damit du diesen Raum für andere halten kannst. Für alle, die systemisch begleiten möchten — ob als Erweiterung einer bestehenden Praxis oder als neuer beruflicher Weg."
+    body="Vielleicht hast du während Systemic Soulwork gemerkt, dass dich diese Arbeit nicht nur für dein eigenes Leben begeistert. Dass du gut zuhören kannst. Dass du Zusammenhänge erkennst. Dass es dich erfüllt, wenn Menschen Klarheit gewinnen.<br /><br />Genau hier setzt Level 2 an.<br /><br />Du lernst, systemische Prozesse professionell zu begleiten. Du entwickelst Sicherheit in der Gesprächsführung, vertiefst dein Verständnis für komplexe Dynamiken und lernst, Menschen achtsam und verantwortungsvoll durch Veränderungsprozesse zu führen. Dabei geht es nicht darum, eine Methode auswendig zu lernen — sondern darum, deinen eigenen Stil als Begleiterin zu entwickeln.<br /><br />Schritt für Schritt. Von der Teilnehmerin zur Coachin."
   />
 
   {/* ===================== Wir schauen auf: — outcomes arc ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">Wir schauen auf:</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">In den drei Monaten tauchen wir tief in:</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -136,6 +138,16 @@ const faqItems = [
     </div>
   </section>
 
+  {/* ===================== Was dich nach der Ausbildung erwartet ===================== */}
+  <NarrativeBlock
+    tone="light"
+    imageSide="left"
+    image="/images/placeholder/placeholder-3.jpg"
+    imageAlt=""
+    title="Was dich nach der Ausbildung erwartet"
+    body="Du verfügst über fundiertes systemisches Wissen, praktische Erfahrung und die Sicherheit, eigenständig zu arbeiten. Du kannst systemische Methoden in deine bestehende Tätigkeit integrieren — oder als Systemic Soulcoach selbständig damit arbeiten."
+  />
+
   {/* ===================== Stimmen aus der Ausbildung ===================== */}
   <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} />
 
@@ -146,7 +158,7 @@ const faqItems = [
         <Heading variant="eyebrow" class="lehrerin__eyebrow">Theresia Jansen</Heading>
         <Heading level={2} variant="h1" class="lehrerin__name">Das Handwerk von jemandem, der es täglich lebt.</Heading>
         <Text size="p1" class="lehrerin__body">
-          Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In Level 2 gibt sie weiter, was sie selbst erprobt und verfeinert hat — kein importiertes Curriculum, sondern gelebte Praxis aus der Deutschschweiz.
+          Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.
         </Text>
         <Text size="p1" class="lehrerin__body">
           In Level 2 begegnet dir Theresia auf eine neue Art: direkter, fordernder, auf Augenhöhe. Du bringst das Fundament mit — sie holt das Beste daraus heraus.
@@ -157,6 +169,18 @@ const faqItems = [
       </div>
     </div>
   </section>
+
+  {/* ===================== In drei Schritten zu deinem Platz ===================== */}
+  <ProcessSteps
+    title="In drei Schritten zu deinem Platz"
+    steps={[
+      { number: '1', title: 'Vorgespräch', description: 'Wir schauen gemeinsam, ob Level 2 der richtige nächste Schritt für dich ist. Du erzählst, wo du gerade stehst — ich erzähle dir, was dich erwartet.', color: 'purple' },
+      { number: '2', title: 'Anmeldung', description: 'Wenn es für uns beide stimmt, erhältst du den Anmeldelink und sicherst dir deinen Platz in der Gruppe.', color: 'raspberry' },
+      { number: '3', title: 'Anfang', description: 'Du erhältst alle Zugänge und alles was du brauchst — und startest am nächsten Startdatum.', color: 'aurora' },
+    ]}
+    ctaText="Kostenloses Erstgespräch vereinbaren"
+    ctaHref="#termin"
+  />
 
   {/* ===================== Alles was du wissen musst. ===================== */}
   <section class="wissen">
@@ -174,11 +198,19 @@ const faqItems = [
         Voraussetzung: Abschluss von Level 1 — bei VitaLunaris oder einer vergleichbaren systemischen Selbsterfahrungsausbildung (Rücksprache erforderlich).
       </Text>
       <div class="wissen-foot__cta">
-        <Button href="/kontakt" variant="primary" size="lg" class="wissen-foot__btn">Jetzt für Level 2 anmelden</Button>
+        <Button href="#termin" variant="primary" size="lg" class="wissen-foot__btn">Jetzt für Level 2 anmelden</Button>
         <Button href="/kontakt" variant="header" size="lg" class="wissen-foot__btn">Fragen? Schreib uns.</Button>
       </div>
     </div>
   </section>
+
+  {/* ===================== Termin buchen ===================== */}
+  <CalendarBooking
+    slug="soulcoach-level-2-gespraech"
+    eyebrow="Dein Gespräch zu Level 2"
+    title="Buche dein Gespräch"
+    intro="45 Minuten, unverbindlich. Aufbau, Voraussetzungen und die nächsten Schritte zu Level 2."
+  />
 
   {/* ===================== FAQ ===================== */}
   <Faq title="FAQ" items={faqItems} />
@@ -187,9 +219,9 @@ const faqItems = [
   <section class="infoanlass">
     <div class="infoanlass__card">
       <div class="infoanlass__content">
-        <Heading variant="eyebrow" class="infoanlass__eyebrow">Infoanlass | 12.08.2026</Heading>
-        <Heading level={2} variant="h1" class="infoanlass__title">Komm zum<br />nächsten Infoanlass<br />am 12.08.2026</Heading>
-        <Text size="p1" class="infoanlass__body">Lorem ipsum dolor sit amet. Online.</Text>
+        <Heading variant="eyebrow" class="infoanlass__eyebrow">Infoanlass</Heading>
+        <Heading level={2} variant="h1" class="infoanlass__title">Komm zum<br />nächsten Infoanlass.</Heading>
+        <Text size="p1" class="infoanlass__body">Du möchtest mehr über die Systemic Soulwork Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.</Text>
         <form class="infoanlass__form" action="#" method="POST" novalidate data-mailto-form data-recipient="info@vitalunaris.ch" data-subject="Anmeldung Infoanlass — Systemic Soulcoach Level 2">
           <label for="infoanlass-email" class="infoanlass__label">E-Mail-Adresse</label>
           <input

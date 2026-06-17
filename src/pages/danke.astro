@@ -1,0 +1,91 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+---
+
+<BaseLayout
+  title="Danke | VitaLunaris"
+  description="Vielen Dank für deine Anmeldung und Zahlung. Du erhältst alle Infos und den Zugangslink per E-Mail."
+  currentPath="/danke"
+>
+  <section class="danke">
+    <div class="danke__inner">
+      <Heading variant="eyebrow" class="danke__eyebrow">Zahlung erhalten</Heading>
+      <Heading level={1} class="danke__title">Danke — wir freuen uns auf dich.</Heading>
+      <Text size="p1" class="danke__body">
+        Deine Anmeldung und Zahlung sind bei uns eingegangen. Du erhältst in Kürze eine
+        Bestätigung mit allen Infos und dem Zugangslink per E-Mail. Schau bei Gelegenheit
+        auch in deinem Spam-Ordner nach.
+      </Text>
+      <div class="danke__cta">
+        <Button href="/workshops-kurse/kalender-uebersicht" variant="primary" size="lg">Weitere Workshops entdecken</Button>
+        <Button href="/" variant="header" size="lg">Zur Startseite</Button>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    /* If we land here inside the embedded checkout iframe (after zahls),
+       pop out to a full-page thank-you instead of a site-in-a-frame. */
+    if (window.top !== window.self) {
+      window.top.location.href = '/danke';
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .danke {
+    background: var(--c-spring-wood);
+    padding: 140px 20px 100px;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 768px)  { .danke { padding: 160px 32px 120px; } }
+  @media (min-width: 1280px) { .danke { padding: 180px 60px 140px; } }
+
+  .danke__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .danke__eyebrow {
+    display: block;
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--eyebrow-size);
+  }
+  .danke__title {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    margin: 0;
+  }
+  .danke__body {
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-size: var(--p1-size);
+    line-height: 1.55;
+    max-width: 56ch;
+  }
+  .danke__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+</style>

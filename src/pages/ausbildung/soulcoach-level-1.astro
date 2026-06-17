@@ -3,6 +3,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@organisms/Hero.astro';
 import NarrativeBlock from '@organisms/NarrativeBlock.astro';
 import InfoCardsRow from '@organisms/InfoCardsRow.astro';
+import ProcessSteps from '@organisms/ProcessSteps.astro';
+import CalendarBooking from '@organisms/CalendarBooking.astro';
 import Faq from '@organisms/Faq.astro';
 import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import Heading from '@atoms/Heading.astro';
@@ -12,20 +14,20 @@ import Button from '@atoms/Button.astro';
 /* ----- "Wir schauen auf:" — outcomes arc (4 cards) ----- */
 const outcomes = [
   {
-    title: 'Familiensystem & Herkunft',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Beziehungen & Bindungsdynamiken',
+    description: 'Wie gestalten wir Beziehungen — beruflich und privat? Was beeinflusst, wie wir uns verbinden, abgrenzen oder verlieren?',
   },
   {
     title: 'Eigene Muster & Loyalitäten',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    description: 'Warum wiederholen sich bestimmte Themen? Was steckt hinter den Entscheidungen, die wir immer wieder treffen?',
   },
   {
-    title: 'Beziehungen & Bindungsdynamiken',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Familiensysteme & Herkunft',
+    description: 'Was haben wir mitbekommen? Was tragen wir — oft ohne es zu wissen? Loyalitäten, Verstrickungen und Muster, die sich durch Generationen ziehen.',
   },
   {
     title: 'Grundlagen systemischer Begleitung',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    description: 'Für alle, die auch andere begleiten möchten: die Grundhaltung, die Sprache und die ersten Schritte systemischer Arbeit — mit dem Aufstellungsbrett und mit Menschen.',
   },
 ];
 
@@ -49,20 +51,20 @@ const reviews = [
 const infoCards = [
   { eyebrow: 'Nächster Start', body: '1.8.2026' },
   { eyebrow: 'Dauer', body: '3 Monate' },
-  { eyebrow: 'Gruppenformat', body: 'offline & online' },
-  { eyebrow: 'Investition', body: 'CHF 4800.–' },
+  { eyebrow: 'Durchführung', body: 'online oder hybrid, max. 6 Personen' },
+  { eyebrow: 'Investition', body: 'CHF 3800.–' },
 ];
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
 const faqItems = [
-  { question: 'Ist Level 1 eine vollständige Ausbildung oder nur ein Einstieg?', answer: 'Level 1 ist ein vollwertiger, in sich geschlossener Ausbildungsabschnitt — und zugleich die Grundlage für Level 2. Du lernst das systemische Handwerk an dir selbst und kannst danach entscheiden, ob du weitergehen möchtest.' },
-  { question: 'Was ist der Unterschied zu einer klassischen Ausbildung?', answer: 'Wir arbeiten erfahrungsbasiert statt rein theoretisch. Du lernst nicht über Systeme, sondern in ihnen — an deinem eigenen System und an dem der Gruppe.' },
+  { question: 'Ist Level 1 vollständig oder nur ein Einstieg in Level 2?', answer: 'Level 1 ist ein vollwertiger, in sich geschlossener Ausbildungsabschnitt — und zugleich die Grundlage für Level 2. Du lernst das systemische Handwerk an dir selbst und kannst danach entscheiden, ob du weitergehen möchtest.' },
+  { question: 'Für wen ist diese Ausbildung geeignet?', answer: 'Für alle, die mit Tiefe arbeiten wollen — ob um andere zu begleiten oder um sich selbst besser zu verstehen. Du brauchst keinen fachlichen Hintergrund, nur Offenheit und die Bereitschaft, dein eigenes System anzuschauen.' },
   { question: 'Muss ich nach Level 1 als Systemic Soulcoach arbeiten?', answer: 'Nein. Viele machen Level 1 für die eigene Entwicklung. Ob du das Gelernte beruflich einsetzt, bleibt vollständig dir überlassen.' },
   { question: 'Welche Vorkenntnisse brauche ich?', answer: 'Keine fachlichen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen.' },
-  { question: 'Ist das Therapie?', answer: 'Nein. Systemic Soulwork ist persönliche und berufliche Entwicklung, keine medizinische oder psychotherapeutische Behandlung.' },
-  { question: 'Wie ist das Format aufgebaut — online, Präsenz, oder beides?', answer: 'Beides. Wir kombinieren Präsenztage in der Gruppe mit Online-Anteilen — so bleibt Tiefe in der Begegnung erhalten und der Rahmen trotzdem zugänglich.' },
-  { question: 'Was kostet Level 1, und gibt es Ratenzahlung?', answer: 'Die Investition für Level 1 beträgt CHF 4800.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch.' },
-  { question: 'Lorem ipsum dolor sit?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { question: 'Was ist der Unterschied zu einer klassischen Ausbildung?', answer: 'Wir arbeiten erfahrungsbasiert statt rein theoretisch. Du lernst nicht über Systeme, sondern in ihnen — an deinem eigenen System und an dem der Gruppe.' },
+  { question: 'Wie gross ist die Gruppe?', answer: 'Bewusst klein: maximal 6 Personen. So bleibt genug Raum für jede:n — beim Aufstellen, im Austausch und in der persönlichen Begleitung durch Theresia.' },
+  { question: 'Was kostet Level 1 und wie wird bezahlt?', answer: 'Die Investition für Level 1 beträgt CHF 3800.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch.' },
+  { question: 'Kann ich rein online teilnehmen?', answer: 'Ja. Es gibt eine separate Online-Gruppe. Das ändert nichts am Umfang oder Startdatum — du bist genauso Teil der Ausbildung.' },
 ];
 ---
 
@@ -72,11 +74,11 @@ const faqItems = [
   currentPath="/ausbildung/soulcoach-level-1"
 >
   <Hero
-    eyebrow="Ausbildung · Systemic Soulcoach Level 1 · 3 Monate"
+    eyebrow="Ausbildung · Systemic Soulwork Level 1 · 3 Monate"
     title="Entfalte deine<br />systemische Praxis"
-    subtitle="Systemische Arbeit lernen, wie sie gelernt werden sollte — an dir selbst. Drei Monate, in denen du dein eigenes System verstehst und das Fundament für systemische Begleitung legst."
-    ctaText="Jetzt für Level 1 anmelden"
-    ctaHref="/kontakt"
+    subtitle="Systemische Arbeit lernen wie sie gelernt werden sollte — an dir selbst. Drei Monate, in denen du endlich verstehst, warum sich bestimmte Dinge in deinem Leben immer wieder wiederholen. Warum bestimmte Beziehungen so sind wie sie sind. Warum du manchmal reagierst, obwohl du eigentlich gar nicht willst. Du räumst auf. Du schaust hin. Du verstehst. Für dich selbst, oder als Fundament, um Systemischer Coach zu werden."
+    ctaText="Kostenloses Erstgespräch vereinbaren"
+    ctaHref="#termin"
     image="/images/placeholder/Placeholder-9.jpg"
   />
 
@@ -86,14 +88,14 @@ const faqItems = [
     imageSide="left"
     image="/images/placeholder/Placeholder-10.jpg"
     imageAlt=""
-    title="Du kannst andere nur so weit begleiten wie du selbst gegangen bist."
-    body="Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen. Level 1 vermittelt diese Grundlagen nicht durch Theorie, sondern durch Selbsterfahrung. Du arbeitest in einer kleinen Gruppe mit deinem eigenen Thema — und lernst dabei, wie systemische Begleitung funktioniert. Für alle, die systemisch arbeiten wollen — ob für sich selbst oder professionell. Level 1 ist in sich vollständig und gleichzeitig die Pflichtgrundlage für Level 2."
+    title="Du kannst andere nur so weit begleiten, wie du selbst gegangen bist."
+    body="Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen.<br /><br />Systemic Soulwork Level 1 ist nicht nur eine Ausbildung — es ist eine persönliche Reise. Die Inhalte, die du lernst, erlebst du gleichzeitig an dir selbst. Familienkonstellationen, eigene Muster, Bindungsdynamiken — du verstehst sie nicht nur theoretisch. Du spürst sie.<br /><br />Viele Teilnehmer:innen kommen, weil sie andere begleiten möchten. Manche kommen, weil sie sich selbst besser verstehen wollen. Andere einfach, weil sie spüren, dass da etwas ist, das Aufmerksamkeit braucht. Alle drei Wege sind richtig."
   />
 
   {/* ===================== Wir schauen auf: — outcomes arc ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">Wir schauen auf:</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">In den drei Monaten tauchen wir tief in:</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -136,6 +138,16 @@ const faqItems = [
     </div>
   </section>
 
+  {/* ===================== Was dich nach drei Monaten erwartet ===================== */}
+  <NarrativeBlock
+    tone="light"
+    imageSide="left"
+    image="/images/placeholder/placeholder-3.jpg"
+    imageAlt=""
+    title="Was dich nach drei Monaten erwartet"
+    body="Die meisten Teilnehmer:innen verstehen sich selbst, ihre Beziehungen und ihre Lebensgeschichte mit anderen Augen. Was vorher verwirrend oder wiederkehrend war, wird verständlicher und leichter. Viele erleben mehr Vertrauen in sich selbst, mehr Gelassenheit im Umgang mit Herausforderungen — und das Gefühl, ihrem eigenen Weg wieder näher gekommen zu sein."
+  />
+
   {/* ===================== Stimmen aus der Ausbildung ===================== */}
   <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} />
 
@@ -146,10 +158,10 @@ const faqItems = [
         <Heading variant="eyebrow" class="lehrerin__eyebrow">Theresia Jansen</Heading>
         <Heading level={2} variant="h1" class="lehrerin__name">Entfalte was in dir ist, um weiterzugeben was du weisst.</Heading>
         <Text size="p1" class="lehrerin__body">
-          Theresia begleitet seit über 30 Jahren Menschen in systemischer Arbeit — körperlich wie energetisch. Sie hat Aufstellen, Heilkunde und weitere Methoden in einer eigenständigen Praxis verbunden, die auf ihrer langjährigen Erfahrung in der Deutschschweiz aufbaut.
+          Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.
         </Text>
         <Text size="p1" class="lehrerin__body">
-          In Level 1 begleitet Theresia die Gruppe sowohl methodisch als auch in der Tiefe des Prozesses. Sie bringt ein, was sie selbst durchlebt und erprobt hat — kein importiertes Curriculum, sondern 30 Jahre gelebte Praxis.
+          In Level 1 begleitet Theresia die Gruppe sowohl methodisch als auch in der Tiefe des Prozesses. Sie bringt ein, was sie selbst durchlebt und erprobt hat.
         </Text>
       </div>
       <div class="lehrerin__media">
@@ -157,6 +169,18 @@ const faqItems = [
       </div>
     </div>
   </section>
+
+  {/* ===================== In drei Schritten zu deinem Platz ===================== */}
+  <ProcessSteps
+    title="In drei Schritten zu deinem Platz"
+    steps={[
+      { number: '1', title: 'Erstgespräch', description: 'Wir nehmen uns 45 Minuten Zeit füreinander. Du erzählst, wo du gerade stehst und was dich bewegt. Ich erzähle dir von der Ausbildung und beantworte dir all deine Fragen. Dann schauen wir gemeinsam, ob es passt.', color: 'purple' },
+      { number: '2', title: 'Anmeldung', description: 'Wenn es für uns beide stimmt, erhältst du deinen Anmeldelink und reservierst dir da deinen Platz verbindlich.', color: 'raspberry' },
+      { number: '3', title: 'Anfang', description: 'Du erhältst alle Zugänge und alles was du brauchst und startest am nächsten Startdatum in der Gruppe – nur online oder hybrid vor Ort.', color: 'aurora' },
+    ]}
+    ctaText="Kostenloses Erstgespräch vereinbaren"
+    ctaHref="#termin"
+  />
 
   {/* ===================== Alles was du wissen musst. ===================== */}
   <section class="wissen">
@@ -169,13 +193,21 @@ const faqItems = [
 
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
-      <Text size="p1" class="wissen-foot__caption">Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt</Text>
+      <Text size="p1" class="wissen-foot__caption">Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt. Solltest du die Ausbildung nur Online machen wollen, ist das kein Problem, es gibt eine separate Online-Gruppe und ändert nichts am Umfang oder Startdatum.</Text>
       <div class="wissen-foot__cta">
-        <Button href="/kontakt" variant="primary" size="lg" class="wissen-foot__btn">Jetzt für Level 2 anmelden</Button>
+        <Button href="#termin" variant="primary" size="lg" class="wissen-foot__btn">Kostenloses Erstgespräch vereinbaren</Button>
         <Button href="/kontakt" variant="header" size="lg" class="wissen-foot__btn">Fragen? Schreib uns.</Button>
       </div>
     </div>
   </section>
+
+  {/* ===================== Termin buchen ===================== */}
+  <CalendarBooking
+    slug="soulcoach-level-1-gespraech"
+    eyebrow="Dein Gespräch zu Level 1"
+    title="Buche dein Gespräch"
+    intro="45 Minuten, unverbindlich. Deine Fragen, deine Eignung und die nächsten Schritte zur Ausbildung."
+  />
 
   {/* ===================== FAQ ===================== */}
   <Faq title="FAQ" items={faqItems} />
@@ -184,9 +216,9 @@ const faqItems = [
   <section class="infoanlass">
     <div class="infoanlass__card">
       <div class="infoanlass__content">
-        <Heading variant="eyebrow" class="infoanlass__eyebrow">Infoanlass | 12.08.2026</Heading>
-        <Heading level={2} variant="h1" class="infoanlass__title">Komm zum<br />nächsten Infoanlass<br />am 12.08.2026</Heading>
-        <Text size="p1" class="infoanlass__body">Lorem ipsum dolor sit amet. Online.</Text>
+        <Heading variant="eyebrow" class="infoanlass__eyebrow">Infoanlass</Heading>
+        <Heading level={2} variant="h1" class="infoanlass__title">Komm zum<br />nächsten Infoanlass.</Heading>
+        <Text size="p1" class="infoanlass__body">Du möchtest mehr über die Systemic Soulwork Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.</Text>
         <form class="infoanlass__form" action="#" method="POST" novalidate data-mailto-form data-recipient="info@vitalunaris.ch" data-subject="Anmeldung Infoanlass — Systemic Soulcoach Level 1">
           <label for="infoanlass-email" class="infoanlass__label">E-Mail-Adresse</label>
           <input

@@ -36,7 +36,7 @@ const {
     <div class="hero__content">
       {eyebrow && <Heading variant="eyebrow" class="hero__eyebrow">{eyebrow}</Heading>}
       <Heading level={1} class="hero__title"><Fragment set:html={title} /></Heading>
-      {subtitle && <Text size="p1" class="hero__subtitle">{subtitle}</Text>}
+      {subtitle && <Text size="p1" class="hero__subtitle"><Fragment set:html={subtitle} /></Text>}
       <div class="hero__cta">
         <Button href={ctaHref} variant="primary" size="lg" class="hero__cta-btn">
           {ctaText}
@@ -154,12 +154,21 @@ const {
   /* ----- CTA GROUP — Figma Button Group S (gap 12, w=473 at 768) ----- */
   .hero__cta {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     gap: 12px;
     margin-top: 4px;
+    width: 100%;
+  }
+  /* Tablet+ — side by side, auto width */
+  @media (min-width: 768px) {
+    .hero__cta {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      width: auto;
+    }
   }
   /* Desktop++ Button Group L — 780px wide, 20px gap, no wrap */
   @media (min-width: 1920px) {
@@ -177,6 +186,7 @@ const {
   /* CTA buttons — size driven by --button-size token */
   .hero__cta-btn {
     box-sizing: border-box;
+    width: 100%;
     display: inline-flex;
     flex-direction: row;
     justify-content: center;
@@ -194,7 +204,7 @@ const {
     white-space: nowrap;
   }
   @media (min-width: 768px) {
-    .hero__cta-btn { width: 231px; padding: 13.5328px; }
+    .hero__cta-btn { width: auto; min-width: 231px; padding: 13.5328px 24px; }
   }
   @media (min-width: 1920px) {
     .hero__cta-btn {
