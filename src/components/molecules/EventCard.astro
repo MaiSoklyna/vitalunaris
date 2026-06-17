@@ -125,6 +125,10 @@ const {
     text-transform: uppercase;
     align-self: stretch;
   }
+  /* Smaller eyebrow on desktop (Figma: 16px) */
+  @media (min-width: 1024px) {
+    .event-card__eyebrow { font-size: 16px; }
+  }
 
   /* ----- title ----- */
   .event-card__title {
