@@ -228,6 +228,11 @@ const {
     width: 100%;
   }
   @media (min-width: 1024px) { .hero__media { aspect-ratio: 1 / 1; } }
+  /* Mobile: ~half height, anchored to the top so faces are never cut off */
+  @media (max-width: 767.98px) {
+    .hero__media { aspect-ratio: 8 / 5; }
+    .hero__image { object-position: center top; }
+  }
   /* Desktop++ media: fixed 748×826 per Figma */
   @media (min-width: 1920px) {
     .hero__media {
