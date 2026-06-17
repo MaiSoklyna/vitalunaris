@@ -1,0 +1,5 @@
+# Allow the font files to be loaded cross-origin (e.g. by Alchemy form embeds
+# hosted on opus.alchemy.zuerich). Fonts are CORS-restricted, so without this
+# the embedded forms can't use ES Park and fall back to a system serif.
+/fonts/*
+  Access-Control-Allow-Origin: *
