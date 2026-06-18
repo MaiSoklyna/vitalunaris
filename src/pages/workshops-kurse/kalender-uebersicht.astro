@@ -54,16 +54,24 @@ const toCalEvent = (w: (typeof workshopEvents)[number]) => ({
   href: `/workshops-kurse/${w.slug}`,
 });
 
-/* One calendar dataset per filter pill: "Alle" shows every course, each
-   named category shows only the courses that belong to it. The label
-   maps to the pill so the hero can show/hide the matching calendar. */
+/* Infoanlässe aren't workshops (no checkout) — they live on the Infoabend page.
+   Listed here so they appear in the calendar under the "Infoanlässe" filter. */
+const infoEvents = [
+  { date: '2026-06-24', label: 'Infoabend Systemic Soulwork', color: 'lavender', href: '/ausbildung/infoanlaesse' },
+];
+
+/* One calendar dataset per filter pill: "Alle" shows every course + Infoanlass,
+   each named category shows only what belongs to it. The label maps to the pill
+   so the hero can show/hide the matching calendar. */
 const calendars = pills.map((p) => ({
   category: p.label,
   active: Boolean(p.active),
   events:
     p.label === 'Alle'
-      ? workshopEvents.map(toCalEvent)
-      : workshopEvents.filter((w) => w.category === p.label).map(toCalEvent),
+      ? [...workshopEvents.map(toCalEvent), ...infoEvents]
+      : p.label === 'Infoanlässe'
+        ? infoEvents
+        : workshopEvents.filter((w) => w.category === p.label).map(toCalEvent),
 }));
 
 const upcoming = [

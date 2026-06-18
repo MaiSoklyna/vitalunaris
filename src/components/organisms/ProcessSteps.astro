@@ -364,6 +364,31 @@ const hasHeader = Boolean(eyebrow || title || intro);
   }
 
   /* ============================================================
+     4-STEP VARIANT — flow the blocks in normal layout (content-driven)
+     so long step text can't be overlapped by the CTA. Arch stagger
+     (∩: low–high–high–low) via margin-top. The absolute arch used a
+     fixed min-height that long copy overflowed → CTA landed on the text.
+     ============================================================ */
+  @media (min-width: 1024px) {
+    .process:not(.process--3) .process__blocks {
+      position: static;
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      min-height: 0;
+      margin-top: 24px;
+      align-items: flex-start;
+    }
+    .process:not(.process--3) .process__block {
+      position: static;
+      width: auto;
+      flex: 1 1 0;
+    }
+    .process:not(.process--3) .process__block:nth-child(1),
+    .process:not(.process--3) .process__block:nth-child(4) { margin-top: 56px; }
+  }
+
+  /* ============================================================
      3-STEP VARIANT — even thirds in normal flow (no overlap),
      middle column raised to follow the dome, CTA clears below.
      ============================================================ */
