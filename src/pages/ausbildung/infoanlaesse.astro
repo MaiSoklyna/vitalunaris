@@ -8,16 +8,24 @@ import Faq from '@organisms/Faq.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import { getEmDashEntry, getEmDashCollection } from 'emdash';
+import { jsonArray, nl2br, imageUrl } from '@lib/cms';
+
+// Editable at /_emdash/admin/content/ausbildung_programs (entry "infoanlaesse").
+const { entry } = await getEmDashEntry('ausbildung_programs', 'infoanlaesse');
+const d: Record<string, any> = entry?.data ?? {};
+const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
+const heroS = sec('hero'), nar = sec('narrative'), about = sec('about');
 
 /* ----- "Alles auf einen Blick" — Wann / Wo / Für wen ----- */
-const infoCards = [
+const infoCards = jsonArray(sec('info_cards').items).length ? jsonArray(sec('info_cards').items) : [
   { eyebrow: 'Wann?', body: 'Der Infoabend findet am 24.06.2026 von 18.30 bis ca. 20.00 Uhr statt.' },
   { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.' },
   { eyebrow: 'Für wen?', body: 'Für alle, die sich fragen, ob eine Ausbildung in systemischer Arbeit der nächste richtige Schritt ist.' },
 ];
 
 /* ----- "Das erwartet dich" — agenda bullets ----- */
-const agenda = [
+const agenda = jsonArray(sec('agenda').items).length ? jsonArray(sec('agenda').items) : [
   'Vorstellung von Systemic Soulwork & Systemic Soulcoach',
   'Überblick über die Ausbildungsstruktur',
   'Einblick in die Inhalte und Module',
@@ -25,39 +33,21 @@ const agenda = [
   'Raum für Fragen und Austausch',
 ];
 
-/* ----- "Weitere Kurse und Workshops:" — 3 event cards ----- */
-const furtherCourses = [
-  {
-    image: '/images/placeholder/Placeholder-12.jpg', 
-    eyebrow: 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026',
-    title: 'SoulTap Einführungskurs',
-    description: 'Im September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen.',
-    price: 'CHF 66.–',
-    duration: '120 Min. | Online',
-    ctaHref: '/workshops-kurse/soultap-gegen-angst',
-  },
-  {
-    image: '/images/placeholder/Placeholder-29.jpg',
-    eyebrow: 'MONATS-WORKSHOP | OKTOBER | 22.10.2026',
-    title: 'Im Vagusnerv liegt die Ruhe',
-    description: 'Der Vagusnerv verstehen und aktivieren – unser Monats-Workshop im Oktober lädt dich ein, deinen Körper dabei zu verstehen und mit einfachen Werkzeug mehr Ruhe und Gelassenheit in deinen Alltag zu bringen.',
-    price: 'CHF 66.–',
-    duration: '210 Min. | Online',
-    ctaHref: '/workshops-kurse/vagusnerv-ruhe',
-  },
-  {
-    image: '/images/placeholder/Placeholder-32.jpg',
-    eyebrow: 'MONATS-WORKSHOP | DEZEMBER | 01.12.2026',
-    title: 'Adventsgeschichten für Herz und Seele',
-    description: 'Eine besinnliche Reise durch die Adventszeit – Geschichten, kleine Rituale und Momente der Stille, die dein Herz wärmen und dir mitten im Trubel innere Ruhe schenken.',
-    price: 'CHF 66.–',
-    duration: '210 Min. | Online',
-    ctaHref: '/workshops-kurse/adventsgeschichten',
-  },
-];
+/* ----- "Weitere Kurse und Workshops:" — pulled from the editable workshops collection ----- */
+const { entries: allWs } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
+const furtherCourses = (allWs ?? []).slice(0, 3).map((e: any) => ({
+  image: imageUrl(e.data?.card_image),
+  eyebrow: e.data?.card_eyebrow,
+  title: e.data?.card_title,
+  description: e.data?.card_description,
+  price: e.data?.hero_price,
+  duration: e.data?.card_duration,
+  ctaText: 'Mehr erfahren',
+  ctaHref: `/workshops-kurse/${e.id}`,
+}));
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
-const faqItems = [
+const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
   { question: 'Für wen sind die Workshops geeignet?', answer: 'Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.' },
   { question: 'Was ist der Unterschied zwischen einem Workshop und der Ausbildung?', answer: 'Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.' },
   { question: 'Brauche ich Vorkenntnisse für die Monats-Workshops?', answer: 'Nein. Die Workshops sind so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
@@ -75,14 +65,14 @@ const faqItems = [
   currentPath="/ausbildung/infoanlaesse"
 >
   <CourseHero
-    categoryMeta="AUSBILDUNG | INFOABEND | 24.06.2026"
-    title="Systemic Soulcoach <br /> Infoabend"
-    description="Du möchtest mehr über die Systemic Soulwork Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen."
-    durationMeta="24.06.2026 | 18.30 bis ca. 20.00 Uhr | Online"
-    price="Kostenlos :)"
-    ctaText="Jetzt anmelden"
-    ctaHref="/kontakt"
-    image="/images/placeholder/Placeholder-12.jpg"
+    categoryMeta={heroS.category_meta || 'AUSBILDUNG | INFOABEND | 24.06.2026'}
+    title={heroS.title || 'Systemic Soulcoach <br /> Infoabend'}
+    description={heroS.description || 'Du möchtest mehr über die Systemic Soulwork Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.'}
+    durationMeta={heroS.duration_meta || '24.06.2026 | 18.30 bis ca. 20.00 Uhr | Online'}
+    price={heroS.price || 'Kostenlos :)'}
+    ctaText={heroS.cta_text || 'Jetzt anmelden'}
+    ctaHref={heroS.cta_href || '/kontakt'}
+    image={imageUrl(heroS.image) || '/images/placeholder/Placeholder-12.jpg'}
   />
 
   <InfoCardsRow cards={infoCards} />
@@ -91,31 +81,31 @@ const faqItems = [
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/placeholder/Placeholder-33.jpg"
+    image={imageUrl(nar.image) || '/images/placeholder/Placeholder-33.jpg'}
     imageAlt=""
-    eyebrow="Was wir anschauen"
-    title="Das erwartet dich"
+    eyebrow={nar.eyebrow || 'Was wir anschauen'}
+    title={nar.title || 'Das erwartet dich'}
     bullets={agenda}
-    body="Der Online-Infoabend ist kostenlos und unverbindlich. Ich freue mich darauf, dich kennenzulernen."
+    body={nl2br(nar.body) || 'Der Online-Infoabend ist kostenlos und unverbindlich. Ich freue mich darauf, dich kennenzulernen.'}
   />
 
   {/* ===================== Theresia & Axel Jansen — light, image right ===================== */}
   <section class="about">
     <div class="about__inner">
       <div class="about__content">
-        <Heading level={2} variant="h1" class="about__name">Theresia &<br /><em>Axel Jansen</em></Heading>
-        <Text size="p1" class="about__body">
-          Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet.
-        </Text>
-        <Text size="p1" class="about__body">
-          Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen. So entstehen Räume für Erkenntnis und neue Perspektiven – ehrlich, menschlich, mit echter Lebenserfahrung.
-        </Text>
+        <Heading level={2} variant="h1" class="about__name"><Fragment set:html={about.title || 'Theresia &<br /><em>Axel Jansen</em>'} /></Heading>
+        {(jsonArray(about.items).length ? jsonArray(about.items) : [
+          'Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet.',
+          'Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen. So entstehen Räume für Erkenntnis und neue Perspektiven – ehrlich, menschlich, mit echter Lebenserfahrung.',
+        ]).map((p: string) => (
+          <Text size="p1" class="about__body"><Fragment set:html={p} /></Text>
+        ))}
         <div class="about__cta">
           <Button href="/ueber-uns" variant="primary" size="lg">Mehr über uns</Button>
         </div>
       </div>
       <div class="about__media">
-        <img src="/images/placeholder/placeholder-4.jpg" alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
+        <img src={imageUrl(d.about_image) || '/images/placeholder/placeholder-4.jpg'} alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>

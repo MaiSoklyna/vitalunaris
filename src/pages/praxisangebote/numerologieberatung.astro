@@ -8,56 +8,72 @@ import PersonBio from '@organisms/PersonBio.astro';
 import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+import { getEmDashEntry } from 'emdash';
+import { nl2br, imageUrl } from '@lib/cms';
 
-const bookingUrl = 'https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9';
+// ── CMS: editable at /_emdash/admin (falls back to original copy) ──────────
+const { entry } = await getEmDashEntry('praxisangebote', 'numerologieberatung');
+const d: Record<string, any> = entry?.data ?? {};
+const { entry: person } = await getEmDashEntry('team', d.practitioner || 'axel-jansen');
+const pd: Record<string, any> = person?.data ?? {};
 
-const steps = [
+const bookingUrl = d.hero_cta_href || 'https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9';
+
+const steps = d.process_steps?.length ? d.process_steps : [
   { number: '01', title: 'Buchen', description: 'Termin anfragen und dein vollständiges Geburtsdatum sowie deinen Geburtsnamen mitteilen. Axel bereitet die Beratung individuell vor.' },
   { number: '02', title: 'Vorbereitung', description: 'Axel berechnet und analysiert deine Zahlen im Vorfeld — damit die Beratungszeit vollständig für das Gespräch genutzt wird.' },
   { number: '03', title: 'Beratung', description: 'Deine Lebenszahl, deine persönlichen Zahlen, deine Themen — Axel erklärt, was die Zahlen zeigen und was du damit anfangen kannst.' },
   { number: '04', title: 'Erkenntnisse', description: 'Du gehst mit einer klaren Karte — Stärken, Themen, Anlagewege. Nicht als Vorhersage, sondern als Orientierung.' },
 ];
 
-const testimonials = [
-  { quote: '«Ich habe mein Numeroskop bereits dreimal gelesen und bin noch immer fasziniert. Es fühlt sich unglaublich stimmig an — immer wieder dieses: Ja, genau so ist es. Es hat mir geholfen, mich selbst besser zu verstehen und einiges mit mehr Ruhe und Klarheit zu betrachten. Von Herzen danke.»', name: 'Carmen G.' },
-  { quote: '«Ich bin so berührt, ich danke dir von Herzen Axel. Diese, deine, Beschreibung fühlt sich so stimmig und gleichzeitig verheißungsvoll an - wie ein Leitstern ins Neue - schon jetzt. Und ich fühle es tatsächlich genau so, aber deine Worte haben es nochmal „runter" geholt auf den Boden, es greifbar gemacht, was ich fühle und manchmal aus Angst oder Vorsicht kaum zulassen konnte. Danke von Herzen.»', name: 'Monika S.' },
-  { quote: '«Die Auswertung für meine Tochter war ein richtiges Geschenk. Endlich verstehe ich, warum sie manchmal so dickköpfig und gleichzeitig so kreativ ist. Früher hat mich das gestresst — heute reagiere ich gelassener, weil ich weiss: Es ist Teil ihrer Energie. Es ist, als hätte ich mein Kind noch einmal neu kennengelernt. Dafür bin ich unglaublich dankbar.»', name: 'Andrea G.' },
+const testimonials = d.testimonials?.length ? d.testimonials : [
+  { quote: '«Ich habe mein Numeroskop bereits dreimal gelesen und bin noch immer fasziniert. Es fühlt sich unglaublich stimmig an. Es hat mir geholfen, mich selbst besser zu verstehen. Von Herzen danke.»', name: 'Carmen G.' },
+  { quote: '«Ich bin so berührt, ich danke dir von Herzen Axel. Deine Worte haben es greifbar gemacht, was ich fühle und manchmal kaum zulassen konnte. Danke von Herzen.»', name: 'Monika S.' },
+  { quote: '«Die Auswertung für meine Tochter war ein richtiges Geschenk. Es ist, als hätte ich mein Kind noch einmal neu kennengelernt. Dafür bin ich unglaublich dankbar.»', name: 'Andrea G.' },
 ];
 
-const faqItems = [
-  { question: 'Muss ich an Numerologie glauben?', answer: 'Nein. Du musst nichts glauben. Die Numerologie ist ein Deutungssystem, das dir Orientierung und neue Perspektiven anbietet — was du daraus mitnimmst, entscheidest du selbst.' },
+const faqItems = d.faq_items?.length ? d.faq_items : [
+  { question: 'Muss ich an Numerologie glauben?', answer: 'Nein. Du musst nichts glauben. Die Numerologie ist ein Deutungssystem, das dir Orientierung und neue Perspektiven anbietet.' },
   { question: 'Was benötigst du für die Beratung?', answer: 'Dein vollständiges Geburtsdatum und deinen Geburtsnamen. Damit berechnet Axel deine Zahlen im Vorfeld.' },
-  { question: 'Kann ich auch eine Beratung für mein Kind buchen?', answer: 'Ja. Gerade für Kinder kann die Numerologie helfen, Anlagen, Stärken und Bedürfnisse besser zu verstehen und liebevoll zu begleiten.' },
-  { question: 'Kann Numerologie bei Entscheidungen helfen?', answer: 'Ja. Sie macht Lebensthemen, Stärken und Möglichkeiten sichtbar und schafft so Klarheit, wenn du vor einer wichtigen Entscheidung stehst.' },
-  { question: 'Kann ich auch meine Partnerschaft analysieren lassen?', answer: 'Ja. Aus euren Zahlen lassen sich Dynamiken, Gemeinsamkeiten und Spannungsfelder ablesen — eine wertvolle Perspektive auf eure Beziehung.' },
+  { question: 'Kann ich auch eine Beratung für mein Kind buchen?', answer: 'Ja. Gerade für Kinder kann die Numerologie helfen, Anlagen, Stärken und Bedürfnisse besser zu verstehen.' },
+  { question: 'Kann Numerologie bei Entscheidungen helfen?', answer: 'Ja. Sie macht Lebensthemen, Stärken und Möglichkeiten sichtbar und schafft so Klarheit.' },
+  { question: 'Kann ich auch meine Partnerschaft analysieren lassen?', answer: 'Ja. Aus euren Zahlen lassen sich Dynamiken, Gemeinsamkeiten und Spannungsfelder ablesen.' },
   { question: 'Kann Numerologie die Zukunft vorhersagen?', answer: 'Nein. Numerologie ist keine Vorhersage, sondern Orientierung. Sie zeigt Muster und Möglichkeiten — gestalten tust du deinen Weg selbst.' },
 ];
+
+const bioParagraphs = pd.bio_paragraphs?.length
+  ? pd.bio_paragraphs.map((p: any) => p.text)
+  : [
+      'Ich arbeite dort, wo Themen tiefer liegen als im Kopf. Ich verbinde Hypnose, Energiearbeit, Zahlenenergie und systemisches Denken.',
+      'Was ich weitergebe, stammt aus vielen Jahren Erfahrung und der Überzeugung, dass Veränderung möglich ist.',
+      'Mir ist wichtig, einen Raum zu schaffen, in dem Veränderung ohne Druck entstehen darf — achtsam, respektvoll und in deinem Tempo.',
+    ];
 ---
 
 <BaseLayout
-  title="Numerologie-Beratung mit Axel Jansen | VitaLunaris"
-  description="Numerologie-Beratung mit Axel Jansen — Orientierung über Zahlen. Präzise, ohne Esoterik-Kitsch, mit systemischem Blick auf das, was sich in deinem Leben zeigt."
+  title={d.seo_title || 'Numerologie-Beratung mit Axel Jansen | VitaLunaris'}
+  description={d.seo_description || 'Numerologie-Beratung mit Axel Jansen — Orientierung über Zahlen. Präzise, ohne Esoterik-Kitsch, mit systemischem Blick auf das, was sich in deinem Leben zeigt.'}
   currentPath="/praxisangebote/numerologieberatung"
 >
   <CourseHero
-    categoryMeta="Numerologie · Lebensweg-Beratung"
-    title="Numerologie mit<br /> Axel Jansen"
-    description="Zahlen haben eine Sprache — Axel Jansen liest sie mit einem klaren, systemischen Blick. Dabei gehts nicht um Schicksalsvorhersagen, sondern ein tieferes Verständnis deiner Talente, Herausforderungen und aktuellen Lebensthemen. Viele erleben die Beratung als überraschend präzise und gewinnen neue Perspektiven auf sich und ihren Weg."
-    durationMeta="Einzelsitzung | 90 Min. | Online oder in der Praxis"
-    price="CHF 180.–"
-    ctaText="Termin buchen"
+    categoryMeta={d.hero_category || 'Numerologie · Lebensweg-Beratung'}
+    title={d.hero_title || 'Numerologie mit<br /> Axel Jansen'}
+    description={d.hero_description || 'Zahlen haben eine Sprache — Axel Jansen liest sie mit einem klaren, systemischen Blick. Dabei geht es nicht um Schicksalsvorhersagen, sondern um ein tieferes Verständnis deiner Talente, Herausforderungen und aktuellen Lebensthemen.'}
+    durationMeta={d.hero_duration || 'Einzelsitzung | 90 Min. | Online oder in der Praxis'}
+    price={d.hero_price || 'CHF 180.–'}
+    ctaText={d.hero_cta_text || 'Termin buchen'}
     ctaHref={bookingUrl}
-    image="/images/placeholder/Placeholder-26.jpg"
+    image={imageUrl(d.hero_image) || '/images/placeholder/Placeholder-26.jpg'}
   />
 
-  {/* ===================== Orientierung über Zahlen (lavender gradient, image left) ===================== */}
+  {/* ===================== Was ist Numerologie (image left) ===================== */}
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/placeholder/Placeholder-27.jpg"
+    image={imageUrl(d.narrative_image) || '/images/placeholder/Placeholder-27.jpg'}
     imageAlt=""
-    title="Was ist Numerologie?"
-    body="Numerologie ist ein Deutungssystem, das Zahlen eine symbolische Bedeutung zuordnet. Grundlage dafür sind dein Geburtsdatum und dein Name. Aus diesen Zahlen lassen sich bestimmte Muster, Potenziale, Talente und Lebensthemen ableiten, die sich oft wie ein roter Faden durch das Leben ziehen.<br/><br/>Dabei geht es nicht darum, die Zukunft vorherzusagen oder Menschen in Schubladen zu stecken. Numerologie versteht sich vielmehr als eine Art Landkarte, die Orientierung geben kann.<br/><br/>Sie kann helfen zu verstehen,<br/>• was dich antreibt<br/>• wo deine natürlichen Stärken liegen<br/>• welche Herausforderungen dich begleiten<br/>• warum bestimmte Themen immer wieder auftauchen<br/>• und welche Potenziale in dir angelegt sind"
+    title={d.narrative_title || 'Was ist Numerologie?'}
+    body={nl2br(d.narrative_body) || 'Numerologie ist ein Deutungssystem, das Zahlen eine symbolische Bedeutung zuordnet. Grundlage dafür sind dein Geburtsdatum und dein Name. Sie versteht sich als eine Art Landkarte, die Orientierung geben kann.'}
   />
 
   {/* ===================== Process ===================== */}
@@ -67,24 +83,20 @@ const faqItems = [
   <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
 
   {/* ===================== Bio ===================== */}
-   <PersonBio
-    eyebrow="wer dich begleitet"
-    name="Axel Jansen"
-    paragraphs={[
-      'Für mich sind Zahlen keine Etiketten. Sie helfen mir, Menschen besser zu verstehen.vielen Jahren beschäftige ich mich intensiv mit Numerologie und den Zusammenhängen zwischen Zahlen, Persönlichkeit und Lebensweg.',
-      'Was mich bis heute fasziniert: Oft zeigen Zahlen Themen, Talente und Herausforderungen auf, die Menschen tief in sich bereits kennen – aber vielleicht noch nie bewusst betrachtet haben.In meinen Beratungen geht es nicht darum, die Zukunft vorherzusagen. Vielmehr möchte ich Menschen dabei unterstützen, sich selbst besser zu verstehen und neue Perspektiven auf ihr Leben zu gewinnen.',
-      ,
-    ]}
-    image="/images/persons/AxelJansen.jpg" 
+  <PersonBio
+    eyebrow={pd.eyebrow || 'wer dich begleitet'}
+    name={pd.name || 'Axel Jansen'}
+    paragraphs={bioParagraphs}
+    image={imageUrl(pd.image) || '/images/persons/AxelJansen.jpg'}
     imageSide="right"
   />
 
   {/* ===================== Brand CTA ===================== */}
   <BrandCtaBlock
-    title="Bereit, tiefer<br />zu gehen?"
-    body="Deine Zahlen verraten mehr über dich als du denkst. Axel liest sie — klar, direkt, ohne Hokuspokus."
-    ctaText="Termin buchen"
-    ctaHref={bookingUrl}
+    title={d.brand_cta_title || 'Bereit, tiefer<br />zu gehen?'}
+    body={d.brand_cta_body || 'Deine Zahlen verraten mehr über dich als du denkst. Axel liest sie — klar, direkt, ohne Hokuspokus.'}
+    ctaText={d.brand_cta_text || 'Termin buchen'}
+    ctaHref={d.brand_cta_href || bookingUrl}
   />
 
   {/* ===================== FAQ ===================== */}
@@ -94,7 +106,7 @@ const faqItems = [
   <NewsletterBlock
     eyebrow="Newsletter"
     title="Die Magie der Zahlen <br/> – jede Woche neu"
-    body="Jeden Freitag wirft Axel einen Blick auf die Zahlenqualität des kommenden Wochenendes — überraschend präzise und oft erstaunlich nah an den eigenen Erfahrungen. Ergänzt durch Impulse zu Numerologie, systemischem Denken und persönlicher Entwicklung. Wir freuen uns, wenn du dabei bist."
+    body="Jeden Freitag wirft Axel einen Blick auf die Zahlenqualität des kommenden Wochenendes — überraschend präzise und oft erstaunlich nah an den eigenen Erfahrungen. Ergänzt durch Impulse zu Numerologie, systemischem Denken und persönlicher Entwicklung."
     placeholder="E-mail Adresse"
     submitText="Newsletter anmelden"
   />

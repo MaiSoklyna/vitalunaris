@@ -1,0 +1,65 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris content — home page",
+    "description": "Home (block page)"
+  },
+  "content": {
+    "pages": [
+      {
+        "id": "page-home",
+        "slug": "home",
+        "status": "published",
+        "data": {
+          "seo_title": "VitaLunaris – Erforsche die Systeme der Seele",
+          "seo_description": "VitaLunaris in Buchs SG begleitet dich in Tiefenarbeit, Integration und Transformation — mit klarem Vorgehen und geschützten Räumen.",
+          "hero_eyebrow": "Willkommen bei VitaLunaris",
+          "hero_title": "Erforsche die<br class='hero__br--md' /> Systeme der<br class='hero__br--md' />Seele",
+          "hero_subtitle": "VitaLunaris ist dein Ort für systemische Aufstellungsarbeit, Hypnose, Numerologie und persönliche Entwicklung. Hier verbinden sich systemisches Wissen, intuitive Wahrnehmung und die Erfahrung aus jahrzehntelanger Arbeit mit Menschen – getragen von Theresia und Axel Jansen.",
+          "hero_primary_cta_text": "Zu den Ausbildungen",
+          "hero_primary_cta_href": "/ausbildung",
+          "hero_secondary_cta_text": "Zu den Angeboten",
+          "hero_secondary_cta_href": "/praxisangebote",
+          "hero_image": "/images/placeholder/Placeholder_1.jpg",
+          "sections": [
+            {
+              "type": "offer_cards",
+              "title": "Wie können wir dir helfen?",
+              "items": "[{\"icon\":\"/images/ebene/Ebene-14.svg\",\"title\":\"Ich will Systemisches Aufstellen lernen\",\"description\":\"Du willst systemisches Aufstellen nicht nur selbst erleben, sondern auch anwenden oder weitergeben. Wir begleiten dich Schritt für Schritt – von deiner eigenen Aufstellungsreise bis zur Ausbildung zum Systemic Soulcoach. So erhältst du das Handwerk und die Tiefe, die es für eine gute Begleitung braucht.\",\"ctaText\":\"Zu den Ausbildungen →\",\"ctaHref\":\"/ausbildung\"},{\"icon\":\"/images/ebene/Ebene_2.svg\",\"title\":\"Ich will meine Praxis vertiefen oder Neues lernen\",\"description\":\"Du möchtest neue Methoden kennenlernen oder dein bestehendes Wissen erweitern? Aus unserem jahrzehntelangen Erfahrungsschatz geben wir praxisnahes Wissen weiter – in Weiterbildungen und Kursen rund um systemisches Aufstellen, Numerologie, EFT, Hypnotic Selfcare und weitere spannende Themen.\",\"ctaText\":\"Zu den Workshops & Kursen →\",\"ctaHref\":\"/workshops-kurse/kalender-uebersicht\"},{\"icon\":\"/images/ebene/Ebene_2-8.svg\",\"title\":\"Ich suche Veränderung oder Unterstützung\",\"description\":\"Etwas in deinem Leben fühlt sich nicht mehr stimmig an. Vielleicht zeigt sich ein Muster, das sich wiederholt, oder du stehst vor einer wichtigen Entscheidung. Es gibt verschiedene Wege, Klarheit zu gewinnen, neue Perspektiven zu entdecken und wieder in Bewegung zu kommen.\",\"ctaText\":\"Unsere Praxisangebote →\",\"ctaHref\":\"/praxisangebote\"}]"
+            },
+            {
+              "type": "narrative",
+              "tone": "light",
+              "image_side": "left",
+              "image": "/images/placeholder/Placeholder-6.jpg",
+              "title": "Mehr als eine Praxis. <br/> Ein Ort wo Erfahrung auf Tiefe trifft.",
+              "body": "VitaLunaris ist aus über 30 Jahren Erfahrung in der Begleitung von Menschen gewachsen. Ein Ort für alle, die verstehen möchten, warum sich manche Themen im Leben wiederholen, weshalb Beziehungen herausfordernd sein können oder was hinter den eigenen Herausforderungen und Lebenswegen wirkt – und für jene, die diese Arbeit selbst erlernen und weitergeben möchten.\n\nSystemisches Aufstellen, Hypnose und Numerologie sind für uns keine Gegensätze. Sie sind verschiedene Wege, Zusammenhänge sichtbar zu machen, neue Perspektiven zu gewinnen und Veränderung möglich werden zu lassen."
+            },
+            {
+              "type": "narrative",
+              "tone": "purple",
+              "image_side": "right",
+              "image": "/images/placeholder/placeholder-3.jpg",
+              "title": "“VitaLunaris ist ein Raum, in dem Veränderung möglich werden darf. Ein Raum für neue Perspektiven, ehrliche Begegnungen und tiefe Prozesse – auf eine Weise, die zu dir passt.”",
+              "body": "Theresia & Axel Jansen · VitaLunaris"
+            },
+            {
+              "type": "testimonials",
+              "eyebrow": "Stimmen",
+              "title": "Was Menschen sagen.",
+              "items": "[{\"quote\":\"“Nach einer sehr schweren Zeit in meinem Leben fand ich bei VitaLunaris einen geschützten Raum für meinen Weg. Durch die Begleitung von Theresia wurden Zusammenhänge sichtbar, die ich vorher nicht erkennen konnte. Schritt für Schritt fand ich zurück zu Vertrauen, Zuversicht und neuer Lebensfreude. Dafür bin ich von Herzen dankbar.”\",\"name\":\"Claudia N.\"},{\"quote\":\"“Ich stand vor einer wichtigen Entscheidung für meine Zukunft und war unsicher, welchen Weg ich einschlagen sollte. Das Numeroskop von Axel hat mir neue Perspektiven eröffnet und mir geholfen, meine Stärken und Möglichkeiten klarer zu erkennen. Heute weiss ich, dass ich die richtige Entscheidung getroffen habe.”\",\"name\":\"Erika B.\"},{\"quote\":\"“Ich hätte nie gedacht, dass man mit ein bisschen Klopfen so viel erreichen kann. Schon nach dem EFT-Grundkurs konnte ich die Methode in vielen Alltagssituationen anwenden. Besonders schön ist, dass inzwischen auch meine Kinder begeistert mitklopfen. Dieser Kurs war eine echte Bereicherung für unsere ganze Familie.”\",\"name\":\"Ramona K.\"},{\"quote\":\"“Die Ausbildung zum Systemic Soulcoach war für mich weit mehr als eine Ausbildung. Durch die Aufstellungsarbeit habe ich erkannt, dass etwas, das ich jahrelang als Schwäche betrachtet hatte, in Wahrheit ein grosses Potenzial in sich trägt. Theresia hält einen unglaublich sicheren und vertrauensvollen Raum.”\",\"name\":\"Corina B.\"}]"
+            },
+            {
+              "type": "newsletter",
+              "eyebrow": "Newsletter",
+              "title": "Impulse für deine<br />innere Reise.",
+              "body": "Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.\n\nDazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.",
+              "items": "{\"placeholder\":\"E-mail adresse\",\"submitText\":\"Kostenlos abonnieren\"}"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

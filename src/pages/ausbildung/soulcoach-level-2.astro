@@ -8,29 +8,59 @@ import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import { getEmDashEntry } from 'emdash';
+import { nl2br, imageUrl } from '@lib/cms';
 
-/* ----- "Wir schauen auf:" — outcomes arc (4 cards) ----- */
-const outcomes = [
+// Editable at /_emdash/admin/content/ausbildung_programs (falls back to copy below).
+const { entry } = await getEmDashEntry('ausbildung_programs', 'soulcoach-level-2');
+const d: Record<string, any> = entry?.data ?? {};
+
+/* Shared CTA labels (used in several sections) */
+const CTA_ANMELDEN = d.hero_primary_cta_text || 'Jetzt für Level 2 anmelden';
+const CTA_ERSTGESPRAECH = 'Kostenloses Erstgespräch vereinbaren';
+const CTA_HREF = d.hero_primary_cta_href || '/kontakt';
+
+/* ----- "In den drei Monaten tauchen wir tief in:" — outcomes arc (4 modules) ----- */
+const outcomes = d.outcomes?.length ? d.outcomes : [
   {
-    title: 'Aufstellungsbrett',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 1 — Aufstellen & Wahrnehmen',
+    description: 'Das Aufstellungsbrett, Raumaufstellungen und Bodenanker: Du lernst, systemische Prozesse sichtbar zu machen, Dynamiken im Raum wahrzunehmen und Aufstellungen sicher anzuleiten.',
   },
   {
-    title: 'Prozessführung & Gruppenleitung',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 2 — Nervensystem & Tiefe',
+    description: 'Wie Veränderungsprozesse auf das Nervensystem wirken und wie du Intuition mit systemischer Wahrnehmung verbindest. Du begleitest Menschen sicher durch emotionale Prozesse.',
   },
   {
-    title: 'Coaching-Haltung & Ethik',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 3 — Energie & Ahnenlinien',
+    description: 'Energetische Dynamiken erkennen, Ahnenlinien einbeziehen und auch bei komplexen oder herausfordernden Themen den Überblick behalten.',
   },
   {
-    title: 'Nervensystem & Trauma',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
+    title: 'Modul 4 — Prozessführung & Abschluss',
+    description: 'Du entwickelst deinen eigenen Stil als Coach, gewinnst Sicherheit in der Gesprächsführung und integrierst alle Inhalte für deine eigenständige Arbeit.',
+  },
+];
+
+/* ----- "In drei Schritten zu deinem Platz" — 3-step onboarding ----- */
+const steps = [
+  {
+    number: '1',
+    title: 'Vorgespräch',
+    description: 'Wir schauen gemeinsam, ob Level 2 der richtige nächste Schritt für dich ist. Du erzählst, wo du gerade stehst — ich erzähle dir, was dich erwartet.',
+  },
+  {
+    number: '2',
+    title: 'Anmeldung',
+    description: 'Wenn es für uns beide stimmt, erhältst du den Anmeldelink und sicherst dir deinen Platz in der Gruppe.',
+  },
+  {
+    number: '3',
+    title: 'Anfang',
+    description: 'Du erhältst alle Zugänge und alles was du brauchst und startest am nächsten Startdatum.',
   },
 ];
 
 /* ----- "Stimmen aus der Ausbildung" — star reviews ----- */
-const reviews = [
+const reviews = d.testimonials?.length ? d.testimonials : [
   {
     quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»',
     name: 'Jana L.',
@@ -46,54 +76,54 @@ const reviews = [
 ];
 
 /* ----- "Alles was du wissen musst." — fact cards ----- */
-const infoCards = [
-  { eyebrow: 'Nächster Start', body: '1.8.2026' },
+const infoCards = d.info_cards?.length ? d.info_cards : [
+  { eyebrow: 'Nächster Start', body: 'Noch unbekannt' },
   { eyebrow: 'Dauer', body: '3 Monate' },
-  { eyebrow: 'Gruppenformat', body: 'offline & online' },
-  { eyebrow: 'Investition', body: 'CHF 6200.–' },
+  { eyebrow: 'Durchführung', body: 'online oder hybrid, max. 6 Personen' },
+  { eyebrow: 'Investition', body: 'CHF 5200.–' },
 ];
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
-const faqItems = [
-  { question: 'Was ist eine systemische Ausbildung?', answer: 'Eine systemische Ausbildung lehrt, Menschen nicht isoliert, sondern im Kontext ihrer Beziehungen und Systeme zu begleiten. Du lernst, unsichtbare Dynamiken sichtbar und damit veränderbar zu machen.' },
-  { question: 'Warum brauche ich Level 1 als Voraussetzung?', answer: 'Weil die eigene Selbsterfahrung die Grundlage für alles ist, was in Level 2 gezeigt wird. Du kannst andere nur dorthin begleiten, wo du selbst schon warst.' },
-  { question: 'Für wen ist Level 2 geeignet?', answer: 'Für alle, die nach Level 1 systemisch begleiten möchten — ob als Erweiterung einer bestehenden Praxis oder als neuer beruflicher Weg.' },
-  { question: 'Was kann ich nach Level 2 tun?', answer: 'Du kannst eigenständig systemisch begleiten — Einzel- und Gruppenaufstellungen führen und die Methode in deine Arbeit integrieren oder als eigene Praxis anbieten.' },
+const faqItems = d.faq_items?.length ? d.faq_items : [
+  { question: 'Muss ich Level 1 gemacht haben?', answer: 'Ja. Level 2 baut direkt auf der Selbsterfahrung aus Level 1 auf — du kannst andere nur dorthin begleiten, wo du selbst schon warst. Hast du eine vergleichbare systemische Selbsterfahrungsausbildung absolviert, sprich uns an.' },
+  { question: 'Kann ich rein online teilnehmen?', answer: 'Ja. Es gibt eine separate Online-Gruppe. Am Umfang und am Startdatum ändert das nichts.' },
   { question: 'Bekomme ich ein Zertifikat?', answer: 'Ja. Nach erfolgreichem Abschluss von Level 2 erhältst du ein Zertifikat als Systemic Soulcoach.' },
-  { question: 'Wie ist das Format aufgebaut?', answer: 'Wir kombinieren Präsenztage in der Gruppe mit Online-Anteilen — so bleibt Tiefe in der Begegnung erhalten und der Rahmen trotzdem zugänglich.' },
-  { question: 'Was kostet Level 2?', answer: 'Die Investition für Level 2 beträgt CHF 6200.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch.' },
-  { question: 'Lorem ipsum dolor sit?', answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { question: 'Kann ich danach selbständig als Coach arbeiten?', answer: 'Ja. Du kannst eigenständig systemisch begleiten — Einzel- und Gruppenaufstellungen führen und die Methode in deine Arbeit integrieren oder als eigene Praxis anbieten.' },
+  { question: 'Welche Vorkenntnisse brauche ich über Level 1 hinaus?', answer: 'Keine weiteren fachlichen. Die wichtigste Voraussetzung ist Level 1 — oder eine vergleichbare systemische Selbsterfahrung. Alles andere lernst du in Level 2.' },
+  { question: 'Wie gross ist die Gruppe?', answer: 'Die Gruppen sind bewusst klein — maximal 6 Personen. So bleibt genug Raum für Tiefe und persönliche Begleitung.' },
+  { question: 'Was kostet Level 2 und wie wird bezahlt?', answer: 'Die Investition für Level 2 beträgt CHF 5200.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch.' },
+  { question: 'Was wenn ich schon eine vergleichbare systemische Selbsterfahrungsausbildung wie Level 1 gemacht habe?', answer: 'Dann ist ein Einstieg in Level 2 nach Rücksprache möglich. Melde dich für ein kostenloses Erstgespräch — wir schauen gemeinsam, ob deine Vorerfahrung passt.' },
 ];
 ---
 
 <BaseLayout
-  title="Systemic Soulcoach Level 2 – VitaLunaris"
-  description="Level 2 der Ausbildung zum Systemic Soulcoach bei Theresia Jansen — die professionelle Ausbildung für Absolvent:innen von Level 1: andere systemisch begleiten mit Methode, Haltung und eigener Erfahrung."
+  title="Systemic Soulwork Level 2 – VitaLunaris"
+  description="Level 2 der Systemic-Soulwork-Ausbildung bei Theresia Jansen — die professionelle Ausbildung für Absolvent:innen von Level 1: andere systemisch begleiten mit Methode, Haltung und eigener Erfahrung."
   currentPath="/ausbildung/soulcoach-level-2"
 >
   <Hero
-    eyebrow="Ausbildung · Systemic Soulcoach Level 2 · 3 Monate"
-    title="Vertiefe deine<br />systemische Praxis"
-    subtitle="Level 2 ist die professionelle Ausbildung für Absolvent:innen von Level 1. In drei Monaten lernst du, andere systemisch zu begleiten — mit Methode, Haltung und dem Fundament eigener Erfahrung."
-    ctaText="Jetzt für Level 2 anmelden"
-    ctaHref="/kontakt"
-    image="/images/placeholder/Placeholder-8.jpg"
+    eyebrow={d.hero_eyebrow || 'Ausbildung · Systemic Soulcoach Level 2 · 3 Monate'}
+    title={d.hero_title || 'Vertiefe deine<br />systemische Praxis<br />und gib sie weiter.'}
+    subtitle={d.hero_subtitle || 'Level 2 ist die professionelle Ausbildung für Absolvent:innen von Level 1. In drei Monaten lernst du, andere systemisch zu begleiten — mit Methode, Haltung und dem Fundament eigener Erfahrung. Du hast erlebt, wie tiefgründig systemische Arbeit sein kann. Jetzt lernst du, andere auf diesem Weg zu begleiten.'}
+    ctaText={CTA_ANMELDEN}
+    ctaHref={CTA_HREF}
+    image={imageUrl(d.hero_image) || '/images/placeholder/Placeholder-8.jpg'}
   />
 
-  {/* ===================== Narrative — gold ===================== */}
+  {/* ===================== Narrative — gold gradient ===================== */}
   <NarrativeBlock
-    tone="gold"
+    tone="light"
     imageSide="left"
-    image="/images/placeholder/Placeholder-11.jpg"
+    image={imageUrl(d.narrative_image) || '/images/placeholder/Placeholder-11.jpg'}
     imageAlt=""
-    title="Was du in dir entfaltet hast, kannst du jetzt für andere öffnen."
-    body="Level 2 baut direkt auf Level 1 auf — und ist ausschliesslich für Absolvent:innen zugänglich. Nicht als formale Hürde, sondern weil die eigene Selbsterfahrung die Grundlage für alles ist, was in Level 2 gezeigt wird. Du hast dein eigenes System kennengelernt. Du weisst, wie es sich anfühlt, wenn etwas sich löst. Level 2 gibt dir das Handwerk, damit du diesen Raum für andere halten kannst. Für alle, die systemisch begleiten möchten — ob als Erweiterung einer bestehenden Praxis oder als neuer beruflicher Weg."
+    title={d.narrative_title || 'Was du in dir entfaltet hast, kannst du jetzt für andere öffnen.'}
+    body={nl2br(d.narrative_body) || 'Vielleicht hast du während Systemic Soulwork gemerkt, dass dich diese Arbeit nicht nur für dein eigenes Leben begeistert. Genau hier setzt Level 2 an. Du lernst, systemische Prozesse professionell zu begleiten und Menschen achtsam und verantwortungsvoll durch Veränderungsprozesse zu führen. Schritt für Schritt. Von der Teilnehmerin zur Coachin.'}
   />
 
-  {/* ===================== Wir schauen auf: — outcomes arc ===================== */}
+  {/* ===================== In den drei Monaten — outcomes arc ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">Wir schauen auf:</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">{d.outcomes_title || 'In den drei Monaten tauchen wir tief in:'}</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -132,29 +162,60 @@ const faqItems = [
     </div>
 
     <div class="outcomes__cta">
-      <Button href="/kontakt" variant="primary" size="lg">Jetzt für Level 2 anmelden</Button>
+      <Button href={CTA_HREF} variant="primary" size="lg">{CTA_ANMELDEN}</Button>
     </div>
   </section>
+
+  {/* ===================== Was dich nach der Ausbildung erwartet ===================== */}
+  <NarrativeBlock
+    tone="light"
+    imageSide="left"
+    image={imageUrl(d.narrative2_image) || '/images/placeholder/Placeholder-13.jpg'}
+    imageAlt=""
+    title={d.narrative2_title || 'Was dich nach der Ausbildung erwartet'}
+    body={nl2br(d.narrative2_body) || 'Du verfügst über fundiertes systemisches Wissen, praktische Erfahrung und die Sicherheit, eigenständig zu arbeiten. Du kannst systemische Methoden in deine bestehende Tätigkeit integrieren — oder als Systemic Soulcoach selbständig damit arbeiten.'}
+  />
 
   {/* ===================== Stimmen aus der Ausbildung ===================== */}
   <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} />
 
-  {/* ===================== Theresia Jansen — gold, image right ===================== */}
+  {/* ===================== Theresia Jansen — gold band, image right ===================== */}
   <section class="lehrerin">
     <div class="lehrerin__inner">
       <div class="lehrerin__content">
-        <Heading variant="eyebrow" class="lehrerin__eyebrow">Theresia Jansen</Heading>
-        <Heading level={2} variant="h1" class="lehrerin__name">Das Handwerk von jemandem, der es täglich lebt.</Heading>
-        <Text size="p1" class="lehrerin__body">
-          Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In Level 2 gibt sie weiter, was sie selbst erprobt und verfeinert hat — kein importiertes Curriculum, sondern gelebte Praxis aus der Deutschschweiz.
-        </Text>
-        <Text size="p1" class="lehrerin__body">
-          In Level 2 begegnet dir Theresia auf eine neue Art: direkter, fordernder, auf Augenhöhe. Du bringst das Fundament mit — sie holt das Beste daraus heraus.
-        </Text>
+        <Heading variant="eyebrow" class="lehrerin__eyebrow">{d.lehrerin_eyebrow || 'Theresia Jansen'}</Heading>
+        <Heading level={2} variant="h1" class="lehrerin__name">{d.lehrerin_title || 'Das Handwerk von jemandem, der es täglich lebt.'}</Heading>
+        <Text size="p1" class="lehrerin__body"><Fragment set:html={nl2br(d.lehrerin_body) || 'Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In Level 2 gibt sie weiter, was sie selbst erprobt und verfeinert hat — kein importiertes Curriculum, sondern gelebte Praxis aus der Deutschschweiz.<br/><br/>In Level 2 begegnet dir Theresia auf eine neue Art: direkter, fordernder, auf Augenhöhe. Du bringst das Fundament mit — sie holt das Beste daraus heraus.'} /></Text>
       </div>
       <div class="lehrerin__media">
-        <img src="/images/placeholder/placeholder-4.jpg" alt="Theresia Jansen" loading="lazy" decoding="async" />
+        <img src={imageUrl(d.lehrerin_image) || '/images/placeholder/placeholder-4.jpg'} alt="Theresia Jansen" loading="lazy" decoding="async" />
       </div>
+    </div>
+  </section>
+
+  {/* ===================== In drei Schritten zu deinem Platz ===================== */}
+  <section class="steps">
+    <header class="steps__header">
+      <Heading level={2} variant="h1" class="steps__title">In drei Schritten zu deinem Platz</Heading>
+    </header>
+
+    {/* Tablet/Desktop (≥768px): full-bleed 3-dot curve above the columns */}
+    <div class="steps__curve" aria-hidden="true">
+      <img src="/images/ebene/process-curve-3.svg" alt="" loading="lazy" decoding="async" />
+    </div>
+
+    <ol class="steps__list">
+      {steps.map((step) => (
+        <li class="steps__item">
+          <span class="steps__number">{step.number}</span>
+          <Heading level={3} class="steps__item-title">{step.title}</Heading>
+          <Text size="p1" class="steps__item-body">{step.description}</Text>
+        </li>
+      ))}
+    </ol>
+
+    <div class="steps__cta">
+      <Button href={CTA_HREF} variant="primary" size="lg">{CTA_ERSTGESPRAECH}</Button>
     </div>
   </section>
 
@@ -170,12 +231,11 @@ const faqItems = [
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
       <Text size="p1" class="wissen-foot__caption">
-        Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt.<br />
-        Voraussetzung: Abschluss von Level 1 — bei VitaLunaris oder einer vergleichbaren systemischen Selbsterfahrungsausbildung (Rücksprache erforderlich).
+        <Fragment set:html={d.schedule_caption || 'Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt.<br />Voraussetzung: Abschluss von Level 1 — bei VitaLunaris oder einer vergleichbaren systemischen Selbsterfahrungsausbildung (Rücksprache erforderlich).'} />
       </Text>
       <div class="wissen-foot__cta">
-        <Button href="/kontakt" variant="primary" size="lg" class="wissen-foot__btn">Jetzt für Level 2 anmelden</Button>
-        <Button href="/kontakt" variant="header" size="lg" class="wissen-foot__btn">Fragen? Schreib uns.</Button>
+        <Button href={CTA_HREF} variant="primary" size="lg" class="wissen-foot__btn">{CTA_ANMELDEN}</Button>
+        <Button href={CTA_HREF} variant="header" size="lg" class="wissen-foot__btn">Fragen? Schreib uns.</Button>
       </div>
     </div>
   </section>
@@ -187,10 +247,10 @@ const faqItems = [
   <section class="infoanlass">
     <div class="infoanlass__card">
       <div class="infoanlass__content">
-        <Heading variant="eyebrow" class="infoanlass__eyebrow">Infoanlass | 12.08.2026</Heading>
-        <Heading level={2} variant="h1" class="infoanlass__title">Komm zum<br />nächsten Infoanlass<br />am 12.08.2026</Heading>
-        <Text size="p1" class="infoanlass__body">Lorem ipsum dolor sit amet. Online.</Text>
-        <form class="infoanlass__form" action="#" method="POST" novalidate data-mailto-form data-recipient="info@vitalunaris.ch" data-subject="Anmeldung Infoanlass — Systemic Soulcoach Level 2">
+        <Heading variant="eyebrow" class="infoanlass__eyebrow">{d.infoanlass_eyebrow || 'Infoanlass'}</Heading>
+        <Heading level={2} variant="h1" class="infoanlass__title"><Fragment set:html={d.infoanlass_title || 'Komm zum<br />nächsten Infoanlass.'} /></Heading>
+        <Text size="p1" class="infoanlass__body">{d.infoanlass_body || 'Du möchtest mehr über die Systemic-Soulwork-Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.'}</Text>
+        <form class="infoanlass__form" action="#" method="POST" novalidate data-mailto-form data-recipient="info@vitalunaris.ch" data-subject="Anmeldung Infoanlass — Systemic Soulwork Level 2">
           <label for="infoanlass-email" class="infoanlass__label">E-Mail-Adresse</label>
           <input
             id="infoanlass-email"
@@ -241,8 +301,14 @@ const faqItems = [
 </BaseLayout>
 
 <style>
+  /* Testimonials-Block ohne Gold-Verlauf — nur auf dieser Seite */
+  :global([data-page="/ausbildung/soulcoach-level-2"] .t-block) { background: var(--c-spring-wood) !important; }
+</style>
+
+<style>
   /* ============================================================
-     OUTCOMES — "Wir schauen auf:" (dome arc, 4 cards + CTA)
+     OUTCOMES — "In den drei Monaten tauchen wir tief ein:"
+     (dome arc, 4 cards + CTA).
      Mobile/tablet (<1024): two halves with separate curves (-1, -2)
      Desktop (≥1024): single process-curve.svg
      Desktop++ (≥1072): cards + CTA absolutely positioned per Figma
@@ -408,7 +474,6 @@ const faqItems = [
   }
   @media (min-width: 768px) { .outcomes__mobile-card { gap: 26.67px; } }
 
-
   /* ============================================================
      LEHRERIN — "Theresia Jansen" (Pale Gold, text left / image right)
      ============================================================ */
@@ -465,6 +530,102 @@ const faqItems = [
   .lehrerin__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
 
   /* ============================================================
+     STEPS — "In drei Schritten zu deinem Platz"
+     (3-dot dome arc + 3 columns + CTA)
+     Mobile (<768): stacked column. Tablet+ (≥768): curve + 3-col grid.
+     ============================================================ */
+  .steps {
+    background: var(--c-spring-wood);
+    padding: 64px 20px;
+    overflow: hidden;
+  }
+  @media (min-width: 768px)  { .steps { padding: 96px 32px; } }
+  @media (min-width: 1024px) { .steps { padding: 120px 8px; } }
+  @media (min-width: 1280px) { .steps { padding: 120px 0; } }
+
+  .steps__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 12px;
+    max-width: 1106px;
+    margin: 0 auto;
+  }
+  .steps__title { text-align: center; color: var(--c-cherrywood); margin: 0; }
+
+  /* Decorative curve — hidden on phones (stacked layout); full-bleed line ≥768.
+     100vw + negative half-gutter margin breaks out of the section padding so the
+     arc spans the entire page width, edge to edge (like .process on aufstellungen). */
+  .steps__curve { display: none; }
+  @media (min-width: 768px) {
+    .steps__curve {
+      display: block;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-top: 16px;
+      overflow: hidden;
+    }
+    .steps__curve img { display: block; width: 100%; height: auto; }
+  }
+  @media (min-width: 1024px) { .steps__curve { margin-top: 32px; } }
+
+  .steps__list {
+    list-style: none;
+    margin: 24px auto 0;
+    padding: 0;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  @media (min-width: 768px) {
+    .steps__list {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 32px;
+      margin-top: 16px;
+      padding: 0 12px;
+    }
+    .steps__item { flex: 1 1 0; min-width: 0; }
+  }
+  @media (min-width: 1280px) { .steps__list { gap: 64px; padding: 0; } }
+
+  .steps__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  @media (min-width: 1024px) { .steps__item { gap: 16px; } }
+
+  .steps__number {
+    font-family: 'ES Park', serif;
+    font-weight: var(--weight-regular);
+    font-size: var(--h1-size);
+    line-height: 1.1;
+    color: var(--c-cherrywood);
+  }
+  .steps__item-title {
+    color: var(--c-cherrywood);
+    font-weight: var(--weight-medium);
+    font-size: var(--h3-size);
+    line-height: 1.2;
+  }
+  .steps__item-body {
+    color: var(--c-cherrywood);
+    opacity: 0.9;
+    font-size: var(--p1-size);
+    line-height: 1.5;
+  }
+
+  .steps__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  @media (min-width: 1024px) { .steps__cta { margin-top: 56px; } }
+
+  /* ============================================================
      WISSEN — "Alles was du wissen musst." (header + cards + footer)
      ============================================================ */
   .wissen { background: var(--c-spring-wood); padding: 60px 20px 32px; }
@@ -500,7 +661,7 @@ const faqItems = [
   @media (min-width: 640px) { .wissen-foot__cta { flex-direction: row; justify-content: center; gap: 20px; } }
   .wissen-foot__cta :global(.btn) {
     width: 100%;
-    max-width: 320px;
+    max-width: 360px;
     height: 52px;
     min-height: 52px;
     padding: 16px 28px;

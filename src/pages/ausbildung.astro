@@ -10,8 +10,17 @@ import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import { getEmDashEntry } from 'emdash';
+import { jsonArray, nl2br, imageUrl } from '@lib/cms';
 
-const outcomes = [
+// Bespoke block page — editable at /_emdash/admin/content/pages (slug "ausbildung-overview").
+const { entry } = await getEmDashEntry('pages', 'ausbildung-overview');
+const d: Record<string, any> = entry?.data ?? {};
+const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
+const nar1 = sec('narrative'), nar2 = sec('quote'), stg = sec('stages'),
+      out = sec('outcomes'), claim = sec('claim'), darkcta = sec('dark_cta'), nlx = sec('newsletter');
+
+const outcomes = jsonArray(out.items).length ? jsonArray(out.items) : [
   {
     title: 'Du siehst Systeme.',
     description: 'Du erkennst, welche unsichtbaren Dynamiken in Familien, Organisationen oder Beziehungen wirken — und wie sie sich auf einzelne Menschen auswirken.',
@@ -34,7 +43,7 @@ const outcomes = [
   },
 ];
 
-const stages = [
+const stages = jsonArray(stg.items).length ? jsonArray(stg.items) : [
   {
     icon: '/images/ebene/Ebene_2-3.svg',
     eyebrow: 'Teil 1 — Grundlagen',
@@ -55,30 +64,24 @@ const stages = [
   },
 ];
 
-const testimonials = [
+// NOTE: the original "Maria S./Thomas K./Claudia R./Lena M." testimonials here were
+// fabricated (flagged P0). Replaced with the real, attributed Ausbildung reviews.
+const testimonials = jsonArray(sec('testimonials').items).length ? jsonArray(sec('testimonials').items) : [
   {
-    icon: '/images/ebene/Ebene_2-4.svg',
-    quote: 'Die Ausbildung hat mir nicht nur Werkzeuge gegeben — sie hat meinen Blick auf die Welt verändert. Ich sehe heute Systeme, wo ich früher Zufälle vermutet habe.',
-    name: 'Maria S.',
+    quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Ich fühle mich mehr bei mir selbst angekommen.»',
+    name: 'Jana L.',
   },
   {
-    icon: '/images/ebene/Ebene_2-5.svg',
-    quote: 'Theres bringt 30 Jahre Erfahrung in jeden Moment. Das spürt man — in der Klarheit, in der Tiefe, in der Sicherheit, die sie ausstrahlt.',
-    name: 'Thomas K.',
+    quote: '«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»',
+    name: 'Silvia F.',
   },
   {
-    icon: '/images/ebene/Ebene_2-6.svg',
-    quote: 'Was hier passiert, ist mehr als Methodenlernen. Es ist eine Schule des Hinschauens — auf sich selbst, auf andere, auf das, was zwischen uns wirkt.',
-    name: 'Claudia R.',
-  },
-  {
-    icon: '/images/ebene/Ebene_2-7.svg',
-    quote: 'Nach der Ausbildung habe ich angefangen, eigenständig zu arbeiten. Das hätte ich vor zwei Jahren für unmöglich gehalten.',
-    name: 'Lena M.',
+    quote: '«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Theresia schafft einen geschützten Rahmen, der es möglich macht, sich wirklich zu öffnen.»',
+    name: 'Corina B.',
   },
 ];
 
-const faqItems = [
+const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
   {
     question: 'Wie läuft eine systemische Aufstellung ab?',
     answer: 'Du formulierst dein Anliegen, wir wählen gemeinsam Repräsentant:innen für die wichtigen Elemente deines Systems und stellen sie im Raum auf. Was sich dann zeigt — Bewegungen, Sätze, Bilder — arbeiten wir gemeinsam aus.',
@@ -120,26 +123,26 @@ const faqItems = [
   currentPath="/ausbildung"
 >
   <Hero
-    eyebrow="Ausbildung · Systemic Soulcoach"
-    title="Lerne Aufstellen von jemandem, der es lebt."
-    subtitle="Die Ausbildung zum Systemic Soulcoach bei Theres Jansen — in zwei Teilen, aufgebaut auf über 30 Jahren gelebter Praxis. Für alle, die systemisches Aufstellen nicht nur verstehen, sondern professionell begleiten wollen."
-    ctaText="Jetzt Erstgespräch buchen"
-    ctaHref="/kontakt"
-    image="/images/placeholder/Placeholder_1.jpg"
+    eyebrow={d.hero_eyebrow || 'Ausbildung · Systemic Soulcoach'}
+    title={d.hero_title || 'Lerne Aufstellen von jemandem, der es lebt.'}
+    subtitle={d.hero_subtitle || 'Die Ausbildung zum Systemic Soulcoach bei Theres Jansen — in zwei Teilen, aufgebaut auf über 30 Jahren gelebter Praxis. Für alle, die systemisches Aufstellen nicht nur verstehen, sondern professionell begleiten wollen.'}
+    ctaText={d.hero_primary_cta_text || 'Jetzt Erstgespräch buchen'}
+    ctaHref={d.hero_primary_cta_href || '/kontakt'}
+    image={imageUrl(d.hero_image) || '/images/placeholder/Placeholder_1.jpg'}
   />
 
   <NarrativeBlock
     tone="light"
     imageSide="left"
-    image="/images/placeholder/placeholder-2.jpg"
+    image={imageUrl(nar1.image) || '/images/placeholder/placeholder-2.jpg'}
     imageAlt=""
-    title="Diese ist für Menschen, die mit Tiefe arbeiten wollen und bereit sind, das eigene System dabei nicht auszublenden."
+    title={nar1.title || 'Diese ist für Menschen, die mit Tiefe arbeiten wollen und bereit sind, das eigene System dabei nicht auszublenden.'}
   />
 
   {/* "Nach der Ausbildung arbeitest du anderst." */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">Nach der Ausbildung arbeitest du anderst.</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">{out.title || 'Nach der Ausbildung arbeitest du anderst.'}</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1920 */}
@@ -188,9 +191,9 @@ const faqItems = [
   <section class="stages">
     <div class="stages__inner">
       <div class="stages__header">
-        <Heading level={2} variant="h1" class="stages__title">Drei Stufen, ein Weg</Heading>
+        <Heading level={2} variant="h1" class="stages__title">{stg.title || 'Drei Stufen, ein Weg'}</Heading>
         <Text size="p1" class="stages__intro">
-          Die Ausbildung ist in zwei Teile gegliedert, mit einer optionalen Membership für alle, die in der gemeinsamen Praxis bleiben wollen. Jede Stufe baut auf der vorherigen auf.
+          {stg.body || 'Die Ausbildung ist in zwei Teile gegliedert, mit einer optionalen Membership für alle, die in der gemeinsamen Praxis bleiben wollen. Jede Stufe baut auf der vorherigen auf.'}
         </Text>
       </div>
       <div class="stages__grid">
@@ -211,11 +214,11 @@ const faqItems = [
   <NarrativeBlock
     tone="purple"
     imageSide="right"
-    image="/images/placeholder/Placeholder-5.jpg"
+    image={imageUrl(nar2.image) || '/images/placeholder/Placeholder-5.jpg'}
     imageAlt=""
     mediaAspect="16 / 10"
-    title="Was du in dieser Ausbildung lernst, kommt nicht aus einem Lehrbuch. Es kommt aus über 30 Jahren Praxis."
-    body="Theresia & Axel Jansen · VitaLunaris"
+    title={nar2.title || 'Was du in dieser Ausbildung lernst, kommt nicht aus einem Lehrbuch. Es kommt aus über 30 Jahren Praxis.'}
+    body={nar2.body || 'Theresia & Axel Jansen · VitaLunaris'}
   />
 
   <TestimonialsBlock
@@ -225,22 +228,22 @@ const faqItems = [
   />
 
   <ClaimBlock
-    title="Mehr Tiefe. Mehr Freude. Mehr Leben."
-    body="Was du in der Ausbildung lernst, verändert nicht nur deine Arbeit, sondern auch dein Verhältnis zu dir selbst und zu anderen. Tiefenpsychologisch fundiert · Systemisch & körperorientiert · Für Einzelpersonen, Paare & Familien."
-    image="/images/ebene/Ebene_2-7.svg"
+    title={claim.title || 'Mehr Tiefe. Mehr Freude. Mehr Leben.'}
+    body={claim.body || 'Was du in der Ausbildung lernst, verändert nicht nur deine Arbeit, sondern auch dein Verhältnis zu dir selbst und zu anderen. Tiefenpsychologisch fundiert · Systemisch & körperorientiert · Für Einzelpersonen, Paare & Familien.'}
+    image={imageUrl(claim.image) || '/images/ebene/Ebene_2-7.svg'}
     ctaText="Erstgespräch buchen"
     ctaHref="/kontakt"
   />
 
   <DarkCtaBlock
-    eyebrow="Bereit?"
-    title="Bereit, tiefer<br />zu gehen?"
-    body="Wir freuen uns auf dich. Komm in ein unverbindliches Erstgespräch — wir klären gemeinsam, ob die Ausbildung für dich passt."
+    eyebrow={darkcta.eyebrow || 'Bereit?'}
+    title={darkcta.title || 'Bereit, tiefer<br />zu gehen?'}
+    body={darkcta.body || 'Wir freuen uns auf dich. Komm in ein unverbindliches Erstgespräch — wir klären gemeinsam, ob die Ausbildung für dich passt.'}
     ctaText="Erstgespräch buchen"
     ctaHref="/kontakt"
     secondaryCtaText="Alle Angebote"
     secondaryCtaHref="/praxisangebote"
-    backgroundImage="/images/placeholder/narrative-block-7.jpg"
+    backgroundImage={darkcta.image || '/images/placeholder/narrative-block-7.jpg'}
   />
 
   <Faq
@@ -251,8 +254,8 @@ const faqItems = [
 
   <NewsletterBlock
     eyebrow="Newsletter"
-    title="Noch nicht sicher?"
-    body="Melde dich für den Newsletter an — wir informieren dich wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern."
+    title={nlx.title || 'Noch nicht sicher?'}
+    body={nlx.body || 'Melde dich für den Newsletter an — wir informieren dich wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern.'}
     placeholder="E-mail Adresse"
     submitText="Anmelden"
   />

@@ -1,0 +1,14 @@
+{
+  // VitaLunaris EmDash Worker — Cloudflare bindings.
+  // database_id is filled in after `wrangler d1 create vitalunaris-cms`
+  // (or by the Alchemy Labs /api/emdash provisioning flow).
+  "name": "vitalunaris-site",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "vitalunaris-cms", "database_id": "FILL_IN_AFTER_CREATE" }
+  ],
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "vitalunaris-media" }
+  ]
+}

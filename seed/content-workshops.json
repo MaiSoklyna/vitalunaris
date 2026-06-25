@@ -1,0 +1,138 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": { "name": "VitaLunaris content — workshops", "description": "4 workshops migrated from src/pages/workshops-kurse/[slug].astro + data/workshops.ts. Apply: emdash seed seed/content-workshops.json --on-conflict update" },
+  "content": {
+    "workshops": [
+      {
+        "id": "ws-soultap-gegen-angst",
+        "slug": "soultap-gegen-angst",
+        "status": "published",
+        "data": {
+          "title": "SoulTap gegen deine Angst",
+          "date": "2026-09-14",
+          "color": "gold",
+          "category_meta": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
+          "duration_meta": "14.09.2026 · 13:30 Uhr · 120 Min. · Online",
+          "hero_description": "Im September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen. Ein Werkzeug, das du sofort anwenden kannst und das dich noch viele Jahre begleiten wird.",
+          "hero_price": "CHF 66.–",
+          "hero_image": "/images/placeholder/Placeholder-34.jpg",
+          "info_cards": [
+            { "eyebrow": "Wann?", "body": "Der Kurs findet am 14.09.2026 von 13:30 bis 16:00 Uhr statt (ca. 2 h)." },
+            { "eyebrow": "Wo?", "body": "Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail." },
+            { "eyebrow": "Für wen?", "body": "Für Menschen, die zu viel denken, unter Stress oder innerer Unruhe leiden oder ein einfaches Werkzeug für den Alltag suchen. Keine Vorkenntnisse erforderlich." }
+          ],
+          "narrative_title": "Die Angst hinter der Angst",
+          "narrative_body": "Oft steckt hinter einer Angst noch etwas ganz anderes: die Angst, nicht zu genügen. Die Angst vor Ablehnung oder Veränderung. Die Angst, die Kontrolle zu verlieren.<br/><br/>Genau dort setzt SoulTap an — mit EFT, einem der einfachsten und gleichzeitig wirkungsvollsten Werkzeuge zur Selbsthilfe. Durch das sanfte Beklopfen von Meridianpunkten können Stress, Ängste und emotionale Belastungen oft erstaunlich schnell reduziert werden.<br/><br/>Sofort anwendbar, ohne Vorkenntnisse — und ein Werkzeug, das dich noch viele Jahre begleiten kann.",
+          "narrative_image": "/images/placeholder/Placeholder-35.jpg",
+          "narrative_bullet_groups": [
+            { "heading": "Das lernst du im Workshop:", "items": "[\"Grundlagen des EFT-Meridian-Klopfens\",\"Die wichtigsten Klopfpunkte\",\"Warum Stress und Angst im Körper gespeichert werden\",\"Klopfsequenzen für Sorgen, Ängste und innere Unruhe\",\"Praktische Übungen für mehr Selbstvertrauen und innere Sicherheit\",\"Sofort anwendbare Techniken für den Alltag\"]" },
+            { "heading": "Eingeschlossen:", "text": "Live-Workshop, Kursunterlagen, Aufzeichnungen" }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
+          "card_title": "SoulTap Einführungskurs",
+          "card_description": "EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen.",
+          "card_image": "/images/placeholder/Placeholder-12.jpg",
+          "card_duration": "120 Min. | Online"
+        }
+      },
+      {
+        "id": "ws-vagusnerv-ruhe",
+        "slug": "vagusnerv-ruhe",
+        "status": "published",
+        "data": {
+          "title": "Im Vagusnerv liegt die Ruhe",
+          "date": "2026-10-22",
+          "color": "lavender",
+          "category_meta": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
+          "duration_meta": "22.10.2026 · 09:00 Uhr · 120 Min. · Online",
+          "hero_description": "Den Vagusnerv verstehen und gezielt aktivieren: Unser Monats-Workshop im Oktober lädt dich ein, deinen Körper besser kennenzulernen und mit einfachen Methoden mehr Ruhe und Gelassenheit in deinen Alltag zu bringen.",
+          "hero_price": "CHF 66.–",
+          "hero_image": "/images/placeholder/Placeholder-29.jpg",
+          "info_cards": [
+            { "eyebrow": "Wann?", "body": "Der Workshop findet am 22.10.2026 von 09:00 bis 11:00 Uhr statt (ca. 2 Stunden)." },
+            { "eyebrow": "Wo?", "body": "Online via Zoom. Den Zugangslink erhältst du nach der Anmeldung per E-Mail." },
+            { "eyebrow": "Für wen?", "body": "Für Menschen, die sich häufig gestresst fühlen, schlecht abschalten können oder nach einfachen, natürlichen Methoden für mehr Balance im Alltag suchen. Keine Vorkenntnisse erforderlich." }
+          ],
+          "narrative_title": "Mehr Ruhe beginnt im Nervensystem",
+          "narrative_body": "Fühlst du dich manchmal angespannt, erschöpft oder ständig unter Strom? Oft liegt die Ursache nicht im Kopf – oft ist das Nervensystem schlichtweg überfordert.<br/><br/>Genau hier kommt der Vagusnerv ins Spiel. Er spielt eine entscheidende Rolle für Entspannung, Sicherheit und Wohlbefinden. Ist er gut aktiviert, fühlen wir uns sicherer, entspannter und ausgeglichener.<br/><br/>Eine der einfachsten Möglichkeiten, ihn zu unterstützen: die Vagusnerv-Ohrmassage. Eine sanfte Technik, die oft bereits nach kurzer Zeit eine wohltuende Wirkung entfaltet – unauffällig im Alltag anwendbar, ohne Hilfsmittel.",
+          "narrative_image": "/images/placeholder/placeholder-3.jpg",
+          "narrative_bullet_groups": [
+            { "heading": "Das erwartet dich im Workshop:", "items": "[\"Verständliche Einführung in den Vagusnerv\",\"Warum Stress im Körper gespeichert wird\",\"Wie unser Körper zwischen Alarmzustand und Entspannung wechselt\",\"Die wohltuende Vagusnerv-Ohrmassage\",\"Praktische Übungen zur Aktivierung des Vagusnervs\",\"Einfache Techniken für den Alltag\"]" },
+            { "heading": "Eingeschlossen:", "text": "Live-Workshop, Kursunterlagen, Anleitung zur Vagusnerv-Ohrmassage & Aufzeichnung" }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
+          "card_title": "Im Vagusnerv liegt die Ruhe",
+          "card_description": "Den Vagusnerv verstehen und aktivieren – mit einfachen Werkzeugen mehr Ruhe und Gelassenheit in deinen Alltag bringen.",
+          "card_image": "/images/placeholder/Placeholder-29.jpg",
+          "card_duration": "120 Min. | Online"
+        }
+      },
+      {
+        "id": "ws-cool-down-for-christmas",
+        "slug": "cool-down-for-christmas",
+        "status": "published",
+        "data": {
+          "title": "Cool down for Christmas",
+          "date": "2026-11-24",
+          "color": "raspberry",
+          "category_meta": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
+          "duration_meta": "24.11.2026 16:30 Uhr | 210 Min. | Online",
+          "hero_description": "Damit du die Weihnachtszeit geniessen kannst, statt nur durchzuhalten: Unser Monats-Workshop im November lädt dich ein, einen Monat vor Heiligabend bewusst einen Gang zurückzuschalten.",
+          "hero_price": "CHF 66.–",
+          "hero_image": "/images/placeholder/Placeholder-31.jpg",
+          "info_cards": [
+            { "eyebrow": "Wann?", "body": "Der Workshop findet am 24.11.2026 um 16:30 Uhr statt und dauert 210 Min." },
+            { "eyebrow": "Wo?", "body": "Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail." },
+            { "eyebrow": "Für wen?", "body": "Für alle, die der Hektik der Vorweihnachtszeit mit Ruhe, Achtsamkeit und kleinen Ritualen begegnen möchten." }
+          ],
+          "narrative_title": "Entspannungsübungen für eine stressfreie Adventszeit",
+          "narrative_body": "Geschenke, Termine, Erwartungen, Familienfeiern — oft bleibt in der Zeit, die eigentlich besinnlich sein sollte, kaum Raum zum Durchatmen. Genau deshalb gibt es Cool Down for Christmas.<br/><br/>Gemeinsam schauen wir, wie du mit mehr Ruhe und Leichtigkeit durch die Adventszeit gehen kannst — ohne dich selbst dabei zu verlieren.",
+          "narrative_image": "/images/placeholder/Placeholder-29.jpg",
+          "narrative_bullet_groups": [
+            { "heading": "Das erwartet dich im Workshop:", "items": "[\"Warum Weihnachten oft mehr Stress als Freude auslöst\",\"Wie du rechtzeitig aus dem Vorweihnachts-Hamsterrad aussteigen kannst\",\"Praktische Tipps für mehr Gelassenheit im Alltag\",\"Impulse für dein Nervensystem und kleine Entspannungsübungen\",\"Eine wohltuende Entspannungsreise\"]" },
+            { "heading": "Adventsbegleitung inklusive:", "text": "Als Teilnehmerin bist du eingeladen, Teil einer geschlossenen Telegram-Gruppe zu werden — mit regelmässigen Impulsen durch die Adventszeit. Zusätzlich erhältst du Zugang zum beliebten Advents-Audiokalender mit täglichen Geschichten." },
+            { "text": "Eingeschlossen: Live-Workshop, Aufzeichnung, Advents-Telegram-Gruppe & Advents-Audiokalender" }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
+          "card_title": "Cool down for Christmas",
+          "card_description": "Einen Monat vor Heiligabend bewusst einen Gang zurückschalten – damit du die Weihnachtszeit wirklich geniessen kannst.",
+          "card_image": "/images/placeholder/Placeholder-31.jpg",
+          "card_duration": "210 Min. | Online"
+        }
+      },
+      {
+        "id": "ws-adventsgeschichten",
+        "slug": "adventsgeschichten",
+        "status": "published",
+        "data": {
+          "title": "Advents-Geschichten",
+          "date": "2026-12-01",
+          "color": "fire",
+          "category_meta": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
+          "duration_meta": "01.12.2026 | Online",
+          "hero_description": "Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.",
+          "hero_price": "Zahl was du möchtest :)",
+          "hero_image": "/images/placeholder/Placeholder-32.jpg",
+          "info_cards": [
+            { "eyebrow": "Wann?", "body": "24 Audio-Geschichten vom 1. bis 24. Dezember, täglich über Telegram. Berührend, humorvoll, nachdenklich — mitten aus dem Leben." },
+            { "eyebrow": "Wo?", "body": "Direkt über Telegram. Den Link bekommst du nach der Anmeldung per E-Mail." },
+            { "eyebrow": "Für wen?", "body": "Für Menschen, die Geschichten lieben, die Adventszeit bewusster erleben möchten und sich nach mehr Herz und weniger Hektik sehnen." }
+          ],
+          "narrative_title": "Ein täglicher Moment zum Innehalten",
+          "narrative_body": "Manchmal wünsche ich mir die Weihnachtszeit zurück, wie ich sie als Kind erlebt habe. Diese besondere Vorfreude. Das Gefühl, dass jeden Tag etwas Schönes wartet.<br/><br/>Genau aus diesem Wunsch ist der Audio-Adventskalender entstanden. Jeden Morgen öffnet sich ein neues Türchen — dahinter wartet eine kleine Geschichte. Inspiriert von echten Begegnungen, Gedanken aus dem Alltag und Momenten, die berühren.<br/><br/>Beim Frühstück, auf dem Weg zur Arbeit oder einfach dann, wenn du dir ein paar Minuten nur für dich schenken möchtest.",
+          "narrative_image": "/images/placeholder/Placeholder-14.jpg",
+          "narrative_bullet_groups": [
+            { "heading": "Das erwartet dich:", "items": "[\"24 Audio-Geschichten vom 1. bis 24. Dezember\",\"Täglich ein neues Adventstürchen über Telegram\",\"Geschichten zum Schmunzeln, Nachdenken und Fühlen\"]" },
+            { "heading": "Eine Bitte ans Herz:", "text": "In diesem Jahr gibt es die Möglichkeit einer freiwilligen Spende — nicht für mich, sondern für eine Familie aus meinem persönlichen Umfeld. Wer geben möchte, gibt. Wer einfach zuhören möchte, ist genauso herzlich willkommen." }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
+          "card_title": "Advents-Geschichten für Herz und Seele",
+          "card_description": "Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.",
+          "card_image": "/images/placeholder/Placeholder-32.jpg",
+          "card_duration": "Online"
+        }
+      }
+    ]
+  }
+}

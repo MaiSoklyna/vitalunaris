@@ -1,0 +1,111 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": { "name": "VitaLunaris content — ausbildung programs", "description": "Soulcoach Level 1 + 2 migrated from the .astro pages." },
+  "content": {
+    "ausbildung_programs": [
+      {
+        "id": "ausb-soulcoach-level-1",
+        "slug": "soulcoach-level-1",
+        "status": "published",
+        "data": {
+          "seo_title": "Systemic Soulwork Level 1 – VitaLunaris",
+          "seo_description": "Level 1 der Systemic-Soulwork-Ausbildung bei Theresia Jansen — drei Monate Selbsterkenntnis, in denen du dein eigenes System verstehst und das Fundament für systemische Arbeit legst.",
+          "hero_eyebrow": "Ausbildung · Systemic Soulwork Level 1 · 3 Monate",
+          "hero_title": "Entfalte deine<br />systemische Praxis",
+          "hero_subtitle": "Systemische Arbeit lernen, wie sie gelernt werden sollte — an dir selbst. Drei Monate, in denen du endlich verstehst, warum sich bestimmte Dinge in deinem Leben immer wieder wiederholen. Du räumst auf. Du schaust hin. Du verstehst. Für dich selbst, oder als Fundament, um Systemischer Coach zu werden.",
+          "hero_primary_cta_text": "Kostenloses Erstgespräch vereinbaren",
+          "hero_primary_cta_href": "/kontakt",
+          "hero_image": "/images/placeholder/Placeholder-9.jpg",
+          "narrative_title": "Du kannst andere nur so weit begleiten, wie du selbst gegangen bist.",
+          "narrative_body": "Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster, die von Generation zu Generation weitergehen. Systemic Soulwork Level 1 ist nicht nur eine Ausbildung — es ist eine persönliche Reise. Du lernst dich selbst, deine Geschichte und die Muster, die dich prägen, kennen. In einer kleinen Gruppe arbeitest du mit deinem eigenen Thema — und lernst dabei, wie systemische Begleitung funktioniert. Level 1 ist in sich vollständig und gleichzeitig die Grundlage für Level 2.",
+          "narrative_image": "/images/placeholder/Placeholder-10.jpg",
+          "outcomes_title": "In den drei Monaten tauchen wir tief in:",
+          "outcomes": [
+            { "title": "Familiensysteme & Herkunft", "description": "Was haben wir mitbekommen? Was tragen wir – oft ohne es zu wissen? Loyalitäten, Verstrickungen und Muster, die sich durch Generationen ziehen." },
+            { "title": "Eigene Muster & Loyalitäten", "description": "Warum wiederholen sich bestimmte Themen? Was steckt hinter den Entscheidungen, die wir immer wieder treffen?" },
+            { "title": "Beziehungen & Bindungsdynamiken", "description": "Wie gestalten wir Beziehungen – beruflich und privat? Was beeinflusst, wie wir uns verbinden, abgrenzen oder verlieren?" },
+            { "title": "Grundlagen systemischer Begleitung", "description": "Für alle, die auch andere begleiten möchten: die Grundhaltung, die Sprache und die ersten Schritte systemischer Arbeit – mit dem Aufstellungsbrett und mit Menschen." }
+          ],
+          "testimonials": [
+            { "quote": "«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»", "name": "Jana L." },
+            { "quote": "«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Diese Ausbildung ist für mich weit mehr als Lernen. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»", "name": "Silvia F." },
+            { "quote": "«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Ein geschützter Raum, in dem jede einfach sie selbst sein darf. Theresia schafft diesen Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen.»", "name": "Corina B." }
+          ],
+          "teacher": "theresia-jansen",
+          "info_cards": [
+            { "eyebrow": "Nächster Start", "body": "1.8.2026" },
+            { "eyebrow": "Dauer", "body": "3 Monate" },
+            { "eyebrow": "Durchführung", "body": "online oder hybrid, max. 6 Personen" },
+            { "eyebrow": "Investition", "body": "CHF 3800.–" }
+          ],
+          "schedule_caption": "Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt.<br />Solltest du die Ausbildung nur online machen wollen, ist das kein Problem — es gibt eine separate Online-Gruppe und ändert nichts am Umfang oder Startdatum.",
+          "faq_items": [
+            { "question": "Ist Level 1 vollständig oder nur ein Einstieg in Level 2?", "answer": "Level 1 ist ein vollwertiger, in sich geschlossener Ausbildungsabschnitt — und zugleich die Grundlage für Level 2. Du lernst das systemische Handwerk an dir selbst und kannst danach entscheiden, ob du weitergehen möchtest." },
+            { "question": "Für wen ist diese Ausbildung geeignet?", "answer": "Für alle, die systemisch arbeiten wollen — ob für die eigene Entwicklung oder als Grundlage, um später andere zu begleiten. Du brauchst keine fachliche Vorbildung, sondern Offenheit." },
+            { "question": "Muss ich nach Level 1 als Systemic Soulcoach arbeiten?", "answer": "Nein. Viele machen Level 1 für die eigene Entwicklung. Ob du das Gelernte beruflich einsetzt, bleibt vollständig dir überlassen." },
+            { "question": "Welche Vorkenntnisse brauche ich?", "answer": "Keine fachlichen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen." },
+            { "question": "Was ist der Unterschied zu einer klassischen Ausbildung?", "answer": "Wir arbeiten erfahrungsbasiert statt rein theoretisch. Du lernst nicht über Systeme, sondern in ihnen — an deinem eigenen System und an dem der Gruppe." },
+            { "question": "Wie gross ist die Gruppe?", "answer": "Die Gruppen sind bewusst klein — maximal 6 Personen. So bleibt genug Raum, dass jede mit ihrem eigenen Thema gesehen und begleitet werden kann." },
+            { "question": "Was kostet Level 1 und wie wird bezahlt?", "answer": "Die Investition für Level 1 beträgt CHF 3800.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch." },
+            { "question": "Kann ich rein online teilnehmen?", "answer": "Ja. Solltest du die Ausbildung nur online machen wollen, ist das kein Problem — es gibt eine separate Online-Gruppe. Am Umfang und am Startdatum ändert das nichts." }
+          ],
+          "infoanlass_eyebrow": "Infoanlass",
+          "infoanlass_title": "Komm zum<br />nächsten Infoanlass.",
+          "infoanlass_body": "Du möchtest mehr über die Systemic-Soulwork-Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen."
+        }
+      },
+      {
+        "id": "ausb-soulcoach-level-2",
+        "slug": "soulcoach-level-2",
+        "status": "published",
+        "data": {
+          "seo_title": "Systemic Soulwork Level 2 – VitaLunaris",
+          "seo_description": "Level 2 der Systemic-Soulwork-Ausbildung bei Theresia Jansen — die professionelle Ausbildung für Absolvent:innen von Level 1: andere systemisch begleiten mit Methode, Haltung und eigener Erfahrung.",
+          "hero_eyebrow": "Ausbildung · Systemic Soulcoach Level 2 · 3 Monate",
+          "hero_title": "Vertiefe deine<br />systemische Praxis<br />und gib sie weiter.",
+          "hero_subtitle": "Level 2 ist die professionelle Ausbildung für Absolvent:innen von Level 1. In drei Monaten lernst du, andere systemisch zu begleiten — mit Methode, Haltung und dem Fundament eigener Erfahrung. Du hast erlebt, wie tiefgründig systemische Arbeit sein kann. Jetzt lernst du, andere auf diesem Weg zu begleiten.",
+          "hero_primary_cta_text": "Jetzt für Level 2 anmelden",
+          "hero_primary_cta_href": "/kontakt",
+          "hero_image": "/images/placeholder/Placeholder-8.jpg",
+          "narrative_title": "Was du in dir entfaltet hast, kannst du jetzt für andere öffnen.",
+          "narrative_body": "Vielleicht hast du während Systemic Soulwork gemerkt, dass dich diese Arbeit nicht nur für dein eigenes Leben begeistert. Dass du gut zuhören kannst. Dass du die Zusammenhänge erkennst. Genau hier setzt Level 2 an. Du lernst, systemische Prozesse professionell zu begleiten. Du entwickelst Sicherheit in der Gesprächsführung, vertiefst dein Verständnis für komplexe Dynamiken und lernst, Menschen achtsam und verantwortungsvoll durch Veränderungsprozesse zu führen. Schritt für Schritt. Von der Teilnehmerin zur Coachin.",
+          "narrative_image": "/images/placeholder/Placeholder-11.jpg",
+          "outcomes_title": "In den drei Monaten tauchen wir tief in:",
+          "outcomes": [
+            { "title": "Modul 1 — Aufstellen & Wahrnehmen", "description": "Das Aufstellungsbrett, Raumaufstellungen und Bodenanker: Du lernst, systemische Prozesse sichtbar zu machen, Dynamiken im Raum wahrzunehmen und Aufstellungen sicher anzuleiten." },
+            { "title": "Modul 2 — Nervensystem & Tiefe", "description": "Wie Veränderungsprozesse auf das Nervensystem wirken und wie du Intuition mit systemischer Wahrnehmung verbindest. Du begleitest Menschen sicher durch emotionale Prozesse." },
+            { "title": "Modul 3 — Energie & Ahnenlinien", "description": "Energetische Dynamiken erkennen, Ahnenlinien einbeziehen und auch bei komplexen oder herausfordernden Themen den Überblick behalten." },
+            { "title": "Modul 4 — Prozessführung & Abschluss", "description": "Du entwickelst deinen eigenen Stil als Coach, gewinnst Sicherheit in der Gesprächsführung und integrierst alle Inhalte für deine eigenständige Arbeit." }
+          ],
+          "testimonials": [
+            { "quote": "«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen.»", "name": "Jana L." },
+            { "quote": "«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»", "name": "Silvia F." },
+            { "quote": "«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Theresia schafft einen geschützten Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen.»", "name": "Corina B." }
+          ],
+          "teacher": "theresia-jansen",
+          "info_cards": [
+            { "eyebrow": "Nächster Start", "body": "Noch unbekannt" },
+            { "eyebrow": "Dauer", "body": "3 Monate" },
+            { "eyebrow": "Durchführung", "body": "online oder hybrid, max. 6 Personen" },
+            { "eyebrow": "Investition", "body": "CHF 5200.–" }
+          ],
+          "schedule_caption": "Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt.<br />Voraussetzung: Abschluss von Level 1 — bei VitaLunaris oder einer vergleichbaren systemischen Selbsterfahrungsausbildung (Rücksprache erforderlich).",
+          "faq_items": [
+            { "question": "Muss ich Level 1 gemacht haben?", "answer": "Ja. Level 2 baut direkt auf der Selbsterfahrung aus Level 1 auf — du kannst andere nur dorthin begleiten, wo du selbst schon warst. Hast du eine vergleichbare systemische Selbsterfahrungsausbildung absolviert, sprich uns an." },
+            { "question": "Kann ich rein online teilnehmen?", "answer": "Ja. Es gibt eine separate Online-Gruppe. Am Umfang und am Startdatum ändert das nichts." },
+            { "question": "Bekomme ich ein Zertifikat?", "answer": "Ja. Nach erfolgreichem Abschluss von Level 2 erhältst du ein Zertifikat als Systemic Soulcoach." },
+            { "question": "Kann ich danach selbständig als Coach arbeiten?", "answer": "Ja. Du kannst eigenständig systemisch begleiten — Einzel- und Gruppenaufstellungen führen und die Methode in deine Arbeit integrieren oder als eigene Praxis anbieten." },
+            { "question": "Welche Vorkenntnisse brauche ich über Level 1 hinaus?", "answer": "Keine weiteren fachlichen. Die wichtigste Voraussetzung ist Level 1 — oder eine vergleichbare systemische Selbsterfahrung. Alles andere lernst du in Level 2." },
+            { "question": "Wie gross ist die Gruppe?", "answer": "Die Gruppen sind bewusst klein — maximal 6 Personen. So bleibt genug Raum für Tiefe und persönliche Begleitung." },
+            { "question": "Was kostet Level 2 und wie wird bezahlt?", "answer": "Die Investition für Level 2 beträgt CHF 5200.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch." },
+            { "question": "Was wenn ich schon eine vergleichbare systemische Selbsterfahrungsausbildung wie Level 1 gemacht habe?", "answer": "Dann ist ein Einstieg in Level 2 nach Rücksprache möglich. Melde dich für ein kostenloses Erstgespräch — wir schauen gemeinsam, ob deine Vorerfahrung passt." }
+          ],
+          "infoanlass_eyebrow": "Infoanlass",
+          "infoanlass_title": "Komm zum<br />nächsten Infoanlass.",
+          "infoanlass_body": "Du möchtest mehr über die Systemic-Soulwork-Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen."
+        }
+      }
+    ]
+  }
+}

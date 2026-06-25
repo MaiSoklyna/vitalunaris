@@ -8,9 +8,19 @@ import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import { getEmDashEntry } from 'emdash';
+import { jsonArray, nl2br, imageUrl } from '@lib/cms';
+
+// Editable at /_emdash/admin/content/ausbildung_programs (entry "uebersicht").
+// Design/CSS stay in this file; text + card arrays come from the CMS section bag.
+const { entry } = await getEmDashEntry('ausbildung_programs', 'uebersicht');
+const d: Record<string, any> = entry?.data ?? {};
+const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
+const nar = sec('narrative'), stg = sec('stages'), out = sec('outcomes'),
+      leh = sec('lehrerin'), uq = sec('uquote'), nlx = sec('newsletter');
 
 /* ----- "Drei Stufen, ein Weg" — three stage cards (image + eyebrow + title + body + CTA) ----- */
-const stages = [
+const stages = jsonArray(stg.items).length ? jsonArray(stg.items) : [
   {
     image: '/images/cards/card-1.jpg', 
     eyebrow: 'Teil 1 — Grundlagen',
@@ -35,7 +45,7 @@ const stages = [
 ];
 
 /* ----- "Nach dieser Ausbildung arbeitest du anderst." — outcomes arc (4 cards) ----- */
-const outcomes = [
+const outcomes = jsonArray(out.items).length ? jsonArray(out.items) : [
   {
     title: 'Du siehst Systeme.',
     description: 'Muster, Dynamiken, Loyalitäten — du erkennst sie früher. In der Arbeit mit anderen, und in deinem eigenen Leben.',
@@ -55,7 +65,7 @@ const outcomes = [
 ];
 
 /* ----- "Stimmen aus der Ausbildung" — star reviews ----- */
-const reviews = [
+const reviews = jsonArray(sec('testimonials').items).length ? jsonArray(sec('testimonials').items) : [
   {
     quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»',
     name: 'Jana L.',
@@ -70,7 +80,7 @@ const reviews = [
   },
 ];
 
-const faqItems = [
+const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
   {
     question: 'Brauche ich Vorkenntnisse für die Ausbildung?',
     answer: 'Nein. Du musst keine therapeutische oder psychologische Vorbildung mitbringen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen.',
@@ -104,43 +114,49 @@ const faqItems = [
     answer: 'Hier geht es um mehr als Methodenlernen. Aufgebaut auf über 30 Jahren gelebter Praxis verbindet die Ausbildung Handwerk und Haltung — und du durchlebst selbst, was du später weitergibst. Diese Tiefe macht den Unterschied.',
   },
 ];
+
+const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : [
+  'Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch.',
+  'Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.',
+  'Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht.',
+];
 ---
 
 <BaseLayout
   title="Übersicht – Systemic Soulcoach Ausbildung bei VitaLunaris"
   description="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen die mit Menschen arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren Praxis in der Deutschschweiz."
-  currentPath="/uebersicht"
+  currentPath="/ausbildung/uebersicht"
 >
   <OverviewHero
-    eyebrow="Systemic Soulcoach Ausbildung"
-    title="Systemische Arbeit.<br />Professionell begleiten<br />und wirklich tief gehen."
-    subtitle="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen, die mit Tiefe arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren gelebter Praxis in der Deutschschweiz."
+    eyebrow={d.hero_eyebrow || 'Systemic Soulcoach Ausbildung'}
+    title={d.hero_title || 'Systemische Arbeit.<br />Professionell begleiten<br />und wirklich tief gehen.'}
+    subtitle={d.hero_subtitle || 'Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen, die mit Tiefe arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren gelebter Praxis in der Deutschschweiz.'}
   />
 
   {/* ===================== Methode. Haltung. Tiefe. ===================== */}
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/placeholder/Placeholder-7.jpg"
+    image={imageUrl(nar.image) || '/images/placeholder/Placeholder-7.jpg'}
     imageAlt=""
-    title="Methode.<br />Haltung. Tiefe."
-    body="Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen ohne je ausgesprochen zu werden.<br/> <br/> Was sich im Leben einer Person immer wiederholt, sitzt selten nur in ihr. Ein Systemic Soulcoach sieht das System hinter der Person — und weiss, wie er es begleiten kann."
+    title={nar.title || 'Methode.<br />Haltung. Tiefe.'}
+    body={nl2br(nar.body) || 'Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen ohne je ausgesprochen zu werden.<br/> <br/> Was sich im Leben einer Person immer wiederholt, sitzt selten nur in ihr. Ein Systemic Soulcoach sieht das System hinter der Person — und weiss, wie er es begleiten kann.'}
   />
 
   {/* ===================== Drei Stufen, ein Weg ===================== */}
   <section class="stages">
     <div class="stages__inner">
       <div class="stages__header">
-        <Heading level={2} variant="h1" class="stages__title">Drei Stufen, ein Weg</Heading>
+        <Heading level={2} variant="h1" class="stages__title">{stg.title || 'Drei Stufen, ein Weg'}</Heading>
         <Text size="p1" class="stages__intro">
-          Jede Stufe baut auf der vorherigen auf. Du entscheidest nach Level 1 — aber die meisten wollen tiefer.
+          {stg.body || 'Jede Stufe baut auf der vorherigen auf. Du entscheidest nach Level 1 — aber die meisten wollen tiefer.'}
         </Text>
       </div>
       <div class="stages__grid">
         {stages.map((s) => (
           <article class="stage-card">
             <div class="stage-card__media">
-              <img src={s.image} alt="" loading="lazy" decoding="async" />
+              <img src={imageUrl(s.image)} alt="" loading="lazy" decoding="async" />
             </div>
             <div class="stage-card__text">
               <Heading variant="eyebrow" class="stage-card__eyebrow">{s.eyebrow}</Heading>
@@ -159,7 +175,7 @@ const faqItems = [
   {/* ===================== Nach dieser Ausbildung arbeitest du anderst. ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">Nach dieser Ausbildung arbeitest du anderst.</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">{out.title || 'Nach dieser Ausbildung arbeitest du anderst.'}</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -202,20 +218,14 @@ const faqItems = [
   <section class="lehrerin">
     <div class="lehrerin__inner">
       <div class="lehrerin__media">
-        <img src="/images/placeholder/Placeholder-8.jpg" alt="Theresia Jansen" loading="lazy" decoding="async" />
+        <img src={imageUrl(leh.image) || '/images/placeholder/Placeholder-8.jpg'} alt="Theresia Jansen" loading="lazy" decoding="async" />
       </div>
       <div class="lehrerin__content">
-        <Heading variant="eyebrow" class="lehrerin__eyebrow">Deine Lehrerin</Heading>
-        <Heading level={2} variant="h1" class="lehrerin__name">Theresia Jansen</Heading>
-        <Text size="p1" class="lehrerin__body">
-         Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch.
-        </Text>
-        <Text size="p1" class="lehrerin__body">
-          Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.
-        </Text>
-         <Text size="p1" class="lehrerin__body">
-          Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht.
-        </Text>
+        <Heading variant="eyebrow" class="lehrerin__eyebrow">{leh.eyebrow || 'Deine Lehrerin'}</Heading>
+        <Heading level={2} variant="h1" class="lehrerin__name">{leh.title || 'Theresia Jansen'}</Heading>
+        {lehrerinParagraphs.map((p: string) => (
+          <Text size="p1" class="lehrerin__body"><Fragment set:html={p} /></Text>
+        ))}
         <div class="lehrerin__cta">
           <Button href="/ueber-uns" variant="primary" size="lg">Mehr über Theresia</Button>
         </div>
@@ -230,13 +240,13 @@ const faqItems = [
   <section class="uquote">
     <div class="uquote__inner">
       <div class="uquote__media">
-        <img src="/images/placeholder/Placeholder-5.jpg" alt="" loading="lazy" decoding="async" />
+        <img src={imageUrl(uq.image) || '/images/placeholder/Placeholder-5.jpg'} alt="" loading="lazy" decoding="async" />
       </div>
       <div class="uquote__content">
         <Heading level={2} variant="h1" class="uquote__text">
-          „Menschen verändern sich nicht, weil man ihnen sagt, was sie tun sollen. Sie verändern sich, wenn sie beginnen zu verstehen, was sie bisher unbewusst getragen hat.“
+          {uq.title || '„Menschen verändern sich nicht, weil man ihnen sagt, was sie tun sollen. Sie verändern sich, wenn sie beginnen zu verstehen, was sie bisher unbewusst getragen hat.“'}
         </Heading>
-        <Text size="p1" class="uquote__attribution">Theresia Jansen · VitaLunaris</Text>
+        <Text size="p1" class="uquote__attribution">{uq.body || 'Theresia Jansen · VitaLunaris'}</Text>
       </div>
     </div>
   </section>
@@ -246,8 +256,8 @@ const faqItems = [
 
   {/* ===================== Noch nicht sicher? — Newsletter ===================== */}
   <NewsletterBlock
-    title="Noch nicht sicher?"
-    body="Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern."
+    title={nlx.title || 'Noch nicht sicher?'}
+    body={nlx.body || 'Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern.'}
     placeholder="E-mail Adresse"
     submitText="Anmelden"
   />

@@ -1,0 +1,182 @@
+---
+/* ============================================================
+   BLOCKS — section router for the EmDash `pages` collection.
+   Each entry in `pages.sections` (a repeater) has a `type` and a
+   shared set of fields (eyebrow / title / body / image / image_side /
+   tone / items). This component maps each section type to the matching
+   organism, so a page in the admin is a list of editable blocks.
+
+   `items` holds the block's repeating data as a JSON string (EmDash
+   repeaters can't nest), parsed here per block type.
+   ============================================================ */
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import OfferCardsBlock from '@organisms/OfferCardsBlock.astro';
+import ValueCardsBlock from '@organisms/ValueCardsBlock.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import ProcessSteps from '@organisms/ProcessSteps.astro';
+import InfoCardsRow from '@organisms/InfoCardsRow.astro';
+import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+import PersonBio from '@organisms/PersonBio.astro';
+import ClaimBlock from '@organisms/ClaimBlock.astro';
+import DarkCtaBlock from '@organisms/DarkCtaBlock.astro';
+import ContactForm from '@organisms/ContactForm.astro';
+import NewsletterHero from '@organisms/NewsletterHero.astro';
+import OverviewHero from '@organisms/OverviewHero.astro';
+import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
+import { nl2br, jsonArray, parseJson, imageUrl } from '@lib/cms';
+
+interface Section {
+  type?: string;
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+  image?: string;
+  image_side?: 'left' | 'right';
+  tone?: string;
+  items?: unknown;
+}
+
+interface Props {
+  sections?: Section[];
+}
+
+const { sections = [] } = Astro.props;
+---
+
+{sections.map((s) => {
+  const side = (s.image_side as 'left' | 'right') || 'left';
+  switch (s.type) {
+    case 'narrative':
+      return (
+        <NarrativeBlock
+          tone={(s.tone as any) || 'light'}
+          imageSide={side}
+          image={imageUrl(s.image)}
+          imageAlt=""
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          body={nl2br(s.body)}
+        />
+      );
+    case 'offer_cards':
+      return <OfferCardsBlock title={s.title || ''} offers={jsonArray(s.items)} />;
+    case 'value_cards':
+      return <ValueCardsBlock eyebrow={s.eyebrow} title={s.title} cards={jsonArray(s.items)} />;
+    case 'testimonials':
+      return <TestimonialsBlock eyebrow={s.eyebrow} title={s.title || ''} testimonials={jsonArray(s.items)} />;
+    case 'process_steps':
+      return <ProcessSteps eyebrow={s.eyebrow} title={s.title} steps={jsonArray(s.items)} />;
+    case 'info_cards':
+      return <InfoCardsRow cards={jsonArray(s.items)} />;
+    case 'faq':
+      return <Faq eyebrow={s.eyebrow} title={s.title} items={jsonArray(s.items)} theme={s.tone === 'dark' ? 'dark' : 'light'} />;
+    case 'newsletter': {
+      const cfg = parseJson(s.items);
+      return (
+        <NewsletterBlock
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          body={s.body}
+          placeholder={cfg.placeholder}
+          submitText={cfg.submitText}
+        />
+      );
+    }
+    case 'person_bio':
+      return (
+        <PersonBio
+          eyebrow={s.eyebrow}
+          name={s.title || ''}
+          paragraphs={jsonArray(s.items)}
+          image={imageUrl(s.image)}
+          imageSide={side === 'left' ? 'left' : 'right'}
+        />
+      );
+    case 'claim_block': {
+      const cfg = parseJson(s.items);
+      return <ClaimBlock title={s.title || ''} body={s.body} image={imageUrl(s.image)} ctaText={cfg.ctaText} ctaHref={cfg.ctaHref} />;
+    }
+    case 'dark_cta': {
+      const cfg = parseJson(s.items);
+      return (
+        <DarkCtaBlock
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          body={s.body}
+          ctaText={cfg.ctaText}
+          ctaHref={cfg.ctaHref}
+          secondaryCtaText={cfg.secondaryCtaText}
+          secondaryCtaHref={cfg.secondaryCtaHref}
+          backgroundImage={imageUrl(s.image)}
+        />
+      );
+    }
+    case 'overview_hero':
+      return <OverviewHero graphic={imageUrl(s.image)} eyebrow={s.eyebrow} title={s.title || ''} subtitle={s.body} />;
+    case 'practice_offers':
+      return (
+        <section class="blk-offers">
+          <div class="blk-offers__inner">
+            {jsonArray(s.items).map((o: any) => (
+              <PracticeOfferRow
+                tone={o.tone}
+                eyebrow={o.eyebrow}
+                title={o.title}
+                body={o.body}
+                image={imageUrl(o.image)}
+                primaryText={o.primaryText}
+                primaryHref={o.primaryHref}
+                secondaryText={o.secondaryText}
+                secondaryHref={o.secondaryHref}
+              />
+            ))}
+          </div>
+        </section>
+      );
+    case 'newsletter_hero': {
+      const cfg = parseJson(s.items);
+      return (
+        <NewsletterHero
+          logo={imageUrl(s.image)}
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          paragraphs={cfg.paragraphs || []}
+          placeholder={cfg.placeholder}
+          submitText={cfg.submitText}
+        />
+      );
+    }
+    case 'contact_form': {
+      const cfg = parseJson(s.items);
+      return (
+        <ContactForm
+          recipient={cfg.recipient}
+          emailPlaceholder={cfg.emailPlaceholder}
+          firstNamePlaceholder={cfg.firstNamePlaceholder}
+          lastNamePlaceholder={cfg.lastNamePlaceholder}
+          messagePlaceholder={cfg.messagePlaceholder}
+          submitText={cfg.submitText}
+        />
+      );
+    }
+    default:
+      return null;
+  }
+})}
+
+<style>
+  /* Wrapper for the practice_offers block (offer-row cards). */
+  .blk-offers { background: var(--c-spring-wood); padding: 8px 20px 60px; }
+  @media (min-width: 768px)  { .blk-offers { padding: 8px 32px 80px; } }
+  @media (min-width: 1280px) { .blk-offers { padding: 16px 60px 90px; } }
+  @media (min-width: 1920px) { .blk-offers { padding: 16px 90px 120px; } }
+  .blk-offers__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (min-width: 1280px) { .blk-offers__inner { gap: 32px; } }
+</style>

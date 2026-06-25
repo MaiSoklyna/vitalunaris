@@ -1,22 +1,35 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import NewsletterHero from '@organisms/NewsletterHero.astro';
+import Blocks from '@organisms/Blocks.astro';
+import { getEmDashEntry } from 'emdash';
+
+// Block page — editable at /_emdash/admin/content/pages (slug "neuigkeiten").
+const { entry } = await getEmDashEntry('pages', 'neuigkeiten');
+const d: Record<string, any> = entry?.data ?? {};
+
+const FALLBACK_SECTIONS = [
+  {
+    type: 'newsletter_hero',
+    image: 'images/ebene/Ebene_2.svg',
+    eyebrow: 'VitaLunaris News',
+    title: 'Bleib dabei, bei uns gibts<br />immer etwas Neues',
+    items: {
+      paragraphs: [
+        'Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.',
+        'Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.',
+      ],
+      placeholder: 'E-mail Adresse',
+      submitText: 'Zum Newsletter anmelden',
+    },
+  },
+];
+const sections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
 ---
 
 <BaseLayout
-  title="News | VitaLunaris"
-  description="Bleib dabei — bei VitaLunaris gibt es immer etwas Neues. Kurstermine, Podcast-Episoden, Inspirationen und Einblicke hinter die Kulissen, direkt in deiner Inbox."
+  title={d.seo_title || 'News | VitaLunaris'}
+  description={d.seo_description || 'Bleib dabei — bei VitaLunaris gibt es immer etwas Neues. Kurstermine, Podcast-Episoden, Inspirationen und Einblicke hinter die Kulissen, direkt in deiner Inbox.'}
   currentPath="/neuigkeiten"
 >
-  <NewsletterHero
-    logo="images/ebene/Ebene_2.svg" 
-    eyebrow="VitaLunaris News"
-    title={`Bleib dabei, bei uns gibts<br />immer etwas Neues`}
-    paragraphs={[
-      'Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.',
-      'Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.',
-    ]}
-    placeholder="E-mail Adresse"
-    submitText="Zum Newsletter anmelden"
-  />
+  <Blocks sections={sections} />
 </BaseLayout>

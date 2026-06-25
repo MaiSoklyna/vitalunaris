@@ -9,51 +9,31 @@ import Faq from '@organisms/Faq.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import { getEmDashEntry, getEmDashCollection } from 'emdash';
+import { jsonArray, nl2br, imageUrl } from '@lib/cms';
 
-const infoCards = [
-  { eyebrow: 'Wann?', body: 'Der Kurs findet am 12.8.2026 um 16:30 Uhr statt und dauert 2.5 h.' },
-  { eyebrow: 'Wo?', body: 'Online via Zoom, den Link bekommst du nach der Anmeldung per E-Mail.' },
-  { eyebrow: 'Für wen?', body: 'Für Menschen, die neugierig sind, erste Erfahrungen mit systemischer Arbeit machen möchten und spüren, dass sich etwas bewegen will, der Verstand es aber nicht erklären kann.' },
+// Editable at /_emdash/admin/content/workshops (entry "aktueller-monatsworkshop").
+// "Current month's workshop" — defaults to featuring the next workshop; edit each month in the admin.
+const { entry } = await getEmDashEntry('workshops', 'aktueller-monatsworkshop');
+const d: Record<string, any> = entry?.data ?? {};
+const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
+const heroS = sec('hero'), nar = sec('narrative'), about = sec('about');
+
+const infoCards = jsonArray(sec('info_cards').items).length ? jsonArray(sec('info_cards').items) : [
+  { eyebrow: 'Wann?', body: 'Der Kurs findet am 14.09.2026 von 13:30 bis 16:00 Uhr statt (ca. 2 h).' },
+  { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.' },
+  { eyebrow: 'Für wen?', body: 'Für Menschen, die neugierig sind, erste Erfahrungen mit systemischer Arbeit machen möchten und spüren, dass sich etwas bewegen will.' },
 ];
 
-const testimonials = [
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
-  { quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam nostrud exercitation.', name: 'Maria S.' },
+// Real, attributed workshop reviews (the previous "Maria S." Lorem testimonials were fabricated).
+const testimonials = jsonArray(sec('testimonials').items).length ? jsonArray(sec('testimonials').items) : [
+  { quote: '„Anfangs war ich neugierig – am Ende begeistert. Plötzlich ergaben viele Verhaltensweisen viel mehr Sinn. Voller Aha-Momente und ein neuer Blick auf Menschen.“', name: 'Marianne S.' },
+  { quote: '„Der Workshop war klar strukturiert, verständlich und mit viel Herz gestaltet. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Vielen Dank für diesen inspirierenden Tag!“', name: 'Marina C.' },
+  { quote: '„Ich bin noch immer erstaunt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Ein Werkzeug, das ich jederzeit anwenden kann. Herzlichen Dank für diesen praxisnahen Kurs!“', name: 'Sandra M.' },
+  { quote: '„Die Atemübungen und das Tapping helfen mir konkret, wenn Druck entsteht. Ich merke, dass ich im Familienalltag ruhiger bin. Viele praktische Werkzeuge, die sich leicht umsetzen lassen.“', name: 'Desiree Z.' },
 ];
 
-const furtherCourses = [
-  {
-    image: '/images/placeholder/Placeholder-12.jpg',
-    eyebrow: 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026',
-    title: 'SoulTap Einführungskurs',
-    description: 'EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen.',
-    price: 'CHF 66.–',
-    duration: '120 Min. | Online',
-    ctaHref: '/workshops-kurse/soultap-gegen-angst',
-  },
-  {
-    image: '/images/placeholder/Placeholder-29.jpg',
-    eyebrow: 'MONATS-WORKSHOP | OKTOBER | 22.10.2026',
-    title: 'Im Vagusnerv liegt die Ruhe',
-    description: 'Den Vagusnerv verstehen und aktivieren – mit einfachen Werkzeugen mehr Ruhe und Gelassenheit in deinen Alltag bringen.',
-    price: 'CHF 66.–',
-    duration: '120 Min. | Online',
-    ctaHref: '/workshops-kurse/vagusnerv-ruhe',
-  },
-  {
-    image: '/images/placeholder/Placeholder-31.jpg',
-    eyebrow: 'MONATS-WORKSHOP | NOVEMBER | 24.11.2026',
-    title: 'Cool down for Christmas',
-    description: 'Einen Monat vor Heiligabend bewusst einen Gang zurückschalten – damit du die Weihnachtszeit wirklich geniessen kannst.',
-    price: 'CHF 66.–',
-    duration: '210 Min. | Online',
-    ctaHref: '/workshops-kurse/cool-down-for-christmas',
-  },
-];
-
-const faqItems = [
+const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
   { question: 'Für wen sind die Workshops geeignet?', answer: 'Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.' },
   { question: 'Was ist der Unterschied zwischen einem Workshop und der Ausbildung?', answer: 'Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.' },
   { question: 'Brauche ich Vorkenntnisse für den Kurs?', answer: 'Nein. Der Kurs ist so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
@@ -63,22 +43,40 @@ const faqItems = [
   { question: 'Gibt es auch Online-Formate?', answer: 'Ja. Dieser Kurs findet online via Zoom statt — den Link bekommst du nach der Anmeldung per E-Mail.' },
   { question: 'Was passiert wenn ein Workshop ausgebucht ist?', answer: 'Du kannst dich auf die Warteliste setzen. Wird ein Platz frei oder kommt ein Zusatztermin, informieren wir dich zuerst.' },
 ];
+
+// "Weitere Kurse" pulled from the editable workshops collection.
+const { entries: allWs } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
+const furtherCourses = (allWs ?? []).slice(0, 3).map((e: any) => ({
+  image: imageUrl(e.data?.card_image),
+  eyebrow: e.data?.card_eyebrow,
+  title: e.data?.card_title,
+  description: e.data?.card_description,
+  price: e.data?.hero_price,
+  duration: e.data?.card_duration,
+  ctaText: 'Mehr erfahren',
+  ctaHref: `/workshops-kurse/${e.id}`,
+}));
+
+const aboutParas = jsonArray(about.items).length ? jsonArray(about.items) : [
+  'Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In ihren Workshops verbindet sie Aufstellungen, EFT, Nervensystem-Arbeit und Heilkunde zu einem Erfahrungsraum, der seinesgleichen sucht.',
+  'Axel Jansen bringt Hypnose und Numerologie in Workshops ein, die gleichermassen präzise wie zugänglich sind. Zahlenmagie ohne Kitsch, Hypnose ohne Bühnentricks. Zusammen bieten Theres und Axel ein Spektrum, das in dieser Form in der Deutschschweiz einzigartig ist.',
+];
 ---
 
 <BaseLayout
-  title="Aktueller Monatsworkshop | VitaLunaris"
-  description="Aktueller Monatsworkshop — Termine, Details und Anmeldung."
+  title={d.seo_title || 'Aktueller Monatsworkshop | VitaLunaris'}
+  description={d.seo_description || 'Aktueller Monatsworkshop — Termine, Details und Anmeldung.'}
   currentPath="/workshops-kurse/aktueller-monatsworkshop"
 >
   <CourseHero
-    categoryMeta="MONATS-WORKSHOP | August | 12.8.2026"
-    durationMeta="12.8.2026 16:30 Uhr | 120 Min. | Online  | Max. 9 Teilnehmer" 
-    title="Ich bin der Titel <br /> des Kurses"
-    description="Im August widmen wir uns ganz...odio cras proin proin sit quis fringilla aliquet. Consectetur elementum viverra egestas egestas nulla ullamcorper varius quam."
-    price="Kostenlos :)"
-    ctaText="Jetzt anmelden"
-    ctaHref="/kontakt"
-    image="/images/placeholder/Placeholder-15.jpg"
+    categoryMeta={heroS.category_meta || 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026'}
+    durationMeta={heroS.duration_meta || '14.09.2026 · 13:30 Uhr · 120 Min. · Online'}
+    title={heroS.title || 'SoulTap gegen<br />deine Angst'}
+    description={heroS.description || 'EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen. Ein Werkzeug, das du sofort anwenden kannst und das dich noch viele Jahre begleiten wird.'}
+    price={heroS.price || 'CHF 66.–'}
+    ctaText={heroS.cta_text || 'Jetzt anmelden'}
+    ctaHref={heroS.cta_href || '/kontakt'}
+    image={imageUrl(heroS.image) || '/images/placeholder/Placeholder-34.jpg'}
   />
 
   <InfoCardsRow cards={infoCards} />
@@ -87,11 +85,11 @@ const faqItems = [
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/placeholder/Placeholder-16.jpg"
+    image={imageUrl(nar.image) || '/images/placeholder/Placeholder-35.jpg'}
     imageAlt=""
-    eyebrow="Was wir anschauen"
-    title="Lorem ipsum dolor sit amet"
-    body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    eyebrow={nar.eyebrow || 'Was wir anschauen'}
+    title={nar.title || 'Die Angst hinter der Angst'}
+    body={nl2br(nar.body) || 'Oft steckt hinter einer Angst noch etwas ganz anderes: die Angst, nicht zu genügen. Die Angst vor Ablehnung oder Veränderung.<br/><br/>Genau dort setzt SoulTap an — mit EFT, einem der einfachsten und gleichzeitig wirkungsvollsten Werkzeuge zur Selbsthilfe. Durch das sanfte Beklopfen von Meridianpunkten können Stress, Ängste und emotionale Belastungen oft erstaunlich schnell reduziert werden.'}
   />
 
   {/* ===================== Was Menschen zu unseren Kursen sagen ===================== */}
@@ -104,19 +102,16 @@ const faqItems = [
   <section class="about">
     <div class="about__inner">
       <div class="about__content">
-        <Heading level={2} variant="h1" class="about__name">Theresia &<br /><em>Axel Jansen</em></Heading>
-        <Text size="p1" class="about__body">
-          Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In ihren Workshops verbindet sie Aufstellungen, EFT, Nervensystem-Arbeit und Heilkunde zu einem Erfahrungsraum der seinesgleichen sucht.
-        </Text>
-        <Text size="p1" class="about__body">
-          Axel Jansen bringt Hypnose und Numerologie in Workshops ein, die gleichermassen präzise wie zugänglich sind. Zahlenmagie ohne Kitsch, Hypnose ohne Bühnentricks. Zusammen bieten Theres und Axel ein Spektrum, das in dieser Form in der Deutschschweiz einzigartig ist.
-        </Text>
+        <Heading level={2} variant="h1" class="about__name"><Fragment set:html={about.title || 'Theresia &<br /><em>Axel Jansen</em>'} /></Heading>
+        {aboutParas.map((p: string) => (
+          <Text size="p1" class="about__body"><Fragment set:html={p} /></Text>
+        ))}
         <div class="about__cta">
           <Button href="/ueber-uns" variant="primary" size="lg">Mehr über uns</Button>
         </div>
       </div>
       <div class="about__media">
-        <img src="/images/placeholder/placeholder-4.jpg" alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
+        <img src={imageUrl(about.image) || '/images/placeholder/placeholder-4.jpg'} alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>

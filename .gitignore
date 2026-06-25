@@ -3,9 +3,17 @@ dist
 .astro
 .env
 .env.production
+.dev.vars
+.wrangler
 .DS_Store
 *.log
 
 # Local reference asset, not part of the site
 /public/Narrative Block 10.png
 notetmr.txt
+
+# Local EmDash dev runtime
+emdash-dev.pid
+emdash-dev.err.log
+data.db-shm
+data.db-wal

@@ -1,0 +1,264 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris",
+    "description": "VitaLunaris content schema — practice + Systemic Soulcoach school. See clients/VitaLunaris/emdash-backend-plan.md for rationale.",
+    "author": "Alchemy Zürich"
+  },
+  "collections": [
+    {
+      "slug": "site_settings",
+      "label": "Site-Einstellungen",
+      "labelSingular": "Site-Einstellung",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "site_title", "label": "Seitentitel", "type": "string" },
+        { "slug": "site_description", "label": "Meta-Beschreibung", "type": "text" },
+        { "slug": "default_og_image", "label": "Standard OG-Bild", "type": "image" },
+        { "slug": "contact_email", "label": "Kontakt E-Mail", "type": "string" },
+        { "slug": "contact_phone", "label": "Kontakt Telefon", "type": "string" },
+        { "slug": "address", "label": "Adresse", "type": "text" },
+        { "slug": "nav_items", "label": "Navigation", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 20, "subFields": [
+            { "slug": "label", "type": "string", "label": "Beschriftung" },
+            { "slug": "href", "type": "string", "label": "Link" },
+            { "slug": "navigate_on_click", "type": "boolean", "label": "Direkt verlinken (kein Dropdown)" },
+            { "slug": "children", "type": "text", "label": "Unterpunkte (JSON: [{label,href,disabled}])" },
+            { "slug": "disabled", "type": "boolean", "label": "Versteckt" }
+          ] } },
+        { "slug": "footer_columns", "label": "Footer-Spalten", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 6, "subFields": [
+            { "slug": "title", "type": "string", "label": "Titel" },
+            { "slug": "links", "type": "text", "label": "Links (JSON: [{label,href}])" }
+          ] } },
+        { "slug": "social_links", "label": "Social Links", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 8, "subFields": [
+            { "slug": "platform", "type": "string", "label": "Plattform" },
+            { "slug": "href", "type": "string", "label": "Link" }
+          ] } },
+        { "slug": "newsletter_eyebrow", "label": "Newsletter Eyebrow", "type": "string" },
+        { "slug": "newsletter_title", "label": "Newsletter Titel", "type": "string" },
+        { "slug": "newsletter_body", "label": "Newsletter Text", "type": "text" },
+        { "slug": "newsletter_placeholder", "label": "Newsletter Platzhalter", "type": "string" },
+        { "slug": "newsletter_submit_text", "label": "Newsletter Button", "type": "string" },
+        { "slug": "footer_legal", "label": "Footer Rechtliches-Links", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 6, "subFields": [
+            { "slug": "label", "type": "string", "label": "Beschriftung" },
+            { "slug": "href", "type": "string", "label": "Link" }
+          ] } },
+        { "slug": "footer_phones", "label": "Footer Telefonnummern", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 4, "subFields": [
+            { "slug": "name", "type": "string", "label": "Name" },
+            { "slug": "phone", "type": "string", "label": "Telefon" }
+          ] } },
+        { "slug": "footer_copyright", "label": "Footer Copyright", "type": "string" }
+      ]
+    },
+    {
+      "slug": "team",
+      "label": "Team",
+      "labelSingular": "Person",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "name", "label": "Name", "type": "string" },
+        { "slug": "eyebrow", "label": "Eyebrow", "type": "string" },
+        { "slug": "role", "label": "Rolle", "type": "text" },
+        { "slug": "image", "label": "Portrait", "type": "image" },
+        { "slug": "bio_paragraphs", "label": "Bio-Absätze", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 8, "subFields": [
+            { "slug": "text", "type": "text", "label": "Absatz" }
+          ] } }
+      ]
+    },
+    {
+      "slug": "praxisangebote",
+      "label": "Praxisangebote",
+      "labelSingular": "Praxisangebot",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "seo_title", "label": "SEO Titel", "type": "string" },
+        { "slug": "seo_description", "label": "SEO Beschreibung", "type": "text" },
+        { "slug": "hero_category", "label": "Hero Kategorie", "type": "string" },
+        { "slug": "hero_title", "label": "Hero Titel", "type": "string" },
+        { "slug": "hero_description", "label": "Hero Beschreibung", "type": "text" },
+        { "slug": "hero_duration", "label": "Dauer / Format", "type": "string" },
+        { "slug": "hero_price", "label": "Preis", "type": "string" },
+        { "slug": "hero_note", "label": "Hero Notiz", "type": "text" },
+        { "slug": "hero_image", "label": "Hero Bild", "type": "image" },
+        { "slug": "hero_cta_text", "label": "Hero CTA Text", "type": "string" },
+        { "slug": "hero_cta_href", "label": "Hero CTA Link", "type": "string" },
+        { "slug": "narrative_title", "label": "Narrativ Titel", "type": "string" },
+        { "slug": "narrative_body", "label": "Narrativ Text", "type": "text" },
+        { "slug": "narrative_image", "label": "Narrativ Bild", "type": "image" },
+        { "slug": "narrative_bullet_groups", "label": "Bullet-Gruppen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 8, "subFields": [
+            { "slug": "heading", "type": "string", "label": "Überschrift" },
+            { "slug": "items", "type": "text", "label": "Punkte (JSON-Array)" },
+            { "slug": "text", "type": "text", "label": "Text" }
+          ] } },
+        { "slug": "process_steps", "label": "Ablaufschritte", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 8, "subFields": [
+            { "slug": "number", "type": "string", "label": "Nummer" },
+            { "slug": "title", "type": "string", "label": "Titel" },
+            { "slug": "description", "type": "text", "label": "Beschreibung" }
+          ] } },
+        { "slug": "quote_text", "label": "Zitat", "type": "text" },
+        { "slug": "quote_attribution", "label": "Zitat-Quelle", "type": "string" },
+        { "slug": "quote_image", "label": "Zitat-Bild", "type": "image" },
+        { "slug": "testimonials", "label": "Stimmen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 12, "subFields": [
+            { "slug": "quote", "type": "text", "label": "Zitat" },
+            { "slug": "name", "type": "string", "label": "Name" }
+          ] } },
+        { "slug": "practitioner", "label": "Begleitung (team-slug)", "type": "string" },
+        { "slug": "brand_cta_title", "label": "Brand CTA Titel", "type": "string" },
+        { "slug": "brand_cta_body", "label": "Brand CTA Text", "type": "text" },
+        { "slug": "brand_cta_text", "label": "Brand CTA Button", "type": "string" },
+        { "slug": "brand_cta_href", "label": "Brand CTA Link", "type": "string" },
+        { "slug": "faq_items", "label": "Häufige Fragen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 20, "subFields": [
+            { "slug": "question", "type": "string", "label": "Frage" },
+            { "slug": "answer", "type": "text", "label": "Antwort" }
+          ] } }
+      ]
+    },
+    {
+      "slug": "ausbildung_programs",
+      "label": "Ausbildung (Programme)",
+      "labelSingular": "Ausbildungsprogramm",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "seo_title", "label": "SEO Titel", "type": "string" },
+        { "slug": "seo_description", "label": "SEO Beschreibung", "type": "text" },
+        { "slug": "hero_eyebrow", "label": "Hero Eyebrow", "type": "string" },
+        { "slug": "hero_title", "label": "Hero Titel", "type": "string" },
+        { "slug": "hero_subtitle", "label": "Hero Untertitel", "type": "text" },
+        { "slug": "hero_primary_cta_text", "label": "Hero CTA Text", "type": "string" },
+        { "slug": "hero_primary_cta_href", "label": "Hero CTA Link", "type": "string" },
+        { "slug": "hero_image", "label": "Hero Bild", "type": "image" },
+        { "slug": "narrative_title", "label": "Narrativ Titel", "type": "string" },
+        { "slug": "narrative_body", "label": "Narrativ Text", "type": "text" },
+        { "slug": "narrative_image", "label": "Narrativ Bild", "type": "image" },
+        { "slug": "outcomes_title", "label": "Lernziele Titel", "type": "string" },
+        { "slug": "outcomes", "label": "Lernziele", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 8, "subFields": [
+            { "slug": "title", "type": "string", "label": "Titel" },
+            { "slug": "description", "type": "text", "label": "Beschreibung" },
+            { "slug": "color", "type": "select", "label": "Farbe", "options": ["gold", "aurora", "raspberry", "lavender"] }
+          ] } },
+        { "slug": "testimonials", "label": "Stimmen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 12, "subFields": [
+            { "slug": "quote", "type": "text", "label": "Zitat" },
+            { "slug": "name", "type": "string", "label": "Name" }
+          ] } },
+        { "slug": "teacher", "label": "Lehrperson (team-slug)", "type": "string" },
+        { "slug": "info_cards", "label": "Info-Karten", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 8, "subFields": [
+            { "slug": "eyebrow", "type": "string", "label": "Eyebrow" },
+            { "slug": "body", "type": "text", "label": "Text" }
+          ] } },
+        { "slug": "schedule_caption", "label": "Termin-Hinweis", "type": "text" },
+        { "slug": "faq_items", "label": "Häufige Fragen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 20, "subFields": [
+            { "slug": "question", "type": "string", "label": "Frage" },
+            { "slug": "answer", "type": "text", "label": "Antwort" }
+          ] } },
+        { "slug": "infoanlass_eyebrow", "label": "Infoanlass Eyebrow", "type": "string" },
+        { "slug": "infoanlass_title", "label": "Infoanlass Titel", "type": "string" },
+        { "slug": "infoanlass_body", "label": "Infoanlass Text", "type": "text" }
+      ]
+    },
+    {
+      "slug": "workshops",
+      "label": "Workshops & Kurse",
+      "labelSingular": "Workshop",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "title", "label": "Titel", "type": "string" },
+        { "slug": "date", "label": "Datum", "type": "datetime" },
+        { "slug": "color", "label": "Kalenderfarbe", "type": "select",
+          "validation": { "options": ["gold", "raspberry", "lavender", "fire"] } },
+        { "slug": "category_meta", "label": "Kategorie-Meta", "type": "string" },
+        { "slug": "duration_meta", "label": "Dauer-Meta", "type": "string" },
+        { "slug": "hero_description", "label": "Hero Beschreibung", "type": "text" },
+        { "slug": "hero_price", "label": "Preis", "type": "string" },
+        { "slug": "hero_image", "label": "Hero Bild", "type": "image" },
+        { "slug": "info_cards", "label": "Info-Karten (Wann/Wo/Für wen)", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 6, "subFields": [
+            { "slug": "eyebrow", "type": "string", "label": "Eyebrow" },
+            { "slug": "body", "type": "text", "label": "Text" }
+          ] } },
+        { "slug": "narrative_title", "label": "Narrativ Titel", "type": "string" },
+        { "slug": "narrative_body", "label": "Narrativ Text", "type": "text" },
+        { "slug": "narrative_image", "label": "Narrativ Bild", "type": "image" },
+        { "slug": "narrative_bullet_groups", "label": "Bullet-Gruppen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 8, "subFields": [
+            { "slug": "heading", "type": "string", "label": "Überschrift" },
+            { "slug": "items", "type": "text", "label": "Punkte (JSON-Array)" },
+            { "slug": "text", "type": "text", "label": "Text" }
+          ] } },
+        { "slug": "testimonials", "label": "Stimmen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 12, "subFields": [
+            { "slug": "quote", "type": "text", "label": "Zitat" },
+            { "slug": "name", "type": "string", "label": "Name" }
+          ] } },
+        { "slug": "faq_items", "label": "Häufige Fragen", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 20, "subFields": [
+            { "slug": "question", "type": "string", "label": "Frage" },
+            { "slug": "answer", "type": "text", "label": "Antwort" }
+          ] } },
+        { "slug": "further_courses", "label": "Weitere Kurse (workshop-slugs)", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 6, "subFields": [
+            { "slug": "slug", "type": "string", "label": "Workshop-Slug" }
+          ] } },
+        { "slug": "card_eyebrow", "label": "Karten-Eyebrow", "type": "string" },
+        { "slug": "card_title", "label": "Karten-Titel", "type": "string" },
+        { "slug": "card_description", "label": "Karten-Text", "type": "text" },
+        { "slug": "card_image", "label": "Karten-Bild", "type": "image" },
+        { "slug": "card_duration", "label": "Karten-Dauer", "type": "string" }
+      ]
+    },
+    {
+      "slug": "pages",
+      "label": "Seiten",
+      "labelSingular": "Seite",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "seo_title", "label": "SEO Titel", "type": "string" },
+        { "slug": "seo_description", "label": "SEO Beschreibung", "type": "text" },
+        { "slug": "hero_eyebrow", "label": "Hero Eyebrow", "type": "string" },
+        { "slug": "hero_title", "label": "Hero Titel", "type": "string" },
+        { "slug": "hero_subtitle", "label": "Hero Untertitel", "type": "text" },
+        { "slug": "hero_image", "label": "Hero Bild", "type": "image" },
+        { "slug": "hero_primary_cta_text", "label": "Primärer CTA Text", "type": "string" },
+        { "slug": "hero_primary_cta_href", "label": "Primärer CTA Link", "type": "string" },
+        { "slug": "hero_secondary_cta_text", "label": "Sekundärer CTA Text", "type": "string" },
+        { "slug": "hero_secondary_cta_href", "label": "Sekundärer CTA Link", "type": "string" },
+        { "slug": "sections", "label": "Sektionen (Blöcke)", "type": "repeater",
+          "validation": { "minItems": 0, "maxItems": 30, "subFields": [
+            { "slug": "type", "type": "select", "label": "Block-Typ",
+              "options": ["narrative", "offer_cards", "value_cards", "testimonials", "process_steps", "info_cards", "faq", "newsletter", "person_bio", "gallery", "price_list", "claim_block", "dark_cta"] },
+            { "slug": "eyebrow", "type": "string", "label": "Eyebrow" },
+            { "slug": "title", "type": "string", "label": "Titel" },
+            { "slug": "body", "type": "text", "label": "Text" },
+            { "slug": "image", "type": "string", "label": "Bild" },
+            { "slug": "image_side", "type": "select", "label": "Bildseite", "options": ["left", "right"] },
+            { "slug": "tone", "type": "select", "label": "Farbton", "options": ["light", "gold", "purple", "lavender", "spring-wood", "dark"] },
+            { "slug": "items", "type": "text", "label": "Karten/Items (JSON-Array)" }
+          ] } }
+      ]
+    },
+    {
+      "slug": "legal",
+      "label": "Rechtliches",
+      "labelSingular": "Rechtstext",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "title", "label": "Titel", "type": "string" },
+        { "slug": "last_updated", "label": "Aktualisiert am", "type": "datetime" },
+        { "slug": "body_markdown", "label": "Inhalt (Markdown)", "type": "text" }
+      ]
+    }
+  ]
+}

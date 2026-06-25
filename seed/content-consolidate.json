@@ -1,0 +1,207 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris — consolidate block pages into Praxisangebote / Ausbildung",
+    "description": "Move overview+jawort into praxisangebote, uebersicht+infoanlaesse into ausbildung_programs"
+  },
+  "content": {
+    "praxisangebote": [
+      {
+        "id": "praxis-overview",
+        "slug": "overview",
+        "status": "published",
+        "data": {
+          "seo_title": "Praxisangebote | VitaLunaris",
+          "seo_description": "Persönliche Begleitung auf allen Ebenen — Einzelaufstellungen, Hypnose, Numerologie und Fussreflexzonenmassage bei VitaLunaris in Buchs.",
+          "sections": [
+            {
+              "type": "overview_hero",
+              "image": "/images/ebene/Ebene_2.svg",
+              "eyebrow": "VitaLunaris Praxisangebote",
+              "title": "Persönliche Begleitung.<br /><em>Auf allen Ebenen.</em>",
+              "body": "In unseren Einzelsitzungen, Behandlungen und Beratungen begleiten wir dich persönlich und individuell – mit Zeit, Aufmerksamkeit und einem offenen Blick für das, was sich zeigen möchte. Denn was erkannt wird, kann sich verändern. Für mehr Klarheit, innere Balance und neue Perspektiven auf deinem Weg."
+            },
+            {
+              "type": "practice_offers",
+              "items": "[{\"eyebrow\":\"Systemisches Aufstellen | Theresia Jansen\",\"title\":\"1:1 Aufstellung\",\"body\":\"Ob Familienmuster, Beziehungsdynamiken, Kinderwunsch oder berufliche Entscheidungen — im geschützten Einzelsetting erhält dein Anliegen den Raum, den es braucht. Gemeinsam machen wir verborgene Dynamiken sichtbar und bringen Bewegung in das, was festgefahren scheint.\",\"image\":\"/images/placeholder/Placeholder-20.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/aufstellungen\"},{\"eyebrow\":\"Hypnose | Axel Jansen\",\"title\":\"Hypnose-Sitzung\",\"body\":\"Veränderung beginnt dort, wo Verstand und Unterbewusstsein zusammenarbeiten. Systemic Hypno verbindet Hypnose, Energiearbeit und systemisches Denken zu einer tiefen und gleichzeitig sanften Begleitung. Alte Muster, Blockaden und belastende Emotionen dürfen sich lösen.\",\"image\":\"/images/placeholder/Placeholder-21.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/hypnose\"},{\"eyebrow\":\"Numerologie | Axel Jansen\",\"title\":\"Numerologie-Beratung\",\"body\":\"Dein Geburtsdatum erzählt mehr über dich, als du vielleicht vermutest. Die Numerologie kann helfen, Talente, Stärken, Herausforderungen und wiederkehrende Lebensthemen besser zu verstehen.\",\"image\":\"/images/placeholder/Placeholder-22.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/numerologieberatung\"},{\"eyebrow\":\"Körperarbeit | Marlen Berger\",\"title\":\"Fussreflexzonenmassage\",\"body\":\"Marlens Methode ist intensiver und wirkungsvoller als klassische Fussreflexzonen. Sie arbeitet präzise, spürbar und intuitiv – nach den Prinzipien der TCM. Hilfreich bei körperlichen Beschwerden, Nervensystem-Entlastung sowie hormonellen und emotionalen Themen.\",\"image\":\"/images/placeholder/Placeholder-23.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3533b6af7ab\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"tone\":\"dark\",\"eyebrow\":\"Zeremonien | Theresia & Axel Jansen\",\"title\":\"Jawort by Jansen\",\"body\":\"Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Als freie Rednerin gestalte ich Zeremonien, die berühren, verbinden und in Erinnerung bleiben.\",\"image\":\"/images/placeholder/Placeholder-18.jpg\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/jawort-by-jansen\"}]"
+            },
+            {
+              "type": "claim_block",
+              "title": "Wo Wissen auf<br />Erfahrung trifft.",
+              "body": "VitaLunaris ist mehr als eine Praxis — es ist ein Ort, wo systemisches und energetisches Wissen zusammenkommen. Theresia und Axel Jansen begleiten Menschen mit über 30 Jahren Erfahrung: in Aufstellungen, Heilkunde, Hypnose und Numerologie. In der Deutschschweiz verwurzelt. Für alle, die tiefer schauen wollen.",
+              "image": "/images/placeholder/placeholder-4.jpg",
+              "items": "{\"ctaText\":\"Mehr über VitaLunaris\",\"ctaHref\":\"/ueber-uns\"}"
+            },
+            {
+              "type": "newsletter",
+              "eyebrow": "Newsletter",
+              "title": "Impulse für deine<br />Seele",
+              "body": "Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia.\n\nDazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.",
+              "items": "{\"placeholder\":\"E-mail Adresse\",\"submitText\":\"Kostenlos abonnieren\"}"
+            }
+          ]
+        }
+      },
+      {
+        "id": "praxis-jawort",
+        "slug": "jawort-by-jansen",
+        "status": "published",
+        "data": {
+          "seo_title": "Jawort by Jansen — Freie Trauungen & Zeremonien | VitaLunaris",
+          "seo_description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Theresia Jansen erzählt eure Geschichte.",
+          "sections": [
+            {
+              "type": "hero",
+              "eyebrow": "Jawort by Jansen | Theresia Jansen",
+              "title": "Zeremonien voller Persönlichkeit und Emotion.",
+              "description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl – für Zeremonien, die berühren und lange nachklingen.",
+              "body": "Alternativ schreibe ich eure persönliche Rede — und eine vertraute Person führt die Zeremonie durch. Ich begleite gerne auch die Vorbereitung. Preis auf Anfrage.",
+              "image": "/images/placeholder/Placeholder-18.jpg",
+              "items": "[{\"label\":\"Freie Trauungen\",\"value\":\"ab CHF 1’800.–\"},{\"label\":\"Kinderwillkommensfeiern\",\"value\":\"ab CHF 950.–\"},{\"label\":\"Eheversprechenerneuerung\",\"value\":\"auf Anfrage\"}]"
+            },
+            {
+              "type": "narrative1",
+              "image": "/images/placeholder/Placeholder-19.jpg",
+              "eyebrow": "Freie Trauung",
+              "title": "Was ist eine freie Trauung?",
+              "body": "Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt.\n\nOb auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe."
+            },
+            {
+              "type": "gallery",
+              "items": "[{\"src\":\"/images/cards/card-1.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-2.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-3.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-4.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-5.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-6.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-7.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-8.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-9.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-10.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-11.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-12.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-13.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-14.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-15.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-16.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-17.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-18.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-19.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-20.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-21.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-22.jpg\",\"alt\":\"Jawort by Jansen — Impression\"}]"
+            },
+            {
+              "type": "narrative2",
+              "image": "/images/placeholder/Placeholder-28.jpg",
+              "eyebrow": "Kinderwillkommensfeier",
+              "title": "Was ist eine Kinderwillkommensfeier?",
+              "body": "Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen.\n\nMit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben.\n\nDenn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein."
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»\",\"name\":\"Raffaella & Luca\"},{\"quote\":\"«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»\",\"name\":\"Sandy & Michael\"},{\"quote\":\"«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»\",\"name\":\"Saskia & Benjamin\"},{\"quote\":\"«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»\",\"name\":\"Janina & Marc\"}]"
+            },
+            {
+              "type": "bio",
+              "eyebrow": "Wer euch begleitet",
+              "title": "Theresia Jansen",
+              "image": "/images/placeholder/Placeholder-8.jpg",
+              "items": "[\"Ich bin nicht einfach da, um eine schöne Rede zu halten. Ich bin da, um eure Geschichte einzufangen — mit Zeit, Aufmerksamkeit und echtem Interesse daran, was euch wichtig ist.\",\"Ihr entscheidet, wie eure Feier klingen darf: humorvoll oder romantisch, klassisch oder frei, leicht oder tief. Nichts muss. Alles darf stimmig sein. Durch meine langjährige Arbeit mit Menschen bringe ich mit, was an diesem Tag besonders wertvoll ist: Ruhe, Präsenz und Halt.\",\"Mein Ziel ist nicht die perfekte Rede. Mein Ziel ist, dass ihr euch in diesem Moment wiederfindet und sagen könnt: «Das sind wir. Genau so haben wir es uns gewünscht.»\",\"Ob freie Trauung, Kinderwillkommensfeier oder Eheversprechen — ich freue mich darauf, eure Geschichte kennenzulernen. Herzlich, Theresia Jansen\"]"
+            },
+            {
+              "type": "faq",
+              "items": "[{\"question\":\"Wie läuft die Vorbereitung einer freien Trauung ab?\",\"answer\":\"Wir starten mit einem kostenlosen Kennenlerngespräch. Danach lernen wir uns und eure Geschichte kennen, ich schreibe eure persönliche Rede und wir stimmen Ablauf, Ort und Wünsche gemeinsam ab.\"},{\"question\":\"Wie persönlich wird die Traurede?\",\"answer\":\"Sehr persönlich. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl — so, dass ihr euch in jedem Wort wiederfindet. Keine Floskeln, keine Vorlagen von der Stange.\"},{\"question\":\"Kann die Zeremonie humorvoll sein?\",\"answer\":\"Unbedingt. Romantisch, feierlich, berührend oder herrlich unkompliziert — eure Zeremonie darf so einzigartig sein wie ihr.\"},{\"question\":\"Wie lange dauert eine freie Trauung?\",\"answer\":\"Eine Zeremonie dauert in der Regel 30 bis 45 Minuten. Die genaue Länge gestalten wir gemeinsam.\"},{\"question\":\"Führst du auch Kinderwillkommensfeiern durch?\",\"answer\":\"Ja. Eine Kinderwillkommensfeier heisst einen neuen kleinen Menschen liebevoll im Kreis seiner Herzensmenschen willkommen — frei gestaltet und ganz auf euch zugeschnitten.\"},{\"question\":\"In welcher Region bist du als Rednerin unterwegs?\",\"answer\":\"Ich bin in der ganzen Deutschschweiz für euch unterwegs — vom Weingut über den See bis in die Berge.\"}]"
+            }
+          ]
+        }
+      }
+    ],
+    "ausbildung_programs": [
+      {
+        "id": "ausb-uebersicht",
+        "slug": "uebersicht",
+        "status": "published",
+        "data": {
+          "seo_title": "Übersicht – Systemic Soulcoach Ausbildung bei VitaLunaris",
+          "seo_description": "Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. In zwei Stufen, aufgebaut auf über 30 Jahren Praxis in der Deutschschweiz.",
+          "hero_eyebrow": "Systemic Soulcoach Ausbildung",
+          "hero_title": "Systemische Arbeit.<br />Professionell begleiten<br />und wirklich tief gehen.",
+          "hero_subtitle": "Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen, die mit Tiefe arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren gelebter Praxis in der Deutschschweiz.",
+          "sections": [
+            {
+              "type": "narrative",
+              "image": "/images/placeholder/Placeholder-7.jpg",
+              "title": "Methode.<br />Haltung. Tiefe.",
+              "body": "Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen ohne je ausgesprochen zu werden.\n\nWas sich im Leben einer Person immer wiederholt, sitzt selten nur in ihr. Ein Systemic Soulcoach sieht das System hinter der Person — und weiss, wie er es begleiten kann."
+            },
+            {
+              "type": "stages",
+              "title": "Drei Stufen, ein Weg",
+              "body": "Jede Stufe baut auf der vorherigen auf. Du entscheidest nach Level 1 — aber die meisten wollen tiefer.",
+              "items": "[{\"image\":\"/images/cards/card-1.jpg\",\"eyebrow\":\"Teil 1 — Grundlagen\",\"title\":\"Der Einstieg in die systemische Arbeit\",\"body\":\"Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.\",\"ctaHref\":\"/ausbildung/soulcoach-level-1\"},{\"image\":\"/images/cards/card-2.jpg\",\"eyebrow\":\"Teil 2 — Vertiefung\",\"title\":\"Vom Verständnis zur Praxis\",\"body\":\"Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.\",\"ctaHref\":\"/ausbildung/soulcoach-level-2\"},{\"image\":\"/images/cards/card-3.jpg\",\"eyebrow\":\"Begleitung & Circle\",\"title\":\"In der Praxis bleiben und weiterlernen\",\"body\":\"Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen. Zugang nur nach abgeschlossener Ausbildung.\",\"ctaHref\":\"/kontakt\"}]"
+            },
+            {
+              "type": "outcomes",
+              "title": "Nach dieser Ausbildung arbeitest du anderst.",
+              "items": "[{\"title\":\"Du siehst Systeme.\",\"description\":\"Muster, Dynamiken, Loyalitäten — du erkennst sie früher. In der Arbeit mit anderen, und in deinem eigenen Leben.\"},{\"title\":\"Du begleitest sicher.\",\"description\":\"Nicht nur auf der Oberfläche — sondern dort wo sich wirklich etwas hält. Mit Methode und Haltung.\"},{\"title\":\"Du hältst die Spannung.\",\"description\":\"Konflikte, Widerstand, schwierige Momente — du weichst nicht aus. Du bist Boden für andere.\"},{\"title\":\"Du arbeitest aus Erfahrung.\",\"description\":\"Nicht aus Theorie. Was du weitergibst, hast du selbst durchlebt. Das ist der Unterschied.\"}]"
+            },
+            {
+              "type": "lehrerin",
+              "eyebrow": "Deine Lehrerin",
+              "title": "Theresia Jansen",
+              "image": "/images/placeholder/Placeholder-8.jpg",
+              "items": "[\"Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch.\",\"Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.\",\"Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht.\"]"
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Ich fühle mich mehr bei mir selbst angekommen.»\",\"name\":\"Jana L.\"},{\"quote\":\"«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»\",\"name\":\"Silvia F.\"},{\"quote\":\"«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Theresia schafft einen geschützten Rahmen, der es möglich macht, sich wirklich zu öffnen.»\",\"name\":\"Corina B.\"}]"
+            },
+            {
+              "type": "uquote",
+              "image": "/images/placeholder/Placeholder-5.jpg",
+              "title": "„Menschen verändern sich nicht, weil man ihnen sagt, was sie tun sollen. Sie verändern sich, wenn sie beginnen zu verstehen, was sie bisher unbewusst getragen hat.“",
+              "body": "Theresia Jansen · VitaLunaris"
+            },
+            {
+              "type": "faq",
+              "items": "[{\"question\":\"Brauche ich Vorkenntnisse für die Ausbildung?\",\"answer\":\"Nein. Du musst keine therapeutische oder psychologische Vorbildung mitbringen. Wichtiger sind deine Offenheit und die Bereitschaft, dich selbst anzuschauen.\"},{\"question\":\"Kann ich direkt mit der Ausbildung zum Systemic Soulcoach starten?\",\"answer\":\"Ja. Die Ausbildung ist so aufgebaut, dass du ohne Vorerfahrung einsteigen kannst. Im Erstgespräch klären wir gemeinsam, ob der Einstieg für dich stimmig ist.\"},{\"question\":\"Ist die Ausbildung eher theoretisch oder praktisch ausgerichtet?\",\"answer\":\"Klar praktisch. Du lernst durch Erleben — du stellst auf, wirst aufgestellt und begleitest. Der Schwerpunkt liegt auf der gelebten Erfahrung in der Gruppe.\"},{\"question\":\"Kann ich nach der Ausbildung selbst Menschen begleiten?\",\"answer\":\"Ja. Nach abgeschlossener Ausbildung hast du das methodische Handwerk und die Haltung, um eigenständig systemisch zu begleiten.\"},{\"question\":\"Eignet sich die Ausbildung auch für Menschen im Gesundheits-, Coaching- oder Beratungsbereich?\",\"answer\":\"Sehr. Die systemische Perspektive gibt dir ein kraftvolles zusätzliches Werkzeug — du erkennst Muster und Dynamiken früher.\"},{\"question\":\"Werden die Kosten von der Krankenkasse übernommen?\",\"answer\":\"Systemisches Aufstellen ist in der Regel keine kassenpflichtige Leistung. Für die Ausbildung erhältst du im Erstgespräch eine detaillierte Übersicht der Investition.\"},{\"question\":\"Was passiert, wenn ich einmal einen Termin nicht wahrnehmen kann?\",\"answer\":\"Das lässt sich in der Regel lösen. Wir finden gemeinsam einen Weg, ein verpasstes Treffen zu integrieren. Sprich uns frühzeitig an.\"},{\"question\":\"Was unterscheidet diese Ausbildung von anderen Programmen?\",\"answer\":\"Hier geht es um mehr als Methodenlernen. Aufgebaut auf über 30 Jahren gelebter Praxis verbindet die Ausbildung Handwerk und Haltung — und du durchlebst selbst, was du später weitergibst.\"}]"
+            },
+            {
+              "type": "newsletter",
+              "title": "Noch nicht sicher?",
+              "body": "Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern."
+            }
+          ]
+        }
+      },
+      {
+        "id": "ausb-infoanlaesse",
+        "slug": "infoanlaesse",
+        "status": "published",
+        "data": {
+          "seo_title": "Systemic Soulcoach Infoabend | VitaLunaris",
+          "seo_description": "Kostenloser Online-Infoabend zur Ausbildung Systemic Soulcoach — ehrlicher Einblick in Inhalte, Aufbau und Arbeitsweise, mit Raum für alle deine Fragen.",
+          "sections": [
+            {
+              "type": "hero",
+              "category_meta": "AUSBILDUNG | INFOABEND | 24.06.2026",
+              "title": "Systemic Soulcoach <br /> Infoabend",
+              "description": "Du möchtest mehr über die Systemic Soulwork Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.",
+              "duration_meta": "24.06.2026 | 18.30 bis ca. 20.00 Uhr | Online",
+              "price": "Kostenlos :)",
+              "cta_text": "Jetzt anmelden",
+              "cta_href": "/kontakt",
+              "image": "/images/placeholder/Placeholder-12.jpg"
+            },
+            {
+              "type": "info_cards",
+              "items": "[{\"eyebrow\":\"Wann?\",\"body\":\"Der Infoabend findet am 24.06.2026 von 18.30 bis ca. 20.00 Uhr statt.\"},{\"eyebrow\":\"Wo?\",\"body\":\"Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.\"},{\"eyebrow\":\"Für wen?\",\"body\":\"Für alle, die sich fragen, ob eine Ausbildung in systemischer Arbeit der nächste richtige Schritt ist.\"}]"
+            },
+            {
+              "type": "narrative",
+              "image": "/images/placeholder/Placeholder-33.jpg",
+              "eyebrow": "Was wir anschauen",
+              "title": "Das erwartet dich",
+              "body": "Der Online-Infoabend ist kostenlos und unverbindlich. Ich freue mich darauf, dich kennenzulernen.",
+              "items": "[\"Vorstellung von Systemic Soulwork & Systemic Soulcoach\",\"Überblick über die Ausbildungsstruktur\",\"Einblick in die Inhalte und Module\",\"Informationen zu Terminen und Investition\",\"Raum für Fragen und Austausch\"]"
+            },
+            {
+              "type": "agenda",
+              "items": "[\"Vorstellung von Systemic Soulwork & Systemic Soulcoach\",\"Überblick über die Ausbildungsstruktur\",\"Einblick in die Inhalte und Module\",\"Informationen zu Terminen und Investition\",\"Raum für Fragen und Austausch\"]"
+            },
+            {
+              "type": "about",
+              "title": "Theresia &<br /><em>Axel Jansen</em>",
+              "items": "[\"Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet.\",\"Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen.\"]"
+            },
+            {
+              "type": "faq",
+              "items": "[{\"question\":\"Für wen sind die Workshops geeignet?\",\"answer\":\"Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.\"},{\"question\":\"Was ist der Unterschied zwischen einem Workshop und der Ausbildung?\",\"answer\":\"Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.\"},{\"question\":\"Brauche ich Vorkenntnisse für die Monats-Workshops?\",\"answer\":\"Nein. Die Workshops sind so gestaltet, dass du jederzeit einsteigen kannst.\"},{\"question\":\"Wie melde ich mich an?\",\"answer\":\"Du klickst auf «Jetzt anmelden», füllst das kurze Formular aus und erhältst alle Infos sowie den Zoom-Link per E-Mail.\"},{\"question\":\"Werden die Kosten von der Krankenkasse übernommen?\",\"answer\":\"Der Infoabend ist kostenlos. Workshops sind in der Regel keine kassenpflichtige Leistung.\"},{\"question\":\"Kann ich einen Workshop stornieren?\",\"answer\":\"Ja, bis zu einer bestimmten Frist vor Beginn. Die Bedingungen findest du in der Anmeldebestätigung.\"},{\"question\":\"Gibt es auch Online-Formate?\",\"answer\":\"Ja. Der Infoabend und unsere Workshops finden online via Zoom statt.\"},{\"question\":\"Was passiert wenn ein Workshop ausgebucht ist?\",\"answer\":\"Du kannst dich auf die Warteliste setzen. Wird ein Platz frei, informieren wir dich zuerst.\"}]"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

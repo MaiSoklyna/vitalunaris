@@ -48,7 +48,7 @@ const canonical = new URL(currentPath, Astro.site ?? 'https://vitalunaris.ch').t
   </head>
   <body>
     <Navigation currentPath={currentPath} />
-    <main id="content">
+    <main id="content" data-page={currentPath}>
       <slot />
     </main>
     <Footer />

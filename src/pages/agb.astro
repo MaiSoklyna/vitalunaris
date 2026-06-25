@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import LegalPage from '@organisms/LegalPage.astro';
+import { getEmDashEntry } from 'emdash';
+
+// Editable at /_emdash/admin/content/legal (falls back to the copy below).
+const { entry } = await getEmDashEntry('legal', 'agb');
+const d: Record<string, any> = entry?.data ?? {};
 ---
 
 <BaseLayout
@@ -8,7 +13,7 @@ import LegalPage from '@organisms/LegalPage.astro';
   description="Die Allgemeinen Geschäftsbedingungen von VitaLunaris – Theresia Jansen für Praxisangebote, Workshops und Online-Kurse."
   currentPath="/agb"
 >
-  <LegalPage eyebrow="VitaLunaris" title="Allgemeine Geschäftsbedingungen">
+  <LegalPage eyebrow="VitaLunaris" title={d.title || 'Allgemeine Geschäftsbedingungen'}>
     <div slot="lead">
       <p><strong>VitaLunaris – Ganzheitliche Gesundheitspraxis</strong></p>
       <p>Theresia Jansen</p>
@@ -22,6 +27,7 @@ import LegalPage from '@organisms/LegalPage.astro';
       <p>Stand: Juni 2026</p>
     </div>
 
+    {d.body_markdown ? <Fragment set:html={d.body_markdown} /> : (<Fragment>
     <h2>1. Geltungsbereich</h2>
     <p>1.1 Diese Allgemeinen Geschäftsbedingungen (nachfolgend «AGB») gelten für sämtliche Verträge zwischen VitaLunaris, Theresia Jansen (nachfolgend «VitaLunaris» oder «wir»), und ihren Kundinnen und Kunden (nachfolgend «Kunde») über:</p>
     <ul>
@@ -108,5 +114,6 @@ import LegalPage from '@organisms/LegalPage.astro';
 
     <hr />
     <p><em>VitaLunaris, Theresia Jansen – Eichenaustrasse 32, CH-9470 Buchs SG</em></p>
+    </Fragment>)}
   </LegalPage>
 </BaseLayout>

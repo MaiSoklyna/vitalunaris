@@ -5,8 +5,21 @@ import NarrativeBlock from '@organisms/NarrativeBlock.astro';
 import PersonBio from '@organisms/PersonBio.astro';
 import ValueCardsBlock from '@organisms/ValueCardsBlock.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+import { getEmDashEntry } from 'emdash';
+import { jsonArray, nl2br, imageUrl } from '@lib/cms';
 
-const team = [
+// Bespoke block page — editable at /_emdash/admin/content/pages (slug "ueber-uns").
+const { entry } = await getEmDashEntry('pages', 'ueber-uns');
+const d: Record<string, any> = entry?.data ?? {};
+const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
+const heroS = sec('hero'), intro = sec('intro'), valuesS = sec('values'), quote = sec('quote'), nlx = sec('newsletter');
+const heroParagraphs = jsonArray(heroS.items).length ? jsonArray(heroS.items) : [
+  'VitaLunaris ist mehr als eine Praxis. Es ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen.',
+  'Gegründet von Theresia und Axel Jansen. Verwurzelt in der Deutschschweiz. Entstanden aus der Leidenschaft, Menschen auf ihrem Weg zu mehr Klarheit, Verständnis und Veränderung zu begleiten.',
+  'Für alle, die nicht nur auf Symptome schauen, sondern tiefer verstehen möchten, was hinter Herausforderungen, Beziehungen und Lebenswegen wirkt.',
+];
+
+const team = jsonArray(sec('team').items).length ? jsonArray(sec('team').items) : [
   {
     eyebrow: 'Gründerin · VitaLunaris',
     name: 'Theresia Jansen',
@@ -44,7 +57,10 @@ const team = [
   },
 ];
 
-const values = [
+// Per-person uploadable team photos (override the photo in the team list when set).
+const teamImages = [d.team_image_1, d.team_image_2, d.team_image_3];
+
+const values = jsonArray(valuesS.items).length ? jsonArray(valuesS.items) : [
   {
     icon: '/images/ebene/Ebene-14.svg',
     title: 'Tiefe statt<br />Oberfläche',
@@ -70,14 +86,10 @@ const values = [
 >
   {/* ===================== Hero ===================== */}
   <AboutHero
-    eyebrow="Über uns"
-    title={`Wo Wissen auf<br />Erfahrung trifft.`}
-    paragraphs={[
-      'VitaLunaris ist mehr als eine Praxis. Es ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen.',
-      'Gegründet von Theresia und Axel Jansen. Verwurzelt in der Deutschschweiz. Entstanden aus der Leidenschaft, Menschen auf ihrem Weg zu mehr Klarheit, Verständnis und Veränderung zu begleiten.',
-      'Für alle, die nicht nur auf Symptome schauen, sondern tiefer verstehen möchten, was hinter Herausforderungen, Beziehungen und Lebenswegen wirkt.',
-    ]}
-    image="/images/placeholder/placeholder-4.jpg"
+    eyebrow={heroS.eyebrow || 'Über uns'}
+    title={heroS.title || `Wo Wissen auf<br />Erfahrung trifft.`}
+    paragraphs={heroParagraphs}
+    image={imageUrl(heroS.image) || '/images/placeholder/placeholder-4.jpg'}
     imageAlt="Theresia & Axel Jansen"
     imageSide="right"
   />
@@ -86,43 +98,43 @@ const values = [
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/placeholder/Placeholder-29.jpg"
+    image={imageUrl(intro.image) || '/images/placeholder/Placeholder-29.jpg'}
     imageAlt=""
-    title="Über 30 Jahre Erfahrung. Eine klare Haltung."
-    body="VitaLunaris steht für Arbeit, die in die Tiefe geht. Nicht als Methode um der Methode willen, sondern als Begegnung, die etwas in Bewegung bringt.<br /><br />Über Jahre haben Theresia und Axel Jansen einen Ort geschaffen, an dem Menschen und ihre Geschichten bestehen dürfen. Systemisches Aufstellen, Hypnose und Numerologie sind dabei keine Gegensätze, sondern verschiedene Zugänge zu demselben Ziel:<br /><br />Mehr Verständnis. Mehr Klarheit. Mehr Bewusstsein für die Zusammenhänge, die unser Leben prägen."
+    title={intro.title || 'Über 30 Jahre Erfahrung. Eine klare Haltung.'}
+    body={nl2br(intro.body) || 'VitaLunaris steht für Arbeit, die in die Tiefe geht. Nicht als Methode um der Methode willen, sondern als Begegnung, die etwas in Bewegung bringt.<br /><br />Über Jahre haben Theresia und Axel Jansen einen Ort geschaffen, an dem Menschen und ihre Geschichten bestehen dürfen. Systemisches Aufstellen, Hypnose und Numerologie sind dabei keine Gegensätze, sondern verschiedene Zugänge zu demselben Ziel:<br /><br />Mehr Verständnis. Mehr Klarheit. Mehr Bewusstsein für die Zusammenhänge, die unser Leben prägen.'}
   />
 
   {/* ===================== Team bios ===================== */}
-  {team.map((person) => (
+  {team.map((person, i) => (
     <PersonBio
       eyebrow={person.eyebrow}
       name={person.name}
       role={person.role}
       paragraphs={person.paragraphs}
-      image={person.image}
+      image={imageUrl(teamImages[i]) || imageUrl(person.image)}
       imageAlt={person.name}
       imageSide={person.imageSide}
     />
   ))}
 
   {/* ===================== Was uns antreibt ===================== */}
-  <ValueCardsBlock title="Was uns antreibt" cards={values} />
+  <ValueCardsBlock title={valuesS.title || 'Was uns antreibt'} cards={values} />
 
   {/* ===================== Founders' quote ===================== */}
   <NarrativeBlock
     tone="gold"
     imageSide="right"
-    image="/images/placeholder/Placeholder-5.jpg"
+    image={imageUrl(quote.image) || '/images/placeholder/Placeholder-5.jpg'}
     imageAlt="Theresia & Axel Jansen im Gespräch"
-    title={`„Veränderung beginnt nicht dort, wo wir uns bekämpfen, sondern dort, wo wir beginnen zu verstehen. Denn was sichtbar wird, kann sich verändern. Und was verstanden wird, verliert oft seine Schwere.“`}
-    attribution="Theresia & Axel Jansen · VitaLunaris"
+    title={quote.title || `„Veränderung beginnt nicht dort, wo wir uns bekämpfen, sondern dort, wo wir beginnen zu verstehen. Denn was sichtbar wird, kann sich verändern. Und was verstanden wird, verliert oft seine Schwere.“`}
+    attribution={quote.body || 'Theresia & Axel Jansen · VitaLunaris'}
   />
 
   {/* ===================== Newsletter ===================== */}
   <NewsletterBlock
     eyebrow="Newsletter"
-    title="Unsere Gedanken<br />passen nicht alle auf<br />eine Webseite."
-    body="Deshalb schreiben wir jede Woche einen Newsletter. Mit Geschichten, Inspirationen, Axels Zahlenmagie, Einblicken aus unserem Alltag und Gedanken über das Leben, die Menschen und die Zusammenhänge, die uns bewegen."
+    title={nlx.title || 'Unsere Gedanken<br />passen nicht alle auf<br />eine Webseite.'}
+    body={nlx.body || 'Deshalb schreiben wir jede Woche einen Newsletter. Mit Geschichten, Inspirationen, Axels Zahlenmagie, Einblicken aus unserem Alltag und Gedanken über das Leben, die Menschen und die Zusammenhänge, die uns bewegen.'}
     placeholder="E-mail Adresse"
     submitText="Kostenlos anmelden"
   />

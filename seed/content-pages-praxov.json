@@ -1,0 +1,48 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris — praxisangebote overview",
+    "description": "Block page"
+  },
+  "content": {
+    "pages": [
+      {
+        "id": "page-praxisangebote-overview",
+        "slug": "praxisangebote-overview",
+        "status": "published",
+        "data": {
+          "seo_title": "Praxisangebote | VitaLunaris",
+          "seo_description": "Persönliche Begleitung auf allen Ebenen — Einzelaufstellungen, Hypnose, Numerologie und Fussreflexzonenmassage bei VitaLunaris in Buchs.",
+          "sections": [
+            {
+              "type": "overview_hero",
+              "image": "/images/ebene/Ebene_2.svg",
+              "eyebrow": "VitaLunaris Praxisangebote",
+              "title": "Persönliche Begleitung.<br /><em>Auf allen Ebenen.</em>",
+              "body": "In unseren Einzelsitzungen, Behandlungen und Beratungen begleiten wir dich persönlich und individuell – mit Zeit, Aufmerksamkeit und einem offenen Blick für das, was sich zeigen möchte. Denn was erkannt wird, kann sich verändern. Für mehr Klarheit, innere Balance und neue Perspektiven auf deinem Weg."
+            },
+            {
+              "type": "practice_offers",
+              "items": "[{\"eyebrow\":\"Systemisches Aufstellen | Theresia Jansen\",\"title\":\"1:1 Aufstellung\",\"body\":\"Ob Familienmuster, Beziehungsdynamiken, Kinderwunsch oder berufliche Entscheidungen — im geschützten Einzelsetting erhält dein Anliegen den Raum, den es braucht. Gemeinsam machen wir verborgene Dynamiken sichtbar und bringen Bewegung in das, was festgefahren scheint.\",\"image\":\"/images/placeholder/Placeholder-20.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/aufstellungen\"},{\"eyebrow\":\"Hypnose | Axel Jansen\",\"title\":\"Hypnose-Sitzung\",\"body\":\"Veränderung beginnt dort, wo Verstand und Unterbewusstsein zusammenarbeiten. Systemic Hypno verbindet Hypnose, Energiearbeit und systemisches Denken zu einer tiefen und gleichzeitig sanften Begleitung. Alte Muster, Blockaden und belastende Emotionen dürfen sich lösen.\",\"image\":\"/images/placeholder/Placeholder-21.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/hypnose\"},{\"eyebrow\":\"Numerologie | Axel Jansen\",\"title\":\"Numerologie-Beratung\",\"body\":\"Dein Geburtsdatum erzählt mehr über dich, als du vielleicht vermutest. Die Numerologie kann helfen, Talente, Stärken, Herausforderungen und wiederkehrende Lebensthemen besser zu verstehen.\",\"image\":\"/images/placeholder/Placeholder-22.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/numerologieberatung\"},{\"eyebrow\":\"Körperarbeit | Marlen Berger\",\"title\":\"Fussreflexzonenmassage\",\"body\":\"Marlens Methode ist intensiver und wirkungsvoller als klassische Fussreflexzonen. Sie arbeitet präzise, spürbar und intuitiv – nach den Prinzipien der TCM. Hilfreich bei körperlichen Beschwerden, Nervensystem-Entlastung sowie hormonellen und emotionalen Themen.\",\"image\":\"/images/placeholder/Placeholder-23.jpg\",\"primaryText\":\"Termin buchen\",\"primaryHref\":\"https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3533b6af7ab\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"tone\":\"dark\",\"eyebrow\":\"Zeremonien | Theresia & Axel Jansen\",\"title\":\"Jawort by Jansen\",\"body\":\"Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Als freie Rednerin gestalte ich Zeremonien, die berühren, verbinden und in Erinnerung bleiben.\",\"image\":\"/images/placeholder/Placeholder-18.jpg\",\"secondaryText\":\"Mehr erfahren\",\"secondaryHref\":\"/praxisangebote/jawort-by-jansen\"}]"
+            },
+            {
+              "type": "claim_block",
+              "title": "Wo Wissen auf<br />Erfahrung trifft.",
+              "body": "VitaLunaris ist mehr als eine Praxis — es ist ein Ort, wo systemisches und energetisches Wissen zusammenkommen. Theresia und Axel Jansen begleiten Menschen mit über 30 Jahren Erfahrung: in Aufstellungen, Heilkunde, Hypnose und Numerologie. In der Deutschschweiz verwurzelt. Für alle, die tiefer schauen wollen.",
+              "image": "/images/placeholder/placeholder-4.jpg",
+              "items": "{\"ctaText\":\"Mehr über VitaLunaris\",\"ctaHref\":\"/ueber-uns\"}"
+            },
+            {
+              "type": "newsletter",
+              "eyebrow": "Newsletter",
+              "title": "Impulse für deine<br />Seele",
+              "body": "Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia.\n\nDazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.",
+              "items": "{\"placeholder\":\"E-mail Adresse\",\"submitText\":\"Kostenlos abonnieren\"}"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

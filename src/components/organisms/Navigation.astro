@@ -1,4 +1,7 @@
 ---
+import { getEmDashEntry } from 'emdash';
+import { jsonArray } from '@lib/cms';
+
 interface Props {
   currentPath?: string;
 }
@@ -19,15 +22,16 @@ interface NavLink {
   navigateOnClick?: boolean;
 }
 
-const navLinks: NavLink[] = [
+const FALLBACK_NAV: NavLink[] = [
   {
     href: '/ausbildung',
     label: 'Systemische Ausbildung',
     children: [
-      { href: '/uebersicht', label: 'Übersicht' },
+      { href: '/ausbildung/uebersicht', label: 'Übersicht' },
       { href: '/ausbildung/soulcoach-level-1', label: 'Systemischer Soulcoach – Level 1' },
       { href: '/ausbildung/soulcoach-level-2', label: 'Systemischer Soulcoach – Level 2' },
-      { href: '/ausbildung/begleitung-kreis', label: 'Begleitung & Kreis', disabled: true },
+      // Hidden until the designer completes the content — re-add when the page exists.
+      // { href: '/ausbildung/begleitung-kreis', label: 'Begleitung & Kreis', disabled: true },
       { href: '/ausbildung/infoanlaesse', label: 'Infoanlässe' },
     ],
   },
@@ -49,13 +53,28 @@ const navLinks: NavLink[] = [
       { href: '/praxisangebote/hypnose', label: 'Hypnose' },
       { href: '/praxisangebote/numerologieberatung', label: 'Numerologieberatung' },
       { href: '/praxisangebote/fussreflexzonenbehandlung', label: 'Fussreflexzonenbehandlung' },
-      { href: '/jawort-by-jansen', label: 'Jawort by Jansen' },
+      { href: '/praxisangebote/jawort-by-jansen', label: 'Jawort by Jansen' },
     ],
   },
   { href: '/neuigkeiten', label: 'News' },
   { href: '/ueber-uns', label: 'Über uns' },
   { href: '/kontakt', label: 'Kontakt' },
 ];
+
+// Navigation menu is editable in EmDash (site_settings → nav_items).
+const { entry: settings } = await getEmDashEntry('site_settings', 'settings');
+const sd: Record<string, any> = settings?.data ?? {};
+const navLinks: NavLink[] = sd.nav_items?.length
+  ? sd.nav_items.map((it: any) => {
+      const children = jsonArray(it.children);
+      return {
+        href: it.href,
+        label: it.label,
+        navigateOnClick: it.navigate_on_click || undefined,
+        children: children.length ? children : undefined,
+      } as NavLink;
+    })
+  : FALLBACK_NAV;
 
 const isActive = (href: string) =>
   href === '/' ? currentPath === '/' : currentPath.startsWith(href);

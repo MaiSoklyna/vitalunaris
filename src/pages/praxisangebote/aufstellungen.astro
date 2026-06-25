@@ -8,74 +8,75 @@ import PersonBio from '@organisms/PersonBio.astro';
 import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
-import Heading from '@atoms/Heading.astro';
-import Text from '@atoms/Text.astro';
+import { getEmDashEntry } from 'emdash';
+import { nl2br, imageUrl } from '@lib/cms';
 
-const bookingUrl = 'https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825';
+// ── CMS: editable at /_emdash/admin (falls back to original copy) ──────────
+const { entry } = await getEmDashEntry('praxisangebote', 'aufstellungen');
+const d: Record<string, any> = entry?.data ?? {};
+const { entry: person } = await getEmDashEntry('team', d.practitioner || 'theresia-jansen');
+const pd: Record<string, any> = person?.data ?? {};
 
-const steps = [
+const bookingUrl = d.hero_cta_href || 'https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825';
+
+const steps = d.process_steps?.length ? d.process_steps : [
   { number: '01', title: 'Buchen', description: 'Du kannst hier direkt einen Termin buchen, vor Ort oder Online.' },
   { number: '02', title: 'Thema klären', description: 'Was bringst du mit? Was soll sich zeigen? Theresia hört zu und hilft, das Thema systemisch zu fassen.' },
   { number: '03', title: 'Aufstellen', description: 'Mit Bodenanker oder Aufstellungsbrett — das System wird im Raum sichtbar. Was zeigt sich? Was will sich bewegen?' },
   { number: '04', title: 'Integrieren', description: 'Was du mitnimmst. Was sich gezeigt hat. Was als nächstes kommen darf.' },
 ];
 
-const themes = [
-  'Familienmuster und Herkunftsthemen',
-  'Kinderwunsch, Fehlgeburt und unerfüllte Sehnsüchte',
-  'Partnerschaft und Beziehungsdynamiken',
-  'Berufliche Entscheidungen und Lebenswege',
-  'Konflikte mit Menschen in deinem Umfeld',
-  'Körpersymptome mit systemischem Hintergrund',
-  'Wiederkehrende Muster, Blockaden und innere Konflikte',
+const testimonials = d.testimonials?.length ? d.testimonials : [
+  { quote: '«Danke von ganzem Herzen. Durch deine Begleitung und die systemische Arbeit habe ich vieles über mich erkannt und den Mut gefunden, meinen eigenen Weg zu gehen. Heute bin ich selbständig – etwas, das ich mir früher kaum zugetraut hätte.»', name: 'Steffi K.' },
+  { quote: '«Unsere Sitzung hat mich kurz danach durch ein wichtiges Gespräch getragen — klar, wach und ganz bei mir. Ich danke dir von Herzen für diese liebevolle und tiefwirkende Begleitung.»', name: 'Zsannet T. Nagy' },
+  { quote: '«Erkenntnisse. Aha-Momente. Gänsehaut. Ein Nervensystem, das sich so tief beruhigt hat wie noch nie. Stolz. Klar. Frei. Von Herzen danke, Theresia.»', name: 'Christina G.' },
+  { quote: '«Du hast mich von Anfang an unterstützt, verstanden und nicht locker gelassen. Heute fliesst es einfach. Ich übe meinen Traumjob aus und fühle mich am richtigen Ort zur richtigen Zeit. Von Herzen danke.»', name: 'Nicole S.' },
 ];
 
-const testimonials = [
-  { quote: '«Danke von ganzem Herzen. Durch deine Begleitung und die systemische Arbeit habe ich vieles über mich erkannt und den Mut gefunden, meinen eigenen Weg zu gehen. Heute bin ich selbständig – etwas, das ich mir früher kaum zugetraut hätte. Ohne dich wäre ich nicht der Mensch, der ich heute bin.»', name: 'Steffi K.' },
-  { quote: '«Unsere Sitzung hat mich kurz danach durch ein wichtiges Gespräch getragen — klar, wach und ganz bei mir. Ich habe seit langem erstmals wieder durchgeschlafen und fühle mich heute offener, leichter und innerlich ausgerichtet. Es kribbelt sogar im Inneren, als wäre wieder etwas in mir erwacht. Es ist, als könnte ich endlich wieder frei atmen - als wäre ich wieder lebendig. ch danke dir von Herzen für diese liebevolle und tiefwirkende Begleitung.', name: 'Zsannet T. Nagy' },
-  { quote: '«Erkenntnisse. Aha-Momente. Gänsehaut. Ein Nervensystem, das sich so tief beruhigt hat wie noch nie. Und dann dieser Moment, in dem plötzlich alles Sinn macht. Stolz. Klar. Frei. Von Herzen danke, Theresia.»', name: 'Christina G. ' },
-  { quote: '«Du hast mich von Anfang an unterstützt, verstanden und nicht locker gelassen. Ohne dich wäre ich wohl länger im Geburtskanal stecken geblieben. Heute fliesst es einfach. Ich habe alte Glaubenssätze losgelassen, lebe mein wahres Sein und übe meinen Traumjob aus. Ich fühle mich am richtigen Ort zur richtigen Zeit. Von Herzen danke.»', name: 'Nicole S.' },
-];
-
-const faqItems = [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   { question: 'Muss ich bereits Erfahrung mit Aufstellungen haben?', answer: 'Nein. Du brauchst kein Vorwissen. Theresia begleitet dich Schritt für Schritt — du musst nur offen sein für das, was sich zeigt.' },
-  { question: 'Funktioniert eine Aufstellung auch ohne Gruppe?', answer: 'Ja. Im geschützten Einzelsetting schauen wir gemeinsam auf dein Anliegen — mit Bodenankern vor Ort oder am Aufstellungsbrett online. Eine Gruppe brauchst du dafür nicht.' },
-  { question: 'Welche Themen können aufgestellt werden?', answer: 'Familiengeschichte, Kinderwunsch, Partnerschaft, berufliche Entscheidungen, wiederkehrende Muster oder Körpersymptome. Grundsätzlich lässt sich alles aufstellen, was dich beschäftigt — sogar dein Numeroskop oder Horoskop.' },
+  { question: 'Funktioniert eine Aufstellung auch ohne Gruppe?', answer: 'Ja. Im geschützten Einzelsetting schauen wir gemeinsam auf dein Anliegen — mit Bodenankern vor Ort oder am Aufstellungsbrett online.' },
+  { question: 'Welche Themen können aufgestellt werden?', answer: 'Familiengeschichte, Kinderwunsch, Partnerschaft, berufliche Entscheidungen, wiederkehrende Muster oder Körpersymptome.' },
   { question: 'Muss ich meine ganze Familiengeschichte kennen?', answer: 'Nein. Es genügt, was du weisst. Oft zeigen sich Zusammenhänge gerade dort, wo wir bewusst (noch) keine Erklärung haben.' },
   { question: 'Ist eine Sitzung auch online möglich?', answer: 'Ja. Vor Ort arbeiten wir mit Bodenankern, online am Aufstellungsbrett — beide Formate sind gleichermassen wirkungsvoll.' },
-  { question: 'Was passiert nach der Sitzung?', answer: 'Was sich gezeigt hat, darf sich in deinem Alltag setzen. Auf Wunsch begleiten wir dich mit einem 7- oder 30-tägigen Online-Support, um das Erlebte zu stabilisieren und zu integrieren.' },
+  { question: 'Was passiert nach der Sitzung?', answer: 'Was sich gezeigt hat, darf sich in deinem Alltag setzen. Auf Wunsch begleiten wir dich mit einem 7- oder 30-tägigen Online-Support.' },
 ];
+
+const bioParagraphs = pd.bio_paragraphs?.length
+  ? pd.bio_paragraphs.map((p: any) => p.text)
+  : [
+      'Ich glaube, dass hinter vielen Herausforderungen nicht mangelnde Stärke steckt, sondern Zusammenhänge, die bisher nicht sichtbar waren.',
+      'Seit über 30 Jahren begleite ich Menschen dabei, diese Zusammenhänge zu erkennen, festgefahrene Muster zu verstehen und neue Wege zu finden.',
+      'Was ich weitergebe, stammt aus vielen Ausbildungen, tausenden Begegnungen mit Menschen – und aus meinem eigenen Leben. Ich begleite als Mensch, der selbst Höhen und Tiefen erlebt hat und weiss, dass Veränderung möglich ist.',
+    ];
 ---
 
 <BaseLayout
-  title="1:1 Aufstellung mit Theresia Jansen | VitaLunaris"
-  description="Systemisches Aufstellen im Einzelsetting mit Theresia Jansen — individuelle Begleitung für dein persönliches Anliegen, achtsam und lösungsorientiert."
+  title={d.seo_title || '1:1 Aufstellung mit Theresia Jansen | VitaLunaris'}
+  description={d.seo_description || 'Systemisches Aufstellen im Einzelsetting mit Theresia Jansen — individuelle Begleitung für dein persönliches Anliegen, achtsam und lösungsorientiert.'}
   currentPath="/praxisangebote/aufstellungen"
 >
   <CourseHero
-    categoryMeta="Systemisches Aufstellen | 1:1 Aufstellung"
-    title="1:1 Aufstellung<br />mit Theresia Jansen"
-    description="Systemische Aufstellungen machen sichtbar, was unter der Oberfläche wirkt — Loyalitäten, Verstrickungen und unbewusste Dynamiken aus der Familiengeschichte. Was sich wiederholt oder festgefahren anfühlt, hat oft tiefere Zusammenhänge.Das hier ist die individuelle Begleitung für dein persönliches Anliegen – achtsam, lösungsorientiert und in deinem Tempo."
-    durationMeta="Einzelsitzung | 90–120 Min. | Online oder vor Ort"
-    price="CHF 244.–"
-    note="Optional: Begleitender Online-Support 7 Tage Online-Support zur Stabilisierung und Begleitung nach der Sitzung: CHF 77.–30 Tage Online-Support für eine tiefere Integration und persönliche Begleitung im Alltag: CHF 222.–"
-    ctaText="Termin buchen"
+    categoryMeta={d.hero_category || 'Systemisches Aufstellen | 1:1 Aufstellung'}
+    title={d.hero_title || '1:1 Aufstellung<br />mit Theresia Jansen'}
+    description={d.hero_description || 'Systemische Aufstellungen machen sichtbar, was unter der Oberfläche wirkt — Loyalitäten, Verstrickungen und unbewusste Dynamiken aus der Familiengeschichte. Das hier ist die individuelle Begleitung für dein persönliches Anliegen – achtsam, lösungsorientiert und in deinem Tempo.'}
+    durationMeta={d.hero_duration || 'Einzelsitzung | 90–120 Min. | Online oder vor Ort'}
+    price={d.hero_price || 'CHF 244.–'}
+    note={d.hero_note || 'Optional: Begleitender Online-Support — 7 Tage CHF 77.– · 30 Tage CHF 222.–'}
+    ctaText={d.hero_cta_text || 'Termin buchen'}
     ctaHref={bookingUrl}
-    image="/images/placeholder/placeholder-2.jpg"
+    image={imageUrl(d.hero_image) || '/images/placeholder/placeholder-2.jpg'}
   />
 
-  {/* ===================== Einzelsetting (gold gradient, image left) ===================== */}
+  {/* ===================== Einzelsetting (image left) ===================== */}
   <NarrativeBlock
     tone="light"
     imageSide="left"
-    image="/images/placeholder/Placeholder-24.jpg"
+    image={imageUrl(d.narrative_image) || '/images/placeholder/Placeholder-24.jpg'}
     imageAlt=""
-    title="Systemisches Aufstellen im Einzelsetting."
-    body="Du brauchst keine Gruppe, um von einer Aufstellung zu profitieren. Im geschützten Einzelsetting schauen wir gemeinsam auf dein Anliegen – online oder vor Ort in der Praxis. Dabei arbeiten wir mit Bodenankern oder dem Aufstellungsbrett.<br/><br/>Mögliche Themen sind:<br/>• Familiengeschichte und Herkunftsthemen<br/>• Kinderwunsch, Fehlgeburt und unerfüllte Sehnsüchte<br/>• Partnerschaft und Beziehungsdynamiken<br/>• Berufliche Entscheidungen und Lebenswege<br/>• Konflikte mit Menschen in deinem Umfeld<br/>• Körpersymptome mit systemischen Hintergründen<br/>• Wiederkehrende Muster, Blockaden und innere Konflikte<br/><br/>Grundsätzlich kann alles aufgestellt werden, was dich beschäftigt oder einfach interessiert – sogar dein Numeroskop oder Horoskop."
+    title={d.narrative_title || 'Systemisches Aufstellen im Einzelsetting.'}
+    body={nl2br(d.narrative_body) || 'Du brauchst keine Gruppe, um von einer Aufstellung zu profitieren. Im geschützten Einzelsetting schauen wir gemeinsam auf dein Anliegen – online oder vor Ort in der Praxis. Dabei arbeiten wir mit Bodenankern oder dem Aufstellungsbrett.'}
   />
-
-  {/* ===================== Mögliche Themen (text left, image right) ===================== */}
-  
 
   {/* ===================== Process ===================== */}
   <ProcessSteps steps={steps} ctaText="Termin buchen" ctaHref={bookingUrl} />
@@ -84,10 +85,10 @@ const faqItems = [
   <NarrativeBlock
     tone="purple"
     imageSide="right"
-    image="/images/placeholder/Placeholder-25.jpg"
+    image={imageUrl(d.quote_image) || '/images/placeholder/Placeholder-25.jpg'}
     imageAlt=""
-    title={`„Nicht alles, was dich belastet, gehört zu dir. Manches möchte einfach gesehen und an seinen richtigen Platz gestellt werden.”`}
-    body="Theresia Jansen"
+    title={d.quote_text || '„Nicht alles, was dich belastet, gehört zu dir. Manches möchte einfach gesehen und an seinen richtigen Platz gestellt werden.”'}
+    body={d.quote_attribution || 'Theresia Jansen'}
   />
 
   {/* ===================== Testimonials ===================== */}
@@ -95,23 +96,19 @@ const faqItems = [
 
   {/* ===================== Bio ===================== */}
   <PersonBio
-    eyebrow="wer dich begleitet"    
-    name="Theresia Jansen" 
-    paragraphs={[
-      'Ich glaube, dass hinter vielen Herausforderungen nicht mangelnde Stärke steckt, sondern Zusammenhänge, die bisher nicht sichtbar waren.',
-      'Seit über 30 Jahren begleite ich Menschen dabei, diese Zusammenhänge zu erkennen, festgefahrene Muster zu verstehen und neue Wege zu finden.',
-      'Was ich weitergebe, stammt aus vielen Ausbildungen, tausenden Begegnungen mit Menschen – und aus meinem eigenen Leben.Denn ich begleite nicht von aussen. Ich begleite als Mensch, der selbst Höhen und Tiefen erlebt hat und weiss, dass Veränderung möglich ist.',
-    ]}
-    image="/images/placeholder/Placeholder-8.jpg"
+    eyebrow={pd.eyebrow || 'wer dich begleitet'}
+    name={pd.name || 'Theresia Jansen'}
+    paragraphs={bioParagraphs}
+    image={imageUrl(pd.image) || '/images/placeholder/Placeholder-8.jpg'}
     imageSide="right"
   />
 
   {/* ===================== Brand CTA ===================== */}
   <BrandCtaBlock
-    title="Bereit, tiefer<br />zu gehen?"
-    body="Ein konkretes Thema, ein gewisses Gefühl, eine Sehnsucht. Theresia begleitet dich, die wirklich etwas bewegt. Termin buchen — in deinem Tempo, auf deinem Weg."
-    ctaText="Termin buchen"
-    ctaHref={bookingUrl}
+    title={d.brand_cta_title || 'Bereit, tiefer<br />zu gehen?'}
+    body={d.brand_cta_body || 'Ein konkretes Thema, ein gewisses Gefühl, eine Sehnsucht. Theresia begleitet dich dorthin, wo sich wirklich etwas bewegt. Termin buchen — in deinem Tempo, auf deinem Weg.'}
+    ctaText={d.brand_cta_text || 'Termin buchen'}
+    ctaHref={d.brand_cta_href || bookingUrl}
   />
 
   {/* ===================== FAQ ===================== */}
@@ -121,92 +118,8 @@ const faqItems = [
   <NewsletterBlock
     eyebrow="Newsletter"
     title="Erforsche die Systeme<br />deiner Seele"
-    body="Noch nicht bereit für eine Sitzung? Kein Problem. In meinem Newsletter teile ich regelmässig Inspirationen, Systemische Gedankenanstösse und Impulse für mehr Klarheit und innere Balance. Ich freue mich, wenn wir in Verbindung bleiben."
+    body="Noch nicht bereit für eine Sitzung? Kein Problem. In meinem Newsletter teile ich regelmässig Inspirationen, systemische Gedankenanstösse und Impulse für mehr Klarheit und innere Balance. Ich freue mich, wenn wir in Verbindung bleiben."
     placeholder="E-mail Adresse"
     submitText="Newsletter anmelden"
   />
 </BaseLayout>
-
-<style>
-  /* ============================================================
-     THEMES — "Mögliche Themen sind:" (text left + bullet list,
-     image right, Spring Wood)
-     ============================================================ */
-  .themes { background: var(--c-spring-wood); padding: 60px 20px; }
-  @media (min-width: 768px)  { .themes { padding: 80px 32px; } }
-  @media (min-width: 1280px) { .themes { padding: 90px 60px; } }
-  @media (min-width: 1920px) { .themes { padding: 120px 90px; } }
-
-  .themes__inner {
-    max-width: 1740px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  @media (min-width: 1024px) {
-    .themes__inner { flex-direction: row; align-items: center; gap: 64px; }
-  }
-  @media (min-width: 1920px) { .themes__inner { gap: 100px; } }
-
-  .themes__content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-  @media (min-width: 1024px) { .themes__content { gap: 32px; max-width: 620px; } }
-
-  .themes__title {
-    color: var(--c-cherrywood);
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--h1-size);
-    line-height: 1.1;
-    margin: 0;
-  }
-
-  .themes__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-self: stretch;
-  }
-  .themes__item {
-    position: relative;
-    padding-left: 26px;
-    font-family: 'ES Park', serif;
-    font-weight: var(--weight-regular);
-    font-size: var(--p1-size);
-    line-height: 1.5;
-    color: var(--c-cherrywood);
-  }
-  .themes__item::before {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 0.6em;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--c-cherrywood);
-  }
-  .themes__note { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; opacity: 0.85; }
-
-  .themes__media {
-    flex: 0 0 auto;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 16.67px;
-    background: var(--c-pale-gold);
-    aspect-ratio: 4 / 3;
-  }
-  @media (min-width: 1024px) { .themes__media { width: 44%; border-radius: 20px; aspect-ratio: 4 / 5; } }
-  @media (min-width: 1920px) { .themes__media { width: 620px; border-radius: 25px; aspect-ratio: 620 / 700; } }
-  .themes__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-</style>

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris — site settings (nav + footer)",
+    "description": "Navigation menu + footer, editable"
+  },
+  "content": {
+    "site_settings": [
+      {
+        "id": "site-settings-main",
+        "slug": "settings",
+        "status": "published",
+        "data": {
+          "site_title": "VitaLunaris",
+          "contact_email": "info@vitalunaris.ch",
+          "address": "Eichenaustrasse 32, CH-9470 Buchs",
+          "nav_items": [
+            {
+              "label": "Systemische Ausbildung",
+              "href": "/ausbildung",
+              "children": "[{\"label\":\"Übersicht\",\"href\":\"/ausbildung/uebersicht\"},{\"label\":\"Systemischer Soulcoach – Level 1\",\"href\":\"/ausbildung/soulcoach-level-1\"},{\"label\":\"Systemischer Soulcoach – Level 2\",\"href\":\"/ausbildung/soulcoach-level-2\"},{\"label\":\"Infoanlässe\",\"href\":\"/ausbildung/infoanlaesse\"}]"
+            },
+            {
+              "label": "Workshops & Kurse",
+              "href": "/workshops-kurse/kalender-uebersicht",
+              "navigate_on_click": true,
+              "children": "[{\"label\":\"Kalender & Übersicht\",\"href\":\"/workshops-kurse/kalender-uebersicht\"},{\"label\":\"Aktueller Monatsworkshop\",\"href\":\"/workshops-kurse/aktueller-monatsworkshop\"}]"
+            },
+            {
+              "label": "Praxisangebote",
+              "href": "/praxisangebote",
+              "children": "[{\"label\":\"Übersicht\",\"href\":\"/praxisangebote\"},{\"label\":\"1:1 Aufstellungen\",\"href\":\"/praxisangebote/aufstellungen\"},{\"label\":\"Hypnose\",\"href\":\"/praxisangebote/hypnose\"},{\"label\":\"Numerologieberatung\",\"href\":\"/praxisangebote/numerologieberatung\"},{\"label\":\"Fussreflexzonenbehandlung\",\"href\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"label\":\"Jawort by Jansen\",\"href\":\"/praxisangebote/jawort-by-jansen\"}]"
+            },
+            {
+              "label": "News",
+              "href": "/neuigkeiten"
+            },
+            {
+              "label": "Über uns",
+              "href": "/ueber-uns"
+            },
+            {
+              "label": "Kontakt",
+              "href": "/kontakt"
+            }
+          ],
+          "footer_columns": [
+            {
+              "title": "Ausbildung",
+              "links": "[{\"label\":\"Übersicht\",\"href\":\"/ausbildung/uebersicht\"},{\"label\":\"Systemic Soulcoach Level 1\",\"href\":\"/ausbildung/soulcoach-level-1\"},{\"label\":\"Systemic Soulcoach Level 2\",\"href\":\"/ausbildung/soulcoach-level-2\"},{\"label\":\"Infoanlässe\",\"href\":\"/ausbildung/infoanlaesse\"}]"
+            },
+            {
+              "title": "Kurse",
+              "links": "[{\"label\":\"Kalender & Übersicht\",\"href\":\"/workshops-kurse/kalender-uebersicht\"},{\"label\":\"Monatsworkshop\",\"href\":\"/workshops-kurse/aktueller-monatsworkshop\"}]"
+            },
+            {
+              "title": "Praxisangebote",
+              "links": "[{\"label\":\"Übersicht\",\"href\":\"/praxisangebote\"},{\"label\":\"1:1 Aufstellungen\",\"href\":\"/praxisangebote/aufstellungen\"},{\"label\":\"Hypnose\",\"href\":\"/praxisangebote/hypnose\"},{\"label\":\"Numerologieberatung\",\"href\":\"/praxisangebote/numerologieberatung\"},{\"label\":\"Fussreflexzonen\",\"href\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"label\":\"Jawort by Jansen\",\"href\":\"/praxisangebote/jawort-by-jansen\"}]"
+            },
+            {
+              "title": "Weiteres",
+              "links": "[{\"label\":\"Über uns\",\"href\":\"/ueber-uns\"},{\"label\":\"News\",\"href\":\"/neuigkeiten\"}]"
+            }
+          ],
+          "footer_legal": [
+            {
+              "label": "Impressum",
+              "href": "/impressum"
+            },
+            {
+              "label": "Datenschutz",
+              "href": "/datenschutz"
+            },
+            {
+              "label": "AGB",
+              "href": "/agb"
+            }
+          ],
+          "footer_phones": [
+            {
+              "name": "Theresia Jansen",
+              "phone": "+41 792 917 402"
+            },
+            {
+              "name": "Axel Jansen",
+              "phone": "+41 797 849 130"
+            }
+          ],
+          "footer_copyright": "VitaLunaris · Theresia & Axel Jansen",
+          "social_links": [
+            {
+              "platform": "facebook",
+              "href": "https://www.facebook.com/JansenBuchs/"
+            },
+            {
+              "platform": "instagram",
+              "href": "https://www.instagram.com/vitalunaris_by_jansen/"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

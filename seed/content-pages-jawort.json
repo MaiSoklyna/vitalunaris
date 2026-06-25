@@ -1,0 +1,65 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris — jawort",
+    "description": "Block page"
+  },
+  "content": {
+    "pages": [
+      {
+        "id": "page-jawort-by-jansen",
+        "slug": "jawort-by-jansen",
+        "status": "published",
+        "data": {
+          "seo_title": "Jawort by Jansen — Freie Trauungen & Zeremonien | VitaLunaris",
+          "seo_description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Theresia Jansen erzählt eure Geschichte.",
+          "sections": [
+            {
+              "type": "hero",
+              "eyebrow": "Jawort by Jansen | Theresia Jansen",
+              "title": "Zeremonien voller Persönlichkeit und Emotion.",
+              "description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl – für Zeremonien, die berühren und lange nachklingen.",
+              "body": "Alternativ schreibe ich eure persönliche Rede — und eine vertraute Person führt die Zeremonie durch. Ich begleite gerne auch die Vorbereitung. Preis auf Anfrage.",
+              "image": "/images/placeholder/Placeholder-18.jpg",
+              "items": "[{\"label\":\"Freie Trauungen\",\"value\":\"ab CHF 1’800.–\"},{\"label\":\"Kinderwillkommensfeiern\",\"value\":\"ab CHF 950.–\"},{\"label\":\"Eheversprechenerneuerung\",\"value\":\"auf Anfrage\"}]"
+            },
+            {
+              "type": "narrative1",
+              "image": "/images/placeholder/Placeholder-19.jpg",
+              "eyebrow": "Freie Trauung",
+              "title": "Was ist eine freie Trauung?",
+              "body": "Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt.\n\nOb auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe."
+            },
+            {
+              "type": "gallery",
+              "items": "[{\"src\":\"/images/cards/card-1.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-2.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-3.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-4.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-5.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-6.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-7.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-8.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-9.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-10.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-11.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-12.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-13.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-14.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-15.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-16.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-17.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-18.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-19.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-20.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-21.jpg\",\"alt\":\"Jawort by Jansen — Impression\"},{\"src\":\"/images/cards/card-22.jpg\",\"alt\":\"Jawort by Jansen — Impression\"}]"
+            },
+            {
+              "type": "narrative2",
+              "image": "/images/placeholder/Placeholder-28.jpg",
+              "eyebrow": "Kinderwillkommensfeier",
+              "title": "Was ist eine Kinderwillkommensfeier?",
+              "body": "Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen.\n\nMit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben.\n\nDenn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein."
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»\",\"name\":\"Raffaella & Luca\"},{\"quote\":\"«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»\",\"name\":\"Sandy & Michael\"},{\"quote\":\"«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»\",\"name\":\"Saskia & Benjamin\"},{\"quote\":\"«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»\",\"name\":\"Janina & Marc\"}]"
+            },
+            {
+              "type": "bio",
+              "eyebrow": "Wer euch begleitet",
+              "title": "Theresia Jansen",
+              "image": "/images/placeholder/Placeholder-8.jpg",
+              "items": "[\"Ich bin nicht einfach da, um eine schöne Rede zu halten. Ich bin da, um eure Geschichte einzufangen — mit Zeit, Aufmerksamkeit und echtem Interesse daran, was euch wichtig ist.\",\"Ihr entscheidet, wie eure Feier klingen darf: humorvoll oder romantisch, klassisch oder frei, leicht oder tief. Nichts muss. Alles darf stimmig sein. Durch meine langjährige Arbeit mit Menschen bringe ich mit, was an diesem Tag besonders wertvoll ist: Ruhe, Präsenz und Halt.\",\"Mein Ziel ist nicht die perfekte Rede. Mein Ziel ist, dass ihr euch in diesem Moment wiederfindet und sagen könnt: «Das sind wir. Genau so haben wir es uns gewünscht.»\",\"Ob freie Trauung, Kinderwillkommensfeier oder Eheversprechen — ich freue mich darauf, eure Geschichte kennenzulernen. Herzlich, Theresia Jansen\"]"
+            },
+            {
+              "type": "faq",
+              "items": "[{\"question\":\"Wie läuft die Vorbereitung einer freien Trauung ab?\",\"answer\":\"Wir starten mit einem kostenlosen Kennenlerngespräch. Danach lernen wir uns und eure Geschichte kennen, ich schreibe eure persönliche Rede und wir stimmen Ablauf, Ort und Wünsche gemeinsam ab.\"},{\"question\":\"Wie persönlich wird die Traurede?\",\"answer\":\"Sehr persönlich. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl — so, dass ihr euch in jedem Wort wiederfindet. Keine Floskeln, keine Vorlagen von der Stange.\"},{\"question\":\"Kann die Zeremonie humorvoll sein?\",\"answer\":\"Unbedingt. Romantisch, feierlich, berührend oder herrlich unkompliziert — eure Zeremonie darf so einzigartig sein wie ihr.\"},{\"question\":\"Wie lange dauert eine freie Trauung?\",\"answer\":\"Eine Zeremonie dauert in der Regel 30 bis 45 Minuten. Die genaue Länge gestalten wir gemeinsam.\"},{\"question\":\"Führst du auch Kinderwillkommensfeiern durch?\",\"answer\":\"Ja. Eine Kinderwillkommensfeier heisst einen neuen kleinen Menschen liebevoll im Kreis seiner Herzensmenschen willkommen — frei gestaltet und ganz auf euch zugeschnitten.\"},{\"question\":\"In welcher Region bist du als Rednerin unterwegs?\",\"answer\":\"Ich bin in der ganzen Deutschschweiz für euch unterwegs — vom Weingut über den See bis in die Berge.\"}]"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

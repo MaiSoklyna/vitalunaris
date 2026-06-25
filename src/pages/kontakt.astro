@@ -1,20 +1,31 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
-import ContactForm from '@organisms/ContactForm.astro';
+import Blocks from '@organisms/Blocks.astro';
+import { getEmDashEntry } from 'emdash';
+import { imageUrl } from '@lib/cms';
+
+// Block page — editable at /_emdash/admin/content/pages (slug "kontakt").
+const { entry } = await getEmDashEntry('pages', 'kontakt');
+const d: Record<string, any> = entry?.data ?? {};
+
+const FALLBACK_SECTIONS = [
+  { type: 'contact_form', items: { recipient: 'info@vitalunaris.ch', submitText: 'Senden' } },
+];
+const sections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
 ---
 
 <BaseLayout
-  title="Kontakt | VitaLunaris"
-  description="Hast du Fragen zu einem Angebot, der Ausbildung oder einem Workshop? Schreib uns — wir melden uns innert 24 Stunden."
+  title={d.seo_title || 'Kontakt | VitaLunaris'}
+  description={d.seo_description || 'Hast du Fragen zu einem Angebot, der Ausbildung oder einem Workshop? Schreib uns — wir melden uns innert 24 Stunden.'}
   currentPath="/kontakt"
 >
   <OverviewHero
-    graphic="/images/ebene/Ebene_2-8.svg"
-    eyebrow="VitaLunaris Kontakt"
-    title="Hast du Fragen?"
-    subtitle="Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden."
+    graphic={imageUrl(d.hero_image) || '/images/ebene/Ebene_2-8.svg'}
+    eyebrow={d.hero_eyebrow || 'VitaLunaris Kontakt'}
+    title={d.hero_title || 'Hast du Fragen?'}
+    subtitle={d.hero_subtitle || 'Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden.'}
   />
 
-  <ContactForm recipient="info@vitalunaris.ch" submitText="Senden" />
+  <Blocks sections={sections} />
 </BaseLayout>
