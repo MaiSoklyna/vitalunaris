@@ -9,7 +9,7 @@ import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import { getEmDashEntry } from 'emdash';
-import { nl2br, imageUrl } from '@lib/cms';
+import { nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // ── CMS: editable at /_emdash/admin (falls back to original copy) ──────────
 const { entry } = await getEmDashEntry('praxisangebote', 'aufstellungen');
@@ -26,7 +26,8 @@ const steps = d.process_steps?.length ? d.process_steps : [
   { number: '04', title: 'Integrieren', description: 'Was du mitnimmst. Was sich gezeigt hat. Was als nächstes kommen darf.' },
 ];
 
-const testimonials = d.testimonials?.length ? d.testimonials : [
+const _ts = await getTestimonials('praxis-aufstellungen');
+const testimonials = _ts.length ? _ts : [
   { quote: '«Danke von ganzem Herzen. Durch deine Begleitung und die systemische Arbeit habe ich vieles über mich erkannt und den Mut gefunden, meinen eigenen Weg zu gehen. Heute bin ich selbständig – etwas, das ich mir früher kaum zugetraut hätte.»', name: 'Steffi K.' },
   { quote: '«Unsere Sitzung hat mich kurz danach durch ein wichtiges Gespräch getragen — klar, wach und ganz bei mir. Ich danke dir von Herzen für diese liebevolle und tiefwirkende Begleitung.»', name: 'Zsannet T. Nagy' },
   { quote: '«Erkenntnisse. Aha-Momente. Gänsehaut. Ein Nervensystem, das sich so tief beruhigt hat wie noch nie. Stolz. Klar. Frei. Von Herzen danke, Theresia.»', name: 'Christina G.' },

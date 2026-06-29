@@ -55,7 +55,7 @@ const {
     background: var(--c-spring-wood);
     color: var(--c-cherrywood);
     border: 0.667px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 26.67px 27.33px;
     gap: 39.33px;
     height: 100%;
@@ -63,7 +63,7 @@ const {
   @media (min-width: 1280px) {
     .event-card {
       border-width: 0.8px;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
       padding: 32px 33px;
       gap: 47px;
     }
@@ -71,7 +71,7 @@ const {
   @media (min-width: 1920px) {
     .event-card {
       border-width: 1px;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
       padding: 40px 41px;
       gap: 59px;
     }
@@ -95,7 +95,7 @@ const {
   /* ----- image ----- */
   .event-card__image-wrap {
     width: 100%;
-    border-radius: 10px;
+    border-radius: var(--radius-xs);
     overflow: hidden;
     aspect-ratio: unset;
     height: 200px;
@@ -108,7 +108,7 @@ const {
   }
   @media (min-width: 1920px) {
     .event-card__image-wrap {
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       height: 308px;
     }
   }
@@ -195,7 +195,7 @@ const {
     padding: 10px;
     font-size: var(--button-size);
     line-height: 1.2;
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
   }
   @media (min-width: 1024px) {
     .event-card__cta :global(.btn) {

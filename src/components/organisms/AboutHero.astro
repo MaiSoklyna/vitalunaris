@@ -39,7 +39,7 @@ const {
     </div>
 
     <div class="about-hero__media" style={`aspect-ratio: ${mediaAspect};`}>
-      <img src={image} alt={imageAlt} class="about-hero__image" loading="eager" decoding="async" />
+      <img src={image} alt={imageAlt} class="about-hero__image" loading="eager" fetchpriority="high" decoding="async" />
     </div>
   </div>
 </section>
@@ -108,11 +108,11 @@ const {
     flex: 0 0 auto;
     width: 100%;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: var(--c-pale-gold);
     order: 0;
   }
-  @media (min-width: 1024px) { .about-hero__media { width: 46%; border-radius: 20px; } }
-  @media (min-width: 1920px) { .about-hero__media { width: 711px; border-radius: 25px; } }
+  @media (min-width: 1024px) { .about-hero__media { width: 46%; border-radius: var(--radius-card); } }
+  @media (min-width: 1920px) { .about-hero__media { width: 711px; border-radius: var(--radius-card-lg); } }
   .about-hero__image { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style>

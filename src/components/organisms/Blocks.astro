@@ -10,6 +10,7 @@
    repeaters can't nest), parsed here per block type.
    ============================================================ */
 import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import FeaturedTestimonial from '@organisms/FeaturedTestimonial.astro';
 import OfferCardsBlock from '@organisms/OfferCardsBlock.astro';
 import ValueCardsBlock from '@organisms/ValueCardsBlock.astro';
 import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
@@ -24,7 +25,7 @@ import ContactForm from '@organisms/ContactForm.astro';
 import NewsletterHero from '@organisms/NewsletterHero.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
 import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
-import { nl2br, jsonArray, parseJson, imageUrl } from '@lib/cms';
+import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards } from '@lib/cms';
 
 interface Section {
   type?: string;
@@ -34,6 +35,8 @@ interface Section {
   image?: string;
   image_side?: 'left' | 'right';
   tone?: string;
+  /** For testimonials blocks: which set of reviews to show from the shared `testimonials` collection. */
+  context?: string;
   items?: unknown;
 }
 
@@ -41,7 +44,27 @@ interface Props {
   sections?: Section[];
 }
 
-const { sections = [] } = Astro.props;
+const { sections: rawSections = [] } = Astro.props;
+
+// Self-resolve testimonials blocks from the shared `testimonials` collection so a
+// "Stimmen" block can be added to ANY block page — the editor just picks a context.
+// Sections that already carry injected `items` (e.g. a page that wires its own data)
+// are left untouched, so this stays backward-compatible.
+const sections = await Promise.all(
+  rawSections.map(async (s) => {
+    // When a testimonials block names a context, it's authoritative: pull the live
+    // reviews from the shared `testimonials` collection (single source of truth).
+    // Blocks without a context (e.g. the in-page fallback) keep their own items.
+    if (s.type === 'testimonials' && s.context) {
+      return { ...s, items: await getTestimonials(s.context) };
+    }
+    // Info-card blocks resolve their cards the same way (shared `info_cards` collection).
+    if (s.type === 'info_cards' && s.context) {
+      return { ...s, items: await getInfoCards(s.context) };
+    }
+    return s;
+  })
+);
 ---
 
 {sections.map((s) => {
@@ -57,6 +80,19 @@ const { sections = [] } = Astro.props;
           eyebrow={s.eyebrow}
           title={s.title || ''}
           body={nl2br(s.body)}
+        />
+      );
+    case 'featured':
+      return (
+        <FeaturedTestimonial
+          eyebrow={s.eyebrow}
+          name={s.title || ''}
+          quote={nl2br(s.body)}
+          image={imageUrl(s.image)}
+          imageSide={side}
+          tone={s.tone === 'spring-wood' ? 'spring-wood' : 'pale-gold'}
+          ctaText="Mehr über uns"
+          ctaHref="/ueber-uns"
         />
       );
     case 'offer_cards':

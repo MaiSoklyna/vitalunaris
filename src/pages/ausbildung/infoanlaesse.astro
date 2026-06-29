@@ -18,20 +18,20 @@ const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any)
 const heroS = sec('hero'), nar = sec('narrative'), about = sec('about');
 
 /* ----- "Alles auf einen Blick" — Wann / Wo / Für wen ----- */
-const infoCards = jsonArray(sec('info_cards').items).length ? jsonArray(sec('info_cards').items) : [
+const infoCards = d.info_cards?.length ? d.info_cards : [
   { eyebrow: 'Wann?', body: 'Der Infoabend findet am 24.06.2026 von 18.30 bis ca. 20.00 Uhr statt.' },
   { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.' },
   { eyebrow: 'Für wen?', body: 'Für alle, die sich fragen, ob eine Ausbildung in systemischer Arbeit der nächste richtige Schritt ist.' },
 ];
 
 /* ----- "Das erwartet dich" — agenda bullets ----- */
-const agenda = jsonArray(sec('agenda').items).length ? jsonArray(sec('agenda').items) : [
+const agenda = (d.agenda_items?.length ? d.agenda_items.map((p: any) => p.text) : [
   'Vorstellung von Systemic Soulwork & Systemic Soulcoach',
   'Überblick über die Ausbildungsstruktur',
   'Einblick in die Inhalte und Module',
   'Informationen zu Terminen und Investition',
   'Raum für Fragen und Austausch',
-];
+]) as string[];
 
 /* ----- "Weitere Kurse und Workshops:" — pulled from the editable workshops collection ----- */
 const { entries: allWs } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
@@ -47,7 +47,7 @@ const furtherCourses = (allWs ?? []).slice(0, 3).map((e: any) => ({
 }));
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
-const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   { question: 'Für wen sind die Workshops geeignet?', answer: 'Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.' },
   { question: 'Was ist der Unterschied zwischen einem Workshop und der Ausbildung?', answer: 'Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.' },
   { question: 'Brauche ich Vorkenntnisse für die Monats-Workshops?', answer: 'Nein. Die Workshops sind so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
@@ -94,7 +94,7 @@ const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items
     <div class="about__inner">
       <div class="about__content">
         <Heading level={2} variant="h1" class="about__name"><Fragment set:html={about.title || 'Theresia &<br /><em>Axel Jansen</em>'} /></Heading>
-        {(jsonArray(about.items).length ? jsonArray(about.items) : [
+        {(d.about_paragraphs?.length ? d.about_paragraphs.map((p: any) => p.text) : [
           'Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet.',
           'Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen. So entstehen Räume für Erkenntnis und neue Perspektiven – ehrlich, menschlich, mit echter Lebenserfahrung.',
         ]).map((p: string) => (
@@ -153,13 +153,13 @@ const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items
     flex: 0 0 auto;
     width: 100%;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: rgba(96, 29, 29, 0.06);
     aspect-ratio: 4 / 5;
     order: -1;
   }
-  @media (min-width: 1024px) { .about__media { width: 46%; border-radius: 20px; order: 0; } }
-  @media (min-width: 1920px) { .about__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
+  @media (min-width: 1024px) { .about__media { width: 46%; border-radius: var(--radius-card); order: 0; } }
+  @media (min-width: 1920px) { .about__media { width: 711px; border-radius: var(--radius-card-lg); aspect-ratio: 711 / 826; } }
   .about__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .about__content {

@@ -155,7 +155,7 @@ const {
     padding: 18px 30px;
     background: transparent;
     border: 0.8px solid var(--c-cherrywood);
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
     color: var(--c-cherrywood);
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
@@ -174,7 +174,7 @@ const {
 
   .contact-form__textarea {
     min-height: 180px;
-    border-radius: 25px;
+    border-radius: var(--radius-card-lg);
     resize: vertical;
   }
   @media (min-width: 1280px) { .contact-form__textarea { min-height: 220px; } }
@@ -185,7 +185,7 @@ const {
     background: var(--c-cherrywood);
     color: var(--c-spring-wood);
     border: 0.8px solid var(--c-cherrywood);
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--button-size);
@@ -193,7 +193,7 @@ const {
     cursor: pointer;
     transition: background 200ms ease, transform 200ms ease;
   }
-  .contact-form__submit:hover { background: #4A1414; }
+  .contact-form__submit:hover { background: var(--c-cherrywood-dark); }
   .contact-form__submit:active { transform: scale(0.99); }
   .contact-form__submit:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 2px; }
 </style>

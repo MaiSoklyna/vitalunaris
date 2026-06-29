@@ -9,7 +9,7 @@ import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import { getEmDashEntry } from 'emdash';
-import { nl2br, jsonArray, imageUrl } from '@lib/cms';
+import { nl2br, jsonArray, imageUrl, getTestimonials, textLines } from '@lib/cms';
 
 // ── CMS: editable at /_emdash/admin (falls back to original copy) ──────────
 const { entry } = await getEmDashEntry('praxisangebote', 'fussreflexzonenbehandlung');
@@ -29,7 +29,7 @@ const steps = d.process_steps?.length ? d.process_steps : [
 const bulletGroups = d.narrative_bullet_groups?.length
   ? d.narrative_bullet_groups.map((g: any) => ({
       heading: g.heading || undefined,
-      items: jsonArray(g.items),
+      items: textLines(g.items),
       text: g.text || undefined,
     }))
   : [
@@ -42,7 +42,8 @@ const bulletGroups = d.narrative_bullet_groups?.length
       { text: 'Das Ziel: Körperliche Beschwerden sanft zu beheben oder zu lindern, ein besseres inneres Gleichgewicht und die Unterstützung des natürlichen Wohlbefindens.' },
     ];
 
-const testimonials = d.testimonials?.length ? d.testimonials : [
+const _ts = await getTestimonials('praxis-fussreflex');
+const testimonials = _ts.length ? _ts : [
   { quote: '„Eine wunderbare Behandlung und eine rundum positive Erfahrung. Marlen arbeitet mit viel Herz, Feingefühl und Achtsamkeit. Man fühlt sich sofort wohl und gut aufgehoben. Von Herzen danke.“', name: 'Susanna H.' },
   { quote: '„Die Behandlung war unglaublich wohltuend. Nach dem Termin fühlte ich mich leichter, ruhiger und gleichzeitig voller Energie. Eine wunderbare Erfahrung.“', name: 'Ursula B.' },
   { quote: '„Als ausgebildete Fussreflexzonentherapeutin hat mich Marlens Behandlung zutiefst überrascht — deutlich intensiver und tiefgründiger, besonders die Arbeit nach TCM-Prinzipien.“', name: 'Theresia Jansen' },

@@ -61,11 +61,13 @@ It reads sections by hardcoded `type` (`'hero'`, `'lehrerin'`, `'quote'`…) int
 
 ## 2. The one constraint that should drive the whole design
 
-> **EmDash repeater sub-fields are scalar-only** (`string | text | number | integer | boolean | datetime | select`). No nested objects. No `image` sub-field.
+> **CORRECTION (2026-06-26, EmDash 0.22):** the original premise below was **wrong**. Verified in `node_modules/emdash/dist/redirects-*.mjs` (`repeaterSubFieldSchema`): repeater sub-fields support **`string | text | url | number | integer | boolean | datetime | select | image`** — including **`image`** (uploadable) — and a repeater may mix several sub-fields. So a repeating card list with a per-card uploadable image **can** be a plain repeater field; it does **not** have to become a collection. This is the basis of the 2026-06-26 migration (see memory `vitalunaris-emdash-migration-progress`): page-specific card lists → top-level repeater fields with labeled sub-fields + image upload (no JSON); reusable data (testimonials/team) → collections. The only thing still unachievable is a generic *reorderable-block* builder where each arbitrary block has structured/uploadable content — repeaters still can't nest.
 
-Two consequences:
-1. **Any repeating content that needs an image or structure must be its own Collection entry** — not an inline repeater/JSON. This single rule dissolves **P2, P6, and most of P8**.
-2. A generic "page builder" (arbitrary reorderable blocks, each with an uploadable image) is **not achievable** in EmDash. Don't fight it — pick the model that fits a **fixed-design** site.
+> ~~**EmDash repeater sub-fields are scalar-only** (`string | text | number | integer | boolean | datetime | select`). No nested objects. No `image` sub-field.~~ *(superseded — see correction above)*
+
+~~Two consequences:~~
+~~1. Any repeating content that needs an image or structure must be its own Collection entry.~~
+~~2. A generic "page builder" with uploadable images is not achievable.~~
 
 ---
 

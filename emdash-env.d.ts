@@ -39,6 +39,10 @@ export interface Ausbildungsprogramm {
   infoanlass_title?: string;
   infoanlass_body?: string;
   sections?: unknown;
+  stage_cards?: unknown;
+  lehrerin_paragraphs?: unknown;
+  agenda_items?: unknown;
+  about_paragraphs?: unknown;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -78,6 +82,21 @@ export interface Seite {
   team_image_1?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   team_image_2?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   team_image_3?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  hero_paragraphs?: unknown;
+  value_cards?: unknown;
+  offer_cards?: unknown;
+  outcomes?: unknown;
+  stage_cards?: unknown;
+  faq_items?: unknown;
+  newsletterhero_paragraphs?: unknown;
+  newsletter_placeholder?: string;
+  newsletter_submit_text?: string;
+  contact_recipient?: string;
+  contact_submit_text?: string;
+  contact_email_placeholder?: string;
+  contact_firstname_placeholder?: string;
+  contact_lastname_placeholder?: string;
+  contact_message_placeholder?: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -116,6 +135,14 @@ export interface Praxisangebot {
   brand_cta_href?: string;
   faq_items?: unknown;
   sections?: unknown;
+  gallery?: unknown;
+  price_list?: unknown;
+  bio_paragraphs?: unknown;
+  practice_offers?: unknown;
+  newsletter_placeholder?: string;
+  newsletter_submit_text?: string;
+  claim_cta_text?: string;
+  claim_cta_href?: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -128,19 +155,11 @@ export interface SiteEinstellung {
   slug: string | null;
   status: string;
   site_title?: string;
-  site_description?: string;
-  default_og_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   contact_email?: string;
-  contact_phone?: string;
   address?: string;
   nav_items?: unknown;
   footer_columns?: unknown;
   social_links?: unknown;
-  newsletter_eyebrow?: string;
-  newsletter_title?: string;
-  newsletter_body?: string;
-  newsletter_placeholder?: string;
-  newsletter_submit_text?: string;
   footer_legal?: unknown;
   footer_phones?: unknown;
   footer_copyright?: string;
@@ -160,6 +179,24 @@ export interface Person {
   role?: string;
   image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   bio_paragraphs?: unknown;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
+export interface Stimme {
+  id: string;
+  slug: string | null;
+  status: string;
+  quote?: string;
+  name?: string;
+  role?: string;
+  photo?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home";
+  featured?: boolean;
+  sort_order?: number;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -187,13 +224,15 @@ export interface Workshop {
   testimonials?: unknown;
   about_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   faq_items?: unknown;
-  further_courses?: unknown;
   card_eyebrow?: string;
   card_title?: string;
   card_description?: string;
   card_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   card_duration?: string;
   sections?: unknown;
+  about_paragraphs?: unknown;
+  deep_paragraphs?: unknown;
+  category_pills?: unknown;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -209,6 +248,7 @@ declare module "emdash" {
     praxisangebote: Praxisangebot;
     site_settings: SiteEinstellung;
     team: Person;
+    testimonials: Stimme;
     workshops: Workshop;
   }
 }

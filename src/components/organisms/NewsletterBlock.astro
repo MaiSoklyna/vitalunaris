@@ -116,7 +116,7 @@ const {
     overflow: hidden;
     background: var(--c-spring-wood);
     border: 1px solid var(--c-cherrywood);
-    border-radius: 25px;
+    border-radius: var(--radius-card-lg);
     padding: 80px 24px;
     min-height: 480px;
     width: 100%;
@@ -215,7 +215,7 @@ const {
     padding: 20px 30px;
     background: transparent;
     border: 0.8px solid var(--c-cherrywood);
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
     color: var(--c-cherrywood);
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
@@ -237,7 +237,7 @@ const {
     background: var(--c-cherrywood);
     color: var(--c-spring-wood);
     border: 1.4px solid var(--c-cherrywood);
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--button-size);
@@ -247,7 +247,7 @@ const {
     white-space: nowrap;
   }
   @media (min-width: 640px) { .newsletter__submit { min-width: 139px; } }
-  .newsletter__submit:hover { background: #4A1414; }
+  .newsletter__submit:hover { background: var(--c-cherrywood-dark); }
   .newsletter__submit:active { transform: scale(0.98); }
 
   .newsletter__privacy { color: var(--c-cherrywood); opacity: 0.6; margin-top: 4px; }

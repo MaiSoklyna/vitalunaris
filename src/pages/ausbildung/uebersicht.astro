@@ -9,7 +9,7 @@ import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
 import { getEmDashEntry } from 'emdash';
-import { jsonArray, nl2br, imageUrl } from '@lib/cms';
+import { jsonArray, nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // Editable at /_emdash/admin/content/ausbildung_programs (entry "uebersicht").
 // Design/CSS stay in this file; text + card arrays come from the CMS section bag.
@@ -19,33 +19,35 @@ const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any)
 const nar = sec('narrative'), stg = sec('stages'), out = sec('outcomes'),
       leh = sec('lehrerin'), uq = sec('uquote'), nlx = sec('newsletter');
 
-/* ----- "Drei Stufen, ein Weg" — three stage cards (image + eyebrow + title + body + CTA) ----- */
-const stages = jsonArray(stg.items).length ? jsonArray(stg.items) : [
+/* ----- "Drei Stufen, ein Weg" — three stage cards (image + eyebrow + title + body + CTA) -----
+   Editable as the "Stufen-Karten" repeater on the ausbildung_programs/uebersicht entry
+   (labeled inputs + image upload per card — no JSON). Falls back to the original copy. */
+const stages = (d.stage_cards?.length ? d.stage_cards : [
   {
-    image: '/images/cards/card-1.jpg', 
+    image: '/images/cards/card-1.jpg',
     eyebrow: 'Teil 1 — Grundlagen',
     title: 'Der Einstieg in die systemische Arbeit',
     body: 'Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.',
-    ctaHref: '/ausbildung/soulcoach-level-1',
+    cta_href: '/ausbildung/soulcoach-level-1',
   },
   {
     image: '/images/cards/card-2.jpg',
     eyebrow: 'Teil 2 — Vertiefung',
     title: 'Vom Verständnis zur Praxis',
     body: 'Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.',
-    ctaHref: '/ausbildung/soulcoach-level-2',
+    cta_href: '/ausbildung/soulcoach-level-2',
   },
   {
     image: '/images/cards/card-3.jpg',
     eyebrow: 'Begleitung & Circle',
     title: 'In der Praxis bleiben und weiterlernen',
     body: 'Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen, die das Handwerk lebendig halten und weiter wachsen wollen. Zugang nur nach abgeschlossener Ausbildung.',
-    ctaHref: '/kontakt',
+    cta_href: '/kontakt',
   },
-];
+]) as Array<Record<string, any>>;
 
 /* ----- "Nach dieser Ausbildung arbeitest du anderst." — outcomes arc (4 cards) ----- */
-const outcomes = jsonArray(out.items).length ? jsonArray(out.items) : [
+const outcomes = d.outcomes?.length ? d.outcomes : [
   {
     title: 'Du siehst Systeme.',
     description: 'Muster, Dynamiken, Loyalitäten — du erkennst sie früher. In der Arbeit mit anderen, und in deinem eigenen Leben.',
@@ -65,7 +67,8 @@ const outcomes = jsonArray(out.items).length ? jsonArray(out.items) : [
 ];
 
 /* ----- "Stimmen aus der Ausbildung" — star reviews ----- */
-const reviews = jsonArray(sec('testimonials').items).length ? jsonArray(sec('testimonials').items) : [
+const _reviews = await getTestimonials('ausbildung');
+const reviews = _reviews.length ? _reviews : [
   {
     quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»',
     name: 'Jana L.',
@@ -80,7 +83,7 @@ const reviews = jsonArray(sec('testimonials').items).length ? jsonArray(sec('tes
   },
 ];
 
-const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   {
     question: 'Brauche ich Vorkenntnisse für die Ausbildung?',
     answer: 'Nein. Du musst keine therapeutische oder psychologische Vorbildung mitbringen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen.',
@@ -115,11 +118,11 @@ const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items
   },
 ];
 
-const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : [
+const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraphs.map((p: any) => p.text) : [
   'Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch.',
   'Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.',
   'Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht.',
-];
+]) as string[];
 ---
 
 <BaseLayout
@@ -164,7 +167,7 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
               <Text size="p1" class="stage-card__body">{s.body}</Text>
             </div>
             <div class="stage-card__cta">
-              <Button href={s.ctaHref} variant="primary" size="lg" fullWidth>Mehr erfahren</Button>
+              <Button href={s.cta_href} variant="primary" size="lg" fullWidth>{s.cta_text || 'Mehr erfahren'}</Button>
             </div>
           </article>
         ))}
@@ -312,7 +315,7 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
     box-sizing: border-box;
     background: var(--c-spring-wood);
     border: 1px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -320,17 +323,17 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
     gap: 24px;
     height: 100%;
   }
-  @media (min-width: 1280px) { .stage-card { padding: 24px; gap: 32px; border-radius: 20px; } }
-  @media (min-width: 1920px) { .stage-card { padding: 32px; gap: 40px; border-radius: 25px; } }
+  @media (min-width: 1280px) { .stage-card { padding: 24px; gap: 32px; border-radius: var(--radius-card); } }
+  @media (min-width: 1920px) { .stage-card { padding: 32px; gap: 40px; border-radius: var(--radius-card-lg); } }
 
   .stage-card__media {
     width: 100%;
     aspect-ratio: 16 / 10;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background: var(--c-pale-gold);
   }
-  @media (min-width: 1280px) { .stage-card__media { border-radius: 16px; } }
+  @media (min-width: 1280px) { .stage-card__media { border-radius: var(--radius-md); } }
   .stage-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .stage-card__text {
@@ -364,7 +367,7 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
     padding: 10px;
     font-size: var(--button-size);
     line-height: 1.2;
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
   }
   @media (min-width: 1024px) {
     .stage-card__cta :global(.btn) { height: 56px; min-height: 56px; padding: 18px; }
@@ -547,12 +550,12 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
     flex: 0 0 auto;
     width: 100%;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: var(--c-pale-gold);
     aspect-ratio: 4 / 5;
   }
-  @media (min-width: 1024px) { .lehrerin__media { width: 46%; border-radius: 20px; } }
-  @media (min-width: 1920px) { .lehrerin__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
+  @media (min-width: 1024px) { .lehrerin__media { width: 46%; border-radius: var(--radius-card); } }
+  @media (min-width: 1920px) { .lehrerin__media { width: 711px; border-radius: var(--radius-card-lg); aspect-ratio: 711 / 826; } }
   .lehrerin__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .lehrerin__content {
@@ -633,7 +636,7 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
     z-index: 1;
     width: 100%;
     height: 332px;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     margin-top: 20px;
     overflow: hidden;
   }
@@ -650,7 +653,7 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
       width: 51.5625vw;  /* 660 @ 1280 */
       height: 32.135vw;  /* 411.33 @ 1280 */
       margin-top: 0;
-      border-radius: 16.67px;
+      border-radius: var(--radius-card-sm);
     }
   }
 
@@ -679,7 +682,7 @@ const lehrerinParagraphs = jsonArray(leh.items).length ? jsonArray(leh.items) : 
       left: 828px;
       width: 990px;
       height: 617px;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
     }
   }
 </style>

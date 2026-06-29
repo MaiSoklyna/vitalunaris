@@ -188,10 +188,10 @@ const months = monthKeys.map(buildMonth);
   .cal__grid {
     min-width: 680px;
     border: 1px solid rgba(96, 29, 29, 0.18);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
   }
-  @media (min-width: 1280px) { .cal__grid { min-width: 0; border-radius: 16px; } }
+  @media (min-width: 1280px) { .cal__grid { min-width: 0; border-radius: var(--radius-md); } }
 
   /* Weekday header row + day grid */
   .cal__weekdays,
@@ -266,7 +266,7 @@ const months = monthKeys.map(buildMonth);
     padding: 32px;
     text-align: center;
     border: 1px dashed rgba(96, 29, 29, 0.3);
-    border-radius: 16px;
+    border-radius: var(--radius-md);
   }
   .cal--empty p {
     font-family: 'ES Park', serif;

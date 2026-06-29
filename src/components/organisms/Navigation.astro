@@ -236,19 +236,19 @@ const isGroupActive = (item: NavLink) =>
       #E1E2FC 78.48%,
       #8E84B6 108.81%),
       #F9F4EE;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
   }
   @media (min-width: 1024px) {
     .nav__inner {
       padding: 8px 20px;
       min-height: 48px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
     }
   }
   @media (min-width: 1280px) {
     .nav__inner {
       min-height: 60px;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
     }
   }
   /* Desktop++ (≥ 1920px) — Figma Header spec */

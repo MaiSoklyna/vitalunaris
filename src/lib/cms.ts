@@ -1,4 +1,38 @@
 // Small helpers shared by EmDash-backed pages.
+import { getEmDashCollection } from 'emdash';
+
+/**
+ * Load testimonials for a given page context from the shared `testimonials`
+ * collection (one editable "Stimmen" place in the admin — no per-page JSON).
+ * Returns the shape TestimonialsBlock expects ({ quote, name }), ordered by the
+ * entry's `sort_order`. Returns [] on any error so callers can fall back.
+ */
+export async function getTestimonials(context: string): Promise<Array<{ quote: string; name: string }>> {
+  try {
+    const { entries } = await getEmDashCollection('testimonials', { orderBy: { sort_order: 'asc' } });
+    return (entries ?? [])
+      .filter((e: any) => e.data?.context === context)
+      .map((e: any) => ({ quote: e.data?.quote ?? '', name: e.data?.name ?? '' }));
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Load info-cards for a given context from the shared `info_cards` collection,
+ * so an "Info-Karten" block can be added to any page (the editor picks a context).
+ * Returns the shape InfoCardsRow expects ({ eyebrow, body }), ordered by sort_order.
+ */
+export async function getInfoCards(context: string): Promise<Array<{ eyebrow: string; body: string }>> {
+  try {
+    const { entries } = await getEmDashCollection('info_cards', { orderBy: { sort_order: 'asc' } });
+    return (entries ?? [])
+      .filter((e: any) => e.data?.context === context)
+      .map((e: any) => ({ eyebrow: e.data?.eyebrow ?? '', body: e.data?.body ?? '' }));
+  } catch {
+    return [];
+  }
+}
 
 /**
  * Convert plain-text newlines (as stored in EmDash `text` fields) into <br/>
@@ -24,6 +58,22 @@ export function jsonArray<T = any>(value: unknown): T[] {
     } catch {
       return [];
     }
+  }
+  return [];
+}
+
+/**
+ * Parse a "one item per line" text field into a string array. Tolerates a legacy
+ * JSON-array string (older data) and an already-parsed array, so callers can switch
+ * a field from JSON to plain newline-separated text without a hard data cutover.
+ */
+export function textLines(value: unknown): string[] {
+  if (Array.isArray(value)) return value as string[];
+  if (typeof value === 'string') {
+    const t = value.trim();
+    if (!t) return [];
+    if (t.startsWith('[')) { try { const p = JSON.parse(t); if (Array.isArray(p)) return p; } catch {} }
+    return t.split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
   }
   return [];
 }

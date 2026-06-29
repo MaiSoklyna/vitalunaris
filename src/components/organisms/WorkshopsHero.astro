@@ -253,7 +253,7 @@ const cardDescription = activePill?.description ?? workshopDescription;
   /* ----- CALENDAR PLACEHOLDER ----- */
   .workshops-hero__calendar {
     background: var(--c-cherrywood);
-    border-radius: 16px;
+    border-radius: var(--radius-md);
     width: 100%;
     min-height: 300px;
     display: flex;
@@ -266,7 +266,7 @@ const cardDescription = activePill?.description ?? workshopDescription;
   @media (min-width: 1280px) {
     .workshops-hero__calendar {
       min-height: 500px;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
     }
   }
   @media (min-width: 1920px) {

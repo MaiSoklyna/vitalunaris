@@ -47,7 +47,18 @@ const FALLBACK_SECTIONS = [
   },
 ];
 
-const sections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+// Card lists + config now live in top-level fields (editable as labeled lists / fields —
+// no JSON). Inject them into the matching section before Blocks renders.
+const baseSections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+// Testimonials are resolved inside <Blocks/> from the shared collection via each
+// section's `context` (the home section is tagged context="home").
+const sections = baseSections.map((s: any) => {
+  if (s.type === 'offer_cards' && d.offer_cards?.length)
+    return { ...s, items: d.offer_cards.map((o: any) => ({ icon: o.icon, title: o.title, description: o.description, ctaText: o.cta_text, ctaHref: o.cta_href })) };
+  if (s.type === 'newsletter')
+    return { ...s, items: { placeholder: d.newsletter_placeholder || 'E-mail adresse', submitText: d.newsletter_submit_text || 'Kostenlos abonnieren' } };
+  return s;
+});
 ---
 
 <BaseLayout

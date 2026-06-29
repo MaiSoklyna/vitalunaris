@@ -11,7 +11,7 @@ import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
 import { getEmDashEntry } from 'emdash';
-import { jsonArray, nl2br, imageUrl } from '@lib/cms';
+import { jsonArray, nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // Bespoke block page — editable at /_emdash/admin/content/pages (slug "ausbildung-overview").
 const { entry } = await getEmDashEntry('pages', 'ausbildung-overview');
@@ -20,7 +20,7 @@ const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any)
 const nar1 = sec('narrative'), nar2 = sec('quote'), stg = sec('stages'),
       out = sec('outcomes'), claim = sec('claim'), darkcta = sec('dark_cta'), nlx = sec('newsletter');
 
-const outcomes = jsonArray(out.items).length ? jsonArray(out.items) : [
+const outcomes = d.outcomes?.length ? d.outcomes : [
   {
     title: 'Du siehst Systeme.',
     description: 'Du erkennst, welche unsichtbaren Dynamiken in Familien, Organisationen oder Beziehungen wirken — und wie sie sich auf einzelne Menschen auswirken.',
@@ -43,7 +43,7 @@ const outcomes = jsonArray(out.items).length ? jsonArray(out.items) : [
   },
 ];
 
-const stages = jsonArray(stg.items).length ? jsonArray(stg.items) : [
+const stages = d.stage_cards?.length ? d.stage_cards : [
   {
     icon: '/images/ebene/Ebene_2-3.svg',
     eyebrow: 'Teil 1 — Grundlagen',
@@ -66,7 +66,8 @@ const stages = jsonArray(stg.items).length ? jsonArray(stg.items) : [
 
 // NOTE: the original "Maria S./Thomas K./Claudia R./Lena M." testimonials here were
 // fabricated (flagged P0). Replaced with the real, attributed Ausbildung reviews.
-const testimonials = jsonArray(sec('testimonials').items).length ? jsonArray(sec('testimonials').items) : [
+const _ts = await getTestimonials('ausbildung');
+const testimonials = _ts.length ? _ts : [
   {
     quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Ich fühle mich mehr bei mir selbst angekommen.»',
     name: 'Jana L.',
@@ -81,7 +82,7 @@ const testimonials = jsonArray(sec('testimonials').items).length ? jsonArray(sec
   },
 ];
 
-const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   {
     question: 'Wie läuft eine systemische Aufstellung ab?',
     answer: 'Du formulierst dein Anliegen, wir wählen gemeinsam Repräsentant:innen für die wichtigen Elemente deines Systems und stellen sie im Raum auf. Was sich dann zeigt — Bewegungen, Sätze, Bilder — arbeiten wir gemeinsam aus.',
@@ -524,7 +525,7 @@ const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items
     box-sizing: border-box;
     background: var(--c-spring-wood);
     border: 1px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -532,8 +533,8 @@ const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items
     gap: 32px;
     height: 100%;
   }
-  @media (min-width: 1280px) { .stage-card { padding: 27px; gap: 48px; border-radius: 20px; } }
-  @media (min-width: 1920px) { .stage-card { padding: 40px 41px; gap: 59px; border-radius: 25px; min-height: 783px; } }
+  @media (min-width: 1280px) { .stage-card { padding: 27px; gap: 48px; border-radius: var(--radius-card); } }
+  @media (min-width: 1920px) { .stage-card { padding: 40px 41px; gap: 59px; border-radius: var(--radius-card-lg); min-height: 783px; } }
 
   .stage-card__icon {
     width: 100px;

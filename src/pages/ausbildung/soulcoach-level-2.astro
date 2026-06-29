@@ -9,7 +9,7 @@ import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
 import { getEmDashEntry } from 'emdash';
-import { nl2br, imageUrl } from '@lib/cms';
+import { nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // Editable at /_emdash/admin/content/ausbildung_programs (falls back to copy below).
 const { entry } = await getEmDashEntry('ausbildung_programs', 'soulcoach-level-2');
@@ -60,7 +60,8 @@ const steps = [
 ];
 
 /* ----- "Stimmen aus der Ausbildung" — star reviews ----- */
-const reviews = d.testimonials?.length ? d.testimonials : [
+const _reviews = await getTestimonials('ausbildung');
+const reviews = _reviews.length ? _reviews : [
   {
     quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»',
     name: 'Jana L.',
@@ -497,13 +498,13 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     flex: 0 0 auto;
     width: 100%;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: rgba(96, 29, 29, 0.06);
     aspect-ratio: 4 / 5;
     order: -1;
   }
-  @media (min-width: 1024px) { .lehrerin__media { width: 46%; border-radius: 20px; order: 0; } }
-  @media (min-width: 1920px) { .lehrerin__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
+  @media (min-width: 1024px) { .lehrerin__media { width: 46%; border-radius: var(--radius-card); order: 0; } }
+  @media (min-width: 1920px) { .lehrerin__media { width: 711px; border-radius: var(--radius-card-lg); aspect-ratio: 711 / 826; } }
   .lehrerin__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .lehrerin__content {
@@ -665,7 +666,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     height: 52px;
     min-height: 52px;
     padding: 16px 28px;
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
   }
 
   /* ============================================================
@@ -680,7 +681,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     overflow: hidden;
     background: var(--c-cherrywood);
     color: var(--c-spring-wood);
-    border-radius: 25px;
+    border-radius: var(--radius-card-lg);
     padding: 80px 24px;
     min-height: 420px;
     width: 100%;
@@ -744,7 +745,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     padding: 20px 30px;
     background: transparent;
     border: 0.8px solid var(--c-spring-wood);
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
     color: var(--c-spring-wood);
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
@@ -763,7 +764,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     background: var(--c-spring-wood);
     color: var(--c-cherrywood);
     border: 0.8px solid var(--c-spring-wood);
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--button-size);

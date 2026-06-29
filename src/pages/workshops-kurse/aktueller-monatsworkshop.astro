@@ -10,7 +10,7 @@ import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
 import { getEmDashEntry, getEmDashCollection } from 'emdash';
-import { jsonArray, nl2br, imageUrl } from '@lib/cms';
+import { jsonArray, nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // Editable at /_emdash/admin/content/workshops (entry "aktueller-monatsworkshop").
 // "Current month's workshop" — defaults to featuring the next workshop; edit each month in the admin.
@@ -19,21 +19,22 @@ const d: Record<string, any> = entry?.data ?? {};
 const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
 const heroS = sec('hero'), nar = sec('narrative'), about = sec('about');
 
-const infoCards = jsonArray(sec('info_cards').items).length ? jsonArray(sec('info_cards').items) : [
+const infoCards = d.info_cards?.length ? d.info_cards : [
   { eyebrow: 'Wann?', body: 'Der Kurs findet am 14.09.2026 von 13:30 bis 16:00 Uhr statt (ca. 2 h).' },
   { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.' },
   { eyebrow: 'Für wen?', body: 'Für Menschen, die neugierig sind, erste Erfahrungen mit systemischer Arbeit machen möchten und spüren, dass sich etwas bewegen will.' },
 ];
 
 // Real, attributed workshop reviews (the previous "Maria S." Lorem testimonials were fabricated).
-const testimonials = jsonArray(sec('testimonials').items).length ? jsonArray(sec('testimonials').items) : [
+const _ts = await getTestimonials('workshop-aktueller');
+const testimonials = _ts.length ? _ts : [
   { quote: '„Anfangs war ich neugierig – am Ende begeistert. Plötzlich ergaben viele Verhaltensweisen viel mehr Sinn. Voller Aha-Momente und ein neuer Blick auf Menschen.“', name: 'Marianne S.' },
   { quote: '„Der Workshop war klar strukturiert, verständlich und mit viel Herz gestaltet. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Vielen Dank für diesen inspirierenden Tag!“', name: 'Marina C.' },
   { quote: '„Ich bin noch immer erstaunt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Ein Werkzeug, das ich jederzeit anwenden kann. Herzlichen Dank für diesen praxisnahen Kurs!“', name: 'Sandra M.' },
   { quote: '„Die Atemübungen und das Tapping helfen mir konkret, wenn Druck entsteht. Ich merke, dass ich im Familienalltag ruhiger bin. Viele praktische Werkzeuge, die sich leicht umsetzen lassen.“', name: 'Desiree Z.' },
 ];
 
-const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   { question: 'Für wen sind die Workshops geeignet?', answer: 'Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.' },
   { question: 'Was ist der Unterschied zwischen einem Workshop und der Ausbildung?', answer: 'Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.' },
   { question: 'Brauche ich Vorkenntnisse für den Kurs?', answer: 'Nein. Der Kurs ist so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
@@ -57,10 +58,10 @@ const furtherCourses = (allWs ?? []).slice(0, 3).map((e: any) => ({
   ctaHref: `/workshops-kurse/${e.id}`,
 }));
 
-const aboutParas = jsonArray(about.items).length ? jsonArray(about.items) : [
+const aboutParas = (d.about_paragraphs?.length ? d.about_paragraphs.map((p: any) => p.text) : [
   'Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In ihren Workshops verbindet sie Aufstellungen, EFT, Nervensystem-Arbeit und Heilkunde zu einem Erfahrungsraum, der seinesgleichen sucht.',
   'Axel Jansen bringt Hypnose und Numerologie in Workshops ein, die gleichermassen präzise wie zugänglich sind. Zahlenmagie ohne Kitsch, Hypnose ohne Bühnentricks. Zusammen bieten Theres und Axel ein Spektrum, das in dieser Form in der Deutschschweiz einzigartig ist.',
-];
+]) as string[];
 ---
 
 <BaseLayout
@@ -154,13 +155,13 @@ const aboutParas = jsonArray(about.items).length ? jsonArray(about.items) : [
     flex: 0 0 auto;
     width: 100%;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: rgba(96, 29, 29, 0.06);
     aspect-ratio: 4 / 5;
     order: -1;
   }
-  @media (min-width: 1024px) { .about__media { width: 46%; border-radius: 20px; order: 0; } }
-  @media (min-width: 1920px) { .about__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
+  @media (min-width: 1024px) { .about__media { width: 46%; border-radius: var(--radius-card); order: 0; } }
+  @media (min-width: 1920px) { .about__media { width: 711px; border-radius: var(--radius-card-lg); aspect-ratio: 711 / 826; } }
   .about__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .about__content {

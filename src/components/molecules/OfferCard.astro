@@ -67,7 +67,7 @@ const {
     background: var(--c-spring-wood);
     color: var(--c-cherrywood);
     border: 0.667px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 26.67px 27.33px;
     display: flex;
     flex-direction: column;
@@ -78,7 +78,7 @@ const {
   @media (min-width: 1280px) {
     .offer-card {
       border-width: 1px;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
       padding: 200px 24px 24px;
       gap: 24px;
       justify-content: space-between;
@@ -195,7 +195,7 @@ const {
     padding: 10px;
     font-size: var(--button-size);
     line-height: 1.2;
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
   }
   @media (min-width: 1024px) {
     .offer-card__cta :global(.btn) {

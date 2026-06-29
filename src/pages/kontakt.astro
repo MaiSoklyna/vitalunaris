@@ -12,7 +12,16 @@ const d: Record<string, any> = entry?.data ?? {};
 const FALLBACK_SECTIONS = [
   { type: 'contact_form', items: { recipient: 'info@vitalunaris.ch', submitText: 'Senden' } },
 ];
-const sections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+// Contact-form config now lives in top-level fields (editable as labeled fields — no JSON).
+const baseSections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+const sections = baseSections.map((s: any) => s.type === 'contact_form' ? { ...s, items: {
+  recipient: d.contact_recipient || 'info@vitalunaris.ch',
+  submitText: d.contact_submit_text || 'Senden',
+  emailPlaceholder: d.contact_email_placeholder || undefined,
+  firstNamePlaceholder: d.contact_firstname_placeholder || undefined,
+  lastNamePlaceholder: d.contact_lastname_placeholder || undefined,
+  messagePlaceholder: d.contact_message_placeholder || undefined,
+} } : s);
 ---
 
 <BaseLayout

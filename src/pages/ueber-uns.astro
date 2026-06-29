@@ -5,7 +5,7 @@ import NarrativeBlock from '@organisms/NarrativeBlock.astro';
 import PersonBio from '@organisms/PersonBio.astro';
 import ValueCardsBlock from '@organisms/ValueCardsBlock.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
-import { getEmDashEntry } from 'emdash';
+import { getEmDashEntry, getEmDashCollection } from 'emdash';
 import { jsonArray, nl2br, imageUrl } from '@lib/cms';
 
 // Bespoke block page — editable at /_emdash/admin/content/pages (slug "ueber-uns").
@@ -13,13 +13,29 @@ const { entry } = await getEmDashEntry('pages', 'ueber-uns');
 const d: Record<string, any> = entry?.data ?? {};
 const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
 const heroS = sec('hero'), intro = sec('intro'), valuesS = sec('values'), quote = sec('quote'), nlx = sec('newsletter');
-const heroParagraphs = jsonArray(heroS.items).length ? jsonArray(heroS.items) : [
+const heroParagraphs = (d.hero_paragraphs?.length ? d.hero_paragraphs.map((p: any) => p.text) : [
   'VitaLunaris ist mehr als eine Praxis. Es ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen.',
   'Gegründet von Theresia und Axel Jansen. Verwurzelt in der Deutschschweiz. Entstanden aus der Leidenschaft, Menschen auf ihrem Weg zu mehr Klarheit, Verständnis und Veränderung zu begleiten.',
   'Für alle, die nicht nur auf Symptome schauen, sondern tiefer verstehen möchten, was hinter Herausforderungen, Beziehungen und Lebenswegen wirkt.',
-];
+]) as string[];
 
-const team = jsonArray(sec('team').items).length ? jsonArray(sec('team').items) : [
+// Team bios come from the shared `team` collection (single source — each person's
+// photo + bio is editable once, in Team). Ordered + sides fixed to the layout.
+const { entries: teamEntries } = await getEmDashCollection('team', {});
+const teamSides: Record<string, 'left' | 'right'> = { 'theresia-jansen': 'left', 'axel-jansen': 'right', 'marlen-berger': 'left' };
+const team = (teamEntries?.length
+  ? ['theresia-jansen', 'axel-jansen', 'marlen-berger']
+      .map((slug) => (teamEntries as any[]).find((e: any) => e.id === slug || e.slug === slug))
+      .filter(Boolean)
+      .map((e: any) => ({
+        eyebrow: e.data?.eyebrow,
+        name: e.data?.name,
+        role: e.data?.role,
+        image: e.data?.image,
+        imageSide: teamSides[e.id || e.slug] || 'left',
+        paragraphs: (e.data?.bio_paragraphs || []).map((p: any) => p.text),
+      }))
+  : [
   {
     eyebrow: 'Gründerin · VitaLunaris',
     name: 'Theresia Jansen',
@@ -55,12 +71,13 @@ const team = jsonArray(sec('team').items).length ? jsonArray(sec('team').items) 
       'Über die Fussreflexzonenarbeit fand ich zu einer Methode, die spürbar in die Tiefe geht. Heute arbeite ich präzise, intuitiv und nach den Prinzipien der TCM — für Entlastung auf körperlicher und emotionaler Ebene.',
     ],
   },
-];
+]) as any[];
 
-// Per-person uploadable team photos (override the photo in the team list when set).
+// Per-person uploadable team photos (legacy override; team photos now come from
+// the team collection, but a set override still wins if present).
 const teamImages = [d.team_image_1, d.team_image_2, d.team_image_3];
 
-const values = jsonArray(valuesS.items).length ? jsonArray(valuesS.items) : [
+const values = d.value_cards?.length ? d.value_cards : [
   {
     icon: '/images/ebene/Ebene-14.svg',
     title: 'Tiefe statt<br />Oberfläche',

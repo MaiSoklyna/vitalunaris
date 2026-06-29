@@ -100,7 +100,7 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
      4 white cards in a row, gap 22, radius 25, padding 40
      ============================================================ */
   .t-block {
-    background: linear-gradient(180deg, #F9F4EE 57.41%, #FFD869 100%);
+    background: var(--gradient-spring-gold);
     padding: 60px 20px;
     display: flex;
     flex-direction: column;
@@ -217,7 +217,7 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
     border: none;
     background: none;
     cursor: pointer;
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
     box-shadow: 0 6px 20px rgba(96, 29, 29, 0.25);
     transition: transform 0.2s ease;
     z-index: 2;

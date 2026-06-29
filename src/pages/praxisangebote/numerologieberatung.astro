@@ -9,7 +9,7 @@ import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import { getEmDashEntry } from 'emdash';
-import { nl2br, imageUrl } from '@lib/cms';
+import { nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // ── CMS: editable at /_emdash/admin (falls back to original copy) ──────────
 const { entry } = await getEmDashEntry('praxisangebote', 'numerologieberatung');
@@ -26,7 +26,8 @@ const steps = d.process_steps?.length ? d.process_steps : [
   { number: '04', title: 'Erkenntnisse', description: 'Du gehst mit einer klaren Karte — Stärken, Themen, Anlagewege. Nicht als Vorhersage, sondern als Orientierung.' },
 ];
 
-const testimonials = d.testimonials?.length ? d.testimonials : [
+const _ts = await getTestimonials('praxis-numerologie');
+const testimonials = _ts.length ? _ts : [
   { quote: '«Ich habe mein Numeroskop bereits dreimal gelesen und bin noch immer fasziniert. Es fühlt sich unglaublich stimmig an. Es hat mir geholfen, mich selbst besser zu verstehen. Von Herzen danke.»', name: 'Carmen G.' },
   { quote: '«Ich bin so berührt, ich danke dir von Herzen Axel. Deine Worte haben es greifbar gemacht, was ich fühle und manchmal kaum zulassen konnte. Danke von Herzen.»', name: 'Monika S.' },
   { quote: '«Die Auswertung für meine Tochter war ein richtiges Geschenk. Es ist, als hätte ich mein Kind noch einmal neu kennengelernt. Dafür bin ich unglaublich dankbar.»', name: 'Andrea G.' },

@@ -19,7 +19,17 @@ const FALLBACK_SECTIONS = [
   { type: 'claim_block', title: 'Wo Wissen auf<br />Erfahrung trifft.', body: 'VitaLunaris ist mehr als eine Praxis — es ist ein Ort, wo systemisches und energetisches Wissen zusammenkommen. Theresia und Axel Jansen begleiten Menschen mit über 30 Jahren Erfahrung. In der Deutschschweiz verwurzelt. Für alle, die tiefer schauen wollen.', image: '/images/placeholder/placeholder-4.jpg', items: { ctaText: 'Mehr über VitaLunaris', ctaHref: '/ueber-uns' } },
   { type: 'newsletter', eyebrow: 'Newsletter', title: 'Impulse für deine<br />Seele', body: 'Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia.<br/><br/>Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris.', items: { placeholder: 'E-mail Adresse', submitText: 'Kostenlos abonnieren' } },
 ];
-const sections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+// Offer rows + claim/newsletter config now live in top-level fields (editable — no JSON).
+const baseSections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+const sections = baseSections.map((s: any) => {
+  if (s.type === 'practice_offers' && d.practice_offers?.length)
+    return { ...s, items: d.practice_offers.map((o: any) => ({ tone: o.tone, eyebrow: o.eyebrow, title: o.title, body: o.body, image: o.image, primaryText: o.primary_text, primaryHref: o.primary_href, secondaryText: o.secondary_text, secondaryHref: o.secondary_href })) };
+  if (s.type === 'claim_block')
+    return { ...s, items: { ctaText: d.claim_cta_text || 'Mehr über VitaLunaris', ctaHref: d.claim_cta_href || '/ueber-uns' } };
+  if (s.type === 'newsletter')
+    return { ...s, items: { placeholder: d.newsletter_placeholder || 'E-mail Adresse', submitText: d.newsletter_submit_text || 'Kostenlos abonnieren' } };
+  return s;
+});
 ---
 
 <BaseLayout

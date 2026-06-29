@@ -23,7 +23,19 @@ const FALLBACK_SECTIONS = [
     },
   },
 ];
-const sections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+// Newsletter-hero text/config now lives in top-level fields (editable — no JSON).
+const baseSections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+const sections = baseSections.map((s: any) => s.type === 'newsletter_hero' ? {
+  ...s,
+  eyebrow: d.hero_eyebrow || s.eyebrow,
+  title: d.hero_title || s.title,
+  image: d.hero_image || s.image,
+  items: {
+    paragraphs: d.newsletterhero_paragraphs?.length ? d.newsletterhero_paragraphs.map((p: any) => p.text) : (s.items?.paragraphs || []),
+    placeholder: d.newsletter_placeholder || 'E-mail Adresse',
+    submitText: d.newsletter_submit_text || 'Zum Newsletter anmelden',
+  },
+} : s);
 ---
 
 <BaseLayout

@@ -9,7 +9,7 @@ import BrandCtaBlock from '@organisms/BrandCtaBlock.astro';
 import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import { getEmDashEntry } from 'emdash';
-import { nl2br, imageUrl } from '@lib/cms';
+import { nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // ── CMS: this Praxisangebot, editable at /_emdash/admin ─────────────────
 // Every field below falls back to the original static text when the CMS row
@@ -30,7 +30,8 @@ const steps = d.process_steps?.length ? d.process_steps : [
   { number: '04', title: 'Verankerung', description: 'Das neue Muster wird verankert. Axel begleitet den Ausklang — du gehst mit dem, was sich verändert hat.' },
 ];
 
-const testimonials = d.testimonials?.length ? d.testimonials : [
+const _ts = await getTestimonials('praxis-hypnose');
+const testimonials = _ts.length ? _ts : [
   { quote: '«Ich kam wegen meiner Flugangst zu Axel. Nach der Sitzung konnte ich den Flug völlig entspannt geniessen — überrascht, wie ruhig ich blieb und wie schön Fliegen eigentlich sein kann. Eine grosse Erleichterung. Vielen herzlichen Dank!»', name: 'Gabriela B.' },
   { quote: '«Ich wollte endlich mit dem Rauchen aufhören — vor allem wegen meiner Kinder. Ehrlich gesagt hatte ich nicht erwartet, dass es so schnell geht. Bereits nach dem Vorgespräch spürte ich einen Unterschied. Ich hätte nie gedacht, dass sich etwas, das mich so lange begleitet hat, so leicht verändern kann.»', name: 'Barbara S.' },
   { quote: '«Wir kamen zu Axel, weil unser Sohn in der Schule grosse Schwierigkeiten hatte. Schon nach der ersten Sitzung fühlte er sich verstanden. Mit der Zeit gewann er mehr Sicherheit und überraschte uns mit seiner Entwicklung.»', name: 'Familie A. & K.' },

@@ -78,11 +78,38 @@ Both the top menu and the footer are editable in **Seiten-Einstellungen** (`site
 
 ### Team (people, shared across pages)
 The three practitioner bios are edited once in **Team** and appear on the matching pages.
+Each person has their own uploadable **Portrait** and **Bio-Absätze** — the *Über uns* page now pulls
+its team bios straight from here (edit the photo/bio once, it updates everywhere).
 | Person | Edit in admin |
 |--------|---------------|
 | Theresia Jansen | **Team** → `theresia-jansen` |
 | Axel Jansen | **Team** → `axel-jansen` |
 | Marlen Berger | **Team** → `marlen-berger` |
+
+### Stimmen (testimonials, shared across pages)
+All reviews live in one **Stimmen** collection. Each review is one entry with **Zitat**, **Name**,
+optional **Foto** (uploadable) and a **Seite / Kontext** tag that decides which page it appears on.
+Edit a review once → it updates on every page showing that context.
+| Context tag | Shown on |
+|-------------|----------|
+| `praxis-hypnose` / `praxis-aufstellungen` / `praxis-numerologie` / `praxis-fussreflex` | the matching Praxisangebot |
+| `ausbildung` | Ausbildung Start, Übersicht, Soulcoach L1 & L2 |
+| `jawort` | Jawort by Jansen |
+| `workshop-aktueller` / `workshop-kalender` | the monthly workshop / the calendar page |
+| `home` | Startseite |
+
+> **Add a review:** open **Stimmen** → *+ Eintrag* → type the quote + name, pick the context, Save.
+> To show it on another page too, add a second entry with that page's context.
+
+---
+
+## ✨ New: every card list is now a proper editor (no more JSON)
+
+Repeating content — **FAQ** (Frage/Antwort), **stage cards**, **info cards**, **value cards**,
+**price lists**, **paragraphs**, and the **Jawort photo gallery (22 photos, now with an upload
+button per image)** — is edited as a labeled list, not raw JSON. On each page's entry you'll see a
+list with an *+ Eintrag* button; fill the labeled fields (and click the image upload where present),
+reorder by dragging, delete with the trash icon. Same editor everywhere.
 
 ---
 
@@ -93,7 +120,7 @@ The three practitioner bios are edited once in **Team** and appear on the matchi
 - **Collections explained:**
   - **Praxisangebote / Ausbildung (Programme) / Workshops & Kurse** = the repeating service pages, each with friendly named fields.
   - **Seiten** = the bespoke landing pages (Home, Über uns, Kontakt, overviews, Jawort…), built from editable sections.
-  - **Team** = the three people. **Rechtliches** = the legal texts.
+  - **Team** = the three people. **Stimmen** = all testimonials (tagged by page). **Rechtliches** = the legal texts.
 
 ## Not yet in the CMS (possible follow-ups)
 - A few images still use the design **placeholders** — these image fields are editable, so real photos can be uploaded anytime.

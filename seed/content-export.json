@@ -1,0 +1,2549 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris — full content export",
+    "description": "All live entries, exported from the dev DB. Apply after seed.json."
+  },
+  "content": {
+    "site_settings": [
+      {
+        "id": "01KVW8NC573SBAJKQDT769YH76",
+        "slug": "settings",
+        "status": "published",
+        "data": {
+          "site_title": "VitaLunaris",
+          "contact_email": "info@vitalunaris.ch",
+          "address": "Eichenaustrasse 32, CH-9470 Buchs",
+          "nav_items": [
+            {
+              "label": "Systemische Ausbildung",
+              "href": "/ausbildung",
+              "children": "[{\"label\":\"Übersicht\",\"href\":\"/ausbildung/uebersicht\"},{\"label\":\"Systemischer Soulcoach – Level 1\",\"href\":\"/ausbildung/soulcoach-level-1\"},{\"label\":\"Systemischer Soulcoach – Level 2\",\"href\":\"/ausbildung/soulcoach-level-2\"},{\"label\":\"Infoanlässe\",\"href\":\"/ausbildung/infoanlaesse\"}]"
+            },
+            {
+              "label": "Workshops & Kurse",
+              "href": "/workshops-kurse/kalender-uebersicht",
+              "navigate_on_click": true,
+              "children": "[{\"label\":\"Kalender & Übersicht\",\"href\":\"/workshops-kurse/kalender-uebersicht\"},{\"label\":\"Aktueller Monatsworkshop\",\"href\":\"/workshops-kurse/aktueller-monatsworkshop\"}]"
+            },
+            {
+              "label": "Praxisangebote",
+              "href": "/praxisangebote",
+              "children": "[{\"label\":\"Übersicht\",\"href\":\"/praxisangebote\"},{\"label\":\"1:1 Aufstellungen\",\"href\":\"/praxisangebote/aufstellungen\"},{\"label\":\"Hypnose\",\"href\":\"/praxisangebote/hypnose\"},{\"label\":\"Numerologieberatung\",\"href\":\"/praxisangebote/numerologieberatung\"},{\"label\":\"Fussreflexzonenbehandlung\",\"href\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"label\":\"Jawort by Jansen\",\"href\":\"/praxisangebote/jawort-by-jansen\"}]"
+            },
+            {
+              "label": "News",
+              "href": "/neuigkeiten"
+            },
+            {
+              "label": "Über uns",
+              "href": "/ueber-uns"
+            },
+            {
+              "label": "Kontakt",
+              "href": "/kontakt"
+            }
+          ],
+          "footer_columns": [
+            {
+              "title": "Ausbildung",
+              "links": "[{\"label\":\"Übersicht\",\"href\":\"/ausbildung/uebersicht\"},{\"label\":\"Systemic Soulcoach Level 1\",\"href\":\"/ausbildung/soulcoach-level-1\"},{\"label\":\"Systemic Soulcoach Level 2\",\"href\":\"/ausbildung/soulcoach-level-2\"},{\"label\":\"Infoanlässe\",\"href\":\"/ausbildung/infoanlaesse\"}]"
+            },
+            {
+              "title": "Kurse",
+              "links": "[{\"label\":\"Kalender & Übersicht\",\"href\":\"/workshops-kurse/kalender-uebersicht\"},{\"label\":\"Monatsworkshop\",\"href\":\"/workshops-kurse/aktueller-monatsworkshop\"}]"
+            },
+            {
+              "title": "Praxisangebote",
+              "links": "[{\"label\":\"Übersicht\",\"href\":\"/praxisangebote\"},{\"label\":\"1:1 Aufstellungen\",\"href\":\"/praxisangebote/aufstellungen\"},{\"label\":\"Hypnose\",\"href\":\"/praxisangebote/hypnose\"},{\"label\":\"Numerologieberatung\",\"href\":\"/praxisangebote/numerologieberatung\"},{\"label\":\"Fussreflexzonen\",\"href\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"label\":\"Jawort by Jansen\",\"href\":\"/praxisangebote/jawort-by-jansen\"}]"
+            },
+            {
+              "title": "Weiteres",
+              "links": "[{\"label\":\"Über uns\",\"href\":\"/ueber-uns\"},{\"label\":\"News\",\"href\":\"/neuigkeiten\"}]"
+            }
+          ],
+          "social_links": [
+            {
+              "platform": "facebook",
+              "href": "https://www.facebook.com/JansenBuchs/"
+            },
+            {
+              "platform": "instagram",
+              "href": "https://www.instagram.com/vitalunaris_by_jansen/"
+            }
+          ],
+          "footer_legal": [
+            {
+              "label": "Impressum",
+              "href": "/impressum"
+            },
+            {
+              "label": "Datenschutz",
+              "href": "/datenschutz"
+            },
+            {
+              "label": "AGB",
+              "href": "/agb"
+            }
+          ],
+          "footer_phones": [
+            {
+              "name": "Theresia Jansen",
+              "phone": "+41 792 917 402"
+            },
+            {
+              "name": "Axel Jansen",
+              "phone": "+41 797 849 130"
+            }
+          ],
+          "footer_copyright": "VitaLunaris · Theresia & Axel Jansen"
+        }
+      }
+    ],
+    "team": [
+      {
+        "id": "01KVVVD919HDKXK2DP58PN4G54",
+        "slug": "axel-jansen",
+        "status": "published",
+        "data": {
+          "name": "Axel Jansen",
+          "eyebrow": "Co-Founder",
+          "role": "Systemic Hypno · Numerologie",
+          "image": "/images/persons/AxelJansen.jpg",
+          "bio_paragraphs": [
+            {
+              "text": "Ich arbeite dort, wo Themen tiefer liegen als im Kopf. Viele Herausforderungen lassen sich nicht durch Nachdenken allein lösen — oft wirken unbewusste Muster im Hintergrund. Ich verbinde Hypnose, Energiearbeit, Zahlenenergie und systemisches Denken und interessiere mich nicht nur für das Symptom, sondern für das, was dahinter wirkt."
+            },
+            {
+              "text": "Was ich weitergebe, stammt aus vielen Jahren Erfahrung und der Überzeugung, dass Veränderung möglich ist — wenn wir bereit sind, genauer hinzuschauen."
+            },
+            {
+              "text": "Mir ist wichtig, einen Raum zu schaffen, in dem Veränderung ohne Druck entstehen darf — achtsam, respektvoll und in deinem Tempo."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVVXD1RWPZS9YNQNQNE0NYXD",
+        "slug": "marlen-berger",
+        "status": "published",
+        "data": {
+          "name": "Marlen Berger",
+          "eyebrow": "Praktikerin",
+          "role": "Fussreflexzonenmassage · Reflexologie · TCM",
+          "image": "/images/persons/MarlenBerger.jpg",
+          "bio_paragraphs": [
+            {
+              "text": "Die Faszination für die Reflexologie begleitet mich schon seit vielen Jahren. Mich begeistert, wie viel sich über die Füsse erreichen lässt und wie positiv Menschen auf eine gezielte Reflexzonen-Behandlung reagieren."
+            },
+            {
+              "text": "Besonders berührt mich immer wieder, wenn Entspannung, Wohlbefinden und neue Energie spürbar werden und körperliche Beschwerden sanft gelöst werden."
+            },
+            {
+              "text": "In meiner Arbeit verbinde ich verschiedene Methoden der Reflexologie, darunter die Reflexologie nach Schwester Jeannine, die klassische Fussreflexzonen-Therapie sowie weitere ganzheitliche Ansätze."
+            },
+            {
+              "text": "Mir ist wichtig, dass du dich während der Behandlung wohl, gesehen und gut aufgehoben fühlst. Denn echte Regeneration beginnt dort, wo wir zur Ruhe kommen dürfen."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVVXD1RHZ40WSYN04GA60RXZ",
+        "slug": "theresia-jansen",
+        "status": "published",
+        "data": {
+          "name": "Theresia Jansen",
+          "eyebrow": "Co-Founder",
+          "role": "Systemisches Aufstellen · Anerkannte Therapeutin Autogenes Training Nr. ZSR O 256662",
+          "image": "/images/placeholder/Placeholder-8.jpg",
+          "bio_paragraphs": [
+            {
+              "text": "Ich glaube, dass hinter vielen Herausforderungen nicht mangelnde Stärke steckt, sondern Zusammenhänge, die bisher nicht sichtbar waren."
+            },
+            {
+              "text": "Seit über 30 Jahren begleite ich Menschen dabei, diese Zusammenhänge zu erkennen, festgefahrene Muster zu verstehen und neue Wege zu finden."
+            },
+            {
+              "text": "Was ich weitergebe, stammt aus vielen Ausbildungen, tausenden Begegnungen mit Menschen – und aus meinem eigenen Leben. Denn ich begleite nicht von aussen. Ich begleite als Mensch, der selbst Höhen und Tiefen erlebt hat und weiss, dass Veränderung möglich ist."
+            }
+          ]
+        }
+      }
+    ],
+    "testimonials": [
+      {
+        "id": "01KW1P9Z2T76APT04WPH5DD7CP",
+        "slug": "ausbildung-1",
+        "status": "published",
+        "data": {
+          "quote": "«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»",
+          "name": "Jana L.",
+          "context": "ausbildung",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2T59TEX0MT3S5PNM6M",
+        "slug": "ausbildung-2",
+        "status": "published",
+        "data": {
+          "quote": "«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Diese Ausbildung ist für mich weit mehr als Lernen. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»",
+          "name": "Silvia F.",
+          "context": "ausbildung",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2TQ4NBTB7JNXVFBVWH",
+        "slug": "ausbildung-3",
+        "status": "published",
+        "data": {
+          "quote": "«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Ein geschützter Raum, in dem jede einfach sie selbst sein darf. Theresia schafft diesen Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen.»",
+          "name": "Corina B.",
+          "context": "ausbildung",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2T57ZYGNSGZVXT4N6C",
+        "slug": "home-1",
+        "status": "published",
+        "data": {
+          "quote": "“Nach einer sehr schweren Zeit in meinem Leben fand ich bei VitaLunaris einen geschützten Raum für meinen Weg. Durch die Begleitung von Theresia wurden Zusammenhänge sichtbar, die ich vorher nicht erkennen konnte. Schritt für Schritt fand ich zurück zu Vertrauen, Zuversicht und neuer Lebensfreude. Dafür bin ich von Herzen dankbar.”",
+          "name": "Claudia N.",
+          "context": "home",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2T9BXF6DMVD7M37RB1",
+        "slug": "home-2",
+        "status": "published",
+        "data": {
+          "quote": "“Ich stand vor einer wichtigen Entscheidung für meine Zukunft und war unsicher, welchen Weg ich einschlagen sollte. Das Numeroskop von Axel hat mir neue Perspektiven eröffnet und mir geholfen, meine Stärken und Möglichkeiten klarer zu erkennen. Heute weiss ich, dass ich die richtige Entscheidung getroffen habe.”",
+          "name": "Erika B.",
+          "context": "home",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2TA37FBFJ2X3YYFQFA",
+        "slug": "home-3",
+        "status": "published",
+        "data": {
+          "quote": "“Ich hätte nie gedacht, dass man mit ein bisschen Klopfen so viel erreichen kann. Schon nach dem EFT-Grundkurs konnte ich die Methode in vielen Alltagssituationen anwenden. Besonders schön ist, dass inzwischen auch meine Kinder begeistert mitklopfen. Dieser Kurs war eine echte Bereicherung für unsere ganze Familie.”",
+          "name": "Ramona K.",
+          "context": "home",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2V9JGQBP3MZXNQJ71J",
+        "slug": "home-4",
+        "status": "published",
+        "data": {
+          "quote": "“Die Ausbildung zum Systemic Soulcoach war für mich weit mehr als eine Ausbildung. Durch die Aufstellungsarbeit habe ich erkannt, dass etwas, das ich jahrelang als Schwäche betrachtet hatte, in Wahrheit ein grosses Potenzial in sich trägt. Theresia hält einen unglaublich sicheren und vertrauensvollen Raum.”",
+          "name": "Corina B.",
+          "context": "home",
+          "sort_order": 3
+        }
+      },
+      {
+        "id": "01KW1P9Z2T2J4K8HBK0AA3EMY3",
+        "slug": "jawort-1",
+        "status": "published",
+        "data": {
+          "quote": "«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»",
+          "name": "Raffaella & Luca",
+          "context": "jawort",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2TVV2GGFVGHJRF3Y42",
+        "slug": "jawort-2",
+        "status": "published",
+        "data": {
+          "quote": "«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»",
+          "name": "Sandy & Michael",
+          "context": "jawort",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2TE6JNA10SN8S9S2C6",
+        "slug": "jawort-3",
+        "status": "published",
+        "data": {
+          "quote": "«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»",
+          "name": "Saskia & Benjamin",
+          "context": "jawort",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2TTYWJSMD7BJV84FCD",
+        "slug": "jawort-4",
+        "status": "published",
+        "data": {
+          "quote": "«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»",
+          "name": "Janina & Marc",
+          "context": "jawort",
+          "sort_order": 3
+        }
+      },
+      {
+        "id": "01KW1P9Z2SQMFT56940NH5NBJY",
+        "slug": "praxis-aufstellungen-1",
+        "status": "published",
+        "data": {
+          "quote": "«Danke von ganzem Herzen. Durch deine Begleitung und die systemische Arbeit habe ich vieles über mich erkannt und den Mut gefunden, meinen eigenen Weg zu gehen. Heute bin ich selbständig – etwas, das ich mir früher kaum zugetraut hätte. Ohne dich wäre ich nicht der Mensch, der ich heute bin.»",
+          "name": "Steffi K.",
+          "context": "praxis-aufstellungen",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2SBHTPZM396BVMN6SX",
+        "slug": "praxis-aufstellungen-2",
+        "status": "published",
+        "data": {
+          "quote": "«Unsere Sitzung hat mich kurz danach durch ein wichtiges Gespräch getragen — klar, wach und ganz bei mir. Ich habe seit langem erstmals wieder durchgeschlafen und fühle mich heute offener, leichter und innerlich ausgerichtet. Ich danke dir von Herzen für diese liebevolle und tiefwirkende Begleitung.»",
+          "name": "Zsannet T. Nagy",
+          "context": "praxis-aufstellungen",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2SD2TM0G45FNWJP2V6",
+        "slug": "praxis-aufstellungen-3",
+        "status": "published",
+        "data": {
+          "quote": "«Erkenntnisse. Aha-Momente. Gänsehaut. Ein Nervensystem, das sich so tief beruhigt hat wie noch nie. Und dann dieser Moment, in dem plötzlich alles Sinn macht. Stolz. Klar. Frei. Von Herzen danke, Theresia.»",
+          "name": "Christina G.",
+          "context": "praxis-aufstellungen",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2SK12BHFGG05JYDCJ0",
+        "slug": "praxis-aufstellungen-4",
+        "status": "published",
+        "data": {
+          "quote": "«Du hast mich von Anfang an unterstützt, verstanden und nicht locker gelassen. Heute fliesst es einfach. Ich habe alte Glaubenssätze losgelassen, lebe mein wahres Sein und übe meinen Traumjob aus. Ich fühle mich am richtigen Ort zur richtigen Zeit. Von Herzen danke.»",
+          "name": "Nicole S.",
+          "context": "praxis-aufstellungen",
+          "sort_order": 3
+        }
+      },
+      {
+        "id": "01KW1P9Z2SJ4TGKHG2HXPT45PH",
+        "slug": "praxis-fussreflex-1",
+        "status": "published",
+        "data": {
+          "quote": "„Eine wunderbare Behandlung und eine rundum positive Erfahrung. Marlen arbeitet mit viel Herz, Feingefühl und Achtsamkeit. Man fühlt sich sofort wohl und gut aufgehoben. Sie ist nicht nur fachlich kompetent, sondern auch ein unglaublich herzlicher und liebenswerter Mensch. Von Herzen danke.“",
+          "name": "Susanna H.",
+          "context": "praxis-fussreflex",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2S50YQBGAQHP8DR1ZZ",
+        "slug": "praxis-fussreflex-2",
+        "status": "published",
+        "data": {
+          "quote": "„Die Behandlung war unglaublich wohltuend. Schon nach wenigen Minuten konnte ich abschalten und tief entspannen. Nach dem Termin fühlte ich mich leichter, ruhiger und gleichzeitig voller Energie. Eine wunderbare Erfahrung.“",
+          "name": "Ursula B.",
+          "context": "praxis-fussreflex",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2S0C91V68S81AM57AG",
+        "slug": "praxis-fussreflex-3",
+        "status": "published",
+        "data": {
+          "quote": "„Als ausgebildete Fussreflexzonentherapeutin hat mich Marlens Behandlung zutiefst überrascht. Diese Reflexologie empfand ich als deutlich intensiver und tiefgründiger — besonders die Arbeit nach TCM-Prinzipien. Bereits nach der ersten Behandlung schlief ich endlich wieder erholsam und fühlte mich energetisch gestärkt.“",
+          "name": "Theresia Jansen",
+          "context": "praxis-fussreflex",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2SCNKE5WVT2B0YJ3VN",
+        "slug": "praxis-fussreflex-4",
+        "status": "published",
+        "data": {
+          "quote": "„Nach wenigen Behandlungen wurde ich endlich frei von meinen schmerzhaften Nierensteinen. Vielen Dank.“",
+          "name": "Erika N.",
+          "context": "praxis-fussreflex",
+          "sort_order": 3
+        }
+      },
+      {
+        "id": "01KW1P9Z2RBW9H7ZE96V3B1CFW",
+        "slug": "praxis-hypnose-1",
+        "status": "published",
+        "data": {
+          "quote": "«Ich kam wegen meiner Flugangst zu Axel. Nach der Sitzung konnte ich den Flug völlig entspannt geniessen — überrascht, wie ruhig ich blieb und wie schön Fliegen eigentlich sein kann. Eine grosse Erleichterung. Vielen herzlichen Dank!»",
+          "name": "Gabriela B.",
+          "context": "praxis-hypnose",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2SHYYC81MJG3VH5F7F",
+        "slug": "praxis-hypnose-2",
+        "status": "published",
+        "data": {
+          "quote": "«Ich wollte endlich mit dem Rauchen aufhören — vor allem wegen meiner Kinder. Ehrlich gesagt hatte ich nicht erwartet, dass es so schnell geht. Bereits nach dem Vorgespräch spürte ich einen Unterschied. Ich hätte nie gedacht, dass sich etwas, das mich so lange begleitet hat, so leicht verändern kann.»",
+          "name": "Barbara S.",
+          "context": "praxis-hypnose",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2S6P45BJVCRZ6Z3M13",
+        "slug": "praxis-hypnose-3",
+        "status": "published",
+        "data": {
+          "quote": "«Wir kamen zu Axel, weil unser Sohn in der Schule grosse Schwierigkeiten hatte. Schon nach der ersten Sitzung fühlte er sich verstanden. Mit der Zeit gewann er mehr Sicherheit und überraschte uns mit seiner Entwicklung.»",
+          "name": "Familie A. & K.",
+          "context": "praxis-hypnose",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2SFH4041Y9V9QZZWP0",
+        "slug": "praxis-numerologie-1",
+        "status": "published",
+        "data": {
+          "quote": "«Ich habe mein Numeroskop bereits dreimal gelesen und bin noch immer fasziniert. Es fühlt sich unglaublich stimmig an — immer wieder dieses: Ja, genau so ist es. Es hat mir geholfen, mich selbst besser zu verstehen und einiges mit mehr Ruhe und Klarheit zu betrachten. Von Herzen danke.»",
+          "name": "Carmen G.",
+          "context": "praxis-numerologie",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2SMW0F69KXQKBS6F9K",
+        "slug": "praxis-numerologie-2",
+        "status": "published",
+        "data": {
+          "quote": "«Ich bin so berührt, ich danke dir von Herzen Axel. Diese Beschreibung fühlt sich so stimmig und gleichzeitig verheissungsvoll an — wie ein Leitstern ins Neue. Deine Worte haben es greifbar gemacht, was ich fühle und manchmal kaum zulassen konnte. Danke von Herzen.»",
+          "name": "Monika S.",
+          "context": "praxis-numerologie",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2SVDC6E9EY79HA5DCV",
+        "slug": "praxis-numerologie-3",
+        "status": "published",
+        "data": {
+          "quote": "«Die Auswertung für meine Tochter war ein richtiges Geschenk. Endlich verstehe ich, warum sie manchmal so dickköpfig und gleichzeitig so kreativ ist. Es ist, als hätte ich mein Kind noch einmal neu kennengelernt. Dafür bin ich unglaublich dankbar.»",
+          "name": "Andrea G.",
+          "context": "praxis-numerologie",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2T51XR4EQWHECR9RVM",
+        "slug": "workshop-aktueller-1",
+        "status": "published",
+        "data": {
+          "quote": "„Anfangs war ich neugierig – am Ende begeistert. Plötzlich ergaben viele Verhaltensweisen viel mehr Sinn. Voller Aha-Momente und ein neuer Blick auf Menschen.“",
+          "name": "Marianne S.",
+          "context": "workshop-aktueller",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2TX8PA0AMCJ4FRZRJK",
+        "slug": "workshop-aktueller-2",
+        "status": "published",
+        "data": {
+          "quote": "„Der Workshop war klar strukturiert, verständlich und mit viel Herz gestaltet. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Vielen Dank für diesen inspirierenden Tag!“",
+          "name": "Marina C.",
+          "context": "workshop-aktueller",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2TKK5XEF31REV62VZN",
+        "slug": "workshop-aktueller-3",
+        "status": "published",
+        "data": {
+          "quote": "„Ich bin noch immer erstaunt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Ein Werkzeug, das ich jederzeit anwenden kann. Herzlichen Dank für diesen praxisnahen Kurs!“",
+          "name": "Sandra M.",
+          "context": "workshop-aktueller",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2TM81DJD27JNB0CATB",
+        "slug": "workshop-aktueller-4",
+        "status": "published",
+        "data": {
+          "quote": "„Die Atemübungen und das Tapping helfen mir konkret, wenn Druck entsteht. Ich merke, dass ich im Familienalltag ruhiger bin. Viele praktische Werkzeuge, die sich leicht umsetzen lassen.“",
+          "name": "Desiree Z.",
+          "context": "workshop-aktueller",
+          "sort_order": 3
+        }
+      },
+      {
+        "id": "01KW1P9Z2TY49Z6BZ8XZX3WNXP",
+        "slug": "workshop-kalender-1",
+        "status": "published",
+        "data": {
+          "quote": "„Der Numerologie-Workshop hat mich wirklich überrascht. Plötzlich ergaben viele Verhaltensweisen einen ganz neuen Sinn. Besonders die Analyse im Schulalltag war für mich unglaublich hilfreich. Ein Workshop voller Aha-Momente und neuer Perspektiven.“",
+          "name": "Marianne S.",
+          "context": "workshop-kalender",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW1P9Z2TTSG78D80QJTDV5KJ",
+        "slug": "workshop-kalender-2",
+        "status": "published",
+        "data": {
+          "quote": "„Ich bin ohne grosse Erwartungen in den Numerologie-Workshop gestartet – und wurde umso positiver überrascht. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Man spürt sofort, wie viel Herzblut in diesem Kurs steckt.“",
+          "name": "Marina C.",
+          "context": "workshop-kalender",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW1P9Z2T8KF8PD67QH3D9RTF",
+        "slug": "workshop-kalender-3",
+        "status": "published",
+        "data": {
+          "quote": "„Ich bin noch immer beeindruckt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Die Werkzeuge lassen sich direkt im Alltag anwenden – für mich selbst und meine Familie. Ein praxisnaher Kurs, den ich von Herzen weiterempfehle.“",
+          "name": "Sandra M.",
+          "context": "workshop-kalender",
+          "sort_order": 2
+        }
+      },
+      {
+        "id": "01KW1P9Z2T4743DDA607R8FMAN",
+        "slug": "workshop-kalender-4",
+        "status": "published",
+        "data": {
+          "quote": "„SoulReset hat mich absolut begeistert. Die Atemübungen und das Tapping haben mir geholfen, Druck abzubauen und wieder mehr Ruhe zu finden. Praktische und wirkungsvolle Tools, die sich leicht umsetzen lassen. Vielen Dank!“",
+          "name": "Desiree Z.",
+          "context": "workshop-kalender",
+          "sort_order": 3
+        }
+      }
+    ],
+    "praxisangebote": [
+      {
+        "id": "01KVVXD1RZ1G4HMAYS261JCZ20",
+        "slug": "aufstellungen",
+        "status": "published",
+        "data": {
+          "seo_title": "1:1 Aufstellung mit Theresia Jansen | VitaLunaris",
+          "seo_description": "Systemisches Aufstellen im Einzelsetting mit Theresia Jansen — individuelle Begleitung für dein persönliches Anliegen, achtsam und lösungsorientiert.",
+          "hero_category": "Systemisches Aufstellen | 1:1 Aufstellung",
+          "hero_title": "1:1 Aufstellung<br />mit Theresia Jansen",
+          "hero_description": "Systemische Aufstellungen machen sichtbar, was unter der Oberfläche wirkt — Loyalitäten, Verstrickungen und unbewusste Dynamiken aus der Familiengeschichte. Was sich wiederholt oder festgefahren anfühlt, hat oft tiefere Zusammenhänge. Das hier ist die individuelle Begleitung für dein persönliches Anliegen – achtsam, lösungsorientiert und in deinem Tempo.",
+          "hero_duration": "Einzelsitzung | 90–120 Min. | Online oder vor Ort",
+          "hero_price": "CHF 244.–",
+          "hero_note": "Optional: Begleitender Online-Support — 7 Tage zur Stabilisierung nach der Sitzung: CHF 77.– · 30 Tage für eine tiefere Integration im Alltag: CHF 222.–",
+          "hero_image": "/images/placeholder/placeholder-2.jpg",
+          "hero_cta_text": "Termin buchen",
+          "hero_cta_href": "https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825",
+          "narrative_title": "Systemisches Aufstellen im Einzelsetting.",
+          "narrative_body": "Du brauchst keine Gruppe, um von einer Aufstellung zu profitieren. Im geschützten Einzelsetting schauen wir gemeinsam auf dein Anliegen – online oder vor Ort in der Praxis. Dabei arbeiten wir mit Bodenankern oder dem Aufstellungsbrett.<br/><br/>Mögliche Themen sind:<br/>• Familiengeschichte und Herkunftsthemen<br/>• Kinderwunsch, Fehlgeburt und unerfüllte Sehnsüchte<br/>• Partnerschaft und Beziehungsdynamiken<br/>• Berufliche Entscheidungen und Lebenswege<br/>• Konflikte mit Menschen in deinem Umfeld<br/>• Körpersymptome mit systemischen Hintergründen<br/>• Wiederkehrende Muster, Blockaden und innere Konflikte<br/><br/>Grundsätzlich kann alles aufgestellt werden, was dich beschäftigt oder einfach interessiert – sogar dein Numeroskop oder Horoskop.",
+          "narrative_image": "/images/placeholder/Placeholder-24.jpg",
+          "process_steps": [
+            {
+              "number": "01",
+              "title": "Buchen",
+              "description": "Du kannst hier direkt einen Termin buchen, vor Ort oder Online."
+            },
+            {
+              "number": "02",
+              "title": "Thema klären",
+              "description": "Was bringst du mit? Was soll sich zeigen? Theresia hört zu und hilft, das Thema systemisch zu fassen."
+            },
+            {
+              "number": "03",
+              "title": "Aufstellen",
+              "description": "Mit Bodenanker oder Aufstellungsbrett — das System wird im Raum sichtbar. Was zeigt sich? Was will sich bewegen?"
+            },
+            {
+              "number": "04",
+              "title": "Integrieren",
+              "description": "Was du mitnimmst. Was sich gezeigt hat. Was als nächstes kommen darf."
+            }
+          ],
+          "quote_text": "„Nicht alles, was dich belastet, gehört zu dir. Manches möchte einfach gesehen und an seinen richtigen Platz gestellt werden.”",
+          "quote_attribution": "Theresia Jansen",
+          "quote_image": "/images/placeholder/Placeholder-25.jpg",
+          "testimonials": [
+            {
+              "quote": "«Danke von ganzem Herzen. Durch deine Begleitung und die systemische Arbeit habe ich vieles über mich erkannt und den Mut gefunden, meinen eigenen Weg zu gehen. Heute bin ich selbständig – etwas, das ich mir früher kaum zugetraut hätte. Ohne dich wäre ich nicht der Mensch, der ich heute bin.»",
+              "name": "Steffi K."
+            },
+            {
+              "quote": "«Unsere Sitzung hat mich kurz danach durch ein wichtiges Gespräch getragen — klar, wach und ganz bei mir. Ich habe seit langem erstmals wieder durchgeschlafen und fühle mich heute offener, leichter und innerlich ausgerichtet. Ich danke dir von Herzen für diese liebevolle und tiefwirkende Begleitung.»",
+              "name": "Zsannet T. Nagy"
+            },
+            {
+              "quote": "«Erkenntnisse. Aha-Momente. Gänsehaut. Ein Nervensystem, das sich so tief beruhigt hat wie noch nie. Und dann dieser Moment, in dem plötzlich alles Sinn macht. Stolz. Klar. Frei. Von Herzen danke, Theresia.»",
+              "name": "Christina G."
+            },
+            {
+              "quote": "«Du hast mich von Anfang an unterstützt, verstanden und nicht locker gelassen. Heute fliesst es einfach. Ich habe alte Glaubenssätze losgelassen, lebe mein wahres Sein und übe meinen Traumjob aus. Ich fühle mich am richtigen Ort zur richtigen Zeit. Von Herzen danke.»",
+              "name": "Nicole S."
+            }
+          ],
+          "practitioner": "theresia-jansen",
+          "brand_cta_title": "Bereit, tiefer<br />zu gehen?",
+          "brand_cta_body": "Ein konkretes Thema, ein gewisses Gefühl, eine Sehnsucht. Theresia begleitet dich dorthin, wo sich wirklich etwas bewegt. Termin buchen — in deinem Tempo, auf deinem Weg.",
+          "brand_cta_text": "Termin buchen",
+          "brand_cta_href": "https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825",
+          "faq_items": [
+            {
+              "question": "Muss ich bereits Erfahrung mit Aufstellungen haben?",
+              "answer": "Nein. Du brauchst kein Vorwissen. Theresia begleitet dich Schritt für Schritt — du musst nur offen sein für das, was sich zeigt."
+            },
+            {
+              "question": "Funktioniert eine Aufstellung auch ohne Gruppe?",
+              "answer": "Ja. Im geschützten Einzelsetting schauen wir gemeinsam auf dein Anliegen — mit Bodenankern vor Ort oder am Aufstellungsbrett online. Eine Gruppe brauchst du dafür nicht."
+            },
+            {
+              "question": "Welche Themen können aufgestellt werden?",
+              "answer": "Familiengeschichte, Kinderwunsch, Partnerschaft, berufliche Entscheidungen, wiederkehrende Muster oder Körpersymptome. Grundsätzlich lässt sich alles aufstellen, was dich beschäftigt — sogar dein Numeroskop oder Horoskop."
+            },
+            {
+              "question": "Muss ich meine ganze Familiengeschichte kennen?",
+              "answer": "Nein. Es genügt, was du weisst. Oft zeigen sich Zusammenhänge gerade dort, wo wir bewusst (noch) keine Erklärung haben."
+            },
+            {
+              "question": "Ist eine Sitzung auch online möglich?",
+              "answer": "Ja. Vor Ort arbeiten wir mit Bodenankern, online am Aufstellungsbrett — beide Formate sind gleichermassen wirkungsvoll."
+            },
+            {
+              "question": "Was passiert nach der Sitzung?",
+              "answer": "Was sich gezeigt hat, darf sich in deinem Alltag setzen. Auf Wunsch begleiten wir dich mit einem 7- oder 30-tägigen Online-Support, um das Erlebte zu stabilisieren und zu integrieren."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVVXD1SB1AK67F9F51NM7S49",
+        "slug": "fussreflexzonenbehandlung",
+        "status": "published",
+        "data": {
+          "seo_title": "Fussreflexzonenmassage bei Marlen Berger | VitaLunaris",
+          "seo_description": "Fussreflexzonenmassage bei Marlen Berger — ganzheitliche Behandlung über die Reflexzonen der Füsse für tiefe Entspannung und energetische Balance.",
+          "hero_category": "Körperarbeit | Fussreflexzonenmassage",
+          "hero_title": "Fussreflexzonenmassage<br />bei Marlen Berger",
+          "hero_description": "Die Füsse sind eine Landkarte des Körpers. Über ihre Reflexzonen lassen sich Organe, Drüsen und das Nervensystem erreichen — für tiefe Entspannung, energetische Balance und ganzheitliche Regeneration.",
+          "hero_duration": "60 Min.",
+          "hero_price": "CHF 140.–",
+          "hero_note": "75 Min. · CHF 175.–",
+          "hero_image": "/images/placeholder/Placeholder-34.jpg",
+          "hero_cta_text": "Termin anfragen",
+          "hero_cta_href": "https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3533b6af7ab",
+          "narrative_title": "Reflexologie – mehr als klassische Fussmassage",
+          "narrative_body": "Die Reflexologie verbindet das Wissen der klassischen Fussreflexzonen-Therapie mit den Grundlagen der Traditionellen Chinesischen Medizin (TCM) und betrachtet den Menschen als Ganzes.<br/><br/>Über die Reflexzonen an den Füssen können Organe, Drüsen, das Lymphsystem und das Nervensystem gezielt angesprochen werden. Spezielle Druck- und Grifftechniken unterstützen die natürlichen Regulations- und Selbstheilungskräfte des Körpers.<br/><br/>Marlen verbindet verschiedene Methoden zu einer ganzheitlichen Behandlung:",
+          "narrative_image": "/images/placeholder/placeholder-2.jpg",
+          "narrative_bullet_groups": [
+            {
+              "items": "Reflexologie nach Schwester Jeannine und Pater Eugster\nFussreflexzonen-Therapie nach Marquardt\nFussbehandlung nach Pater Eugster\nLymphaktivierung über die Reflexzonen am Fuss"
+            },
+            {
+              "text": "Das Ziel: Körperliche Beschwerden sanft zu beheben oder zu lindern, ein besseres inneres Gleichgewicht und die Unterstützung des natürlichen Wohlbefindens."
+            }
+          ],
+          "process_steps": [
+            {
+              "number": "01",
+              "title": "Buchen",
+              "description": "Termin anfragen per Kontaktformular oder E-Mail. Behandlungen finden ausschliesslich in Präsenz statt."
+            },
+            {
+              "number": "02",
+              "title": "Ankommen",
+              "description": "Kurzes Erstgespräch: Wie geht es dir? Was beschäftigt dich? Marlen stimmt die Behandlung auf dein aktuelles Befinden ab."
+            },
+            {
+              "number": "03",
+              "title": "Behandlung",
+              "description": "Tiefe Entspannung durch gezielte Reflexzonenmassage. Marlen arbeitet intuitiv und präzise — dein Körper zeigt, was er braucht."
+            },
+            {
+              "number": "04",
+              "title": "Nachruhen",
+              "description": "Nach der Behandlung kurz zur Ruhe kommen. Viel Wasser trinken — der Körper braucht Zeit, um das Erlebte zu integrieren."
+            }
+          ],
+          "quote_text": "„Unsere Füsse tragen uns täglich durchs Leben und verdienen mehr Aufmerksamkeit, als wir ihnen oft schenken. Manchmal beginnt Veränderung dort, wo wir uns bewusst Zeit für uns selbst nehmen.”",
+          "quote_attribution": "Marlen Berger",
+          "quote_image": "/images/placeholder/Placeholder-36.jpg",
+          "testimonials": [
+            {
+              "quote": "„Eine wunderbare Behandlung und eine rundum positive Erfahrung. Marlen arbeitet mit viel Herz, Feingefühl und Achtsamkeit. Man fühlt sich sofort wohl und gut aufgehoben. Sie ist nicht nur fachlich kompetent, sondern auch ein unglaublich herzlicher und liebenswerter Mensch. Von Herzen danke.“",
+              "name": "Susanna H."
+            },
+            {
+              "quote": "„Die Behandlung war unglaublich wohltuend. Schon nach wenigen Minuten konnte ich abschalten und tief entspannen. Nach dem Termin fühlte ich mich leichter, ruhiger und gleichzeitig voller Energie. Eine wunderbare Erfahrung.“",
+              "name": "Ursula B."
+            },
+            {
+              "quote": "„Als ausgebildete Fussreflexzonentherapeutin hat mich Marlens Behandlung zutiefst überrascht. Diese Reflexologie empfand ich als deutlich intensiver und tiefgründiger — besonders die Arbeit nach TCM-Prinzipien. Bereits nach der ersten Behandlung schlief ich endlich wieder erholsam und fühlte mich energetisch gestärkt.“",
+              "name": "Theresia Jansen"
+            },
+            {
+              "quote": "„Nach wenigen Behandlungen wurde ich endlich frei von meinen schmerzhaften Nierensteinen. Vielen Dank.“",
+              "name": "Erika N."
+            }
+          ],
+          "practitioner": "marlen-berger",
+          "brand_cta_title": "Bereit, tiefer<br />zu gehen?",
+          "brand_cta_body": "Gönne dir eine Behandlung, die wirklich tief wirkt — körperlich, energetisch, ganzheitlich. Marlen ist da.",
+          "brand_cta_text": "Termin anfragen",
+          "brand_cta_href": "https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3533b6af7ab",
+          "faq_items": [
+            {
+              "question": "Für wen eignet sich die Fussreflexzonen-Therapie?",
+              "answer": "Für alle, die tiefe Entspannung, energetische Balance und Regeneration suchen. Bei bestimmten Vorerkrankungen klären wir das vorab im Gespräch."
+            },
+            {
+              "question": "Ist die Behandlung schmerzhaft?",
+              "answer": "Nein. Die Behandlung ist sanft und wohltuend. Einzelne Reflexzonen können sich kurz intensiver anfühlen — Marlen passt den Druck jederzeit deinem Empfinden an."
+            },
+            {
+              "question": "Was ist der Unterschied zur klassischen Fussmassage?",
+              "answer": "Eine klassische Fussmassage entspannt vor allem die Muskulatur. Die Reflexologie spricht über die Reflexzonen gezielt Organe, Drüsen sowie das Nerven- und Lymphsystem an und arbeitet zusätzlich nach TCM-Prinzipien."
+            },
+            {
+              "question": "Was macht Marlens Behandlung besonders?",
+              "answer": "Marlen verbindet mehrere Methoden — unter anderem Reflexologie nach Schwester Jeannine, Fussreflexzonen-Therapie nach Marquardt und Lymphaktivierung — zu einer ganzheitlichen, intuitiv abgestimmten Behandlung."
+            },
+            {
+              "question": "Wie viele Behandlungen sind sinnvoll?",
+              "answer": "Das ist individuell. Manche kommen einmalig zur Erholung, andere regelmässig zur Begleitung — gemeinsam finden wir deinen Rhythmus."
+            },
+            {
+              "question": "Muss ich etwas Spezielles zur Behandlung mitbringen?",
+              "answer": "Nein. Komm einfach so, wie du bist. Plane nach der Behandlung etwas Zeit zum Nachruhen ein und trinke danach ausreichend Wasser."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVVVD91WRBM0RJDMPPHG33Q9",
+        "slug": "hypnose",
+        "status": "published",
+        "data": {
+          "seo_title": "Hypnose-Sitzung mit Axel Jansen | VitaLunaris",
+          "seo_description": "Systemic Hypno mit Axel Jansen — eine bewährte Methode für tiefe, nachhaltige Veränderung. Präzise, seriös, achtsam.",
+          "hero_category": "Hypnose | SYSTEMIC HYPNO SITZUNG",
+          "hero_title": "Systemic Hypno mit Axel Jansen",
+          "hero_description": "Hypnose hat nichts mit Kontrollverlust oder Bühnenshows zu tun. Sie ist eine bewährte Methode, um mit dem Unterbewusstsein zu arbeiten. Systemic Hypno verbindet Hypnose, Energiearbeit und systemisches Denken zu einer sanften, zugleich wirkungsvollen Begleitung.",
+          "hero_duration": "Einzelsitzung | 60–75 Min. | Vor Ort",
+          "hero_price": "CHF 180.–",
+          "hero_image": "/images/placeholder/Placeholder-9.jpg",
+          "hero_cta_text": "Termin buchen",
+          "hero_cta_href": "https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9",
+          "narrative_title": "Wie funktioniert Systemic Hypno?",
+          "narrative_body": "Viele Muster, Überzeugungen und Verhaltensweisen entstehen nicht auf der Ebene des bewussten Verstandes. Deshalb lassen sie sich oft auch nicht allein durch Nachdenken verändern. In einem entspannten Trancezustand wird der Zugang zum Unterbewusstsein erleichtert. Du bleibst dabei jederzeit bei Bewusstsein, ansprechbar und in Kontrolle.\n\nAxel arbeitet nicht nur mit dem Symptom, sondern betrachtet auch die Zusammenhänge dahinter. Deshalb verbindet er Hypnose mit systemischem Denken, Energiearbeit und Zahlenenergie.\n\nSo können neue Perspektiven entstehen, innere Blockaden erkannt und Veränderungsprozesse auf einer tieferen Ebene unterstützt werden. Alles geschieht achtsam, in deinem Tempo und nur mit dem, was für dich stimmig ist.",
+          "narrative_image": "/images/placeholder/Placeholder-21.jpg",
+          "process_steps": [
+            {
+              "number": "01",
+              "title": "Buchen",
+              "description": "Termin anfragen und dein Anliegen kurz beschreiben. So kann Axel die Sitzung optimal vorbereiten."
+            },
+            {
+              "number": "02",
+              "title": "Erstgespräch",
+              "description": "Was bringt dich hierher? Was soll sich verändern? Axel hört zu und klärt das Ziel — bevor der eigentliche Prozess beginnt."
+            },
+            {
+              "number": "03",
+              "title": "Sitzung",
+              "description": "Geführte Induktion in einen Trancezustand. Axel arbeitet präzise am verinnerten Thema — tief, sicher, wirkungsvoll."
+            },
+            {
+              "number": "04",
+              "title": "Verankerung",
+              "description": "Das neue Muster wird verankert. Axel begleitet den Ausklang — du gehst mit dem, was sich verändert hat."
+            }
+          ],
+          "testimonials": [
+            {
+              "quote": "«Ich kam wegen meiner Flugangst zu Axel. Nach der Sitzung konnte ich den Flug völlig entspannt geniessen — überrascht, wie ruhig ich blieb und wie schön Fliegen eigentlich sein kann. Eine grosse Erleichterung. Vielen herzlichen Dank!»",
+              "name": "Gabriela B."
+            },
+            {
+              "quote": "«Ich wollte endlich mit dem Rauchen aufhören — vor allem wegen meiner Kinder. Ehrlich gesagt hatte ich nicht erwartet, dass es so schnell geht. Bereits nach dem Vorgespräch spürte ich einen Unterschied. Ich hätte nie gedacht, dass sich etwas, das mich so lange begleitet hat, so leicht verändern kann.»",
+              "name": "Barbara S."
+            },
+            {
+              "quote": "«Wir kamen zu Axel, weil unser Sohn in der Schule grosse Schwierigkeiten hatte. Schon nach der ersten Sitzung fühlte er sich verstanden. Mit der Zeit gewann er mehr Sicherheit und überraschte uns mit seiner Entwicklung.»",
+              "name": "Familie A. & K."
+            }
+          ],
+          "practitioner": "axel-jansen",
+          "brand_cta_title": "Bereit, tiefer zu gehen?",
+          "brand_cta_body": "Veränderung tritt nicht ein, wenn du es erzwingst — sondern wenn du loslässt. Axel begleitet dich dorthin.",
+          "brand_cta_text": "Termin buchen",
+          "brand_cta_href": "https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9",
+          "faq_items": [
+            {
+              "question": "Verliere ich während der Hypnose die Kontrolle?",
+              "answer": "Nein. Du bleibst jederzeit bei Bewusstsein und in Kontrolle. Trance ist kein Kontrollverlust, sondern ein Zustand tiefer, fokussierter Entspannung."
+            },
+            {
+              "question": "Wie fühlt sich eine Trance an?",
+              "answer": "Wie ein Zustand tiefer Entspannung bei wacher, fokussierter Aufmerksamkeit — ähnlich dem Moment kurz vor dem Einschlafen, nur klar und präsent."
+            },
+            {
+              "question": "Ist Systemic Hypno auch bei Ängsten oder Gewohnheiten geeignet?",
+              "answer": "Ja. Ängste, Gewohnheiten, Stress und belastende Muster lassen sich in Trance besonders gut bearbeiten — dort, wo sie verankert sind."
+            },
+            {
+              "question": "Muss ich mein Problem genau benennen können?",
+              "answer": "Nein. Oft genügt das Gefühl, dass sich etwas verändern will. Im Erstgespräch klären wir gemeinsam dein Anliegen, bevor die eigentliche Arbeit beginnt."
+            },
+            {
+              "question": "Wie viele Sitzungen sind sinnvoll?",
+              "answer": "Das hängt vom Thema ab. Manche Anliegen lösen sich in einer einzigen Sitzung, andere begleiten wir über mehrere Termine — in deinem Tempo."
+            },
+            {
+              "question": "Kann Systemic Hypno eine medizinische oder psychotherapeutische Behandlung ersetzen?",
+              "answer": "Nein. Systemic Hypno ist persönliche Entwicklung und Begleitung. Sie ersetzt keine ärztliche oder psychotherapeutische Behandlung."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVWAGYNENESZZVCWDY4MYVS1",
+        "slug": "jawort-by-jansen",
+        "status": "published",
+        "data": {
+          "seo_title": "Jawort by Jansen — Freie Trauungen & Zeremonien | VitaLunaris",
+          "seo_description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Theresia Jansen erzählt eure Geschichte.",
+          "faq_items": [
+            {
+              "question": "Wie läuft die Vorbereitung einer freien Trauung ab?",
+              "answer": "Wir starten mit einem kostenlosen Kennenlerngespräch. Danach lernen wir uns und eure Geschichte kennen, ich schreibe eure persönliche Rede und wir stimmen Ablauf, Ort und Wünsche gemeinsam ab."
+            },
+            {
+              "question": "Wie persönlich wird die Traurede?",
+              "answer": "Sehr persönlich. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl — so, dass ihr euch in jedem Wort wiederfindet. Keine Floskeln, keine Vorlagen von der Stange."
+            },
+            {
+              "question": "Kann die Zeremonie humorvoll sein?",
+              "answer": "Unbedingt. Romantisch, feierlich, berührend oder herrlich unkompliziert — eure Zeremonie darf so einzigartig sein wie ihr."
+            },
+            {
+              "question": "Wie lange dauert eine freie Trauung?",
+              "answer": "Eine Zeremonie dauert in der Regel 30 bis 45 Minuten. Die genaue Länge gestalten wir gemeinsam."
+            },
+            {
+              "question": "Führst du auch Kinderwillkommensfeiern durch?",
+              "answer": "Ja. Eine Kinderwillkommensfeier heisst einen neuen kleinen Menschen liebevoll im Kreis seiner Herzensmenschen willkommen — frei gestaltet und ganz auf euch zugeschnitten."
+            },
+            {
+              "question": "In welcher Region bist du als Rednerin unterwegs?",
+              "answer": "Ich bin in der ganzen Deutschschweiz für euch unterwegs — vom Weingut über den See bis in die Berge."
+            }
+          ],
+          "sections": [
+            {
+              "type": "hero",
+              "eyebrow": "Jawort by Jansen | Theresia Jansen",
+              "title": "Zeremonien voller Persönlichkeit und Emotion.",
+              "description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl – für Zeremonien, die berühren und lange nachklingen.",
+              "body": "Alternativ schreibe ich eure persönliche Rede — und eine vertraute Person führt die Zeremonie durch. Ich begleite gerne auch die Vorbereitung. Preis auf Anfrage.",
+              "image": "/images/placeholder/Placeholder-18.jpg",
+              "items": "[]"
+            },
+            {
+              "type": "narrative1",
+              "image": "/images/placeholder/Placeholder-19.jpg",
+              "eyebrow": "Freie Trauung",
+              "title": "Was ist eine freie Trauung?",
+              "body": "Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt.\n\nOb auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe."
+            },
+            {
+              "type": "gallery",
+              "items": "[]"
+            },
+            {
+              "type": "narrative2",
+              "image": "/images/placeholder/Placeholder-28.jpg",
+              "eyebrow": "Kinderwillkommensfeier",
+              "title": "Was ist eine Kinderwillkommensfeier?",
+              "body": "Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen.\n\nMit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben.\n\nDenn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein."
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»\",\"name\":\"Raffaella & Luca\"},{\"quote\":\"«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»\",\"name\":\"Sandy & Michael\"},{\"quote\":\"«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»\",\"name\":\"Saskia & Benjamin\"},{\"quote\":\"«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»\",\"name\":\"Janina & Marc\"}]"
+            },
+            {
+              "type": "bio",
+              "eyebrow": "Wer euch begleitet",
+              "title": "Theresia Jansen",
+              "image": "/images/placeholder/Placeholder-8.jpg",
+              "items": "[]"
+            },
+            {
+              "type": "faq",
+              "items": "[]"
+            }
+          ],
+          "gallery": [
+            {
+              "image": "/images/cards/card-1.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-2.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-3.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-4.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-5.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-6.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-7.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-8.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-9.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-10.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-11.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-12.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-13.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-14.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-15.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-16.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-17.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-18.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-19.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-20.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-21.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            },
+            {
+              "image": "/images/cards/card-22.jpg",
+              "alt": "Jawort by Jansen — Impression"
+            }
+          ],
+          "price_list": [
+            {
+              "label": "Freie Trauungen",
+              "value": "ab CHF 1’800.–"
+            },
+            {
+              "label": "Kinderwillkommensfeiern",
+              "value": "ab CHF 950.–"
+            },
+            {
+              "label": "Eheversprechenerneuerung",
+              "value": "auf Anfrage"
+            }
+          ],
+          "bio_paragraphs": [
+            {
+              "text": "Ich bin nicht einfach da, um eine schöne Rede zu halten. Ich bin da, um eure Geschichte einzufangen — mit Zeit, Aufmerksamkeit und echtem Interesse daran, was euch wichtig ist."
+            },
+            {
+              "text": "Ihr entscheidet, wie eure Feier klingen darf: humorvoll oder romantisch, klassisch oder frei, leicht oder tief. Nichts muss. Alles darf stimmig sein. Durch meine langjährige Arbeit mit Menschen bringe ich mit, was an diesem Tag besonders wertvoll ist: Ruhe, Präsenz und Halt."
+            },
+            {
+              "text": "Mein Ziel ist nicht die perfekte Rede. Mein Ziel ist, dass ihr euch in diesem Moment wiederfindet und sagen könnt: «Das sind wir. Genau so haben wir es uns gewünscht.»"
+            },
+            {
+              "text": "Ob freie Trauung, Kinderwillkommensfeier oder Eheversprechen — ich freue mich darauf, eure Geschichte kennenzulernen. Herzlich, Theresia Jansen"
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVVXD1S4NK4C0H0JNWBB72DP",
+        "slug": "numerologieberatung",
+        "status": "published",
+        "data": {
+          "seo_title": "Numerologie-Beratung mit Axel Jansen | VitaLunaris",
+          "seo_description": "Numerologie-Beratung mit Axel Jansen — Orientierung über Zahlen. Präzise, ohne Esoterik-Kitsch, mit systemischem Blick auf das, was sich in deinem Leben zeigt.",
+          "hero_category": "Numerologie · Lebensweg-Beratung",
+          "hero_title": "Numerologie mit<br /> Axel Jansen",
+          "hero_description": "Zahlen haben eine Sprache — Axel Jansen liest sie mit einem klaren, systemischen Blick. Dabei geht es nicht um Schicksalsvorhersagen, sondern um ein tieferes Verständnis deiner Talente, Herausforderungen und aktuellen Lebensthemen. Viele erleben die Beratung als überraschend präzise und gewinnen neue Perspektiven auf sich und ihren Weg.",
+          "hero_duration": "Einzelsitzung | 90 Min. | Online oder in der Praxis",
+          "hero_price": "CHF 180.–",
+          "hero_image": "/images/placeholder/Placeholder-26.jpg",
+          "hero_cta_text": "Termin buchen",
+          "hero_cta_href": "https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9",
+          "narrative_title": "Was ist Numerologie?",
+          "narrative_body": "Numerologie ist ein Deutungssystem, das Zahlen eine symbolische Bedeutung zuordnet. Grundlage dafür sind dein Geburtsdatum und dein Name. Aus diesen Zahlen lassen sich bestimmte Muster, Potenziale, Talente und Lebensthemen ableiten, die sich oft wie ein roter Faden durch das Leben ziehen.<br/><br/>Dabei geht es nicht darum, die Zukunft vorherzusagen oder Menschen in Schubladen zu stecken. Numerologie versteht sich vielmehr als eine Art Landkarte, die Orientierung geben kann.<br/><br/>Sie kann helfen zu verstehen,<br/>• was dich antreibt<br/>• wo deine natürlichen Stärken liegen<br/>• welche Herausforderungen dich begleiten<br/>• warum bestimmte Themen immer wieder auftauchen<br/>• und welche Potenziale in dir angelegt sind",
+          "narrative_image": "/images/placeholder/Placeholder-27.jpg",
+          "process_steps": [
+            {
+              "number": "01",
+              "title": "Buchen",
+              "description": "Termin anfragen und dein vollständiges Geburtsdatum sowie deinen Geburtsnamen mitteilen. Axel bereitet die Beratung individuell vor."
+            },
+            {
+              "number": "02",
+              "title": "Vorbereitung",
+              "description": "Axel berechnet und analysiert deine Zahlen im Vorfeld — damit die Beratungszeit vollständig für das Gespräch genutzt wird."
+            },
+            {
+              "number": "03",
+              "title": "Beratung",
+              "description": "Deine Lebenszahl, deine persönlichen Zahlen, deine Themen — Axel erklärt, was die Zahlen zeigen und was du damit anfangen kannst."
+            },
+            {
+              "number": "04",
+              "title": "Erkenntnisse",
+              "description": "Du gehst mit einer klaren Karte — Stärken, Themen, Anlagewege. Nicht als Vorhersage, sondern als Orientierung."
+            }
+          ],
+          "testimonials": [
+            {
+              "quote": "«Ich habe mein Numeroskop bereits dreimal gelesen und bin noch immer fasziniert. Es fühlt sich unglaublich stimmig an — immer wieder dieses: Ja, genau so ist es. Es hat mir geholfen, mich selbst besser zu verstehen und einiges mit mehr Ruhe und Klarheit zu betrachten. Von Herzen danke.»",
+              "name": "Carmen G."
+            },
+            {
+              "quote": "«Ich bin so berührt, ich danke dir von Herzen Axel. Diese Beschreibung fühlt sich so stimmig und gleichzeitig verheissungsvoll an — wie ein Leitstern ins Neue. Deine Worte haben es greifbar gemacht, was ich fühle und manchmal kaum zulassen konnte. Danke von Herzen.»",
+              "name": "Monika S."
+            },
+            {
+              "quote": "«Die Auswertung für meine Tochter war ein richtiges Geschenk. Endlich verstehe ich, warum sie manchmal so dickköpfig und gleichzeitig so kreativ ist. Es ist, als hätte ich mein Kind noch einmal neu kennengelernt. Dafür bin ich unglaublich dankbar.»",
+              "name": "Andrea G."
+            }
+          ],
+          "practitioner": "axel-jansen",
+          "brand_cta_title": "Bereit, tiefer<br />zu gehen?",
+          "brand_cta_body": "Deine Zahlen verraten mehr über dich als du denkst. Axel liest sie — klar, direkt, ohne Hokuspokus.",
+          "brand_cta_text": "Termin buchen",
+          "brand_cta_href": "https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9",
+          "faq_items": [
+            {
+              "question": "Muss ich an Numerologie glauben?",
+              "answer": "Nein. Du musst nichts glauben. Die Numerologie ist ein Deutungssystem, das dir Orientierung und neue Perspektiven anbietet — was du daraus mitnimmst, entscheidest du selbst."
+            },
+            {
+              "question": "Was benötigst du für die Beratung?",
+              "answer": "Dein vollständiges Geburtsdatum und deinen Geburtsnamen. Damit berechnet Axel deine Zahlen im Vorfeld."
+            },
+            {
+              "question": "Kann ich auch eine Beratung für mein Kind buchen?",
+              "answer": "Ja. Gerade für Kinder kann die Numerologie helfen, Anlagen, Stärken und Bedürfnisse besser zu verstehen und liebevoll zu begleiten."
+            },
+            {
+              "question": "Kann Numerologie bei Entscheidungen helfen?",
+              "answer": "Ja. Sie macht Lebensthemen, Stärken und Möglichkeiten sichtbar und schafft so Klarheit, wenn du vor einer wichtigen Entscheidung stehst."
+            },
+            {
+              "question": "Kann ich auch meine Partnerschaft analysieren lassen?",
+              "answer": "Ja. Aus euren Zahlen lassen sich Dynamiken, Gemeinsamkeiten und Spannungsfelder ablesen — eine wertvolle Perspektive auf eure Beziehung."
+            },
+            {
+              "question": "Kann Numerologie die Zukunft vorhersagen?",
+              "answer": "Nein. Numerologie ist keine Vorhersage, sondern Orientierung. Sie zeigt Muster und Möglichkeiten — gestalten tust du deinen Weg selbst."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVWAGYMZG22CRWH94EPJ3XNY",
+        "slug": "overview",
+        "status": "published",
+        "data": {
+          "seo_title": "Praxisangebote | VitaLunaris",
+          "seo_description": "Persönliche Begleitung auf allen Ebenen — Einzelaufstellungen, Hypnose, Numerologie und Fussreflexzonenmassage bei VitaLunaris in Buchs.",
+          "sections": [
+            {
+              "type": "overview_hero",
+              "image": "/images/ebene/Ebene_2.svg",
+              "eyebrow": "VitaLunaris Praxisangebote",
+              "title": "Persönliche Begleitung.<br /><em>Auf allen Ebenen.</em>",
+              "body": "In unseren Einzelsitzungen, Behandlungen und Beratungen begleiten wir dich persönlich und individuell – mit Zeit, Aufmerksamkeit und einem offenen Blick für das, was sich zeigen möchte. Denn was erkannt wird, kann sich verändern. Für mehr Klarheit, innere Balance und neue Perspektiven auf deinem Weg."
+            },
+            {
+              "type": "practice_offers",
+              "items": "[]"
+            },
+            {
+              "type": "claim_block",
+              "title": "Wo Wissen auf<br />Erfahrung trifft.",
+              "body": "VitaLunaris ist mehr als eine Praxis — es ist ein Ort, wo systemisches und energetisches Wissen zusammenkommen. Theresia und Axel Jansen begleiten Menschen mit über 30 Jahren Erfahrung: in Aufstellungen, Heilkunde, Hypnose und Numerologie. In der Deutschschweiz verwurzelt. Für alle, die tiefer schauen wollen.",
+              "image": "/images/placeholder/placeholder-4.jpg",
+              "items": "{\"ctaText\":\"Mehr über VitaLunaris\",\"ctaHref\":\"/ueber-uns\"}"
+            },
+            {
+              "type": "newsletter",
+              "eyebrow": "Newsletter",
+              "title": "Impulse für deine<br />Seele",
+              "body": "Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia.\n\nDazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.",
+              "items": "{\"placeholder\":\"E-mail Adresse\",\"submitText\":\"Kostenlos abonnieren\"}"
+            }
+          ],
+          "practice_offers": [
+            {
+              "eyebrow": "Systemisches Aufstellen | Theresia Jansen",
+              "title": "1:1 Aufstellung",
+              "body": "Ob Familienmuster, Beziehungsdynamiken, Kinderwunsch oder berufliche Entscheidungen — im geschützten Einzelsetting erhält dein Anliegen den Raum, den es braucht. Gemeinsam machen wir verborgene Dynamiken sichtbar und bringen Bewegung in das, was festgefahren scheint.",
+              "image": "/images/placeholder/Placeholder-20.jpg",
+              "primary_text": "Termin buchen",
+              "primary_href": "https://app.healthadvisor.ch/bookings/c364704cac70ab94901c6b34b25bb825",
+              "secondary_text": "Mehr erfahren",
+              "secondary_href": "/praxisangebote/aufstellungen"
+            },
+            {
+              "eyebrow": "Hypnose | Axel Jansen",
+              "title": "Hypnose-Sitzung",
+              "body": "Veränderung beginnt dort, wo Verstand und Unterbewusstsein zusammenarbeiten. Systemic Hypno verbindet Hypnose, Energiearbeit und systemisches Denken zu einer tiefen und gleichzeitig sanften Begleitung. Alte Muster, Blockaden und belastende Emotionen dürfen sich lösen.",
+              "image": "/images/placeholder/Placeholder-21.jpg",
+              "primary_text": "Termin buchen",
+              "primary_href": "https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9",
+              "secondary_text": "Mehr erfahren",
+              "secondary_href": "/praxisangebote/hypnose"
+            },
+            {
+              "eyebrow": "Numerologie | Axel Jansen",
+              "title": "Numerologie-Beratung",
+              "body": "Dein Geburtsdatum erzählt mehr über dich, als du vielleicht vermutest. Die Numerologie kann helfen, Talente, Stärken, Herausforderungen und wiederkehrende Lebensthemen besser zu verstehen.",
+              "image": "/images/placeholder/Placeholder-22.jpg",
+              "primary_text": "Termin buchen",
+              "primary_href": "https://app.healthadvisor.ch/bookings/f2dd0a3cd4167ed29e7a9319eb48b9e9",
+              "secondary_text": "Mehr erfahren",
+              "secondary_href": "/praxisangebote/numerologieberatung"
+            },
+            {
+              "eyebrow": "Körperarbeit | Marlen Berger",
+              "title": "Fussreflexzonenmassage",
+              "body": "Marlens Methode ist intensiver und wirkungsvoller als klassische Fussreflexzonen. Sie arbeitet präzise, spürbar und intuitiv – nach den Prinzipien der TCM. Hilfreich bei körperlichen Beschwerden, Nervensystem-Entlastung sowie hormonellen und emotionalen Themen.",
+              "image": "/images/placeholder/Placeholder-23.jpg",
+              "primary_text": "Termin buchen",
+              "primary_href": "https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3533b6af7ab",
+              "secondary_text": "Mehr erfahren",
+              "secondary_href": "/praxisangebote/fussreflexzonenbehandlung"
+            },
+            {
+              "eyebrow": "Zeremonien | Theresia & Axel Jansen",
+              "title": "Jawort by Jansen",
+              "body": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Als freie Rednerin gestalte ich Zeremonien, die berühren, verbinden und in Erinnerung bleiben.",
+              "image": "/images/placeholder/Placeholder-18.jpg",
+              "primary_text": "",
+              "primary_href": "",
+              "secondary_text": "Mehr erfahren",
+              "secondary_href": "/praxisangebote/jawort-by-jansen",
+              "tone": "dark"
+            }
+          ],
+          "newsletter_placeholder": "E-mail Adresse",
+          "newsletter_submit_text": "Kostenlos abonnieren",
+          "claim_cta_text": "Mehr über VitaLunaris",
+          "claim_cta_href": "/ueber-uns"
+        }
+      }
+    ],
+    "ausbildung_programs": [
+      {
+        "id": "01KVWAGYNQW36C9N13CX6YY78F",
+        "slug": "infoanlaesse",
+        "status": "published",
+        "data": {
+          "seo_title": "Systemic Soulcoach Infoabend | VitaLunaris",
+          "seo_description": "Kostenloser Online-Infoabend zur Ausbildung Systemic Soulcoach — ehrlicher Einblick in Inhalte, Aufbau und Arbeitsweise, mit Raum für alle deine Fragen.",
+          "info_cards": [
+            {
+              "eyebrow": "Wann?",
+              "body": "Der Infoabend findet am 24.06.2026 von 18.30 bis ca. 20.00 Uhr statt."
+            },
+            {
+              "eyebrow": "Wo?",
+              "body": "Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail."
+            },
+            {
+              "eyebrow": "Für wen?",
+              "body": "Für alle, die sich fragen, ob eine Ausbildung in systemischer Arbeit der nächste richtige Schritt ist."
+            }
+          ],
+          "faq_items": [
+            {
+              "question": "Für wen sind die Workshops geeignet?",
+              "answer": "Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig."
+            },
+            {
+              "question": "Was ist der Unterschied zwischen einem Workshop und der Ausbildung?",
+              "answer": "Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss."
+            },
+            {
+              "question": "Brauche ich Vorkenntnisse für die Monats-Workshops?",
+              "answer": "Nein. Die Workshops sind so gestaltet, dass du jederzeit einsteigen kannst."
+            },
+            {
+              "question": "Wie melde ich mich an?",
+              "answer": "Du klickst auf «Jetzt anmelden», füllst das kurze Formular aus und erhältst alle Infos sowie den Zoom-Link per E-Mail."
+            },
+            {
+              "question": "Werden die Kosten von der Krankenkasse übernommen?",
+              "answer": "Der Infoabend ist kostenlos. Workshops sind in der Regel keine kassenpflichtige Leistung."
+            },
+            {
+              "question": "Kann ich einen Workshop stornieren?",
+              "answer": "Ja, bis zu einer bestimmten Frist vor Beginn. Die Bedingungen findest du in der Anmeldebestätigung."
+            },
+            {
+              "question": "Gibt es auch Online-Formate?",
+              "answer": "Ja. Der Infoabend und unsere Workshops finden online via Zoom statt."
+            },
+            {
+              "question": "Was passiert wenn ein Workshop ausgebucht ist?",
+              "answer": "Du kannst dich auf die Warteliste setzen. Wird ein Platz frei, informieren wir dich zuerst."
+            }
+          ],
+          "sections": [
+            {
+              "type": "hero",
+              "category_meta": "AUSBILDUNG | INFOABEND | 24.06.2026",
+              "title": "Systemic Soulcoach <br /> Infoabend",
+              "description": "Du möchtest mehr über die Systemic Soulwork Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.",
+              "duration_meta": "24.06.2026 | 18.30 bis ca. 20.00 Uhr | Online",
+              "price": "Kostenlos :)",
+              "cta_text": "Jetzt anmelden",
+              "cta_href": "/kontakt",
+              "image": "/images/placeholder/Placeholder-12.jpg"
+            },
+            {
+              "type": "info_cards",
+              "items": "[]"
+            },
+            {
+              "type": "narrative",
+              "image": "/images/placeholder/Placeholder-33.jpg",
+              "eyebrow": "Was wir anschauen",
+              "title": "Das erwartet dich",
+              "body": "Der Online-Infoabend ist kostenlos und unverbindlich. Ich freue mich darauf, dich kennenzulernen.",
+              "items": "[\"Vorstellung von Systemic Soulwork & Systemic Soulcoach\",\"Überblick über die Ausbildungsstruktur\",\"Einblick in die Inhalte und Module\",\"Informationen zu Terminen und Investition\",\"Raum für Fragen und Austausch\"]"
+            },
+            {
+              "type": "agenda",
+              "items": "[]"
+            },
+            {
+              "type": "about",
+              "title": "Theresia &<br /><em>Axel Jansen</em>",
+              "items": "[]"
+            },
+            {
+              "type": "faq",
+              "items": "[]"
+            }
+          ],
+          "agenda_items": [
+            {
+              "text": "Vorstellung von Systemic Soulwork & Systemic Soulcoach"
+            },
+            {
+              "text": "Überblick über die Ausbildungsstruktur"
+            },
+            {
+              "text": "Einblick in die Inhalte und Module"
+            },
+            {
+              "text": "Informationen zu Terminen und Investition"
+            },
+            {
+              "text": "Raum für Fragen und Austausch"
+            }
+          ],
+          "about_paragraphs": [
+            {
+              "text": "Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet."
+            },
+            {
+              "text": "Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVW2FC0M1V6TVJFSMBK32YMF",
+        "slug": "soulcoach-level-1",
+        "status": "published",
+        "data": {
+          "seo_title": "Systemic Soulwork Level 1 – VitaLunaris",
+          "seo_description": "Level 1 der Systemic-Soulwork-Ausbildung bei Theresia Jansen — drei Monate Selbsterkenntnis, in denen du dein eigenes System verstehst und das Fundament für systemische Arbeit legst.",
+          "hero_eyebrow": "Ausbildung · Systemic Soulwork Level 1 · 3 Monate",
+          "hero_title": "Entfalte deine<br />systemische Praxis",
+          "hero_subtitle": "ystemische Arbeit lernen wie sie gelernt werden sollte — an dir selbst. Drei Monate, in denen du endlich verstehst, warum sich bestimmte Dinge in deinem Leben immer wieder wiederholen. Warum bestimmte Beziehungen so sind wie sie sind. Warum du manchmal reagierst, obwohl du eigentlich gar nicht willst.\nDu räumst auf. Du schaust hin. Du verstehst. Für dich selbst, oder als Fundament, um Systemischer Coach zu werden.\n\nEin Raum für Selbsterkenntnis, Wachstum und erste Erfahrungen mit der systemischen Aufstellungsarbeit.",
+          "hero_primary_cta_text": "Kostenloses Erstgespräch vereinbaren",
+          "hero_primary_cta_href": "/kontakt",
+          "hero_image": {
+            "id": "01KVWAFGN5PTVP9M65FGSY770K",
+            "provider": "local",
+            "filename": "Placeholder 2 (36).jpg",
+            "mimeType": "image/jpeg",
+            "width": 769,
+            "height": 868,
+            "alt": "",
+            "meta": {
+              "storageKey": "01KVWAFGCGH14S9P7N4FJWE177.jpg",
+              "caption": null,
+              "blurhash": "LHP6mp8w%z~qoe00E2E2_Ms:00D%",
+              "dominantColor": "rgb(205,189,186)"
+            }
+          },
+          "narrative_title": "Du kannst andere nur so weit begleiten, wie du selbst gegangen bist.",
+          "narrative_body": "Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen.\n\nSystemic Soulwork Level 1 ist nicht nur eine Ausbildung — es ist eine persönliche Reise. Die Inhalte, die du lernst, erlebst du gleichzeitig an dir selbst. Familienkonstellationen, eigene Muster, Bindungsdynamiken — du verstehst sie nicht nur theoretisch. Du spürst sie.\n\nViele Teilnehmerinnen kommen, weil sie andere begleiten möchten. Manche kommen, weil sie sich selbst besser verstehen wollen. Andere einfach, weil sie spüren, dass da etwas ist, das Aufmerksamkeit braucht. Alle drei Wege sind richtig.",
+          "narrative_image": {
+            "id": "01KVWD6YH69SYCCKXXET37YJSF",
+            "provider": "local",
+            "filename": "Placeholder 2 (37).jpg",
+            "mimeType": "image/jpeg",
+            "width": 620,
+            "height": 830,
+            "alt": "",
+            "meta": {
+              "storageKey": "01KVWD6Y9PPMEBC3G1GSAXDSYV.jpg",
+              "caption": null,
+              "blurhash": "LJN0MAX98_xt~qj[ayx^E1V?x]%g",
+              "dominantColor": "rgb(197,174,163)"
+            }
+          },
+          "outcomes_title": "In den drei Monaten tauchen wir tief in:",
+          "outcomes": [
+            {
+              "title": "Familiensysteme & Herkunft",
+              "description": "Was haben wir mitbekommen? Was tragen wir – oft ohne es zu wissen? Loyalitäten, Verstrickungen und Muster, die sich durch Generationen ziehen."
+            },
+            {
+              "title": "Eigene Muster & Loyalitäten",
+              "description": "Warum wiederholen sich bestimmte Themen? Was steckt hinter den Entscheidungen, die wir immer wieder treffen?"
+            },
+            {
+              "title": "Beziehungen & Bindungsdynamiken",
+              "description": "Wie gestalten wir Beziehungen – beruflich und privat? Was beeinflusst, wie wir uns verbinden, abgrenzen oder verlieren?"
+            },
+            {
+              "title": "Grundlagen systemischer Begleitung",
+              "description": "Für alle, die auch andere begleiten möchten: die Grundhaltung, die Sprache und die ersten Schritte systemischer Arbeit – mit dem Aufstellungsbrett und mit Menschen."
+            }
+          ],
+          "narrative2_title": "Was dich nach drei Monaten erwartet",
+          "narrative2_body": "Die meisten Teilnehmerinnen verstehen sich selbst, ihre Beziehungen und ihre Lebensgeschichte mit anderen Augen. Was vorher verwirrend oder wiederkehrend war, wird verständlicher und leichter. Viele erleben mehr Vertrauen in sich selbst, mehr Gelassenheit im Umgang mit Herausforderungen — und das Gefühl, ihrem eigenen Weg wieder ein Stück näher gekommen zu sein.",
+          "narrative2_image": {
+            "id": "01KVWFPNZYWQBP2FSSVMAKVB9P",
+            "provider": "local",
+            "width": 620,
+            "height": 830,
+            "alt": "",
+            "meta": {
+              "storageKey": "01KVWFPNQTHZ54Y8H9687CVF9R.jpg",
+              "caption": null,
+              "blurhash": "L9J@g{00.7~BrV^+-;^+PV=|-o4T",
+              "dominantColor": "rgb(153,131,126)"
+            },
+            "filename": "Placeholder 2 (40).jpg",
+            "mimeType": "image/jpeg"
+          },
+          "lehrerin_eyebrow": "Theresia Jansen",
+          "lehrerin_title": "Entfalte was in dir ist, um weiterzugeben was du weisst.",
+          "lehrerin_body": "Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit — körperlich wie energetisch. Sie hat Aufstellen, Heilkunde und weitere Methoden über die Jahre hinweg erprobt, durchlebt und verfeinert. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.\n\nIn Level 1 begleitet Theresia die Gruppe sowohl methodisch als auch in der Tiefe des Prozesses. Sie bringt ein, was sie selbst durchlebt und erprobt hat.",
+          "lehrerin_image": {
+            "id": "01KVWFS71X95BK91K0BPE34QWR",
+            "provider": "local",
+            "width": 857,
+            "height": 900,
+            "alt": "",
+            "meta": {
+              "storageKey": "01KVWFS6SH7HTN18KH5N6JE27H.jpg",
+              "caption": null,
+              "blurhash": "LCJtF]D%*J9Z~p000f4-?aai^k?H",
+              "dominantColor": "rgb(150,120,112)"
+            },
+            "filename": "Placeholder 2 (8).jpg",
+            "mimeType": "image/jpeg"
+          },
+          "info_cards": [
+            {
+              "eyebrow": "Nächster Start",
+              "body": "1.8.2026"
+            },
+            {
+              "eyebrow": "Dauer",
+              "body": "3 Monate"
+            },
+            {
+              "eyebrow": "Durchführung",
+              "body": "online oder hybrid, max. 6 Personen"
+            },
+            {
+              "eyebrow": "Investition",
+              "body": "CHF 3800.–"
+            }
+          ],
+          "schedule_caption": "Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt.<br />Solltest du die Ausbildung nur online machen wollen, ist das kein Problem — es gibt eine separate Online-Gruppe und ändert nichts am Umfang oder Startdatum.",
+          "testimonials": [
+            {
+              "quote": "«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»",
+              "name": "Jana L."
+            },
+            {
+              "quote": "«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Diese Ausbildung ist für mich weit mehr als Lernen. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»",
+              "name": "Silvia F."
+            },
+            {
+              "quote": "«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Ein geschützter Raum, in dem jede einfach sie selbst sein darf. Theresia schafft diesen Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen.»",
+              "name": "Corina B."
+            }
+          ],
+          "teacher": "theresia-jansen",
+          "faq_items": [
+            {
+              "question": "Ist Level 1 vollständig oder nur ein Einstieg in Level 2?",
+              "answer": "Level 1 ist ein vollwertiger, in sich geschlossener Ausbildungsabschnitt — und zugleich die Grundlage für Level 2. Du lernst das systemische Handwerk an dir selbst und kannst danach entscheiden, ob du weitergehen möchtest."
+            },
+            {
+              "question": "Für wen ist diese Ausbildung geeignet?",
+              "answer": "Für alle, die systemisch arbeiten wollen — ob für die eigene Entwicklung oder als Grundlage, um später andere zu begleiten. Du brauchst keine fachliche Vorbildung, sondern Offenheit."
+            },
+            {
+              "question": "Muss ich nach Level 1 als Systemic Soulcoach arbeiten?",
+              "answer": "Nein. Viele machen Level 1 für die eigene Entwicklung. Ob du das Gelernte beruflich einsetzt, bleibt vollständig dir überlassen."
+            },
+            {
+              "question": "Welche Vorkenntnisse brauche ich?",
+              "answer": "Keine fachlichen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen."
+            },
+            {
+              "question": "Was ist der Unterschied zu einer klassischen Ausbildung?",
+              "answer": "Wir arbeiten erfahrungsbasiert statt rein theoretisch. Du lernst nicht über Systeme, sondern in ihnen — an deinem eigenen System und an dem der Gruppe."
+            },
+            {
+              "question": "Wie gross ist die Gruppe?",
+              "answer": "Die Gruppen sind bewusst klein — maximal 6 Personen. So bleibt genug Raum, dass jede mit ihrem eigenen Thema gesehen und begleitet werden kann."
+            },
+            {
+              "question": "Was kostet Level 1 und wie wird bezahlt?",
+              "answer": "Die Investition für Level 1 beträgt CHF 3800.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch."
+            },
+            {
+              "question": "Kann ich rein online teilnehmen?",
+              "answer": "Ja. Solltest du die Ausbildung nur online machen wollen, ist das kein Problem — es gibt eine separate Online-Gruppe. Am Umfang und am Startdatum ändert das nichts."
+            }
+          ],
+          "infoanlass_eyebrow": "Infoanlass",
+          "infoanlass_title": "Komm zum<br />nächsten Infoanlass.",
+          "infoanlass_body": "Du möchtest mehr über die Systemic-Soulwork-Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen."
+        }
+      },
+      {
+        "id": "01KVW2FC10ZDYS39Z3F5YXHY3S",
+        "slug": "soulcoach-level-2",
+        "status": "published",
+        "data": {
+          "seo_title": "Systemic Soulwork Level 2 – VitaLunaris",
+          "seo_description": "Level 2 der Systemic-Soulwork-Ausbildung bei Theresia Jansen — die professionelle Ausbildung für Absolvent:innen von Level 1: andere systemisch begleiten mit Methode, Haltung und eigener Erfahrung.",
+          "hero_eyebrow": "Ausbildung · Systemic Soulcoach Level 2 · 3 Monate",
+          "hero_title": "Vertiefe deine<br />systemische Praxis<br />und gib sie weiter.",
+          "hero_subtitle": "Level 2 ist die professionelle Ausbildung für Absolvent:innen von Level 1. In drei Monaten lernst du, andere systemisch zu begleiten — mit Methode, Haltung und dem Fundament eigener Erfahrung. Du hast erlebt, wie tiefgründig systemische Arbeit sein kann. Jetzt lernst du, andere auf diesem Weg zu begleiten.",
+          "hero_primary_cta_text": "Jetzt für Level 2 anmelden",
+          "hero_primary_cta_href": "/kontakt",
+          "hero_image": "/images/placeholder/Placeholder-8.jpg",
+          "narrative_title": "Was du in dir entfaltet hast, kannst du jetzt für andere öffnen.",
+          "narrative_body": "Vielleicht hast du während Systemic Soulwork gemerkt, dass dich diese Arbeit nicht nur für dein eigenes Leben begeistert. Dass du gut zuhören kannst. Dass du die Zusammenhänge erkennst. Genau hier setzt Level 2 an. Du lernst, systemische Prozesse professionell zu begleiten. Du entwickelst Sicherheit in der Gesprächsführung, vertiefst dein Verständnis für komplexe Dynamiken und lernst, Menschen achtsam und verantwortungsvoll durch Veränderungsprozesse zu führen. Schritt für Schritt. Von der Teilnehmerin zur Coachin.",
+          "narrative_image": "/images/placeholder/Placeholder-11.jpg",
+          "outcomes_title": "In den drei Monaten tauchen wir tief in:",
+          "outcomes": [
+            {
+              "title": "Modul 1 — Aufstellen & Wahrnehmen",
+              "description": "Das Aufstellungsbrett, Raumaufstellungen und Bodenanker: Du lernst, systemische Prozesse sichtbar zu machen, Dynamiken im Raum wahrzunehmen und Aufstellungen sicher anzuleiten."
+            },
+            {
+              "title": "Modul 2 — Nervensystem & Tiefe",
+              "description": "Wie Veränderungsprozesse auf das Nervensystem wirken und wie du Intuition mit systemischer Wahrnehmung verbindest. Du begleitest Menschen sicher durch emotionale Prozesse."
+            },
+            {
+              "title": "Modul 3 — Energie & Ahnenlinien",
+              "description": "Energetische Dynamiken erkennen, Ahnenlinien einbeziehen und auch bei komplexen oder herausfordernden Themen den Überblick behalten."
+            },
+            {
+              "title": "Modul 4 — Prozessführung & Abschluss",
+              "description": "Du entwickelst deinen eigenen Stil als Coach, gewinnst Sicherheit in der Gesprächsführung und integrierst alle Inhalte für deine eigenständige Arbeit."
+            }
+          ],
+          "narrative2_title": "Was dich nach der Ausbildung erwartet",
+          "narrative2_body": "Du verfügst über fundiertes systemisches Wissen, praktische Erfahrung und die Sicherheit, eigenständig zu arbeiten. Du kannst systemische Methoden in deine bestehende Tätigkeit integrieren — oder als Systemic Soulcoach selbständig damit arbeiten.",
+          "lehrerin_eyebrow": "Theresia Jansen",
+          "lehrerin_title": "Das Handwerk von jemandem, der es täglich lebt.",
+          "lehrerin_body": "Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In Level 2 gibt sie weiter, was sie selbst erprobt und verfeinert hat — kein importiertes Curriculum, sondern gelebte Praxis aus der Deutschschweiz.\n\nIn Level 2 begegnet dir Theresia auf eine neue Art: direkter, fordernder, auf Augenhöhe. Du bringst das Fundament mit — sie holt das Beste daraus heraus.",
+          "info_cards": [
+            {
+              "eyebrow": "Nächster Start",
+              "body": "Noch unbekannt"
+            },
+            {
+              "eyebrow": "Dauer",
+              "body": "3 Monate"
+            },
+            {
+              "eyebrow": "Durchführung",
+              "body": "online oder hybrid, max. 6 Personen"
+            },
+            {
+              "eyebrow": "Investition",
+              "body": "CHF 5200.–"
+            }
+          ],
+          "schedule_caption": "Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt.<br />Voraussetzung: Abschluss von Level 1 — bei VitaLunaris oder einer vergleichbaren systemischen Selbsterfahrungsausbildung (Rücksprache erforderlich).",
+          "testimonials": [
+            {
+              "quote": "«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen.»",
+              "name": "Jana L."
+            },
+            {
+              "quote": "«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»",
+              "name": "Silvia F."
+            },
+            {
+              "quote": "«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Theresia schafft einen geschützten Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen.»",
+              "name": "Corina B."
+            }
+          ],
+          "teacher": "theresia-jansen",
+          "faq_items": [
+            {
+              "question": "Muss ich Level 1 gemacht haben?",
+              "answer": "Ja. Level 2 baut direkt auf der Selbsterfahrung aus Level 1 auf — du kannst andere nur dorthin begleiten, wo du selbst schon warst. Hast du eine vergleichbare systemische Selbsterfahrungsausbildung absolviert, sprich uns an."
+            },
+            {
+              "question": "Kann ich rein online teilnehmen?",
+              "answer": "Ja. Es gibt eine separate Online-Gruppe. Am Umfang und am Startdatum ändert das nichts."
+            },
+            {
+              "question": "Bekomme ich ein Zertifikat?",
+              "answer": "Ja. Nach erfolgreichem Abschluss von Level 2 erhältst du ein Zertifikat als Systemic Soulcoach."
+            },
+            {
+              "question": "Kann ich danach selbständig als Coach arbeiten?",
+              "answer": "Ja. Du kannst eigenständig systemisch begleiten — Einzel- und Gruppenaufstellungen führen und die Methode in deine Arbeit integrieren oder als eigene Praxis anbieten."
+            },
+            {
+              "question": "Welche Vorkenntnisse brauche ich über Level 1 hinaus?",
+              "answer": "Keine weiteren fachlichen. Die wichtigste Voraussetzung ist Level 1 — oder eine vergleichbare systemische Selbsterfahrung. Alles andere lernst du in Level 2."
+            },
+            {
+              "question": "Wie gross ist die Gruppe?",
+              "answer": "Die Gruppen sind bewusst klein — maximal 6 Personen. So bleibt genug Raum für Tiefe und persönliche Begleitung."
+            },
+            {
+              "question": "Was kostet Level 2 und wie wird bezahlt?",
+              "answer": "Die Investition für Level 2 beträgt CHF 5200.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch."
+            },
+            {
+              "question": "Was wenn ich schon eine vergleichbare systemische Selbsterfahrungsausbildung wie Level 1 gemacht habe?",
+              "answer": "Dann ist ein Einstieg in Level 2 nach Rücksprache möglich. Melde dich für ein kostenloses Erstgespräch — wir schauen gemeinsam, ob deine Vorerfahrung passt."
+            }
+          ],
+          "infoanlass_eyebrow": "Infoanlass",
+          "infoanlass_title": "Komm zum<br />nächsten Infoanlass.",
+          "infoanlass_body": "Du möchtest mehr über die Systemic-Soulwork-Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen."
+        }
+      },
+      {
+        "id": "01KVWAGYNKPCKR7KH2TXSSG91Q",
+        "slug": "uebersicht",
+        "status": "published",
+        "data": {
+          "seo_title": "Übersicht – Systemic Soulcoach Ausbildung bei VitaLunaris",
+          "seo_description": "Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. In zwei Stufen, aufgebaut auf über 30 Jahren Praxis in der Deutschschweiz.",
+          "hero_eyebrow": "Systemic Soulcoach Ausbildung",
+          "hero_title": "Systemische Arbeit.<br />Professionell begleiten<br />und wirklich tief gehen.",
+          "hero_subtitle": "Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen, die mit Tiefe arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren gelebter Praxis in der Deutschschweiz.",
+          "outcomes": [
+            {
+              "title": "Du siehst Systeme.",
+              "description": "Muster, Dynamiken, Loyalitäten — du erkennst sie früher. In der Arbeit mit anderen, und in deinem eigenen Leben."
+            },
+            {
+              "title": "Du begleitest sicher.",
+              "description": "Nicht nur auf der Oberfläche — sondern dort wo sich wirklich etwas hält. Mit Methode und Haltung."
+            },
+            {
+              "title": "Du hältst die Spannung.",
+              "description": "Konflikte, Widerstand, schwierige Momente — du weichst nicht aus. Du bist Boden für andere."
+            },
+            {
+              "title": "Du arbeitest aus Erfahrung.",
+              "description": "Nicht aus Theorie. Was du weitergibst, hast du selbst durchlebt. Das ist der Unterschied."
+            }
+          ],
+          "faq_items": [
+            {
+              "question": "Brauche ich Vorkenntnisse für die Ausbildung?",
+              "answer": "Nein. Systemic Soulwork Level 1 ist der Einstieg — ohne Vorwissen, nur mit Neugier und der Bereitschaft, hinzuschauen."
+            },
+            {
+              "question": "Kann ich direkt mit der Ausbildung zum Systemic Soulcoach starten?",
+              "answer": "Level 2 baut direkt auf Level 1 auf. Bringst du bereits ähnliche Grundlagen mit, besprechen wir im Vorgespräch gemeinsam, ob ein direkter Einstieg möglich ist."
+            },
+            {
+              "question": "Ist die Ausbildung eher theoretisch oder praktisch ausgerichtet?",
+              "answer": "Klar praktisch. Du lernst nicht aus Büchern — du erlebst die systemische Arbeit an dir selbst, stellst auf, wirst aufgestellt und entwickelst dein Handwerk durch echte Prozesse."
+            },
+            {
+              "question": "Kann ich nach der Ausbildung selbst Menschen begleiten?",
+              "answer": "Ja. Nach Level 2 verfügst du über das Wissen und die praktische Erfahrung, um eigenständig mit systemischen Methoden zu arbeiten — alleine oder als Ergänzung zu einer bestehenden Tätigkeit."
+            },
+            {
+              "question": "Eignet sich die Ausbildung auch für Menschen im Gesundheits-, Coaching- oder Beratungsbereich?",
+              "answer": "Ja — und oft besonders gut. Systemisches Denken und Aufstellen ergänzen viele bestehende Methoden auf natürliche Weise."
+            },
+            {
+              "question": "Werden die Kosten von der Krankenkasse übernommen?",
+              "answer": "Das hängt von deiner Zusatzversicherung ab. Wir empfehlen, direkt bei deiner Krankenkasse nachzufragen."
+            },
+            {
+              "question": "Was passiert, wenn ich einmal einen Termin nicht wahrnehmen kann?",
+              "answer": "Das besprechen wir im Einzelfall. Grundsätzlich sind die Gruppenabende ein wichtiger Teil der Ausbildung — die Aufzeichnung einzelner Einheiten kann je nach Situation eine Lösung sein."
+            },
+            {
+              "question": "Was unterscheidet diese Ausbildung von anderen Programmen?",
+              "answer": "Kein importiertes Curriculum, keine reine Theorie. Was Theresia lehrt, hat sie selbst über 30 Jahre erlebt, erprobt und verfeinert — mit echten Menschen in echten Prozessen. Das spürt man."
+            }
+          ],
+          "sections": [
+            {
+              "type": "narrative",
+              "image": "/images/placeholder/Placeholder-7.jpg",
+              "title": "Methode.<br />Haltung. Tiefe.",
+              "body": "Systemische Aufstellungsarbeit macht sichtbar, was unter der Oberfläche wirkt — in Familien, Beziehungen, Berufsfeldern und in uns selbst. Was ich in dieser Ausbildung weitergebe, habe ich nicht aus Büchern — sondern aus über 30 Jahren Begleitung von Menschen. Aus echten Prozessen, echten Momenten und der tiefen Überzeugung, dass Veränderung möglich ist, wenn wir bereit sind, genauer hinzuschauen.\n\nManche Menschen kommen zu dieser Ausbildung, weil sie andere begleiten möchten. Manche kommen, weil sie sich selbst besser verstehen wollen. Und manche wissen am Anfang noch gar nicht genau, warum sie kommen — sie spüren einfach, dass es der richtige Schritt ist."
+            },
+            {
+              "type": "stages",
+              "title": "Drei Stufen, ein Weg",
+              "body": "Jede Stufe baut auf der vorherigen auf. Du entscheidest nach Level 1 — aber die meisten wollen tiefer.",
+              "items": "[]"
+            },
+            {
+              "type": "outcomes",
+              "title": "Nach dieser Ausbildung arbeitest du anderst.",
+              "items": "[]"
+            },
+            {
+              "type": "lehrerin",
+              "eyebrow": "Deine Lehrerin",
+              "title": "Theresia Jansen",
+              "image": "/images/placeholder/Placeholder-8.jpg",
+              "items": "[]"
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»\",\"name\":\"Jana L.\"},{\"quote\":\"«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. So habe ich mich in einer Gruppe noch nie gefühlt. In mir ist eine grosse Welle in Bewegung gekommen — früher hätte ich solche Gefühle verdrängt, heute gehe ich durch sie hindurch. Diese Ausbildung ist für mich weit mehr als Lernen. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»\",\"name\":\"Silvia F.\"},{\"quote\":\"«Diese Ausbildung zeigt die Magie des systemischen Aufstellens — und ich könnte mir keinen Ort vorstellen, an dem ich mich wohler fühle. Ein geschützter Raum, in dem jede einfach sie selbst sein darf. Theresia schafft diesen Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen. Was diese Ausbildung besonders macht: die Erfahrung, selbst Teil eines solchen Prozesses zu sein.»,\"name\":\"Corina B.\"}]",
+              "eyebrow": "",
+              "body": "",
+              "title": "Stimmen aus der Ausbildung"
+            },
+            {
+              "type": "uquote",
+              "image": "/images/placeholder/Placeholder-5.jpg",
+              "title": "„Menschen verändern sich nicht, weil man ihnen sagt, was sie tun sollen. Sie verändern sich, wenn sie beginnen zu verstehen, was sie bisher unbewusst getragen hat.“",
+              "body": "Theresia Jansen · VitaLunaris"
+            },
+            {
+              "type": "faq",
+              "items": "[]"
+            },
+            {
+              "type": "newsletter",
+              "title": "Noch nicht sicher?",
+              "body": "Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern.",
+              "items": ""
+            }
+          ],
+          "stage_cards": [
+            {
+              "image": "/images/cards/card-1.jpg",
+              "eyebrow": "Teil 1 — Grundlagen",
+              "title": "Der Einstieg in die systemische Arbeit",
+              "body": "Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.",
+              "cta_text": "Mehr erfahren",
+              "cta_href": "/ausbildung/soulcoach-level-1"
+            },
+            {
+              "image": "/images/cards/card-2.jpg",
+              "eyebrow": "Teil 2 — Vertiefung",
+              "title": "Vom Verständnis zur Praxis",
+              "body": "Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.",
+              "cta_text": "Mehr erfahren",
+              "cta_href": "/ausbildung/soulcoach-level-2"
+            },
+            {
+              "image": "/images/cards/card-3.jpg",
+              "eyebrow": "Begleitung & Circle",
+              "title": "In der Praxis bleiben und weiterlernen",
+              "body": "Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen. Zugang nur nach abgeschlossener Ausbildung.",
+              "cta_text": "Mehr erfahren",
+              "cta_href": "/kontakt"
+            }
+          ],
+          "lehrerin_paragraphs": [
+            {
+              "text": "Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch."
+            },
+            {
+              "text": "Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz."
+            },
+            {
+              "text": "Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht."
+            }
+          ]
+        }
+      }
+    ],
+    "workshops": [
+      {
+        "id": "01KVVZBQ5HNDV1GK7JZ4ZCQS0Y",
+        "slug": "adventsgeschichten",
+        "status": "published",
+        "data": {
+          "title": "Advents-Geschichten",
+          "date": "2026-12-01",
+          "color": "fire",
+          "category_meta": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
+          "duration_meta": "01.12.2026 | Online",
+          "hero_description": "Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.",
+          "hero_price": "Zahl was du möchtest :)",
+          "hero_image": "/images/placeholder/Placeholder-32.jpg",
+          "info_cards": [
+            {
+              "eyebrow": "Wann?",
+              "body": "24 Audio-Geschichten vom 1. bis 24. Dezember, täglich über Telegram. Berührend, humorvoll, nachdenklich — mitten aus dem Leben."
+            },
+            {
+              "eyebrow": "Wo?",
+              "body": "Direkt über Telegram. Den Link bekommst du nach der Anmeldung per E-Mail."
+            },
+            {
+              "eyebrow": "Für wen?",
+              "body": "Für Menschen, die Geschichten lieben, die Adventszeit bewusster erleben möchten und sich nach mehr Herz und weniger Hektik sehnen."
+            }
+          ],
+          "narrative_title": "Ein täglicher Moment zum Innehalten",
+          "narrative_body": "Manchmal wünsche ich mir die Weihnachtszeit zurück, wie ich sie als Kind erlebt habe. Diese besondere Vorfreude. Das Gefühl, dass jeden Tag etwas Schönes wartet.<br/><br/>Genau aus diesem Wunsch ist der Audio-Adventskalender entstanden. Jeden Morgen öffnet sich ein neues Türchen — dahinter wartet eine kleine Geschichte. Inspiriert von echten Begegnungen, Gedanken aus dem Alltag und Momenten, die berühren.<br/><br/>Beim Frühstück, auf dem Weg zur Arbeit oder einfach dann, wenn du dir ein paar Minuten nur für dich schenken möchtest.",
+          "narrative_image": "/images/placeholder/Placeholder-14.jpg",
+          "narrative_bullet_groups": [
+            {
+              "heading": "Das erwartet dich:",
+              "items": "24 Audio-Geschichten vom 1. bis 24. Dezember\nTäglich ein neues Adventstürchen über Telegram\nGeschichten zum Schmunzeln, Nachdenken und Fühlen"
+            },
+            {
+              "heading": "Eine Bitte ans Herz:",
+              "text": "In diesem Jahr gibt es die Möglichkeit einer freiwilligen Spende — nicht für mich, sondern für eine Familie aus meinem persönlichen Umfeld. Wer geben möchte, gibt. Wer einfach zuhören möchte, ist genauso herzlich willkommen."
+            }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
+          "card_title": "Advents-Geschichten für Herz und Seele",
+          "card_description": "Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.",
+          "card_image": "/images/placeholder/Placeholder-32.jpg",
+          "card_duration": "Online"
+        }
+      },
+      {
+        "id": "01KVWBQ1W855M18VA9ZXM4G7WD",
+        "slug": "aktueller-monatsworkshop",
+        "status": "published",
+        "data": {
+          "info_cards": [
+            {
+              "eyebrow": "Wann?",
+              "body": "Der Kurs findet am 14.09.2026 von 13:30 bis 16:00 Uhr statt (ca. 2 h)."
+            },
+            {
+              "eyebrow": "Wo?",
+              "body": "Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail."
+            },
+            {
+              "eyebrow": "Für wen?",
+              "body": "Für Menschen, die neugierig sind, erste Erfahrungen mit systemischer Arbeit machen möchten und spüren, dass sich etwas bewegen will."
+            }
+          ],
+          "faq_items": [
+            {
+              "question": "Für wen sind die Workshops geeignet?",
+              "answer": "Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig."
+            },
+            {
+              "question": "Was ist der Unterschied zwischen einem Workshop und der Ausbildung?",
+              "answer": "Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss."
+            },
+            {
+              "question": "Brauche ich Vorkenntnisse für den Kurs?",
+              "answer": "Nein. Der Kurs ist so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung."
+            },
+            {
+              "question": "Wie melde ich mich an?",
+              "answer": "Du klickst auf «Jetzt anmelden», füllst das kurze Formular aus und erhältst alle Infos sowie den Zoom-Link per E-Mail."
+            },
+            {
+              "question": "Werden die Kosten von der Krankenkasse übernommen?",
+              "answer": "Workshops sind in der Regel keine kassenpflichtige Leistung. Manche Zusatzversicherungen unterstützen Bildungsangebote — frag im Einzelfall nach."
+            },
+            {
+              "question": "Kann ich einen Workshop stornieren?",
+              "answer": "Ja, bis zu einer bestimmten Frist vor Beginn. Die genauen Bedingungen findest du in der Anmeldebestätigung."
+            },
+            {
+              "question": "Gibt es auch Online-Formate?",
+              "answer": "Ja. Dieser Kurs findet online via Zoom statt — den Link bekommst du nach der Anmeldung per E-Mail."
+            },
+            {
+              "question": "Was passiert wenn ein Workshop ausgebucht ist?",
+              "answer": "Du kannst dich auf die Warteliste setzen. Wird ein Platz frei oder kommt ein Zusatztermin, informieren wir dich zuerst."
+            }
+          ],
+          "sections": [
+            {
+              "type": "hero",
+              "category_meta": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
+              "duration_meta": "14.09.2026 · 13:30 Uhr · 120 Min. · Online",
+              "title": "SoulTap gegen<br />deine Angst",
+              "description": "EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen. Ein Werkzeug, das du sofort anwenden kannst und das dich noch viele Jahre begleiten wird.",
+              "price": "CHF 66.–",
+              "cta_text": "Jetzt anmelden",
+              "cta_href": "/kontakt",
+              "image": "/images/placeholder/Placeholder-34.jpg"
+            },
+            {
+              "type": "info_cards",
+              "items": "[]"
+            },
+            {
+              "type": "narrative",
+              "image": "/images/placeholder/Placeholder-35.jpg",
+              "eyebrow": "Was wir anschauen",
+              "title": "Die Angst hinter der Angst",
+              "body": "Oft steckt hinter einer Angst noch etwas ganz anderes: die Angst, nicht zu genügen. Die Angst vor Ablehnung oder Veränderung.\n\nGenau dort setzt SoulTap an — mit EFT, einem der einfachsten und gleichzeitig wirkungsvollsten Werkzeuge zur Selbsthilfe. Durch das sanfte Beklopfen von Meridianpunkten können Stress, Ängste und emotionale Belastungen oft erstaunlich schnell reduziert werden."
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"„Anfangs war ich neugierig – am Ende begeistert. Plötzlich ergaben viele Verhaltensweisen viel mehr Sinn. Voller Aha-Momente und ein neuer Blick auf Menschen.“\",\"name\":\"Marianne S.\"},{\"quote\":\"„Der Workshop war klar strukturiert, verständlich und mit viel Herz gestaltet. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Vielen Dank für diesen inspirierenden Tag!“\",\"name\":\"Marina C.\"},{\"quote\":\"„Ich bin noch immer erstaunt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Ein Werkzeug, das ich jederzeit anwenden kann. Herzlichen Dank für diesen praxisnahen Kurs!“\",\"name\":\"Sandra M.\"},{\"quote\":\"„Die Atemübungen und das Tapping helfen mir konkret, wenn Druck entsteht. Ich merke, dass ich im Familienalltag ruhiger bin. Viele praktische Werkzeuge, die sich leicht umsetzen lassen.“\",\"name\":\"Desiree Z.\"}]"
+            },
+            {
+              "type": "about",
+              "title": "Theresia &<br /><em>Axel Jansen</em>",
+              "image": "/images/placeholder/placeholder-4.jpg",
+              "items": "[]"
+            },
+            {
+              "type": "faq",
+              "items": "[]"
+            }
+          ],
+          "about_paragraphs": [
+            {
+              "text": "Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In ihren Workshops verbindet sie Aufstellungen, EFT, Nervensystem-Arbeit und Heilkunde zu einem Erfahrungsraum, der seinesgleichen sucht."
+            },
+            {
+              "text": "Axel Jansen bringt Hypnose und Numerologie in Workshops ein, die gleichermassen präzise wie zugänglich sind. Zahlenmagie ohne Kitsch, Hypnose ohne Bühnentricks. Zusammen bieten Theres und Axel ein Spektrum, das in dieser Form in der Deutschschweiz einzigartig ist."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVVZBQ5ECTB8RKQD16HZNGJB",
+        "slug": "cool-down-for-christmas",
+        "status": "published",
+        "data": {
+          "title": "Cool down for Christmas",
+          "date": "2026-11-24",
+          "color": "raspberry",
+          "category_meta": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
+          "duration_meta": "24.11.2026 16:30 Uhr | 210 Min. | Online",
+          "hero_description": "Damit du die Weihnachtszeit geniessen kannst, statt nur durchzuhalten: Unser Monats-Workshop im November lädt dich ein, einen Monat vor Heiligabend bewusst einen Gang zurückzuschalten.",
+          "hero_price": "CHF 66.–",
+          "hero_image": "/images/placeholder/Placeholder-31.jpg",
+          "info_cards": [
+            {
+              "eyebrow": "Wann?",
+              "body": "Der Workshop findet am 24.11.2026 um 16:30 Uhr statt und dauert 210 Min."
+            },
+            {
+              "eyebrow": "Wo?",
+              "body": "Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail."
+            },
+            {
+              "eyebrow": "Für wen?",
+              "body": "Für alle, die der Hektik der Vorweihnachtszeit mit Ruhe, Achtsamkeit und kleinen Ritualen begegnen möchten."
+            }
+          ],
+          "narrative_title": "Entspannungsübungen für eine stressfreie Adventszeit",
+          "narrative_body": "Geschenke, Termine, Erwartungen, Familienfeiern — oft bleibt in der Zeit, die eigentlich besinnlich sein sollte, kaum Raum zum Durchatmen. Genau deshalb gibt es Cool Down for Christmas.<br/><br/>Gemeinsam schauen wir, wie du mit mehr Ruhe und Leichtigkeit durch die Adventszeit gehen kannst — ohne dich selbst dabei zu verlieren.",
+          "narrative_image": "/images/placeholder/Placeholder-29.jpg",
+          "narrative_bullet_groups": [
+            {
+              "heading": "Das erwartet dich im Workshop:",
+              "items": "Warum Weihnachten oft mehr Stress als Freude auslöst\nWie du rechtzeitig aus dem Vorweihnachts-Hamsterrad aussteigen kannst\nPraktische Tipps für mehr Gelassenheit im Alltag\nImpulse für dein Nervensystem und kleine Entspannungsübungen\nEine wohltuende Entspannungsreise"
+            },
+            {
+              "heading": "Adventsbegleitung inklusive:",
+              "text": "Als Teilnehmerin bist du eingeladen, Teil einer geschlossenen Telegram-Gruppe zu werden — mit regelmässigen Impulsen durch die Adventszeit. Zusätzlich erhältst du Zugang zum beliebten Advents-Audiokalender mit täglichen Geschichten."
+            },
+            {
+              "text": "Eingeschlossen: Live-Workshop, Aufzeichnung, Advents-Telegram-Gruppe & Advents-Audiokalender"
+            }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
+          "card_title": "Cool down for Christmas",
+          "card_description": "Einen Monat vor Heiligabend bewusst einen Gang zurückschalten – damit du die Weihnachtszeit wirklich geniessen kannst.",
+          "card_image": "/images/placeholder/Placeholder-31.jpg",
+          "card_duration": "210 Min. | Online"
+        }
+      },
+      {
+        "id": "01KVWBQ1WQNH1M1DNEPEBFHSNG",
+        "slug": "kalender-uebersicht",
+        "status": "published",
+        "data": {
+          "faq_items": [
+            {
+              "question": "Für wen sind die Workshops geeignet?",
+              "answer": "Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig."
+            },
+            {
+              "question": "Was ist der Unterschied zwischen einem Workshop und der Ausbildung?",
+              "answer": "Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss."
+            },
+            {
+              "question": "Brauche ich Vorkenntnisse für die Monats-Workshops?",
+              "answer": "Nein. Die Monats-Workshops sind so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung."
+            },
+            {
+              "question": "Wie melde ich mich an?",
+              "answer": "Du wählst deinen Workshop im Kalender, klickst auf «Mehr erfahren» und meldest dich direkt an."
+            },
+            {
+              "question": "Werden die Kosten von der Krankenkasse übernommen?",
+              "answer": "Workshops sind in der Regel keine kassenpflichtige Leistung. Manche Zusatzversicherungen unterstützen Bildungsangebote."
+            },
+            {
+              "question": "Kann ich einen Workshop stornieren?",
+              "answer": "Ja, bis zu einer bestimmten Frist vor Beginn. Die genauen Bedingungen findest du in der Anmeldebestätigung."
+            },
+            {
+              "question": "Gibt es auch Online-Formate?",
+              "answer": "Ja. Viele Workshops bieten wir online oder hybrid an — du siehst das Format jeweils direkt beim Termin im Kalender."
+            },
+            {
+              "question": "Was passiert wenn ein Workshop ausgebucht ist?",
+              "answer": "Du kannst dich auf die Warteliste setzen. Wird ein Platz frei oder kommt ein Zusatztermin, informieren wir dich zuerst."
+            }
+          ],
+          "sections": [
+            {
+              "type": "hero",
+              "eyebrow": "Workshops & Kurse",
+              "title": "Tauche ein in die<br /><em>Systeme der Seele</em> mit<br />Theres und Axel",
+              "body": "Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung.",
+              "items": "[]"
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"„Der Numerologie-Workshop hat mich wirklich überrascht. Plötzlich ergaben viele Verhaltensweisen einen ganz neuen Sinn. Besonders die Analyse im Schulalltag war für mich unglaublich hilfreich. Ein Workshop voller Aha-Momente und neuer Perspektiven.“\",\"name\":\"Marianne S.\"},{\"quote\":\"„Ich bin ohne grosse Erwartungen in den Numerologie-Workshop gestartet – und wurde umso positiver überrascht. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Man spürt sofort, wie viel Herzblut in diesem Kurs steckt.“\",\"name\":\"Marina C.\"},{\"quote\":\"„Ich bin noch immer beeindruckt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Die Werkzeuge lassen sich direkt im Alltag anwenden – für mich selbst und meine Familie. Ein praxisnaher Kurs, den ich von Herzen weiterempfehle.“\",\"name\":\"Sandra M.\"},{\"quote\":\"„SoulReset hat mich absolut begeistert. Die Atemübungen und das Tapping haben mir geholfen, Druck abzubauen und wieder mehr Ruhe zu finden. Praktische und wirkungsvolle Tools, die sich leicht umsetzen lassen. Vielen Dank!“\",\"name\":\"Desiree Z.\"}]"
+            },
+            {
+              "type": "deep",
+              "title": "Tiefes Wissen, das nicht nur erklärt wird",
+              "items": "[]"
+            },
+            {
+              "type": "featured",
+              "image": "/images/placeholder/placeholder-4.jpg",
+              "body": "Was unsere Workshops besonders macht, ist nicht nur das Wissen — sondern die Erfahrung, aus der es entstanden ist. Seit Jahrzehnten begleiten wir Menschen in Veränderungsprozessen. Nicht in der Theorie, sondern im echten Leben.<br /><br />Theresia bringt Erfahrung aus systemischer Arbeit, Körperarbeit und Nervensystemwissen ein. Axel ergänzt durch Numerologie, Hypnose und seine Fähigkeit, komplexe Zusammenhänge alltagstauglich zu vermitteln.<br /><br />Gemeinsam schaffen wir Lernräume, in denen Menschen wachsen können. Denn Wissen wird erst nachhaltig, wenn es erlebt wird."
+            },
+            {
+              "type": "faq",
+              "items": "[]"
+            },
+            {
+              "type": "newsletter",
+              "title": "Ein Blick hinter die <br />Kulissen",
+              "body": "Im Newsletter teilen wir Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind. Wenn dich Workshops, Kurse oder die Ausbildung interessieren, bist du hier genau richtig."
+            }
+          ],
+          "deep_paragraphs": [
+            {
+              "text": "Unsere Workshops und Kurse sind kein Frontalunterricht. Sie sind Erfahrungsräume, in denen Wissen lebendig wird. Räume, in denen du Zusammenhänge nicht nur verstehst, sondern selbst erlebst."
+            },
+            {
+              "text": "Ob du zum ersten Mal mit systemischer Arbeit, Numerologie oder Energiearbeit in Berührung kommst oder dein Wissen vertiefen möchtest – hier findest du Formate, die praxisnah, inspirierend und nachhaltig sind. Lernen darf berühren. Lernen darf verändern. Lernen darf Freude machen."
+            }
+          ],
+          "category_pills": [
+            {
+              "label": "Alle",
+              "title": "Alle Angebote",
+              "description": "Von Monatsworkshops über systemisches Aufstellen, Hypnose und Numerologie bis hin zu Infoanlässen — hier findest du alle unsere Kurse und Workshops auf einen Blick.",
+              "active": false
+            },
+            {
+              "label": "Monats-Workshops",
+              "title": "Monats-Workshops",
+              "description": "Unsere Monatsworkshops orientieren sich am Rhythmus der Jahreszeiten und den Themen, die Menschen gerade bewegen — von persönlicher Entwicklung über Nervensystem und Energiearbeit bis hin zu Numerologie und praktischen Alltagswerkzeugen.",
+              "active": true
+            },
+            {
+              "label": "Systemisches Aufstellen",
+              "title": "Systemisches Aufstellen",
+              "description": "Verstehen, was unter der Oberfläche wirkt. Unsere Kurse führen dich Schritt für Schritt in die Welt der systemischen Aufstellungsarbeit — praxisnah, erfahrungsbasiert und offen für alle.",
+              "active": false
+            },
+            {
+              "label": "Hypnose",
+              "title": "Hypnose",
+              "description": "Der Zugang zu tieferen Schichten beginnt im Inneren. Unsere Hypnose-Kurse verbinden Theorie und Erleben — für alle, die diese wirkungsvolle Methode kennenlernen oder vertiefen möchten.",
+              "active": false
+            },
+            {
+              "label": "Numerologie",
+              "title": "Numerologie",
+              "description": "Zahlen erzählen Geschichten. Unsere Kurse zeigen dir, wie du Muster, Potenziale und Zusammenhänge lesen kannst — überraschend präzise und sofort anwendbar.",
+              "active": false
+            },
+            {
+              "label": "Infoanlässe",
+              "title": "Infoanlässe",
+              "description": "Du spürst, dass da mehr ist — und möchtest wissen, wohin der Weg führen könnte. Unsere Infoanlässe geben dir einen ersten ehrlichen Einblick in die Ausbildung Systemic Soulwork, ohne Druck und ohne Verpflichtung.",
+              "active": false
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVVZBPP51W7R5E2FQDZH5V4P",
+        "slug": "soultap-gegen-angst",
+        "status": "published",
+        "data": {
+          "title": "SoulTap gegen deine Angst",
+          "date": "2026-09-14",
+          "color": "gold",
+          "category_meta": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
+          "duration_meta": "14.09.2026 · 13:30 Uhr · 120 Min. · Online",
+          "hero_description": "Im September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen. Ein Werkzeug, das du sofort anwenden kannst und das dich noch viele Jahre begleiten wird.",
+          "hero_price": "CHF 66.–",
+          "hero_image": "/images/placeholder/Placeholder-34.jpg",
+          "info_cards": [
+            {
+              "eyebrow": "Wann?",
+              "body": "Der Kurs findet am 14.09.2026 von 13:30 bis 16:00 Uhr statt (ca. 2 h)."
+            },
+            {
+              "eyebrow": "Wo?",
+              "body": "Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail."
+            },
+            {
+              "eyebrow": "Für wen?",
+              "body": "Für Menschen, die zu viel denken, unter Stress oder innerer Unruhe leiden oder ein einfaches Werkzeug für den Alltag suchen. Keine Vorkenntnisse erforderlich."
+            }
+          ],
+          "narrative_title": "Die Angst hinter der Angst",
+          "narrative_body": "Oft steckt hinter einer Angst noch etwas ganz anderes: die Angst, nicht zu genügen. Die Angst vor Ablehnung oder Veränderung. Die Angst, die Kontrolle zu verlieren.<br/><br/>Genau dort setzt SoulTap an — mit EFT, einem der einfachsten und gleichzeitig wirkungsvollsten Werkzeuge zur Selbsthilfe. Durch das sanfte Beklopfen von Meridianpunkten können Stress, Ängste und emotionale Belastungen oft erstaunlich schnell reduziert werden.<br/><br/>Sofort anwendbar, ohne Vorkenntnisse — und ein Werkzeug, das dich noch viele Jahre begleiten kann.",
+          "narrative_image": "/images/placeholder/Placeholder-35.jpg",
+          "narrative_bullet_groups": [
+            {
+              "heading": "Das lernst du im Workshop:",
+              "items": "Grundlagen des EFT-Meridian-Klopfens\nDie wichtigsten Klopfpunkte\nWarum Stress und Angst im Körper gespeichert werden\nKlopfsequenzen für Sorgen, Ängste und innere Unruhe\nPraktische Übungen für mehr Selbstvertrauen und innere Sicherheit\nSofort anwendbare Techniken für den Alltag"
+            },
+            {
+              "heading": "Eingeschlossen:",
+              "text": "Live-Workshop, Kursunterlagen, Aufzeichnungen"
+            }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
+          "card_title": "SoulTap Einführungskurs",
+          "card_description": "EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen.",
+          "card_image": "/images/placeholder/Placeholder-12.jpg",
+          "card_duration": "120 Min. | Online"
+        }
+      },
+      {
+        "id": "01KVVZBQ5B52X65YHWWBD53ZFA",
+        "slug": "vagusnerv-ruhe",
+        "status": "published",
+        "data": {
+          "title": "Im Vagusnerv liegt die Ruhe",
+          "date": "2026-10-22",
+          "color": "lavender",
+          "category_meta": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
+          "duration_meta": "22.10.2026 · 09:00 Uhr · 120 Min. · Online",
+          "hero_description": "Den Vagusnerv verstehen und gezielt aktivieren: Unser Monats-Workshop im Oktober lädt dich ein, deinen Körper besser kennenzulernen und mit einfachen Methoden mehr Ruhe und Gelassenheit in deinen Alltag zu bringen.",
+          "hero_price": "CHF 66.–",
+          "hero_image": "/images/placeholder/Placeholder-29.jpg",
+          "info_cards": [
+            {
+              "eyebrow": "Wann?",
+              "body": "Der Workshop findet am 22.10.2026 von 09:00 bis 11:00 Uhr statt (ca. 2 Stunden)."
+            },
+            {
+              "eyebrow": "Wo?",
+              "body": "Online via Zoom. Den Zugangslink erhältst du nach der Anmeldung per E-Mail."
+            },
+            {
+              "eyebrow": "Für wen?",
+              "body": "Für Menschen, die sich häufig gestresst fühlen, schlecht abschalten können oder nach einfachen, natürlichen Methoden für mehr Balance im Alltag suchen. Keine Vorkenntnisse erforderlich."
+            }
+          ],
+          "narrative_title": "Mehr Ruhe beginnt im Nervensystem",
+          "narrative_body": "Fühlst du dich manchmal angespannt, erschöpft oder ständig unter Strom? Oft liegt die Ursache nicht im Kopf – oft ist das Nervensystem schlichtweg überfordert.<br/><br/>Genau hier kommt der Vagusnerv ins Spiel. Er spielt eine entscheidende Rolle für Entspannung, Sicherheit und Wohlbefinden. Ist er gut aktiviert, fühlen wir uns sicherer, entspannter und ausgeglichener.<br/><br/>Eine der einfachsten Möglichkeiten, ihn zu unterstützen: die Vagusnerv-Ohrmassage. Eine sanfte Technik, die oft bereits nach kurzer Zeit eine wohltuende Wirkung entfaltet – unauffällig im Alltag anwendbar, ohne Hilfsmittel.",
+          "narrative_image": "/images/placeholder/placeholder-3.jpg",
+          "narrative_bullet_groups": [
+            {
+              "heading": "Das erwartet dich im Workshop:",
+              "items": "Verständliche Einführung in den Vagusnerv\nWarum Stress im Körper gespeichert wird\nWie unser Körper zwischen Alarmzustand und Entspannung wechselt\nDie wohltuende Vagusnerv-Ohrmassage\nPraktische Übungen zur Aktivierung des Vagusnervs\nEinfache Techniken für den Alltag"
+            },
+            {
+              "heading": "Eingeschlossen:",
+              "text": "Live-Workshop, Kursunterlagen, Anleitung zur Vagusnerv-Ohrmassage & Aufzeichnung"
+            }
+          ],
+          "card_eyebrow": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
+          "card_title": "Im Vagusnerv liegt die Ruhe",
+          "card_description": "Den Vagusnerv verstehen und aktivieren – mit einfachen Werkzeugen mehr Ruhe und Gelassenheit in deinen Alltag bringen.",
+          "card_image": "/images/placeholder/Placeholder-29.jpg",
+          "card_duration": "120 Min. | Online"
+        }
+      }
+    ],
+    "pages": [
+      {
+        "id": "01KVW5EE3VSF9RP1HE0D4C9H0M",
+        "slug": "ausbildung-overview",
+        "status": "published",
+        "data": {
+          "seo_title": "Ausbildung – Systemic Soulcoach bei VitaLunaris",
+          "seo_description": "Die Ausbildung zum Systemic Soulcoach bei Theres Jansen — systemisches Aufstellen lernen aus über 30 Jahren gelebter Praxis.",
+          "hero_eyebrow": "Ausbildung · Systemic Soulcoach",
+          "hero_title": "Lerne Aufstellen von jemandem, der es lebt.",
+          "hero_subtitle": "Die Ausbildung zum Systemic Soulcoach bei Theres Jansen — in zwei Teilen, aufgebaut auf über 30 Jahren gelebter Praxis. Für alle, die systemisches Aufstellen nicht nur verstehen, sondern professionell begleiten wollen.",
+          "hero_image": "/images/placeholder/Placeholder_1.jpg",
+          "hero_primary_cta_text": "Jetzt Erstgespräch buchen",
+          "hero_primary_cta_href": "/kontakt",
+          "sections": [
+            {
+              "type": "narrative",
+              "image": "/images/placeholder/placeholder-2.jpg",
+              "title": "Diese ist für Menschen, die mit Tiefe arbeiten wollen und bereit sind, das eigene System dabei nicht auszublenden."
+            },
+            {
+              "type": "outcomes",
+              "title": "Nach der Ausbildung arbeitest du anderst.",
+              "items": "[]"
+            },
+            {
+              "type": "stages",
+              "title": "Drei Stufen, ein Weg",
+              "body": "Die Ausbildung ist in zwei Teile gegliedert, mit einer optionalen Membership für alle, die in der gemeinsamen Praxis bleiben wollen. Jede Stufe baut auf der vorherigen auf.",
+              "items": "[]"
+            },
+            {
+              "type": "quote",
+              "image": "/images/placeholder/Placeholder-5.jpg",
+              "title": "Was du in dieser Ausbildung lernst, kommt nicht aus einem Lehrbuch. Es kommt aus über 30 Jahren Praxis.",
+              "body": "Theresia & Axel Jansen · VitaLunaris"
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Ich fühle mich mehr bei mir selbst angekommen.»\",\"name\":\"Jana L.\"},{\"quote\":\"«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»\",\"name\":\"Silvia F.\"},{\"quote\":\"«Diese Ausbildung zeigt die Magie des systemischen Aufstellens. Theresia schafft einen geschützten Rahmen, der es möglich macht, sich wirklich zu öffnen.»\",\"name\":\"Corina B.\"}]"
+            },
+            {
+              "type": "claim",
+              "title": "Mehr Tiefe. Mehr Freude. Mehr Leben.",
+              "body": "Was du in der Ausbildung lernst, verändert nicht nur deine Arbeit, sondern auch dein Verhältnis zu dir selbst und zu anderen. Tiefenpsychologisch fundiert · Systemisch & körperorientiert · Für Einzelpersonen, Paare & Familien.",
+              "image": "/images/ebene/Ebene_2-7.svg"
+            },
+            {
+              "type": "dark_cta",
+              "eyebrow": "Bereit?",
+              "title": "Bereit, tiefer<br />zu gehen?",
+              "body": "Wir freuen uns auf dich. Komm in ein unverbindliches Erstgespräch — wir klären gemeinsam, ob die Ausbildung für dich passt.",
+              "image": "/images/placeholder/narrative-block-7.jpg"
+            },
+            {
+              "type": "faq",
+              "items": "[]"
+            },
+            {
+              "type": "newsletter",
+              "title": "Noch nicht sicher?",
+              "body": "Melde dich für den Newsletter an — wir informieren dich wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern."
+            }
+          ],
+          "outcomes": [
+            {
+              "title": "Du siehst Systeme.",
+              "description": "Du erkennst, welche unsichtbaren Dynamiken in Familien, Organisationen oder Beziehungen wirken — und wie sie sich auf einzelne Menschen auswirken.",
+              "color": "aurora"
+            },
+            {
+              "title": "Du begleitest sicher.",
+              "description": "Du führst Einzel- und Gruppenaufstellungen durch — mit klarer Haltung, methodischer Sicherheit und dem Wissen, wann du eingreifst und wann du Raum lässt.",
+              "color": "raspberry"
+            },
+            {
+              "title": "Du integrierst das Gelernte.",
+              "description": "Ob du Aufstellen als eigenständige Praxis anbietest oder in deine bestehende Arbeit integrierst — du weisst, wie du es einsetzen kannst und was es braucht.",
+              "color": "purple"
+            },
+            {
+              "title": "Du verstehst dich besser.",
+              "description": "Diese Ausbildung lässt dich nicht unberührt. Wer andere in Systemen begleiten will, muss das eigene System kennen. Das ist Teil der Methode.",
+              "color": "gold"
+            }
+          ],
+          "stage_cards": [
+            {
+              "icon": "/images/ebene/Ebene_2-3.svg",
+              "eyebrow": "Teil 1 — Grundlagen",
+              "title": "Der Einstieg in die systemische Arbeit",
+              "body": "Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben."
+            },
+            {
+              "icon": "/images/ebene/Ebene_2-6.svg",
+              "eyebrow": "Teil 2 — Vertiefung",
+              "title": "Vom Verständnis zur Praxis",
+              "body": "Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten."
+            },
+            {
+              "icon": "/images/ebene/Ebene_2-8.svg",
+              "eyebrow": "Membership",
+              "title": "In der Praxis bleiben und weiterforschen",
+              "body": "Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen — die das Handwerk lebendig halten und weiter wachsen wollen."
+            }
+          ],
+          "faq_items": [
+            {
+              "question": "Wie läuft eine systemische Aufstellung ab?",
+              "answer": "Du formulierst dein Anliegen, wir wählen gemeinsam Repräsentant:innen für die wichtigen Elemente deines Systems und stellen sie im Raum auf. Was sich dann zeigt — Bewegungen, Sätze, Bilder — arbeiten wir gemeinsam aus."
+            },
+            {
+              "question": "Werden die Kosten von der Krankenkasse übernommen?",
+              "answer": "Die Ausbildung ist eine private Weiterbildung und wird in der Regel nicht von der Krankenkasse gedeckt. Manche Zusatzversicherungen oder Arbeitgeber:innen unterstützen Bildungsausgaben."
+            },
+            {
+              "question": "Für wen ist VitaLunaris geeignet?",
+              "answer": "Für Menschen, die mit Tiefe arbeiten wollen und bereit sind, das eigene System dabei nicht auszublenden. Du brauchst keinen therapeutischen Hintergrund — aber Lebenserfahrung und die Bereitschaft, dich selbst anzusehen."
+            },
+            {
+              "question": "Wie kann ich einen Termin buchen?",
+              "answer": "Du buchst zuerst ein kostenloses Erstgespräch — online oder vor Ort in Buchs. Dort klären wir gemeinsam, ob die Ausbildung für dich passt und welcher Starttermin sich anbietet."
+            },
+            {
+              "question": "Wie lange dauert die gesamte Ausbildung?",
+              "answer": "Teil 1 und Teil 2 erstrecken sich gemeinsam über etwa 18 bis 24 Monate — mit monatlichen Modul-Wochenenden, dazwischen Eigenarbeit, Lerngruppen und Praxiseinheiten."
+            },
+            {
+              "question": "Brauche ich Vorerfahrung im therapeutischen Bereich?",
+              "answer": "Nein. Was zählt, ist deine Bereitschaft, dich auf systemische Arbeit einzulassen und an dir selbst zu arbeiten."
+            },
+            {
+              "question": "Wie viele Teilnehmer:innen sind in einer Gruppe?",
+              "answer": "Wir arbeiten bewusst in kleinen Gruppen von 8 bis 12 Personen. So bleibt genug Raum für jede:n."
+            },
+            {
+              "question": "Was kostet die Ausbildung?",
+              "answer": "Die genauen Kosten und Zahlungsoptionen besprechen wir im Erstgespräch. Ratenzahlungen sind möglich."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVW37PPEEGEA310CX2JPD1RC",
+        "slug": "home",
+        "status": "published",
+        "data": {
+          "seo_title": "VitaLunaris – Erforsche die Systeme der Seele",
+          "seo_description": "VitaLunaris in Buchs SG begleitet dich in Tiefenarbeit, Integration und Transformation — mit klarem Vorgehen und geschützten Räumen.",
+          "hero_eyebrow": "Willkommen bei VitaLunaris",
+          "hero_title": "Erforsche die<br class='hero__br--md' /> Systeme der<br class='hero__br--md' />Seele",
+          "hero_subtitle": "VitaLunaris ist dein Ort für systemische Aufstellungsarbeit, Hypnose, Numerologie und persönliche Entwicklung. Hier verbinden sich systemisches Wissen, intuitive Wahrnehmung und die Erfahrung aus jahrzehntelanger Arbeit mit Menschen – getragen von Theresia und Axel Jansen.",
+          "hero_image": "/images/placeholder/Placeholder_1.jpg",
+          "hero_primary_cta_text": "Zu den Ausbildungen",
+          "hero_primary_cta_href": "/ausbildung",
+          "hero_secondary_cta_text": "Zu den Angeboten",
+          "hero_secondary_cta_href": "/praxisangebote",
+          "sections": [
+            {
+              "type": "offer_cards",
+              "title": "Wie können wir dir helfen?",
+              "items": "[]"
+            },
+            {
+              "type": "narrative",
+              "tone": "light",
+              "image_side": "left",
+              "image": "/images/placeholder/Placeholder-6.jpg",
+              "title": "Mehr als eine Praxis. <br/> Ein Ort wo Erfahrung auf Tiefe trifft.",
+              "body": "VitaLunaris ist aus über 30 Jahren Erfahrung in der Begleitung von Menschen gewachsen. Ein Ort für alle, die verstehen möchten, warum sich manche Themen im Leben wiederholen, weshalb Beziehungen herausfordernd sein können oder was hinter den eigenen Herausforderungen und Lebenswegen wirkt – und für jene, die diese Arbeit selbst erlernen und weitergeben möchten.\n\nSystemisches Aufstellen, Hypnose und Numerologie sind für uns keine Gegensätze. Sie sind verschiedene Wege, Zusammenhänge sichtbar zu machen, neue Perspektiven zu gewinnen und Veränderung möglich werden zu lassen."
+            },
+            {
+              "type": "narrative",
+              "tone": "purple",
+              "image_side": "right",
+              "image": "/images/placeholder/placeholder-3.jpg",
+              "title": "“VitaLunaris ist ein Raum, in dem Veränderung möglich werden darf. Ein Raum für neue Perspektiven, ehrliche Begegnungen und tiefe Prozesse – auf eine Weise, die zu dir passt.”",
+              "body": "Theresia & Axel Jansen · VitaLunaris"
+            },
+            {
+              "type": "testimonials",
+              "eyebrow": "Stimmen",
+              "title": "Was Menschen sagen.",
+              "items": "[{\"quote\":\"“Nach einer sehr schweren Zeit in meinem Leben fand ich bei VitaLunaris einen geschützten Raum für meinen Weg. Durch die Begleitung von Theresia wurden Zusammenhänge sichtbar, die ich vorher nicht erkennen konnte. Schritt für Schritt fand ich zurück zu Vertrauen, Zuversicht und neuer Lebensfreude. Dafür bin ich von Herzen dankbar.”\",\"name\":\"Claudia N.\"},{\"quote\":\"“Ich stand vor einer wichtigen Entscheidung für meine Zukunft und war unsicher, welchen Weg ich einschlagen sollte. Das Numeroskop von Axel hat mir neue Perspektiven eröffnet und mir geholfen, meine Stärken und Möglichkeiten klarer zu erkennen. Heute weiss ich, dass ich die richtige Entscheidung getroffen habe.”\",\"name\":\"Erika B.\"},{\"quote\":\"“Ich hätte nie gedacht, dass man mit ein bisschen Klopfen so viel erreichen kann. Schon nach dem EFT-Grundkurs konnte ich die Methode in vielen Alltagssituationen anwenden. Besonders schön ist, dass inzwischen auch meine Kinder begeistert mitklopfen. Dieser Kurs war eine echte Bereicherung für unsere ganze Familie.”\",\"name\":\"Ramona K.\"},{\"quote\":\"“Die Ausbildung zum Systemic Soulcoach war für mich weit mehr als eine Ausbildung. Durch die Aufstellungsarbeit habe ich erkannt, dass etwas, das ich jahrelang als Schwäche betrachtet hatte, in Wahrheit ein grosses Potenzial in sich trägt. Theresia hält einen unglaublich sicheren und vertrauensvollen Raum.”\",\"name\":\"Corina B.\"}]"
+            },
+            {
+              "type": "newsletter",
+              "eyebrow": "Newsletter",
+              "title": "Impulse für deine<br />innere Reise.",
+              "body": "Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.\n\nDazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.",
+              "items": "{\"placeholder\":\"E-mail adresse\",\"submitText\":\"Kostenlos abonnieren\"}"
+            }
+          ],
+          "offer_cards": [
+            {
+              "icon": "/images/ebene/Ebene-14.svg",
+              "title": "Ich will Systemisches Aufstellen lernen",
+              "description": "Du willst systemisches Aufstellen nicht nur selbst erleben, sondern auch anwenden oder weitergeben. Wir begleiten dich Schritt für Schritt – von deiner eigenen Aufstellungsreise bis zur Ausbildung zum Systemic Soulcoach. So erhältst du das Handwerk und die Tiefe, die es für eine gute Begleitung braucht.",
+              "cta_text": "Zu den Ausbildungen →",
+              "cta_href": "/ausbildung"
+            },
+            {
+              "icon": "/images/ebene/Ebene_2.svg",
+              "title": "Ich will meine Praxis vertiefen oder Neues lernen",
+              "description": "Du möchtest neue Methoden kennenlernen oder dein bestehendes Wissen erweitern? Aus unserem jahrzehntelangen Erfahrungsschatz geben wir praxisnahes Wissen weiter – in Weiterbildungen und Kursen rund um systemisches Aufstellen, Numerologie, EFT, Hypnotic Selfcare und weitere spannende Themen.",
+              "cta_text": "Zu den Workshops & Kursen →",
+              "cta_href": "/workshops-kurse/kalender-uebersicht"
+            },
+            {
+              "icon": "/images/ebene/Ebene_2-8.svg",
+              "title": "Ich suche Veränderung oder Unterstützung",
+              "description": "Etwas in deinem Leben fühlt sich nicht mehr stimmig an. Vielleicht zeigt sich ein Muster, das sich wiederholt, oder du stehst vor einer wichtigen Entscheidung. Es gibt verschiedene Wege, Klarheit zu gewinnen, neue Perspektiven zu entdecken und wieder in Bewegung zu kommen.",
+              "cta_text": "Unsere Praxisangebote →",
+              "cta_href": "/praxisangebote"
+            }
+          ],
+          "newsletter_placeholder": "E-mail adresse",
+          "newsletter_submit_text": "Kostenlos abonnieren"
+        }
+      },
+      {
+        "id": "01KVWBQ1X8P54F7Z9PBQCRXEA8",
+        "slug": "kontakt",
+        "status": "published",
+        "data": {
+          "seo_title": "Kontakt | VitaLunaris",
+          "seo_description": "Hast du Fragen zu einem Angebot, der Ausbildung oder einem Workshop? Schreib uns — wir melden uns innert 24 Stunden.",
+          "hero_eyebrow": "VitaLunaris Kontakt",
+          "hero_title": "Hast du Fragen?",
+          "hero_subtitle": "Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden.",
+          "hero_image": "/images/ebene/Ebene_2-8.svg",
+          "sections": [
+            {
+              "type": "contact_form",
+              "items": "{\"recipient\":\"info@vitalunaris.ch\",\"submitText\":\"Senden\"}"
+            }
+          ],
+          "contact_recipient": "info@vitalunaris.ch",
+          "contact_submit_text": "Senden"
+        }
+      },
+      {
+        "id": "01KVWBQ1X1YDVB01S0GD70EA4Z",
+        "slug": "neuigkeiten",
+        "status": "published",
+        "data": {
+          "seo_title": "News | VitaLunaris",
+          "seo_description": "Bleib dabei — bei VitaLunaris gibt es immer etwas Neues. Kurstermine, Podcast-Episoden, Inspirationen und Einblicke hinter die Kulissen, direkt in deiner Inbox.",
+          "hero_eyebrow": "VitaLunaris News",
+          "hero_title": "Bleib dabei, bei uns gibts<br />immer etwas Neues",
+          "hero_image": "images/ebene/Ebene_2.svg",
+          "sections": [
+            {
+              "type": "newsletter_hero",
+              "image": "images/ebene/Ebene_2.svg",
+              "eyebrow": "VitaLunaris News",
+              "title": "Bleib dabei, bei uns gibts<br />immer etwas Neues",
+              "items": "[]"
+            }
+          ],
+          "newsletterhero_paragraphs": [
+            {
+              "text": "Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig."
+            },
+            {
+              "text": "Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox."
+            }
+          ]
+        }
+      },
+      {
+        "id": "01KVW60QS535XX5KWTXD2GJPRE",
+        "slug": "ueber-uns",
+        "status": "published",
+        "data": {
+          "seo_title": "Über uns | VitaLunaris",
+          "seo_description": "VitaLunaris ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen. Lerne Theresia, Axel und Marlen kennen.",
+          "sections": [
+            {
+              "type": "hero",
+              "eyebrow": "Über uns",
+              "title": "Wo Wissen auf<br />Erfahrung trifft.",
+              "image": "/images/placeholder/placeholder-4.jpg",
+              "items": "[]"
+            },
+            {
+              "type": "intro",
+              "image": "/images/placeholder/Placeholder-29.jpg",
+              "title": "Über 30 Jahre Erfahrung. Eine klare Haltung.",
+              "body": "VitaLunaris steht für Arbeit, die in die Tiefe geht. Nicht als Methode um der Methode willen, sondern als Begegnung, die etwas in Bewegung bringt.\n\nÜber Jahre haben Theresia und Axel Jansen einen Ort geschaffen, an dem Menschen und ihre Geschichten bestehen dürfen. Systemisches Aufstellen, Hypnose und Numerologie sind dabei keine Gegensätze, sondern verschiedene Zugänge zu demselben Ziel:\n\nMehr Verständnis. Mehr Klarheit. Mehr Bewusstsein für die Zusammenhänge, die unser Leben prägen."
+            },
+            {
+              "type": "team",
+              "items": "[{\"eyebrow\":\"Gründerin · VitaLunaris\",\"name\":\"Theresia Jansen\",\"role\":\"Systemisches Aufstellen · Anerkannte Therapeutin<br />Autogenes Training Nr. ZSR O 256662\",\"image\":\"/images/placeholder/placeholder-30.jpg\",\"imageSide\":\"left\",\"paragraphs\":[\"Persönliche Erfahrungen — Verlust, Kinderwunsch, Herausforderungen — haben meinen Blick auf das Leben geprägt und meine Neugier für die Fragen geweckt, die uns Menschen wirklich bewegen.\",\"Mein Weg führte von kaufmännischen Berufen über die Heilkunde bis zur systemischen Aufstellungsarbeit — dem grössten Wendepunkt meines Lebens. Seit über zwanzig Jahren begleite ich Menschen, halte geschützte Räume und gebe mein Wissen in Aufstellungen, EFT und Ausbildungen weiter.\",\"Mehr Verständnis. Mehr Klarheit. Mehr Bewusstsein für die Zusammenhänge, die unser Leben prägen.\"]},{\"eyebrow\":\"Gründer · VitaLunaris\",\"name\":\"Axel Jansen\",\"role\":\"Hypnose · Numerologie · Energiearbeit\",\"image\":\"/images/persons/AxelJansen.jpg\",\"imageSide\":\"right\",\"paragraphs\":[\"Schon früh faszinierte mich, dass hinter den sichtbaren Dingen oft tiefere Muster wirken. Diese Neugier hat mich nie losgelassen — sie ist bis heute der Antrieb hinter meiner Arbeit.\",\"Mein Weg führte über viele Stationen hin zur Hypnose und Numerologie. Heute verbinde ich beides mit systemischem Denken und Energiearbeit zu einer Begleitung, die Verstand und Unterbewusstsein zusammenbringt.\",\"Mehr Klarheit. Neue Perspektiven. Und Zugänge, die im Alltag tatsächlich tragen.\"]},{\"eyebrow\":\"Team · VitaLunaris\",\"name\":\"Marlen Berger\",\"role\":\"Fussreflexzonen · Körperarbeit\",\"image\":\"/images/persons/MarlenBerger.jpg\",\"imageSide\":\"left\",\"paragraphs\":[\"Mein Weg begann in der Küche. Als ausgebildete Diätköchin arbeitete ich viele Jahre in Spitälern und Kliniken — immer mit dem Blick darauf, was Menschen wirklich nährt und in Balance bringt.\",\"Über die Fussreflexzonenarbeit fand ich zu einer Methode, die spürbar in die Tiefe geht. Heute arbeite ich präzise, intuitiv und nach den Prinzipien der TCM — für Entlastung auf körperlicher und emotionaler Ebene.\"]}]"
+            },
+            {
+              "type": "values",
+              "title": "Was uns antreibt",
+              "items": "[]"
+            },
+            {
+              "type": "quote",
+              "image": "/images/placeholder/Placeholder-5.jpg",
+              "title": "„Veränderung beginnt nicht dort, wo wir uns bekämpfen, sondern dort, wo wir beginnen zu verstehen. Denn was sichtbar wird, kann sich verändern. Und was verstanden wird, verliert oft seine Schwere.“",
+              "body": "Theresia & Axel Jansen · VitaLunaris"
+            },
+            {
+              "type": "newsletter",
+              "title": "Unsere Gedanken<br />passen nicht alle auf<br />eine Webseite.",
+              "body": "Deshalb schreiben wir jede Woche einen Newsletter. Mit Geschichten, Inspirationen, Axels Zahlenmagie, Einblicken aus unserem Alltag und Gedanken über das Leben, die Menschen und die Zusammenhänge, die uns bewegen."
+            }
+          ],
+          "hero_paragraphs": [
+            {
+              "text": "VitaLunaris ist mehr als eine Praxis. Es ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen."
+            },
+            {
+              "text": "Gegründet von Theresia und Axel Jansen. Verwurzelt in der Deutschschweiz. Entstanden aus der Leidenschaft, Menschen auf ihrem Weg zu mehr Klarheit, Verständnis und Veränderung zu begleiten."
+            },
+            {
+              "text": "Für alle, die nicht nur auf Symptome schauen, sondern tiefer verstehen möchten, was hinter Herausforderungen, Beziehungen und Lebenswegen wirkt."
+            }
+          ],
+          "value_cards": [
+            {
+              "icon": "/images/ebene/Ebene-14.svg",
+              "title": "Tiefe statt<br />Oberfläche",
+              "body": "Wir arbeiten nicht nur an Symptomen — wir schauen auf die Zusammenhänge dahinter. Was sich wiederholt, hat Wurzeln. Diese Wurzel zu erkennen und zu verstehen, ist oft der erste Schritt für echte Veränderung."
+            },
+            {
+              "icon": "/images/ebene/Ebene_2.svg",
+              "title": "Erfahrung statt<br />Theorie",
+              "body": "Was wir weitergeben, haben wir selbst erlebt und hinterfragt — kein Wissen aus zweiter Hand, sondern gewachsen durch Ausbildungen, Erfahrungen und die Begleitung von Menschen. Im Mittelpunkt stehen nicht Methoden, sondern Menschen."
+            },
+            {
+              "icon": "/images/ebene/Ebene_2-8.svg",
+              "title": "Der Mensch als<br />Ganzes",
+              "body": "Körper, Geist, Lebensgeschichte und System lassen sich nicht voneinander trennen. Deshalb vereint VitaLunaris verschiedene Zugänge, die den Menschen in seiner Ganzheit betrachten — mit Respekt für das, was war, und Vertrauen in das, was entstehen darf."
+            }
+          ]
+        }
+      }
+    ],
+    "legal": [
+      {
+        "id": "01KVW23X283HARAJW65J5JFYWS",
+        "slug": "agb",
+        "status": "published",
+        "data": {
+          "title": "Allgemeine Geschäftsbedingungen",
+          "last_updated": "2026-06-12",
+          "body_markdown": "<h2>1. Geltungsbereich</h2>\n<p>1.1 Diese Allgemeinen Geschäftsbedingungen (nachfolgend «AGB») gelten für sämtliche Verträge zwischen VitaLunaris, Theresia Jansen (nachfolgend «VitaLunaris» oder «wir»), und ihren Kundinnen und Kunden (nachfolgend «Kunde») über:</p>\n<ul>\n<li><strong>Praxisangebote</strong>: Einzelsitzungen und Behandlungen in der Praxis, insbesondere Massagen, Hypnose-Coaching, Rückführungen, energetische Behandlungen und numerologische Beratungen;</li>\n<li><strong>Workshops und Kurse</strong>: Gruppenveranstaltungen vor Ort, einschliesslich Ausbildner- und Vertiefungskurse;</li>\n<li><strong>Online-Kurse</strong>: digitale Kurse und Lerninhalte, die über das Internet zugänglich gemacht werden.</li>\n</ul>\n<p>1.2 Mit der Buchung eines Termins, der Anmeldung zu einem Workshop oder dem Kauf eines Online-Kurses anerkennt der Kunde diese AGB.</p>\n<p>1.3 Abweichende Bedingungen des Kunden finden keine Anwendung, es sei denn, VitaLunaris stimmt ihnen ausdrücklich und schriftlich zu.</p>\n<h2>2. Vertragsabschluss</h2>\n<p>2.1 Die Darstellung der Angebote auf der Website www.vitalunaris.com stellt kein rechtlich bindendes Angebot dar, sondern eine Einladung zur Buchung bzw. Bestellung.</p>\n<p>2.2 Der Vertrag kommt zustande:</p>\n<ul>\n<li>bei <strong>Praxisangeboten</strong> mit der Bestätigung des Termins durch VitaLunaris (per E-Mail, SMS, WhatsApp, Telegram oder über das Buchungssystem);</li>\n<li>bei <strong>Workshops</strong> mit der Anmeldebestätigung durch VitaLunaris;</li>\n<li>bei <strong>Online-Kursen</strong> mit der Bestellbestätigung bzw. der Freischaltung des Zugangs.</li>\n</ul>\n<p>2.3 VitaLunaris behält sich vor, Buchungen und Anmeldungen ohne Angabe von Gründen abzulehnen.</p>\n<h2>3. Preise und Zahlungsbedingungen</h2>\n<p>3.1 Es gelten die zum Zeitpunkt der Buchung auf der Website bzw. in der Praxis kommunizierten Preise in Schweizer Franken (CHF).</p>\n<p>3.2 Praxisleistungen sind, sofern nichts anderes vereinbart wurde, direkt nach der Sitzung zu bezahlen (bar, TWINT oder gemäss Vereinbarung).</p>\n<p>3.3 Workshop-Gebühren sind bis spätestens <strong>14 Tage</strong> vor Veranstaltungsbeginn zu bezahlen. Die Anmeldung ist erst mit vollständigem Zahlungseingang definitiv.</p>\n<p>3.4 Online-Kurse sind im Voraus zu bezahlen. Der Zugang wird nach Zahlungseingang freigeschaltet.</p>\n<p>3.5 Die Leistungen von VitaLunaris sind in der Regel keine kassenpflichtigen Leistungen. Eine allfällige Rückerstattung durch Kranken- oder Zusatzversicherungen ist Sache des Kunden; VitaLunaris übernimmt hierfür keine Gewähr.</p>\n<h2>4. Praxisangebote: Termine, Absagen und Verspätungen</h2>\n<p>4.1 Vereinbarte Termine sind verbindlich.</p>\n<p>4.2 Termine können bis spätestens <strong>24 Stunden</strong> vor dem vereinbarten Zeitpunkt kostenlos verschoben oder abgesagt werden (per SMS, WhatsApp, Telegram oder Telefon).</p>\n<p>4.3 Bei späterer Absage oder Nichterscheinen («No-Show») behält sich VitaLunaris vor, die ausgefallene Sitzung ganz oder teilweise in Rechnung zu stellen, sofern der Termin nicht anderweitig vergeben werden kann.</p>\n<p>4.4 Erscheint der Kunde verspätet, verkürzt sich die Behandlungszeit entsprechend; es wird der volle Preis berechnet.</p>\n<p>4.5 Muss VitaLunaris einen Termin absagen (z. B. wegen Krankheit), wird dem Kunden ein Ersatztermin angeboten. Weitergehende Ansprüche bestehen nicht.</p>\n<h2>5. Workshops und Kurse vor Ort</h2>\n<p>5.1 Die Teilnehmerzahl ist begrenzt. Anmeldungen werden in der Reihenfolge ihres Eingangs berücksichtigt.</p>\n<p>5.2 <strong>Rücktritt durch den Kunden:</strong></p>\n<ul>\n<li>Bis <strong>30 Tage</strong> vor Veranstaltungsbeginn: kostenlose Stornierung;</li>\n<li><strong>29 bis 14 Tage</strong> vor Veranstaltungsbeginn: 50 % der Kursgebühr;</li>\n<li><strong>weniger als 14 Tage</strong> vor Veranstaltungsbeginn oder bei Nichterscheinen: 100 % der Kursgebühr.</li>\n</ul>\n<p>Massgebend ist der Eingang der Abmeldung bei VitaLunaris. Der Kunde kann jederzeit kostenfrei eine Ersatzperson stellen, sofern diese die allfälligen Teilnahmevoraussetzungen erfüllt.</p>\n<p>5.3 <strong>Absage durch VitaLunaris:</strong> VitaLunaris kann einen Workshop bei Nichterreichen der Mindestteilnehmerzahl, bei Krankheit der Kursleitung oder aus anderen wichtigen Gründen absagen oder verschieben. In diesem Fall werden bereits bezahlte Gebühren vollumfänglich zurückerstattet oder auf Wunsch des Kunden auf einen Ersatztermin übertragen. Weitergehende Ansprüche (z. B. Ersatz von Reise- oder Übernachtungskosten) sind ausgeschlossen.</p>\n<p>5.4 Der Abbruch eines laufenden Workshops durch den Kunden berechtigt nicht zur Rückerstattung.</p>\n<h2>6. Online-Kurse</h2>\n<p>6.1 Nach Zahlungseingang erhält der Kunde einen persönlichen Zugang zu den Kursinhalten. Die Zugangsdauer richtet sich nach der jeweiligen Kursbeschreibung; ist nichts anderes angegeben, beträgt sie <strong>12 Monate</strong> ab Freischaltung.</p>\n<p>6.2 Der Zugang ist persönlich und nicht übertragbar. Die Weitergabe von Zugangsdaten oder Kursinhalten an Dritte ist untersagt und berechtigt VitaLunaris zur sofortigen Sperrung des Zugangs ohne Rückerstattung.</p>\n<p>6.3 <strong>Kein Widerrufsrecht:</strong> Da es sich um digitale Inhalte handelt, die unmittelbar nach Freischaltung zugänglich sind, besteht nach schweizerischem Recht kein gesetzliches Widerrufs- oder Rückgaberecht. Mit der Freischaltung des Zugangs ist die Kursgebühr vollständig geschuldet.</p>\n<p>6.4 VitaLunaris bemüht sich um eine möglichst unterbrechungsfreie Verfügbarkeit der Online-Inhalte, kann jedoch keine ständige Verfügbarkeit garantieren (z. B. bei Wartungsarbeiten oder technischen Störungen Dritter). Kurzzeitige Unterbrechungen begründen keine Ansprüche des Kunden.</p>\n<p>6.5 VitaLunaris ist berechtigt, Kursinhalte zu aktualisieren und zu verbessern, sofern der wesentliche Inhalt des Kurses erhalten bleibt.</p>\n<h2>7. Gesundheitshinweis – kein Ersatz für ärztliche Behandlung</h2>\n<p>7.1 Die Angebote von VitaLunaris (insbesondere Massagen, Hypnose-Coaching, Rückführungen, energetische Behandlungen und Numerologie) dienen der Förderung des allgemeinen Wohlbefindens und der Unterstützung der Balance von Körper und Seele.</p>\n<p>7.2 Sie stellen <strong>keine medizinische, psychiatrische oder psychotherapeutische Behandlung</strong> dar und ersetzen weder den Besuch bei einer Ärztin/einem Arzt noch eine verordnete Therapie oder Medikation. Es werden keine Heilversprechen abgegeben.</p>\n<p>7.3 Der Kunde ist verpflichtet, VitaLunaris vor der Behandlung über bestehende gesundheitliche Beschwerden, Schwangerschaft, Medikamenteneinnahme sowie psychische oder physische Vorerkrankungen zu informieren. VitaLunaris kann eine Behandlung ablehnen, wenn gesundheitliche Gründe dagegensprechen.</p>\n<p>7.4 Die Teilnahme an Behandlungen, Workshops und Online-Kursen erfolgt in eigener Verantwortung des Kunden.</p>\n<h2>8. Mitwirkungspflichten des Kunden</h2>\n<p>8.1 Der Kunde verpflichtet sich, wahrheitsgemässe und vollständige Angaben zu machen, insbesondere zu gesundheitlichen Aspekten gemäss Ziffer 7.3.</p>\n<p>8.2 Der Erfolg von Coaching- und Therapieangeboten hängt wesentlich von der aktiven Mitwirkung des Kunden ab. Ein bestimmter Erfolg (z. B. Rauchstopp, Gewichtsreduktion) wird nicht geschuldet; VitaLunaris schuldet eine sorgfältige Leistungserbringung nach bestem Wissen (Auftragsrecht gemäss Art. 394 ff. OR).</p>\n<h2>9. Geistiges Eigentum</h2>\n<p>9.1 Sämtliche Kursunterlagen, Skripte, Videos, Audioaufnahmen und sonstige Materialien sind urheberrechtlich geschützt und ausschliesslich für den persönlichen Gebrauch des Kunden bestimmt.</p>\n<p>9.2 Jede Vervielfältigung, Weitergabe, Veröffentlichung oder kommerzielle Nutzung – auch auszugsweise – bedarf der vorgängigen schriftlichen Zustimmung von VitaLunaris.</p>\n<p>9.3 Ton-, Bild- und Videoaufnahmen während Behandlungen und Workshops sind nur mit ausdrücklicher Zustimmung von VitaLunaris gestattet.</p>\n<h2>10. Haftung</h2>\n<p>10.1 VitaLunaris haftet nur für Schäden, die durch grobe Fahrlässigkeit oder Vorsatz verursacht wurden. Die Haftung für leichte Fahrlässigkeit ist – soweit gesetzlich zulässig – ausgeschlossen.</p>\n<p>10.2 Ausgeschlossen ist insbesondere – soweit gesetzlich zulässig – die Haftung für indirekte Schäden, Folgeschäden und entgangenen Gewinn sowie für Schäden, die auf unvollständige oder unwahre Angaben des Kunden (Ziffer 7.3 und 8.1) zurückzuführen sind.</p>\n<p>10.3 Für persönliche Gegenstände der Kunden in den Praxisräumen und an Veranstaltungsorten wird keine Haftung übernommen.</p>\n<p>10.4 Die Haftung für Hilfspersonen ist – soweit gesetzlich zulässig – ausgeschlossen.</p>\n<p>10.5 Vorbehalten bleibt die Haftung für Personenschäden sowie zwingende gesetzliche Haftungsbestimmungen.</p>\n<h2>11. Datenschutz</h2>\n<p>Die Bearbeitung von Personendaten erfolgt gemäss der <a href=\"/datenschutz\">Datenschutzerklärung</a> von VitaLunaris, abrufbar unter www.vitalunaris.com. Gesundheitsbezogene Angaben werden vertraulich behandelt und nur zur Leistungserbringung verwendet.</p>\n<h2>12. Schlussbestimmungen</h2>\n<p>12.1 VitaLunaris kann diese AGB jederzeit anpassen. Für bestehende Verträge gilt die zum Zeitpunkt des Vertragsabschlusses gültige Fassung.</p>\n<p>12.2 Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein, bleibt die Gültigkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt eine Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>\n<p>12.3 <strong>Anwendbares Recht:</strong> Es gilt ausschliesslich schweizerisches Recht unter Ausschluss des Kollisionsrechts und des UN-Kaufrechts (CISG).</p>\n<p>12.4 <strong>Gerichtsstand:</strong> Ausschliesslicher Gerichtsstand ist Buchs SG, Schweiz. Zwingende gesetzliche Gerichtsstände – insbesondere für Konsumentinnen und Konsumenten – bleiben vorbehalten.</p>\n<hr />\n<p><em>VitaLunaris, Theresia Jansen – Eichenaustrasse 32, CH-9470 Buchs SG</em></p>"
+        }
+      },
+      {
+        "id": "01KVW23X25KBPHB5Q4243S6SAW",
+        "slug": "datenschutz",
+        "status": "published",
+        "data": {
+          "title": "Datenschutzerklärung",
+          "last_updated": "2026-06-12",
+          "body_markdown": "<h2>1. Allgemein</h2>\n<p>Diese Datenschutzerklärung erläutert, welche Personendaten wir auf dieser Website (www.vitalunaris.com) erheben und wie wir sie verwenden. Es gilt das Schweizer Datenschutzgesetz (nDSG) sowie, soweit anwendbar, die EU-Datenschutz-Grundverordnung (DSGVO).</p>\n<h2>2. Hosting</h2>\n<p>Diese Website wird über Cloudflare Workers (Cloudflare, Inc., USA) bereitgestellt. Cloudflare verarbeitet dabei technisch bedingt IP-Adressen zur Auslieferung der Inhalte und zum Schutz vor Angriffen. Cloudflare ist unter dem EU-U.S. Data Privacy Framework zertifiziert.</p>\n<h2>3. Analyse und Tracking</h2>\n<p>Wir verwenden Alchemy Scribe, ein eigenes Analyse-System (Server: opus.alchemy.zuerich), zur Auswertung der Websitenutzung. Dabei werden erhoben:</p>\n<ul>\n<li>Seitenaufrufe und Verweildauer</li>\n<li>Anonyme Besucher-ID (Session-basiert)</li>\n<li>Geräteinformationen (Browser, Betriebssystem, Bildschirmgrösse)</li>\n<li>Referrer (woher Du kommst)</li>\n<li>Scroll-Tiefe und Klickverhalten</li>\n</ul>\n<p><strong>Rechtsgrundlage:</strong> Berechtigtes Interesse (Art. 31 Abs. 1 nDSG). Statistik-Tracking ist standardmässig aktiv.</p>\n<p><strong>Personalisierung</strong> (z. B. Verknüpfung mit E-Mail-Adresse, sitzungsübergreifende Wiedererkennung) erfolgt nur mit Deiner ausdrücklichen Einwilligung.</p>\n<p><strong>Fingerprinting:</strong> Zur Zusammenführung von Sitzungen wird ein Browser-Fingerprint erstellt. Dies erfolgt nur bei aktiver Statistik-Einwilligung.</p>\n<p>Du kannst Deine Einwilligung jederzeit widerrufen.</p>\n<h2>4. Kontaktformulare und Datenerfassung</h2>\n<p>Wenn Du ein Formular auf dieser Website ausfüllst, werden die von Dir eingegebenen Daten (z. B. Name, E-Mail-Adresse, Telefonnummer, Nachricht) an unseren Server (opus.alchemy.zuerich) übermittelt und dort gespeichert.</p>\n<p><strong>Zweck:</strong> Bearbeitung von Kontakt- und Terminanfragen sowie Anmeldungen zu Workshops und Online-Kursen.</p>\n<p><strong>Rechtsgrundlage:</strong> Einwilligung bzw. vorvertragliche Massnahmen.</p>\n<p><strong>Speicherort:</strong> Schweiz / EU (Render, Hetzner).</p>\n<p><strong>Aufbewahrung:</strong> Deine Daten werden gespeichert, bis Du die Löschung verlangst oder der Zweck der Speicherung entfällt.</p>\n<p>Angaben zu Deiner Gesundheit, die Du uns im Rahmen einer Anfrage oder Behandlung mitteilst, behandeln wir besonders vertraulich. Sie werden ausschliesslich zur Leistungserbringung verwendet und nicht an Dritte weitergegeben.</p>\n<h2>5. Terminbuchung</h2>\n<p>Für die Online-Terminbuchung verwenden wir ein eigenes Buchungssystem (Alchemy Calendar). Dabei werden erhoben:</p>\n<ul>\n<li>Name, E-Mail-Adresse, Telefonnummer</li>\n<li>Gewünschter Termin und Terminart</li>\n<li>Optionale Nachricht</li>\n</ul>\n<p>Termine werden mit Google Calendar synchronisiert. Terminerinnerungen können per SMS (Twilio) versendet werden.</p>\n<p><strong>Rechtsgrundlage:</strong> Vertragliche Erfüllung.</p>\n<h2>6. Zahlungsabwicklung</h2>\n<p>Zahlungen werden über Payrexx (Thurgauerstrasse 80, 8050 Zürich) abgewickelt. Payrexx verarbeitet Deine Zahlungsdaten direkt. Wir erhalten eine Bestätigung der Zahlung, jedoch keine Kreditkarten- oder Bankdaten.</p>\n<p><strong>Rechtsgrundlage:</strong> Vertragliche Erfüllung.</p>\n<h2>7. Deine Rechte</h2>\n<p>Du hast das Recht auf:</p>\n<ul>\n<li><strong>Auskunft</strong> über die zu Deiner Person gespeicherten Daten</li>\n<li><strong>Berichtigung</strong> unrichtiger Daten</li>\n<li><strong>Löschung</strong> Deiner Daten («Recht auf Vergessenwerden»)</li>\n<li><strong>Widerspruch</strong> gegen die Verarbeitung</li>\n<li><strong>Datenportabilität</strong> (Herausgabe in maschinenlesbarem Format)</li>\n<li><strong>Widerruf</strong> erteilter Einwilligungen (jederzeit, ohne Angabe von Gründen)</li>\n</ul>\n<p>Kontakt für Datenschutzanfragen: <a href=\"mailto:info@vitalunaris.ch\">info@vitalunaris.ch</a></p>\n<h2>8. Änderungen</h2>\n<p>Wir können diese Datenschutzerklärung jederzeit anpassen. Die aktuelle Version gilt ab dem oben genannten Datum.</p>"
+        }
+      },
+      {
+        "id": "01KVW23WMTHB1VEB79J4Z8KKDD",
+        "slug": "impressum",
+        "status": "published",
+        "data": {
+          "title": "Impressum",
+          "last_updated": "2026-06-12",
+          "body_markdown": "<h2>VitaLunaris</h2>\n<p>Theresia Jansen<br />Eichenaustrasse 32<br />CH-9470 Buchs SG<br />Schweiz</p>\n<h2>Kontakt</h2>\n<p>E-Mail: <a href=\"mailto:info@vitalunaris.ch\">info@vitalunaris.ch</a><br />Telefon: <a href=\"tel:+41815991402\">081 599 14 02</a></p>\n<h2>Verantwortlich für den Inhalt</h2>\n<p>Theresia Jansen</p>"
+        }
+      }
+    ]
+  }
+}

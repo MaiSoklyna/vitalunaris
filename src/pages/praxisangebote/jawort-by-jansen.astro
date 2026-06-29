@@ -9,7 +9,7 @@ import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
 import { getEmDashEntry } from 'emdash';
-import { jsonArray, nl2br, imageUrl } from '@lib/cms';
+import { jsonArray, nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
 // Editable at /_emdash/admin/content/praxisangebote (entry "jawort-by-jansen").
 const { entry } = await getEmDashEntry('praxisangebote', 'jawort-by-jansen');
@@ -17,13 +17,13 @@ const d: Record<string, any> = entry?.data ?? {};
 const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
 const heroS = sec('hero'), nar1 = sec('narrative1'), nar2 = sec('narrative2'), bio = sec('bio');
 
-const prices = jsonArray(heroS.items).length ? jsonArray(heroS.items) : [
+const prices = d.price_list?.length ? d.price_list : [
   { label: 'Freie Trauungen', value: 'ab CHF 1’800.–' },
   { label: 'Kinderwillkommensfeiern', value: 'ab CHF 950.–' },
   { label: 'Eheversprechenerneuerung', value: 'auf Anfrage' },
 ];
 
-const galleryPhotos = jsonArray(sec('gallery').items).length ? jsonArray(sec('gallery').items) : [
+const galleryPhotos = (d.gallery?.length ? d.gallery.map((g: any) => ({ src: imageUrl(g.image), alt: g.alt || '' })) : [
   { src: '/images/cards/card-1.jpg', alt: 'Freie Trauung — Impression' },
   { src: '/images/cards/card-2.jpg', alt: 'Zeremonie im Freien' },
   { src: '/images/cards/card-3.jpg', alt: 'Festlicher Moment' },
@@ -46,16 +46,17 @@ const galleryPhotos = jsonArray(sec('gallery').items).length ? jsonArray(sec('ga
   { src: '/images/cards/card-20.jpg', alt: 'Kinderwillkommensfeier' },
   { src: '/images/cards/card-21.jpg', alt: 'Ritual während der Zeremonie' },
   { src: '/images/cards/card-22.jpg', alt: 'Unvergesslicher Feiermoment' },
-];
+]) as Array<{ src: string; alt: string }>;
 
-const testimonials = jsonArray(sec('testimonials').items).length ? jsonArray(sec('testimonials').items) : [
+const _ts = await getTestimonials('jawort');
+const testimonials = _ts.length ? _ts : [
   { quote: '«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Ihr Gespür für Menschen und die Zeit, die sie sich für unsere Geschichte genommen hat, haben uns überzeugt. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat — ein sehr emotionaler Moment. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»', name: 'Raffaella & Luca' },
   { quote: '«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Besonders dankbar bin ich ihr, dass sie mich vor der Zeremonie so liebevoll abgeholt hat — dadurch konnte ich den Moment wirklich geniessen. Während der Rede hing ich förmlich an ihren Lippen. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»', name: 'Sandy & Michael' },
   { quote: '«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Theresia hat mich bereits auf dem Weg zum Wunschkind begleitet. Umso berührender, dass sie nun auch unsere Tochter in dieser Welt willkommen geheissen hat. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»', name: 'Saskia & Benjamin' },
   { quote: '«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»', name: 'Janina & Marc' },
 ];
 
-const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items) : [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   { question: 'Wie läuft die Vorbereitung einer freien Trauung ab?', answer: 'Wir starten mit einem kostenlosen Kennenlerngespräch. Danach lernen wir uns und eure Geschichte kennen, ich schreibe eure persönliche Rede und wir stimmen Ablauf, Ort und Wünsche gemeinsam ab — bis sich alles für euch stimmig anfühlt.' },
   { question: 'Wie persönlich wird die Traurede?', answer: 'Sehr persönlich. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl — so, dass ihr euch in jedem Wort wiederfindet. Keine Floskeln, keine Vorlagen von der Stange.' },
   { question: 'Kann die Zeremonie humorvoll sein?', answer: 'Unbedingt. Romantisch, feierlich, berührend oder herrlich unkompliziert — eure Zeremonie darf so einzigartig sein wie ihr. Wir finden gemeinsam den richtigen Ton.' },
@@ -64,12 +65,12 @@ const faqItems = jsonArray(sec('faq').items).length ? jsonArray(sec('faq').items
   { question: 'In welcher Region bist du als Rednerin unterwegs?', answer: 'Ich bin in der ganzen Deutschschweiz für euch unterwegs — vom Weingut über den See bis in die Berge. Sprecht mich einfach auf euren Wunschort an.' },
 ];
 
-const bioParagraphs = jsonArray(bio.items).length ? jsonArray(bio.items) : [
+const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) => p.text) : [
   'Ich bin nicht einfach da, um eine schöne Rede zu halten. Ich bin da, um eure Geschichte einzufangen — mit Zeit, Aufmerksamkeit und echtem Interesse daran, was euch wichtig ist.',
   'Ihr entscheidet, wie eure Feier klingen darf: humorvoll oder romantisch, klassisch oder frei, leicht oder tief. Nichts muss. Alles darf stimmig sein. Durch meine langjährige Arbeit mit Menschen bringe ich mit, was an diesem Tag besonders wertvoll ist: Ruhe, Präsenz und Halt.',
   'Mein Ziel ist nicht die perfekte Rede. Mein Ziel ist, dass ihr euch in diesem Moment wiederfindet und sagen könnt: «Das sind wir. Genau so haben wir es uns gewünscht.»',
   'Ob freie Trauung, Kinderwillkommensfeier oder Eheversprechen — ich freue mich darauf, eure Geschichte kennenzulernen. Herzlich, Theresia Jansen',
-];
+]) as string[];
 ---
 
 <BaseLayout
@@ -161,7 +162,7 @@ const bioParagraphs = jsonArray(bio.items).length ? jsonArray(bio.items) : [
 <style>
   /* Stimmen-Block: Verlauf Creme → Cherrywood statt Gold — nur auf dieser Seite */
   :global([data-page="/praxisangebote/jawort-by-jansen"] .t-block) {
-    background: linear-gradient(180deg, #F9F4EE 57.41%, #601D1D 100%) !important;
+    background: linear-gradient(180deg, var(--c-spring-wood) 57.41%, var(--c-cherrywood) 100%) !important;
   }
 </style>
 
@@ -278,7 +279,7 @@ const bioParagraphs = jsonArray(bio.items).length ? jsonArray(bio.items) : [
     width: 100%;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    border-radius: 25px;
+    border-radius: var(--radius-card-lg);
     background: var(--c-pale-gold);
   }
   @media (min-width: 1024px) { .jw-hero__media { aspect-ratio: 4 / 5; align-self: stretch; } }

@@ -14,6 +14,7 @@
     "em": "emdash",
     "em:init": "emdash init",
     "em:seed": "emdash seed seed/seed.json",
+    "em:content": "emdash seed seed/content-export.json --on-conflict=update",
     "em:types": "emdash types"
   },
   "emdash": {
