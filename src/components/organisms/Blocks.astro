@@ -25,7 +25,7 @@ import ContactForm from '@organisms/ContactForm.astro';
 import NewsletterHero from '@organisms/NewsletterHero.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
 import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
-import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards } from '@lib/cms';
+import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards, getOfferCards, getValueCards } from '@lib/cms';
 
 interface Section {
   type?: string;
@@ -62,6 +62,13 @@ const sections = await Promise.all(
     if (s.type === 'info_cards' && s.context) {
       return { ...s, items: await getInfoCards(s.context) };
     }
+    // Offer/value card blocks resolve from their shared collections by context.
+    if (s.type === 'offer_cards' && s.context) {
+      return { ...s, items: await getOfferCards(s.context) };
+    }
+    if (s.type === 'value_cards' && s.context) {
+      return { ...s, items: await getValueCards(s.context) };
+    }
     return s;
   })
 );
@@ -95,18 +102,39 @@ const sections = await Promise.all(
           ctaHref="/ueber-uns"
         />
       );
-    case 'offer_cards':
-      return <OfferCardsBlock title={s.title || ''} offers={jsonArray(s.items)} />;
-    case 'value_cards':
-      return <ValueCardsBlock eyebrow={s.eyebrow} title={s.title} cards={jsonArray(s.items)} />;
-    case 'testimonials':
-      return <TestimonialsBlock eyebrow={s.eyebrow} title={s.title || ''} testimonials={jsonArray(s.items)} />;
-    case 'process_steps':
-      return <ProcessSteps eyebrow={s.eyebrow} title={s.title} steps={jsonArray(s.items)} />;
-    case 'info_cards':
-      return <InfoCardsRow cards={jsonArray(s.items)} />;
-    case 'faq':
-      return <Faq eyebrow={s.eyebrow} title={s.title} items={jsonArray(s.items)} theme={s.tone === 'dark' ? 'dark' : 'light'} />;
+    // List/card blocks resolve their items from a shared collection (by `context`)
+    // or from per-page injection. Until they have content they'd render as an empty
+    // header-only shell, so skip them entirely on the public site when empty.
+    case 'offer_cards': {
+      const offers = jsonArray(s.items);
+      if (!offers.length) return null;
+      return <OfferCardsBlock eyebrow={s.eyebrow} title={s.title || ''} offers={offers} />;
+    }
+    case 'value_cards': {
+      const cards = jsonArray(s.items);
+      if (!cards.length) return null;
+      return <ValueCardsBlock eyebrow={s.eyebrow} title={s.title} cards={cards} />;
+    }
+    case 'testimonials': {
+      const items = jsonArray(s.items);
+      if (!items.length) return null;
+      return <TestimonialsBlock eyebrow={s.eyebrow} title={s.title || ''} testimonials={items} />;
+    }
+    case 'process_steps': {
+      const steps = jsonArray(s.items);
+      if (!steps.length) return null;
+      return <ProcessSteps eyebrow={s.eyebrow} title={s.title} steps={steps} />;
+    }
+    case 'info_cards': {
+      const cards = jsonArray(s.items);
+      if (!cards.length) return null;
+      return <InfoCardsRow cards={cards} />;
+    }
+    case 'faq': {
+      const items = jsonArray(s.items);
+      if (!items.length) return null;
+      return <Faq eyebrow={s.eyebrow} title={s.title} items={items} theme={s.tone === 'dark' ? 'dark' : 'light'} />;
+    }
     case 'newsletter': {
       const cfg = parseJson(s.items);
       return (
@@ -150,11 +178,13 @@ const sections = await Promise.all(
     }
     case 'overview_hero':
       return <OverviewHero graphic={imageUrl(s.image)} eyebrow={s.eyebrow} title={s.title || ''} subtitle={s.body} />;
-    case 'practice_offers':
+    case 'practice_offers': {
+      const rows = jsonArray(s.items);
+      if (!rows.length) return null;
       return (
         <section class="blk-offers">
           <div class="blk-offers__inner">
-            {jsonArray(s.items).map((o: any) => (
+            {rows.map((o: any) => (
               <PracticeOfferRow
                 tone={o.tone}
                 eyebrow={o.eyebrow}
@@ -170,6 +200,7 @@ const sections = await Promise.all(
           </div>
         </section>
       );
+    }
     case 'newsletter_hero': {
       const cfg = parseJson(s.items);
       return (
