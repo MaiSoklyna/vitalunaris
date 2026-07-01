@@ -1,4 +1,5 @@
-import { defineMiddleware } from 'astro:middleware';
+import { defineMiddleware, sequence } from 'astro:middleware';
+import { sparkEmdash } from 'spark-emdash/middleware';
 
 /**
  * Admin UX enhancement: when an editor clicks "Add Item" in a repeater field,
@@ -45,7 +46,7 @@ const SCROLL_ON_ADD = `<script>(function(){
   }, true);
 })();</script>`;
 
-export const onRequest = defineMiddleware(async (context, next) => {
+const scrollOnAdd = defineMiddleware(async (context, next) => {
   const res = await next();
   const { pathname } = new URL(context.request.url);
   const contentType = res.headers.get('content-type') || '';
@@ -61,9 +62,30 @@ export const onRequest = defineMiddleware(async (context, next) => {
         headers,
       });
     }
-    // Already injected or no body marker — return the (already read) HTML as-is.
-    return new Response(html, { status: res.status, statusText: res.statusText, headers: res.headers });
+    // Already injected or no body marker — return the (already read) HTML as-is,
+    // but drop content-length: spark-emdash (upstream in the sequence) still
+    // grows the body by injecting before </head> and reuses these headers.
+    const headers = new Headers(res.headers);
+    headers.delete('content-length');
+    return new Response(html, { status: res.status, statusText: res.statusText, headers });
   }
 
   return res;
 });
+
+/**
+ * spark-emdash upgrades the EmDash admin editing experience (wider modals,
+ * scrollable forms, JSON/markdown editors, char counts, change tracking,
+ * dark mode, and block-card previews). It only injects CSS + a MutationObserver
+ * that sets CSS `order`/`grid-column` — it never reparents React-managed nodes,
+ * so it survives EmDash upgrades and doesn't fight React reconciliation.
+ *
+ * The installed spark-emdash@0.6.0 is tuned for VitaLunaris (its card previews
+ * know our `on-sky`/`spring-wood` tones). Zero-config for now — the base UX fixes
+ * apply to our `sections`-repeater editors out of the box. Add `layouts` /
+ * `illustrations` / `previews` here once we confirm exact modal field labels.
+ *
+ * sequence() runs spark first (injects before </head>), then scrollOnAdd
+ * (injects before </body>); each returns a fresh Response, so both patches land.
+ */
+export const onRequest = sequence(sparkEmdash(), scrollOnAdd);
