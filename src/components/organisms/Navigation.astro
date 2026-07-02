@@ -1,4 +1,7 @@
 ---
+import { getEmDashEntry } from 'emdash';
+import { jsonArray } from '@lib/cms';
+
 interface Props {
   currentPath?: string;
 }
@@ -19,12 +22,12 @@ interface NavLink {
   navigateOnClick?: boolean;
 }
 
-const navLinks: NavLink[] = [
+const FALLBACK_NAV: NavLink[] = [
   {
     href: '/uebersicht',
     label: 'Systemische Ausbildung',
     children: [
-      { href: '/uebersicht', label: 'Übersicht' },
+      { href: '/ausbildung/uebersicht', label: 'Übersicht' },
       { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulwork Level 1' },
       { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach Level 2' },
       { href: '/ausbildung/begleitung-kreis', label: 'Begleitung & Circle' },
@@ -48,13 +51,38 @@ const navLinks: NavLink[] = [
       { href: '/praxisangebote/hypnose', label: 'Hypnose' },
       { href: '/praxisangebote/numerologieberatung', label: 'Numerologieberatung' },
       { href: '/praxisangebote/fussreflexzonenbehandlung', label: 'Fussreflexzonenbehandlung' },
-      { href: '/jawort-by-jansen', label: 'Jawort by Jansen' },
+      { href: '/praxisangebote/jawort-by-jansen', label: 'Jawort by Jansen' },
     ],
   },
   { href: '/neuigkeiten', label: 'News' },
   { href: '/ueber-uns', label: 'Über uns' },
   { href: '/kontakt', label: 'Kontakt' },
 ];
+
+// Navigation menu is editable in EmDash (site_settings → nav_items).
+// The repeater is FLAT: each row is one link; a row's `parent` field holds the
+// href of its top-level item (empty = top-level). We rebuild the dropdown tree
+// here by grouping child rows under the top-level row whose href they name.
+const { entry: settings } = await getEmDashEntry('site_settings', 'settings');
+const sd: Record<string, any> = settings?.data ?? {};
+const navItems: any[] = sd.nav_items ?? [];
+const navLinks: NavLink[] = navItems.length
+  ? navItems
+      .filter((it) => !it.parent)
+      .map((it: any) => {
+        // Prefer flat child rows; tolerate legacy `children` JSON (pre-migration data).
+        const flatKids = navItems
+          .filter((c) => c.parent && c.parent === it.href)
+          .map((c: any) => ({ href: c.href, label: c.label, disabled: c.disabled || undefined }));
+        const children = flatKids.length ? flatKids : jsonArray<NavChild>(it.children);
+        return {
+          href: it.href,
+          label: it.label,
+          navigateOnClick: it.navigate_on_click || undefined,
+          children: children.length ? children : undefined,
+        } as NavLink;
+      })
+  : FALLBACK_NAV;
 
 const isActive = (href: string) =>
   href === '/' ? currentPath === '/' : currentPath.startsWith(href);
@@ -216,19 +244,19 @@ const isGroupActive = (item: NavLink) =>
       #E1E2FC 78.48%,
       #8E84B6 108.81%),
       #F9F4EE;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
   }
   @media (min-width: 1024px) {
     .nav__inner {
       padding: 8px 20px;
       min-height: 48px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
     }
   }
   @media (min-width: 1280px) {
     .nav__inner {
       min-height: 60px;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
     }
   }
   /* Desktop++ (≥ 1920px) — Figma Header spec */

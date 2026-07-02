@@ -1,22 +1,44 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
+import Blocks from '@organisms/Blocks.astro';
+import { getEmDashEntry } from 'emdash';
+import { imageUrl } from '@lib/cms';
+
+// Block page — editable at /_emdash/admin/content/pages (slug "kontakt").
+const { entry } = await getEmDashEntry('pages', 'kontakt');
+const d: Record<string, any> = entry?.data ?? {};
 
 /* Alchemy Labs contact form (Vorname / Nachname / E-Mail / Nachricht).
-   Submissions land in Alchemy; Scribe auto-resizes the iframe. */
-const formSrc = 'https://opus.alchemy.zuerich/api/f/eX1ELfx8zRe-Z6qYT4RayA/page';
+   Submissions land in Alchemy; Scribe auto-resizes the iframe.
+   Overridable in the CMS via the `contact_form_src` field. */
+const formSrc = d.contact_form_src || 'https://opus.alchemy.zuerich/api/f/eX1ELfx8zRe-Z6qYT4RayA/page';
+
+// The contact form itself is a fixed section (below); Blocks only renders any
+// additional CMS sections (faq / value_cards). contact_form sections are
+// filtered out so the Alchemy form never renders twice.
+const baseSections = d.sections?.length ? d.sections : [];
+const sections = baseSections
+  .filter((s: any) => s.type !== 'contact_form')
+  .map((s: any) => {
+    // Inline lists edited directly on this page:
+    if (s.type === 'faq' && d.faq_items?.length) return { ...s, items: d.faq_items };
+    if (s.type === 'value_cards' && d.value_cards?.length)
+      return { ...s, items: d.value_cards.map((c: any) => ({ icon: imageUrl(c.icon), title: c.title, body: c.body })) };
+    return s;
+  });
 ---
 
 <BaseLayout
-  title="Kontakt | VitaLunaris"
-  description="Hast du Fragen zu einem Angebot, der Ausbildung oder einem Workshop? Schreib uns — wir melden uns innert 24 Stunden."
+  title={d.seo_title || 'Kontakt | VitaLunaris'}
+  description={d.seo_description || 'Hast du Fragen zu einem Angebot, der Ausbildung oder einem Workshop? Schreib uns — wir melden uns innert 24 Stunden.'}
   currentPath="/kontakt"
 >
   <OverviewHero
-    graphic="/images/ebene/Ebene_2-8.svg"
-    eyebrow="VitaLunaris Kontakt"
-    title="Hast du Fragen?"
-    subtitle="Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden."
+    graphic={imageUrl(d.hero_image) || '/images/ebene/Ebene_2-8.svg'}
+    eyebrow={d.hero_eyebrow || 'VitaLunaris Kontakt'}
+    title={d.hero_title || 'Hast du Fragen?'}
+    subtitle={d.hero_subtitle || 'Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden.'}
   />
 
   <section class="kontakt-form">
@@ -29,6 +51,8 @@ const formSrc = 'https://opus.alchemy.zuerich/api/f/eX1ELfx8zRe-Z6qYT4RayA/page'
       ></iframe>
     </div>
   </section>
+
+  <Blocks sections={sections} />
 </BaseLayout>
 
 <style>

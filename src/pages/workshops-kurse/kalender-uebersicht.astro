@@ -9,9 +9,19 @@ import Faq from '@organisms/Faq.astro';
 import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
-import { workshopEvents } from '../../data/workshops';
+import { getEmDashCollection, getEmDashEntry } from 'emdash';
+import { imageUrl, jsonArray, getTestimonials } from '@lib/cms';
 
-const pills = [
+// Page chrome (hero, pills, testimonials, deep section, FAQ, newsletter) is editable
+// at /_emdash/admin/content/workshops (entry "kalender-uebersicht"). The calendar +
+// "Nächste Kurse" cards derive from the individual workshop entries.
+const { entries: workshopEntries } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
+const { entry } = await getEmDashEntry('workshops', 'kalender-uebersicht');
+const d: Record<string, any> = entry?.data ?? {};
+const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
+const heroS = sec('hero'), deepS = sec('deep'), featuredS = sec('featured'), nlx = sec('newsletter');
+
+const pills = d.category_pills?.length ? d.category_pills : [
   {
     label: 'Alle',
     title: 'Alle Angebote',
@@ -45,14 +55,29 @@ const pills = [
   },
 ];
 
-/* Calendar events derived from the real workshop schedule
-   (src/data/workshops.ts) — each chip links to its detail page. */
-const toCalEvent = (w: (typeof workshopEvents)[number]) => ({
-  date: w.date,
-  label: w.title,
-  color: w.color,
-  href: `/workshops-kurse/${w.slug}`,
+/* Calendar datasets + "Nächste Kurse" cards derive from the EmDash `workshops`
+   collection so they stay in sync with the schedule. Dateless entries (overview
+   pages) are excluded so only real, dated workshops appear. */
+const datedWorkshops = (workshopEntries ?? []).filter((e) => e.data?.date);
+
+const toCalEvent = (e) => ({
+  date: e.data?.date,
+  label: e.data?.title,
+  color: e.data?.color,
+  href: `/workshops-kurse/${e.id}`,
 });
+
+/* Map a workshop to a filter-pill category. Workshops carry no dedicated
+   `category` field, so we derive it from the `category_meta` label
+   ("MONATS-WORKSHOP | …", "HYPNOSE | …", etc.). */
+const categoryOf = (e) => {
+  const m = (e.data?.category_meta || '').toUpperCase();
+  if (m.includes('MONATS')) return 'Monats-Workshops';
+  if (m.includes('AUFSTELL')) return 'Systemisches Aufstellen';
+  if (m.includes('HYPNOSE')) return 'Hypnose';
+  if (m.includes('NUMEROLOG')) return 'Numerologie';
+  return null;
+};
 
 /* Infoanlässe aren't workshops (no checkout) — they live on the Infoabend page.
    Listed here so they appear in the calendar under the "Infoanlässe" filter. */
@@ -61,60 +86,38 @@ const infoEvents = [
 ];
 
 /* One calendar dataset per filter pill: "Alle" shows every course + Infoanlass,
-   each named category shows only what belongs to it. The label maps to the pill
-   so the hero can show/hide the matching calendar. */
+   each named category shows only workshops whose `category` matches the pill. */
 const calendars = pills.map((p) => ({
   category: p.label,
   active: Boolean(p.active),
   events:
     p.label === 'Alle'
-      ? [...workshopEvents.map(toCalEvent), ...infoEvents]
+      ? [...datedWorkshops.map(toCalEvent), ...infoEvents]
       : p.label === 'Infoanlässe'
         ? infoEvents
-        : workshopEvents.filter((w) => w.category === p.label).map(toCalEvent),
+        : datedWorkshops.filter((e) => categoryOf(e) === p.label).map(toCalEvent),
 }));
 
-const upcoming = [
-  {
-    image: '/images/placeholder/Placeholder-12.jpg',
-    eyebrow: 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026',
-    title: 'SoulTap Einführungskurs',
-    description: 'In diesem September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT Meridian-Klopfen – eine sanfte und effektive Methode, um innere Ruhe, Sicherheit und Vertrauen in dir zu stärken.',
-    price: 'CHF 66.–',
-    duration: '120 Min. | Online',
-    ctaText: 'Mehr erfahren',
-    ctaHref: '/workshops-kurse/soultap-gegen-angst',
-  },
-  {
-    image: '/images/placeholder/Placeholder-29.jpg',
-    eyebrow: 'MONATS-WORKSHOP | OKTOBER | 22.10.2026',
-    title: 'Im Vagusnerv liegt die Ruhe',
-    description: 'Aktiviere und entspanne deinen Vagusnerv in diesem Oktober-Workshop. Lerne wirkungsvolle Techniken kennen, die dich unterstützen, dein Nervensystem zu stabilisieren und mehr Gelassenheit in deinen Alltag zu bringen.',
-    price: 'CHF 66.–',
-    duration: '210 Min. | Online',
-    ctaText: 'Mehr erfahren',
-    ctaHref: '/workshops-kurse/vagusnerv-ruhe',
-  },
-  {
-    image: '/images/placeholder/Placeholder-31.jpg',
-    eyebrow: 'MONATS-WORKSHOP | NOVEMBER | 24.11.2026',
-    title: 'Cool down for Christmas',
-    description: 'Bleibe in der hektischen Weihnachtszeit entspannt. Dieser November-Workshop hilft dir, dich bewusst zu entschleunigen und ruhiger in die Feiertage zu gehen.',
-    price: 'CHF 66.–',
-    duration: '210 Min. | Online',
-    ctaText: 'Mehr erfahren',
-    ctaHref: '/workshops-kurse/cool-down-for-christmas',
-  },
-];
+const upcoming = datedWorkshops.slice(0, 3).map((e) => ({
+  image: imageUrl(e.data?.card_image),
+  eyebrow: e.data?.card_eyebrow,
+  title: e.data?.card_title,
+  description: e.data?.card_description,
+  price: e.data?.hero_price,
+  duration: e.data?.card_duration,
+  ctaText: 'Mehr entdecken',
+  ctaHref: `/workshops-kurse/${e.id}`,
+}));
 
-const testimonials = [
+const _ts = await getTestimonials('workshop-kalender');
+const testimonials = _ts.length ? _ts : [
   { quote: '„Der Numerologie-Workshop hat mich wirklich überrascht. Anfangs war ich einfach neugierig – doch plötzlich ergaben viele Verhaltensweisen einen ganz neuen Sinn. Besonders die Analyse im Schulalltag war für mich unglaublich hilfreich. Sie hat mir gezeigt, wie ich meine Schüler besser verstehen und gezielter auf ihre Bedürfnisse eingehen kann. Ein Workshop voller Aha-Momente und neuer Perspektiven.“', name: 'Marianne S.' },
   { quote: '„Ich bin ohne große Erwartungen in den Numerologie-Workshop gestartet – und wurde umso positiver überrascht. Der Workshop war sehr strukturiert und bot gleichzeitig viel Raum für persönliche Entwicklung. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Man spürt sofort, wie viel Erfahrung und Herzblut in diesem Kurs steckt. Vielen Dank für diese inspirierende Erfahrung.“', name: 'Marina C.' },
   { quote: '„Ich bin noch immer beeindruckt, wie viel Kraft hinter diesem einfachen Klopftechnik-Konzept steckt. Der Kurs war informativ, abwechslungsreich und die Zeit ist wie im Flug vergangen. Besonders wertvoll: Die Werkzeuge lassen sich direkt im Alltag anwenden – für mich selbst und meine Familie. Ein praxisnaher Kurs, den ich von Herzen weiterempfehle.“', name: 'Sandra M.' },
   { quote: '„SoulReset hat mich absolut begeistert. Die Atemübungen und das Tapping haben mir geholfen, Druck abzubauen und wieder mehr Ruhe zu finden. Viele der Übungen konnte ich direkt in meinen Alltag integrieren – besonders im Familienleben spüre ich deutlich mehr Gelassenheit und weniger Stress. Praktische und wirkungsvolle Tools, die sich leicht umsetzen lassen. Vielen Dank!“', name: 'Desiree Z.' },
 ];
 
-const faqItems = [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   { question: 'Für wen sind die Workshops geeignet?', answer: 'Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.' },
   { question: 'Was ist der Unterschied zwischen einem Workshop und der Ausbildung?', answer: 'Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.' },
   { question: 'Brauche ich Vorkenntnisse für die Monats-Workshops?', answer: 'Nein. Die Monats-Workshops sind so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
@@ -124,6 +127,11 @@ const faqItems = [
   { question: 'Gibt es auch Online-Formate?', answer: 'Ja. Viele Workshops bieten wir online oder hybrid an — du siehst das Format jeweils direkt beim Termin im Kalender.' },
   { question: 'Was passiert wenn ein Workshop ausgebucht ist?', answer: 'Du kannst dich auf die Warteliste setzen. Wird ein Platz frei oder kommt ein Zusatztermin, informieren wir dich zuerst.' },
 ];
+
+const deepParas = (d.deep_paragraphs?.length ? d.deep_paragraphs.map((p: any) => p.text) : [
+  'Unsere Workshops und Kurse sind kein Frontalunterricht. Sie sind Erfahrungsräume, in denen Wissen lebendig wird. Räume, in denen du Zusammenhänge nicht nur verstehst, sondern selbst erlebst. Denn manches kann erklärt werden. Anderes erschliesst sich erst, wenn wir es fühlen, beobachten und erfahren.',
+  'Ob du zum ersten Mal mit systemischer Arbeit, Numerologie oder Energiearbeit in Berührung kommst oder dein Wissen vertiefen möchtest – hier findest du Formate, die praxisnah, inspirierend und nachhaltig sind. Lernen darf berühren. Lernen darf verändern. Lernen darf Freude machen.',
+]) as string[];
 ---
 
 <BaseLayout
@@ -133,9 +141,9 @@ const faqItems = [
 >
   <WorkshopsHero
     logo="/images/ebene/Ebene_2.svg"
-    eyebrow="Workshops & Kurse"
-    title={`Tauche ein in die <em>Systeme der Seele</em> mit Theres und Axel`}
-    subtitle="Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung."
+    eyebrow={heroS.eyebrow || 'Workshops & Kurse'}
+    title={heroS.title || `Tauche ein in die<br /><em>Systeme der Seele</em> mit<br />Theres und Axel`}
+    subtitle={heroS.body || 'Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung.'}
     pills={pills}
   >
     <Fragment slot="calendar">
@@ -165,7 +173,7 @@ const faqItems = [
   </section>
 
   {/* ===================== Testimonials ===================== */}
-  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
+  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} tone={d.testimonials_tone || 'gold'} />
 
   {/* ===================== Tiefes Wissen — lavender ===================== */}
   <section class="deep">
@@ -174,9 +182,10 @@ const faqItems = [
         <img src="/images/ebene/Ebene_2-12.svg" alt="" class="deep__art-img" loading="lazy" decoding="async" />
       </div>
       <div class="deep__content">
-        <Heading level={2} variant="h1" class="deep__title">Tiefes Wissen, das nicht nur erklärt wird</Heading>
-        <Text size="p1" class="deep__body">Unsere Workshops und Kurse sind kein Frontalunterricht. Sie sind Erfahrungsräume, in denen Wissen lebendig wird. Räume, in denen du Zusammenhänge nicht nur verstehst, sondern selbst erlebst. Denn manches kann erklärt werden. Anderes erschliesst sich erst, wenn wir es fühlen, beobachten und erfahren.</Text>
-        <Text size="p1" class="deep__body">Ob du zum ersten Mal mit systemischer Arbeit, Numerologie oder Energiearbeit in Berührung kommst oder dein Wissen vertiefen möchtest – hier findest du Formate, die praxisnah, inspirierend und nachhaltig sind.Lernen darf berühren. Lernen darf verändern. Lernen darf Freude machen.</Text>
+        <Heading level={2} variant="h1" class="deep__title">{deepS.title || 'Tiefes Wissen, das nicht nur erklärt wird'}</Heading>
+        {deepParas.map((p: string) => (
+          <Text size="p1" class="deep__body"><Fragment set:html={p} /></Text>
+        ))}
       </div>
     </div>
   </section>
@@ -186,8 +195,8 @@ const faqItems = [
     name={`Theresia &<br /><em>Axel Jansen</em>`}
     role=""
     tone="spring-wood"
-    quote={`Was unsere Workshops besonders macht, ist nicht nur das Wissen — sondern die Erfahrung, aus der es entstanden ist. Seit Jahrzehnten begleiten wir Menschen in Veränderungsprozessen. Nicht in der Theorie, sondern im echten Leben.<br /><br />Theresia bringt Erfahrung aus systemischer Arbeit, Körperarbeit und Nervensystemwissen ein. Axel ergänzt durch Numerologie, Hypnose und seine Fähigkeit, komplexe Zusammenhänge alltagstauglich zu vermitteln.<br /><br />Gemeinsam schaffen wir Lernräume, in denen Menschen nicht nur Neues erfahren, sondern wachsen können. Denn Wissen wird erst nachhaltig, wenn es erlebt wird.`}
-    image="/images/placeholder/placeholder-4.jpg"
+    quote={featuredS.body || `Was unsere Workshops besonders macht, ist nicht nur das Wissen — sondern die Erfahrung, aus der es entstanden ist. Seit Jahrzehnten begleiten wir Menschen in Veränderungsprozessen. Nicht in der Theorie, sondern im echten Leben.<br /><br />Theresia bringt Erfahrung aus systemischer Arbeit, Körperarbeit und Nervensystemwissen ein. Axel ergänzt durch Numerologie, Hypnose und seine Fähigkeit, komplexe Zusammenhänge alltagstauglich zu vermitteln.<br /><br />Gemeinsam schaffen wir Lernräume, in denen Menschen nicht nur Neues erfahren, sondern wachsen können. Denn Wissen wird erst nachhaltig, wenn es erlebt wird.`}
+    image={imageUrl(featuredS.image) || '/images/placeholder/placeholder-4.jpg'}
     imageSide="right"
     ctaText="Mehr über uns"
     ctaHref="/ueber-uns"
@@ -199,8 +208,8 @@ const faqItems = [
   {/* ===================== Newsletter ===================== */}
   <NewsletterBlock
     eyebrow="Newsletter"
-    title="Ein Blick hinter die <br />Kulissen"
-    body="Im Newsletter teilen wir Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind.I m Newsletter teile ich Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind. Wenn dich Workshops, Kurse oder die Ausbildung interessieren, bist du hier genau richtig."
+    title={nlx.title || 'Ein Blick hinter die <br />Kulissen'}
+    body={nlx.body || 'Im Newsletter teilen wir Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind. Wenn dich Workshops, Kurse oder die Ausbildung interessieren, bist du hier genau richtig.'}
     placeholder="E-mail Adresse"
     submitText="Anmelden"
   />

@@ -9,238 +9,48 @@ import Faq from '@organisms/Faq.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
-import WorkshopCheckout from '@organisms/WorkshopCheckout.astro';
-import { workshopEvents } from '../../data/workshops';
+import { getEmDashEntry, getEmDashCollection } from 'emdash';
+import { nl2br, jsonArray, imageUrl, textLines } from '@lib/cms';
 
 /* ============================================================
-   Monthly workshops (September / October / November).
-   One data object per workshop drives the whole detail page —
-   add a new entry here to publish another workshop page.
-   Defined inside getStaticPaths (Astro runs it in an isolated
-   scope), then passed to the page via props.
+   Workshop detail page — content lives in the EmDash `workshops`
+   collection (editable at /_emdash/admin/content/workshops).
+   Rendered on-demand by slug; the calendar + cards read the same
+   collection so everything stays in sync.
    ============================================================ */
-export function getStaticPaths() {
-  const workshops = [
-  {
-    slug: 'soultap-gegen-angst',
-    // hero
-    categoryMeta: 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026',
-    durationMeta: '14.09.2026 · 13:30 Uhr · 120 Min. · Online',
-    heroTitle: 'SoulTap gegen<br />deine Angst',
-    heroDescription:
-      'Im September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen. Ein Werkzeug, das du sofort anwenden kannst und das dich noch viele Jahre begleiten wird.',
-    price: 'CHF 66.–',
-    ctaText: 'Unsere Angebote',
-    ctaHref: '/praxisangebote',
-    heroImage: '/images/placeholder/Placeholder-34.jpg',
-    // info row
-    infoCards: [
-      { eyebrow: 'Wann?', body: 'Der Kurs findet am 14.09.2026 von 13:30 bis 16:00 Uhr statt (ca. 2 h).' },
-      { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.' },
-      { eyebrow: 'Für wen?', body: 'Für Menschen, die zu viel denken, unter Stress oder innerer Unruhe leiden oder ein einfaches Werkzeug für den Alltag suchen. Keine Vorkenntnisse erforderlich.' },
-    ],
-    // "Was wir anschauen"
-    narrativeEyebrow: 'Was wir anschauen',
-    narrativeTitle: 'Die Angst hinter der Angst',
-    narrativeBody:
-      'Oft steckt hinter einer Angst noch etwas ganz anderes: die Angst, nicht zu genügen. Die Angst vor Ablehnung oder Veränderung. Die Angst, die Kontrolle zu verlieren.<br /><br />Genau dort setzt SoulTap an — mit EFT, einem der einfachsten und gleichzeitig wirkungsvollsten Werkzeuge zur Selbsthilfe. Durch das sanfte Beklopfen von Meridianpunkten können Stress, Ängste und emotionale Belastungen oft erstaunlich schnell reduziert werden.<br /><br />Sofort anwendbar, ohne Vorkenntnisse — und ein Werkzeug, das dich noch viele Jahre begleiten kann.',
-    narrativeBulletGroups: [
-      {
-        heading: 'Das lernst du im Workshop:',
-        items: [
-          'Grundlagen des EFT-Meridian-Klopfens',
-          'Die wichtigsten Klopfpunkte',
-          'Warum Stress und Angst im Körper gespeichert werden',
-          'Klopfsequenzen für Sorgen, Ängste und innere Unruhe',
-          'Praktische Übungen für mehr Selbstvertrauen und innere Sicherheit',
-          'Sofort anwendbare Techniken für den Alltag',
-        ],
-      },
-      {
-        heading: 'Eingeschlossen:',
-        text: 'Live-Workshop, Kursunterlagen, Aufzeichnungen',
-      },
-    ],
-    narrativeImage: '/images/placeholder/Placeholder-35.jpg',
-    // card shown in the "Weitere Kurse" row
-    cardEyebrow: 'MONATS-WORKSHOP | SEPTEMBER | 14.09.2026',
-    cardTitle: 'SoulTap Einführungskurs',
-    cardDescription:
-      'EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen.',
-    cardImage: '/images/placeholder/Placeholder-12.jpg',
-    cardDuration: '120 Min. | Online',
-  },
-  {
-    slug: 'vagusnerv-ruhe',
-    categoryMeta: 'MONATS-WORKSHOP | OKTOBER | 22.10.2026',
-    durationMeta: '22.10.2026 · 13:30 Uhr · 120 Min. · Online',
-    heroTitle: 'Im Vagusnerv liegt<br />die Ruhe',
-    heroDescription:
-      'Den Vagusnerv verstehen und gezielt aktivieren: Unser Monats-Workshop im Oktober lädt dich ein, deinen Körper besser kennenzulernen und mit einfachen Methoden mehr Ruhe und Gelassenheit in deinen Alltag zu bringen.',
-    price: 'CHF 66.–',
-    heroImage: '/images/placeholder/Placeholder-29.jpg',
-    infoCards: [
-      { eyebrow: 'Wann?', body: 'Der Workshop findet am 22.10.2026 von 13:30 bis 15:30 Uhr statt (ca. 2 Stunden).' },
-      { eyebrow: 'Wo?', body: 'Online via Zoom. Den Zugangslink erhältst du nach der Anmeldung per E-Mail.' },
-      { eyebrow: 'Für wen?', body: 'Für Menschen, die sich häufig gestresst fühlen, schlecht abschalten können oder nach einfachen, natürlichen Methoden für mehr Balance im Alltag suchen. Keine Vorkenntnisse erforderlich.' },
-    ],
-    narrativeEyebrow: 'Was wir anschauen',
-    narrativeTitle: 'Mehr Ruhe beginnt im Nervensystem',
-    narrativeBody:
-      'Fühlst du dich manchmal angespannt, erschöpft oder ständig unter Strom? Oft liegt die Ursache nicht im Kopf – oft ist das Nervensystem schlichtweg überfordert.<br /><br />Genau hier kommt der Vagusnerv ins Spiel. Er spielt eine entscheidende Rolle für Entspannung, Sicherheit und Wohlbefinden. Ist er gut aktiviert, fühlen wir uns sicherer, entspannter und ausgeglichener.<br /><br />Eine der einfachsten Möglichkeiten, ihn zu unterstützen: die Vagusnerv-Ohrmassage. Eine sanfte Technik, die oft bereits nach kurzer Zeit eine wohltuende Wirkung entfaltet – unauffällig im Alltag anwendbar, ohne Hilfsmittel.',
-    narrativeBulletGroups: [
-      {
-        heading: 'Das erwartet dich im Workshop:',
-        items: [
-          'Verständliche Einführung in den Vagusnerv',
-          'Warum Stress im Körper gespeichert wird',
-          'Wie unser Körper zwischen Alarmzustand und Entspannung wechselt',
-          'Die wohltuende Vagusnerv-Ohrmassage',
-          'Praktische Übungen zur Aktivierung des Vagusnervs',
-          'Einfache Techniken für den Alltag',
-        ],
-      },
-      {
-        heading: 'Eingeschlossen:',
-        text: 'Live-Workshop, Kursunterlagen, Anleitung zur Vagusnerv-Ohrmassage & Aufzeichnung',
-      },
-    ],
-    narrativeImage: '/images/placeholder/placeholder-3.jpg',
-    cardEyebrow: 'MONATS-WORKSHOP | OKTOBER | 22.10.2026',
-    cardTitle: 'Im Vagusnerv liegt die Ruhe',
-    cardDescription:
-      'Den Vagusnerv verstehen und aktivieren – mit einfachen Werkzeugen mehr Ruhe und Gelassenheit in deinen Alltag bringen.',
-    cardImage: '/images/placeholder/Placeholder-29.jpg',
-    cardDuration: '120 Min. | Online',
-  },
-  {
-    slug: 'cool-down-for-christmas',
-    categoryMeta: 'MONATS-WORKSHOP | NOVEMBER | 24.11.2026',
-    durationMeta: '24.11.2026 09:00 Uhr | 120 Min. | Online',
-    heroTitle: 'Cool down for<br />Christmas',
-    heroDescription:
-      'Damit du die Weihnachtszeit geniessen kannst, statt nur durchzuhalten: Unser Monats-Workshop im November lädt dich ein, einen Monat vor Heiligabend bewusst einen Gang zurückzuschalten.',
-    price: 'CHF 66.–',
-    heroImage: '/images/placeholder/Placeholder-31.jpg',
-    infoCards: [
-      { eyebrow: 'Wann?', body: 'Der Workshop findet am 24.11.2026 von 09:00 bis 11:00 Uhr statt (ca. 2 Stunden).' },
-      { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.' },
-      { eyebrow: 'Für wen?', body: 'Für alle, die der Hektik der Vorweihnachtszeit mit Ruhe, Achtsamkeit und kleinen Ritualen begegnen möchten.' },
-    ],
-    narrativeEyebrow: 'Was wir anschauen',
-    narrativeTitle: 'Entspannungsübungen für eine stressfreie Adventszeit',
-    narrativeBody:
-      'Geschenke, Termine, Erwartungen, Familienfeiern — oft bleibt in der Zeit, die eigentlich besinnlich sein sollte, kaum Raum zum Durchatmen. Genau deshalb gibt es Cool Down for Christmas.Gemeinsam schauen wir, wie du mit mehr Ruhe und Leichtigkeit durch die Adventszeit gehen kannst — ohne dich selbst dabei zu verlieren.',
-    narrativeBulletGroups: [
-      {
-        heading: 'Das erwartet dich im Workshop:',
-        items: [
-          'Warum Weihnachten oft mehr Stress als Freude auslöst',
-          'Wie du rechtzeitig aus dem Vorweihnachts-Hamsterrad aussteigen kannst',
-          'Praktische Tipps für mehr Gelassenheit im Alltag',
-          'Impulse für dein Nervensystem und kleine Entspannungsübungen',
-          'Eine wohltuende Entspannungsreise',
-        ],
-      },
-      {
-        heading: 'Adventsbegleitung inklusive:',
-        text: 'Als Teilnehmerin bist du eingeladen, Teil einer geschlossenen Telegram-Gruppe zu werden — mit regelmässigen Impulsen und Inspirationen durch die Adventszeit. Zusätzlich erhältst du Zugang zum beliebten Advents-Audiokalender mit täglichen Geschichten.',
-      },
-      {
-        heading: '',
-        text: 'Eingeschlossen:Live-Workshop, Aufzeichnung, Advents-Telegram-Gruppe & Advents-Audiokalender',
-      },
-    ],
-    narrativeImage: '/images/placeholder/Placeholder-29.jpg', 
-    cardEyebrow: 'MONATS-WORKSHOP | NOVEMBER | 24.11.2026',
-    cardTitle: 'Cool down for Christmas',
-    cardDescription:
-      'Einen Monat vor Heiligabend bewusst einen Gang zurückschalten – damit du die Weihnachtszeit wirklich geniessen kannst.',
-    cardImage: '/images/placeholder/Placeholder-31.jpg',
-    cardDuration: '120 Min. | Online',
-  },
-  {
-    slug: 'adventsgeschichten',
-    categoryMeta: 'MONATS-WORKSHOP | DEZEMBER | 01.12 2026',
-    durationMeta: '01.12 2026 | 0 Min. | Online',
-    heroTitle: 'Advents-Geschichten<br />für Herz und Seele',
-    heroDescription:
-      'Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.',
-    price: 'Zahl was du möchtest :)',
-    ctaText: 'Unsere Angebote',
-    ctaHref: '/praxisangebote',
-    heroImage: '/images/placeholder/Placeholder-32.jpg',
-    infoCards: [
-      { eyebrow: 'Wann?', body: '24 Audio-Geschichten vom 1. bis 24. Dezember, täglich über Telegram. Berührend, humorvoll, nachdenklich — mitten aus dem Leben.' },
-      { eyebrow: 'Wo?', body: 'Direkt über Telegram. Den Link bekommst du nach der Anmeldung per E-Mail.' },
-      { eyebrow: 'Für wen?', body: 'Für Menschen, die Geschichten lieben, die Adventszeit bewusster erleben möchten und sich nach mehr Herz und weniger Hektik sehnen.' },
-    ],
-    narrativeEyebrow: 'Was wir anschauen',
-    narrativeTitle: 'Ein täglicher Moment zum Innehalten',
-    narrativeBody:
-      'Manchmal wünsche ich mir die Weihnachtszeit zurück, wie ich sie als Kind erlebt habe. Diese besondere Vorfreude. Das Gefühl, dass jeden Tag etwas Schönes wartet.<br /><br />Genau aus diesem Wunsch ist der Audio-Adventskalender entstanden. Jeden Morgen öffnet sich ein neues Türchen — dahinter wartet eine kleine Geschichte. Inspiriert von echten Begegnungen, Gedanken aus dem Alltag und Momenten, die berühren. Frei erzählt, und doch erkennen sich viele Menschen darin wieder.<br /><br />Beim Frühstück, auf dem Weg zur Arbeit oder einfach dann, wenn du dir ein paar Minuten nur für dich schenken möchtest.',
-    narrativeBulletGroups: [
-      {
-        heading: 'Das erwartet dich:',
-        items: [
-          '24 Audio-Geschichten vom 1. bis 24. Dezember',
-          'Täglich ein neues Adventstürchen über Telegram',
-          'Geschichten zum Schmunzeln, Nachdenken und Fühlen',
-        ],
-      },
-      {
-        heading: 'Eine Bitte ans Herz:',
-        text: 'In diesem Jahr gibt es die Möglichkeit eines freiwilligen Herzensbeitrags — nicht für mich, sondern für eine Familie aus meinem persönlichen Umfeld. Eine Familie mit einem besonderen Kind, die mich tief berührt.<br /><br />Mit deinem Herzensbeitrag hilfst du, ihr in der Weihnachtszeit eine kleine Freude zu bereiten. Von Herz zu Herz.<br /><br />Wer geben möchte, gibt. Wer einfach zuhören möchte, ist genauso herzlich willkommen.',
-      },
-    ],
-    narrativeImage: '/images/placeholder/Placeholder-14.jpg',
-    cardEyebrow: 'MONATS-WORKSHOP | DEZEMBER | 01.12 2026',
-    cardTitle: 'Advents-Geschichten für Herz und Seele',
-    cardDescription:
-      'Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.',
-    cardImage: '/images/placeholder/Placeholder-32.jpg',
-    cardDuration: '0 Min. | Online',
-  },
-];
+const { slug } = Astro.params;
+const { entry } = await getEmDashEntry('workshops', slug!);
+if (!entry) return new Response('Not found', { status: 404 });
+const w: Record<string, any> = entry.data ?? {};
 
-  /* Map a workshop entry to EventCard props for the
-     "Weitere Kurse und Workshops:" grid. */
-  const toCard = (w) => ({
-    image: w.cardImage,
-    eyebrow: w.cardEyebrow,
-    title: w.cardTitle,
-    description: w.cardDescription,
-    price: w.price,
-    duration: w.cardDuration,
+const bulletGroups = (w.narrative_bullet_groups ?? []).map((g: any) => ({
+  heading: g.heading || undefined,
+  items: textLines(g.items),
+  text: g.text || undefined,
+}));
+
+/* "Weitere Kurse" grid — every other workshop, by date. */
+const { entries: all } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
+const furtherCourses = (all ?? [])
+  // Exclude the current course and the two dateless overview pages.
+  .filter((e: any) => e.id !== slug && e.data?.date)
+  .map((e: any) => ({
+    image: imageUrl(e.data?.card_image),
+    eyebrow: e.data?.card_eyebrow,
+    title: e.data?.card_title,
+    description: e.data?.card_description,
+    price: e.data?.hero_price,
+    duration: e.data?.card_duration,
     ctaText: 'Mehr erfahren',
-    ctaHref: `/workshops-kurse/${w.slug}`,
-  });
-
-  return workshops.map((workshop) => ({
-    params: { slug: workshop.slug },
-    props: {
-      workshop,
-      /* Show the other months only — never the current page's own card. */
-      furtherCourses: workshops
-        .filter((w) => w.slug !== workshop.slug)
-        .map(toCard),
-    },
+    ctaHref: `/workshops-kurse/${e.id}`,
   }));
-}
 
-const { workshop, furtherCourses } = Astro.props;
-
-/* On-site checkout: is this workshop sold via Alchemy Commerce? */
-const wsEvent = workshopEvents.find((w) => w.slug === workshop.slug);
-const hasCheckout = Boolean(wsEvent?.productId);
-
-/* Shared "Was Teilnehmer sagen" reviews — same set as the
-   Kalender & Übersicht page (workshops-kurse/kalender-uebersicht). */
+/* Shared "Was Teilnehmer sagen" reviews — same set as the calendar page. */
 const testimonials = [
   { quote: '„Numerologie Workshop – Anfangs war ich neugierig – am Ende begeistert. Plötzlich ergaben viele Verhaltensweisen viel mehr Sinn. Als Lehrerin kann ich die Numerologie sogar im Schulalltag anwenden: Die Zahlen helfen mir, Stärken und Bedürfnisse meiner Schülerinnen und Schüler besser zu verstehen. Voller Aha-Momente und ein neuer Blick auf Menschen.“', name: 'Marianne S.' },
-  { quote: '„Ich bin ohne grosse Erwartungen in den Numerologie Workshop gekommen und wurde definitiv übertroffen. Der Workshop war klar strukturiert, verständlich und mit viel Herz gestaltet. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Ich spüre, wie viel Erfahrung und Herzblut ihr in eure Arbeit einbringt. Vielen Dank für diesen inspirierenden Tag!“', name: 'Marina C.' },
-  { quote: '„Ich bin noch immer erstaunt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Der Kurs war informativ, abwechslungsreich und die Zeit verging wie im Flug. Besonders wertvoll: Ich habe ein Werkzeug, das ich jederzeit bei mir selbst — und im Familienalltag mit meinen Kindern — anwenden kann. Herzlichen Dank für diesen praxisnahen Kurs!“', name: 'Sandra M.' },
-  { quote: '„SoulReset@home hat mich begeistert. Die Atemübungen und das Tapping helfen mir konkret, wenn Druck entsteht. Einige Übungen habe ich bereits fest in meinen Alltag integriert. Ich merke, dass ich im Familienalltag ruhiger bin und weniger Druck verspüre. Viele praktische Werkzeuge, die sich leicht umsetzen lassen. Herzlichen Dank!“', name: 'Desiree Z.' },
+  { quote: '„Ich bin ohne grosse Erwartungen in den Numerologie Workshop gekommen und wurde definitiv übertroffen. Der Workshop war klar strukturiert, verständlich und mit viel Herz gestaltet. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Vielen Dank für diesen inspirierenden Tag!“', name: 'Marina C.' },
+  { quote: '„Ich bin noch immer erstaunt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Der Kurs war informativ, abwechslungsreich und die Zeit verging wie im Flug. Besonders wertvoll: Ich habe ein Werkzeug, das ich jederzeit anwenden kann. Herzlichen Dank für diesen praxisnahen Kurs!“', name: 'Sandra M.' },
+  { quote: '„SoulReset@home hat mich begeistert. Die Atemübungen und das Tapping helfen mir konkret, wenn Druck entsteht. Ich merke, dass ich im Familienalltag ruhiger bin und weniger Druck verspüre. Viele praktische Werkzeuge, die sich leicht umsetzen lassen. Herzlichen Dank!“', name: 'Desiree Z.' },
 ];
 
 /* Shared FAQ. */
@@ -257,42 +67,40 @@ const faqItems = [
 ---
 
 <BaseLayout
-  title={`${workshop.cardTitle} | VitaLunaris`}
-  description={workshop.heroDescription}
-  currentPath={`/workshops-kurse/${workshop.slug}`}
+  title={`${w.card_title || w.title} | VitaLunaris`}
+  description={w.hero_description}
+  currentPath={`/workshops-kurse/${slug}`}
 >
   <CourseHero
-    categoryMeta={workshop.categoryMeta}
-    durationMeta={workshop.durationMeta}
-    title={workshop.heroTitle}
-    description={workshop.heroDescription}
-    price={workshop.price}
-    ctaText={hasCheckout ? 'Jetzt anmelden' : (workshop.ctaText ?? 'Jetzt anmelden')}
-    ctaHref={hasCheckout ? '#anmelden' : (workshop.ctaHref ?? '/kontakt')}
-    image={workshop.heroImage}
+    categoryMeta={w.category_meta}
+    durationMeta={w.duration_meta}
+    title={w.title}
+    description={w.hero_description}
+    price={w.hero_price}
+    ctaText="Jetzt anmelden"
+    ctaHref={w.hero_cta_href || '/kontakt'}
+    image={imageUrl(w.hero_image)}
   />
 
-  <InfoCardsRow cards={workshop.infoCards} />
-
-  <WorkshopCheckout slug={workshop.slug} />
+  <InfoCardsRow cards={w.info_cards ?? []} />
 
   {/* ===================== Was wir anschauen — lavender ===================== */}
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image={workshop.narrativeImage}
+    image={imageUrl(w.narrative_image)}
     imageAlt=""
-    eyebrow={workshop.narrativeEyebrow}
-    title={workshop.narrativeTitle}
-    bullets={workshop.narrativeBullets}
-    bulletGroups={workshop.narrativeBulletGroups}
-    body={workshop.narrativeBody}
+    eyebrow="Was wir anschauen"
+    title={w.narrative_title}
+    bulletGroups={bulletGroups}
+    body={nl2br(w.narrative_body)}
   />
 
   {/* ===================== Was Teilnehmer sagen ===================== */}
   <TestimonialsBlock
     title="Was Teilnehmer sagen"
     testimonials={testimonials}
+    tone={w.testimonials_tone || 'gold'}
   />
 
   {/* ===================== Theresia & Axel Jansen — light, image right ===================== */}
@@ -311,7 +119,7 @@ const faqItems = [
         </div>
       </div>
       <div class="about__media">
-        <img src="/images/placeholder/placeholder-4.jpg" alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
+        <img src={imageUrl(w.about_image) || '/images/placeholder/placeholder-4.jpg'} alt="Theresia & Axel Jansen" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
@@ -359,13 +167,13 @@ const faqItems = [
     flex: 0 0 auto;
     width: 100%;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: rgba(96, 29, 29, 0.06);
     aspect-ratio: 4 / 5;
     order: -1;
   }
-  @media (min-width: 1024px) { .about__media { width: 46%; border-radius: 20px; order: 0; } }
-  @media (min-width: 1920px) { .about__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
+  @media (min-width: 1024px) { .about__media { width: 46%; border-radius: var(--radius-card); order: 0; } }
+  @media (min-width: 1920px) { .about__media { width: 711px; border-radius: var(--radius-card-lg); aspect-ratio: 711 / 826; } }
   .about__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .about__content {

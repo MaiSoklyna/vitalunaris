@@ -84,11 +84,11 @@ const loop = [...photos, ...photos];
     aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     background: rgba(96, 29, 29, 0.06);
   }
-  @media (min-width: 1280px) { .photo-strip__img { border-radius: 16px; } }
-  @media (min-width: 1920px) { .photo-strip__img { border-radius: 20px; } }
+  @media (min-width: 1280px) { .photo-strip__img { border-radius: var(--radius-md); } }
+  @media (min-width: 1920px) { .photo-strip__img { border-radius: var(--radius-card); } }
 
   /* Loop moves the track left → right (content enters from the left). */
   @keyframes photo-strip-scroll {

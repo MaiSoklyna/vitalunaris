@@ -1,0 +1,266 @@
+---
+/* ============================================================
+   BLOCKS — section router for the EmDash `pages` collection.
+   Each entry in `pages.sections` (a repeater) has a `type` and a
+   shared set of fields (eyebrow / title / body / image / image_side /
+   tone / items). This component maps each section type to the matching
+   organism, so a page in the admin is a list of editable blocks.
+
+   `items` holds the block's repeating data as a JSON string (EmDash
+   repeaters can't nest), parsed here per block type.
+   ============================================================ */
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import FeaturedTestimonial from '@organisms/FeaturedTestimonial.astro';
+import OfferCardsBlock from '@organisms/OfferCardsBlock.astro';
+import ValueCardsBlock from '@organisms/ValueCardsBlock.astro';
+import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
+import ProcessSteps from '@organisms/ProcessSteps.astro';
+import InfoCardsRow from '@organisms/InfoCardsRow.astro';
+import Faq from '@organisms/Faq.astro';
+import NewsletterBlock from '@organisms/NewsletterBlock.astro';
+import PersonBio from '@organisms/PersonBio.astro';
+import ClaimBlock from '@organisms/ClaimBlock.astro';
+import DarkCtaBlock from '@organisms/DarkCtaBlock.astro';
+import NewsletterHero from '@organisms/NewsletterHero.astro';
+import OverviewHero from '@organisms/OverviewHero.astro';
+import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
+import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards, getOfferCards, getValueCards, getFaq } from '@lib/cms';
+
+interface Section {
+  type?: string;
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+  image?: string;
+  image_side?: 'left' | 'right';
+  tone?: string;
+  /** For testimonials blocks: which set of reviews to show from the shared `testimonials` collection. */
+  context?: string;
+  items?: unknown;
+}
+
+interface Props {
+  sections?: Section[];
+}
+
+const { sections: rawSections = [] } = Astro.props;
+
+// Self-resolve testimonials blocks from the shared `testimonials` collection so a
+// "Stimmen" block can be added to ANY block page — the editor just picks a context.
+// Sections that already carry injected `items` (e.g. a page that wires its own data)
+// are left untouched, so this stays backward-compatible.
+const sections = await Promise.all(
+  rawSections.map(async (s) => {
+    // Page-provided items ALWAYS win: when a page injects its own list into a
+    // section (e.g. the page's inline faq_items / value_cards), use it as-is.
+    // Only when a block has NO items do we resolve from a shared collection by
+    // `context`. So an editor can fill a block's content directly on the page,
+    // OR (for genuinely reused content like testimonials) pick a context.
+    const injected = Array.isArray(s.items) && s.items.length > 0;
+    if (!injected && s.type === 'testimonials' && s.context) {
+      return { ...s, items: await getTestimonials(s.context) };
+    }
+    if (!injected && s.type === 'info_cards' && s.context) {
+      return { ...s, items: await getInfoCards(s.context) };
+    }
+    if (!injected && s.type === 'offer_cards' && s.context) {
+      return { ...s, items: await getOfferCards(s.context) };
+    }
+    if (!injected && s.type === 'value_cards' && s.context) {
+      return { ...s, items: await getValueCards(s.context) };
+    }
+    if (!injected && s.type === 'faq' && s.context) {
+      return { ...s, items: await getFaq(s.context) };
+    }
+    return s;
+  })
+);
+---
+
+{sections.map((s) => {
+  const side = (s.image_side as 'left' | 'right') || 'left';
+  switch (s.type) {
+    case 'narrative':
+      return (
+        <NarrativeBlock
+          tone={(s.tone as any) || 'light'}
+          imageSide={side}
+          image={imageUrl(s.image)}
+          imageAlt=""
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          body={nl2br(s.body)}
+        />
+      );
+    case 'featured':
+      return (
+        <FeaturedTestimonial
+          eyebrow={s.eyebrow}
+          name={s.title || ''}
+          quote={nl2br(s.body)}
+          image={imageUrl(s.image)}
+          imageSide={side}
+          tone={s.tone === 'spring-wood' ? 'spring-wood' : 'pale-gold'}
+          ctaText="Mehr über uns"
+          ctaHref="/ueber-uns"
+        />
+      );
+    // List/card blocks resolve their items from a shared collection (by `context`)
+    // or from per-page injection. Until they have content they'd render as an empty
+    // header-only shell, so skip them entirely on the public site when empty.
+    case 'offer_cards': {
+      const offers = jsonArray(s.items);
+      if (!offers.length) return null;
+      return <OfferCardsBlock eyebrow={s.eyebrow} title={s.title || ''} offers={offers} />;
+    }
+    case 'value_cards': {
+      const cards = jsonArray(s.items);
+      if (!cards.length) return null;
+      return <ValueCardsBlock eyebrow={s.eyebrow} title={s.title} cards={cards} />;
+    }
+    case 'testimonials': {
+      const items = jsonArray(s.items);
+      if (!items.length) return null;
+      return <TestimonialsBlock eyebrow={s.eyebrow} title={s.title || ''} testimonials={items} tone={s.tone} />;
+    }
+    case 'process_steps': {
+      const steps = jsonArray(s.items);
+      if (!steps.length) return null;
+      return <ProcessSteps eyebrow={s.eyebrow} title={s.title} steps={steps} />;
+    }
+    case 'info_cards': {
+      const cards = jsonArray(s.items);
+      if (!cards.length) return null;
+      return <InfoCardsRow cards={cards} />;
+    }
+    case 'faq': {
+      const items = jsonArray(s.items);
+      if (!items.length) return null;
+      return <Faq eyebrow={s.eyebrow} title={s.title} items={items} theme={s.tone === 'dark' ? 'dark' : 'light'} />;
+    }
+    case 'newsletter': {
+      const cfg = parseJson(s.items);
+      return (
+        <NewsletterBlock
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          body={s.body}
+          placeholder={cfg.placeholder}
+          submitText={cfg.submitText}
+        />
+      );
+    }
+    case 'person_bio':
+      return (
+        <PersonBio
+          eyebrow={s.eyebrow}
+          name={s.title || ''}
+          paragraphs={jsonArray(s.items)}
+          image={imageUrl(s.image)}
+          imageSide={side === 'left' ? 'left' : 'right'}
+        />
+      );
+    case 'claim_block': {
+      const cfg = parseJson(s.items);
+      return <ClaimBlock title={s.title || ''} body={s.body} image={imageUrl(s.image)} ctaText={cfg.ctaText} ctaHref={cfg.ctaHref} />;
+    }
+    case 'dark_cta': {
+      const cfg = parseJson(s.items);
+      return (
+        <DarkCtaBlock
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          body={s.body}
+          ctaText={cfg.ctaText}
+          ctaHref={cfg.ctaHref}
+          secondaryCtaText={cfg.secondaryCtaText}
+          secondaryCtaHref={cfg.secondaryCtaHref}
+          backgroundImage={imageUrl(s.image)}
+        />
+      );
+    }
+    case 'overview_hero':
+      return <OverviewHero graphic={imageUrl(s.image)} eyebrow={s.eyebrow} title={s.title || ''} subtitle={s.body} />;
+    case 'practice_offers': {
+      const rows = jsonArray(s.items);
+      if (!rows.length) return null;
+      return (
+        <section class="blk-offers">
+          <div class="blk-offers__inner">
+            {rows.map((o: any) => (
+              <PracticeOfferRow
+                tone={o.tone}
+                eyebrow={o.eyebrow}
+                title={o.title}
+                body={o.body}
+                image={imageUrl(o.image)}
+                primaryText={o.primaryText}
+                primaryHref={o.primaryHref}
+                secondaryText={o.secondaryText}
+                secondaryHref={o.secondaryHref}
+              />
+            ))}
+          </div>
+        </section>
+      );
+    }
+    case 'newsletter_hero': {
+      const cfg = parseJson(s.items);
+      return (
+        <NewsletterHero
+          logo={imageUrl(s.image)}
+          eyebrow={s.eyebrow}
+          title={s.title || ''}
+          paragraphs={cfg.paragraphs || []}
+          placeholder={cfg.placeholder}
+          submitText={cfg.submitText}
+        />
+      );
+    }
+    case 'contact_form': {
+      // Mailto forms were replaced by the Alchemy Labs form (iframe). The URL is
+      // overridable per section via items.formSrc; falls back to the shared form.
+      const cfg = parseJson(s.items);
+      const formSrc = cfg.formSrc || 'https://opus.alchemy.zuerich/api/f/eX1ELfx8zRe-Z6qYT4RayA/page';
+      return (
+        <section class="blk-contact">
+          <div class="blk-contact__inner">
+            <iframe class="blk-contact__frame" src={formSrc} title="Kontaktformular" loading="lazy"></iframe>
+          </div>
+        </section>
+      );
+    }
+    default:
+      return null;
+  }
+})}
+
+<style>
+  /* Alchemy Labs contact form (iframe) rendered by the contact_form block. */
+  .blk-contact { background: var(--c-spring-wood); padding: 0 20px 64px; }
+  @media (min-width: 768px)  { .blk-contact { padding: 0 32px 90px; } }
+  @media (min-width: 1280px) { .blk-contact { padding: 0 60px 110px; } }
+  .blk-contact__inner { max-width: 642px; margin: 0 auto; }
+  .blk-contact__frame {
+    width: 100%;
+    height: 720px;
+    min-height: 560px;
+    border: 0;
+    display: block;
+    transition: height 200ms ease;
+  }
+
+  /* Wrapper for the practice_offers block (offer-row cards). */
+  .blk-offers { background: var(--c-spring-wood); padding: 8px 20px 60px; }
+  @media (min-width: 768px)  { .blk-offers { padding: 8px 32px 80px; } }
+  @media (min-width: 1280px) { .blk-offers { padding: 16px 60px 90px; } }
+  @media (min-width: 1920px) { .blk-offers { padding: 16px 90px 120px; } }
+  .blk-offers__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media (min-width: 1280px) { .blk-offers__inner { gap: 32px; } }
+</style>

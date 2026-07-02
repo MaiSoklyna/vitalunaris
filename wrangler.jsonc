@@ -1,16 +1,15 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "vitalunaris",
+  // VitaLunaris EmDash Worker — Cloudflare bindings.
+  // database_id is filled in after `wrangler d1 create vitalunaris-cms`
+  // (or by the Alchemy Labs /api/emdash provisioning flow).
+  "name": "vitalunaris-site",
   "compatibility_date": "2025-06-01",
-  // Static-assets-only Worker: no `main` script, Cloudflare serves the
-  // Astro build output (dist/) directly. This is the Workers Static Assets
-  // model — the path EmDash also deploys onto, so no migration churn later.
-  "assets": {
-    "directory": "./dist",
-    // Astro emits directory-style URLs (/ausbildung/ -> /ausbildung/index.html)
-    "html_handling": "auto-trailing-slash",
-    // Serve the branded 404 page on unmatched routes (build a src/pages/404.astro
-    // to populate dist/404.html; until then Cloudflare shows its generic 404).
-    "not_found_handling": "404-page"
-  }
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "vitalunaris-cms", "database_id": "FILL_IN_AFTER_CREATE" }
+  ],
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "vitalunaris-media" }
+  ]
 }

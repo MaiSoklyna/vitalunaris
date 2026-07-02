@@ -110,8 +110,9 @@ const trackingSiteId = import.meta.env.PUBLIC_TRACKING_SITE_ID || 'site_vitaluna
     </script>
   </head>
   <body>
+    <a href="#content" class="skip-link">Zum Inhalt springen</a>
     <Navigation currentPath={currentPath} />
-    <main id="content">
+    <main id="content" data-page={currentPath}>
       <slot />
     </main>
     <Footer />

@@ -1,0 +1,2104 @@
+{
+  "$schema": "https://emdashcms.com/schema/seed.json",
+  "version": "1",
+  "meta": {
+    "name": "VitaLunaris",
+    "description": "VitaLunaris content schema — practice + Systemic Soulcoach school. See clients/VitaLunaris/emdash-backend-plan.md for rationale.",
+    "author": "Alchemy Zürich"
+  },
+  "collections": [
+    {
+      "slug": "site_settings",
+      "label": "Site-Einstellungen",
+      "labelSingular": "Site-Einstellung",
+      "description": "Globale Einstellungen: Navigation, Footer und Kontaktdaten. Änderungen wirken sich auf die ganze Website aus.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "site_title",
+          "label": "Seitentitel",
+          "type": "string"
+        },
+        {
+          "slug": "contact_email",
+          "label": "Kontakt E-Mail",
+          "type": "string"
+        },
+        {
+          "slug": "address",
+          "label": "Adresse",
+          "type": "text"
+        },
+        {
+          "slug": "nav_items",
+          "label": "Navigation",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 20,
+            "subFields": [
+              {
+                "slug": "label",
+                "type": "string",
+                "label": "Beschriftung"
+              },
+              {
+                "slug": "href",
+                "type": "string",
+                "label": "Link"
+              },
+              {
+                "slug": "parent",
+                "type": "string",
+                "label": "Untermenü von (Link des Hauptpunkts – leer = oberste Ebene)"
+              },
+              {
+                "slug": "navigate_on_click",
+                "type": "boolean",
+                "label": "Direkt verlinken (Klick öffnet die Seite statt des Dropdowns)"
+              },
+              {
+                "slug": "disabled",
+                "type": "boolean",
+                "label": "Versteckt"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "footer_columns",
+          "label": "Footer-Spalten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 40,
+            "subFields": [
+              {
+                "slug": "label",
+                "type": "string",
+                "label": "Beschriftung (Spaltentitel oder Link-Text)"
+              },
+              {
+                "slug": "href",
+                "type": "string",
+                "label": "Link (nur bei Link-Zeilen; bei Spaltentiteln leer)"
+              },
+              {
+                "slug": "parent",
+                "type": "string",
+                "label": "Gehört zu Spalte (Spaltentitel – leer = diese Zeile IST ein Spaltentitel)"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "social_links",
+          "label": "Social Links",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "platform",
+                "type": "string",
+                "label": "Plattform"
+              },
+              {
+                "slug": "href",
+                "type": "string",
+                "label": "Link"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "footer_legal",
+          "label": "Footer Rechtliches-Links",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "label",
+                "type": "string",
+                "label": "Beschriftung"
+              },
+              {
+                "slug": "href",
+                "type": "string",
+                "label": "Link"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "footer_phones",
+          "label": "Footer Telefonnummern",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 4,
+            "subFields": [
+              {
+                "slug": "name",
+                "type": "string",
+                "label": "Name"
+              },
+              {
+                "slug": "phone",
+                "type": "string",
+                "label": "Telefon"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "footer_copyright",
+          "label": "Footer Copyright",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "slug": "team",
+      "label": "Team",
+      "labelSingular": "Person",
+      "description": "Die Personen (Theresia, Axel, Marlen). Foto und Bio werden hier einmal gepflegt und erscheinen automatisch auf allen passenden Seiten (z. B. «Über uns»).",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "name",
+          "label": "Name",
+          "type": "string"
+        },
+        {
+          "slug": "eyebrow",
+          "label": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "slug": "role",
+          "label": "Rolle",
+          "type": "text"
+        },
+        {
+          "slug": "image",
+          "label": "Portrait",
+          "type": "image"
+        },
+        {
+          "slug": "bio_paragraphs",
+          "label": "Bio-Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "testimonials",
+      "label": "Stimmen",
+      "labelSingular": "Stimme",
+      "description": "Alle Kundenstimmen an einem Ort. Jede Stimme hat einen «Seite / Kontext»-Tag, der bestimmt, auf welcher Seite sie erscheint.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "quote",
+          "label": "Zitat",
+          "type": "text"
+        },
+        {
+          "slug": "name",
+          "label": "Name",
+          "type": "string"
+        },
+        {
+          "slug": "role",
+          "label": "Rolle / Kontext",
+          "type": "string"
+        },
+        {
+          "slug": "photo",
+          "label": "Foto",
+          "type": "image"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "featured",
+          "label": "Hervorgehoben",
+          "type": "boolean"
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "praxisangebote",
+      "label": "Praxisangebote",
+      "labelSingular": "Praxisangebot",
+      "description": "Die Praxisangebote-Seiten (Hypnose, Aufstellung, Numerologie, Fussreflex, Jawort) plus die Übersicht. Jede Karte/Stimme hat eigene Felder — kein JSON nötig.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "seo_title",
+          "label": "SEO · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "seo_description",
+          "label": "SEO · Beschreibung",
+          "type": "text"
+        },
+        {
+          "slug": "hero_category",
+          "label": "Hero · Kategorie",
+          "type": "string"
+        },
+        {
+          "slug": "hero_title",
+          "label": "Hero · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "hero_description",
+          "label": "Hero · Beschreibung",
+          "type": "text"
+        },
+        {
+          "slug": "hero_duration",
+          "label": "Hero · Dauer / Format",
+          "type": "string"
+        },
+        {
+          "slug": "hero_price",
+          "label": "Hero · Preis",
+          "type": "string"
+        },
+        {
+          "slug": "hero_note",
+          "label": "Hero · Notiz",
+          "type": "text"
+        },
+        {
+          "slug": "hero_image",
+          "label": "Hero · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "hero_cta_text",
+          "label": "Hero · Button-Text",
+          "type": "string"
+        },
+        {
+          "slug": "hero_cta_href",
+          "label": "Hero · Button-Link",
+          "type": "string"
+        },
+        {
+          "slug": "price_list",
+          "label": "Preisliste",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "label",
+                "type": "string",
+                "label": "Leistung"
+              },
+              {
+                "slug": "value",
+                "type": "string",
+                "label": "Preis"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "narrative_title",
+          "label": "Abschnitt · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "narrative_body",
+          "label": "Abschnitt · Text",
+          "type": "text"
+        },
+        {
+          "slug": "narrative_image",
+          "label": "Abschnitt · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "narrative_bullet_groups",
+          "label": "Abschnitt · Bullet-Gruppen",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "heading",
+                "type": "string",
+                "label": "Überschrift"
+              },
+              {
+                "slug": "items",
+                "type": "text",
+                "label": "Punkte (eine pro Zeile)"
+              },
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "gallery",
+          "label": "Galerie",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 40,
+            "subFields": [
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild"
+              },
+              {
+                "slug": "alt",
+                "type": "string",
+                "label": "Alt-Text (Bildbeschreibung)",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "process_steps",
+          "label": "Ablaufschritte",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "number",
+                "type": "string",
+                "label": "Nummer"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "description",
+                "type": "text",
+                "label": "Beschreibung"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "quote_text",
+          "label": "Zitat · Text",
+          "type": "text"
+        },
+        {
+          "slug": "quote_attribution",
+          "label": "Zitat · Quelle",
+          "type": "string"
+        },
+        {
+          "slug": "quote_image",
+          "label": "Zitat · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "testimonials",
+          "label": "Stimmen (Testimonials)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 12,
+            "subFields": [
+              {
+                "slug": "quote",
+                "type": "text",
+                "label": "Zitat"
+              },
+              {
+                "slug": "name",
+                "type": "string",
+                "label": "Name"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
+            ]
+          }
+        },
+        {
+          "slug": "bio_paragraphs",
+          "label": "Bio · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "practitioner",
+          "label": "Begleitung (team-slug)",
+          "type": "string"
+        },
+        {
+          "slug": "brand_cta_title",
+          "label": "Marken-CTA · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "brand_cta_body",
+          "label": "Marken-CTA · Text",
+          "type": "text"
+        },
+        {
+          "slug": "brand_cta_text",
+          "label": "Marken-CTA · Button-Text",
+          "type": "string"
+        },
+        {
+          "slug": "brand_cta_href",
+          "label": "Marken-CTA · Button-Link",
+          "type": "string"
+        },
+        {
+          "slug": "faq_items",
+          "label": "Häufige Fragen (FAQ)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 20,
+            "subFields": [
+              {
+                "slug": "question",
+                "type": "string",
+                "label": "Frage"
+              },
+              {
+                "slug": "answer",
+                "type": "text",
+                "label": "Antwort"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "sections",
+          "label": "Sektionen / Blöcke (nur Block-Seiten)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 30,
+            "subFields": [
+              {
+                "slug": "type",
+                "type": "select",
+                "label": "Block-Typ — welcher Abschnitt ist das?",
+                "options": [
+                  "narrative",
+                  "featured",
+                  "overview_hero",
+                  "testimonials",
+                  "faq",
+                  "info_cards",
+                  "offer_cards",
+                  "value_cards",
+                  "gallery",
+                  "price_list"
+                ]
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow — kleiner Text über dem Titel"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild — hochladen"
+              },
+              {
+                "slug": "image_side",
+                "type": "select",
+                "label": "Bildseite — links oder rechts",
+                "options": [
+                  "left",
+                  "right"
+                ]
+              },
+              {
+                "slug": "tone",
+                "type": "select",
+                "label": "Farbton — Hintergrund des Blocks",
+                "options": [
+                  "light",
+                  "gold",
+                  "purple",
+                  "lavender",
+                  "spring-wood",
+                  "dark",
+                  "cherrywood"
+                ]
+              },
+              {
+                "slug": "context",
+                "type": "select",
+                "label": "Stimmen-Kontext (nur für Block-Typ „Stimmen / testimonials\")",
+                "options": [
+                  "praxis-hypnose",
+                  "praxis-aufstellungen",
+                  "praxis-numerologie",
+                  "praxis-fussreflex",
+                  "ausbildung",
+                  "jawort",
+                  "workshop-aktueller",
+                  "workshop-kalender",
+                  "home",
+                  "kontakt",
+                  "neuigkeiten",
+                  "praxisangebote-overview"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "slug": "practice_offers",
+          "label": "Angebots-Reihen",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "tone",
+                "type": "select",
+                "label": "Farbton",
+                "options": [
+                  "light",
+                  "dark"
+                ]
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild"
+              },
+              {
+                "slug": "primary_text",
+                "type": "string",
+                "label": "Button 1 Text"
+              },
+              {
+                "slug": "primary_href",
+                "type": "string",
+                "label": "Button 1 Link"
+              },
+              {
+                "slug": "secondary_text",
+                "type": "string",
+                "label": "Button 2 Text"
+              },
+              {
+                "slug": "secondary_href",
+                "type": "string",
+                "label": "Button 2 Link"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "newsletter_placeholder",
+          "label": "Newsletter Platzhalter",
+          "type": "string"
+        },
+        {
+          "slug": "newsletter_submit_text",
+          "label": "Newsletter Button",
+          "type": "string"
+        },
+        {
+          "slug": "claim_cta_text",
+          "label": "Claim Button-Text",
+          "type": "string"
+        },
+        {
+          "slug": "claim_cta_href",
+          "label": "Claim Button-Link",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "slug": "ausbildung_programs",
+      "label": "Ausbildung (Programme)",
+      "labelSingular": "Ausbildungsprogramm",
+      "description": "Die Ausbildungs-Seiten (Soulcoach Level 1 & 2, Übersicht, Infoabend). Texte, Karten und Bilder sind als beschriftete Felder editierbar.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "seo_title",
+          "label": "SEO · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "seo_description",
+          "label": "SEO · Beschreibung",
+          "type": "text"
+        },
+        {
+          "slug": "hero_eyebrow",
+          "label": "Hero · Eyebrow (kleiner Text oben)",
+          "type": "string"
+        },
+        {
+          "slug": "hero_title",
+          "label": "Hero · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "hero_subtitle",
+          "label": "Hero · Untertitel",
+          "type": "text"
+        },
+        {
+          "slug": "hero_primary_cta_text",
+          "label": "Hero · Button-Text",
+          "type": "string"
+        },
+        {
+          "slug": "hero_primary_cta_href",
+          "label": "Hero · Button-Link",
+          "type": "string"
+        },
+        {
+          "slug": "hero_image",
+          "label": "Hero · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "narrative_title",
+          "label": "Abschnitt 1 · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "narrative_body",
+          "label": "Abschnitt 1 · Text",
+          "type": "text"
+        },
+        {
+          "slug": "narrative_image",
+          "label": "Abschnitt 1 · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "outcomes_title",
+          "label": "Lernziele · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "outcomes",
+          "label": "Lernziele · Liste",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "description",
+                "type": "text",
+                "label": "Beschreibung"
+              },
+              {
+                "slug": "color",
+                "type": "select",
+                "label": "Farbe",
+                "options": [
+                  "gold",
+                  "aurora",
+                  "raspberry",
+                  "lavender"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "slug": "stage_cards",
+          "label": "Stufen-Karten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild"
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "cta_text",
+                "type": "string",
+                "label": "Button-Text"
+              },
+              {
+                "slug": "cta_href",
+                "type": "string",
+                "label": "Link (z. B. /kontakt)"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "narrative2_title",
+          "label": "Abschnitt 2 · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "narrative2_body",
+          "label": "Abschnitt 2 · Text",
+          "type": "text"
+        },
+        {
+          "slug": "narrative2_image",
+          "label": "Abschnitt 2 · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "lehrerin_eyebrow",
+          "label": "Lehrerin · Eyebrow",
+          "type": "string"
+        },
+        {
+          "slug": "lehrerin_title",
+          "label": "Lehrerin · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "lehrerin_body",
+          "label": "Lehrerin · Text",
+          "type": "text"
+        },
+        {
+          "slug": "lehrerin_image",
+          "label": "Lehrerin · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "lehrerin_paragraphs",
+          "label": "Lehrerin · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "about_image",
+          "label": "Über-uns-Band · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "about_paragraphs",
+          "label": "Über uns · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "info_cards",
+          "label": "Info-Karten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "schedule_caption",
+          "label": "Termin-Hinweis",
+          "type": "text"
+        },
+        {
+          "slug": "testimonials",
+          "label": "Stimmen (Testimonials)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 12,
+            "subFields": [
+              {
+                "slug": "quote",
+                "type": "text",
+                "label": "Zitat"
+              },
+              {
+                "slug": "name",
+                "type": "string",
+                "label": "Name"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
+            ]
+          }
+        },
+        {
+          "slug": "teacher",
+          "label": "Lehrperson (team-slug)",
+          "type": "string"
+        },
+        {
+          "slug": "faq_items",
+          "label": "Häufige Fragen (FAQ)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 20,
+            "subFields": [
+              {
+                "slug": "question",
+                "type": "string",
+                "label": "Frage"
+              },
+              {
+                "slug": "answer",
+                "type": "text",
+                "label": "Antwort"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "infoanlass_eyebrow",
+          "label": "Infoanlass · Eyebrow",
+          "type": "string"
+        },
+        {
+          "slug": "infoanlass_title",
+          "label": "Infoanlass · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "infoanlass_body",
+          "label": "Infoanlass · Text",
+          "type": "text"
+        },
+        {
+          "slug": "agenda_items",
+          "label": "Agenda · Punkte",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 12,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "sections",
+          "label": "Sektionen / Blöcke (nur Übersichts-Seiten)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 30,
+            "subFields": [
+              {
+                "slug": "type",
+                "type": "select",
+                "label": "Block-Typ — welcher Abschnitt ist das?",
+                "options": [
+                  "hero",
+                  "narrative",
+                  "stages",
+                  "outcomes",
+                  "lehrerin",
+                  "uquote",
+                  "about",
+                  "newsletter"
+                ]
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow — kleiner Text über dem Titel"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild — hochladen"
+              },
+              {
+                "slug": "image_side",
+                "type": "select",
+                "label": "Bildseite — links oder rechts",
+                "options": [
+                  "left",
+                  "right"
+                ]
+              },
+              {
+                "slug": "tone",
+                "type": "select",
+                "label": "Farbton — Hintergrund des Blocks",
+                "options": [
+                  "light",
+                  "gold",
+                  "purple",
+                  "lavender",
+                  "spring-wood",
+                  "dark"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "workshops",
+      "label": "Workshops & Kurse",
+      "labelSingular": "Workshop",
+      "description": "Workshops & Kurse. Lege einen neuen Workshop als Eintrag an (mit Datum) — er erscheint automatisch im Kalender und in den «Nächste Kurse»-Karten.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Titel",
+          "type": "string"
+        },
+        {
+          "slug": "date",
+          "label": "Datum",
+          "type": "datetime"
+        },
+        {
+          "slug": "color",
+          "label": "Kalenderfarbe",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "raspberry",
+              "lavender",
+              "fire"
+            ]
+          }
+        },
+        {
+          "slug": "card_image",
+          "label": "Kalenderkarte · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "card_eyebrow",
+          "label": "Kalenderkarte · Eyebrow",
+          "type": "string"
+        },
+        {
+          "slug": "card_title",
+          "label": "Kalenderkarte · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "card_description",
+          "label": "Kalenderkarte · Text",
+          "type": "text"
+        },
+        {
+          "slug": "card_duration",
+          "label": "Kalenderkarte · Dauer",
+          "type": "string"
+        },
+        {
+          "slug": "hero_description",
+          "label": "Hero · Beschreibung",
+          "type": "text"
+        },
+        {
+          "slug": "hero_price",
+          "label": "Preis (Hero & Kalenderkarte)",
+          "type": "string"
+        },
+        {
+          "slug": "hero_image",
+          "label": "Hero · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "category_meta",
+          "label": "Meta · Kategorie",
+          "type": "string"
+        },
+        {
+          "slug": "duration_meta",
+          "label": "Meta · Dauer",
+          "type": "string"
+        },
+        {
+          "slug": "info_cards",
+          "label": "Info-Karten (Wann / Wo / Für wen)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "narrative_title",
+          "label": "Abschnitt · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "narrative_body",
+          "label": "Abschnitt · Text",
+          "type": "text"
+        },
+        {
+          "slug": "narrative_image",
+          "label": "Abschnitt · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "narrative_bullet_groups",
+          "label": "Abschnitt · Bullet-Gruppen",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "heading",
+                "type": "string",
+                "label": "Überschrift"
+              },
+              {
+                "slug": "items",
+                "type": "text",
+                "label": "Punkte (eine pro Zeile)"
+              },
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "deep_paragraphs",
+          "label": "Vertiefung · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "about_image",
+          "label": "Über-uns-Band · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "about_paragraphs",
+          "label": "Über uns · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "testimonials",
+          "label": "Stimmen (Testimonials)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 12,
+            "subFields": [
+              {
+                "slug": "quote",
+                "type": "text",
+                "label": "Zitat"
+              },
+              {
+                "slug": "name",
+                "type": "string",
+                "label": "Name"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
+            ]
+          }
+        },
+        {
+          "slug": "faq_items",
+          "label": "Häufige Fragen (FAQ)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 20,
+            "subFields": [
+              {
+                "slug": "question",
+                "type": "string",
+                "label": "Frage"
+              },
+              {
+                "slug": "answer",
+                "type": "text",
+                "label": "Antwort"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "category_pills",
+          "label": "Kategorie-Filter",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 10,
+            "subFields": [
+              {
+                "slug": "label",
+                "type": "string",
+                "label": "Filter-Label"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "description",
+                "type": "text",
+                "label": "Beschreibung"
+              },
+              {
+                "slug": "active",
+                "type": "boolean",
+                "label": "Standard aktiv"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "sections",
+          "label": "Sektionen / Blöcke (nur Block-Seiten)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 30,
+            "subFields": [
+              {
+                "slug": "type",
+                "type": "select",
+                "label": "Block-Typ — welcher Abschnitt ist das?",
+                "options": [
+                  "hero",
+                  "narrative",
+                  "about",
+                  "deep",
+                  "featured",
+                  "newsletter"
+                ]
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow — kleiner Text über dem Titel"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild — hochladen"
+              },
+              {
+                "slug": "image_side",
+                "type": "select",
+                "label": "Bildseite — links oder rechts",
+                "options": [
+                  "left",
+                  "right"
+                ]
+              },
+              {
+                "slug": "tone",
+                "type": "select",
+                "label": "Farbton — Hintergrund des Blocks",
+                "options": [
+                  "light",
+                  "gold",
+                  "purple",
+                  "lavender",
+                  "spring-wood",
+                  "dark"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "pages",
+      "label": "Seiten",
+      "labelSingular": "Seite",
+      "description": "Die einzelnen Seiten (Start, Über uns, Kontakt, News, Übersichten). Jede Liste/Karte ist ein beschriftetes Feld.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "seo_title",
+          "label": "SEO Titel",
+          "type": "string"
+        },
+        {
+          "slug": "seo_description",
+          "label": "SEO Beschreibung",
+          "type": "text"
+        },
+        {
+          "slug": "hero_eyebrow",
+          "label": "Hero Eyebrow",
+          "type": "string"
+        },
+        {
+          "slug": "hero_title",
+          "label": "Hero Titel",
+          "type": "string"
+        },
+        {
+          "slug": "hero_subtitle",
+          "label": "Hero Untertitel",
+          "type": "text"
+        },
+        {
+          "slug": "hero_image",
+          "label": "Hero Bild",
+          "type": "image"
+        },
+        {
+          "slug": "hero_primary_cta_text",
+          "label": "Primärer CTA Text",
+          "type": "string"
+        },
+        {
+          "slug": "hero_primary_cta_href",
+          "label": "Primärer CTA Link",
+          "type": "string"
+        },
+        {
+          "slug": "hero_secondary_cta_text",
+          "label": "Sekundärer CTA Text",
+          "type": "string"
+        },
+        {
+          "slug": "hero_secondary_cta_href",
+          "label": "Sekundärer CTA Link",
+          "type": "string"
+        },
+        {
+          "slug": "hero_paragraphs",
+          "label": "Hero · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "sections",
+          "label": "Sektionen (Blöcke)",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 30,
+            "subFields": [
+              {
+                "slug": "type",
+                "type": "select",
+                "label": "Block-Typ — welcher Abschnitt ist das?",
+                "options": [
+                  "narrative",
+                  "featured",
+                  "overview_hero",
+                  "testimonials",
+                  "faq",
+                  "info_cards",
+                  "offer_cards",
+                  "value_cards"
+                ]
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow — kleiner Text über dem Titel"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild — hochladen"
+              },
+              {
+                "slug": "image_side",
+                "type": "select",
+                "label": "Bildseite — links oder rechts",
+                "options": [
+                  "left",
+                  "right"
+                ]
+              },
+              {
+                "slug": "tone",
+                "type": "select",
+                "label": "Farbton — Hintergrund des Blocks",
+                "options": [
+                  "light",
+                  "gold",
+                  "purple",
+                  "lavender",
+                  "spring-wood",
+                  "dark",
+                  "cherrywood"
+                ]
+              },
+              {
+                "slug": "context",
+                "type": "select",
+                "label": "Stimmen-Kontext (nur für Block-Typ „Stimmen / testimonials\")",
+                "options": [
+                  "praxis-hypnose",
+                  "praxis-aufstellungen",
+                  "praxis-numerologie",
+                  "praxis-fussreflex",
+                  "ausbildung",
+                  "jawort",
+                  "workshop-aktueller",
+                  "workshop-kalender",
+                  "home",
+                  "kontakt",
+                  "neuigkeiten",
+                  "praxisangebote-overview"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "slug": "team_image_1",
+          "label": "Teamfoto 1 · Theresia",
+          "type": "image"
+        },
+        {
+          "slug": "team_image_2",
+          "label": "Teamfoto 2 · Axel",
+          "type": "image"
+        },
+        {
+          "slug": "team_image_3",
+          "label": "Teamfoto 3 · Marlen",
+          "type": "image"
+        },
+        {
+          "slug": "value_cards",
+          "label": "Werte-Karten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "icon",
+                "type": "string",
+                "label": "Icon-Pfad (z. B. /images/ebene/Ebene_2.svg)"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "outcomes",
+          "label": "Lernziele",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "description",
+                "type": "text",
+                "label": "Beschreibung"
+              },
+              {
+                "slug": "color",
+                "type": "select",
+                "label": "Farbe"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "stage_cards",
+          "label": "Stufen-Karten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "icon",
+                "type": "string",
+                "label": "Icon-Pfad"
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "offer_cards",
+          "label": "Angebots-Karten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "icon",
+                "type": "string",
+                "label": "Icon-Pfad"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "description",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "cta_text",
+                "type": "string",
+                "label": "Button-Text"
+              },
+              {
+                "slug": "cta_href",
+                "type": "string",
+                "label": "Link"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
+            ]
+          }
+        },
+        {
+          "slug": "faq_items",
+          "label": "Häufige Fragen",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 20,
+            "subFields": [
+              {
+                "slug": "question",
+                "type": "string",
+                "label": "Frage"
+              },
+              {
+                "slug": "answer",
+                "type": "text",
+                "label": "Antwort"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "newsletterhero_paragraphs",
+          "label": "Newsletter-Hero · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "newsletter_placeholder",
+          "label": "Newsletter Platzhalter",
+          "type": "string"
+        },
+        {
+          "slug": "newsletter_submit_text",
+          "label": "Newsletter Button",
+          "type": "string"
+        },
+        {
+          "slug": "contact_recipient",
+          "label": "Kontakt Empfänger-E-Mail",
+          "type": "string"
+        },
+        {
+          "slug": "contact_submit_text",
+          "label": "Kontakt Button",
+          "type": "string"
+        },
+        {
+          "slug": "contact_email_placeholder",
+          "label": "Kontakt E-Mail Platzhalter",
+          "type": "string"
+        },
+        {
+          "slug": "contact_firstname_placeholder",
+          "label": "Kontakt Vorname Platzhalter",
+          "type": "string"
+        },
+        {
+          "slug": "contact_lastname_placeholder",
+          "label": "Kontakt Nachname Platzhalter",
+          "type": "string"
+        },
+        {
+          "slug": "contact_message_placeholder",
+          "label": "Kontakt Nachricht Platzhalter",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "slug": "legal",
+      "label": "Rechtliches",
+      "labelSingular": "Rechtstext",
+      "description": "Rechtstexte (AGB, Datenschutz, Impressum). Der ganze Text steht im Feld «Inhalt (Markdown)».",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Titel",
+          "type": "string"
+        },
+        {
+          "slug": "last_updated",
+          "label": "Aktualisiert am",
+          "type": "datetime"
+        },
+        {
+          "slug": "body_markdown",
+          "label": "Inhalt (Markdown)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "slug": "info_cards",
+      "label": "Info-Karten",
+      "labelSingular": "Info-Karte",
+      "description": "Kleine Info-Karten (Titel + Text) für «Info-Karten»-Blöcke. Jede Karte hat einen «Seite / Kontext»-Tag, der bestimmt, in welchem Block sie erscheint — füge auf einer Seite einen Info-Karten-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "eyebrow",
+          "label": "Titel (klein)",
+          "type": "string"
+        },
+        {
+          "slug": "body",
+          "label": "Text",
+          "type": "text"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "offer_cards",
+      "label": "Angebots-Karten",
+      "labelSingular": "Angebots-Karte",
+      "description": "Angebots-Karten (Icon + Titel + Text + Button) für «Angebots-Karten»-Blöcke. Jede Karte hat einen «Seite / Kontext»-Tag — füge auf einer Seite einen Angebots-Karten-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "icon",
+          "label": "Icon / Bild",
+          "type": "image"
+        },
+        {
+          "slug": "title",
+          "label": "Titel",
+          "type": "string"
+        },
+        {
+          "slug": "description",
+          "label": "Text",
+          "type": "text"
+        },
+        {
+          "slug": "cta_text",
+          "label": "Button-Text",
+          "type": "string"
+        },
+        {
+          "slug": "cta_href",
+          "label": "Button-Link",
+          "type": "string"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "value_cards",
+      "label": "Wert-Karten",
+      "labelSingular": "Wert-Karte",
+      "description": "Wert-Karten (Icon + Titel + Text) für «Wert-Karten»-Blöcke. Jede Karte hat einen «Seite / Kontext»-Tag — füge auf einer Seite einen Wert-Karten-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "icon",
+          "label": "Icon / Bild",
+          "type": "image"
+        },
+        {
+          "slug": "title",
+          "label": "Titel",
+          "type": "string"
+        },
+        {
+          "slug": "body",
+          "label": "Text",
+          "type": "text"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "faq",
+      "label": "FAQ (Häufige Fragen)",
+      "labelSingular": "FAQ-Eintrag",
+      "description": "Frage-Antwort-Paare für «FAQ»-Blöcke. Jeder Eintrag hat einen «Seite / Kontext»-Tag, der bestimmt, auf welcher Seite er erscheint — füge auf einer Seite einen FAQ-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "question",
+          "label": "Frage",
+          "type": "string"
+        },
+        {
+          "slug": "answer",
+          "label": "Antwort",
+          "type": "text"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    }
+  ]
+}

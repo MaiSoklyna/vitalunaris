@@ -6,6 +6,8 @@ import OfferCard from '@molecules/OfferCard.astro';
 interface Offer {
   icon?: string;
   iconAlt?: string;
+  /** When true, render `icon` as a full card-cover photo instead of a floating illustration. */
+  imageIsCover?: boolean;
   title: string;
   description: string;
   price?: string;
