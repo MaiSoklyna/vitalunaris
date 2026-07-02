@@ -15,6 +15,8 @@ interface Props {
   ctaHref?: string;
   image: string;
   imageAlt?: string;
+  /** object-position focal point for the mobile (cropped) hero image. */
+  imageFocus?: string;
 }
 
 const {
@@ -28,10 +30,11 @@ const {
   ctaHref = '/kontakt',
   image,
   imageAlt = '',
+  imageFocus = 'center 30%',
 } = Astro.props;
 ---
 
-<section class="course-hero">
+<section class="course-hero" style={`--hero-focus: ${imageFocus};`}>
   <div class="course-hero__inner">
     <div class="course-hero__content">
       <Heading variant="eyebrow" class="course-hero__category">{categoryMeta}</Heading>
@@ -58,15 +61,15 @@ const {
      ============================================================ */
 
   /* ----- SECTION (mirrors Hero — top padding clears the fixed nav) ----- */
-  .course-hero { background: var(--c-spring-wood); padding: 72px 20px 64px; }
-  @media (min-width: 768px)  { .course-hero { padding: 120px 32px 80px; } }
-  @media (min-width: 1280px) { .course-hero { padding: 80px 60px 80px; } }
+  .course-hero { background: var(--c-spring-wood); padding: 104px 20px 64px; }
+  @media (min-width: 768px)  { .course-hero { padding: 140px 32px 80px; } }
+  @media (min-width: 1280px) { .course-hero { padding: 140px 60px 80px; } }
   @media (min-width: 1920px) { .course-hero { padding: 175px 90px 90px; } }
 
   /* ----- INNER ----- */
   .course-hero__inner {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 40px;
     align-items: center;
   }
@@ -101,7 +104,12 @@ const {
     justify-content: center;
     align-items: flex-start;
     gap: 26.67px;
+    min-width: 0;            /* allow column to shrink below content min-width */
   }
+  /* Long German words must wrap instead of forcing the column past the viewport */
+  .course-hero__category,
+  .course-hero__title,
+  .course-hero__desc { overflow-wrap: break-word; }
   @media (min-width: 1920px) {
     .course-hero__content {
       gap: 40px;
@@ -176,6 +184,11 @@ const {
     width: 100%;
   }
   @media (min-width: 1024px) { .course-hero__media { aspect-ratio: 1 / 1; } }
+  /* Mobile: ~half height, anchored to the top so faces are never cut off */
+  @media (max-width: 767.98px) {
+    .course-hero__media { aspect-ratio: 8 / 5; }
+    .course-hero__image { object-position: var(--hero-focus, center 30%); }
+  }
   @media (min-width: 1920px) {
     .course-hero__media {
       width: 858px;

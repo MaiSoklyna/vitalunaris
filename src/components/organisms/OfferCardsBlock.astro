@@ -41,11 +41,13 @@ const { eyebrow, title, intro, offers } = Astro.props;
 </section>
 
 <style>
-  .offer-block { background: var(--c-spring-wood); padding: 60px 20px; }
-  @media (min-width: 768px)  { .offer-block { padding: 60px 32px; } }
-  @media (min-width: 1024px) { .offer-block { padding: 80px 40px; } }
+  /* Horizontal insets come from .container-x on the inner (like every other
+     section); only vertical padding here, so the cards align with the rest. */
+  .offer-block { background: var(--c-spring-wood); padding: 60px 0; }
+  @media (min-width: 768px)  { .offer-block { padding: 60px 0; } }
+  @media (min-width: 1024px) { .offer-block { padding: 80px 0; } }
   @media (min-width: 1280px) { .offer-block { padding: 60px 0; } }
-  @media (min-width: 1920px) { .offer-block { padding: 90px; } }
+  @media (min-width: 1920px) { .offer-block { padding: 90px 0; } }
 
   /* Header — Figma spec: centered, gap 26.67px, H1 60/69 Cherrywood, P1 16/150 Cherrywood */
   .offer-block__header {

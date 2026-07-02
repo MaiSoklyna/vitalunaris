@@ -20,3 +20,6 @@ data.db-wal
 
 # EmDash migration DB backups (local only)
 data.db.bak-*
+
+# Alchemy Labs credentials
+.env.alchemy*

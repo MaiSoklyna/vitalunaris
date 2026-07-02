@@ -47,7 +47,9 @@
       "Bash(ls -la .claude/commands/)",
       "Bash(which stone *)",
       "Bash(grep -rli \"stone\" .claude/ .mcp.json package.json)",
-      "PowerShell(git commit *)"
+      "PowerShell(git commit *)",
+      "mcp__claude_ai_Figma__get_screenshot",
+      "mcp__claude_ai_Figma__get_design_context"
     ]
   }
 }

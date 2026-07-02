@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 340 1280 110" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 328 1280 122" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
   <ellipse cx="640" cy="523" rx="700" ry="180" fill="none" stroke="#601D1D" stroke-width="1.33333" />
-  <circle cx="213"  cy="382" r="11" fill="#8E84B6" />
-  <circle cx="640"  cy="348" r="11" fill="#9F4B67" />
-  <circle cx="1067" cy="382" r="11" fill="#87C6B3" />
+  <circle cx="213"  cy="380" r="11" fill="#8E84B6" />
+  <circle cx="640"  cy="343" r="11" fill="#9F4B67" />
+  <circle cx="1067" cy="380" r="11" fill="#87C6B3" />
 </svg>

@@ -4,6 +4,7 @@ import NarrativeBlock from '@organisms/NarrativeBlock.astro';
 import PhotoStrip from '@molecules/PhotoStrip.astro';
 import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import PersonBio from '@organisms/PersonBio.astro';
+import CalendarBooking from '@organisms/CalendarBooking.astro';
 import Faq from '@organisms/Faq.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
@@ -24,28 +25,10 @@ const prices = d.price_list?.length ? d.price_list : [
 ];
 
 const galleryPhotos = (d.gallery?.length ? d.gallery.map((g: any) => ({ src: imageUrl(g.image), alt: g.alt || '' })) : [
-  { src: '/images/cards/card-1.jpg', alt: 'Freie Trauung — Impression' },
-  { src: '/images/cards/card-2.jpg', alt: 'Zeremonie im Freien' },
-  { src: '/images/cards/card-3.jpg', alt: 'Festlicher Moment' },
-  { src: '/images/cards/card-4.jpg', alt: 'Freie Trauung — Umarmung' },
-  { src: '/images/cards/card-5.jpg', alt: 'Redner während der Zeremonie' },
-  { src: '/images/cards/card-6.jpg', alt: 'Zeremonie im Innenraum' },
-  { src: '/images/cards/card-7.jpg', alt: 'Gäste feiern mit' },
-  { src: '/images/cards/card-8.jpg', alt: 'Gemeinsame Freude' },
-  { src: '/images/cards/card-9.jpg', alt: 'Berührender Moment der Feier' },
-  { src: '/images/cards/card-10.jpg', alt: 'Brautpaar beim Jawort' },
-  { src: '/images/cards/card-11.jpg', alt: 'Feierliche Zeremonie' },
-  { src: '/images/cards/card-12.jpg', alt: 'Glückliches Paar' },
-  { src: '/images/cards/card-13.jpg', alt: 'Trauung unter freiem Himmel' },
-  { src: '/images/cards/card-14.jpg', alt: 'Emotionaler Augenblick' },
-  { src: '/images/cards/card-15.jpg', alt: 'Gemeinsamer Anstoss' },
-  { src: '/images/cards/card-16.jpg', alt: 'Festlich geschmückter Ort' },
-  { src: '/images/cards/card-17.jpg', alt: 'Rede während der Feier' },
-  { src: '/images/cards/card-18.jpg', alt: 'Familie und Freunde feiern' },
-  { src: '/images/cards/card-19.jpg', alt: 'Innige Umarmung' },
-  { src: '/images/cards/card-20.jpg', alt: 'Kinderwillkommensfeier' },
-  { src: '/images/cards/card-21.jpg', alt: 'Ritual während der Zeremonie' },
-  { src: '/images/cards/card-22.jpg', alt: 'Unvergesslicher Feiermoment' },
+  { src: '/images/cards/jawort-svea-tafel.jpg', alt: 'Willkommensfeier — Begrüssungstafel' },
+  { src: '/images/cards/jawort-blumen.jpg', alt: 'Blumengestecke zur Feier' },
+  { src: '/images/cards/jawort-urkunde.jpg', alt: 'Unterzeichnung der Willkommensurkunde' },
+  { src: '/images/cards/jawort-familie.jpg', alt: 'Familie bei der Kinderwillkommensfeier' },
 ]) as Array<{ src: string; alt: string }>;
 
 const _ts = await getTestimonials('jawort');
@@ -95,7 +78,7 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
         </div>
 
         <div class="jw-hero__cta">
-          <Button href="/kontakt" variant="primary" size="lg">Kostenloses Kennenlerngespräch anfragen</Button>
+          <Button href="#termin" variant="primary" size="lg">Kennenlerngespräch anfragen</Button>
         </div>
 
         <dl class="jw-hero__prices">
@@ -122,9 +105,9 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
     imageAlt=""
     eyebrow={nar1.eyebrow || 'Freie Trauung'}
     title={nar1.title || 'Was ist eine freie Trauung?'}
-    body={nl2br(nar1.body) || `Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt. Es gibt keine starren Vorgaben, keine festen Abläufe und keine Konventionen, die erfüllt werden müssen.<br /><br />Ob auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe.`}
-    ctaText="Zeremonie anfragen"
-    ctaHref="/kontakt"
+    body={nl2br(nar1.body) || `Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt. Es gibt keine starren Vorgaben, keine festen Abläufe und keine Konventionen, die erfüllt werden müssen. Gemeinsam gestalten wir eine Zeremonie, die sich für euch richtig anfühlt.<br /><br />Ob auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe.`}
+    ctaText="Kennenlerngespräch anfragen"
+    ctaHref="#termin"
   />
 
   {/* ===================== Gallery ===================== */}
@@ -138,9 +121,9 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
     imageAlt=""
     eyebrow={nar2.eyebrow || 'Kinderwillkommensfeier'}
     title={nar2.title || 'Was ist eine Kinderwillkommensfeier?'}
-    body={nl2br(nar2.body) || `Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen — nicht nach Tradition oder Vorgabe, sondern so, wie es zu euch passt.<br /><br />Mit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben. Eltern, Grosseltern, Gotti und Götti, Geschwister oder Freunde können aktiv einbezogen werden.<br /><br />Denn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein.`}
-    ctaText="Zeremonie anfragen"
-    ctaHref="/kontakt"
+    body={nl2br(nar2.body) || `Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen — nicht nach Tradition oder Vorgabe, sondern so, wie es zu euch passt.<br /><br />Mit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben. Eltern, Grosseltern, Gotti und Götti, Geschwister oder Freunde können aktiv einbezogen werden — ein gemeinsamer Willkommensgruss, voller Liebe und guter Wünsche für seinen Lebensweg.<br /><br />Denn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein.`}
+    ctaText="Kennenlerngespräch anfragen"
+    ctaHref="#termin"
   />
 
   {/* ===================== Testimonials ===================== */}
@@ -153,6 +136,14 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
     paragraphs={bioParagraphs}
     image={imageUrl(bio.image) || '/images/placeholder/Placeholder-8.jpg'}
     imageSide="right"
+  />
+
+  {/* ===================== Termin buchen ===================== */}
+  <CalendarBooking
+    slug="jawort-erstgespraech"
+    eyebrow="Kennenlerngespräch"
+    title="Buche dein kostenloses Kennenlerngespräch"
+    intro="45 Minuten, online und unverbindlich. Wir lernen uns in Ruhe kennen und sprechen über eure Zeremonie."
   />
 
   {/* ===================== FAQ ===================== */}
@@ -179,7 +170,7 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
 
   .jw-hero__inner {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 40px;
     align-items: center;
     max-width: 1740px;
@@ -200,7 +191,12 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
     align-items: flex-start;
     justify-content: center;
     gap: 24px;
+    min-width: 0;            /* allow column to shrink below content min-width */
   }
+  /* Long German words must wrap instead of forcing the column past the viewport */
+  .jw-hero__eyebrow,
+  .jw-hero__title,
+  .jw-hero__desc { overflow-wrap: break-word; }
   @media (min-width: 1280px) { .jw-hero__content { gap: 28px; } }
   @media (min-width: 1920px) { .jw-hero__content { gap: 32px; } }
 
@@ -255,7 +251,18 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
     color: var(--c-cherrywood);
   }
 
-  .jw-hero__cta { align-self: flex-start; }
+  /* Mobile: stretch the CTA full-width and let the long label wrap so it
+     never runs past the screen edge on narrow phones (<=390px). */
+  .jw-hero__cta { align-self: stretch; width: 100%; }
+  .jw-hero__cta :global(.btn) {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .jw-hero__cta { align-self: flex-start; width: auto; }
+    .jw-hero__cta :global(.btn) { width: auto; white-space: nowrap; }
+  }
 
   /* ----- fine-print notes ----- */
   .jw-hero__notes {
@@ -283,5 +290,10 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
     background: var(--c-pale-gold);
   }
   @media (min-width: 1024px) { .jw-hero__media { aspect-ratio: 4 / 5; align-self: stretch; } }
+  /* Mobile: ~half height, anchored to the top so faces are never cut off */
+  @media (max-width: 767.98px) {
+    .jw-hero__media { aspect-ratio: 8 / 5; }
+    .jw-hero__image { object-position: center 30%; }
+  }
   .jw-hero__image { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style>

@@ -14,7 +14,7 @@ const FALLBACK_COLUMNS = [
     title: 'Ausbildung',
     links: [
       { href: '/ausbildung/uebersicht', label: 'Übersicht' },
-      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulcoach Level 1' },
+      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulwork Level 1' },
       { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach Level 2' },
       { href: '/ausbildung/infoanlaesse', label: 'Infoanlässe' },
     ],
@@ -23,7 +23,6 @@ const FALLBACK_COLUMNS = [
     title: 'Kurse',
     links: [
       { href: '/workshops-kurse/kalender-uebersicht', label: 'Kalender & Übersicht' },
-      { href: '/workshops-kurse/aktueller-monatsworkshop', label: 'Monatsworkshop' },
     ],
   },
   {
@@ -174,6 +173,17 @@ const telHref = (p: string) => 'tel:' + String(p).replace(/[^+0-9]/g, '');
           {legalLinks.map(({ href, label }) => (
             <li><a href={href} class="footer__link">{label}</a></li>
           ))}
+          <li>
+            <a
+              href="https://alchemy.zuerich/?utm_source=vitalunaris.ch&utm_medium=footer&utm_campaign=website-credit"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer__link footer__alchemy"
+            >
+              Destilliert von Alchemy Zürich
+              <img src="/logo/AZ_Symbol_negativ.svg" alt="" aria-hidden="true" class="footer__alchemy-icon" />
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -433,7 +443,21 @@ const telHref = (p: string) => 'tel:' + String(p).replace(/[^+0-9]/g, '');
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 12px 26.67px;
+  }
+
+  /* Alchemy Zürich credit — "Destilliert von" + the spark symbol */
+  .footer__alchemy {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer__alchemy-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    flex-shrink: 0;
   }
   @media (min-width: 768px) { .footer__legal { gap: 12px 56px; } }
   @media (min-width: 1920px) { .footer__legal .footer__link { font-size: 23px; line-height: 150%; } }

@@ -24,14 +24,13 @@ interface NavLink {
 
 const FALLBACK_NAV: NavLink[] = [
   {
-    href: '/ausbildung',
+    href: '/uebersicht',
     label: 'Systemische Ausbildung',
     children: [
       { href: '/ausbildung/uebersicht', label: 'Übersicht' },
-      { href: '/ausbildung/soulcoach-level-1', label: 'Systemischer Soulcoach – Level 1' },
-      { href: '/ausbildung/soulcoach-level-2', label: 'Systemischer Soulcoach – Level 2' },
-      // Hidden until the designer completes the content — re-add when the page exists.
-      // { href: '/ausbildung/begleitung-kreis', label: 'Begleitung & Kreis', disabled: true },
+      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulwork Level 1' },
+      { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach Level 2' },
+      { href: '/ausbildung/begleitung-kreis', label: 'Begleitung & Circle' },
       { href: '/ausbildung/infoanlaesse', label: 'Infoanlässe' },
     ],
   },
@@ -41,7 +40,6 @@ const FALLBACK_NAV: NavLink[] = [
     navigateOnClick: true,
     children: [
       { href: '/workshops-kurse/kalender-uebersicht', label: 'Kalender & Übersicht' },
-      { href: '/workshops-kurse/aktueller-monatsworkshop', label: 'Aktueller Monatsworkshop' },
     ],
   },
   {

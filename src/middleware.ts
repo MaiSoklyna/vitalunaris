@@ -292,7 +292,6 @@ const ADMIN_ENHANCE = `<script>(function(){
   var NOTES = {
     'ausbildung_programs/infoanlaesse':        WORKSHOP_CARDS,
     'workshops/kalender-uebersicht':           WORKSHOP_CARDS,
-    'workshops/aktueller-monatsworkshop':      WORKSHOP_CARDS,
     'workshops/soultap-gegen-angst':           WORKSHOP_CARDS,
     'workshops/vagusnerv-ruhe':                WORKSHOP_CARDS,
     'workshops/cool-down-for-christmas':       WORKSHOP_CARDS,

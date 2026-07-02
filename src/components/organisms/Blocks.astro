@@ -21,7 +21,6 @@ import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 import PersonBio from '@organisms/PersonBio.astro';
 import ClaimBlock from '@organisms/ClaimBlock.astro';
 import DarkCtaBlock from '@organisms/DarkCtaBlock.astro';
-import ContactForm from '@organisms/ContactForm.astro';
 import NewsletterHero from '@organisms/NewsletterHero.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
 import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
@@ -219,16 +218,16 @@ const sections = await Promise.all(
       );
     }
     case 'contact_form': {
+      // Mailto forms were replaced by the Alchemy Labs form (iframe). The URL is
+      // overridable per section via items.formSrc; falls back to the shared form.
       const cfg = parseJson(s.items);
+      const formSrc = cfg.formSrc || 'https://opus.alchemy.zuerich/api/f/eX1ELfx8zRe-Z6qYT4RayA/page';
       return (
-        <ContactForm
-          recipient={cfg.recipient}
-          emailPlaceholder={cfg.emailPlaceholder}
-          firstNamePlaceholder={cfg.firstNamePlaceholder}
-          lastNamePlaceholder={cfg.lastNamePlaceholder}
-          messagePlaceholder={cfg.messagePlaceholder}
-          submitText={cfg.submitText}
-        />
+        <section class="blk-contact">
+          <div class="blk-contact__inner">
+            <iframe class="blk-contact__frame" src={formSrc} title="Kontaktformular" loading="lazy"></iframe>
+          </div>
+        </section>
       );
     }
     default:
@@ -237,6 +236,20 @@ const sections = await Promise.all(
 })}
 
 <style>
+  /* Alchemy Labs contact form (iframe) rendered by the contact_form block. */
+  .blk-contact { background: var(--c-spring-wood); padding: 0 20px 64px; }
+  @media (min-width: 768px)  { .blk-contact { padding: 0 32px 90px; } }
+  @media (min-width: 1280px) { .blk-contact { padding: 0 60px 110px; } }
+  .blk-contact__inner { max-width: 642px; margin: 0 auto; }
+  .blk-contact__frame {
+    width: 100%;
+    height: 720px;
+    min-height: 560px;
+    border: 0;
+    display: block;
+    transition: height 200ms ease;
+  }
+
   /* Wrapper for the practice_offers block (offer-row cards). */
   .blk-offers { background: var(--c-spring-wood); padding: 8px 20px 60px; }
   @media (min-width: 768px)  { .blk-offers { padding: 8px 32px 80px; } }

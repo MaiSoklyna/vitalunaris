@@ -55,21 +55,50 @@ const pills = d.category_pills?.length ? d.category_pills : [
   },
 ];
 
-/* Calendar chips + "Nächste Kurse" cards both derive from the
-   EmDash `workshops` collection so they stay in sync with the schedule.
-   The collection also holds the two overview pages (aktueller-monatsworkshop,
-   kalender-uebersicht) which have no date — exclude those so only real,
-   dated workshops appear (and don't crowd out the first 3 cards). */
-const datedWorkshops = (workshopEntries ?? []).filter((e: any) => e.data?.date);
+/* Calendar datasets + "Nächste Kurse" cards derive from the EmDash `workshops`
+   collection so they stay in sync with the schedule. Dateless entries (overview
+   pages) are excluded so only real, dated workshops appear. */
+const datedWorkshops = (workshopEntries ?? []).filter((e) => e.data?.date);
 
-const calendarEvents = datedWorkshops.map((e: any) => ({
+const toCalEvent = (e) => ({
   date: e.data?.date,
   label: e.data?.title,
   color: e.data?.color,
   href: `/workshops-kurse/${e.id}`,
+});
+
+/* Map a workshop to a filter-pill category. Workshops carry no dedicated
+   `category` field, so we derive it from the `category_meta` label
+   ("MONATS-WORKSHOP | …", "HYPNOSE | …", etc.). */
+const categoryOf = (e) => {
+  const m = (e.data?.category_meta || '').toUpperCase();
+  if (m.includes('MONATS')) return 'Monats-Workshops';
+  if (m.includes('AUFSTELL')) return 'Systemisches Aufstellen';
+  if (m.includes('HYPNOSE')) return 'Hypnose';
+  if (m.includes('NUMEROLOG')) return 'Numerologie';
+  return null;
+};
+
+/* Infoanlässe aren't workshops (no checkout) — they live on the Infoabend page.
+   Listed here so they appear in the calendar under the "Infoanlässe" filter. */
+const infoEvents = [
+  { date: '2026-06-24', label: 'Infoabend Systemic Soulwork', color: 'lavender', href: '/ausbildung/infoanlaesse' },
+];
+
+/* One calendar dataset per filter pill: "Alle" shows every course + Infoanlass,
+   each named category shows only workshops whose `category` matches the pill. */
+const calendars = pills.map((p) => ({
+  category: p.label,
+  active: Boolean(p.active),
+  events:
+    p.label === 'Alle'
+      ? [...datedWorkshops.map(toCalEvent), ...infoEvents]
+      : p.label === 'Infoanlässe'
+        ? infoEvents
+        : datedWorkshops.filter((e) => categoryOf(e) === p.label).map(toCalEvent),
 }));
 
-const upcoming = datedWorkshops.slice(0, 3).map((e: any) => ({
+const upcoming = datedWorkshops.slice(0, 3).map((e) => ({
   image: imageUrl(e.data?.card_image),
   eyebrow: e.data?.card_eyebrow,
   title: e.data?.card_title,
@@ -111,13 +140,26 @@ const deepParas = (d.deep_paragraphs?.length ? d.deep_paragraphs.map((p: any) =>
   currentPath="/workshops-kurse/kalender-uebersicht"
 >
   <WorkshopsHero
-    logo="/logo/logo-compact.svg"
+    logo="/images/ebene/Ebene_2.svg"
     eyebrow={heroS.eyebrow || 'Workshops & Kurse'}
     title={heroS.title || `Tauche ein in die<br /><em>Systeme der Seele</em> mit<br />Theres und Axel`}
     subtitle={heroS.body || 'Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung.'}
     pills={pills}
   >
-    <WorkshopsCalendar slot="calendar" events={calendarEvents} />
+    <Fragment slot="calendar">
+      {calendars.map((c) => (
+        <div class="cal-panel" data-cal-category={c.category} hidden={!c.active}>
+          <WorkshopsCalendar
+            events={c.events}
+            emptyLabel={
+              c.category === 'Alle'
+                ? 'Aktuell sind keine Kurse geplant.'
+                : `Aktuell sind keine Kurse zur Kategorie ${c.category} geplant.`
+            }
+          />
+        </div>
+      ))}
+    </Fragment>
   </WorkshopsHero>
 
   {/* ===================== Nächste Kurse und Workshops ===================== */}

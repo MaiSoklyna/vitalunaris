@@ -73,8 +73,8 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     durationMeta={heroS.duration_meta || '24.06.2026 | 18.30 bis ca. 20.00 Uhr | Online'}
     price={heroS.price || 'Kostenlos :)'}
     ctaText={heroS.cta_text || 'Jetzt anmelden'}
-    ctaHref={heroS.cta_href || '/kontakt'}
-    image={imageUrl(heroS.image) || '/images/placeholder/Placeholder-12.jpg'}
+    ctaHref={heroS.cta_href || '#anmelden'}
+    image={imageUrl(heroS.image) || '/images/ausbildung/infoanlass-soulwork.jpg'}
   />
 
   <InfoCardsRow cards={infoCards} />
@@ -90,6 +90,27 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     bullets={agenda}
     body={nl2br(nar.body) || 'Der Online-Infoabend ist kostenlos und unverbindlich. Ich freue mich darauf, dich kennenzulernen.'}
   />
+
+  {/* ===================== Anmeldung — Alchemy form ===================== */}
+  <section class="info-anmeldung" id="anmelden">
+    <div class="info-anmeldung__inner">
+      <div class="info-anmeldung__head">
+        <Heading variant="eyebrow" class="info-anmeldung__eyebrow">Anmeldung</Heading>
+        <Heading level={2} variant="h1" class="info-anmeldung__title">Zum Infoabend anmelden</Heading>
+        <Text size="p1" class="info-anmeldung__intro">
+          Kostenlos und unverbindlich. Trag dich ein — du erhältst den Zoom-Link rechtzeitig per E-Mail.
+        </Text>
+      </div>
+      <div class="info-anmeldung__frame-wrap">
+        <iframe
+          class="info-anmeldung__frame"
+          src="https://opus.alchemy.zuerich/api/f/gNZatXNfROlxM1luEKAz5w/page"
+          title="Anmeldung Infoabend"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
 
   {/* ===================== Theresia & Axel Jansen — light, image right ===================== */}
   <section class="about">
@@ -130,6 +151,39 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   /* Info cards — body text in full black per design */
   :global(.info-cards .info-cards__body) {
     color: #000000;
+  }
+
+  /* ===================== Anmeldung — Alchemy form (iframe, Scribe auto-resizes) ===================== */
+  .info-anmeldung { background: var(--c-spring-wood); padding: 60px 20px; scroll-margin-top: 100px; }
+  @media (min-width: 768px)  { .info-anmeldung { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .info-anmeldung { padding: 90px 60px; } }
+
+  .info-anmeldung__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  .info-anmeldung__head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .info-anmeldung__eyebrow { color: var(--c-cherrywood); }
+  .info-anmeldung__title {
+    font-family: 'ES Park', serif; color: var(--c-cherrywood); font-weight: var(--weight-regular);
+    font-size: var(--h2-size); line-height: 1.1; margin: 0;
+  }
+  .info-anmeldung__intro {
+    font-family: 'ES Park', serif; color: var(--c-cherrywood); font-size: var(--p1-size);
+    line-height: 1.5; max-width: 52ch; margin: 0;
+  }
+  .info-anmeldung__frame-wrap { width: 100%; }
+  .info-anmeldung__frame {
+    width: 100%;
+    height: 760px;          /* sensible default before Scribe sizes it to the form */
+    min-height: 520px;
+    border: 0;
+    display: block;
+    transition: height 200ms ease;
   }
 
   /* ============================================================

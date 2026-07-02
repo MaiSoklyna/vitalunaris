@@ -3,6 +3,7 @@ import cloudflare from '@astrojs/cloudflare';
 import node from '@astrojs/node';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import emdash, { local } from 'emdash/astro';
 import { sqlite } from 'emdash/db';
@@ -30,6 +31,9 @@ export default defineConfig({
   integrations: [
     mdx(),
     react(),
+    sitemap({
+      i18n: { defaultLocale: 'de', locales: { de: 'de-CH' } },
+    }),
     emdash({
       database: useCloudflare
         ? d1({ binding: 'DB', session: 'auto' })

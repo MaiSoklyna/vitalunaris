@@ -1,0 +1,21 @@
+/* ES Park web font for cross-origin Alchemy form embeds.
+   Loaded by the hosted form page via style_config.fontUrl (customFontUrl).
+   The woff2 files are served with CORS (see public/_headers) so they load
+   cross-origin from opus.alchemy.zuerich. Root-relative URLs keep this
+   domain-agnostic (works on the workers.dev preview and the live domain). */
+@font-face {
+  font-family: 'ES Park';
+  src: url('/fonts/ESPark-Regular.woff2') format('woff2'),
+       url('/fonts/ESPark-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ES Park';
+  src: url('/fonts/ESPark-Italic.woff2') format('woff2'),
+       url('/fonts/ESPark-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}

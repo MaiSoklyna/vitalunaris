@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Blocks from '@organisms/Blocks.astro';
 import { getEmDashEntry } from 'emdash';
+import { imageUrl } from '@lib/cms';
 
 // Block page — editable at /_emdash/admin/content/pages (slug "neuigkeiten").
 const { entry } = await getEmDashEntry('pages', 'neuigkeiten');

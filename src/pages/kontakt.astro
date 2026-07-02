@@ -9,26 +9,24 @@ import { imageUrl } from '@lib/cms';
 const { entry } = await getEmDashEntry('pages', 'kontakt');
 const d: Record<string, any> = entry?.data ?? {};
 
-const FALLBACK_SECTIONS = [
-  { type: 'contact_form', items: { recipient: 'info@vitalunaris.ch', submitText: 'Senden' } },
-];
-// Contact-form config now lives in top-level fields (editable as labeled fields — no JSON).
-const baseSections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
-const sections = baseSections.map((s: any) => {
-  if (s.type === 'contact_form') return { ...s, items: {
-    recipient: d.contact_recipient || 'info@vitalunaris.ch',
-    submitText: d.contact_submit_text || 'Senden',
-    emailPlaceholder: d.contact_email_placeholder || undefined,
-    firstNamePlaceholder: d.contact_firstname_placeholder || undefined,
-    lastNamePlaceholder: d.contact_lastname_placeholder || undefined,
-    messagePlaceholder: d.contact_message_placeholder || undefined,
-  } };
-  // Inline lists edited directly on this page:
-  if (s.type === 'faq' && d.faq_items?.length) return { ...s, items: d.faq_items };
-  if (s.type === 'value_cards' && d.value_cards?.length)
-    return { ...s, items: d.value_cards.map((c: any) => ({ icon: imageUrl(c.icon), title: c.title, body: c.body })) };
-  return s;
-});
+/* Alchemy Labs contact form (Vorname / Nachname / E-Mail / Nachricht).
+   Submissions land in Alchemy; Scribe auto-resizes the iframe.
+   Overridable in the CMS via the `contact_form_src` field. */
+const formSrc = d.contact_form_src || 'https://opus.alchemy.zuerich/api/f/eX1ELfx8zRe-Z6qYT4RayA/page';
+
+// The contact form itself is a fixed section (below); Blocks only renders any
+// additional CMS sections (faq / value_cards). contact_form sections are
+// filtered out so the Alchemy form never renders twice.
+const baseSections = d.sections?.length ? d.sections : [];
+const sections = baseSections
+  .filter((s: any) => s.type !== 'contact_form')
+  .map((s: any) => {
+    // Inline lists edited directly on this page:
+    if (s.type === 'faq' && d.faq_items?.length) return { ...s, items: d.faq_items };
+    if (s.type === 'value_cards' && d.value_cards?.length)
+      return { ...s, items: d.value_cards.map((c: any) => ({ icon: imageUrl(c.icon), title: c.title, body: c.body })) };
+    return s;
+  });
 ---
 
 <BaseLayout
@@ -43,5 +41,32 @@ const sections = baseSections.map((s: any) => {
     subtitle={d.hero_subtitle || 'Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden.'}
   />
 
+  <section class="kontakt-form">
+    <div class="kontakt-form__inner">
+      <iframe
+        class="kontakt-form__frame"
+        src={formSrc}
+        title="Kontaktformular"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
+
   <Blocks sections={sections} />
 </BaseLayout>
+
+<style>
+  /* Sits directly beneath OverviewHero; spring-wood so the form blends in. */
+  .kontakt-form { background: var(--c-spring-wood); padding: 0 20px 64px; }
+  @media (min-width: 768px)  { .kontakt-form { padding: 0 32px 90px; } }
+  @media (min-width: 1280px) { .kontakt-form { padding: 0 60px 110px; } }
+  .kontakt-form__inner { max-width: 642px; margin: 0 auto; }
+  .kontakt-form__frame {
+    width: 100%;
+    height: 720px;          /* sensible default before Scribe sizes it */
+    min-height: 560px;
+    border: 0;
+    display: block;
+    transition: height 200ms ease;
+  }
+</style>

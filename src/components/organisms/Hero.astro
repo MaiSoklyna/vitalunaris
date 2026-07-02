@@ -12,6 +12,8 @@ interface Props {
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
   image?: string;
+  /** object-position focal point for the mobile (cropped) hero image. */
+  imageFocus?: string;
 }
 
 const {
@@ -23,10 +25,11 @@ const {
   secondaryCtaText,
   secondaryCtaHref,
   image,
+  imageFocus = 'center 30%',
 } = Astro.props;
 ---
 
-<section class="hero">
+<section class="hero" style={`--hero-focus: ${imageFocus};`}>
   <div class="hero__inner max-w-layout container-x">
     {image && (
       <div class="hero__media">
@@ -36,7 +39,7 @@ const {
     <div class="hero__content">
       {eyebrow && <Heading variant="eyebrow" class="hero__eyebrow">{eyebrow}</Heading>}
       <Heading level={1} class="hero__title"><Fragment set:html={title} /></Heading>
-      {subtitle && <Text size="p1" class="hero__subtitle">{subtitle}</Text>}
+      {subtitle && <Text size="p1" class="hero__subtitle"><Fragment set:html={subtitle} /></Text>}
       <div class="hero__cta">
         <Button href={ctaHref} variant="primary" size="lg" class="hero__cta-btn">
           {ctaText}
@@ -55,9 +58,9 @@ const {
   /* ============================================================
      HERO — responsive per Figma specs (360 / 768 / 1280 / 1920)
      ============================================================ */
-  .hero { padding: 72px 0 64px; }
-  @media (min-width: 768px)  { .hero { padding: 120px 0 80px; } }
-  @media (min-width: 1280px) { .hero { padding: 80px 0 80px; } }
+  .hero { padding: 104px 0 64px; }
+  @media (min-width: 768px)  { .hero { padding: 140px 0 80px; } }
+  @media (min-width: 1280px) { .hero { padding: 140px 0 80px; } }
   /* Desktop++ (≥ 1920px) — Figma section padding */
   @media (min-width: 1920px) {
     .hero { padding: 175px 90px 90px 151px; }
@@ -154,12 +157,21 @@ const {
   /* ----- CTA GROUP — Figma Button Group S (gap 12, w=473 at 768) ----- */
   .hero__cta {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     gap: 12px;
     margin-top: 4px;
+    width: 100%;
+  }
+  /* Tablet+ — side by side, auto width */
+  @media (min-width: 768px) {
+    .hero__cta {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      width: auto;
+    }
   }
   /* Desktop++ Button Group L — 780px wide, 20px gap, no wrap */
   @media (min-width: 1920px) {
@@ -177,6 +189,7 @@ const {
   /* CTA buttons — size driven by --button-size token */
   .hero__cta-btn {
     box-sizing: border-box;
+    width: 100%;
     display: inline-flex;
     flex-direction: row;
     justify-content: center;
@@ -194,7 +207,7 @@ const {
     white-space: nowrap;
   }
   @media (min-width: 768px) {
-    .hero__cta-btn { width: 231px; padding: 13.5328px; }
+    .hero__cta-btn { width: auto; min-width: 231px; padding: 13.5328px 24px; }
   }
   @media (min-width: 1920px) {
     .hero__cta-btn {
@@ -218,6 +231,11 @@ const {
     width: 100%;
   }
   @media (min-width: 1024px) { .hero__media { aspect-ratio: 1 / 1; } }
+  /* Mobile: ~half height, anchored to the top so faces are never cut off */
+  @media (max-width: 767.98px) {
+    .hero__media { aspect-ratio: 8 / 5; }
+    .hero__image { object-position: var(--hero-focus, center 30%); }
+  }
   /* Desktop++ media: fixed 748×826 per Figma */
   @media (min-width: 1920px) {
     .hero__media {
