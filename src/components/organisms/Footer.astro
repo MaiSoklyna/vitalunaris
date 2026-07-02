@@ -46,8 +46,21 @@ const FALLBACK_COLUMNS = [
   },
 ];
 
-const columns = sd.footer_columns?.length
-  ? sd.footer_columns.map((c: any) => ({ title: c.title, links: jsonArray(c.links) }))
+/* footer_columns is a FLAT repeater: a row with no `parent` is a column header
+   (its `label` is the column title); a row with a `parent` is a link grouped
+   under the header whose `label` it names. Rebuild the columns here. Falls back
+   to legacy `links` JSON on a header row for any pre-migration data. */
+const fc: any[] = sd.footer_columns ?? [];
+const columns = fc.length
+  ? fc
+      .filter((c) => !c.parent)
+      .map((head: any) => {
+        const flatLinks = fc
+          .filter((l) => l.parent && l.parent === head.label)
+          .map((l: any) => ({ href: l.href, label: l.label }));
+        const links = flatLinks.length ? flatLinks : jsonArray(head.links);
+        return { title: head.label ?? head.title, links };
+      })
   : FALLBACK_COLUMNS;
 
 const legalLinks = sd.footer_legal?.length ? sd.footer_legal : [

@@ -18,19 +18,76 @@
           "nav_items": [
             {
               "label": "Systemische Ausbildung",
-              "href": "/ausbildung",
-              "children": "[{\"label\":\"Übersicht\",\"href\":\"/ausbildung/uebersicht\"},{\"label\":\"Systemischer Soulcoach – Level 1\",\"href\":\"/ausbildung/soulcoach-level-1\"},{\"label\":\"Systemischer Soulcoach – Level 2\",\"href\":\"/ausbildung/soulcoach-level-2\"},{\"label\":\"Infoanlässe\",\"href\":\"/ausbildung/infoanlaesse\"}]"
+              "href": "/ausbildung"
+            },
+            {
+              "label": "Übersicht",
+              "href": "/ausbildung/uebersicht",
+              "parent": "/ausbildung"
+            },
+            {
+              "label": "Systemischer Soulcoach – Level 1",
+              "href": "/ausbildung/soulcoach-level-1",
+              "parent": "/ausbildung"
+            },
+            {
+              "label": "Systemischer Soulcoach – Level 2",
+              "href": "/ausbildung/soulcoach-level-2",
+              "parent": "/ausbildung"
+            },
+            {
+              "label": "Infoanlässe",
+              "href": "/ausbildung/infoanlaesse",
+              "parent": "/ausbildung"
             },
             {
               "label": "Workshops & Kurse",
               "href": "/workshops-kurse/kalender-uebersicht",
-              "navigate_on_click": true,
-              "children": "[{\"label\":\"Kalender & Übersicht\",\"href\":\"/workshops-kurse/kalender-uebersicht\"},{\"label\":\"Aktueller Monatsworkshop\",\"href\":\"/workshops-kurse/aktueller-monatsworkshop\"}]"
+              "navigate_on_click": true
+            },
+            {
+              "label": "Kalender & Übersicht",
+              "href": "/workshops-kurse/kalender-uebersicht",
+              "parent": "/workshops-kurse/kalender-uebersicht"
+            },
+            {
+              "label": "Aktueller Monatsworkshop",
+              "href": "/workshops-kurse/aktueller-monatsworkshop",
+              "parent": "/workshops-kurse/kalender-uebersicht"
             },
             {
               "label": "Praxisangebote",
+              "href": "/praxisangebote"
+            },
+            {
+              "label": "Übersicht",
               "href": "/praxisangebote",
-              "children": "[{\"label\":\"Übersicht\",\"href\":\"/praxisangebote\"},{\"label\":\"1:1 Aufstellungen\",\"href\":\"/praxisangebote/aufstellungen\"},{\"label\":\"Hypnose\",\"href\":\"/praxisangebote/hypnose\"},{\"label\":\"Numerologieberatung\",\"href\":\"/praxisangebote/numerologieberatung\"},{\"label\":\"Fussreflexzonenbehandlung\",\"href\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"label\":\"Jawort by Jansen\",\"href\":\"/praxisangebote/jawort-by-jansen\"}]"
+              "parent": "/praxisangebote"
+            },
+            {
+              "label": "1:1 Aufstellungen",
+              "href": "/praxisangebote/aufstellungen",
+              "parent": "/praxisangebote"
+            },
+            {
+              "label": "Hypnose",
+              "href": "/praxisangebote/hypnose",
+              "parent": "/praxisangebote"
+            },
+            {
+              "label": "Numerologieberatung",
+              "href": "/praxisangebote/numerologieberatung",
+              "parent": "/praxisangebote"
+            },
+            {
+              "label": "Fussreflexzonenbehandlung",
+              "href": "/praxisangebote/fussreflexzonenbehandlung",
+              "parent": "/praxisangebote"
+            },
+            {
+              "label": "Jawort by Jansen",
+              "href": "/praxisangebote/jawort-by-jansen",
+              "parent": "/praxisangebote"
             },
             {
               "label": "News",
@@ -47,20 +104,86 @@
           ],
           "footer_columns": [
             {
-              "title": "Ausbildung",
-              "links": "[{\"label\":\"Übersicht\",\"href\":\"/ausbildung/uebersicht\"},{\"label\":\"Systemic Soulcoach Level 1\",\"href\":\"/ausbildung/soulcoach-level-1\"},{\"label\":\"Systemic Soulcoach Level 2\",\"href\":\"/ausbildung/soulcoach-level-2\"},{\"label\":\"Infoanlässe\",\"href\":\"/ausbildung/infoanlaesse\"}]"
+              "label": "Ausbildung"
             },
             {
-              "title": "Kurse",
-              "links": "[{\"label\":\"Kalender & Übersicht\",\"href\":\"/workshops-kurse/kalender-uebersicht\"},{\"label\":\"Monatsworkshop\",\"href\":\"/workshops-kurse/aktueller-monatsworkshop\"}]"
+              "label": "Übersicht",
+              "href": "/ausbildung/uebersicht",
+              "parent": "Ausbildung"
             },
             {
-              "title": "Praxisangebote",
-              "links": "[{\"label\":\"Übersicht\",\"href\":\"/praxisangebote\"},{\"label\":\"1:1 Aufstellungen\",\"href\":\"/praxisangebote/aufstellungen\"},{\"label\":\"Hypnose\",\"href\":\"/praxisangebote/hypnose\"},{\"label\":\"Numerologieberatung\",\"href\":\"/praxisangebote/numerologieberatung\"},{\"label\":\"Fussreflexzonen\",\"href\":\"/praxisangebote/fussreflexzonenbehandlung\"},{\"label\":\"Jawort by Jansen\",\"href\":\"/praxisangebote/jawort-by-jansen\"}]"
+              "label": "Systemic Soulcoach Level 1",
+              "href": "/ausbildung/soulcoach-level-1",
+              "parent": "Ausbildung"
             },
             {
-              "title": "Weiteres",
-              "links": "[{\"label\":\"Über uns\",\"href\":\"/ueber-uns\"},{\"label\":\"News\",\"href\":\"/neuigkeiten\"}]"
+              "label": "Systemic Soulcoach Level 2",
+              "href": "/ausbildung/soulcoach-level-2",
+              "parent": "Ausbildung"
+            },
+            {
+              "label": "Infoanlässe",
+              "href": "/ausbildung/infoanlaesse",
+              "parent": "Ausbildung"
+            },
+            {
+              "label": "Kurse"
+            },
+            {
+              "label": "Kalender & Übersicht",
+              "href": "/workshops-kurse/kalender-uebersicht",
+              "parent": "Kurse"
+            },
+            {
+              "label": "Monatsworkshop",
+              "href": "/workshops-kurse/aktueller-monatsworkshop",
+              "parent": "Kurse"
+            },
+            {
+              "label": "Praxisangebote"
+            },
+            {
+              "label": "Übersicht",
+              "href": "/praxisangebote",
+              "parent": "Praxisangebote"
+            },
+            {
+              "label": "1:1 Aufstellungen",
+              "href": "/praxisangebote/aufstellungen",
+              "parent": "Praxisangebote"
+            },
+            {
+              "label": "Hypnose",
+              "href": "/praxisangebote/hypnose",
+              "parent": "Praxisangebote"
+            },
+            {
+              "label": "Numerologieberatung",
+              "href": "/praxisangebote/numerologieberatung",
+              "parent": "Praxisangebote"
+            },
+            {
+              "label": "Fussreflexzonen",
+              "href": "/praxisangebote/fussreflexzonenbehandlung",
+              "parent": "Praxisangebote"
+            },
+            {
+              "label": "Jawort by Jansen",
+              "href": "/praxisangebote/jawort-by-jansen",
+              "parent": "Praxisangebote"
+            },
+            {
+              "label": "Weiteres"
+            },
+            {
+              "label": "Über uns",
+              "href": "/ueber-uns",
+              "parent": "Weiteres"
+            },
+            {
+              "label": "News",
+              "href": "/neuigkeiten",
+              "parent": "Weiteres"
             }
           ],
           "social_links": [
@@ -600,6 +723,7 @@
               "name": "Nicole S."
             }
           ],
+          "testimonials_tone": "gold",
           "practitioner": "theresia-jansen",
           "brand_cta_title": "Bereit, tiefer<br />zu gehen?",
           "brand_cta_body": "Ein konkretes Thema, ein gewisses Gefühl, eine Sehnsucht. Theresia begleitet dich dorthin, wo sich wirklich etwas bewegt. Termin buchen — in deinem Tempo, auf deinem Weg.",
@@ -703,6 +827,7 @@
               "name": "Erika N."
             }
           ],
+          "testimonials_tone": "gold",
           "practitioner": "marlen-berger",
           "brand_cta_title": "Bereit, tiefer<br />zu gehen?",
           "brand_cta_body": "Gönne dir eine Behandlung, die wirklich tief wirkt — körperlich, energetisch, ganzheitlich. Marlen ist da.",
@@ -790,6 +915,7 @@
               "name": "Familie A. & K."
             }
           ],
+          "testimonials_tone": "gold",
           "practitioner": "axel-jansen",
           "brand_cta_title": "Bereit, tiefer zu gehen?",
           "brand_cta_body": "Veränderung tritt nicht ein, wenn du es erzwingst — sondern wenn du loslässt. Axel begleitet dich dorthin.",
@@ -830,74 +956,18 @@
         "data": {
           "seo_title": "Jawort by Jansen — Freie Trauungen & Zeremonien | VitaLunaris",
           "seo_description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Theresia Jansen erzählt eure Geschichte.",
-          "faq_items": [
+          "price_list": [
             {
-              "question": "Wie läuft die Vorbereitung einer freien Trauung ab?",
-              "answer": "Wir starten mit einem kostenlosen Kennenlerngespräch. Danach lernen wir uns und eure Geschichte kennen, ich schreibe eure persönliche Rede und wir stimmen Ablauf, Ort und Wünsche gemeinsam ab."
+              "label": "Freie Trauungen",
+              "value": "ab CHF 1’800.–"
             },
             {
-              "question": "Wie persönlich wird die Traurede?",
-              "answer": "Sehr persönlich. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl — so, dass ihr euch in jedem Wort wiederfindet. Keine Floskeln, keine Vorlagen von der Stange."
+              "label": "Kinderwillkommensfeiern",
+              "value": "ab CHF 950.–"
             },
             {
-              "question": "Kann die Zeremonie humorvoll sein?",
-              "answer": "Unbedingt. Romantisch, feierlich, berührend oder herrlich unkompliziert — eure Zeremonie darf so einzigartig sein wie ihr."
-            },
-            {
-              "question": "Wie lange dauert eine freie Trauung?",
-              "answer": "Eine Zeremonie dauert in der Regel 30 bis 45 Minuten. Die genaue Länge gestalten wir gemeinsam."
-            },
-            {
-              "question": "Führst du auch Kinderwillkommensfeiern durch?",
-              "answer": "Ja. Eine Kinderwillkommensfeier heisst einen neuen kleinen Menschen liebevoll im Kreis seiner Herzensmenschen willkommen — frei gestaltet und ganz auf euch zugeschnitten."
-            },
-            {
-              "question": "In welcher Region bist du als Rednerin unterwegs?",
-              "answer": "Ich bin in der ganzen Deutschschweiz für euch unterwegs — vom Weingut über den See bis in die Berge."
-            }
-          ],
-          "sections": [
-            {
-              "type": "hero",
-              "eyebrow": "Jawort by Jansen | Theresia Jansen",
-              "title": "Zeremonien voller Persönlichkeit und Emotion.",
-              "description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl – für Zeremonien, die berühren und lange nachklingen.",
-              "body": "Alternativ schreibe ich eure persönliche Rede — und eine vertraute Person führt die Zeremonie durch. Ich begleite gerne auch die Vorbereitung. Preis auf Anfrage.",
-              "image": "/images/placeholder/Placeholder-18.jpg",
-              "items": "[]"
-            },
-            {
-              "type": "narrative1",
-              "image": "/images/placeholder/Placeholder-19.jpg",
-              "eyebrow": "Freie Trauung",
-              "title": "Was ist eine freie Trauung?",
-              "body": "Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt.\n\nOb auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe."
-            },
-            {
-              "type": "gallery",
-              "items": "[]"
-            },
-            {
-              "type": "narrative2",
-              "image": "/images/placeholder/Placeholder-28.jpg",
-              "eyebrow": "Kinderwillkommensfeier",
-              "title": "Was ist eine Kinderwillkommensfeier?",
-              "body": "Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen.\n\nMit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben.\n\nDenn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein."
-            },
-            {
-              "type": "testimonials",
-              "items": "[{\"quote\":\"«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»\",\"name\":\"Raffaella & Luca\"},{\"quote\":\"«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»\",\"name\":\"Sandy & Michael\"},{\"quote\":\"«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»\",\"name\":\"Saskia & Benjamin\"},{\"quote\":\"«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»\",\"name\":\"Janina & Marc\"}]"
-            },
-            {
-              "type": "bio",
-              "eyebrow": "Wer euch begleitet",
-              "title": "Theresia Jansen",
-              "image": "/images/placeholder/Placeholder-8.jpg",
-              "items": "[]"
-            },
-            {
-              "type": "faq",
-              "items": "[]"
+              "label": "Eheversprechenerneuerung",
+              "value": "auf Anfrage"
             }
           ],
           "gallery": [
@@ -990,20 +1060,7 @@
               "alt": "Jawort by Jansen — Impression"
             }
           ],
-          "price_list": [
-            {
-              "label": "Freie Trauungen",
-              "value": "ab CHF 1’800.–"
-            },
-            {
-              "label": "Kinderwillkommensfeiern",
-              "value": "ab CHF 950.–"
-            },
-            {
-              "label": "Eheversprechenerneuerung",
-              "value": "auf Anfrage"
-            }
-          ],
+          "testimonials_tone": "gold",
           "bio_paragraphs": [
             {
               "text": "Ich bin nicht einfach da, um eine schöne Rede zu halten. Ich bin da, um eure Geschichte einzufangen — mit Zeit, Aufmerksamkeit und echtem Interesse daran, was euch wichtig ist."
@@ -1016,6 +1073,76 @@
             },
             {
               "text": "Ob freie Trauung, Kinderwillkommensfeier oder Eheversprechen — ich freue mich darauf, eure Geschichte kennenzulernen. Herzlich, Theresia Jansen"
+            }
+          ],
+          "faq_items": [
+            {
+              "question": "Wie läuft die Vorbereitung einer freien Trauung ab?",
+              "answer": "Wir starten mit einem kostenlosen Kennenlerngespräch. Danach lernen wir uns und eure Geschichte kennen, ich schreibe eure persönliche Rede und wir stimmen Ablauf, Ort und Wünsche gemeinsam ab."
+            },
+            {
+              "question": "Wie persönlich wird die Traurede?",
+              "answer": "Sehr persönlich. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl — so, dass ihr euch in jedem Wort wiederfindet. Keine Floskeln, keine Vorlagen von der Stange."
+            },
+            {
+              "question": "Kann die Zeremonie humorvoll sein?",
+              "answer": "Unbedingt. Romantisch, feierlich, berührend oder herrlich unkompliziert — eure Zeremonie darf so einzigartig sein wie ihr."
+            },
+            {
+              "question": "Wie lange dauert eine freie Trauung?",
+              "answer": "Eine Zeremonie dauert in der Regel 30 bis 45 Minuten. Die genaue Länge gestalten wir gemeinsam."
+            },
+            {
+              "question": "Führst du auch Kinderwillkommensfeiern durch?",
+              "answer": "Ja. Eine Kinderwillkommensfeier heisst einen neuen kleinen Menschen liebevoll im Kreis seiner Herzensmenschen willkommen — frei gestaltet und ganz auf euch zugeschnitten."
+            },
+            {
+              "question": "In welcher Region bist du als Rednerin unterwegs?",
+              "answer": "Ich bin in der ganzen Deutschschweiz für euch unterwegs — vom Weingut über den See bis in die Berge."
+            }
+          ],
+          "sections": [
+            {
+              "type": "hero",
+              "eyebrow": "Jawort by Jansen | Theresia Jansen",
+              "title": "Zeremonien voller Persönlichkeit und Emotion.",
+              "description": "Freie Trauungen und Kinderwillkommensfeiern mit Herz, Tiefe und Persönlichkeit. Ich erzähle eure Geschichte mit Herz, Humor und Feingefühl – für Zeremonien, die berühren und lange nachklingen.",
+              "body": "Alternativ schreibe ich eure persönliche Rede — und eine vertraute Person führt die Zeremonie durch. Ich begleite gerne auch die Vorbereitung. Preis auf Anfrage.",
+              "image": "/images/placeholder/Placeholder-18.jpg",
+              "items": "[]"
+            },
+            {
+              "type": "narrative1",
+              "image": "/images/placeholder/Placeholder-19.jpg",
+              "eyebrow": "Freie Trauung",
+              "title": "Was ist eine freie Trauung?",
+              "body": "Eine freie Trauung bedeutet, dass ihr euren besonderen Tag genau so feiern dürft, wie es zu euch passt. Ihr steht mit eurer Geschichte, euren Wünschen und euren Vorstellungen im Mittelpunkt.\n\nOb auf einem Weingut, am See, in den Bergen, im eigenen Garten oder an einem Ort, der für euch eine besondere Bedeutung hat – fast alles ist möglich. Romantisch, humorvoll, feierlich, berührend oder ganz unkompliziert: Eure Trauung darf so einzigartig sein wie eure Liebe."
+            },
+            {
+              "type": "gallery",
+              "items": "[]"
+            },
+            {
+              "type": "narrative2",
+              "image": "/images/placeholder/Placeholder-28.jpg",
+              "eyebrow": "Kinderwillkommensfeier",
+              "title": "Was ist eine Kinderwillkommensfeier?",
+              "body": "Die Geburt eines Kindes ist eines der grössten Wunder des Lebens. Mit einer Kinderwillkommensfeier schaffen wir einen persönlichen Rahmen, um einen neuen kleinen Menschen im Kreis seiner Herzensmenschen willkommen zu heissen.\n\nMit persönlichen Worten, liebevollen Ritualen und besonderen Momenten, die in Erinnerung bleiben.\n\nDenn jedes Kind ist einzigartig. Und genau so darf auch sein Willkommen in diese Welt sein."
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"«Für uns war sofort klar, dass wir diesen besonderen Moment mit Theresia gestalten möchten. Besonders berührt hat uns, dass sie unseren Trauspruch auf Italienisch vorgetragen hat. Unsere Trauung war genau so, wie wir sie uns gewünscht hatten: persönlich, berührend und unvergesslich.»\",\"name\":\"Raffaella & Luca\"},{\"quote\":\"«Unsere Trauung war persönlich, emotional, humorvoll — genau auf uns abgestimmt. Theresia hat unsere Geschichte auf eine Weise erzählt, die uns und unsere Gäste tief berührt hat. Für uns war klar: Wenn wir unser Eheversprechen erneuern, dann nur mit Theresia.»\",\"name\":\"Sandy & Michael\"},{\"quote\":\"«Die Kinderwillkommensfeier für unsere Tochter war unvergesslich — unsere Erwartungen wurden übertroffen. Noch Tage später haben uns Familie und Freunde geschrieben, wie wunderschön und bewegend die Zeremonie war.»\",\"name\":\"Saskia & Benjamin\"},{\"quote\":\"«Wir danken dir, dass du unseren Tag mit so viel Liebe und Feingefühl begleitet und zu etwas ganz Besonderem gemacht hast. Die Trauung war wunderschön – es war einfach perfekt.»\",\"name\":\"Janina & Marc\"}]"
+            },
+            {
+              "type": "bio",
+              "eyebrow": "Wer euch begleitet",
+              "title": "Theresia Jansen",
+              "image": "/images/placeholder/Placeholder-8.jpg",
+              "items": "[]"
+            },
+            {
+              "type": "faq",
+              "items": "[]"
             }
           ]
         }
@@ -1074,6 +1201,7 @@
               "name": "Andrea G."
             }
           ],
+          "testimonials_tone": "gold",
           "practitioner": "axel-jansen",
           "brand_cta_title": "Bereit, tiefer<br />zu gehen?",
           "brand_cta_body": "Deine Zahlen verraten mehr über dich als du denkst. Axel liest sie — klar, direkt, ohne Hokuspokus.",
@@ -1209,6 +1337,14 @@
         "data": {
           "seo_title": "Systemic Soulcoach Infoabend | VitaLunaris",
           "seo_description": "Kostenloser Online-Infoabend zur Ausbildung Systemic Soulcoach — ehrlicher Einblick in Inhalte, Aufbau und Arbeitsweise, mit Raum für alle deine Fragen.",
+          "about_paragraphs": [
+            {
+              "text": "Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet."
+            },
+            {
+              "text": "Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen."
+            }
+          ],
           "info_cards": [
             {
               "eyebrow": "Wann?",
@@ -1257,6 +1393,23 @@
               "answer": "Du kannst dich auf die Warteliste setzen. Wird ein Platz frei, informieren wir dich zuerst."
             }
           ],
+          "agenda_items": [
+            {
+              "text": "Vorstellung von Systemic Soulwork & Systemic Soulcoach"
+            },
+            {
+              "text": "Überblick über die Ausbildungsstruktur"
+            },
+            {
+              "text": "Einblick in die Inhalte und Module"
+            },
+            {
+              "text": "Informationen zu Terminen und Investition"
+            },
+            {
+              "text": "Raum für Fragen und Austausch"
+            }
+          ],
           "sections": [
             {
               "type": "hero",
@@ -1267,7 +1420,16 @@
               "price": "Kostenlos :)",
               "cta_text": "Jetzt anmelden",
               "cta_href": "/kontakt",
-              "image": "/images/placeholder/Placeholder-12.jpg"
+              "image": {
+                "id": "01KWGSQJTGZ6WYJ8XZ2596S48T",
+                "provider": "local",
+                "alt": "",
+                "width": 858,
+                "height": 868,
+                "meta": {
+                  "storageKey": "01KWGSQJJ986AT94EDQSDXRR88.jpg"
+                }
+              }
             },
             {
               "type": "info_cards",
@@ -1293,31 +1455,6 @@
             {
               "type": "faq",
               "items": "[]"
-            }
-          ],
-          "agenda_items": [
-            {
-              "text": "Vorstellung von Systemic Soulwork & Systemic Soulcoach"
-            },
-            {
-              "text": "Überblick über die Ausbildungsstruktur"
-            },
-            {
-              "text": "Einblick in die Inhalte und Module"
-            },
-            {
-              "text": "Informationen zu Terminen und Investition"
-            },
-            {
-              "text": "Raum für Fragen und Austausch"
-            }
-          ],
-          "about_paragraphs": [
-            {
-              "text": "Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet."
-            },
-            {
-              "text": "Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen."
             }
           ]
         }
@@ -1390,6 +1527,8 @@
           "narrative2_image": {
             "id": "01KVWFPNZYWQBP2FSSVMAKVB9P",
             "provider": "local",
+            "filename": "Placeholder 2 (40).jpg",
+            "mimeType": "image/jpeg",
             "width": 620,
             "height": 830,
             "alt": "",
@@ -1398,9 +1537,7 @@
               "caption": null,
               "blurhash": "L9J@g{00.7~BrV^+-;^+PV=|-o4T",
               "dominantColor": "rgb(153,131,126)"
-            },
-            "filename": "Placeholder 2 (40).jpg",
-            "mimeType": "image/jpeg"
+            }
           },
           "lehrerin_eyebrow": "Theresia Jansen",
           "lehrerin_title": "Entfalte was in dir ist, um weiterzugeben was du weisst.",
@@ -1408,6 +1545,8 @@
           "lehrerin_image": {
             "id": "01KVWFS71X95BK91K0BPE34QWR",
             "provider": "local",
+            "filename": "Placeholder 2 (8).jpg",
+            "mimeType": "image/jpeg",
             "width": 857,
             "height": 900,
             "alt": "",
@@ -1416,9 +1555,7 @@
               "caption": null,
               "blurhash": "LCJtF]D%*J9Z~p000f4-?aai^k?H",
               "dominantColor": "rgb(150,120,112)"
-            },
-            "filename": "Placeholder 2 (8).jpg",
-            "mimeType": "image/jpeg"
+            }
           },
           "info_cards": [
             {
@@ -1453,6 +1590,7 @@
               "name": "Corina B."
             }
           ],
+          "testimonials_tone": "purple",
           "teacher": "theresia-jansen",
           "faq_items": [
             {
@@ -1566,6 +1704,7 @@
               "name": "Corina B."
             }
           ],
+          "testimonials_tone": "spring-wood",
           "teacher": "theresia-jansen",
           "faq_items": [
             {
@@ -1630,10 +1769,49 @@
               "description": "Konflikte, Widerstand, schwierige Momente — du weichst nicht aus. Du bist Boden für andere."
             },
             {
-              "title": "Du arbeitest aus Erfahrung.",
-              "description": "Nicht aus Theorie. Was du weitergibst, hast du selbst durchlebt. Das ist der Unterschied."
+              "title": "Du arbeitest aus Erfahrung. ",
+              "description": "Nicht aus Theorie. Was du weitergibst, hast du selbst durchlebt. Das ist der Unterschied.",
+              "color": ""
             }
           ],
+          "stage_cards": [
+            {
+              "image": "/images/cards/card-1.jpg",
+              "eyebrow": "Teil 1 — Grundlagen",
+              "title": "Der Einstieg in die systemische Arbeit",
+              "body": "Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.",
+              "cta_text": "Mehr erfahren",
+              "cta_href": "/ausbildung/soulcoach-level-1"
+            },
+            {
+              "image": "/images/cards/card-2.jpg",
+              "eyebrow": "Teil 2 — Vertiefung",
+              "title": "Vom Verständnis zur Praxis",
+              "body": "Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.",
+              "cta_text": "Mehr erfahren",
+              "cta_href": "/ausbildung/soulcoach-level-2"
+            },
+            {
+              "image": "/images/cards/card-3.jpg",
+              "eyebrow": "Begleitung & Circle",
+              "title": "In der Praxis bleiben und weiterlernen",
+              "body": "Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen. Zugang nur nach abgeschlossener Ausbildung.",
+              "cta_text": "Mehr erfahren",
+              "cta_href": "/kontakt"
+            }
+          ],
+          "lehrerin_paragraphs": [
+            {
+              "text": "Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch."
+            },
+            {
+              "text": "Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz."
+            },
+            {
+              "text": "Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht."
+            }
+          ],
+          "testimonials_tone": "gold",
           "faq_items": [
             {
               "question": "Brauche ich Vorkenntnisse für die Ausbildung?",
@@ -1708,50 +1886,15 @@
             },
             {
               "type": "faq",
-              "items": "[]"
+              "items": "[]",
+              "title": "",
+              "eyebrow": ""
             },
             {
               "type": "newsletter",
               "title": "Noch nicht sicher?",
               "body": "Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern.",
               "items": ""
-            }
-          ],
-          "stage_cards": [
-            {
-              "image": "/images/cards/card-1.jpg",
-              "eyebrow": "Teil 1 — Grundlagen",
-              "title": "Der Einstieg in die systemische Arbeit",
-              "body": "Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.",
-              "cta_text": "Mehr erfahren",
-              "cta_href": "/ausbildung/soulcoach-level-1"
-            },
-            {
-              "image": "/images/cards/card-2.jpg",
-              "eyebrow": "Teil 2 — Vertiefung",
-              "title": "Vom Verständnis zur Praxis",
-              "body": "Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.",
-              "cta_text": "Mehr erfahren",
-              "cta_href": "/ausbildung/soulcoach-level-2"
-            },
-            {
-              "image": "/images/cards/card-3.jpg",
-              "eyebrow": "Begleitung & Circle",
-              "title": "In der Praxis bleiben und weiterlernen",
-              "body": "Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen. Zugang nur nach abgeschlossener Ausbildung.",
-              "cta_text": "Mehr erfahren",
-              "cta_href": "/kontakt"
-            }
-          ],
-          "lehrerin_paragraphs": [
-            {
-              "text": "Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch."
-            },
-            {
-              "text": "Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz."
-            },
-            {
-              "text": "Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht."
             }
           ]
         }
@@ -1766,11 +1909,16 @@
           "title": "Advents-Geschichten",
           "date": "2026-12-01",
           "color": "fire",
-          "category_meta": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
-          "duration_meta": "01.12.2026 | Online",
+          "card_image": "/images/placeholder/Placeholder-32.jpg",
+          "card_eyebrow": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
+          "card_title": "Advents-Geschichten für Herz und Seele",
+          "card_description": "Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.",
+          "card_duration": "Online",
           "hero_description": "Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.",
           "hero_price": "Zahl was du möchtest :)",
           "hero_image": "/images/placeholder/Placeholder-32.jpg",
+          "category_meta": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
+          "duration_meta": "01.12.2026 | Online",
           "info_cards": [
             {
               "eyebrow": "Wann?",
@@ -1798,11 +1946,7 @@
               "text": "In diesem Jahr gibt es die Möglichkeit einer freiwilligen Spende — nicht für mich, sondern für eine Familie aus meinem persönlichen Umfeld. Wer geben möchte, gibt. Wer einfach zuhören möchte, ist genauso herzlich willkommen."
             }
           ],
-          "card_eyebrow": "MONATS-WORKSHOP | DEZEMBER | 01.12.2026",
-          "card_title": "Advents-Geschichten für Herz und Seele",
-          "card_description": "Der Audio-Adventskalender von Theresia Jansen — jeden Morgen im Advent eine neue Geschichte. Kostenlos, direkt auf dein Handy.",
-          "card_image": "/images/placeholder/Placeholder-32.jpg",
-          "card_duration": "Online"
+          "testimonials_tone": "gold"
         }
       },
       {
@@ -1824,6 +1968,15 @@
               "body": "Für Menschen, die neugierig sind, erste Erfahrungen mit systemischer Arbeit machen möchten und spüren, dass sich etwas bewegen will."
             }
           ],
+          "about_paragraphs": [
+            {
+              "text": "Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In ihren Workshops verbindet sie Aufstellungen, EFT, Nervensystem-Arbeit und Heilkunde zu einem Erfahrungsraum, der seinesgleichen sucht."
+            },
+            {
+              "text": "Axel Jansen bringt Hypnose und Numerologie in Workshops ein, die gleichermassen präzise wie zugänglich sind. Zahlenmagie ohne Kitsch, Hypnose ohne Bühnentricks. Zusammen bieten Theres und Axel ein Spektrum, das in dieser Form in der Deutschschweiz einzigartig ist."
+            }
+          ],
+          "testimonials_tone": "gold",
           "faq_items": [
             {
               "question": "Für wen sind die Workshops geeignet?",
@@ -1895,14 +2048,6 @@
               "type": "faq",
               "items": "[]"
             }
-          ],
-          "about_paragraphs": [
-            {
-              "text": "Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. In ihren Workshops verbindet sie Aufstellungen, EFT, Nervensystem-Arbeit und Heilkunde zu einem Erfahrungsraum, der seinesgleichen sucht."
-            },
-            {
-              "text": "Axel Jansen bringt Hypnose und Numerologie in Workshops ein, die gleichermassen präzise wie zugänglich sind. Zahlenmagie ohne Kitsch, Hypnose ohne Bühnentricks. Zusammen bieten Theres und Axel ein Spektrum, das in dieser Form in der Deutschschweiz einzigartig ist."
-            }
           ]
         }
       },
@@ -1914,11 +2059,44 @@
           "title": "Cool down for Christmas",
           "date": "2026-11-24",
           "color": "raspberry",
-          "category_meta": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
-          "duration_meta": "24.11.2026 16:30 Uhr | 210 Min. | Online",
+          "card_image": {
+            "id": "01KWGSDQGRXC9X1EK99DTTMFC5",
+            "provider": "local",
+            "width": 858,
+            "height": 868,
+            "alt": "",
+            "meta": {
+              "storageKey": "01KWGSDQ86GDHEM0GKE6WG6SX8.jpg",
+              "caption": null,
+              "blurhash": "LQH_S:Mv.8Vr~XRPR5Rj-=%2v|t8",
+              "dominantColor": "rgb(141,120,128)"
+            },
+            "filename": "Placeholder 2 (35).jpg",
+            "mimeType": "image/jpeg"
+          },
+          "card_eyebrow": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
+          "card_title": "Cool down for Christmas",
+          "card_description": "Einen Monat vor Heiligabend bewusst einen Gang zurückschalten – damit du die Weihnachtszeit wirklich geniessen kannst.",
+          "card_duration": "210 Min. | Online",
           "hero_description": "Damit du die Weihnachtszeit geniessen kannst, statt nur durchzuhalten: Unser Monats-Workshop im November lädt dich ein, einen Monat vor Heiligabend bewusst einen Gang zurückzuschalten.",
           "hero_price": "CHF 66.–",
-          "hero_image": "/images/placeholder/Placeholder-31.jpg",
+          "hero_image": {
+            "id": "01KWGSDQGRXC9X1EK99DTTMFC5",
+            "provider": "local",
+            "width": 858,
+            "height": 868,
+            "alt": "",
+            "meta": {
+              "storageKey": "01KWGSDQ86GDHEM0GKE6WG6SX8.jpg",
+              "caption": null,
+              "blurhash": "LQH_S:Mv.8Vr~XRPR5Rj-=%2v|t8",
+              "dominantColor": "rgb(141,120,128)"
+            },
+            "filename": "Placeholder 2 (35).jpg",
+            "mimeType": "image/jpeg"
+          },
+          "category_meta": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
+          "duration_meta": "24.11.2026 16:30 Uhr | 210 Min. | Online",
           "info_cards": [
             {
               "eyebrow": "Wann?",
@@ -1935,7 +2113,11 @@
           ],
           "narrative_title": "Entspannungsübungen für eine stressfreie Adventszeit",
           "narrative_body": "Geschenke, Termine, Erwartungen, Familienfeiern — oft bleibt in der Zeit, die eigentlich besinnlich sein sollte, kaum Raum zum Durchatmen. Genau deshalb gibt es Cool Down for Christmas.<br/><br/>Gemeinsam schauen wir, wie du mit mehr Ruhe und Leichtigkeit durch die Adventszeit gehen kannst — ohne dich selbst dabei zu verlieren.",
-          "narrative_image": "/images/placeholder/Placeholder-29.jpg",
+          "narrative_image": {
+            "id": "",
+            "provider": "external",
+            "src": "/images/placeholder/Placeholder-29.jpg"
+          },
           "narrative_bullet_groups": [
             {
               "heading": "Das erwartet dich im Workshop:",
@@ -1949,11 +2131,7 @@
               "text": "Eingeschlossen: Live-Workshop, Aufzeichnung, Advents-Telegram-Gruppe & Advents-Audiokalender"
             }
           ],
-          "card_eyebrow": "MONATS-WORKSHOP | NOVEMBER | 24.11.2026",
-          "card_title": "Cool down for Christmas",
-          "card_description": "Einen Monat vor Heiligabend bewusst einen Gang zurückschalten – damit du die Weihnachtszeit wirklich geniessen kannst.",
-          "card_image": "/images/placeholder/Placeholder-31.jpg",
-          "card_duration": "210 Min. | Online"
+          "testimonials_tone": "gold"
         }
       },
       {
@@ -1961,6 +2139,15 @@
         "slug": "kalender-uebersicht",
         "status": "published",
         "data": {
+          "deep_paragraphs": [
+            {
+              "text": "Unsere Workshops und Kurse sind kein Frontalunterricht. Sie sind Erfahrungsräume, in denen Wissen lebendig wird. Räume, in denen du Zusammenhänge nicht nur verstehst, sondern selbst erlebst."
+            },
+            {
+              "text": "Ob du zum ersten Mal mit systemischer Arbeit, Numerologie oder Energiearbeit in Berührung kommst oder dein Wissen vertiefen möchtest – hier findest du Formate, die praxisnah, inspirierend und nachhaltig sind. Lernen darf berühren. Lernen darf verändern. Lernen darf Freude machen."
+            }
+          ],
+          "testimonials_tone": "gold",
           "faq_items": [
             {
               "question": "Für wen sind die Workshops geeignet?",
@@ -1993,46 +2180,6 @@
             {
               "question": "Was passiert wenn ein Workshop ausgebucht ist?",
               "answer": "Du kannst dich auf die Warteliste setzen. Wird ein Platz frei oder kommt ein Zusatztermin, informieren wir dich zuerst."
-            }
-          ],
-          "sections": [
-            {
-              "type": "hero",
-              "eyebrow": "Workshops & Kurse",
-              "title": "Tauche ein in die<br /><em>Systeme der Seele</em> mit<br />Theres und Axel",
-              "body": "Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung.",
-              "items": "[]"
-            },
-            {
-              "type": "testimonials",
-              "items": "[{\"quote\":\"„Der Numerologie-Workshop hat mich wirklich überrascht. Plötzlich ergaben viele Verhaltensweisen einen ganz neuen Sinn. Besonders die Analyse im Schulalltag war für mich unglaublich hilfreich. Ein Workshop voller Aha-Momente und neuer Perspektiven.“\",\"name\":\"Marianne S.\"},{\"quote\":\"„Ich bin ohne grosse Erwartungen in den Numerologie-Workshop gestartet – und wurde umso positiver überrascht. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Man spürt sofort, wie viel Herzblut in diesem Kurs steckt.“\",\"name\":\"Marina C.\"},{\"quote\":\"„Ich bin noch immer beeindruckt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Die Werkzeuge lassen sich direkt im Alltag anwenden – für mich selbst und meine Familie. Ein praxisnaher Kurs, den ich von Herzen weiterempfehle.“\",\"name\":\"Sandra M.\"},{\"quote\":\"„SoulReset hat mich absolut begeistert. Die Atemübungen und das Tapping haben mir geholfen, Druck abzubauen und wieder mehr Ruhe zu finden. Praktische und wirkungsvolle Tools, die sich leicht umsetzen lassen. Vielen Dank!“\",\"name\":\"Desiree Z.\"}]"
-            },
-            {
-              "type": "deep",
-              "title": "Tiefes Wissen, das nicht nur erklärt wird",
-              "items": "[]"
-            },
-            {
-              "type": "featured",
-              "image": "/images/placeholder/placeholder-4.jpg",
-              "body": "Was unsere Workshops besonders macht, ist nicht nur das Wissen — sondern die Erfahrung, aus der es entstanden ist. Seit Jahrzehnten begleiten wir Menschen in Veränderungsprozessen. Nicht in der Theorie, sondern im echten Leben.<br /><br />Theresia bringt Erfahrung aus systemischer Arbeit, Körperarbeit und Nervensystemwissen ein. Axel ergänzt durch Numerologie, Hypnose und seine Fähigkeit, komplexe Zusammenhänge alltagstauglich zu vermitteln.<br /><br />Gemeinsam schaffen wir Lernräume, in denen Menschen wachsen können. Denn Wissen wird erst nachhaltig, wenn es erlebt wird."
-            },
-            {
-              "type": "faq",
-              "items": "[]"
-            },
-            {
-              "type": "newsletter",
-              "title": "Ein Blick hinter die <br />Kulissen",
-              "body": "Im Newsletter teilen wir Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind. Wenn dich Workshops, Kurse oder die Ausbildung interessieren, bist du hier genau richtig."
-            }
-          ],
-          "deep_paragraphs": [
-            {
-              "text": "Unsere Workshops und Kurse sind kein Frontalunterricht. Sie sind Erfahrungsräume, in denen Wissen lebendig wird. Räume, in denen du Zusammenhänge nicht nur verstehst, sondern selbst erlebst."
-            },
-            {
-              "text": "Ob du zum ersten Mal mit systemischer Arbeit, Numerologie oder Energiearbeit in Berührung kommst oder dein Wissen vertiefen möchtest – hier findest du Formate, die praxisnah, inspirierend und nachhaltig sind. Lernen darf berühren. Lernen darf verändern. Lernen darf Freude machen."
             }
           ],
           "category_pills": [
@@ -2072,6 +2219,38 @@
               "description": "Du spürst, dass da mehr ist — und möchtest wissen, wohin der Weg führen könnte. Unsere Infoanlässe geben dir einen ersten ehrlichen Einblick in die Ausbildung Systemic Soulwork, ohne Druck und ohne Verpflichtung.",
               "active": false
             }
+          ],
+          "sections": [
+            {
+              "type": "hero",
+              "eyebrow": "Workshops & Kurse",
+              "title": "Tauche ein in die<br /><em>Systeme der Seele</em> mit<br />Theres und Axel",
+              "body": "Ob du deine Praxis erweitern oder einfach etwas Neues entdecken willst — hier ist der Raum für deine Entfaltung.",
+              "items": "[]"
+            },
+            {
+              "type": "testimonials",
+              "items": "[{\"quote\":\"„Der Numerologie-Workshop hat mich wirklich überrascht. Plötzlich ergaben viele Verhaltensweisen einen ganz neuen Sinn. Besonders die Analyse im Schulalltag war für mich unglaublich hilfreich. Ein Workshop voller Aha-Momente und neuer Perspektiven.“\",\"name\":\"Marianne S.\"},{\"quote\":\"„Ich bin ohne grosse Erwartungen in den Numerologie-Workshop gestartet – und wurde umso positiver überrascht. Besonders das liebevoll gestaltete Workbook hat mich begeistert. Man spürt sofort, wie viel Herzblut in diesem Kurs steckt.“\",\"name\":\"Marina C.\"},{\"quote\":\"„Ich bin noch immer beeindruckt, wie viel Kraft hinter dieser einfachen Klopftechnik steckt. Die Werkzeuge lassen sich direkt im Alltag anwenden – für mich selbst und meine Familie. Ein praxisnaher Kurs, den ich von Herzen weiterempfehle.“\",\"name\":\"Sandra M.\"},{\"quote\":\"„SoulReset hat mich absolut begeistert. Die Atemübungen und das Tapping haben mir geholfen, Druck abzubauen und wieder mehr Ruhe zu finden. Praktische und wirkungsvolle Tools, die sich leicht umsetzen lassen. Vielen Dank!“\",\"name\":\"Desiree Z.\"}]"
+            },
+            {
+              "type": "deep",
+              "title": "Tiefes Wissen, das nicht nur erklärt wird",
+              "items": "[]"
+            },
+            {
+              "type": "featured",
+              "image": "/images/placeholder/placeholder-4.jpg",
+              "body": "Was unsere Workshops besonders macht, ist nicht nur das Wissen — sondern die Erfahrung, aus der es entstanden ist. Seit Jahrzehnten begleiten wir Menschen in Veränderungsprozessen. Nicht in der Theorie, sondern im echten Leben.<br /><br />Theresia bringt Erfahrung aus systemischer Arbeit, Körperarbeit und Nervensystemwissen ein. Axel ergänzt durch Numerologie, Hypnose und seine Fähigkeit, komplexe Zusammenhänge alltagstauglich zu vermitteln.<br /><br />Gemeinsam schaffen wir Lernräume, in denen Menschen wachsen können. Denn Wissen wird erst nachhaltig, wenn es erlebt wird."
+            },
+            {
+              "type": "faq",
+              "items": "[]"
+            },
+            {
+              "type": "newsletter",
+              "title": "Ein Blick hinter die <br />Kulissen",
+              "body": "Im Newsletter teilen wir Einblicke aus Ausbildungen und Praxis, Impulse für den Alltag und neue Termine — oft bevor sie öffentlich sind. Wenn dich Workshops, Kurse oder die Ausbildung interessieren, bist du hier genau richtig."
+            }
           ]
         }
       },
@@ -2083,11 +2262,16 @@
           "title": "SoulTap gegen deine Angst",
           "date": "2026-09-14",
           "color": "gold",
-          "category_meta": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
-          "duration_meta": "14.09.2026 · 13:30 Uhr · 120 Min. · Online",
+          "card_image": "/images/placeholder/Placeholder-12.jpg",
+          "card_eyebrow": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
+          "card_title": "SoulTap Einführungskurs",
+          "card_description": "EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen.",
+          "card_duration": "120 Min. | Online",
           "hero_description": "Im September lädt dich Theresia Jansen zu einem besonderen Monats-Workshop ein: EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen. Ein Werkzeug, das du sofort anwenden kannst und das dich noch viele Jahre begleiten wird.",
           "hero_price": "CHF 66.–",
           "hero_image": "/images/placeholder/Placeholder-34.jpg",
+          "category_meta": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
+          "duration_meta": "14.09.2026 · 13:30 Uhr · 120 Min. · Online",
           "info_cards": [
             {
               "eyebrow": "Wann?",
@@ -2115,11 +2299,7 @@
               "text": "Live-Workshop, Kursunterlagen, Aufzeichnungen"
             }
           ],
-          "card_eyebrow": "MONATS-WORKSHOP | SEPTEMBER | 14.09.2026",
-          "card_title": "SoulTap Einführungskurs",
-          "card_description": "EFT-Meridian-Klopfen – eine einfache und gleichzeitig wirkungsvolle Methode für mehr innere Ruhe, Sicherheit und Vertrauen.",
-          "card_image": "/images/placeholder/Placeholder-12.jpg",
-          "card_duration": "120 Min. | Online"
+          "testimonials_tone": "gold"
         }
       },
       {
@@ -2130,11 +2310,16 @@
           "title": "Im Vagusnerv liegt die Ruhe",
           "date": "2026-10-22",
           "color": "lavender",
-          "category_meta": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
-          "duration_meta": "22.10.2026 · 09:00 Uhr · 120 Min. · Online",
+          "card_image": "/images/placeholder/Placeholder-29.jpg",
+          "card_eyebrow": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
+          "card_title": "Im Vagusnerv liegt die Ruhe",
+          "card_description": "Den Vagusnerv verstehen und aktivieren – mit einfachen Werkzeugen mehr Ruhe und Gelassenheit in deinen Alltag bringen.",
+          "card_duration": "120 Min. | Online",
           "hero_description": "Den Vagusnerv verstehen und gezielt aktivieren: Unser Monats-Workshop im Oktober lädt dich ein, deinen Körper besser kennenzulernen und mit einfachen Methoden mehr Ruhe und Gelassenheit in deinen Alltag zu bringen.",
           "hero_price": "CHF 66.–",
           "hero_image": "/images/placeholder/Placeholder-29.jpg",
+          "category_meta": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
+          "duration_meta": "22.10.2026 · 09:00 Uhr · 120 Min. · Online",
           "info_cards": [
             {
               "eyebrow": "Wann?",
@@ -2162,11 +2347,7 @@
               "text": "Live-Workshop, Kursunterlagen, Anleitung zur Vagusnerv-Ohrmassage & Aufzeichnung"
             }
           ],
-          "card_eyebrow": "MONATS-WORKSHOP | OKTOBER | 22.10.2026",
-          "card_title": "Im Vagusnerv liegt die Ruhe",
-          "card_description": "Den Vagusnerv verstehen und aktivieren – mit einfachen Werkzeugen mehr Ruhe und Gelassenheit in deinen Alltag bringen.",
-          "card_image": "/images/placeholder/Placeholder-29.jpg",
-          "card_duration": "120 Min. | Online"
+          "testimonials_tone": "gold"
         }
       }
     ],
@@ -2276,6 +2457,7 @@
               "body": "Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen — die das Handwerk lebendig halten und weiter wachsen wollen."
             }
           ],
+          "testimonials_tone": "gold",
           "faq_items": [
             {
               "question": "Wie läuft eine systemische Aufstellung ab?",
@@ -2322,7 +2504,11 @@
           "hero_eyebrow": "Willkommen bei VitaLunaris",
           "hero_title": "Erforsche die<br class='hero__br--md' /> Systeme der<br class='hero__br--md' />Seele",
           "hero_subtitle": "VitaLunaris ist dein Ort für systemische Aufstellungsarbeit, Hypnose, Numerologie und persönliche Entwicklung. Hier verbinden sich systemisches Wissen, intuitive Wahrnehmung und die Erfahrung aus jahrzehntelanger Arbeit mit Menschen – getragen von Theresia und Axel Jansen.",
-          "hero_image": "/images/placeholder/Placeholder_1.jpg",
+          "hero_image": {
+            "id": "",
+            "provider": "external",
+            "src": "/images/placeholder/Placeholder_1.jpg"
+          },
           "hero_primary_cta_text": "Zu den Ausbildungen",
           "hero_primary_cta_href": "/ausbildung",
           "hero_secondary_cta_text": "Zu den Angeboten",
@@ -2353,7 +2539,25 @@
               "type": "testimonials",
               "eyebrow": "Stimmen",
               "title": "Was Menschen sagen.",
-              "items": "[{\"quote\":\"“Nach einer sehr schweren Zeit in meinem Leben fand ich bei VitaLunaris einen geschützten Raum für meinen Weg. Durch die Begleitung von Theresia wurden Zusammenhänge sichtbar, die ich vorher nicht erkennen konnte. Schritt für Schritt fand ich zurück zu Vertrauen, Zuversicht und neuer Lebensfreude. Dafür bin ich von Herzen dankbar.”\",\"name\":\"Claudia N.\"},{\"quote\":\"“Ich stand vor einer wichtigen Entscheidung für meine Zukunft und war unsicher, welchen Weg ich einschlagen sollte. Das Numeroskop von Axel hat mir neue Perspektiven eröffnet und mir geholfen, meine Stärken und Möglichkeiten klarer zu erkennen. Heute weiss ich, dass ich die richtige Entscheidung getroffen habe.”\",\"name\":\"Erika B.\"},{\"quote\":\"“Ich hätte nie gedacht, dass man mit ein bisschen Klopfen so viel erreichen kann. Schon nach dem EFT-Grundkurs konnte ich die Methode in vielen Alltagssituationen anwenden. Besonders schön ist, dass inzwischen auch meine Kinder begeistert mitklopfen. Dieser Kurs war eine echte Bereicherung für unsere ganze Familie.”\",\"name\":\"Ramona K.\"},{\"quote\":\"“Die Ausbildung zum Systemic Soulcoach war für mich weit mehr als eine Ausbildung. Durch die Aufstellungsarbeit habe ich erkannt, dass etwas, das ich jahrelang als Schwäche betrachtet hatte, in Wahrheit ein grosses Potenzial in sich trägt. Theresia hält einen unglaublich sicheren und vertrauensvollen Raum.”\",\"name\":\"Corina B.\"}]"
+              "context": "home"
+            },
+            {
+              "type": "featured",
+              "eyebrow": "",
+              "title": "Theresia & Axel Jansen",
+              "body": "Theresia Jansen begleitet seit über 30 Jahren Menschen zu mehr Klarheit und Veränderung – gestützt auf umfangreiche Ausbildungen und jahrzehntelange Praxiserfahrung. Axel Jansen bringt Hypnose, Numerologie und einen präzisen Blick für Zusammenhänge ein – humorvoll und geerdet.   Als Ehepaar und Team ergänzen sich ihre Stärken auf natürliche Weise. Was sie verbindet: die Überzeugung, dass Veränderung dort beginnt, wo Menschen sich gesehen und sicher fühlen. So entstehen Räume für Erkenntnis und neue Perspektiven – ehrlich, menschlich, mit echter Lebenserfahrung.",
+              "image": {
+                "id": "01KW4E6Z75CK2QWFSCH805DQD4",
+                "provider": "local",
+                "alt": "",
+                "width": 857,
+                "height": 900,
+                "meta": {
+                  "storageKey": "01KW4E6YZFKQM0TWSZ7P8TJGM8.png"
+                }
+              },
+              "image_side": "",
+              "tone": ""
             },
             {
               "type": "newsletter",
@@ -2361,29 +2565,6 @@
               "title": "Impulse für deine<br />innere Reise.",
               "body": "Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.\n\nDazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.",
               "items": "{\"placeholder\":\"E-mail adresse\",\"submitText\":\"Kostenlos abonnieren\"}"
-            }
-          ],
-          "offer_cards": [
-            {
-              "icon": "/images/ebene/Ebene-14.svg",
-              "title": "Ich will Systemisches Aufstellen lernen",
-              "description": "Du willst systemisches Aufstellen nicht nur selbst erleben, sondern auch anwenden oder weitergeben. Wir begleiten dich Schritt für Schritt – von deiner eigenen Aufstellungsreise bis zur Ausbildung zum Systemic Soulcoach. So erhältst du das Handwerk und die Tiefe, die es für eine gute Begleitung braucht.",
-              "cta_text": "Zu den Ausbildungen →",
-              "cta_href": "/ausbildung"
-            },
-            {
-              "icon": "/images/ebene/Ebene_2.svg",
-              "title": "Ich will meine Praxis vertiefen oder Neues lernen",
-              "description": "Du möchtest neue Methoden kennenlernen oder dein bestehendes Wissen erweitern? Aus unserem jahrzehntelangen Erfahrungsschatz geben wir praxisnahes Wissen weiter – in Weiterbildungen und Kursen rund um systemisches Aufstellen, Numerologie, EFT, Hypnotic Selfcare und weitere spannende Themen.",
-              "cta_text": "Zu den Workshops & Kursen →",
-              "cta_href": "/workshops-kurse/kalender-uebersicht"
-            },
-            {
-              "icon": "/images/ebene/Ebene_2-8.svg",
-              "title": "Ich suche Veränderung oder Unterstützung",
-              "description": "Etwas in deinem Leben fühlt sich nicht mehr stimmig an. Vielleicht zeigt sich ein Muster, das sich wiederholt, oder du stehst vor einer wichtigen Entscheidung. Es gibt verschiedene Wege, Klarheit zu gewinnen, neue Perspektiven zu entdecken und wieder in Bewegung zu kommen.",
-              "cta_text": "Unsere Praxisangebote →",
-              "cta_href": "/praxisangebote"
             }
           ],
           "newsletter_placeholder": "E-mail adresse",
@@ -2400,7 +2581,11 @@
           "hero_eyebrow": "VitaLunaris Kontakt",
           "hero_title": "Hast du Fragen?",
           "hero_subtitle": "Zu einem Angebot, der Ausbildung oder einem Workshop — oder weisst du noch nicht genau wohin du gehörst? Schreib uns. Wir melden uns innert 24 Stunden.",
-          "hero_image": "/images/ebene/Ebene_2-8.svg",
+          "hero_image": {
+            "id": "",
+            "provider": "external",
+            "src": "/images/ebene/Ebene_2-8.svg"
+          },
           "sections": [
             {
               "type": "contact_form",
@@ -2447,6 +2632,17 @@
         "data": {
           "seo_title": "Über uns | VitaLunaris",
           "seo_description": "VitaLunaris ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen. Lerne Theresia, Axel und Marlen kennen.",
+          "hero_paragraphs": [
+            {
+              "text": "VitaLunaris ist mehr als eine Praxis. Es ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen."
+            },
+            {
+              "text": "Gegründet von Theresia und Axel Jansen. Verwurzelt in der Deutschschweiz. Entstanden aus der Leidenschaft, Menschen auf ihrem Weg zu mehr Klarheit, Verständnis und Veränderung zu begleiten."
+            },
+            {
+              "text": "Für alle, die nicht nur auf Symptome schauen, sondern tiefer verstehen möchten, was hinter Herausforderungen, Beziehungen und Lebenswegen wirkt."
+            }
+          ],
           "sections": [
             {
               "type": "hero",
@@ -2480,17 +2676,6 @@
               "type": "newsletter",
               "title": "Unsere Gedanken<br />passen nicht alle auf<br />eine Webseite.",
               "body": "Deshalb schreiben wir jede Woche einen Newsletter. Mit Geschichten, Inspirationen, Axels Zahlenmagie, Einblicken aus unserem Alltag und Gedanken über das Leben, die Menschen und die Zusammenhänge, die uns bewegen."
-            }
-          ],
-          "hero_paragraphs": [
-            {
-              "text": "VitaLunaris ist mehr als eine Praxis. Es ist ein Ort, an dem systemisches Wissen, intuitive Wahrnehmung und jahrzehntelange Erfahrung zusammenkommen."
-            },
-            {
-              "text": "Gegründet von Theresia und Axel Jansen. Verwurzelt in der Deutschschweiz. Entstanden aus der Leidenschaft, Menschen auf ihrem Weg zu mehr Klarheit, Verständnis und Veränderung zu begleiten."
-            },
-            {
-              "text": "Für alle, die nicht nur auf Symptome schauen, sondern tiefer verstehen möchten, was hinter Herausforderungen, Beziehungen und Lebenswegen wirkt."
             }
           ],
           "value_cards": [
@@ -2544,6 +2729,87 @@
           "body_markdown": "<h2>VitaLunaris</h2>\n<p>Theresia Jansen<br />Eichenaustrasse 32<br />CH-9470 Buchs SG<br />Schweiz</p>\n<h2>Kontakt</h2>\n<p>E-Mail: <a href=\"mailto:info@vitalunaris.ch\">info@vitalunaris.ch</a><br />Telefon: <a href=\"tel:+41815991402\">081 599 14 02</a></p>\n<h2>Verantwortlich für den Inhalt</h2>\n<p>Theresia Jansen</p>"
         }
       }
-    ]
+    ],
+    "info_cards": [
+      {
+        "id": "01KW4R25H35AZ7S4MJPW6Y7GCY",
+        "slug": "home-1",
+        "status": "published",
+        "data": {
+          "eyebrow": "Über 30 Jahre",
+          "body": "Erfahrung in der Begleitung von Menschen in Veränderungsprozessen.",
+          "context": "home",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW4R25H41CNZ7QX42V318E6Z",
+        "slug": "home-2",
+        "status": "published",
+        "data": {
+          "eyebrow": "Drei Wege",
+          "body": "Systemisches Aufstellen, Hypnose und Numerologie — verschiedene Zugänge zu Klarheit.",
+          "context": "home",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW4R25H4XRYS1MQTWVQEEQKD",
+        "slug": "home-3",
+        "status": "published",
+        "data": {
+          "eyebrow": "Geschützter Raum",
+          "body": "Ein Ort für ehrliche Begegnungen, neue Perspektiven und tiefe Prozesse.",
+          "context": "home",
+          "sort_order": 2
+        }
+      }
+    ],
+    "offer_cards": [
+      {
+        "id": "01KW9GTEZ4Q4QKP8YVNTNX99AV",
+        "slug": "home-1",
+        "status": "published",
+        "data": {
+          "icon": "/images/ebene/Ebene-14.svg",
+          "title": "Ich will Systemisches Aufstellen lernen",
+          "description": "Du willst systemisches Aufstellen nicht nur selbst erleben, sondern auch anwenden oder weitergeben. Wir begleiten dich Schritt für Schritt – von deiner eigenen Aufstellungsreise bis zur Ausbildung zum Systemic Soulcoach. So erhältst du das Handwerk und die Tiefe, die es für eine gute Begleitung braucht.",
+          "cta_text": "Zu den Ausbildungen →",
+          "cta_href": "/ausbildung",
+          "context": "home",
+          "sort_order": 0
+        }
+      },
+      {
+        "id": "01KW9GTEZ4J8YHVQP46CJJ57DV",
+        "slug": "home-2",
+        "status": "published",
+        "data": {
+          "icon": "/images/ebene/Ebene_2.svg",
+          "title": "Ich will meine Praxis vertiefen oder Neues lernen",
+          "description": "Du möchtest neue Methoden kennenlernen oder dein bestehendes Wissen erweitern? Aus unserem jahrzehntelangen Erfahrungsschatz geben wir praxisnahes Wissen weiter – in Weiterbildungen und Kursen rund um systemisches Aufstellen, Numerologie, EFT, Hypnotic Selfcare und weitere spannende Themen.",
+          "cta_text": "Zu den Workshops & Kursen →",
+          "cta_href": "/workshops-kurse/kalender-uebersicht",
+          "context": "home",
+          "sort_order": 1
+        }
+      },
+      {
+        "id": "01KW9GTEZ5GB9R98FRHMPNEPM6",
+        "slug": "home-3",
+        "status": "published",
+        "data": {
+          "icon": "/images/ebene/Ebene_2-8.svg",
+          "title": "Ich suche Veränderung oder Unterstützung",
+          "description": "Etwas in deinem Leben fühlt sich nicht mehr stimmig an. Vielleicht zeigt sich ein Muster, das sich wiederholt, oder du stehst vor einer wichtigen Entscheidung. Es gibt verschiedene Wege, Klarheit zu gewinnen, neue Perspektiven zu entdecken und wieder in Bewegung zu kommen.",
+          "cta_text": "Unsere Praxisangebote →",
+          "cta_href": "/praxisangebote",
+          "context": "home",
+          "sort_order": 2
+        }
+      }
+    ],
+    "value_cards": [],
+    "faq": []
   }
 }

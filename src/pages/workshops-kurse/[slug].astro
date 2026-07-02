@@ -32,7 +32,8 @@ const bulletGroups = (w.narrative_bullet_groups ?? []).map((g: any) => ({
 /* "Weitere Kurse" grid — every other workshop, by date. */
 const { entries: all } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
 const furtherCourses = (all ?? [])
-  .filter((e: any) => e.id !== slug)
+  // Exclude the current course and the two dateless overview pages.
+  .filter((e: any) => e.id !== slug && e.data?.date)
   .map((e: any) => ({
     image: imageUrl(e.data?.card_image),
     eyebrow: e.data?.card_eyebrow,
@@ -99,6 +100,7 @@ const faqItems = [
   <TestimonialsBlock
     title="Was Teilnehmer sagen"
     testimonials={testimonials}
+    tone={w.testimonials_tone || 'gold'}
   />
 
   {/* ===================== Theresia & Axel Jansen — light, image right ===================== */}

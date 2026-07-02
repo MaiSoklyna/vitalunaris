@@ -14,12 +14,24 @@ interface Props {
   title: string;
   intro?: string;
   testimonials: Testimonial[];
+  /** Background gradient of the block. Editors pick this in the admin. */
+  tone?: 'gold' | 'spring-wood' | 'purple' | 'cherrywood' | string;
 }
 
-const { eyebrow, title, intro, testimonials } = Astro.props;
+const { eyebrow, title, intro, testimonials, tone } = Astro.props;
+
+// Normalize tone (incl. aliases from the shared `sections.tone` select) to one of
+// the four background variants. Unknown/empty → 'gold' (the original default).
+const TONE_ALIASES: Record<string, 'gold' | 'spring-wood' | 'purple' | 'cherrywood'> = {
+  gold: 'gold', 'pale-gold': 'gold',
+  'spring-wood': 'spring-wood', light: 'spring-wood',
+  purple: 'purple', lavender: 'purple',
+  cherrywood: 'cherrywood', dark: 'cherrywood',
+};
+const toneClass = TONE_ALIASES[tone ?? ''] ?? 'gold';
 ---
 
-<section class="t-block">
+<section class={`t-block t-block--${toneClass}`}>
   <div class="t-block__inner max-w-layout container-x">
     <header class="t-block__header">
       {eyebrow && <Heading variant="eyebrow" class="t-block__eyebrow">{eyebrow}</Heading>}
@@ -105,6 +117,15 @@ const { eyebrow, title, intro, testimonials } = Astro.props;
     display: flex;
     flex-direction: column;
   }
+  /* Selectable background gradients (editor picks the tone in the admin). */
+  .t-block--gold        { background: var(--gradient-spring-gold); }
+  .t-block--spring-wood { background: var(--gradient-spring-wood); }
+  .t-block--purple      { background: var(--gradient-lavender); }
+  .t-block--cherrywood  { background: var(--gradient-cherrywood); }
+  /* Dark background needs light header text (the white cards stay unchanged). */
+  .t-block--cherrywood .t-block__eyebrow,
+  .t-block--cherrywood .t-block__title,
+  .t-block--cherrywood .t-block__intro { color: var(--c-spring-wood); }
   @media (min-width: 768px)  { .t-block { padding: 60px 32px; } }
   @media (min-width: 1024px) { .t-block { padding: 80px 40px; } }
   @media (min-width: 1280px) { .t-block { padding: 90px 60px; } }

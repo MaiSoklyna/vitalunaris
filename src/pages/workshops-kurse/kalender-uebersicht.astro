@@ -56,15 +56,20 @@ const pills = d.category_pills?.length ? d.category_pills : [
 ];
 
 /* Calendar chips + "Nächste Kurse" cards both derive from the
-   EmDash `workshops` collection so they stay in sync with the schedule. */
-const calendarEvents = (workshopEntries ?? []).map((e: any) => ({
+   EmDash `workshops` collection so they stay in sync with the schedule.
+   The collection also holds the two overview pages (aktueller-monatsworkshop,
+   kalender-uebersicht) which have no date — exclude those so only real,
+   dated workshops appear (and don't crowd out the first 3 cards). */
+const datedWorkshops = (workshopEntries ?? []).filter((e: any) => e.data?.date);
+
+const calendarEvents = datedWorkshops.map((e: any) => ({
   date: e.data?.date,
   label: e.data?.title,
   color: e.data?.color,
   href: `/workshops-kurse/${e.id}`,
 }));
 
-const upcoming = (workshopEntries ?? []).slice(0, 3).map((e: any) => ({
+const upcoming = datedWorkshops.slice(0, 3).map((e: any) => ({
   image: imageUrl(e.data?.card_image),
   eyebrow: e.data?.card_eyebrow,
   title: e.data?.card_title,
@@ -126,7 +131,7 @@ const deepParas = (d.deep_paragraphs?.length ? d.deep_paragraphs.map((p: any) =>
   </section>
 
   {/* ===================== Testimonials ===================== */}
-  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} />
+  <TestimonialsBlock title="Was unsere Kunden sagen" testimonials={testimonials} tone={d.testimonials_tone || 'gold'} />
 
   {/* ===================== Tiefes Wissen — lavender ===================== */}
   <section class="deep">

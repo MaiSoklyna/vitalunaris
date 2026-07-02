@@ -25,11 +25,25 @@ const path = require('path');
 const DB_PATH = path.join(__dirname, '..', 'data.db');
 const PRINT_SQL = process.argv.includes('--print-sql');
 
-// Allowed `type` options per Blocks-router collection.
+// Allowed `type` options per collection.
+//
+// pages / praxisangebote use the generic <Blocks> router, so their valid types are
+// the Blocks-rendered ones. ausbildung_programs / workshops instead use a *bespoke
+// sec-bag* on their overview pages (const sec = t => d.sections.find(s=>s.type===t)),
+// so their only valid types are the ones those pages actually read — offering the
+// Blocks types there is misleading because they don't render. Sources:
+//   ausbildung: src/pages/ausbildung/{uebersicht,infoanlaesse}.astro
+//   workshops:  src/pages/workshops-kurse/{kalender-uebersicht,aktueller-monatsworkshop}.astro
+// Removing an option never orphans existing sections — EmDash preserves out-of-options
+// select values, so any stored section keeps rendering.
 const ALLOWED = {
   pages: ['narrative', 'featured', 'overview_hero', 'testimonials', 'info_cards', 'offer_cards', 'value_cards'],
   // Keep gallery/price_list: jawort-by-jansen renders them as bespoke section types.
   praxisangebote: ['narrative', 'featured', 'overview_hero', 'testimonials', 'info_cards', 'offer_cards', 'value_cards', 'gallery', 'price_list'],
+  // Bespoke overview-page section types (uebersicht + infoanlaesse).
+  ausbildung_programs: ['hero', 'narrative', 'stages', 'outcomes', 'lehrerin', 'uquote', 'about', 'newsletter'],
+  // Bespoke overview-page section types (kalender-uebersicht + aktueller-monatsworkshop).
+  workshops: ['hero', 'narrative', 'about', 'deep', 'featured', 'newsletter'],
 };
 
 const Database = require('better-sqlite3');

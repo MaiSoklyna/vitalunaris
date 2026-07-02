@@ -51,14 +51,14 @@
                 "label": "Link"
               },
               {
-                "slug": "navigate_on_click",
-                "type": "boolean",
-                "label": "Direkt verlinken (kein Dropdown)"
+                "slug": "parent",
+                "type": "string",
+                "label": "Untermenü von (Link des Hauptpunkts – leer = oberste Ebene)"
               },
               {
-                "slug": "children",
-                "type": "text",
-                "label": "Unterpunkte (JSON: [{label,href,disabled}])"
+                "slug": "navigate_on_click",
+                "type": "boolean",
+                "label": "Direkt verlinken (Klick öffnet die Seite statt des Dropdowns)"
               },
               {
                 "slug": "disabled",
@@ -74,17 +74,22 @@
           "type": "repeater",
           "validation": {
             "minItems": 0,
-            "maxItems": 6,
+            "maxItems": 40,
             "subFields": [
               {
-                "slug": "title",
+                "slug": "label",
                 "type": "string",
-                "label": "Titel"
+                "label": "Beschriftung (Spaltentitel oder Link-Text)"
               },
               {
-                "slug": "links",
-                "type": "text",
-                "label": "Links (JSON: [{label,href}])"
+                "slug": "href",
+                "type": "string",
+                "label": "Link (nur bei Link-Zeilen; bei Spaltentiteln leer)"
+              },
+              {
+                "slug": "parent",
+                "type": "string",
+                "label": "Gehört zu Spalte (Spaltentitel – leer = diese Zeile IST ein Spaltentitel)"
               }
             ]
           }
@@ -251,7 +256,10 @@
               "jawort",
               "workshop-aktueller",
               "workshop-kalender",
-              "home"
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
             ]
           }
         },
@@ -259,51 +267,6 @@
           "slug": "featured",
           "label": "Hervorgehoben",
           "type": "boolean"
-        },
-        {
-          "slug": "sort_order",
-          "label": "Reihenfolge",
-          "type": "integer"
-        }
-      ]
-    },
-    {
-      "slug": "info_cards",
-      "label": "Info-Karten",
-      "labelSingular": "Info-Karte",
-      "description": "Kleine Info-Karten (Titel + Text) für «Info-Karten»-Blöcke. Jede Karte hat einen «Seite / Kontext»-Tag, der bestimmt, in welchem Block sie erscheint — füge auf einer Seite einen Info-Karten-Block hinzu und wähle denselben Kontext.",
-      "supports": [
-        "drafts",
-        "revisions"
-      ],
-      "fields": [
-        {
-          "slug": "eyebrow",
-          "label": "Titel (klein)",
-          "type": "string"
-        },
-        {
-          "slug": "body",
-          "label": "Text",
-          "type": "text"
-        },
-        {
-          "slug": "context",
-          "label": "Seite / Kontext",
-          "type": "select",
-          "validation": {
-            "options": [
-              "praxis-hypnose",
-              "praxis-aufstellungen",
-              "praxis-numerologie",
-              "praxis-fussreflex",
-              "ausbildung",
-              "jawort",
-              "workshop-aktueller",
-              "workshop-kalender",
-              "home"
-            ]
-          }
         },
         {
           "slug": "sort_order",
@@ -378,6 +341,27 @@
           "type": "string"
         },
         {
+          "slug": "price_list",
+          "label": "Preisliste",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "label",
+                "type": "string",
+                "label": "Leistung"
+              },
+              {
+                "slug": "value",
+                "type": "string",
+                "label": "Preis"
+              }
+            ]
+          }
+        },
+        {
           "slug": "narrative_title",
           "label": "Abschnitt · Titel",
           "type": "string"
@@ -414,6 +398,28 @@
                 "slug": "text",
                 "type": "text",
                 "label": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "gallery",
+          "label": "Galerie",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 40,
+            "subFields": [
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild"
+              },
+              {
+                "slug": "alt",
+                "type": "string",
+                "label": "Alt-Text (Bildbeschreibung)",
+                "required": true
               }
             ]
           }
@@ -481,6 +487,35 @@
           }
         },
         {
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
+            ]
+          }
+        },
+        {
+          "slug": "bio_paragraphs",
+          "label": "Bio · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
           "slug": "practitioner",
           "label": "Begleitung (team-slug)",
           "type": "string"
@@ -540,18 +575,15 @@
                 "label": "Block-Typ — welcher Abschnitt ist das?",
                 "options": [
                   "narrative",
+                  "featured",
+                  "overview_hero",
+                  "testimonials",
+                  "faq",
+                  "info_cards",
                   "offer_cards",
                   "value_cards",
-                  "testimonials",
-                  "process_steps",
-                  "info_cards",
-                  "faq",
-                  "newsletter",
-                  "person_bio",
                   "gallery",
-                  "price_list",
-                  "claim_block",
-                  "dark_cta"
+                  "price_list"
                 ]
               },
               {
@@ -593,67 +625,28 @@
                   "purple",
                   "lavender",
                   "spring-wood",
-                  "dark"
+                  "dark",
+                  "cherrywood"
                 ]
-              }
-            ]
-          }
-        },
-        {
-          "slug": "gallery",
-          "label": "Galerie",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 40,
-            "subFields": [
-              {
-                "slug": "image",
-                "type": "image",
-                "label": "Bild"
               },
               {
-                "slug": "alt",
-                "type": "string",
-                "label": "Alt-Text (Bildbeschreibung)",
-                "required": true
-              }
-            ]
-          }
-        },
-        {
-          "slug": "price_list",
-          "label": "Preisliste",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 8,
-            "subFields": [
-              {
-                "slug": "label",
-                "type": "string",
-                "label": "Leistung"
-              },
-              {
-                "slug": "value",
-                "type": "string",
-                "label": "Preis"
-              }
-            ]
-          }
-        },
-        {
-          "slug": "bio_paragraphs",
-          "label": "Bio · Absätze",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 8,
-            "subFields": [
-              {
-                "slug": "text",
-                "type": "text",
-                "label": "Absatz"
+                "slug": "context",
+                "type": "select",
+                "label": "Stimmen-Kontext (nur für Block-Typ „Stimmen / testimonials\")",
+                "options": [
+                  "praxis-hypnose",
+                  "praxis-aufstellungen",
+                  "praxis-numerologie",
+                  "praxis-fussreflex",
+                  "ausbildung",
+                  "jawort",
+                  "workshop-aktueller",
+                  "workshop-kalender",
+                  "home",
+                  "kontakt",
+                  "neuigkeiten",
+                  "praxisangebote-overview"
+                ]
               }
             ]
           }
@@ -843,6 +836,47 @@
           }
         },
         {
+          "slug": "stage_cards",
+          "label": "Stufen-Karten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "image",
+                "type": "image",
+                "label": "Bild"
+              },
+              {
+                "slug": "eyebrow",
+                "type": "string",
+                "label": "Eyebrow"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "body",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "cta_text",
+                "type": "string",
+                "label": "Button-Text"
+              },
+              {
+                "slug": "cta_href",
+                "type": "string",
+                "label": "Link (z. B. /kontakt)"
+              }
+            ]
+          }
+        },
+        {
           "slug": "narrative2_title",
           "label": "Abschnitt 2 · Titel",
           "type": "string"
@@ -878,9 +912,41 @@
           "type": "image"
         },
         {
+          "slug": "lehrerin_paragraphs",
+          "label": "Lehrerin · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
           "slug": "about_image",
           "label": "Über-uns-Band · Bild",
           "type": "image"
+        },
+        {
+          "slug": "about_paragraphs",
+          "label": "Über uns · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
         },
         {
           "slug": "info_cards",
@@ -930,6 +996,19 @@
           }
         },
         {
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
+            ]
+          }
+        },
+        {
           "slug": "teacher",
           "label": "Lehrperson (team-slug)",
           "type": "string"
@@ -971,6 +1050,22 @@
           "type": "text"
         },
         {
+          "slug": "agenda_items",
+          "label": "Agenda · Punkte",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 12,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
           "slug": "sections",
           "label": "Sektionen / Blöcke (nur Übersichts-Seiten)",
           "type": "repeater",
@@ -983,19 +1078,14 @@
                 "type": "select",
                 "label": "Block-Typ — welcher Abschnitt ist das?",
                 "options": [
+                  "hero",
                   "narrative",
-                  "offer_cards",
-                  "value_cards",
-                  "testimonials",
-                  "process_steps",
-                  "info_cards",
-                  "faq",
-                  "newsletter",
-                  "person_bio",
-                  "gallery",
-                  "price_list",
-                  "claim_block",
-                  "dark_cta"
+                  "stages",
+                  "outcomes",
+                  "lehrerin",
+                  "uquote",
+                  "about",
+                  "newsletter"
                 ]
               },
               {
@@ -1042,95 +1132,6 @@
               }
             ]
           }
-        },
-        {
-          "slug": "stage_cards",
-          "label": "Stufen-Karten",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 6,
-            "subFields": [
-              {
-                "slug": "image",
-                "type": "image",
-                "label": "Bild"
-              },
-              {
-                "slug": "eyebrow",
-                "type": "string",
-                "label": "Eyebrow"
-              },
-              {
-                "slug": "title",
-                "type": "string",
-                "label": "Titel"
-              },
-              {
-                "slug": "body",
-                "type": "text",
-                "label": "Text"
-              },
-              {
-                "slug": "cta_text",
-                "type": "string",
-                "label": "Button-Text"
-              },
-              {
-                "slug": "cta_href",
-                "type": "string",
-                "label": "Link (z. B. /kontakt)"
-              }
-            ]
-          }
-        },
-        {
-          "slug": "lehrerin_paragraphs",
-          "label": "Lehrerin · Absätze",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 8,
-            "subFields": [
-              {
-                "slug": "text",
-                "type": "text",
-                "label": "Absatz"
-              }
-            ]
-          }
-        },
-        {
-          "slug": "agenda_items",
-          "label": "Agenda · Punkte",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 12,
-            "subFields": [
-              {
-                "slug": "text",
-                "type": "text",
-                "label": "Absatz"
-              }
-            ]
-          }
-        },
-        {
-          "slug": "about_paragraphs",
-          "label": "Über uns · Absätze",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 8,
-            "subFields": [
-              {
-                "slug": "text",
-                "type": "text",
-                "label": "Absatz"
-              }
-            ]
-          }
         }
       ]
     },
@@ -1168,13 +1169,28 @@
           }
         },
         {
-          "slug": "category_meta",
-          "label": "Meta · Kategorie",
+          "slug": "card_image",
+          "label": "Kalenderkarte · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "card_eyebrow",
+          "label": "Kalenderkarte · Eyebrow",
           "type": "string"
         },
         {
-          "slug": "duration_meta",
-          "label": "Meta · Dauer",
+          "slug": "card_title",
+          "label": "Kalenderkarte · Titel",
+          "type": "string"
+        },
+        {
+          "slug": "card_description",
+          "label": "Kalenderkarte · Text",
+          "type": "text"
+        },
+        {
+          "slug": "card_duration",
+          "label": "Kalenderkarte · Dauer",
           "type": "string"
         },
         {
@@ -1184,13 +1200,23 @@
         },
         {
           "slug": "hero_price",
-          "label": "Hero · Preis",
+          "label": "Preis (Hero & Kalenderkarte)",
           "type": "string"
         },
         {
           "slug": "hero_image",
           "label": "Hero · Bild",
           "type": "image"
+        },
+        {
+          "slug": "category_meta",
+          "label": "Meta · Kategorie",
+          "type": "string"
+        },
+        {
+          "slug": "duration_meta",
+          "label": "Meta · Dauer",
+          "type": "string"
         },
         {
           "slug": "info_cards",
@@ -1255,6 +1281,43 @@
           }
         },
         {
+          "slug": "deep_paragraphs",
+          "label": "Vertiefung · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "about_image",
+          "label": "Über-uns-Band · Bild",
+          "type": "image"
+        },
+        {
+          "slug": "about_paragraphs",
+          "label": "Über uns · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
           "slug": "testimonials",
           "label": "Stimmen (Testimonials)",
           "type": "repeater",
@@ -1276,9 +1339,17 @@
           }
         },
         {
-          "slug": "about_image",
-          "label": "Über-uns-Band · Bild",
-          "type": "image"
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
+            ]
+          }
         },
         {
           "slug": "faq_items",
@@ -1302,29 +1373,35 @@
           }
         },
         {
-          "slug": "card_eyebrow",
-          "label": "Kalenderkarte · Eyebrow",
-          "type": "string"
-        },
-        {
-          "slug": "card_title",
-          "label": "Kalenderkarte · Titel",
-          "type": "string"
-        },
-        {
-          "slug": "card_description",
-          "label": "Kalenderkarte · Text",
-          "type": "text"
-        },
-        {
-          "slug": "card_image",
-          "label": "Kalenderkarte · Bild",
-          "type": "image"
-        },
-        {
-          "slug": "card_duration",
-          "label": "Kalenderkarte · Dauer",
-          "type": "string"
+          "slug": "category_pills",
+          "label": "Kategorie-Filter",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 10,
+            "subFields": [
+              {
+                "slug": "label",
+                "type": "string",
+                "label": "Filter-Label"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "description",
+                "type": "text",
+                "label": "Beschreibung"
+              },
+              {
+                "slug": "active",
+                "type": "boolean",
+                "label": "Standard aktiv"
+              }
+            ]
+          }
         },
         {
           "slug": "sections",
@@ -1339,19 +1416,12 @@
                 "type": "select",
                 "label": "Block-Typ — welcher Abschnitt ist das?",
                 "options": [
+                  "hero",
                   "narrative",
-                  "offer_cards",
-                  "value_cards",
-                  "testimonials",
-                  "process_steps",
-                  "info_cards",
-                  "faq",
-                  "newsletter",
-                  "person_bio",
-                  "gallery",
-                  "price_list",
-                  "claim_block",
-                  "dark_cta"
+                  "about",
+                  "deep",
+                  "featured",
+                  "newsletter"
                 ]
               },
               {
@@ -1395,69 +1465,6 @@
                   "spring-wood",
                   "dark"
                 ]
-              }
-            ]
-          }
-        },
-        {
-          "slug": "about_paragraphs",
-          "label": "Über uns · Absätze",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 8,
-            "subFields": [
-              {
-                "slug": "text",
-                "type": "text",
-                "label": "Absatz"
-              }
-            ]
-          }
-        },
-        {
-          "slug": "deep_paragraphs",
-          "label": "Vertiefung · Absätze",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 8,
-            "subFields": [
-              {
-                "slug": "text",
-                "type": "text",
-                "label": "Absatz"
-              }
-            ]
-          }
-        },
-        {
-          "slug": "category_pills",
-          "label": "Kategorie-Filter",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 10,
-            "subFields": [
-              {
-                "slug": "label",
-                "type": "string",
-                "label": "Filter-Label"
-              },
-              {
-                "slug": "title",
-                "type": "string",
-                "label": "Titel"
-              },
-              {
-                "slug": "description",
-                "type": "text",
-                "label": "Beschreibung"
-              },
-              {
-                "slug": "active",
-                "type": "boolean",
-                "label": "Standard aktiv"
               }
             ]
           }
@@ -1525,6 +1532,22 @@
           "type": "string"
         },
         {
+          "slug": "hero_paragraphs",
+          "label": "Hero · Absätze",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 8,
+            "subFields": [
+              {
+                "slug": "text",
+                "type": "text",
+                "label": "Absatz"
+              }
+            ]
+          }
+        },
+        {
           "slug": "sections",
           "label": "Sektionen (Blöcke)",
           "type": "repeater",
@@ -1538,18 +1561,13 @@
                 "label": "Block-Typ — welcher Abschnitt ist das?",
                 "options": [
                   "narrative",
-                  "offer_cards",
-                  "value_cards",
+                  "featured",
+                  "overview_hero",
                   "testimonials",
-                  "process_steps",
-                  "info_cards",
                   "faq",
-                  "newsletter",
-                  "person_bio",
-                  "gallery",
-                  "price_list",
-                  "claim_block",
-                  "dark_cta"
+                  "info_cards",
+                  "offer_cards",
+                  "value_cards"
                 ]
               },
               {
@@ -1591,7 +1609,27 @@
                   "purple",
                   "lavender",
                   "spring-wood",
-                  "dark"
+                  "dark",
+                  "cherrywood"
+                ]
+              },
+              {
+                "slug": "context",
+                "type": "select",
+                "label": "Stimmen-Kontext (nur für Block-Typ „Stimmen / testimonials\")",
+                "options": [
+                  "praxis-hypnose",
+                  "praxis-aufstellungen",
+                  "praxis-numerologie",
+                  "praxis-fussreflex",
+                  "ausbildung",
+                  "jawort",
+                  "workshop-aktueller",
+                  "workshop-kalender",
+                  "home",
+                  "kontakt",
+                  "neuigkeiten",
+                  "praxisangebote-overview"
                 ]
               }
             ]
@@ -1613,22 +1651,6 @@
           "type": "image"
         },
         {
-          "slug": "hero_paragraphs",
-          "label": "Hero · Absätze",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 8,
-            "subFields": [
-              {
-                "slug": "text",
-                "type": "text",
-                "label": "Absatz"
-              }
-            ]
-          }
-        },
-        {
           "slug": "value_cards",
           "label": "Werte-Karten",
           "type": "repeater",
@@ -1639,7 +1661,7 @@
               {
                 "slug": "icon",
                 "type": "string",
-                "label": "Icon-Pfad"
+                "label": "Icon-Pfad (z. B. /images/ebene/Ebene_2.svg)"
               },
               {
                 "slug": "title",
@@ -1650,42 +1672,6 @@
                 "slug": "body",
                 "type": "text",
                 "label": "Text"
-              }
-            ]
-          }
-        },
-        {
-          "slug": "offer_cards",
-          "label": "Angebots-Karten",
-          "type": "repeater",
-          "validation": {
-            "minItems": 0,
-            "maxItems": 6,
-            "subFields": [
-              {
-                "slug": "icon",
-                "type": "string",
-                "label": "Icon-Pfad"
-              },
-              {
-                "slug": "title",
-                "type": "string",
-                "label": "Titel"
-              },
-              {
-                "slug": "description",
-                "type": "text",
-                "label": "Text"
-              },
-              {
-                "slug": "cta_text",
-                "type": "string",
-                "label": "Button-Text"
-              },
-              {
-                "slug": "cta_href",
-                "type": "string",
-                "label": "Link"
               }
             ]
           }
@@ -1744,6 +1730,55 @@
                 "type": "text",
                 "label": "Text"
               }
+            ]
+          }
+        },
+        {
+          "slug": "offer_cards",
+          "label": "Angebots-Karten",
+          "type": "repeater",
+          "validation": {
+            "minItems": 0,
+            "maxItems": 6,
+            "subFields": [
+              {
+                "slug": "icon",
+                "type": "string",
+                "label": "Icon-Pfad"
+              },
+              {
+                "slug": "title",
+                "type": "string",
+                "label": "Titel"
+              },
+              {
+                "slug": "description",
+                "type": "text",
+                "label": "Text"
+              },
+              {
+                "slug": "cta_text",
+                "type": "string",
+                "label": "Button-Text"
+              },
+              {
+                "slug": "cta_href",
+                "type": "string",
+                "label": "Link"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "testimonials_tone",
+          "label": "Stimmen · Hintergrund (Farbverlauf)",
+          "type": "select",
+          "validation": {
+            "options": [
+              "gold",
+              "spring-wood",
+              "purple",
+              "cherrywood"
             ]
           }
         },
@@ -1850,6 +1885,218 @@
           "slug": "body_markdown",
           "label": "Inhalt (Markdown)",
           "type": "text"
+        }
+      ]
+    },
+    {
+      "slug": "info_cards",
+      "label": "Info-Karten",
+      "labelSingular": "Info-Karte",
+      "description": "Kleine Info-Karten (Titel + Text) für «Info-Karten»-Blöcke. Jede Karte hat einen «Seite / Kontext»-Tag, der bestimmt, in welchem Block sie erscheint — füge auf einer Seite einen Info-Karten-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "eyebrow",
+          "label": "Titel (klein)",
+          "type": "string"
+        },
+        {
+          "slug": "body",
+          "label": "Text",
+          "type": "text"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "offer_cards",
+      "label": "Angebots-Karten",
+      "labelSingular": "Angebots-Karte",
+      "description": "Angebots-Karten (Icon + Titel + Text + Button) für «Angebots-Karten»-Blöcke. Jede Karte hat einen «Seite / Kontext»-Tag — füge auf einer Seite einen Angebots-Karten-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "icon",
+          "label": "Icon / Bild",
+          "type": "image"
+        },
+        {
+          "slug": "title",
+          "label": "Titel",
+          "type": "string"
+        },
+        {
+          "slug": "description",
+          "label": "Text",
+          "type": "text"
+        },
+        {
+          "slug": "cta_text",
+          "label": "Button-Text",
+          "type": "string"
+        },
+        {
+          "slug": "cta_href",
+          "label": "Button-Link",
+          "type": "string"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "value_cards",
+      "label": "Wert-Karten",
+      "labelSingular": "Wert-Karte",
+      "description": "Wert-Karten (Icon + Titel + Text) für «Wert-Karten»-Blöcke. Jede Karte hat einen «Seite / Kontext»-Tag — füge auf einer Seite einen Wert-Karten-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "icon",
+          "label": "Icon / Bild",
+          "type": "image"
+        },
+        {
+          "slug": "title",
+          "label": "Titel",
+          "type": "string"
+        },
+        {
+          "slug": "body",
+          "label": "Text",
+          "type": "text"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "slug": "faq",
+      "label": "FAQ (Häufige Fragen)",
+      "labelSingular": "FAQ-Eintrag",
+      "description": "Frage-Antwort-Paare für «FAQ»-Blöcke. Jeder Eintrag hat einen «Seite / Kontext»-Tag, der bestimmt, auf welcher Seite er erscheint — füge auf einer Seite einen FAQ-Block hinzu und wähle denselben Kontext.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "fields": [
+        {
+          "slug": "question",
+          "label": "Frage",
+          "type": "string"
+        },
+        {
+          "slug": "answer",
+          "label": "Antwort",
+          "type": "text"
+        },
+        {
+          "slug": "context",
+          "label": "Seite / Kontext",
+          "type": "select",
+          "validation": {
+            "options": [
+              "praxis-hypnose",
+              "praxis-aufstellungen",
+              "praxis-numerologie",
+              "praxis-fussreflex",
+              "ausbildung",
+              "jawort",
+              "workshop-aktueller",
+              "workshop-kalender",
+              "home",
+              "kontakt",
+              "neuigkeiten",
+              "praxisangebote-overview"
+            ]
+          }
+        },
+        {
+          "slug": "sort_order",
+          "label": "Reihenfolge",
+          "type": "integer"
         }
       ]
     }

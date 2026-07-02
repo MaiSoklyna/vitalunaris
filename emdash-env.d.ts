@@ -22,6 +22,7 @@ export interface Ausbildungsprogramm {
   narrative_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   outcomes_title?: string;
   outcomes?: unknown;
+  stage_cards?: unknown;
   narrative2_title?: string;
   narrative2_body?: string;
   narrative2_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
@@ -29,20 +30,50 @@ export interface Ausbildungsprogramm {
   lehrerin_title?: string;
   lehrerin_body?: string;
   lehrerin_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  lehrerin_paragraphs?: unknown;
   about_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  about_paragraphs?: unknown;
   info_cards?: unknown;
   schedule_caption?: string;
   testimonials?: unknown;
+  testimonials_tone?: "gold" | "spring-wood" | "purple" | "cherrywood";
   teacher?: string;
   faq_items?: unknown;
   infoanlass_eyebrow?: string;
   infoanlass_title?: string;
   infoanlass_body?: string;
-  sections?: unknown;
-  stage_cards?: unknown;
-  lehrerin_paragraphs?: unknown;
   agenda_items?: unknown;
-  about_paragraphs?: unknown;
+  sections?: unknown;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
+export interface FaqEintrag {
+  id: string;
+  slug: string | null;
+  status: string;
+  question?: string;
+  answer?: string;
+  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home" | "kontakt" | "neuigkeiten" | "praxisangebote-overview";
+  sort_order?: number;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
+export interface InfoKarte {
+  id: string;
+  slug: string | null;
+  status: string;
+  eyebrow?: string;
+  body?: string;
+  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home" | "kontakt" | "neuigkeiten" | "praxisangebote-overview";
+  sort_order?: number;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -64,6 +95,24 @@ export interface Rechtstext {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
+export interface AngebotsKarte {
+  id: string;
+  slug: string | null;
+  status: string;
+  icon?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  title?: string;
+  description?: string;
+  cta_text?: string;
+  cta_href?: string;
+  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home" | "kontakt" | "neuigkeiten" | "praxisangebote-overview";
+  sort_order?: number;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
 export interface Seite {
   id: string;
   slug: string | null;
@@ -78,15 +127,16 @@ export interface Seite {
   hero_primary_cta_href?: string;
   hero_secondary_cta_text?: string;
   hero_secondary_cta_href?: string;
+  hero_paragraphs?: unknown;
   sections?: unknown;
   team_image_1?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   team_image_2?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   team_image_3?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
-  hero_paragraphs?: unknown;
   value_cards?: unknown;
-  offer_cards?: unknown;
   outcomes?: unknown;
   stage_cards?: unknown;
+  offer_cards?: unknown;
+  testimonials_tone?: "gold" | "spring-wood" | "purple" | "cherrywood";
   faq_items?: unknown;
   newsletterhero_paragraphs?: unknown;
   newsletter_placeholder?: string;
@@ -119,15 +169,19 @@ export interface Praxisangebot {
   hero_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   hero_cta_text?: string;
   hero_cta_href?: string;
+  price_list?: unknown;
   narrative_title?: string;
   narrative_body?: string;
   narrative_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   narrative_bullet_groups?: unknown;
+  gallery?: unknown;
   process_steps?: unknown;
   quote_text?: string;
   quote_attribution?: string;
   quote_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   testimonials?: unknown;
+  testimonials_tone?: "gold" | "spring-wood" | "purple" | "cherrywood";
+  bio_paragraphs?: unknown;
   practitioner?: string;
   brand_cta_title?: string;
   brand_cta_body?: string;
@@ -135,9 +189,6 @@ export interface Praxisangebot {
   brand_cta_href?: string;
   faq_items?: unknown;
   sections?: unknown;
-  gallery?: unknown;
-  price_list?: unknown;
-  bio_paragraphs?: unknown;
   practice_offers?: unknown;
   newsletter_placeholder?: string;
   newsletter_submit_text?: string;
@@ -194,8 +245,24 @@ export interface Stimme {
   name?: string;
   role?: string;
   photo?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
-  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home";
+  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home" | "kontakt" | "neuigkeiten" | "praxisangebote-overview";
   featured?: boolean;
+  sort_order?: number;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
+export interface WertKarte {
+  id: string;
+  slug: string | null;
+  status: string;
+  icon?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  title?: string;
+  body?: string;
+  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home" | "kontakt" | "neuigkeiten" | "praxisangebote-overview";
   sort_order?: number;
   createdAt: Date;
   updatedAt: Date;
@@ -211,28 +278,29 @@ export interface Workshop {
   title?: string;
   date?: string;
   color?: "gold" | "raspberry" | "lavender" | "fire";
-  category_meta?: string;
-  duration_meta?: string;
+  card_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  card_eyebrow?: string;
+  card_title?: string;
+  card_description?: string;
+  card_duration?: string;
   hero_description?: string;
   hero_price?: string;
   hero_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  category_meta?: string;
+  duration_meta?: string;
   info_cards?: unknown;
   narrative_title?: string;
   narrative_body?: string;
   narrative_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
   narrative_bullet_groups?: unknown;
-  testimonials?: unknown;
-  about_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
-  faq_items?: unknown;
-  card_eyebrow?: string;
-  card_title?: string;
-  card_description?: string;
-  card_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
-  card_duration?: string;
-  sections?: unknown;
-  about_paragraphs?: unknown;
   deep_paragraphs?: unknown;
+  about_image?: { id: string; src?: string; alt?: string; width?: number; height?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> };
+  about_paragraphs?: unknown;
+  testimonials?: unknown;
+  testimonials_tone?: "gold" | "spring-wood" | "purple" | "cherrywood";
+  faq_items?: unknown;
   category_pills?: unknown;
+  sections?: unknown;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -243,12 +311,16 @@ export interface Workshop {
 declare module "emdash" {
   interface EmDashCollections {
     ausbildung_programs: Ausbildungsprogramm;
+    faq: FaqEintrag;
+    info_cards: InfoKarte;
     legal: Rechtstext;
+    offer_cards: AngebotsKarte;
     pages: Seite;
     praxisangebote: Praxisangebot;
     site_settings: SiteEinstellung;
     team: Person;
     testimonials: Stimme;
+    value_cards: WertKarte;
     workshops: Workshop;
   }
 }

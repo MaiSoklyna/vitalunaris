@@ -178,7 +178,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   />
 
   {/* ===================== Stimmen aus der Ausbildung ===================== */}
-  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} />
+  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} tone={d.testimonials_tone || 'spring-wood'} />
 
   {/* ===================== Theresia Jansen — gold band, image right ===================== */}
   <section class="lehrerin">
@@ -302,8 +302,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
 </BaseLayout>
 
 <style>
-  /* Testimonials-Block ohne Gold-Verlauf — nur auf dieser Seite */
-  :global([data-page="/ausbildung/soulcoach-level-2"] .t-block) { background: var(--c-spring-wood) !important; }
+  /* Testimonials-Hintergrund ist jetzt im Admin wählbar (Feld „Stimmen · Hintergrund"). */
 </style>
 
 <style>

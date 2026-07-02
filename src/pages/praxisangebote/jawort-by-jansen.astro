@@ -144,7 +144,7 @@ const bioParagraphs = (d.bio_paragraphs?.length ? d.bio_paragraphs.map((p: any) 
   />
 
   {/* ===================== Testimonials ===================== */}
-  <TestimonialsBlock title="Was Paare und Eltern sagen" testimonials={testimonials} />
+  <TestimonialsBlock title="Was Paare und Eltern sagen" testimonials={testimonials} tone={d.testimonials_tone || 'gold'} />
 
   {/* ===================== Bio ===================== */}
   <PersonBio

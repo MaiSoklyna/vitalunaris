@@ -35,6 +35,23 @@ export async function getInfoCards(context: string): Promise<Array<{ eyebrow: st
 }
 
 /**
+ * Load FAQ entries for a given context from the shared `faq` collection, so a
+ * "FAQ" block can be added to any block page (the editor picks a context and
+ * writes the Frage/Antwort pairs in the FAQ collection). Returns the shape the
+ * Faq organism expects ({ question, answer }), ordered by sort_order.
+ */
+export async function getFaq(context: string): Promise<Array<{ question: string; answer: string }>> {
+  try {
+    const { entries } = await getEmDashCollection('faq', { orderBy: { sort_order: 'asc' } });
+    return (entries ?? [])
+      .filter((e: any) => e.data?.context === context)
+      .map((e: any) => ({ question: e.data?.question ?? '', answer: e.data?.answer ?? '' }));
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Map an internal link (a `cta_href` like "/praxisangebote/hypnose") to the
  * EmDash collection + slug of the page it points at. Returns null for external
  * links or paths that don't match a known route. The rules mirror src/pages/:

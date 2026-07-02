@@ -62,18 +62,28 @@ const FALLBACK_NAV: NavLink[] = [
 ];
 
 // Navigation menu is editable in EmDash (site_settings → nav_items).
+// The repeater is FLAT: each row is one link; a row's `parent` field holds the
+// href of its top-level item (empty = top-level). We rebuild the dropdown tree
+// here by grouping child rows under the top-level row whose href they name.
 const { entry: settings } = await getEmDashEntry('site_settings', 'settings');
 const sd: Record<string, any> = settings?.data ?? {};
-const navLinks: NavLink[] = sd.nav_items?.length
-  ? sd.nav_items.map((it: any) => {
-      const children = jsonArray(it.children);
-      return {
-        href: it.href,
-        label: it.label,
-        navigateOnClick: it.navigate_on_click || undefined,
-        children: children.length ? children : undefined,
-      } as NavLink;
-    })
+const navItems: any[] = sd.nav_items ?? [];
+const navLinks: NavLink[] = navItems.length
+  ? navItems
+      .filter((it) => !it.parent)
+      .map((it: any) => {
+        // Prefer flat child rows; tolerate legacy `children` JSON (pre-migration data).
+        const flatKids = navItems
+          .filter((c) => c.parent && c.parent === it.href)
+          .map((c: any) => ({ href: c.href, label: c.label, disabled: c.disabled || undefined }));
+        const children = flatKids.length ? flatKids : jsonArray<NavChild>(it.children);
+        return {
+          href: it.href,
+          label: it.label,
+          navigateOnClick: it.navigate_on_click || undefined,
+          children: children.length ? children : undefined,
+        } as NavLink;
+      })
   : FALLBACK_NAV;
 
 const isActive = (href: string) =>

@@ -35,7 +35,9 @@ const agenda = (d.agenda_items?.length ? d.agenda_items.map((p: any) => p.text) 
 
 /* ----- "Weitere Kurse und Workshops:" — pulled from the editable workshops collection ----- */
 const { entries: allWs } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
-const furtherCourses = (allWs ?? []).slice(0, 3).map((e: any) => ({
+// Only real, dated workshops — the collection also holds the two overview pages
+// (no date) which would otherwise sort first and render as empty cards.
+const furtherCourses = (allWs ?? []).filter((e: any) => e.data?.date).slice(0, 3).map((e: any) => ({
   image: imageUrl(e.data?.card_image),
   eyebrow: e.data?.card_eyebrow,
   title: e.data?.card_title,

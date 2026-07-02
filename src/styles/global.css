@@ -63,8 +63,13 @@
     var(--c-pale-gold) 37.37%,
     var(--c-spring-wood) 73.16%,
     var(--c-lavender) 101.35%);
-  /* Section background fade used by testimonial / closing blocks */
+  /* Section background fade used by the Testimonials block.
+     Matches Figma "Narrative Block 15": cream at top → gold at the bottom. */
   --gradient-spring-gold: linear-gradient(180deg, var(--c-spring-wood) 57.41%, var(--c-pale-gold) 100%);
+  /* Selectable section backgrounds (e.g. TestimonialsBlock tone) */
+  --gradient-lavender: linear-gradient(180deg, var(--c-lavender) 0%, var(--c-spring-wood) 63.8%);
+  --gradient-spring-wood: linear-gradient(180deg, var(--c-spring-wood) 0%, var(--c-spring-wood-dark) 100%);
+  --gradient-cherrywood: linear-gradient(180deg, var(--c-cherrywood) 0%, var(--c-cherrywood-dark) 100%);
 
   /* Animations */
   --nav-anim-duration: 600ms;

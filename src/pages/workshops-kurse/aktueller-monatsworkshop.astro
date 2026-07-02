@@ -47,7 +47,9 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
 
 // "Weitere Kurse" pulled from the editable workshops collection.
 const { entries: allWs } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
-const furtherCourses = (allWs ?? []).slice(0, 3).map((e: any) => ({
+// Only real, dated workshops — skip the two overview pages (they live in this
+// collection with no date and would otherwise render as empty cards).
+const furtherCourses = (allWs ?? []).filter((e: any) => e.data?.date).slice(0, 3).map((e: any) => ({
   image: imageUrl(e.data?.card_image),
   eyebrow: e.data?.card_eyebrow,
   title: e.data?.card_title,
@@ -97,6 +99,7 @@ const aboutParas = (d.about_paragraphs?.length ? d.about_paragraphs.map((p: any)
   <TestimonialsBlock
     title="Was Menschen zu unseren Kursen sagen"
     testimonials={testimonials}
+    tone={d.testimonials_tone || 'gold'}
   />
 
   {/* ===================== Theresia & Axel Jansen — gold ===================== */}

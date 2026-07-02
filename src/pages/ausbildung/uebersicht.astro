@@ -237,7 +237,7 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
   </section>
 
   {/* ===================== Stimmen aus der Ausbildung ===================== */}
-  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} />
+  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} tone={d.testimonials_tone || 'gold'} />
 
   {/* ===================== Gold claim / quote ===================== */}
   <section class="uquote">

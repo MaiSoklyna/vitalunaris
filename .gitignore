@@ -17,3 +17,6 @@ emdash-dev.pid
 emdash-dev.err.log
 data.db-shm
 data.db-wal
+
+# EmDash migration DB backups (local only)
+data.db.bak-*

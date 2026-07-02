@@ -25,7 +25,7 @@ import ContactForm from '@organisms/ContactForm.astro';
 import NewsletterHero from '@organisms/NewsletterHero.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
 import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
-import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards, getOfferCards, getValueCards } from '@lib/cms';
+import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards, getOfferCards, getValueCards, getFaq } from '@lib/cms';
 
 interface Section {
   type?: string;
@@ -52,22 +52,26 @@ const { sections: rawSections = [] } = Astro.props;
 // are left untouched, so this stays backward-compatible.
 const sections = await Promise.all(
   rawSections.map(async (s) => {
-    // When a testimonials block names a context, it's authoritative: pull the live
-    // reviews from the shared `testimonials` collection (single source of truth).
-    // Blocks without a context (e.g. the in-page fallback) keep their own items.
-    if (s.type === 'testimonials' && s.context) {
+    // Page-provided items ALWAYS win: when a page injects its own list into a
+    // section (e.g. the page's inline faq_items / value_cards), use it as-is.
+    // Only when a block has NO items do we resolve from a shared collection by
+    // `context`. So an editor can fill a block's content directly on the page,
+    // OR (for genuinely reused content like testimonials) pick a context.
+    const injected = Array.isArray(s.items) && s.items.length > 0;
+    if (!injected && s.type === 'testimonials' && s.context) {
       return { ...s, items: await getTestimonials(s.context) };
     }
-    // Info-card blocks resolve their cards the same way (shared `info_cards` collection).
-    if (s.type === 'info_cards' && s.context) {
+    if (!injected && s.type === 'info_cards' && s.context) {
       return { ...s, items: await getInfoCards(s.context) };
     }
-    // Offer/value card blocks resolve from their shared collections by context.
-    if (s.type === 'offer_cards' && s.context) {
+    if (!injected && s.type === 'offer_cards' && s.context) {
       return { ...s, items: await getOfferCards(s.context) };
     }
-    if (s.type === 'value_cards' && s.context) {
+    if (!injected && s.type === 'value_cards' && s.context) {
       return { ...s, items: await getValueCards(s.context) };
+    }
+    if (!injected && s.type === 'faq' && s.context) {
+      return { ...s, items: await getFaq(s.context) };
     }
     return s;
   })
@@ -118,7 +122,7 @@ const sections = await Promise.all(
     case 'testimonials': {
       const items = jsonArray(s.items);
       if (!items.length) return null;
-      return <TestimonialsBlock eyebrow={s.eyebrow} title={s.title || ''} testimonials={items} />;
+      return <TestimonialsBlock eyebrow={s.eyebrow} title={s.title || ''} testimonials={items} tone={s.tone} />;
     }
     case 'process_steps': {
       const steps = jsonArray(s.items);

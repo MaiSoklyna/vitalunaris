@@ -14,14 +14,21 @@ const FALLBACK_SECTIONS = [
 ];
 // Contact-form config now lives in top-level fields (editable as labeled fields — no JSON).
 const baseSections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
-const sections = baseSections.map((s: any) => s.type === 'contact_form' ? { ...s, items: {
-  recipient: d.contact_recipient || 'info@vitalunaris.ch',
-  submitText: d.contact_submit_text || 'Senden',
-  emailPlaceholder: d.contact_email_placeholder || undefined,
-  firstNamePlaceholder: d.contact_firstname_placeholder || undefined,
-  lastNamePlaceholder: d.contact_lastname_placeholder || undefined,
-  messagePlaceholder: d.contact_message_placeholder || undefined,
-} } : s);
+const sections = baseSections.map((s: any) => {
+  if (s.type === 'contact_form') return { ...s, items: {
+    recipient: d.contact_recipient || 'info@vitalunaris.ch',
+    submitText: d.contact_submit_text || 'Senden',
+    emailPlaceholder: d.contact_email_placeholder || undefined,
+    firstNamePlaceholder: d.contact_firstname_placeholder || undefined,
+    lastNamePlaceholder: d.contact_lastname_placeholder || undefined,
+    messagePlaceholder: d.contact_message_placeholder || undefined,
+  } };
+  // Inline lists edited directly on this page:
+  if (s.type === 'faq' && d.faq_items?.length) return { ...s, items: d.faq_items };
+  if (s.type === 'value_cards' && d.value_cards?.length)
+    return { ...s, items: d.value_cards.map((c: any) => ({ icon: imageUrl(c.icon), title: c.title, body: c.body })) };
+  return s;
+});
 ---
 
 <BaseLayout

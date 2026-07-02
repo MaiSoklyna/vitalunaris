@@ -28,6 +28,10 @@ const sections = baseSections.map((s: any) => {
     return { ...s, items: { ctaText: d.claim_cta_text || 'Mehr über VitaLunaris', ctaHref: d.claim_cta_href || '/ueber-uns' } };
   if (s.type === 'newsletter')
     return { ...s, items: { placeholder: d.newsletter_placeholder || 'E-mail Adresse', submitText: d.newsletter_submit_text || 'Kostenlos abonnieren' } };
+  // Inline lists edited directly on this page:
+  if (s.type === 'faq' && d.faq_items?.length) return { ...s, items: d.faq_items };
+  if (s.type === 'value_cards' && d.value_cards?.length)
+    return { ...s, items: d.value_cards.map((c: any) => ({ icon: imageUrl(c.icon), title: c.title, body: c.body })) };
   return s;
 });
 ---
