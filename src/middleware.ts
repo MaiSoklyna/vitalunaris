@@ -364,6 +364,193 @@ const ADMIN_ENHANCE = `<script>(function(){
   schedule();
 })();</script>`;
 
+/**
+ * Repeater row tools the EmDash admin lacks natively: a per-row **Duplicate**
+ * button (clone an item's values into a new row) and, on the FAQ list only, an
+ * **"FAQ importieren"** control that copies another page's Q&A into this page's
+ * list (data from /api/faq-sets.json). Delete + drag-reorder are already native.
+ *
+ * Same safety class as our other injections: it only inserts its own marked nodes
+ * and drives the form the way a user would (native value setter + input/change
+ * events so React registers edits). Its observer disconnects while it writes, so it
+ * never fights React or the other admin observers. Depends only on the public DOM
+ * shape (repeater rows = `.border.rounded-lg.bg-kumo-base` inside a `.space-y-2`
+ * list, with an "Add Item" button whose grandparent holds the list — same contract
+ * SCROLL_ON_ADD relies on), not on package internals.
+ */
+const ROW_TOOLS = `<script>(function(){
+  if (window.__emdashRowTools) return;
+  window.__emdashRowTools = true;
+
+  var ITEM = '.border.rounded-lg.bg-kumo-base';
+  function txt(el){ return (el && el.textContent || '').trim(); }
+  function isAdd(t){ t=(t||'').toLowerCase(); return t==='add item' || t==='add first item'; }
+
+  // Set a value the way a user would, so React's onChange fires.
+  function setVal(el, val){
+    try{
+      if (el.type==='checkbox'){ if (!!el.checked !== !!val) el.click(); return; }
+      var proto = el.tagName==='TEXTAREA' ? HTMLTextAreaElement.prototype
+                : el.tagName==='SELECT'   ? HTMLSelectElement.prototype
+                :                           HTMLInputElement.prototype;
+      Object.getOwnPropertyDescriptor(proto,'value').set.call(el, val==null?'':String(val));
+      el.dispatchEvent(new Event('input',{bubbles:true}));
+      el.dispatchEvent(new Event('change',{bubbles:true}));
+    }catch(_){}
+  }
+  // A row's OWN field controls (not those of a nested repeater item).
+  function fields(row){
+    return [].filter.call(row.querySelectorAll('input,textarea,select'), function(f){ return f.closest(ITEM)===row; });
+  }
+  // The repeater (rows list + its Add button) that a row belongs to. Mirrors
+  // SCROLL_ON_ADD: for an Add button, root = add.parentElement.parentElement and
+  // the rows live in root's .space-y-2 — so from a row we invert that.
+  function repeaterOf(row){
+    var list = row.parentElement; if(!list) return null;
+    var root = list.parentElement; if(!root) return null;
+    var add = [].slice.call(root.querySelectorAll('button')).find(function(b){
+      return isAdd(txt(b)) && b.parentElement && b.parentElement.parentElement===root;
+    }) || [].slice.call(root.querySelectorAll('button')).find(function(b){ return isAdd(txt(b)) && !list.contains(b); });
+    return add ? { list:list, add:add } : null;
+  }
+  // Add one row and fill it with values[] (by field order); calls done(newRow).
+  function addFilled(rep, values, done){
+    var before = rep.list.children.length;
+    rep.add.click();
+    var t0 = performance.now();
+    (function wait(){
+      if (rep.list.children.length > before){
+        var neu = rep.list.children[rep.list.children.length-1];
+        var fs = fields(neu);
+        values.forEach(function(v,i){ if(fs[i]) setVal(fs[i], v); });
+        done && done(neu); return;
+      }
+      if (performance.now()-t0 < 1500) requestAnimationFrame(wait);
+    })();
+  }
+  function duplicate(row){
+    var rep = repeaterOf(row); if(!rep) return;
+    var vals = fields(row).map(function(f){ return f.type==='checkbox'?f.checked:f.value; });
+    addFilled(rep, vals, function(neu){ neu.scrollIntoView({behavior:'smooth',block:'center'}); });
+  }
+
+  // ---- inject Duplicate button into each repeater row header ----------------
+  function addDupBtns(){
+    [].forEach.call(document.querySelectorAll(ITEM), function(row){
+      var rm = [].slice.call(row.querySelectorAll('button')).find(function(b){ return /^Remove item/i.test(b.getAttribute('aria-label')||''); });
+      if (!rm || rm.closest(ITEM)!==row) return;         // real row w/ its own Remove
+      var header = rm.parentElement; if (!header) return;
+      if (header.querySelector('[data-emd-dup]')) return; // idempotent
+      var dup = document.createElement('button');
+      dup.type='button'; dup.setAttribute('data-emd-dup','1'); dup.title='Duplizieren';
+      dup.textContent='\\u29C9';
+      dup.style.cssText='margin-right:4px;border:0;background:transparent;cursor:pointer;font-size:15px;line-height:1;opacity:.6;';
+      dup.onmouseenter=function(){dup.style.opacity='1';}; dup.onmouseleave=function(){dup.style.opacity='.6';};
+      dup.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); duplicate(row); });
+      header.insertBefore(dup, rm);
+    });
+  }
+
+  // ---- FAQ "import from another page" control --------------------------------
+  var faqSets = null, faqLoading = false;
+  function loadFaqSets(cb){
+    if (faqSets){ cb(faqSets); return; }
+    if (faqLoading) return;
+    faqLoading = true;
+    fetch('/api/faq-sets.json').then(function(r){ return r.json(); }).then(function(j){ faqSets = j.sets||[]; cb(faqSets); })
+      .catch(function(){ faqSets=[]; cb(faqSets); }).then(function(){ faqLoading=false; });
+  }
+  // Bind precisely to the FAQ repeater: the nearest "Add Item" button that follows
+  // the "Häufige Fragen" label in document order is FAQ's own add button (the next
+  // field's add comes later). Its rows live in root's .space-y-2 (root =
+  // add.parentElement.parentElement, per SCROLL_ON_ADD). Avoids matching a big
+  // ancestor that also wraps the Sektionen repeater.
+  function faqRep(){
+    // Stable, locale-independent anchor: the FAQ field's label carries for="field-faq_items".
+    // The repeater's own add button is LOCALIZED (Khmer/German/English), so we must NOT match it
+    // by text — isAdd() only knows English and would skip it, then bind to the next repeater whose
+    // button *is* English "Add Item" (the Sektionen builder, icon/path fields) and import garbage.
+    // Instead: the field header (.flex justify-between holding the label) has exactly one button —
+    // that's FAQ's own add button, whatever language it's in. Its rows are the sibling .space-y-2.
+    var lbl = document.querySelector('label[for="field-faq_items"]');
+    var header = lbl && lbl.closest('.flex');
+    if (header){
+      var add = header.querySelector('button');
+      var wrap = header.parentElement;
+      var list = wrap ? [].slice.call(wrap.children).find(function(c){
+        return c!==header && c.classList && c.classList.contains('space-y-2');
+      }) : null;
+      if (add) return { add:add, root:wrap, list:list };
+    }
+    // Fallback: legacy text-based detection for older admin builds without stable field ids.
+    var l2 = [].slice.call(document.querySelectorAll('label,div,span,h3,h4'))
+      .find(function(e){ return e.children.length===0 && /Häufige Fragen/i.test(txt(e)); });
+    if (!l2) return null;
+    var a2 = [].slice.call(document.querySelectorAll('button')).find(function(b){
+      return isAdd(txt(b)) && (l2.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+    });
+    if (!a2) return null;
+    var r2 = a2.parentElement && a2.parentElement.parentElement;
+    return { add:a2, root:r2, list: r2 ? (r2.querySelector(':scope > .space-y-2') || r2.querySelector('.space-y-2')) : null };
+  }
+  function importSet(items){
+    var i=0;
+    (function next(){
+      if (i>=items.length) return;
+      var rep = faqRep(); if(!rep){ return; }
+      var list = rep.list || (rep.root && rep.root.querySelector('.space-y-2'));
+      var before = list ? list.children.length : 0;
+      rep.add.click();
+      var t0=performance.now();
+      (function wait(){
+        var l = faqRep(); l = l && (l.list || (l.root && l.root.querySelector('.space-y-2')));
+        if (l && l.children.length > before){
+          var neu = l.children[l.children.length-1];
+          var fs = fields(neu);
+          // Only fill + advance once the new row's inputs have actually rendered. React
+          // appends the row container a tick before its fields; filling too early left
+          // rows blank and let the next add fire, so items could go missing. Wait for both.
+          if (fs.length >= 2){
+            setVal(fs[0], items[i].question);
+            setVal(fs[1], items[i].answer);
+            i++; setTimeout(next, 90); return;
+          }
+        }
+        if (performance.now()-t0 < 3000) requestAnimationFrame(wait);
+      })();
+    })();
+  }
+  function addImportBtn(){
+    var rep = faqRep(); if(!rep || !rep.add) return;
+    var add = rep.add;
+    if (add.parentElement && add.parentElement.querySelector('[data-emd-faqimport]')) return;
+    var bar = document.createElement('span'); bar.setAttribute('data-emd-faqimport','1');
+    bar.style.cssText='display:inline-flex;gap:6px;align-items:center;margin-left:8px;';
+    var sel = document.createElement('select');
+    sel.style.cssText='font-size:12px;padding:2px 4px;border:1px solid #d8cfc3;border-radius:6px;background:#fff;color:#000;max-width:230px;';
+    var ph = document.createElement('option'); ph.value=''; ph.textContent='FAQ von anderer Seite \\u2026'; sel.appendChild(ph);
+    var go = document.createElement('button');
+    go.type='button'; go.textContent='Importieren';
+    go.style.cssText='font-size:12px;padding:3px 8px;border:1px solid #d8cfc3;border-radius:6px;background:#f3ebe0;color:#000;cursor:pointer;';
+    sel.onmousedown=function(){ loadFaqSets(function(sets){
+      if (sel.options.length>1) return;
+      sets.forEach(function(s,idx){ var o=document.createElement('option'); o.value=String(idx); o.textContent=s.label+' ('+s.items.length+')'; sel.appendChild(o); });
+    }); };
+    go.addEventListener('click',function(e){ e.preventDefault();
+      loadFaqSets(function(sets){ var s=sets[Number(sel.value)]; if(!s){ return; }
+        if (s.items.length) importSet(s.items); });
+    });
+    bar.appendChild(sel); bar.appendChild(go);
+    (add.parentElement||document.body).appendChild(bar);
+  }
+
+  // ---- one self-guarded observer --------------------------------------------
+  var obs, pend=false;
+  function pass(){ if(obs)obs.disconnect(); try{ addDupBtns(); addImportBtn(); }catch(e){} if(obs)obs.observe(document.body,{childList:true,subtree:true}); }
+  function sched(){ if(pend)return; pend=true; setTimeout(function(){pend=false;pass();},120); }
+  obs=new MutationObserver(sched); obs.observe(document.body,{childList:true,subtree:true}); sched();
+})();</script>`;
+
 const scrollOnAdd = defineMiddleware(async (context, next) => {
   const res = await next();
   const { pathname } = new URL(context.request.url);
@@ -374,7 +561,7 @@ const scrollOnAdd = defineMiddleware(async (context, next) => {
     if (html.includes('</body>') && !html.includes('__emdashScrollAddInstalled')) {
       const headers = new Headers(res.headers);
       headers.delete('content-length'); // body length changes after injection
-      return new Response(html.replace('</body>', SCROLL_ON_ADD + ADMIN_ENHANCE + '</body>'), {
+      return new Response(html.replace('</body>', SCROLL_ON_ADD + ADMIN_ENHANCE + ROW_TOOLS + '</body>'), {
         status: res.status,
         statusText: res.statusText,
         headers,
