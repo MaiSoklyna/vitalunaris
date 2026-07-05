@@ -24,7 +24,7 @@ import DarkCtaBlock from '@organisms/DarkCtaBlock.astro';
 import NewsletterHero from '@organisms/NewsletterHero.astro';
 import OverviewHero from '@organisms/OverviewHero.astro';
 import PracticeOfferRow from '@molecules/PracticeOfferRow.astro';
-import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards, getOfferCards, getValueCards, getFaq } from '@lib/cms';
+import { nl2br, jsonArray, parseJson, imageUrl, getTestimonials, getInfoCards, getOfferCards, getValueCards } from '@lib/cms';
 
 interface Section {
   type?: string;
@@ -69,9 +69,8 @@ const sections = await Promise.all(
     if (!injected && s.type === 'value_cards' && s.context) {
       return { ...s, items: await getValueCards(s.context) };
     }
-    if (!injected && s.type === 'faq' && s.context) {
-      return { ...s, items: await getFaq(s.context) };
-    }
+    // FAQ is edited on-page via each page's inline `faq_items` field (injected
+    // into the section before it reaches here). No shared collection.
     return s;
   })
 );

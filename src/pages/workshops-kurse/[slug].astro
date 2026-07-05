@@ -21,19 +21,34 @@ import { nl2br, jsonArray, imageUrl, textLines } from '@lib/cms';
 const { slug } = Astro.params;
 const { entry } = await getEmDashEntry('workshops', slug!);
 if (!entry) return new Response('Not found', { status: 404 });
-const w: Record<string, any> = entry.data ?? {};
+
+const { entries: all } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
+
+/* The "Aktueller Monats-Workshop" page always FEATURES the next upcoming dated
+   workshop (soonest date >= today; falls back to the most recent if all are past),
+   so it refreshes itself each month with no manual editing. Every other slug just
+   renders its own entry. `featuredId` is the workshop actually shown (used to keep it
+   out of the "Weitere Kurse" grid below). */
+let w: Record<string, any> = entry.data ?? {};
+let featuredId: string = slug!;
+if (slug === 'aktueller-monatsworkshop') {
+  const today = new Date().toISOString().slice(0, 10);
+  const dated = (all ?? []).filter((e: any) => e.data?.date);
+  const next = dated.find((e: any) => e.data.date >= today) ?? dated[dated.length - 1];
+  if (next) { w = next.data ?? {}; featuredId = next.id; }
+}
 
 const bulletGroups = (w.narrative_bullet_groups ?? []).map((g: any) => ({
   heading: g.heading || undefined,
   items: textLines(g.items),
   text: g.text || undefined,
 }));
-
-/* "Weitere Kurse" grid — every other workshop, by date. */
-const { entries: all } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
 const furtherCourses = (all ?? [])
-  // Exclude the current course and the two dateless overview pages.
-  .filter((e: any) => e.id !== slug && e.data?.date)
+  // Exclude the current course (by slug AND by matching title — so the "aktueller"
+  // page, which features a dated workshop under a different slug, doesn't list that
+  // same workshop) and the dateless overview pages, then show the 3 soonest upcoming.
+  .filter((e: any) => e.id !== featuredId && e.data?.date && (e.data?.title ?? '') !== (w.title ?? ''))
+  .slice(0, 3)
   .map((e: any) => ({
     image: imageUrl(e.data?.card_image),
     eyebrow: e.data?.card_eyebrow,

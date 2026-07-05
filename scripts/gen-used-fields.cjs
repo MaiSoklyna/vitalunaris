@@ -104,6 +104,24 @@ const out = { explicit: {}, dynamic: {} };
 for (const key of Object.keys(explicit)) out.explicit[key] = toLabels(key.split('/')[0], explicit[key]);
 for (const coll of Object.keys(dynamic)) out.dynamic[coll] = toLabels(coll, dynamic[coll]);
 
+// Curated field lists for the dateless "overview / current" workshop entries. They
+// are NOT calendar cards, so the generic `dynamic.workshops` set (which includes the
+// Kalenderkarte/Datum/Farbe fields, surfaced because the [slug] template reads them
+// off OTHER entries) just clutters their editor. List only the fields these pages
+// actually render, so the admin shows a clean, self-explanatory set. Field slugs →
+// labels; unknown slugs are dropped. Extend CURATED for any similar special entry.
+const CURATED = {
+  'workshops/aktueller-monatsworkshop': [
+    'title', 'category_meta', 'duration_meta', 'hero_description', 'hero_price', 'hero_image',
+    'info_cards', 'narrative_title', 'narrative_body', 'narrative_image', 'narrative_bullet_groups',
+    'about_image', 'testimonials_tone', 'seo_title', 'seo_description',
+  ],
+};
+for (const [key, slugs] of Object.entries(CURATED)) {
+  const coll = key.split('/')[0];
+  out.explicit[key] = [...new Set(slugs)].map((s) => labelOf[coll] && labelOf[coll][s]).filter(Boolean).sort();
+}
+
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n');
 console.log(`Wrote ${OUT}: ${Object.keys(out.explicit).length} entries, ${Object.keys(out.dynamic).length} dynamic collections.`);

@@ -51,21 +51,6 @@ export interface Ausbildungsprogramm {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
-export interface FaqEintrag {
-  id: string;
-  slug: string | null;
-  status: string;
-  question?: string;
-  answer?: string;
-  context?: "praxis-hypnose" | "praxis-aufstellungen" | "praxis-numerologie" | "praxis-fussreflex" | "ausbildung" | "jawort" | "workshop-aktueller" | "workshop-kalender" | "home" | "kontakt" | "neuigkeiten" | "praxisangebote-overview";
-  sort_order?: number;
-  createdAt: Date;
-  updatedAt: Date;
-  publishedAt: Date | null;
-  bylines?: ContentBylineCredit[];
-  terms?: Record<string, TaxonomyTerm[]>;
-}
-
 export interface InfoKarte {
   id: string;
   slug: string | null;
@@ -311,7 +296,6 @@ export interface Workshop {
 declare module "emdash" {
   interface EmDashCollections {
     ausbildung_programs: Ausbildungsprogramm;
-    faq: FaqEintrag;
     info_cards: InfoKarte;
     legal: Rechtstext;
     offer_cards: AngebotsKarte;

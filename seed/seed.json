@@ -2051,54 +2051,6 @@
           "type": "integer"
         }
       ]
-    },
-    {
-      "slug": "faq",
-      "label": "FAQ (Häufige Fragen)",
-      "labelSingular": "FAQ-Eintrag",
-      "description": "Frage-Antwort-Paare für «FAQ»-Blöcke. Jeder Eintrag hat einen «Seite / Kontext»-Tag, der bestimmt, auf welcher Seite er erscheint — füge auf einer Seite einen FAQ-Block hinzu und wähle denselben Kontext.",
-      "supports": [
-        "drafts",
-        "revisions"
-      ],
-      "fields": [
-        {
-          "slug": "question",
-          "label": "Frage",
-          "type": "string"
-        },
-        {
-          "slug": "answer",
-          "label": "Antwort",
-          "type": "text"
-        },
-        {
-          "slug": "context",
-          "label": "Seite / Kontext",
-          "type": "select",
-          "validation": {
-            "options": [
-              "praxis-hypnose",
-              "praxis-aufstellungen",
-              "praxis-numerologie",
-              "praxis-fussreflex",
-              "ausbildung",
-              "jawort",
-              "workshop-aktueller",
-              "workshop-kalender",
-              "home",
-              "kontakt",
-              "neuigkeiten",
-              "praxisangebote-overview"
-            ]
-          }
-        },
-        {
-          "slug": "sort_order",
-          "label": "Reihenfolge",
-          "type": "integer"
-        }
-      ]
     }
   ]
 }

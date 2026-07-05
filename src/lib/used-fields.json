@@ -83,21 +83,6 @@
       "Stimmen · Hintergrund (Farbverlauf)",
       "Stufen-Karten"
     ],
-    "pages/ausbildung-overview": [
-      "Hero Bild",
-      "Hero Eyebrow",
-      "Hero Titel",
-      "Hero Untertitel",
-      "Häufige Fragen",
-      "Lernziele",
-      "Primärer CTA Link",
-      "Primärer CTA Text",
-      "SEO Beschreibung",
-      "SEO Titel",
-      "Sektionen (Blöcke)",
-      "Stimmen · Hintergrund (Farbverlauf)",
-      "Stufen-Karten"
-    ],
     "pages/home": [
       "Hero Bild",
       "Hero Eyebrow",
@@ -121,12 +106,6 @@
       "Hero Titel",
       "Hero Untertitel",
       "Häufige Fragen",
-      "Kontakt Button",
-      "Kontakt E-Mail Platzhalter",
-      "Kontakt Empfänger-E-Mail",
-      "Kontakt Nachname Platzhalter",
-      "Kontakt Nachricht Platzhalter",
-      "Kontakt Vorname Platzhalter",
       "SEO Beschreibung",
       "SEO Titel",
       "Sektionen (Blöcke)",
@@ -281,22 +260,6 @@
       "Teamfoto 3 · Marlen",
       "Werte-Karten"
     ],
-    "workshops/aktueller-monatsworkshop": [
-      "Datum",
-      "Häufige Fragen (FAQ)",
-      "Info-Karten (Wann / Wo / Für wen)",
-      "Kalenderfarbe",
-      "Kalenderkarte · Bild",
-      "Kalenderkarte · Dauer",
-      "Kalenderkarte · Eyebrow",
-      "Kalenderkarte · Text",
-      "Kalenderkarte · Titel",
-      "Preis (Hero & Kalenderkarte)",
-      "Sektionen / Blöcke (nur Block-Seiten)",
-      "Stimmen · Hintergrund (Farbverlauf)",
-      "Titel",
-      "Über uns · Absätze"
-    ],
     "workshops/kalender-uebersicht": [
       "Datum",
       "Häufige Fragen (FAQ)",
@@ -307,11 +270,27 @@
       "Kalenderkarte · Text",
       "Kalenderkarte · Titel",
       "Kategorie-Filter",
+      "Meta · Kategorie",
       "Preis (Hero & Kalenderkarte)",
       "Sektionen / Blöcke (nur Block-Seiten)",
       "Stimmen · Hintergrund (Farbverlauf)",
       "Titel",
       "Vertiefung · Absätze"
+    ],
+    "workshops/aktueller-monatsworkshop": [
+      "Abschnitt · Bild",
+      "Abschnitt · Bullet-Gruppen",
+      "Abschnitt · Text",
+      "Abschnitt · Titel",
+      "Hero · Beschreibung",
+      "Hero · Bild",
+      "Info-Karten (Wann / Wo / Für wen)",
+      "Meta · Dauer",
+      "Meta · Kategorie",
+      "Preis (Hero & Kalenderkarte)",
+      "Stimmen · Hintergrund (Farbverlauf)",
+      "Titel",
+      "Über-uns-Band · Bild"
     ]
   },
   "dynamic": {
