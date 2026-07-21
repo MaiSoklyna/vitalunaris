@@ -10,7 +10,7 @@ interface Props {
   title: string;
   description: string;
   price: string;
-  duration: string;
+  duration?: string;
   ctaText?: string;
   ctaHref?: string;
 }
@@ -39,7 +39,7 @@ const {
   </div>
   <div class="event-card__meta">
     <Heading level={4} class="event-card__price">{price}</Heading>
-    <Text size="p2" class="event-card__duration">{duration}</Text>
+    {duration && <Text size="p2" class="event-card__duration">{duration}</Text>}
   </div>
   <div class="event-card__cta">
     <Button href={ctaHref} variant="primary" size="lg" fullWidth>{ctaText}</Button>
