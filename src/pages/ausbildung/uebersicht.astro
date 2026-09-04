@@ -8,34 +8,46 @@ import TestimonialsBlock from '@organisms/TestimonialsBlock.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import { getEmDashEntry } from 'emdash';
+import { jsonArray, nl2br, imageUrl, getTestimonials } from '@lib/cms';
 
-/* ----- "Drei Stufen, ein Weg" — three stage cards (image + eyebrow + title + body + CTA) ----- */
-const stages = [
+// Editable at /_emdash/admin/content/ausbildung_programs (entry "uebersicht").
+// Design/CSS stay in this file; text + card arrays come from the CMS section bag.
+const { entry } = await getEmDashEntry('ausbildung_programs', 'uebersicht');
+const d: Record<string, any> = entry?.data ?? {};
+const sec = (t: string): Record<string, any> => (d.sections ?? []).find((s: any) => s.type === t) ?? {};
+const nar = sec('narrative'), stg = sec('stages'), out = sec('outcomes'),
+      leh = sec('lehrerin'), uq = sec('uquote'), nlx = sec('newsletter');
+
+/* ----- "Drei Stufen, ein Weg" — three stage cards (image + eyebrow + title + body + CTA) -----
+   Editable as the "Stufen-Karten" repeater on the ausbildung_programs/uebersicht entry
+   (labeled inputs + image upload per card — no JSON). Falls back to the original copy. */
+const stages = (d.stage_cards?.length ? d.stage_cards : [
   {
-    image: '/images/cards/card-1.jpg', 
+    image: '/images/cards/card-1.jpg',
     eyebrow: 'Teil 1 — Grundlagen',
     title: 'Der Einstieg in die systemische Arbeit',
     body: 'Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.',
-    ctaHref: '/ausbildung/soulcoach-level-1',
+    cta_href: '/ausbildung/soulcoach-level-1',
   },
   {
     image: '/images/cards/card-2.jpg',
     eyebrow: 'Teil 2 — Vertiefung',
     title: 'Vom Verständnis zur Praxis',
     body: 'Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.',
-    ctaHref: '/ausbildung/soulcoach-level-2',
+    cta_href: '/ausbildung/soulcoach-level-2',
   },
   {
     image: '/images/cards/card-3.jpg',
     eyebrow: 'Begleitung & Circle',
     title: 'In der Praxis bleiben und weiterlernen',
     body: 'Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen, die das Handwerk lebendig halten und weiter wachsen wollen. Zugang nur nach abgeschlossener Ausbildung.',
-    ctaHref: '/kontakt',
+    cta_href: '/kontakt',
   },
-];
+]) as Array<Record<string, any>>;
 
 /* ----- "Nach dieser Ausbildung arbeitest du anderst." — outcomes arc (4 cards) ----- */
-const outcomes = [
+const outcomes = d.outcomes?.length ? d.outcomes : [
   {
     title: 'Du siehst Systeme.',
     description: 'Muster, Dynamiken, Loyalitäten — du erkennst sie früher. In der Arbeit mit anderen, und in deinem eigenen Leben.',
@@ -55,7 +67,8 @@ const outcomes = [
 ];
 
 /* ----- "Stimmen aus der Ausbildung" — star reviews ----- */
-const reviews = [
+const _reviews = await getTestimonials('ausbildung');
+const reviews = _reviews.length ? _reviews : [
   {
     quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»',
     name: 'Jana L.',
@@ -70,7 +83,7 @@ const reviews = [
   },
 ];
 
-const faqItems = [
+const faqItems = d.faq_items?.length ? d.faq_items : [
   {
     question: 'Brauche ich Vorkenntnisse für die Ausbildung?',
     answer: 'Nein. Du musst keine therapeutische oder psychologische Vorbildung mitbringen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen.',
@@ -104,44 +117,50 @@ const faqItems = [
     answer: 'Hier geht es um mehr als Methodenlernen. Aufgebaut auf über 30 Jahren gelebter Praxis verbindet die Ausbildung Handwerk und Haltung — und du durchlebst selbst, was du später weitergibst. Diese Tiefe macht den Unterschied.',
   },
 ];
+
+const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraphs.map((p: any) => p.text) : [
+  'Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch.',
+  'Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.',
+  'Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht.',
+]) as string[];
 ---
 
 <BaseLayout
   title="Übersicht – Systemic Soulcoach Ausbildung bei VitaLunaris"
   description="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen die mit Menschen arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren Praxis in der Deutschschweiz."
-  currentPath="/uebersicht"
+  currentPath="/ausbildung/uebersicht"
 >
   <OverviewHero
     graphic="/images/ebene/Ebene_2.svg"
-    eyebrow="Systemic Soulcoach Ausbildung"
-    title="Systemische Arbeit.<br />Professionell begleiten<br />und wirklich tief gehen."
-    subtitle="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen, die mit Tiefe arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren gelebter Praxis in der Deutschschweiz."
+    eyebrow={d.hero_eyebrow || 'Systemic Soulcoach Ausbildung'}
+    title={d.hero_title || 'Systemische Arbeit.<br />Professionell begleiten<br />und wirklich tief gehen.'}
+    subtitle={d.hero_subtitle || 'Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen, die mit Tiefe arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren gelebter Praxis in der Deutschschweiz.'}
   />
 
   {/* ===================== Methode. Haltung. Tiefe. ===================== */}
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/placeholder/Placeholder-7.jpg"
+    image={imageUrl(nar.image) || '/images/placeholder/Placeholder-7.jpg'}
     imageAlt=""
-    title="Methode.<br />Haltung. Tiefe."
-    body="Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen ohne je ausgesprochen zu werden.<br/> <br/> Was sich im Leben einer Person immer wiederholt, sitzt selten nur in ihr. Ein Systemic Soulcoach sieht das System hinter der Person — und weiss, wie er es begleiten kann."
+    title={nar.title || 'Methode.<br />Haltung. Tiefe.'}
+    body={nl2br(nar.body) || 'Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen ohne je ausgesprochen zu werden.<br/> <br/> Was sich im Leben einer Person immer wiederholt, sitzt selten nur in ihr. Ein Systemic Soulcoach sieht das System hinter der Person — und weiss, wie er es begleiten kann.'}
   />
 
   {/* ===================== Drei Stufen, ein Weg ===================== */}
   <section class="stages">
     <div class="stages__inner">
       <div class="stages__header">
-        <Heading level={2} variant="h1" class="stages__title">Drei Stufen, ein Weg</Heading>
+        <Heading level={2} variant="h1" class="stages__title">{stg.title || 'Drei Stufen, ein Weg'}</Heading>
         <Text size="p1" class="stages__intro">
-          Jede Stufe baut auf der vorherigen auf. Du entscheidest nach Level 1 — aber die meisten wollen tiefer.
+          {stg.body || 'Jede Stufe baut auf der vorherigen auf. Du entscheidest nach Level 1 — aber die meisten wollen tiefer.'}
         </Text>
       </div>
       <div class="stages__grid">
         {stages.map((s) => (
           <article class="stage-card">
             <div class="stage-card__media">
-              <img src={s.image} alt="" loading="lazy" decoding="async" />
+              <img src={imageUrl(s.image)} alt="" loading="lazy" decoding="async" />
             </div>
             <div class="stage-card__text">
               <Heading variant="eyebrow" class="stage-card__eyebrow">{s.eyebrow}</Heading>
@@ -149,7 +168,7 @@ const faqItems = [
               <Text size="p1" class="stage-card__body">{s.body}</Text>
             </div>
             <div class="stage-card__cta">
-              <Button href={s.ctaHref} variant="primary" size="lg" fullWidth>Mehr erfahren</Button>
+              <Button href={s.cta_href} variant="primary" size="lg" fullWidth>{s.cta_text || 'Mehr erfahren'}</Button>
             </div>
           </article>
         ))}
@@ -160,7 +179,7 @@ const faqItems = [
   {/* ===================== Nach dieser Ausbildung arbeitest du anderst. ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">Nach dieser Ausbildung arbeitest du anderst.</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">{out.title || 'Nach dieser Ausbildung arbeitest du anderst.'}</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -203,20 +222,14 @@ const faqItems = [
   <section class="lehrerin">
     <div class="lehrerin__inner">
       <div class="lehrerin__media">
-        <img src="/images/placeholder/Placeholder-8.jpg" alt="Theresia Jansen" loading="lazy" decoding="async" />
+        <img src={imageUrl(leh.image) || '/images/placeholder/Placeholder-8.jpg'} alt="Theresia Jansen" loading="lazy" decoding="async" />
       </div>
       <div class="lehrerin__content">
-        <Heading variant="eyebrow" class="lehrerin__eyebrow">Deine Lehrerin</Heading>
-        <Heading level={2} variant="h1" class="lehrerin__name">Theresia Jansen</Heading>
-        <Text size="p1" class="lehrerin__body">
-         Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch.
-        </Text>
-        <Text size="p1" class="lehrerin__body">
-          Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.
-        </Text>
-         <Text size="p1" class="lehrerin__body">
-          Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht.
-        </Text>
+        <Heading variant="eyebrow" class="lehrerin__eyebrow">{leh.eyebrow || 'Deine Lehrerin'}</Heading>
+        <Heading level={2} variant="h1" class="lehrerin__name">{leh.title || 'Theresia Jansen'}</Heading>
+        {lehrerinParagraphs.map((p: string) => (
+          <Text size="p1" class="lehrerin__body"><Fragment set:html={p} /></Text>
+        ))}
         <div class="lehrerin__cta">
           <Button href="/ueber-uns" variant="primary" size="lg">Mehr über Theresia</Button>
         </div>
@@ -225,19 +238,19 @@ const faqItems = [
   </section>
 
   {/* ===================== Stimmen aus der Ausbildung ===================== */}
-  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} />
+  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} tone={d.testimonials_tone || 'gold'} />
 
   {/* ===================== Gold claim / quote ===================== */}
   <section class="uquote">
     <div class="uquote__inner">
       <div class="uquote__media">
-        <img src="/images/placeholder/Placeholder-5.jpg" alt="" loading="lazy" decoding="async" />
+        <img src={imageUrl(uq.image) || '/images/placeholder/Placeholder-5.jpg'} alt="" loading="lazy" decoding="async" />
       </div>
       <div class="uquote__content">
         <Heading level={2} variant="h1" class="uquote__text">
-          „Menschen verändern sich nicht, weil man ihnen sagt, was sie tun sollen. Sie verändern sich, wenn sie beginnen zu verstehen, was sie bisher unbewusst getragen hat.“
+          {uq.title || '„Menschen verändern sich nicht, weil man ihnen sagt, was sie tun sollen. Sie verändern sich, wenn sie beginnen zu verstehen, was sie bisher unbewusst getragen hat.“'}
         </Heading>
-        <Text size="p1" class="uquote__attribution">Theresia Jansen · VitaLunaris</Text>
+        <Text size="p1" class="uquote__attribution">{uq.body || 'Theresia Jansen · VitaLunaris'}</Text>
       </div>
     </div>
   </section>
@@ -247,8 +260,8 @@ const faqItems = [
 
   {/* ===================== Noch nicht sicher? — Newsletter ===================== */}
   <NewsletterBlock
-    title="Noch nicht sicher?"
-    body="Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern."
+    title={nlx.title || 'Noch nicht sicher?'}
+    body={nlx.body || 'Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern.'}
     placeholder="E-mail Adresse"
     submitText="Anmelden"
   />
@@ -303,7 +316,7 @@ const faqItems = [
     box-sizing: border-box;
     background: var(--c-spring-wood);
     border: 1px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -311,17 +324,17 @@ const faqItems = [
     gap: 24px;
     height: 100%;
   }
-  @media (min-width: 1280px) { .stage-card { padding: 24px; gap: 32px; border-radius: 20px; } }
-  @media (min-width: 1920px) { .stage-card { padding: 32px; gap: 40px; border-radius: 25px; } }
+  @media (min-width: 1280px) { .stage-card { padding: 24px; gap: 32px; border-radius: var(--radius-card); } }
+  @media (min-width: 1920px) { .stage-card { padding: 32px; gap: 40px; border-radius: var(--radius-card-lg); } }
 
   .stage-card__media {
     width: 100%;
     aspect-ratio: 16 / 10;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background: var(--c-pale-gold);
   }
-  @media (min-width: 1280px) { .stage-card__media { border-radius: 16px; } }
+  @media (min-width: 1280px) { .stage-card__media { border-radius: var(--radius-md); } }
   .stage-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .stage-card__text {
@@ -355,7 +368,7 @@ const faqItems = [
     padding: 10px;
     font-size: var(--button-size);
     line-height: 1.2;
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
   }
   @media (min-width: 1024px) {
     .stage-card__cta :global(.btn) { height: 56px; min-height: 56px; padding: 18px; }
@@ -538,12 +551,12 @@ const faqItems = [
     flex: 0 0 auto;
     width: 100%;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: var(--c-pale-gold);
     aspect-ratio: 4 / 5;
   }
-  @media (min-width: 1024px) { .lehrerin__media { width: 46%; border-radius: 20px; } }
-  @media (min-width: 1920px) { .lehrerin__media { width: 711px; border-radius: 25px; aspect-ratio: 711 / 826; } }
+  @media (min-width: 1024px) { .lehrerin__media { width: 46%; border-radius: var(--radius-card); } }
+  @media (min-width: 1920px) { .lehrerin__media { width: 711px; border-radius: var(--radius-card-lg); aspect-ratio: 711 / 826; } }
   .lehrerin__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .lehrerin__content {
@@ -624,7 +637,7 @@ const faqItems = [
     z-index: 1;
     width: 100%;
     height: 332px;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     margin-top: 20px;
     overflow: hidden;
   }
@@ -641,7 +654,7 @@ const faqItems = [
       width: 51.5625vw;  /* 660 @ 1280 */
       height: 32.135vw;  /* 411.33 @ 1280 */
       margin-top: 0;
-      border-radius: 16.67px;
+      border-radius: var(--radius-card-sm);
     }
   }
 
@@ -670,7 +683,7 @@ const faqItems = [
       left: 828px;
       width: 990px;
       height: 617px;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
     }
   }
 </style>

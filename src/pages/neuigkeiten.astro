@@ -1,22 +1,55 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import NewsletterHero from '@organisms/NewsletterHero.astro';
+import Blocks from '@organisms/Blocks.astro';
+import { getEmDashEntry } from 'emdash';
+import { imageUrl } from '@lib/cms';
+
+// Block page — editable at /_emdash/admin/content/pages (slug "neuigkeiten").
+const { entry } = await getEmDashEntry('pages', 'neuigkeiten');
+const d: Record<string, any> = entry?.data ?? {};
+
+const FALLBACK_SECTIONS = [
+  {
+    type: 'newsletter_hero',
+    image: 'images/ebene/Ebene_2.svg',
+    eyebrow: 'VitaLunaris News',
+    title: 'Bleib dabei, bei uns gibts<br />immer etwas Neues',
+    items: {
+      paragraphs: [
+        'Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.',
+        'Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.',
+      ],
+      placeholder: 'E-mail Adresse',
+      submitText: 'Zum Newsletter anmelden',
+    },
+  },
+];
+// Newsletter-hero text/config now lives in top-level fields (editable — no JSON).
+const baseSections = d.sections?.length ? d.sections : FALLBACK_SECTIONS;
+const sections = baseSections.map((s: any) => {
+  if (s.type === 'newsletter_hero') return {
+    ...s,
+    eyebrow: d.hero_eyebrow || s.eyebrow,
+    title: d.hero_title || s.title,
+    image: d.hero_image || s.image,
+    items: {
+      paragraphs: d.newsletterhero_paragraphs?.length ? d.newsletterhero_paragraphs.map((p: any) => p.text) : (s.items?.paragraphs || []),
+      placeholder: d.newsletter_placeholder || 'E-mail Adresse',
+      submitText: d.newsletter_submit_text || 'Zum Newsletter anmelden',
+    },
+  };
+  // Inline lists edited directly on this page:
+  if (s.type === 'faq' && d.faq_items?.length) return { ...s, items: d.faq_items };
+  if (s.type === 'value_cards' && d.value_cards?.length)
+    return { ...s, items: d.value_cards.map((c: any) => ({ icon: imageUrl(c.icon), title: c.title, body: c.body })) };
+  return s;
+});
 ---
 
 <BaseLayout
-  title="News | VitaLunaris"
-  description="Bleib dabei — bei VitaLunaris gibt es immer etwas Neues. Kurstermine, Podcast-Episoden, Inspirationen und Einblicke hinter die Kulissen, direkt in deiner Inbox."
+  title={d.seo_title || 'News | VitaLunaris'}
+  description={d.seo_description || 'Bleib dabei — bei VitaLunaris gibt es immer etwas Neues. Kurstermine, Podcast-Episoden, Inspirationen und Einblicke hinter die Kulissen, direkt in deiner Inbox.'}
   currentPath="/neuigkeiten"
 >
-  <NewsletterHero
-    logo="/images/ebene/Ebene_2.svg"
-    eyebrow="VitaLunaris News"
-    title={`Bleib dabei, bei uns gibts immer etwas Neues`}
-    paragraphs={[
-      'Unser Newsletter ist kein gewöhnlicher Newsletter. Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia. Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.',
-      'Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox.',
-    ]}
-    placeholder="E-mail Adresse"
-    submitText="Zum Newsletter anmelden"
-  />
+  <Blocks sections={sections} />
 </BaseLayout>

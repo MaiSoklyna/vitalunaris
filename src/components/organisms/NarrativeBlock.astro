@@ -47,7 +47,7 @@ const {
   <div class="narrative__inner max-w-layout container-x">
     {image && (
       <div class="narrative__media" style={`aspect-ratio: ${mediaAspect};`}>
-        <img src={image} alt={imageAlt} class="narrative__image" />
+        <img src={image} alt={imageAlt} class="narrative__image" loading="lazy" decoding="async" />
       </div>
     )}
     <div class="narrative__content">
@@ -148,7 +148,7 @@ const {
     aspect-ratio: auto;
     height: 332px;
     width: 100%;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     /* mobile: image stacks above the quote text — add a gap between them */
     margin-top: 20px;
     margin-bottom: 28px;
@@ -187,7 +187,7 @@ const {
       width: 51.5625vw;  /* 660 @ 1280 · 990 @ 1920 */
       height: 32.1354vw; /* 411.33 @ 1280 · 617 @ 1920 */
       margin-top: 0;
-      border-radius: 16.67px;
+      border-radius: var(--radius-card-sm);
     }
   }
 
@@ -209,7 +209,7 @@ const {
       line-height: 150%;
     }
     .narrative--purple.narrative--image-right .narrative__media {
-      border-radius: 20px;
+      border-radius: var(--radius-card);
     }
   }
 
@@ -242,7 +242,7 @@ const {
       right: auto;
       width: 990px;
       height: 617px;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
     }
   }
 
@@ -295,7 +295,7 @@ const {
     aspect-ratio: auto;
     height: 332px;
     width: 100%;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     margin-top: 20px;
     overflow: hidden;
   }
@@ -323,7 +323,7 @@ const {
       width: 51.5625vw;
       height: 32.1354vw;
       margin-top: 0;
-      border-radius: 16.67px;
+      border-radius: var(--radius-card-sm);
     }
   }
 
@@ -331,7 +331,7 @@ const {
     .narrative--gold.narrative--image-right .narrative__inner { padding: 60px; min-height: 56.25vw; }
     .narrative--gold.narrative--image-right .narrative__content { gap: 26.67px; max-width: 759.33px; }
     .narrative--gold.narrative--image-right .narrative__title { font-size: 40px; line-height: 46px; }
-    .narrative--gold.narrative--image-right .narrative__media { border-radius: 20px; }
+    .narrative--gold.narrative--image-right .narrative__media { border-radius: var(--radius-card); }
   }
 
   @media (min-width: 1920px) {
@@ -341,25 +341,25 @@ const {
     .narrative--gold.narrative--image-right .narrative__body,
     .narrative--gold.narrative--image-right .narrative__attribution { font-size: 23px; line-height: 150%; }
     .narrative--gold.narrative--image-right .narrative__media {
-      top: 317.79px; left: 828px; right: auto; width: 990px; height: 617px; border-radius: 25px;
+      top: 317.79px; left: 828px; right: auto; width: 990px; height: 617px; border-radius: var(--radius-card-lg);
     }
   }
 
   /* image-left + light variant: gold→cream gradient card */
   .narrative--light.narrative--image-left {
-    background: linear-gradient(180deg, #FFD869 0%, #F9F4EE 63.8%);
-    border-radius: 16.67px;
+    background: linear-gradient(180deg, var(--c-pale-gold) 0%, var(--c-spring-wood) 63.8%);
+    border-radius: var(--radius-card-sm);
     margin: 0 16px;
     padding: 48px 24px;
   }
   @media (min-width: 768px) {
-    .narrative--light.narrative--image-left { margin: 0 40px; border-radius: 20px; padding: 64px 40px; }
+    .narrative--light.narrative--image-left { margin: 0 40px; border-radius: var(--radius-card); padding: 64px 40px; }
   }
   @media (min-width: 1280px) {
-    .narrative--light.narrative--image-left { margin: 0 60px; border-radius: 25px; padding: 90px 60px; }
+    .narrative--light.narrative--image-left { margin: 0 60px; border-radius: var(--radius-card-lg); padding: 90px 60px; }
   }
   @media (min-width: 1920px) {
-    .narrative--light.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: 25px; }
+    .narrative--light.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: var(--radius-card-lg); }
   }
 
   /* Inner layout: text-on-left + image-on-right at ≥768px; stacked on mobile. */
@@ -400,7 +400,7 @@ const {
 
   /* Media — image on right at ≥768px. Figma 612x420 reference. */
   .narrative--light.narrative--image-left .narrative__media {
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     overflow: hidden;
     width: 100%;
     aspect-ratio: 612 / 420;
@@ -414,13 +414,13 @@ const {
       width: 100%;
       height: auto;
       aspect-ratio: auto;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
       align-self: stretch;
     }
   }
   @media (min-width: 1280px) {
     .narrative--light.narrative--image-left .narrative__media {
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
       aspect-ratio: 620 / 830;
     }
   }
@@ -430,7 +430,7 @@ const {
       width: 620px;
       height: 830px;
       aspect-ratio: auto;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
     }
   }
   .narrative--light.narrative--image-left .narrative__image {
@@ -548,7 +548,7 @@ const {
     max-width: none;
   }
   .narrative--purple.narrative--image-left .narrative__media {
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     overflow: hidden;
     width: 100%;
     aspect-ratio: auto;
@@ -573,7 +573,7 @@ const {
     .narrative--purple.narrative--image-left .narrative__media {
       order: 0;
       flex: 1 1 50%;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
     }
     .narrative--purple.narrative--image-left .narrative__content {
       order: 1;
@@ -588,7 +588,7 @@ const {
       gap: 40px;
     }
     .narrative--purple.narrative--image-left .narrative__media {
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
     }
     .narrative--purple.narrative--image-left .narrative__content {
       max-width: none;
@@ -610,7 +610,7 @@ const {
       width: 510px;
       height: 832px;
       aspect-ratio: auto;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
     }
     .narrative--purple.narrative--image-left .narrative__content {
       flex: none;
@@ -632,22 +632,22 @@ const {
      Lavender-gradient + image-left — mirrors light+image-left
      but uses a lavender→cream gradient background
      ============================================================ */
-  .narrative--lavender-gradient { background: linear-gradient(180deg, #8E84B6 0%, #F9F4EE 63.8%); color: var(--c-cherrywood); }
+  .narrative--lavender-gradient { background: linear-gradient(180deg, var(--c-lavender) 0%, var(--c-spring-wood) 63.8%); color: var(--c-cherrywood); }
 
   .narrative--lavender-gradient.narrative--image-left {
-    background: linear-gradient(180deg, #8E84B6 0%, #F9F4EE 63.8%);
-    border-radius: 16.67px;
+    background: linear-gradient(180deg, var(--c-lavender) 0%, var(--c-spring-wood) 63.8%);
+    border-radius: var(--radius-card-sm);
     margin: 0 16px;
     padding: 48px 24px;
   }
   @media (min-width: 768px) {
-    .narrative--lavender-gradient.narrative--image-left { margin: 0 40px; border-radius: 20px; padding: 64px 40px; }
+    .narrative--lavender-gradient.narrative--image-left { margin: 0 40px; border-radius: var(--radius-card); padding: 64px 40px; }
   }
   @media (min-width: 1280px) {
-    .narrative--lavender-gradient.narrative--image-left { margin: 0 60px; border-radius: 25px; padding: 90px 60px; }
+    .narrative--lavender-gradient.narrative--image-left { margin: 0 60px; border-radius: var(--radius-card-lg); padding: 90px 60px; }
   }
   @media (min-width: 1920px) {
-    .narrative--lavender-gradient.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: 25px; }
+    .narrative--lavender-gradient.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: var(--radius-card-lg); }
   }
 
   .narrative--lavender-gradient.narrative--image-left .narrative__inner {
@@ -686,7 +686,7 @@ const {
   }
 
   .narrative--lavender-gradient.narrative--image-left .narrative__media {
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     overflow: hidden;
     width: 100%;
     aspect-ratio: 612 / 420;
@@ -703,13 +703,13 @@ const {
       width: 100%;
       height: auto;
       aspect-ratio: 620 / 830;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
       align-self: flex-start;
     }
   }
   @media (min-width: 1280px) {
     .narrative--lavender-gradient.narrative--image-left .narrative__media {
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
       aspect-ratio: 620 / 830;
     }
   }
@@ -719,7 +719,7 @@ const {
       width: 620px;
       height: 830px;
       aspect-ratio: auto;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
     }
   }
   .narrative--lavender-gradient.narrative--image-left .narrative__image {
@@ -802,18 +802,18 @@ const {
      ============================================================ */
   .narrative--gold.narrative--image-left {
     background: var(--c-pale-gold);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     margin: 0 16px;
     padding: 48px 24px;
   }
   @media (min-width: 768px) {
-    .narrative--gold.narrative--image-left { margin: 0 40px; border-radius: 20px; padding: 64px 40px; }
+    .narrative--gold.narrative--image-left { margin: 0 40px; border-radius: var(--radius-card); padding: 64px 40px; }
   }
   @media (min-width: 1280px) {
-    .narrative--gold.narrative--image-left { margin: 0 60px; border-radius: 25px; padding: 90px 60px; }
+    .narrative--gold.narrative--image-left { margin: 0 60px; border-radius: var(--radius-card-lg); padding: 90px 60px; }
   }
   @media (min-width: 1920px) {
-    .narrative--gold.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: 25px; }
+    .narrative--gold.narrative--image-left { margin: 0 90px; padding: 120px 130px 120px 90px; border-radius: var(--radius-card-lg); }
   }
 
   .narrative--gold.narrative--image-left .narrative__inner {
@@ -848,7 +848,7 @@ const {
   }
 
   .narrative--gold.narrative--image-left .narrative__media {
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     overflow: hidden;
     width: 100%;
     aspect-ratio: 612 / 420;
@@ -862,15 +862,15 @@ const {
       width: 100%;
       height: auto;
       aspect-ratio: auto;
-      border-radius: 20px;
+      border-radius: var(--radius-card);
       align-self: stretch;
     }
   }
   @media (min-width: 1280px) {
-    .narrative--gold.narrative--image-left .narrative__media { border-radius: 25px; aspect-ratio: 620 / 830; }
+    .narrative--gold.narrative--image-left .narrative__media { border-radius: var(--radius-card-lg); aspect-ratio: 620 / 830; }
   }
   @media (min-width: 1920px) {
-    .narrative--gold.narrative--image-left .narrative__media { flex: none; width: 620px; height: 830px; aspect-ratio: auto; border-radius: 25px; }
+    .narrative--gold.narrative--image-left .narrative__media { flex: none; width: 620px; height: 830px; aspect-ratio: auto; border-radius: var(--radius-card-lg); }
   }
   .narrative--gold.narrative--image-left .narrative__image { width: 100%; height: 100%; object-fit: cover; display: block; }
 

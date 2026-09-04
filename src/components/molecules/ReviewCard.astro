@@ -26,19 +26,19 @@ const { quote, name } = Astro.props;
     align-items: center;
     background: var(--c-spring-wood);
     border: 1px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 24px;
     height: 100%;
   }
   @media (min-width: 1280px) {
     .review-card {
-      border-radius: 20px;
+      border-radius: var(--radius-card);
       padding: 32px;
     }
   }
   @media (min-width: 1920px) {
     .review-card {
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
       padding: 40px;
       border-width: 1.25px;
     }

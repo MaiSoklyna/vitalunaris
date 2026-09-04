@@ -8,7 +8,8 @@
       "@layouts/*": ["src/components/layouts/*"],
       "@atoms/*": ["src/components/atoms/*"],
       "@molecules/*": ["src/components/molecules/*"],
-      "@organisms/*": ["src/components/organisms/*"]
+      "@organisms/*": ["src/components/organisms/*"],
+      "@lib/*": ["src/lib/*"]
     }
   },
   "exclude": ["dist", "reference"]

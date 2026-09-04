@@ -162,7 +162,7 @@ const {
       height: 52px;
       min-height: 52px;
       padding: 16px 32px;
-      border-radius: 100px;
+      border-radius: var(--radius-pill);
     }
   }
   @media (min-width: 1920px) {
@@ -171,7 +171,7 @@ const {
       height: 61px;
       min-height: 61px;
       padding: 20px 40px;
-      border-radius: 100px;
+      border-radius: var(--radius-pill);
     }
   }
 
@@ -181,12 +181,12 @@ const {
     width: 100%;
     max-width: 857px;
     overflow: hidden;
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     background: rgba(0, 0, 0, 0.04);
     aspect-ratio: 857 / 900;
   }
-  @media (min-width: 1024px) { .feat-t__media { border-radius: 20px; width: 50%; } }
-  @media (min-width: 1920px) { .feat-t__media { border-radius: 25px; width: 857px; } }
+  @media (min-width: 1024px) { .feat-t__media { border-radius: var(--radius-card); width: 50%; } }
+  @media (min-width: 1920px) { .feat-t__media { border-radius: var(--radius-card-lg); width: 857px; } }
 
   .feat-t__image {
     width: 100%;

@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import LegalPage from '@organisms/LegalPage.astro';
+import { getEmDashEntry } from 'emdash';
+
+// Editable at /_emdash/admin/content/legal (falls back to the copy below).
+const { entry } = await getEmDashEntry('legal', 'impressum');
+const d: Record<string, any> = entry?.data ?? {};
 ---
 
 <BaseLayout
@@ -8,22 +13,26 @@ import LegalPage from '@organisms/LegalPage.astro';
   description="Impressum von VitaLunaris – Theresia Jansen, Eichenaustrasse 32, CH-9470 Buchs SG."
   currentPath="/impressum"
 >
-  <LegalPage eyebrow="VitaLunaris" title="Impressum" divider={false}>
-    <h2>VitaLunaris</h2>
-    <p>
-      Theresia Jansen<br />
-      Eichenaustrasse 32<br />
-      CH-9470 Buchs SG<br />
-      Schweiz
-    </p>
+  <LegalPage eyebrow="VitaLunaris" title={d.title || 'Impressum'} divider={false}>
+    {d.body_markdown ? <Fragment set:html={d.body_markdown} /> : (
+      <Fragment>
+        <h2>VitaLunaris</h2>
+        <p>
+          Theresia Jansen<br />
+          Eichenaustrasse 32<br />
+          CH-9470 Buchs SG<br />
+          Schweiz
+        </p>
 
-    <h2>Kontakt</h2>
-    <p>
-      E-Mail: <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a><br />
-      Telefon: <a href="tel:+41815991402">081 599 14 02</a>
-    </p>
+        <h2>Kontakt</h2>
+        <p>
+          E-Mail: <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a><br />
+          Telefon: <a href="tel:+41815991402">081 599 14 02</a>
+        </p>
 
-    <h2>Verantwortlich für den Inhalt</h2>
-    <p>Theresia Jansen</p>
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p>Theresia Jansen</p>
+      </Fragment>
+    )}
   </LegalPage>
 </BaseLayout>

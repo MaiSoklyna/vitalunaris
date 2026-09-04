@@ -33,7 +33,7 @@ const {
   <div class="hero__inner max-w-layout container-x">
     {image && (
       <div class="hero__media">
-        <img src={image} alt="" class="hero__image" />
+        <img src={image} alt="" class="hero__image" fetchpriority="high" decoding="async" />
       </div>
     )}
     <div class="hero__content">
@@ -217,7 +217,7 @@ const {
       min-height: 61px;
       padding: 20px;
       gap: 11.26px;
-      border-radius: 100px;
+      border-radius: var(--radius-pill);
       border-width: 0.8px;
     }
   }
@@ -226,7 +226,7 @@ const {
   .hero__media {
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    border-radius: 25px;
+    border-radius: var(--radius-card-lg);
     background: var(--c-pale-gold);
     width: 100%;
   }

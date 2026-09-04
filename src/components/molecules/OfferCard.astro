@@ -6,6 +6,8 @@ import Button from '@atoms/Button.astro';
 interface Props {
   icon?: string;
   iconAlt?: string;
+  /** When true, render `icon` as a full card-cover photo instead of a floating illustration. */
+  imageIsCover?: boolean;
   title: string;
   description: string;
   price?: string;
@@ -17,6 +19,7 @@ interface Props {
 const {
   icon,
   iconAlt = '',
+  imageIsCover = false,
   title,
   description,
   price,
@@ -24,14 +27,20 @@ const {
   ctaText = 'Mehr erfahren',
   ctaHref = '/praxisangebote',
 } = Astro.props;
+
+const showCover = imageIsCover && !!icon;
 ---
 
-<article class="offer-card">
-  {icon && (
+<article class:list={['offer-card', showCover && 'offer-card--cover']}>
+  {showCover ? (
+    <div class="offer-card__cover">
+      <img src={icon} alt={iconAlt || title} loading="lazy" decoding="async" />
+    </div>
+  ) : icon ? (
     <div class="offer-card__icon" aria-hidden="true">
       <img src={icon} alt={iconAlt} />
     </div>
-  )}
+  ) : null}
   <div class="offer-card__title-block">
     <Heading level={3} class="offer-card__title">{title}</Heading>
     <Text size="p2" class="offer-card__body">{description}</Text>
@@ -67,7 +76,7 @@ const {
     background: var(--c-spring-wood);
     color: var(--c-cherrywood);
     border: 0.667px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 26.67px 27.33px;
     display: flex;
     flex-direction: column;
@@ -78,7 +87,7 @@ const {
   @media (min-width: 1280px) {
     .offer-card {
       border-width: 1px;
-      border-radius: 25px;
+      border-radius: var(--radius-card-lg);
       padding: 200px 24px 24px;
       gap: 24px;
       justify-content: space-between;
@@ -195,7 +204,7 @@ const {
     padding: 10px;
     font-size: var(--button-size);
     line-height: 1.2;
-    border-radius: 100px;
+    border-radius: var(--radius-pill);
   }
   @media (min-width: 1024px) {
     .offer-card__cta :global(.btn) {
@@ -214,5 +223,49 @@ const {
       gap: 11.26px;
       border-width: 1.40784px;
     }
+  }
+
+  /* ============================================================
+     COVER VARIANT — when the tile's image is a photo pulled from
+     the linked page (auto-fill), show it as a full-bleed card
+     cover at the top instead of the floating illustration slot.
+     Double-class selectors override the base padding/float rules
+     regardless of source order; card `overflow:hidden` clips the
+     image to the rounded corners, so text gets its own padding.
+     ============================================================ */
+  .offer-card.offer-card--cover {
+    padding: 0;
+    gap: 20px;
+    overflow: hidden;
+  }
+  .offer-card__cover { align-self: stretch; line-height: 0; }
+  .offer-card__cover img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .offer-card--cover > .offer-card__title-block,
+  .offer-card--cover > .offer-card__price {
+    padding-left: 26.67px;
+    padding-right: 26.67px;
+  }
+  .offer-card--cover > .offer-card__title-block { padding-top: 4px; }
+  .offer-card--cover > .offer-card__cta { padding: 0 26.67px 26.67px; }
+
+  @media (min-width: 1280px) {
+    .offer-card.offer-card--cover { padding: 0; gap: 24px; }
+    .offer-card--cover .offer-card__cover img { height: 260px; }
+    .offer-card--cover > .offer-card__title-block,
+    .offer-card--cover > .offer-card__price { padding-left: 24px; padding-right: 24px; }
+    .offer-card--cover > .offer-card__title-block { padding-top: 8px; }
+    .offer-card--cover > .offer-card__cta { padding: 0 24px 24px; }
+  }
+  @media (min-width: 1920px) {
+    .offer-card.offer-card--cover { padding: 0; gap: 24px; }
+    .offer-card--cover .offer-card__cover img { height: 320px; }
+    .offer-card--cover > .offer-card__title-block,
+    .offer-card--cover > .offer-card__price { padding-left: 32px; padding-right: 32px; }
+    .offer-card--cover > .offer-card__cta { padding: 0 32px 32px; }
   }
 </style>

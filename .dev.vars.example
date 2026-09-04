@@ -1,0 +1,8 @@
+# Copy to `.dev.vars` for local `wrangler dev` (gitignored).
+# In production set these as Worker secrets: `wrangler secret put RESEND_API_KEY`
+
+# Resend — required for magic-link / passkey-invite emails (EmDash has no built-in transport).
+# Use the Alchemy Resend key; the labs.alchemy.zuerich sender domain is already verified.
+RESEND_API_KEY=
+# Optional per-site sender override (default: prima@labs.alchemy.zuerich)
+EMAIL_FROM=VitaLunaris <prima@labs.alchemy.zuerich>

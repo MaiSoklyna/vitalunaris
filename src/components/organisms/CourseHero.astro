@@ -50,7 +50,7 @@ const {
       </div>
     </div>
     <div class="course-hero__media">
-      <img src={image} alt={imageAlt} class="course-hero__image" />
+      <img src={image} alt={imageAlt} class="course-hero__image" fetchpriority="high" decoding="async" />
     </div>
   </div>
 </section>
@@ -179,7 +179,7 @@ const {
   .course-hero__media {
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    border-radius: 25px;
+    border-radius: var(--radius-card-lg);
     background: var(--c-pale-gold);
     width: 100%;
   }

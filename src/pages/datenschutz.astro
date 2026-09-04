@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import LegalPage from '@organisms/LegalPage.astro';
+import { getEmDashEntry } from 'emdash';
+
+// Editable at /_emdash/admin/content/legal (falls back to the copy below).
+const { entry } = await getEmDashEntry('legal', 'datenschutz');
+const d: Record<string, any> = entry?.data ?? {};
 ---
 
 <BaseLayout
@@ -8,7 +13,7 @@ import LegalPage from '@organisms/LegalPage.astro';
   description="Datenschutzerklärung von VitaLunaris – wie wir Personendaten auf vitalunaris.com erheben und verwenden (nDSG / DSGVO)."
   currentPath="/datenschutz"
 >
-  <LegalPage eyebrow="VitaLunaris" title="Datenschutzerklärung">
+  <LegalPage eyebrow="VitaLunaris" title={d.title || 'Datenschutzerklärung'}>
     <div slot="lead">
       <p><strong>Verantwortliche Stelle:</strong></p>
       <p>VitaLunaris</p>
@@ -21,6 +26,7 @@ import LegalPage from '@organisms/LegalPage.astro';
       <p>Letzte Aktualisierung: 12. Juni 2026</p>
     </div>
 
+    {d.body_markdown ? <Fragment set:html={d.body_markdown} /> : (<Fragment>
     <h2>1. Allgemein</h2>
     <p>Diese Datenschutzerklärung erläutert, welche Personendaten wir auf dieser Website (www.vitalunaris.com) erheben und wie wir sie verwenden. Es gilt das Schweizer Datenschutzgesetz (nDSG) sowie, soweit anwendbar, die EU-Datenschutz-Grundverordnung (DSGVO).</p>
 
@@ -77,5 +83,6 @@ import LegalPage from '@organisms/LegalPage.astro';
 
     <h2>8. Änderungen</h2>
     <p>Wir können diese Datenschutzerklärung jederzeit anpassen. Die aktuelle Version gilt ab dem oben genannten Datum.</p>
+    </Fragment>)}
   </LegalPage>
 </BaseLayout>

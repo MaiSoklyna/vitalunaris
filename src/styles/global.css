@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
 
 /* ============================================================
    FONT FACES — ES Park (display) + Inter (body)
@@ -44,12 +43,33 @@
   --fg-default: var(--c-black);
   --fg-on-dark: var(--c-spring-wood);
 
+  /* Interaction states (hover/tint variants of the brand palette) */
+  --c-cherrywood-dark: #4A1414;                 /* primary button hover */
+  --c-spring-wood-dark: #F3EBE0;                /* light button hover */
+  --c-cherrywood-tint: rgba(96, 29, 29, 0.06);  /* ghost button hover */
+
+  /* Radii (responsive card corner uses a sm→base→lg scale per breakpoint) */
+  --radius-pill: 100px;       /* fully-rounded buttons / pills */
+  --radius-card-sm: 16.67px;  /* card / media corner — mobile */
+  --radius-card: 20px;        /* card / media corner — desktop */
+  --radius-card-lg: 25px;     /* card / media corner — wide (≥1920) */
+  --radius-md: 16px;          /* inner media / nav pill */
+  --radius-sm: 12px;          /* small media / chips */
+  --radius-xs: 10px;          /* compact inner media */
+
   /* Signature gradient (Fire → Pale Gold → Spring Wood → Lavender) */
   --gradient-header: linear-gradient(90.11deg,
-    #EC9F27 2.91%,
-    #FFD869 37.37%,
-    #F9F4EE 73.16%,
-    #8E84B6 101.35%);
+    var(--c-fire) 2.91%,
+    var(--c-pale-gold) 37.37%,
+    var(--c-spring-wood) 73.16%,
+    var(--c-lavender) 101.35%);
+  /* Section background fade used by the Testimonials block.
+     Matches Figma "Narrative Block 15": cream at top → gold at the bottom. */
+  --gradient-spring-gold: linear-gradient(180deg, var(--c-spring-wood) 57.41%, var(--c-pale-gold) 100%);
+  /* Selectable section backgrounds (e.g. TestimonialsBlock tone) */
+  --gradient-lavender: linear-gradient(180deg, var(--c-lavender) 0%, var(--c-spring-wood) 63.8%);
+  --gradient-spring-wood: linear-gradient(180deg, var(--c-spring-wood) 0%, var(--c-spring-wood-dark) 100%);
+  --gradient-cherrywood: linear-gradient(180deg, var(--c-cherrywood) 0%, var(--c-cherrywood-dark) 100%);
 
   /* Animations */
   --nav-anim-duration: 600ms;
@@ -138,6 +158,35 @@
 
     --button-size: 16px;
     --link-size: 16px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY — skip link + reduced motion
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -56px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--c-cherrywood);
+  color: var(--c-spring-wood);
+  border-radius: var(--radius-sm);
+  font-family: 'ES Park', serif;
+  font-size: var(--button-size);
+  text-decoration: none;
+  transition: top 150ms ease;
+}
+.skip-link:focus { top: 8px; outline: 2px solid var(--c-spring-wood); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -307,7 +356,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
   text-align: center;
   text-decoration: none;
   border: 0.8px solid transparent;
-  border-radius: 100px;
+  border-radius: var(--radius-pill);
   cursor: pointer;
   transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease;
   white-space: nowrap;
@@ -319,7 +368,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 .btn--sm { padding: 12px 24px; font-size: var(--button-size); line-height: 1.2; min-height: 46px; }
 
 .btn--primary           { background: var(--c-cherrywood); color: var(--c-spring-wood); }
-.btn--primary:hover     { background: #4A1414; }
+.btn--primary:hover     { background: var(--c-cherrywood-dark); }
 
 .btn--secondary         { background: transparent; color: var(--c-spring-wood); border-color: var(--c-spring-wood); }
 .btn--secondary:hover   { background: var(--c-spring-wood); color: var(--c-cherrywood); }
@@ -328,7 +377,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 .btn--header:hover      { background: var(--c-cherrywood); color: var(--c-spring-wood); }
 
 .btn--insert            { background: var(--c-spring-wood); color: var(--c-cherrywood); }
-.btn--insert:hover      { background: #F3EBE0; }
+.btn--insert:hover      { background: var(--c-spring-wood-dark); }
 
 .btn--ghost             { background: transparent; color: var(--c-cherrywood); }
-.btn--ghost:hover       { background: rgba(96, 29, 29, 0.06); }
+.btn--ghost:hover       { background: var(--c-cherrywood-tint); }

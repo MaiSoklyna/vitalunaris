@@ -53,15 +53,15 @@ const stars = Array.from({ length: rating });
     align-items: stretch;
     background: var(--c-white);
     border: 0.8px solid var(--c-cherrywood);
-    border-radius: 16.67px;
+    border-radius: var(--radius-card-sm);
     padding: 24px;
     /* No explicit height — `align-items: stretch` on the track equalizes
        every card to the tallest one. Setting height:100% here would resolve
        to content height and defeat the stretch (cards ended up uneven). */
     min-height: 320px;
   }
-  @media (min-width: 1024px) { .t-card { padding: 32px; min-height: 480px; border-radius: 20px; border-width: 1px; } }
-  @media (min-width: 1920px) { .t-card { padding: 40px; min-height: 625.85px; border-radius: 25px; border-width: 1.25px; } }
+  @media (min-width: 1024px) { .t-card { padding: 32px; min-height: 480px; border-radius: var(--radius-card); border-width: 1px; } }
+  @media (min-width: 1920px) { .t-card { padding: 40px; min-height: 625.85px; border-radius: var(--radius-card-lg); border-width: 1.25px; } }
 
   .t-card__inner {
     display: flex;
