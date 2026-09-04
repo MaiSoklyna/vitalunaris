@@ -41,6 +41,14 @@ export default defineConfig({
       storage: useCloudflare
         ? r2({ binding: 'MEDIA' })
         : local({ directory: './uploads', baseUrl: '/_emdash/api/media/file' }),
+      plugins: [
+        {
+          id: 'vitalunaris-email',
+          version: '1.0.0',
+          entrypoint: '/src/emdash-plugin.ts',
+          format: 'native',
+        },
+      ],
     }),
   ],
 });

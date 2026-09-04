@@ -7,7 +7,7 @@
   "compatibility_date": "2025-06-01",
   "compatibility_flags": ["nodejs_compat"],
   "d1_databases": [
-    { "binding": "DB", "database_name": "vitalunaris-cms", "database_id": "FILL_IN_AFTER_CREATE" }
+    { "binding": "DB", "database_name": "vitalunaris-cms", "database_id": "3d58803d-a722-4ec4-bba8-38a6305b4bb1" }
   ],
   "r2_buckets": [
     { "binding": "MEDIA", "bucket_name": "vitalunaris-media" }
