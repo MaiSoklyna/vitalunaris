@@ -39,7 +39,7 @@ const toneClass = TONE_ALIASES[tone ?? ''] ?? 'gold';
       {intro && <Text size="p1" class="t-block__intro">{intro}</Text>}
     </header>
 
-    <div class="t-block__carousel" data-t-carousel>
+    <div class={`t-block__carousel${fitsWithoutPaging ? ' t-block__carousel--static' : ''}`} data-t-carousel>
       <div class="t-block__track" data-t-track>
         {testimonials.map((t) => <TestimonialCard {...t} />)}
       </div>
@@ -225,6 +225,16 @@ const toneClass = TONE_ALIASES[tone ?? ''] ?? 'gold';
   @media (min-width: 640px)  { .t-block__track > :global(.t-card) { flex: 0 0 calc((100% - 18px) / 2); } }
   @media (min-width: 1024px) { .t-block__track > :global(.t-card) { flex: 0 0 calc((100% - 2 * 18px) / 3); } }
   @media (min-width: 1920px) { .t-block__track > :global(.t-card) { flex: 0 0 calc((100% - 2 * 22px) / 3); } }
+
+  /* Three or fewer testimonials all fit from 1024px up: no arrows, no
+     scrolling — the row simply sits there. */
+  @media (min-width: 1024px) {
+    .t-block__carousel--static .t-block__nav { display: none; }
+    .t-block__carousel--static .t-block__track {
+      overflow-x: visible;
+      scroll-snap-type: none;
+    }
+  }
 
   /* ----- nav buttons (circular cherrywood arrow — SVG from Figma) ----- */
   .t-block__nav {

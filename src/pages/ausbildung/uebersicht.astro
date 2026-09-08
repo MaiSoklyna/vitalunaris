@@ -25,48 +25,48 @@ const nar = sec('narrative'), stg = sec('stages'), out = sec('outcomes'),
 const stages = (d.stage_cards?.length ? d.stage_cards : [
   {
     image: '/images/cards/card-1.jpg',
-    eyebrow: 'Teil 1 — Grundlagen',
-    title: 'Der Einstieg in die systemische Arbeit',
-    body: 'Du lernst die Grundlagen des systemischen Aufstellens — was Systeme sind, wie sie funktionieren, und was passiert, wenn sich etwas in ihnen festgesetzt hat. Du stellst, du wirst aufgestellt, du lernst durch Erleben.',
+    eyebrow: 'Systemic Soulwork',
+    title: 'Für Dich selbst',
+    body: 'Verstehen, warum sich bestimmte Dinge in Deinem Leben wiederholen. Drei Module à ca. einen Monat, einzeln buchbar — Arbeit an Deinem eigenen System, keine Ausbildung.',
     cta_href: '/ausbildung/soulcoach-level-1',
   },
   {
     image: '/images/cards/card-2.jpg',
-    eyebrow: 'Teil 2 — Vertiefung',
-    title: 'Vom Verständnis zur Praxis',
-    body: 'Du vertiefst dein methodisches Handwerk. Komplexere Systeme, schwierigere Dynamiken, dein eigener Stil als Begleitperson. Nach Teil 2 bist du bereit, eigenständig zu arbeiten.',
+    eyebrow: 'Systemic Soulcoach',
+    title: 'Um andere zu begleiten',
+    body: 'Die Ausbildung für alle, die eigene Aufstellungsgruppen leiten wollen. Drei Monate als geschlossene Gruppe. Voraussetzung: alle drei Soulwork-Module.',
     cta_href: '/ausbildung/soulcoach-level-2',
   },
   {
     image: '/images/cards/card-3.jpg',
-    eyebrow: 'Begleitung & Circle',
-    title: 'In der Praxis bleiben und weiterlernen',
-    body: 'Einmal im Monat gemeinsames Aufstellen in der Gruppe. Für alle, die nach der Ausbildung nicht aufhören wollen, die das Handwerk lebendig halten und weiter wachsen wollen. Zugang nur nach abgeschlossener Ausbildung.',
-    cta_href: '/kontakt',
+    eyebrow: 'Systemic SoulCircle',
+    title: 'Zum Dranbleiben',
+    body: 'Einmal im Monat online zusammenkommen: ein Thema, kleine Aufstellungen, Impulse und Übungen — dazwischen über Telegram verbunden. Ab dem ersten Soulwork-Modul, CHF 130.– im Monat.',
+    cta_href: '/ausbildung/begleitung-kreis',
   },
 ]) as Array<Record<string, any>>;
 
-/* ----- "Nach dieser Ausbildung arbeitest du anderst." — outcomes arc (4 cards) ----- */
+/* ----- "Was systemisches Aufstellen ist." — outcomes arc (4 cards) ----- */
 const outcomes = d.outcomes?.length ? d.outcomes : [
   {
-    title: 'Du siehst Systeme.',
-    description: 'Muster, Dynamiken, Loyalitäten — du erkennst sie früher. In der Arbeit mit anderen, und in deinem eigenen Leben.',
+    title: 'Was unsichtbar war, wird sichtbar.',
+    description: 'In einer Aufstellung siehst Du Dein System vor Dir stehen — und plötzlich ergibt Sinn, was sich jahrelang wie ein Rätsel angefühlt hat.',
   },
   {
-    title: 'Du begleitest sicher.',
-    description: 'Nicht nur auf der Oberfläche — sondern dort wo sich wirklich etwas hält. Mit Methode und Haltung.',
+    title: 'Es geht nie nur um Dich.',
+    description: 'Was sich immer wiederholt, sitzt selten nur in einer Person. Familie, Herkunft, Muster über Generationen — das System wirkt mit.',
   },
   {
-    title: 'Du hältst die Spannung.',
-    description: 'Konflikte, Widerstand, schwierige Momente — du weichst nicht aus. Du bist Boden für andere.',
+    title: 'Verstehen statt analysieren.',
+    description: 'Du erarbeitest Dir nichts im Kopf. Du stellst auf, Du spürst — und begreifst dadurch, was Worte nicht erklären können.',
   },
   {
-    title: 'Du arbeitest aus Erfahrung.',
-    description: 'Nicht aus Theorie. Was du weitergibst, hast du selbst durchlebt. Das ist der Unterschied.',
-  },  
+    title: 'Aus über 30 Jahren Praxis.',
+    description: 'Kein importiertes Curriculum. Was hier weitergegeben wird, ist mit echten Menschen in der Deutschschweiz erprobt.',
+  },
 ];
 
-/* ----- "Stimmen aus der Ausbildung" — star reviews ----- */
+/* ----- Stimmen von Teilnehmer:innen — star reviews ----- */
 const _reviews = await getTestimonials('ausbildung');
 const reviews = _reviews.length ? _reviews : [
   {
@@ -85,56 +85,56 @@ const reviews = _reviews.length ? _reviews : [
 
 const faqItems = d.faq_items?.length ? d.faq_items : [
   {
-    question: 'Brauche ich Vorkenntnisse für die Ausbildung?',
-    answer: 'Nein. Du musst keine therapeutische oder psychologische Vorbildung mitbringen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen.',
+    question: 'Womit fange ich an?',
+    answer: 'Mit Systemic Soulwork. Dort arbeitest Du an Deinem eigenen System — das ist die Grundlage für alles Weitere. Ob Du danach die Ausbildung machst, entscheidest Du später.',
   },
   {
-    question: 'Kann ich direkt mit der Ausbildung zum Systemic Soulcoach starten?',
-    answer: 'Ja. Die Ausbildung ist so aufgebaut, dass du ohne Vorerfahrung im systemischen Arbeiten einsteigen kannst. Wir beginnen bei den Grundlagen und gehen Schritt für Schritt in die Tiefe. Im Erstgespräch klären wir gemeinsam, ob der Einstieg für dich stimmig ist.',
+    question: 'Was ist der Unterschied zwischen Soulwork und der Soulcoach-Ausbildung?',
+    answer: 'Soulwork ist Arbeit an Dir selbst: Du verstehst Dein eigenes System. Die Soulcoach-Ausbildung ist Handwerk: Du lernst, eigene Aufstellungsgruppen zu leiten. Voraussetzung dafür sind alle drei Soulwork-Module.',
   },
   {
-    question: 'Ist die Ausbildung eher theoretisch oder praktisch ausgerichtet?',
-    answer: 'Klar praktisch. Du lernst durch Erleben — du stellst auf, wirst aufgestellt und begleitest. Die nötige Theorie ordnet das Erlebte ein, doch der Schwerpunkt liegt auf der gelebten Erfahrung in der Gruppe.',
+    question: 'Brauche ich Vorkenntnisse?',
+    answer: 'Nein. Du musst keine therapeutische oder psychologische Vorbildung mitbringen. Wichtiger sind Offenheit und die Bereitschaft, Dein eigenes System wirklich anzuschauen.',
   },
   {
-    question: 'Kann ich nach der Ausbildung selbst Menschen begleiten?',
-    answer: 'Ja. Nach abgeschlossener Ausbildung hast du das methodische Handwerk und die Haltung, um eigenständig systemisch zu begleiten — mit Sicherheit, Tiefe und einem klaren Verständnis dafür, was zwischen Menschen wirkt.',
+    question: 'Muss ich am Ende andere begleiten wollen?',
+    answer: 'Nein. Die meisten kommen für sich selbst. Systemic Soulwork ist in sich abgeschlossen — die Ausbildung ist eine Möglichkeit, keine Erwartung.',
   },
   {
-    question: 'Eignet sich die Ausbildung auch für Menschen, die bereits im Gesundheits-, Coaching- oder Beratungsbereich tätig sind?',
-    answer: 'Sehr. Wenn du bereits mit Menschen arbeitest, gibt dir die systemische Perspektive ein kraftvolles zusätzliches Werkzeug. Du erkennst Muster und Dynamiken früher und kannst dort begleiten, wo sich wirklich etwas hält.',
+    question: 'Ist das eher theoretisch oder praktisch?',
+    answer: 'Klar praktisch. Du lernst durch Erleben — Du stellst auf und wirst aufgestellt. Die nötige Theorie ordnet das Erlebte ein, der Schwerpunkt liegt auf der Erfahrung in der Gruppe.',
+  },
+  {
+    question: 'Eignet sich das auch für Menschen, die schon mit Menschen arbeiten?',
+    answer: 'Sehr. Wenn Du im Gesundheits-, Coaching- oder Beratungsbereich tätig bist, gibt Dir die systemische Perspektive ein zusätzliches Werkzeug — Du erkennst Muster und Dynamiken früher.',
   },
   {
     question: 'Werden die Kosten von der Krankenkasse übernommen?',
-    answer: 'Systemisches Aufstellen ist eine Form der persönlichen und beruflichen Entwicklung und in der Regel keine kassenpflichtige Leistung. Für die Ausbildung erhältst du im Erstgespräch eine detaillierte Übersicht der Investition.',
+    answer: 'Systemisches Aufstellen ist eine Form der persönlichen und beruflichen Entwicklung und in der Regel keine kassenpflichtige Leistung.',
   },
   {
-    question: 'Was passiert, wenn ich einmal einen Termin nicht wahrnehmen kann?',
-    answer: 'Das lässt sich in der Regel lösen. Die Module bauen aufeinander auf, und wir finden gemeinsam einen Weg, ein verpasstes Treffen zu integrieren, damit du den Anschluss nicht verlierst. Sprich uns einfach frühzeitig an.',
-  },
-  {
-    question: 'Was unterscheidet diese Ausbildung von anderen Ausbildungsprogrammen?',
-    answer: 'Hier geht es um mehr als Methodenlernen. Aufgebaut auf über 30 Jahren gelebter Praxis verbindet die Ausbildung Handwerk und Haltung — und du durchlebst selbst, was du später weitergibst. Diese Tiefe macht den Unterschied.',
+    question: 'Was, wenn ich einen Termin nicht wahrnehmen kann?',
+    answer: 'Das lässt sich in der Regel lösen. Sprich uns einfach frühzeitig an — wir finden gemeinsam einen Weg, damit Du den Anschluss nicht verlierst.',
   },
 ];
 
 const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraphs.map((p: any) => p.text) : [
   'Über 30 Jahre Erfahrung in der Begleitung von Menschen – körperlich, systemisch und energetisch.',
-  'Theresia Jansen lehrt nicht, was sie gelesen hat — sondern was sie über 30 Jahre hinweg erprobt, durchlebt und verfeinert hat. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.',
-  'Wer bei ihr lernt, erhält nicht nur Wissen und Werkzeuge. Für viele wird die Ausbildung zu einer persönlichen Reise, die weit über fachliches Lernen hinausgeht.',
+  'Ich lehre nicht, was ich gelesen habe — sondern was ich über 30 Jahre hinweg erprobt, durchlebt und verfeinert habe. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.',
+  'Ob Du für Dich selbst kommst oder um andere zu begleiten: Für viele wird diese Arbeit zu einer persönlichen Reise, die weit über das Fachliche hinausgeht.',
 ]) as string[];
 ---
 
 <BaseLayout
-  title="Übersicht – Systemic Soulcoach Ausbildung bei VitaLunaris"
-  description="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen die mit Menschen arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren Praxis in der Deutschschweiz."
+  title="Systemisches Aufstellen — Übersicht | VitaLunaris"
+  description="Systemisches Aufstellen bei VitaLunaris: Systemic Soulwork für Dich selbst, die Ausbildung zum Systemic Soulcoach für die Leitung eigener Gruppen und der SoulCircle zum Dranbleiben. Über 30 Jahre gelebte Praxis in der Deutschschweiz."
   currentPath="/ausbildung/uebersicht"
 >
   <OverviewHero
-    graphic="/images/ebene/Ebene_2.svg"
-    eyebrow={d.hero_eyebrow || 'Systemic Soulcoach Ausbildung'}
-    title={d.hero_title || 'Systemische Arbeit.<br />Professionell begleiten<br />und wirklich tief gehen.'}
-    subtitle={d.hero_subtitle || 'Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen. Für Menschen, die mit Tiefe arbeiten wollen — und die Tiefe suchen, die oberflächliche Methoden nicht erreichen. In zwei Stufen, aufgebaut auf über 30 Jahren gelebter Praxis in der Deutschschweiz.'}
+    graphic="/images/ebene/Ebene-14.svg"
+    eyebrow={d.hero_eyebrow || 'Systemisches Aufstellen'}
+    title={d.hero_title || 'Systemisches Aufstellen.<br />Für Dich — oder<br />für Deine Arbeit.'}
+    subtitle={d.hero_subtitle || 'Manche kommen, um sich selbst zu verstehen. Andere, um eigene Aufstellungsgruppen zu leiten. Drei Wege, ein Fundament — über 30 Jahre gelebte Praxis in der Deutschschweiz.'}
   />
 
   {/* ===================== Methode. Haltung. Tiefe. ===================== */}
@@ -144,16 +144,16 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
     image={imageUrl(nar.image) || '/images/placeholder/Placeholder-7.jpg'}
     imageAlt=""
     title={nar.title || 'Methode.<br />Haltung. Tiefe.'}
-    body={nl2br(nar.body) || 'Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen ohne je ausgesprochen zu werden.<br/> <br/> Was sich im Leben einer Person immer wiederholt, sitzt selten nur in ihr. Ein Systemic Soulcoach sieht das System hinter der Person — und weiss, wie er es begleiten kann.'}
+    body={nl2br(nar.body) || 'Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen ohne je ausgesprochen zu werden.<br/> <br/> Was sich im Leben einer Person immer wiederholt, sitzt selten nur in ihr. In einer Aufstellung wird sichtbar, was sonst unsichtbar bleibt — ob Du damit Dein eigenes System anschaust oder andere darin begleitest.'}
   />
 
   {/* ===================== Drei Stufen, ein Weg ===================== */}
   <section class="stages">
     <div class="stages__inner">
       <div class="stages__header">
-        <Heading level={2} variant="h1" class="stages__title">{stg.title || 'Drei Stufen, ein Weg'}</Heading>
+        <Heading level={2} variant="h1" class="stages__title">{stg.title || 'Drei Wege'}</Heading>
         <Text size="p1" class="stages__intro">
-          {stg.body || 'Jede Stufe baut auf der vorherigen auf. Du entscheidest nach Level 1 — aber die meisten wollen tiefer.'}
+          {stg.body || 'Du wählst, was zu Dir passt. Systemic Soulwork ist der Einstieg — von dort führt der Weg weiter, wenn Du möchtest.'}
         </Text>
       </div>
       <div class="stages__grid">
@@ -176,10 +176,10 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
     </div>
   </section>
 
-  {/* ===================== Nach dieser Ausbildung arbeitest du anderst. ===================== */}
+  {/* ===================== Was systemisches Aufstellen ist. ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">{out.title || 'Nach dieser Ausbildung arbeitest du anderst.'}</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">{out.title || 'Was systemisches Aufstellen ist.'}</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -237,8 +237,8 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
     </div>
   </section>
 
-  {/* ===================== Stimmen aus der Ausbildung ===================== */}
-  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} tone={d.testimonials_tone || 'gold'} />
+  {/* ===================== Stimmen ===================== */}
+  <TestimonialsBlock title="Was Teilnehmer:innen sagen" testimonials={reviews} tone={d.testimonials_tone || 'gold'} />
 
   {/* ===================== Gold claim / quote ===================== */}
   <section class="uquote">
@@ -261,7 +261,7 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
   {/* ===================== Noch nicht sicher? — Newsletter ===================== */}
   <NewsletterBlock
     title={nlx.title || 'Noch nicht sicher?'}
-    body={nlx.body || 'Melde dich für den Newsletter an — wir informieren dich, wenn der nächste Ausbildungsstart bekannt ist. Und in der Zwischenzeit laden wir dich ein, in einem unserer Seminare zu schnuppern.'}
+    body={nlx.body || 'Melde Dich für den Newsletter an — wir informieren Dich über die nächsten Starttermine. Und in der Zwischenzeit laden wir Dich ein, in einem unserer Seminare zu schnuppern.'}
     placeholder="E-mail Adresse"
     submitText="Anmelden"
   />
@@ -375,7 +375,7 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
   }
 
   /* ============================================================
-     OUTCOMES — "Nach dieser Ausbildung arbeitest du anderst."
+     OUTCOMES — "Was systemisches Aufstellen verändert."
      Mobile/tablet (<1024): two halves with separate curves (-1, -2)
      Desktop (≥1024): single process-curve.svg
      Desktop++ (≥1072): cards absolutely positioned per Figma

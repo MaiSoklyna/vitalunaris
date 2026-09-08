@@ -20,28 +20,23 @@ interface NavLink {
   children?: NavChild[];
   /** When true, clicking the parent navigates to its href instead of toggling the dropdown. */
   navigateOnClick?: boolean;
+  /** Marks the item as leaving the main site: shows a ↗ glyph. */
+  external?: boolean;
 }
 
 const FALLBACK_NAV: NavLink[] = [
   {
-    href: '/uebersicht',
-    label: 'Systemische Ausbildung',
+    href: '/ausbildung/uebersicht',
+    label: 'Systemisches Aufstellen',
     children: [
       { href: '/ausbildung/uebersicht', label: 'Übersicht' },
-      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulwork Level 1' },
-      { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach Level 2' },
-      { href: '/ausbildung/begleitung-kreis', label: 'Begleitung & Circle' },
+      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulwork' },
+      { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach' },
+      { href: '/ausbildung/begleitung-kreis', label: 'Systemic SoulCircle' },
       { href: '/ausbildung/infoanlaesse', label: 'Infoanlässe' },
     ],
   },
-  {
-    href: '/workshops-kurse/kalender-uebersicht',
-    label: 'Workshops & Kurse',
-    navigateOnClick: true,
-    children: [
-      { href: '/workshops-kurse/kalender-uebersicht', label: 'Kalender & Übersicht' },
-    ],
-  },
+  { href: '/workshops-kurse/kalender-uebersicht', label: 'Workshops & Kurse' },
   {
     href: '/praxisangebote',
     label: 'Praxisangebote',
@@ -51,9 +46,9 @@ const FALLBACK_NAV: NavLink[] = [
       { href: '/praxisangebote/hypnose', label: 'Hypnose' },
       { href: '/praxisangebote/numerologieberatung', label: 'Numerologieberatung' },
       { href: '/praxisangebote/fussreflexzonenbehandlung', label: 'Fussreflexzonenbehandlung' },
-      { href: '/praxisangebote/jawort-by-jansen', label: 'Jawort by Jansen' },
     ],
   },
+  { href: '/praxisangebote/jawort-by-jansen', label: 'Jawort by Jansen', external: true },
   { href: '/neuigkeiten', label: 'News' },
   { href: '/ueber-uns', label: 'Über uns' },
   { href: '/kontakt', label: 'Kontakt' },
@@ -134,9 +129,14 @@ const isGroupActive = (item: NavLink) =>
         ) : (
           <a
             href={item.href}
-            class={`nav__link ${isActive(item.href) ? 'nav__link--active' : ''}`}
+            class={`nav__link ${isActive(item.href) ? 'nav__link--active' : ''} ${item.external ? 'nav__link--external' : ''}`}
           >
             {item.label}
+            {item.external && (
+              <svg class="nav__external" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M2.5 7.5L7.5 2.5M7.5 2.5H3.5M7.5 2.5V6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
           </a>
         )
       )}
@@ -196,9 +196,14 @@ const isGroupActive = (item: NavLink) =>
             ) : (
               <a
                 href={item.href}
-                class={`nav__overlay-link ${isActive(item.href) ? 'nav__overlay-link--active' : ''}`}
+                class={`nav__overlay-link ${isActive(item.href) ? 'nav__overlay-link--active' : ''} ${item.external ? 'nav__overlay-link--external' : ''}`}
               >
                 {item.label}
+                {item.external && (
+                  <svg class="nav__external nav__external--overlay" width="14" height="14" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                    <path d="M2.5 7.5L7.5 2.5M7.5 2.5H3.5M7.5 2.5V6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                )}
               </a>
             )
           )}
@@ -325,6 +330,18 @@ const isGroupActive = (item: NavLink) =>
   }
   .nav__link:hover { opacity: 0.7; }
   .nav__link--active { font-weight: 600; }
+
+  /* Items that lead out of the main site carry a ↗ glyph. */
+  .nav__link--external {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav__external {
+    flex-shrink: 0;
+    opacity: 0.75;
+    transform: translateY(-1px);
+  }
   @media (min-width: 1280px) { .nav__link { font-size: 16px; } }
 
   /* ---------- DESKTOP DROPDOWN GROUP (≥ 1280px) — Figma w=1920 spec ----------
@@ -494,6 +511,12 @@ const isGroupActive = (item: NavLink) =>
     border-bottom: 1px solid rgba(96, 29, 29, 0.15);
   }
   .nav__overlay-link--active { font-weight: 600; }
+  .nav__overlay-link--external {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav__external--overlay { transform: translateY(-2px); }
 
   .nav__acc { border-bottom: 1px solid rgba(96, 29, 29, 0.15); }
 

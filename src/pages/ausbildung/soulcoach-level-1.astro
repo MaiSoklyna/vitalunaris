@@ -18,9 +18,9 @@ const { entry } = await getEmDashEntry('ausbildung_programs', 'soulcoach-level-1
 const d: Record<string, any> = entry?.data ?? {};
 
 /* Shared CTA labels (used in several sections) */
-const CTA_PRIMARY = 'Systemisches Erstgespräch vereinbaren';
-const CTA_HERO = d.hero_primary_cta_text || 'Kostenloses Erstgespräch vereinbaren';
-const CTA_HREF = d.hero_primary_cta_href || '/kontakt';
+const CTA_PRIMARY = 'Kostenloses Gespräch vereinbaren';
+const CTA_HERO = d.hero_primary_cta_text || 'Kostenloses Gespräch vereinbaren';
+const CTA_HREF = d.hero_primary_cta_href || '#termin';
 
 /* ----- "In den drei Monaten tauchen wir tief in:" — outcomes arc (4 cards) ----- */
 const outcomes = d.outcomes?.length ? d.outcomes : [
@@ -37,80 +37,93 @@ const outcomes = d.outcomes?.length ? d.outcomes : [
     description: 'Wie gestalten wir Beziehungen – beruflich und privat? Was beeinflusst, wie wir uns verbinden, abgrenzen oder verlieren?',
   },
   {
-    title: 'Grundlagen systemischer Begleitung',
-    description: 'Für alle, die auch andere begleiten möchten: die Grundhaltung, die Sprache und die ersten Schritte systemischer Arbeit – mit dem Aufstellungsbrett und mit Menschen.',
+    title: 'Dein Platz im System',
+    description: 'Wo stehst Du selbst — in Deiner Familie, in Deinen Beziehungen, in Deinem Leben? Was ist wirklich Deins, und was trägst Du für andere mit?',
   },
 ];
 
-/* ----- "In drei Schritten zu deinem Platz" — 3-step onboarding ----- */
-const steps = [
-  {
-    number: '1',
-    title: 'Erstgespräch',
-    description: 'Wir nehmen uns 45 Minuten Zeit füreinander. Du erzählst, wo du gerade stehst und was dich gerade bewegt. Ich erzähle dir von der Ausbildung und beantworte dir all deine Fragen. Dann schauen wir gemeinsam, ob es passt.',
-  },
-  {
-    number: '2',
-    title: 'Anmeldung',
-    description: 'Wenn es für uns beide stimmt, erhältst du deinen Anmeldelink und reservierst dir damit deinen Platz verbindlich.',
-  },
-  {
-    number: '3',
-    title: 'Anfang',
-    description: 'Du erhältst alle Zugänge und alles was du brauchst und startest am nächsten Startdatum in der Gruppe — nur online oder hybrid vor Ort.',
-  },
-];
-
-/* ----- "Stimmen aus der Ausbildung" — star reviews ----- */
+/* ----- Stimmen von Teilnehmer:innen — star reviews ----- */
 const _reviews = await getTestimonials('ausbildung');
 const reviews = _reviews.length ? _reviews : [
   {
-    quote: '«Diese Ausbildung hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»',
+    quote: '«Diese Arbeit hat mir eine völlig neue Perspektive eröffnet. Ich war lange eher im Kopf als im Körper — genau das beginnt sich zu verändern. Die Arbeit mit Familienkonstellationen hat mir geholfen, Klarheit zu gewinnen. Wo vorher Chaos war, entsteht heute mehr Ruhe und Vertrauen. Ich fühle mich mehr bei mir selbst angekommen.»',
     name: 'Jana L.',
   },
   {
-    quote: '«In dieser Ausbildungsgruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. So habe ich mich in einer Gruppe noch nie gefühlt. In mir ist eine grosse Welle in Bewegung gekommen — früher hätte ich solche Gefühle verdrängt, heute gehe ich durch sie hindurch. Diese Ausbildung ist für mich weit mehr als Lernen. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»',
+    quote: '«In dieser Gruppe fühle ich mich so getragen, dass ich mit allem da sein kann, was ich bin. So habe ich mich in einer Gruppe noch nie gefühlt. In mir ist eine grosse Welle in Bewegung gekommen — früher hätte ich solche Gefühle verdrängt, heute gehe ich durch sie hindurch. Diese Arbeit ist für mich weit mehr als Lernen. Sie ist ein Raum für Heilung, Wachstum und echtes Menschsein.»',
     name: 'Silvia F.',
   },
   {
-    quote: '«Diese Ausbildung zeigt die Magie des systemischen Aufstellens — und ich könnte mir keinen Ort vorstellen, an dem ich mich wohler fühle. Ein geschützter Raum, in dem jede einfach sie selbst sein darf. Theresia schafft diesen Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen. Was diese Ausbildung besonders macht: die Erfahrung, selbst Teil eines solchen Prozesses zu sein.»',
+    quote: '«Diese Arbeit zeigt die Magie des systemischen Aufstellens — und ich könnte mir keinen Ort vorstellen, an dem ich mich wohler fühle. Ein geschützter Raum, in dem jede einfach sie selbst sein darf. Theresia schafft diesen Rahmen mit einer einfühlsamen Art, die es möglich macht, sich wirklich zu öffnen. Was diese Arbeit besonders macht: die Erfahrung, selbst Teil eines solchen Prozesses zu sein.»',
     name: 'Corina B.',
   },
 ];
 
-/* ----- "Alles was du wissen musst." — fact cards ----- */
+/* ----- Die drei Module — aufeinander aufbauend, je ca. 1 Monat ----- */
+const modules = (d.modules?.length ? d.modules : [
+  {
+    number: '1',
+    title: 'Modul 1',
+    description: 'Der Einstieg: Grundhaltung, systemische Sprache und die ersten eigenen Aufstellungen. Du lernst das Handwerk kennen — und beginnst mit Deinem eigenen System.',
+    color: 'purple' as const,
+  },
+  {
+    number: '2',
+    title: 'Modul 2',
+    description: 'Wir gehen tiefer: Familiensysteme, Herkunft und die Muster, die sich durch Generationen ziehen. Was trägst Du mit, oft ohne es zu wissen?',
+    color: 'raspberry' as const,
+  },
+  {
+    number: '3',
+    title: 'Modul 3',
+    description: 'Die Integration: Bindungsdynamiken, eigene Loyalitäten und die Frage, wie Du das Erkannte in Deinen Alltag mitnimmst.',
+    color: 'aurora' as const,
+  },
+]) as Array<Record<string, any>>;
+
+/* ----- Was in jedem Modul enthalten ist ----- */
+const moduleIncludes = d.module_includes?.length ? d.module_includes : [
+  { eyebrow: 'Präsenztage', body: '2 pro Modul, vor Ort' },
+  { eyebrow: 'Online-Nachmittage', body: '2 pro Modul' },
+  { eyebrow: 'Dazwischen', body: 'Telegram-Gruppe zwischen den Terminen' },
+  { eyebrow: 'Deine Aufstellungen', body: 'Garantiert 2 eigene Präsenz-Aufstellungen + mind. 1 online' },
+];
+
+/* ----- "Alles was Du wissen musst." — fact cards ----- */
 const infoCards = d.info_cards?.length ? d.info_cards : [
-  { eyebrow: 'Nächster Start', body: '1.8.2026' },
-  { eyebrow: 'Dauer', body: '3 Monate' },
-  { eyebrow: 'Durchführung', body: 'online oder hybrid, max. 6 Personen' },
-  { eyebrow: 'Investition', body: 'CHF 3800.–' },
+  { eyebrow: 'Start', body: 'Zweimal jährlich — Februar und September' },
+  { eyebrow: 'Aufbau', body: '3 Module à ca. 1 Monat' },
+  { eyebrow: 'Durchführung', body: 'Hybrid — Präsenz + online, max. 6 Personen' },
+  { eyebrow: 'Investition', body: 'Einzelmodul CHF 1’390.– · Paket CHF 3’800.–' },
 ];
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
 const faqItems = d.faq_items?.length ? d.faq_items : [
-  { question: 'Ist Level 1 vollständig oder nur ein Einstieg in Level 2?', answer: 'Level 1 ist ein vollwertiger, in sich geschlossener Ausbildungsabschnitt — und zugleich die Grundlage für Level 2. Du lernst das systemische Handwerk an dir selbst und kannst danach entscheiden, ob du weitergehen möchtest.' },
-  { question: 'Für wen ist diese Ausbildung geeignet?', answer: 'Für alle, die systemisch arbeiten wollen — ob für die eigene Entwicklung oder als Grundlage, um später andere zu begleiten. Du brauchst keine fachliche Vorbildung, sondern Offenheit und die Bereitschaft, dich selbst anzuschauen.' },
-  { question: 'Muss ich nach Level 1 als Systemic Soulcoach arbeiten?', answer: 'Nein. Viele machen Level 1 für die eigene Entwicklung. Ob du das Gelernte beruflich einsetzt, bleibt vollständig dir überlassen.' },
-  { question: 'Welche Vorkenntnisse brauche ich?', answer: 'Keine fachlichen. Wichtiger als Vorwissen sind deine Offenheit und die Bereitschaft, dich selbst und das eigene System wirklich anzuschauen.' },
-  { question: 'Was ist der Unterschied zu einer klassischen Ausbildung?', answer: 'Wir arbeiten erfahrungsbasiert statt rein theoretisch. Du lernst nicht über Systeme, sondern in ihnen — an deinem eigenen System und an dem der Gruppe.' },
-  { question: 'Wie gross ist die Gruppe?', answer: 'Die Gruppen sind bewusst klein — maximal 6 Personen. So bleibt genug Raum, dass jede mit ihrem eigenen Thema gesehen und begleitet werden kann.' },
-  { question: 'Was kostet Level 1 und wie wird bezahlt?', answer: 'Die Investition für Level 1 beträgt CHF 3800.–. Ratenzahlung ist möglich — die Details besprechen wir gerne im Erstgespräch.' },
-  { question: 'Kann ich rein online teilnehmen?', answer: 'Ja. Solltest du die Ausbildung nur online machen wollen, ist das kein Problem — es gibt eine separate Online-Gruppe. Am Umfang und am Startdatum ändert das nichts.' },
+  { question: 'Muss ich alle drei Module buchen?', answer: 'Nein. Du startest mit Modul 1 und entscheidest danach, ob Du weitergehst. Wer gleich alle drei nimmt, zahlt CHF 370.– weniger.' },
+  { question: 'Wann geht es los?', answer: 'Zweimal im Jahr, im Februar und im September. Modul 2 und 3 folgen in den Monaten danach — die genauen Daten bekommst Du im Gespräch.' },
+  { question: 'Für wen ist das?', answer: 'Für alle, die sich selbst besser verstehen wollen. Du brauchst keinen fachlichen Hintergrund — nur Offenheit und die Bereitschaft, hinzuschauen.' },
+  { question: 'Ist das eine Ausbildung?', answer: 'Nein. Systemic Soulwork ist Arbeit an Dir selbst. Wenn Du danach andere begleiten möchtest, ist der Systemic Soulcoach der nächste Schritt — muss aber nicht.' },
+  { question: 'Wie läuft ein Modul ab?', answer: '2 Präsenztage, 2 Online-Nachmittage und eine Telegram-Gruppe dazwischen. Du hast garantiert 2 eigene Aufstellungen vor Ort und mindestens eine online.' },
+  { question: 'Wie gross ist die Gruppe?', answer: 'Maximal 6 Personen. So bleibt für jede:n genug Raum.' },
+  { question: 'Kann ich rein online teilnehmen?', answer: 'Nein. Jedes Modul hat 2 Präsenztage vor Ort — dort finden Deine eigenen Aufstellungen statt, und die lassen sich nicht ersetzen. Die 2 Nachmittage dazwischen sind online.' },
+  { question: 'Was kostet es?', answer: 'Ein Modul CHF 1’390.–, alle drei im Paket CHF 3’800.– statt CHF 4’170.–. Ratenzahlung ist möglich.' },
+  { question: 'Wie melde ich mich an?', answer: 'Immer über ein kostenloses Gespräch mit mir. 45 Minuten, unverbindlich — wir schauen gemeinsam, ob es passt und womit Du startest. Erst danach kommt die Anmeldung.' },
 ];
 ---
 
 <BaseLayout
-  title="Systemic Soulwork Level 1 – VitaLunaris"
-  description="Level 1 der Systemic-Soulwork-Ausbildung bei Theresia Jansen — drei Monate Selbsterkenntnis, in denen du dein eigenes System verstehst und das Fundament für systemische Arbeit legst."
+  title="Systemic Soulwork — Persönliche Entwicklung in 3 Modulen | VitaLunaris"
+  description="Systemic Soulwork bei Theresia Jansen — persönliche Entwicklung in drei aufeinander aufbauenden Modulen. Einzeln buchbar ab CHF 1’390.– oder als Paket für CHF 3’800.–."
   currentPath="/ausbildung/soulcoach-level-1"
 >
   <Hero
-    eyebrow={d.hero_eyebrow || 'Ausbildung · Systemic Soulwork Level 1 · 3 Monate'}
-    title={d.hero_title || 'Entfalte deine<br />systemische Praxis'}
-    subtitle={d.hero_subtitle || 'Systemische Arbeit lernen, wie sie gelernt werden sollte — an dir selbst. Drei Monate, in denen du endlich verstehst, warum sich bestimmte Dinge in deinem Leben immer wieder wiederholen. Du räumst auf. Du schaust hin. Du verstehst. Für dich selbst, oder als Fundament, um Systemischer Coach zu werden.'}
+    eyebrow={d.hero_eyebrow || 'Systemic Soulwork'}
+    title={d.hero_title || 'Versteh Dich<br />endlich selbst.'}
+    subtitle={d.hero_subtitle || 'Warum wiederholen sich bestimmte Dinge in Deinem Leben? Warum reagierst Du manchmal, obwohl Du eigentlich gar nicht willst?<br /><br />Systemic Soulwork ist keine Ausbildung — es ist Arbeit an Dir, mit dem systemischen Aufstellen als Werkzeug. Du schaust hin. Du verstehst. In drei Modulen.'}
     ctaText={CTA_HERO}
     ctaHref={CTA_HREF}
     image={imageUrl(d.hero_image) || '/images/placeholder/Placeholder-9.jpg'}
+    imageFocus="center 15%"
   />
 
   {/* ===================== Narrative — lavender gradient ===================== */}
@@ -119,14 +132,14 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     imageSide="left"
     image={imageUrl(d.narrative_image) || '/images/placeholder/Placeholder-10.jpg'}
     imageAlt=""
-    title={d.narrative_title || 'Du kannst andere nur so weit begleiten, wie du selbst gegangen bist.'}
-    body={nl2br(d.narrative_body) || 'Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Systemic Soulwork Level 1 ist nicht nur eine Ausbildung — es ist eine persönliche Reise. In einer kleinen Gruppe arbeitest du mit deinem eigenen Thema — und lernst dabei, wie systemische Begleitung funktioniert. Level 1 ist in sich vollständig und gleichzeitig die Grundlage für Level 2.'}
+    title={d.narrative_title || 'Manche Dinge versteht man nicht im Kopf. Sondern erst, wenn man sie sieht.'}
+    body={nl2br(d.narrative_body) || 'Systemische Arbeit schaut nicht auf die Person allein — sondern auf das System dahinter. Die Familie, die Geschichte, die Muster die von Generation zu Generation weitergehen.<br /><br />In einer Aufstellung wird sichtbar, was sonst unsichtbar bleibt. Du siehst Dein eigenes System vor Dir stehen — und plötzlich ergibt Sinn, was sich jahrelang wie ein Rätsel angefühlt hat.<br /><br />Manche kommen, weil eine bestimmte Beziehung nicht mehr weitergeht. Manche, weil sich ein Muster hartnäckig wiederholt. Andere einfach, weil sie spüren: Da ist etwas, das Aufmerksamkeit braucht. Alle drei Gründe sind gute Gründe.'}
   />
 
   {/* ===================== In den drei Monaten — outcomes arc ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">{d.outcomes_title || 'In den drei Monaten tauchen wir tief in:'}</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">{d.outcomes_title || 'Worauf wir gemeinsam schauen:'}</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -169,26 +182,81 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     </div>
   </section>
 
-  {/* ===================== Was dich nach drei Monaten erwartet ===================== */}
+  {/* ===================== Was Dich nach den drei Modulen erwartet ===================== */}
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
     image={imageUrl(d.narrative2_image) || '/images/placeholder/Placeholder-12.jpg'}
     imageAlt=""
-    title={d.narrative2_title || 'Was dich nach drei Monaten erwartet'}
-    body={nl2br(d.narrative2_body) || 'Die meisten Teilnehmerinnen verstehen sich selbst, ihre Beziehungen und ihre Lebensgeschichte mit anderen Augen. Was vorher verwirrend oder wiederkehrend war, wird verständlicher und leichter. Viele erleben mehr Vertrauen in sich selbst, mehr Gelassenheit im Umgang mit Herausforderungen — und das Gefühl, ihrem eigenen Weg wieder ein Stück näher gekommen zu sein.'}
+    title={d.narrative2_title || 'Was sich verändert'}
+    body={nl2br(d.narrative2_body) || 'Die meisten sehen sich selbst, ihre Beziehungen und ihre Geschichte danach mit anderen Augen. Was vorher verwirrend war oder sich endlos wiederholt hat, wird verständlicher und leichter. Mehr Vertrauen in Dich. Mehr Ruhe, wenn es schwierig wird. Und das Gefühl, Deinem eigenen Weg wieder näher zu sein.'}
   />
 
-  {/* ===================== Stimmen aus der Ausbildung ===================== */}
-  <TestimonialsBlock title="Stimmen aus der Ausbildung" testimonials={reviews} tone={d.testimonials_tone || 'spring-wood'} />
+  {/* ===================== Stimmen ===================== */}
+  <TestimonialsBlock title="Was andere erlebt haben" testimonials={reviews} tone={d.testimonials_tone || 'spring-wood'} />
+
+  <div id="module"></div>
+  {/* ===================== Der Aufbau — 3 Module ===================== */}
+  <ProcessSteps
+    eyebrow="Der Aufbau"
+    title="Drei Module"
+    intro="Jedes Modul dauert rund einen Monat und baut auf dem vorherigen auf. Du startest mit Modul 1 — einzeln buchbar oder gleich alle drei."
+    steps={modules}
+  />
+
+  {/* ===================== Was in jedem Modul steckt ===================== */}
+  <section class="wissen">
+    <div class="wissen__inner">
+      <Heading level={2} variant="h1" class="wissen__title">Was in jedem Modul steckt.</Heading>
+    </div>
+  </section>
+
+  <InfoCardsRow cards={moduleIncludes} />
+
+  {/* ===================== Preise ===================== */}
+  <section class="preise">
+    <div class="preise__inner">
+      <header class="preise__header">
+        <Heading variant="eyebrow" class="preise__eyebrow">Investition</Heading>
+        <Heading level={2} variant="h1" class="preise__title">Einzeln einsteigen oder den ganzen Weg gehen.</Heading>
+      </header>
+
+      <div class="preise__cards">
+        <article class="preise__card">
+          <Heading level={3} class="preise__card-title">Einzelmodul</Heading>
+          <p class="preise__price">CHF 1’390.–</p>
+          <Text size="p1" class="preise__card-body">
+            Pro Modul. Steig ein, schau ob es passt — und entscheide danach weiter.
+          </Text>
+        </article>
+
+        <article class="preise__card preise__card--featured">
+          <span class="preise__badge">Du sparst CHF 370.–</span>
+          <Heading level={3} class="preise__card-title">Alle 3 Module</Heading>
+          <p class="preise__price">CHF 3’800.–</p>
+          <p class="preise__strike">statt CHF 4’170.– bei Einzelbuchung</p>
+          <Text size="p1" class="preise__card-body">
+            Alle drei Module, von Anfang an. Dein Platz ist sicher — und Du zahlst weniger.
+          </Text>
+        </article>
+      </div>
+
+      <div class="preise__cta">
+        <Button href="#termin" variant="primary" size="lg">Kostenloses Gespräch vereinbaren</Button>
+        <Text size="p3" class="preise__note">
+          Jede Anmeldung beginnt mit einem Gespräch — 45 Minuten, unverbindlich. Danach entscheidest Du in Ruhe, welches Modul es wird. Ratenzahlung möglich.
+        </Text>
+      </div>
+    </div>
+  </section>
 
   {/* ===================== Theresia Jansen — lavender band, image right ===================== */}
   <section class="lehrerin">
     <div class="lehrerin__inner">
       <div class="lehrerin__content">
         <Heading variant="eyebrow" class="lehrerin__eyebrow">{d.lehrerin_eyebrow || 'Theresia Jansen'}</Heading>
-        <Heading level={2} variant="h1" class="lehrerin__name">{d.lehrerin_title || 'Entfalte was in dir ist, um weiterzugeben was du weisst.'}</Heading>
-        <Text size="p1" class="lehrerin__body"><Fragment set:html={nl2br(d.lehrerin_body) || 'Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit — körperlich wie energetisch. Sie hat Aufstellen, Heilkunde und weitere Methoden über die Jahre hinweg erprobt, durchlebt und verfeinert. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.<br/><br/>In Level 1 begleitet Theresia die Gruppe sowohl methodisch als auch in der Tiefe des Prozesses. Sie bringt ein, was sie selbst durchlebt und erprobt hat.'} /></Text>
+        <Heading level={2} variant="h1" class="lehrerin__name">{d.lehrerin_title || 'Wer Dich begleitet.'}</Heading>
+        <Text size="p1" class="lehrerin__body"><Fragment set:html={nl2br(d.lehrerin_body) || 'Über 30 Jahre systemische Praxis mit echten Menschen in der Deutschschweiz — nicht angelesen, sondern selbst durchlebt und erprobt.<br/><br/>In der Gruppe halte ich den Raum: ruhig, präsent und mit dem Blick für das, was gerade dran ist.'} /></Text>
       </div>
       <div class="lehrerin__media">
         <img src={imageUrl(d.lehrerin_image) || '/images/placeholder/Placeholder-8.jpg'} alt="Theresia Jansen" loading="lazy" decoding="async" />
@@ -196,36 +264,22 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     </div>
   </section>
 
-  {/* ===================== In drei Schritten zu deinem Platz ===================== */}
-  <section class="steps">
-    <header class="steps__header">
-      <Heading level={2} variant="h1" class="steps__title">In drei Schritten zu deinem Platz</Heading>
-    </header>
+  {/* ===================== In drei Schritten zu Deinem Platz ===================== */}
+  <ProcessSteps
+    title="So kommst Du rein"
+    steps={[
+      { number: '1', title: 'Gespräch', description: '45 Minuten miteinander, kostenlos und unverbindlich. Du erzählst, wo Du stehst — gemeinsam schauen wir, ob und womit Du starten möchtest.', color: 'purple' },
+      { number: '2', title: 'Anmeldung', description: 'Wenn es für uns beide stimmt, sicherst Du Dir Deinen Platz und bekommst alle Termine und Unterlagen.', color: 'raspberry' },
+      { number: '3', title: 'Loslegen', description: 'Du startest in der Gruppe — 2 Tage vor Ort, 2 Nachmittage online.', color: 'aurora' },
+    ]}
+    ctaText={CTA_HERO}
+    ctaHref={CTA_HREF}
+  />
 
-    {/* Tablet/Desktop (≥768px): full-bleed 3-dot curve above the columns */}
-    <div class="steps__curve" aria-hidden="true">
-      <img src="/images/ebene/process-curve-3.svg" alt="" loading="lazy" decoding="async" />
-    </div>
-
-    <ol class="steps__list">
-      {steps.map((step) => (
-        <li class="steps__item">
-          <span class="steps__number">{step.number}</span>
-          <Heading level={3} class="steps__item-title">{step.title}</Heading>
-          <Text size="p1" class="steps__item-body">{step.description}</Text>
-        </li>
-      ))}
-    </ol>
-
-    <div class="steps__cta">
-      <Button href={CTA_HREF} variant="primary" size="lg">{CTA_HERO}</Button>
-    </div>
-  </section>
-
-  {/* ===================== Alles was du wissen musst. ===================== */}
+  {/* ===================== Alles was Du wissen musst. ===================== */}
   <section class="wissen">
     <div class="wissen__inner">
-      <Heading level={2} variant="h1" class="wissen__title">Alles was du wissen musst.</Heading>
+      <Heading level={2} variant="h1" class="wissen__title">Alles was Du wissen musst.</Heading>
     </div>
   </section>
 
@@ -234,11 +288,10 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
       <Text size="p1" class="wissen-foot__caption">
-        <Fragment set:html={d.schedule_caption || 'Die Präsenztage finden jeden Donnerstag von 16:00 bis 18:00 statt.<br />Solltest du die Ausbildung nur online machen wollen, ist das kein Problem — es gibt eine separate Online-Gruppe und ändert nichts am Umfang oder Startdatum.'} />
+        <Fragment set:html={d.schedule_caption || 'Jedes Modul verbindet 2 Präsenztage vor Ort mit 2 Online-Nachmittagen. Die Präsenztage sind fester Bestandteil — dort stellst Du auf.<br />Wir starten zweimal im Jahr, im Februar und im September — die genauen Daten besprechen wir im Gespräch.'} />
       </Text>
       <div class="wissen-foot__cta">
         <Button href={CTA_HREF} variant="primary" size="lg" class="wissen-foot__btn">{CTA_HERO}</Button>
-        <Button href={CTA_HREF} variant="header" size="lg" class="wissen-foot__btn">Fragen? Schreib uns.</Button>
       </div>
     </div>
   </section>
@@ -246,9 +299,9 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   {/* ===================== Termin buchen ===================== */}
   <CalendarBooking
     slug="soulcoach-level-1-gespraech"
-    eyebrow="Dein Gespräch zu Level 1"
-    title="Buche dein Gespräch"
-    intro="45 Minuten, unverbindlich. Deine Fragen, deine Eignung und die nächsten Schritte zur Ausbildung."
+    eyebrow="Der erste Schritt"
+    title="Lass uns sprechen"
+    intro="Jede Anmeldung beginnt hier: 45 Minuten, kostenlos und unverbindlich. Wir schauen gemeinsam, ob und womit Du starten möchtest."
   />
 
   {/* ===================== FAQ ===================== */}
@@ -260,20 +313,8 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
       <div class="infoanlass__content">
         <Heading variant="eyebrow" class="infoanlass__eyebrow">{d.infoanlass_eyebrow || 'Infoanlass'}</Heading>
         <Heading level={2} variant="h1" class="infoanlass__title"><Fragment set:html={d.infoanlass_title || 'Komm zum<br />nächsten Infoanlass.'} /></Heading>
-        <Text size="p1" class="infoanlass__body">{d.infoanlass_body || 'Du möchtest mehr über die Systemic-Soulwork-Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.'}</Text>
-        <form class="infoanlass__form" action="#" method="POST" novalidate data-mailto-form data-recipient="info@vitalunaris.ch" data-subject="Anmeldung Infoanlass — Systemic Soulwork Level 1">
-          <label for="infoanlass-email" class="infoanlass__label">E-Mail-Adresse</label>
-          <input
-            id="infoanlass-email"
-            type="email"
-            name="email"
-            class="infoanlass__input"
-            placeholder="E-mail Adresse"
-            required
-            autocomplete="email"
-          />
-          <button type="submit" class="infoanlass__submit">Für Infoanlass anmelden</button>
-        </form>
+        <Text size="p1" class="infoanlass__body">{d.infoanlass_body || 'Ein kostenloser Online-Abend via Zoom: ehrlicher Einblick in die Arbeit, den Aufbau — und Raum für Deine Fragen.'}</Text>
+        <a href="/ausbildung/infoanlaesse#anmelden" class="infoanlass__submit infoanlass__cta">Zum Infoanlass anmelden</a>
       </div>
     </div>
   </section>
@@ -508,104 +549,124 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   .lehrerin__body { color: var(--c-spring-wood); font-size: var(--p1-size); line-height: 1.5; }
 
   /* ============================================================
-     STEPS — "In drei Schritten zu deinem Platz"
-     (3-dot dome arc + 3 columns + CTA)
-     Mobile (<768): stacked column. Tablet+ (≥768): curve + 3-col grid.
+     WISSEN — "Alles was Du wissen musst." (header + cards + footer)
      ============================================================ */
-  .steps {
-    background: var(--c-spring-wood);
-    padding: 64px 20px;
-    overflow: hidden;
-  }
-  @media (min-width: 768px)  { .steps { padding: 96px 32px; } }
-  @media (min-width: 1024px) { .steps { padding: 120px 8px; } }
-  @media (min-width: 1280px) { .steps { padding: 120px 0; } }
+  /* ============================================================
+     PREISE — Einzelmodul vs. Paket, das Paket visuell hervorgehoben
+     ============================================================ */
+  .preise { background: var(--c-spring-wood); padding: 60px 20px; }
+  @media (min-width: 768px)  { .preise { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .preise { padding: 90px 60px; } }
+  @media (min-width: 1920px) { .preise { padding: 120px 90px; } }
 
-  .steps__header {
+  .preise__inner { max-width: 1180px; margin: 0 auto; }
+
+  .preise__header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 12px;
-    max-width: 1106px;
-    margin: 0 auto;
+    gap: 12px;
+    text-align: center;
+    margin-bottom: 40px;
   }
-  .steps__title { text-align: center; color: var(--c-cherrywood); margin: 0; }
+  @media (min-width: 1024px) { .preise__header { margin-bottom: 56px; } }
+  .preise__eyebrow { color: var(--c-cherrywood); }
+  .preise__title { color: var(--c-cherrywood); margin: 0; }
 
-  /* Decorative curve — hidden on phones (stacked layout); full-bleed line ≥768.
-     100vw + negative half-gutter margin breaks out of the section padding so the
-     arc spans the entire page width, edge to edge (like .process on aufstellungen). */
-  .steps__curve { display: none; }
-  @media (min-width: 768px) {
-    .steps__curve {
-      display: block;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-top: 16px;
-      overflow: hidden;
-    }
-    .steps__curve img { display: block; width: 100%; height: auto; }
+  .preise__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: stretch;
   }
-  @media (min-width: 1024px) { .steps__curve { margin-top: 32px; } }
+  @media (min-width: 860px) { .preise__cards { grid-template-columns: 1fr 1fr; gap: 24px; } }
 
-  .steps__list {
-    list-style: none;
-    margin: 24px auto 0;
-    padding: 0;
-    max-width: 1280px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  @media (min-width: 768px) {
-    .steps__list {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 32px;
-      margin-top: 16px;
-      padding: 0 12px;
-    }
-    .steps__item { flex: 1 1 0; min-width: 0; }
-  }
-  @media (min-width: 1280px) { .steps__list { gap: 64px; padding: 0; } }
-
-  .steps__item {
+  .preise__card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    padding: 32px 24px;
+    /* Room for the absolutely positioned savings badge (top-right) so the
+       titles and prices of both cards stay on the same baseline. */
+    border: 1px solid var(--c-cherrywood);
+    border-radius: 20px;
+    background: var(--c-spring-wood);
   }
-  @media (min-width: 1024px) { .steps__item { gap: 16px; } }
+  @media (min-width: 768px) { .preise__card { padding: 40px 32px; border-radius: 24px; } }
 
-  .steps__number {
+  /* The package is the recommended path — give it visual weight. */
+  .preise__card--featured {
+    background: var(--c-cherrywood);
+    color: var(--c-spring-wood);
+  }
+  .preise__card--featured :global(.preise__card-title),
+  .preise__card--featured :global(.preise__card-body) { color: var(--c-spring-wood); }
+  .preise__card--featured .preise__price { color: var(--c-spring-wood); }
+
+  /* Out of the flow: the badge must not push the title down and knock the
+     two cards' content out of alignment. */
+  .preise__badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--c-fire);
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  @media (min-width: 768px) { .preise__badge { top: 28px; right: 28px; } }
+
+  .preise__card-title { color: var(--c-cherrywood); margin: 0; }
+
+  .preise__price {
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
-    font-size: var(--h1-size);
+    font-size: 40px;
     line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0;
     color: var(--c-cherrywood);
   }
-  .steps__item-title {
-    color: var(--c-cherrywood);
-    font-weight: var(--weight-medium);
-    font-size: var(--h3-size);
-    line-height: 1.2;
-  }
-  .steps__item-body {
-    color: var(--c-cherrywood);
-    opacity: 0.9;
-    font-size: var(--p1-size);
-    line-height: 1.5;
+  @media (min-width: 768px) { .preise__price { font-size: 52px; } }
+
+  .preise__strike {
+    font-family: 'ES Park', serif;
+    font-size: 15px;
+    line-height: 1.4;
+    margin: -6px 0 0;
+    opacity: 0.7;
   }
 
-  .steps__cta {
+  .preise__card-body { color: var(--c-cherrywood); margin: 0; }
+
+  /* One shared action below both cards — the cards state the offer, the
+     button is the single way forward (every route goes via the talk). */
+  .preise__cta {
     display: flex;
-    justify-content: center;
-    margin-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 32px;
+    text-align: center;
   }
-  @media (min-width: 1024px) { .steps__cta { margin-top: 56px; } }
+  @media (min-width: 768px) { .preise__cta { margin-top: 40px; } }
 
-  /* ============================================================
-     WISSEN — "Alles was du wissen musst." (header + cards + footer)
-     ============================================================ */
+  .preise__link { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .preise__link:hover { opacity: 0.7; }
+
+  .preise__note {
+    color: var(--c-cherrywood);
+    opacity: 0.7;
+    max-width: 620px;
+    margin: 0;
+  }
+
   .wissen { background: var(--c-spring-wood); padding: 60px 20px 32px; }
   @media (min-width: 768px)  { .wissen { padding: 80px 32px 40px; } }
   @media (min-width: 1280px) { .wissen { padding: 90px 60px 48px; } }
@@ -637,6 +698,8 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     width: 100%;
   }
   @media (min-width: 640px) { .wissen-foot__cta { flex-direction: row; justify-content: center; gap: 20px; } }
+  /* Only constrain the width on narrow screens — size and padding come from
+     the shared .btn--lg token so every button on the site matches. */
   .wissen-foot__cta :global(.btn) {
     width: 100%;
     max-width: 360px;
@@ -644,6 +707,11 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     min-height: 52px;
     padding: 16px 28px;
     border-radius: var(--radius-pill);
+  }
+  @media (min-width: 640px) {
+    /* Drop the cap too — otherwise a long label keeps hitting 360px and the
+       40px side padding gets squeezed even though the token still says 40px. */
+    .wissen-foot__cta :global(.btn) { width: auto; max-width: none; }
   }
 
   /* ============================================================
@@ -682,7 +750,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   }
   @media (min-width: 1024px) { .infoanlass__content { gap: 40px; } }
 
-  .infoanlass__eyebrow { color: var(--c-spring-wood); opacity: 0.9; }
+  .infoanlass__eyebrow { color: var(--c-spring-wood); }
 
   .infoanlass__title {
     color: var(--c-spring-wood);

@@ -20,16 +20,16 @@ const heroS = sec('hero'), nar = sec('narrative'), about = sec('about');
 /* ----- "Alles auf einen Blick" — Wann / Wo / Für wen ----- */
 const infoCards = d.info_cards?.length ? d.info_cards : [
   { eyebrow: 'Wann?', body: 'Der Infoabend findet am 24.06.2026 von 18.30 bis ca. 20.00 Uhr statt.' },
-  { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst du nach der Anmeldung per E-Mail.' },
-  { eyebrow: 'Für wen?', body: 'Für alle, die sich fragen, ob eine Ausbildung in systemischer Arbeit der nächste richtige Schritt ist.' },
+  { eyebrow: 'Wo?', body: 'Online via Zoom. Den Link bekommst Du nach der Anmeldung per E-Mail.' },
+  { eyebrow: 'Für wen?', body: 'Für alle, die systemisches Aufstellen kennenlernen wollen — ob für sich selbst oder um andere zu begleiten.' },
 ];
 
-/* ----- "Das erwartet dich" — agenda bullets ----- */
+/* ----- "Das erwartet Dich" — agenda bullets ----- */
 const agenda = (d.agenda_items?.length ? d.agenda_items.map((p: any) => p.text) : [
-  'Vorstellung von Systemic Soulwork & Systemic Soulcoach',
-  'Überblick über die Ausbildungsstruktur',
-  'Einblick in die Inhalte und Module',
-  'Informationen zu Terminen und Investition',
+  'Was systemisches Aufstellen ist — und was es bewirkt',
+  'Die drei Wege: Soulwork, Soulcoach-Ausbildung und SoulCircle',
+  'Welcher davon zu Dir passt',
+  'Termine, Aufbau und Investition',
   'Raum für Fragen und Austausch',
 ]) as string[];
 
@@ -50,26 +50,26 @@ const furtherCourses = (allWs ?? []).filter((e: any) => e.data?.date).slice(0, 3
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
 const faqItems = d.faq_items?.length ? d.faq_items : [
-  { question: 'Für wen sind die Workshops geeignet?', answer: 'Für alle, die systemische Arbeit erleben möchten — ob als Einstieg, zur Vertiefung oder einfach aus Neugier. Vorwissen ist nicht nötig.' },
-  { question: 'Was ist der Unterschied zwischen einem Workshop und der Ausbildung?', answer: 'Ein Workshop ist ein einzelnes, in sich geschlossenes Erlebnis. Die Ausbildung ist ein aufeinander aufbauender, längerer Weg mit Abschluss.' },
-  { question: 'Brauche ich Vorkenntnisse für die Monats-Workshops?', answer: 'Nein. Die Workshops sind so gestaltet, dass du jederzeit einsteigen kannst — mit oder ohne Vorerfahrung.' },
-  { question: 'Wie melde ich mich an?', answer: 'Du klickst auf «Jetzt anmelden», füllst das kurze Formular aus und erhältst alle Infos sowie den Zoom-Link per E-Mail.' },
-  { question: 'Werden die Kosten von der Krankenkasse übernommen?', answer: 'Der Infoabend ist kostenlos. Workshops sind in der Regel keine kassenpflichtige Leistung — manche Zusatzversicherungen unterstützen Bildungsangebote, frag im Einzelfall nach.' },
-  { question: 'Kann ich einen Workshop stornieren?', answer: 'Ja, bis zu einer bestimmten Frist vor Beginn. Die genauen Bedingungen findest du in der Anmeldebestätigung.' },
-  { question: 'Gibt es auch Online-Formate?', answer: 'Ja. Der Infoabend und unsere Workshops finden online via Zoom statt — den Link bekommst du nach der Anmeldung per E-Mail.' },
-  { question: 'Was passiert wenn ein Workshop ausgebucht ist?', answer: 'Du kannst dich auf die Warteliste setzen. Wird ein Platz frei oder kommt ein Zusatztermin, informieren wir dich zuerst.' },
+  { question: 'Muss ich mich danach entscheiden?', answer: 'Nein. Der Infoabend ist kostenlos und unverbindlich — Du schaust Dir in Ruhe an, worum es geht, und entscheidest später.' },
+  { question: 'Für wen ist der Infoabend?', answer: 'Für alle, die systemisches Aufstellen kennenlernen wollen — ob Du an Dir selbst arbeiten oder später andere begleiten möchtest. Vorwissen brauchst Du keines.' },
+  { question: 'Was ist der Unterschied zwischen Soulwork und der Ausbildung?', answer: 'Soulwork ist Arbeit an Dir selbst, in drei einzeln buchbaren Modulen. Die Soulcoach-Ausbildung ist Handwerk: Du lernst, eigene Aufstellungsgruppen zu leiten. Genau das schauen wir am Infoabend gemeinsam an.' },
+  { question: 'Wie lange dauert der Infoabend?', answer: 'Rund eineinhalb Stunden, von 18.30 bis ca. 20.00 Uhr — mit genug Zeit für Fragen.' },
+  { question: 'Findet er online statt?', answer: 'Ja, via Zoom. Den Link bekommst Du nach der Anmeldung per E-Mail.' },
+  { question: 'Was kostet der Infoabend?', answer: 'Nichts. Er ist kostenlos und unverbindlich.' },
+  { question: 'Wie melde ich mich an?', answer: 'Über das Formular auf dieser Seite. Du erhältst alle Infos und den Zoom-Link per E-Mail.' },
+  { question: 'Ich kann nicht dabei sein — was nun?', answer: 'Vereinbare stattdessen ein persönliches Gespräch mit Theresia. 45 Minuten, ebenfalls kostenlos und unverbindlich.' },
 ];
 ---
 
 <BaseLayout
-  title="Systemic Soulcoach Infoabend | VitaLunaris"
-  description="Kostenloser Online-Infoabend zur Ausbildung Systemic Soulcoach — ehrlicher Einblick in Inhalte, Aufbau und Arbeitsweise, mit Raum für alle deine Fragen."
+  title="Infoabend Systemisches Aufstellen | VitaLunaris"
+  description="Kostenloser Online-Infoabend zu Systemic Soulwork, der Soulcoach-Ausbildung und dem SoulCircle — ehrlicher Einblick in Inhalte, Aufbau und Arbeitsweise, mit Raum für Deine Fragen."
   currentPath="/ausbildung/infoanlaesse"
 >
   <CourseHero
-    categoryMeta={heroS.category_meta || 'AUSBILDUNG | INFOABEND | 24.06.2026'}
-    title={heroS.title || 'Systemic Soulcoach <br /> Infoabend'}
-    description={heroS.description || 'Du möchtest mehr über die Systemic Soulwork Ausbildung zum Systemic Soulcoach erfahren? Beim kostenlosen Online-Infoabend via Zoom erhältst du einen ehrlichen Einblick in Inhalte, Aufbau und Arbeitsweise — und Raum für alle deine Fragen.'}
+    categoryMeta={heroS.category_meta || 'INFOABEND | 24.06.2026'}
+    title={heroS.title || 'Infoabend<br />Systemisches Aufstellen'}
+    description={heroS.description || 'Systemic Soulwork für Dich selbst, die Ausbildung zum Systemic Soulcoach oder der SoulCircle zum Dranbleiben — welcher Weg passt zu Dir? Beim kostenlosen Online-Infoabend via Zoom bekommst Du einen ehrlichen Einblick und Raum für alle Deine Fragen.'}
     durationMeta={heroS.duration_meta || '24.06.2026 | 18.30 bis ca. 20.00 Uhr | Online'}
     price={heroS.price || 'Kostenlos :)'}
     ctaText={heroS.cta_text || 'Jetzt anmelden'}
@@ -79,16 +79,16 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
 
   <InfoCardsRow cards={infoCards} />
 
-  {/* ===================== Das erwartet dich — lavender, image left ===================== */}
+  {/* ===================== Das erwartet Dich — lavender, image left ===================== */}
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
     image={imageUrl(nar.image) || '/images/placeholder/Placeholder-33.jpg'}
     imageAlt=""
     eyebrow={nar.eyebrow || 'Was wir anschauen'}
-    title={nar.title || 'Das erwartet dich'}
+    title={nar.title || 'Das erwartet Dich'}
     bullets={agenda}
-    body={nl2br(nar.body) || 'Der Online-Infoabend ist kostenlos und unverbindlich. Ich freue mich darauf, dich kennenzulernen.'}
+    body={nl2br(nar.body) || 'Der Online-Infoabend ist kostenlos und unverbindlich. Ich freue mich darauf, Dich kennenzulernen.'}
   />
 
   {/* ===================== Anmeldung — Alchemy form ===================== */}
@@ -98,7 +98,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
         <Heading variant="eyebrow" class="info-anmeldung__eyebrow">Anmeldung</Heading>
         <Heading level={2} variant="h1" class="info-anmeldung__title">Zum Infoabend anmelden</Heading>
         <Text size="p1" class="info-anmeldung__intro">
-          Kostenlos und unverbindlich. Trag dich ein — du erhältst den Zoom-Link rechtzeitig per E-Mail.
+          Kostenlos und unverbindlich. Trag Dich ein — Du erhältst den Zoom-Link rechtzeitig per E-Mail.
         </Text>
       </div>
       <div class="info-anmeldung__frame-wrap">

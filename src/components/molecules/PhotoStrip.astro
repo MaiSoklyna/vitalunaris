@@ -18,8 +18,15 @@ const loop = [...photos, ...photos];
 ---
 
 <section class="photo-strip" aria-label="Impressionen">
-  <div class="photo-strip__viewport">
-    <ul class="photo-strip__track" style={`--photo-strip-speed:${speed}s`}>
+  <div
+    class="photo-strip__viewport"
+    data-photo-strip
+    data-speed={speed}
+    tabindex="0"
+    role="region"
+    aria-label="Impressionen — horizontal scrollbar"
+  >
+    <ul class="photo-strip__track">
       {loop.map((p, i) => (
         <li class="photo-strip__item" aria-hidden={i >= photos.length ? 'true' : undefined}>
           <img
@@ -28,6 +35,7 @@ const loop = [...photos, ...photos];
             class="photo-strip__img"
             loading="lazy"
             decoding="async"
+            draggable="false"
           />
         </li>
       ))}
@@ -37,9 +45,11 @@ const loop = [...photos, ...photos];
 
 <style>
   /* ============================================================
-     PHOTO STRIP — seamless auto-scrolling marquee of images.
-     The track holds two copies of the photo set and translates
-     from 0 → -50% on an infinite linear loop. Pauses on hover.
+     PHOTO STRIP — seamless auto-scrolling marquee of images that
+     the visitor can also swipe / drag / scroll by hand.
+     The track holds two copies of the photo set; the script drives
+     scrollLeft and wraps at the halfway point, so the loop stays
+     seamless whether it moves on its own or the user takes over.
      ============================================================ */
   .photo-strip {
     background: var(--c-spring-wood);
@@ -49,7 +59,20 @@ const loop = [...photos, ...photos];
   @media (min-width: 1280px) { .photo-strip { padding: 40px 0; } }
 
   .photo-strip__viewport {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* Horizontal swipes pan the strip; vertical ones still scroll the page. */
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* old Edge */
+    cursor: grab;
+  }
+  .photo-strip__viewport::-webkit-scrollbar { display: none; }
+  .photo-strip__viewport.is-dragging { cursor: grabbing; }
+  .photo-strip__viewport:focus-visible {
+    outline: 2px solid var(--c-cherrywood);
+    outline-offset: 4px;
   }
 
   .photo-strip__track {
@@ -58,11 +81,6 @@ const loop = [...photos, ...photos];
     padding: 0;
     display: flex;
     width: max-content;
-    animation: photo-strip-scroll var(--photo-strip-speed, 40s) linear infinite;
-    will-change: transform;
-  }
-  .photo-strip:hover .photo-strip__track {
-    animation-play-state: paused;
   }
 
   /* Equal trailing margin on every item (incl. the last) keeps the two
@@ -86,6 +104,8 @@ const loop = [...photos, ...photos];
     display: block;
     border-radius: var(--radius-sm);
     background: rgba(96, 29, 29, 0.06);
+    user-select: none;
+    -webkit-user-drag: none;
   }
   @media (min-width: 1280px) { .photo-strip__img { border-radius: var(--radius-md); } }
   @media (min-width: 1920px) { .photo-strip__img { border-radius: var(--radius-card); } }
@@ -102,3 +122,135 @@ const loop = [...photos, ...photos];
     .photo-strip__viewport { overflow-x: auto; }
   }
 </style>
+
+<script>
+  /* Auto-scroll that yields to the visitor.
+     The track holds the photo set twice, so wrapping at half its width keeps
+     the loop seamless in both directions. Drifting is done with scrollLeft
+     (not a transform) so native swipe, trackpad and drag all work on the same
+     axis and simply take over when the user touches the strip. */
+  type Strip = HTMLElement & { dataset: { speed?: string } };
+
+  const strips = document.querySelectorAll<Strip>('[data-photo-strip]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  strips.forEach((viewport) => {
+    const track = viewport.querySelector<HTMLElement>('.photo-strip__track');
+    if (!track) return;
+
+    // One full loop covers half the track (the second copy) in `speed` seconds.
+    const speed = Number(viewport.dataset.speed ?? 40);
+    const half = () => track.scrollWidth / 2;
+    const pxPerMs = () => half() / (speed * 1000);
+
+    let paused = false;
+    let lastTs = 0;
+    let rafId = 0;
+
+    // Start inside the second copy so the strip can be swiped either way
+    // immediately without hitting an edge. The track only has its final width
+    // once the images have laid out, so re-apply until it does (and on resize).
+    let seeded = false;
+    const seed = () => {
+      const h = half();
+      if (h <= 0) return;
+      viewport.scrollLeft = h;
+      seeded = true;
+    };
+    seed();
+    if (!seeded) {
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          seed();
+          if (seeded) ro.disconnect();
+        });
+        ro.observe(track);
+      } else {
+        window.addEventListener('load', seed, { once: true });
+      }
+    }
+
+    /** Keep scrollLeft within the first copy's range; wrap seamlessly. */
+    const wrap = () => {
+      const h = half();
+      if (h <= 0) return;
+      if (viewport.scrollLeft >= h * 2) viewport.scrollLeft -= h;
+      else if (viewport.scrollLeft <= 0) viewport.scrollLeft += h;
+    };
+
+    const tick = (ts: number) => {
+      if (!lastTs) lastTs = ts;
+      const dt = ts - lastTs;
+      lastTs = ts;
+      if (!paused && !reduceMotion.matches) {
+        viewport.scrollLeft += pxPerMs() * dt;
+        wrap();
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    // --- pause while the visitor is looking at / touching the strip ---
+    const pause = () => { paused = true; };
+    const resume = () => { paused = false; };
+    viewport.addEventListener('mouseenter', pause);
+    viewport.addEventListener('mouseleave', resume);
+    viewport.addEventListener('focusin', pause);
+    viewport.addEventListener('focusout', resume);
+    viewport.addEventListener('touchstart', pause, { passive: true });
+    viewport.addEventListener('touchend', resume, { passive: true });
+    viewport.addEventListener('scroll', wrap, { passive: true });
+
+    // Stop work entirely when the strip is off-screen.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            if (!rafId) { lastTs = 0; rafId = requestAnimationFrame(tick); }
+          } else if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = 0;
+          }
+        },
+        { rootMargin: '200px' }
+      ).observe(viewport);
+    }
+
+    // --- click-and-drag on pointer devices (touch is native) ---
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+
+    viewport.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'touch') return; // let the browser handle touch
+      dragging = true;
+      startX = e.clientX;
+      startScroll = viewport.scrollLeft;
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture(e.pointerId);
+    });
+
+    viewport.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      e.preventDefault();
+      viewport.scrollLeft = startScroll - (e.clientX - startX);
+      wrap();
+    });
+
+    const endDrag = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      viewport.classList.remove('is-dragging');
+      if (viewport.hasPointerCapture(e.pointerId)) viewport.releasePointerCapture(e.pointerId);
+    };
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+
+    // --- keyboard, for the focusable region ---
+    viewport.addEventListener('keydown', (e) => {
+      const step = viewport.clientWidth * 0.8;
+      if (e.key === 'ArrowRight') { viewport.scrollLeft += step; wrap(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft')  { viewport.scrollLeft -= step; wrap(); e.preventDefault(); }
+    });
+  });
+</script>

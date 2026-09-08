@@ -125,7 +125,10 @@ const {
     letter-spacing: 0.08em;
   }
 
-  /* Title — H1 token */
+  /* Title — H1 token.
+     Long German compounds ("Aufstellungsgruppen") can be wider than the
+     fixed 780px text column at ≥1920px. Scale the type down just enough to
+     fit the widest word instead of letting it spill over the image. */
   .hero__title {
     color: var(--c-cherrywood);
     font-family: 'ES Park', serif;
@@ -133,6 +136,15 @@ const {
     font-size: var(--h1-size);
     line-height: 1.1;
     margin: 0;
+    /* The content column is a flex column with align-items:flex-start, which
+       shrink-wraps children to their content width. A long unbreakable German
+       compound ("Aufstellungsgruppen.") therefore grew past the column and
+       ran over the image. Claim the full column width and allow a break. */
+    align-self: stretch;
+    min-width: 0;
+    /* Last-resort only: a word longer than the column breaks rather than
+       overflowing. No auto-hyphenation — headlines set their own breaks. */
+    overflow-wrap: break-word;
   }
 
   /* Forced line break before "Systeme" only at tablet (768–1023.98px) */
@@ -195,9 +207,8 @@ const {
     justify-content: center;
     align-items: center;
     gap: 7.62px;
-    padding: 13.5328px;
-    min-height: 42px;
-    height: 42px;
+    /* Size and padding come from the shared .btn--lg token so the hero CTA
+       matches every other button on the site. */
     font-family: 'ES Park', serif;
     font-weight: var(--weight-regular);
     font-size: var(--button-size);
@@ -207,15 +218,12 @@ const {
     white-space: nowrap;
   }
   @media (min-width: 768px) {
-    .hero__cta-btn { width: auto; min-width: 231px; padding: 13.5328px 24px; }
+    .hero__cta-btn { width: auto; min-width: 231px; }
   }
   @media (min-width: 1920px) {
     .hero__cta-btn {
       width: 380px;
       flex: 1 1 0;
-      height: 61px;
-      min-height: 61px;
-      padding: 20px;
       gap: 11.26px;
       border-radius: var(--radius-pill);
       border-width: 0.8px;
