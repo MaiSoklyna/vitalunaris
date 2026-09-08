@@ -104,7 +104,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
 <BaseLayout
   title="Systemic Soulcoach — Ausbildung zur Aufstellungsleitung | VitaLunaris"
   description="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen — lerne, eigene systemische Aufstellungsgruppen zu leiten. Mit Methode, Haltung und über 30 Jahren Praxiserfahrung."
-  currentPath="/ausbildung/soulcoach-level-2"
+  currentPath="/ausbildung/systemic-soulcoach"
 >
   <Hero
     eyebrow={d.hero_eyebrow || 'Ausbildung · Systemic Soulcoach'}
@@ -233,7 +233,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
         <Text size="p1" class="lehrerin__body"><Fragment set:html={nl2br(d.lehrerin_body) || 'Ich lehre nicht, was ich gelesen habe — sondern was ich über 30 Jahre hinweg erprobt, durchlebt und verfeinert habe. Kein importiertes Curriculum, sondern echte Praxis mit echten Menschen in der Deutschschweiz.<br/><br/>Hier begegne ich Dir direkter und fordernder: als Kollegin, die Dich in die Leitungsrolle bringt und Dir ehrlich zurückmeldet, was ich sehe.'} /></Text>
       </div>
       <div class="lehrerin__media">
-        <img src={imageUrl(d.lehrerin_image) || '/images/placeholder/placeholder-4.jpg'} alt="Theresia Jansen" loading="lazy" decoding="async" />
+        <img src={imageUrl(d.lehrerin_image) || '/images/ausbildung/theresia-soulcircle.jpg'} alt="Theresia Jansen" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>

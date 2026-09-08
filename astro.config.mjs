@@ -21,6 +21,12 @@ export default defineConfig({
   redirects: {
     '/uebersicht': '/ausbildung/uebersicht',
     '/jawort-by-jansen': '/praxisangebote/jawort-by-jansen',
+    // Ausbildungsseiten heissen nach der Umbenennung wie die Angebote selbst;
+    // die alten Level-URLs bleiben als Weiterleitung bestehen, damit geteilte
+    // Links und Suchtreffer nicht ins Leere laufen.
+    '/ausbildung/soulcoach-level-1': '/ausbildung/systemic-soulwork',
+    '/ausbildung/soulcoach-level-2': '/ausbildung/systemic-soulcoach',
+    '/ausbildung/begleitung-kreis': '/ausbildung/systemic-soulcircle',
   },
   adapter: useCloudflare
     ? cloudflare({ platformProxy: { enabled: true } })
