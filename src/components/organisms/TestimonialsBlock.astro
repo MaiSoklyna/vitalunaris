@@ -20,6 +20,10 @@ interface Props {
 
 const { eyebrow, title, intro, testimonials, tone } = Astro.props;
 
+/* From 1024px the track shows three cards side by side, so with three or
+   fewer there is nothing left to page through — hide the arrows there. */
+const fitsWithoutPaging = testimonials.length <= 3;
+
 // Normalize tone (incl. aliases from the shared `sections.tone` select) to one of
 // the four background variants. Unknown/empty → 'gold' (the original default).
 const TONE_ALIASES: Record<string, 'gold' | 'spring-wood' | 'purple' | 'cherrywood'> = {

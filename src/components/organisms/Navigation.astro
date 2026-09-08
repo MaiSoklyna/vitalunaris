@@ -74,6 +74,9 @@ const navLinks: NavLink[] = navItems.length
           href: it.href,
           label: it.label,
           navigateOnClick: it.navigate_on_click || undefined,
+          // Editable in the CMS: shows the ↗ glyph for items that lead out of
+          // the main site (e.g. the standalone Jawort surface).
+          external: it.external || undefined,
           children: children.length ? children : undefined,
         } as NavLink;
       })
