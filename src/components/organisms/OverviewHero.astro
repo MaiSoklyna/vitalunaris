@@ -22,7 +22,9 @@ const { eyebrow, title, subtitle, graphic } = Astro.props;
     )}
     {eyebrow && <Heading variant="eyebrow" class="ovh__eyebrow">{eyebrow}</Heading>}
     <Heading level={1} class="ovh__title"><Fragment set:html={title} /></Heading>
-    {subtitle && <Text size="p1" class="ovh__subtitle">{subtitle}</Text>}
+    {/* Rendered as HTML like Hero.astro, so <br /> in a subtitle works
+        instead of showing up as literal text. */}
+    {subtitle && <Text size="p1" class="ovh__subtitle"><Fragment set:html={subtitle} /></Text>}
   </div>
 </section>
 

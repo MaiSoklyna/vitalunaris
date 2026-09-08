@@ -13,22 +13,22 @@ import NewsletterBlock from '@organisms/NewsletterBlock.astro';
 const offers = [
   {
     icon: '/images/ebene/Ebene-14.svg',
-    title: 'Ich will Systemisches Aufstellen lernen',
-    description: 'Du willst systemisches Aufstellen nicht nur selbst erleben, sondern auch anwenden oder weitergeben. Wir begleiten dich Schritt für Schritt – von deiner eigenen Aufstellungsreise bis zur Ausbildung zum Systemic Soulcoach. So erhältst du das Handwerk und die Tiefe, die es für eine gute Begleitung braucht.',
-    ctaText: 'Zu den Ausbildungen →',
+    title: 'Ich will systemisch arbeiten',
+    description: 'Für Dich selbst oder um andere zu begleiten. Drei Wege: Soulwork, die Soulcoach-Ausbildung und der SoulCircle.',
+    ctaText: 'Systemisches Aufstellen →',
     ctaHref: '/uebersicht',
   },
   {
     icon: '/images/ebene/Ebene_2.svg',
     title: 'Ich will meine Praxis vertiefen oder Neues lernen',
-    description: 'Du möchtest neue Methoden kennenlernen oder dein bestehendes Wissen erweitern? Aus unserem jahrzehntelangen Erfahrungsschatz geben wir praxisnahes Wissen weiter – in Weiterbildungen und Kursen rund um systemisches Aufstellen, Numerologie, EFT, Hypnotic Selfcare und weitere spannende Themen.',
+    description: 'Kurse und Weiterbildungen rund um Aufstellen, Numerologie, EFT und Hypnotic Selfcare — praxisnah aus jahrzehntelanger Erfahrung.',
     ctaText: 'Zu den Workshops & Kursen →',
     ctaHref: '/workshops-kurse/kalender-uebersicht',
   },
   {
     icon: '/images/ebene/Ebene_2-8.svg',  
     title: 'Ich suche Veränderung oder Unterstützung',
-    description: 'Etwas in deinem Leben fühlt sich nicht mehr stimmig an. Vielleicht zeigt sich ein Muster, das sich wiederholt, oder du stehst vor einer wichtigen Entscheidung. Es gibt verschiedene Wege, Klarheit zu gewinnen, neue Perspektiven zu entdecken und wieder in Bewegung zu kommen.',
+    description: 'Etwas fühlt sich nicht mehr stimmig an, ein Muster wiederholt sich oder eine Entscheidung steht an. Wir schauen gemeinsam hin.',
     ctaText: 'Unsere Praxisangebote →',
     ctaHref: '/praxisangebote',
   },
@@ -37,7 +37,7 @@ const offers = [
 const steps = [
   {
     title: 'Erstgespräch',
-    description: 'Wir lernen uns kennen, du erzählst, was dich bewegt — und wir klären, ob die Chemie stimmt.',
+    description: 'Wir lernen uns kennen, Du erzählst, was Dich bewegt — und wir klären, ob die Chemie stimmt.',
     color: 'gold' as const,
   },
   {
@@ -87,11 +87,11 @@ const faqItems = [
   },
   {
     question: 'Wie läuft eine erste Sitzung ab?',
-    answer: 'Wir beginnen mit einem unverbindlichen Erstgespräch von 30 Minuten — online oder vor Ort. Du erzählst, was dich bewegt, und wir klären gemeinsam, ob die Chemie stimmt und welcher Weg passt.',
+    answer: 'Wir beginnen mit einem unverbindlichen Erstgespräch von 30 Minuten — online oder vor Ort. Du erzählst, was Dich bewegt, und wir klären gemeinsam, ob die Chemie stimmt und welcher Weg passt.',
   },
   {
     question: 'Wie viele Sitzungen brauche ich?',
-    answer: 'Das ist sehr individuell. Manche Menschen kommen für eine einzelne Sitzung mit einem klaren Anliegen, andere begleiten wir über Monate. Im Erstgespräch finden wir gemeinsam heraus, was zu dir passt.',
+    answer: 'Das ist sehr individuell. Manche Menschen kommen für eine einzelne Sitzung mit einem klaren Anliegen, andere begleiten wir über Monate. Im Erstgespräch finden wir gemeinsam heraus, was zu Dir passt.',
   },
   {
     question: 'Arbeitet ihr auch mit Paaren?',
@@ -99,30 +99,30 @@ const faqItems = [
   },
   {
     question: 'Werden die Kosten von der Krankenkasse übernommen?',
-    answer: 'Wir sind keine Psychotherapeut:innen im medizinischen Sinn. Unsere Begleitung ist eine private Leistung und wird in der Regel nicht von der Krankenkasse gedeckt. Frag im Zweifelsfall deine Zusatzversicherung.',
+    answer: 'Wir sind keine Psychotherapeut:innen im medizinischen Sinn. Unsere Begleitung ist eine private Leistung und wird in der Regel nicht von der Krankenkasse gedeckt. Frag im Zweifelsfall Deine Zusatzversicherung.',
   },
 ];
 ---
 
 <BaseLayout
   title="VitaLunaris – Erforsche die Systeme der Seele"
-  description="VitaLunaris in Buchs SG begleitet dich in Tiefenarbeit, Integration und Transformation — mit klarem Vorgehen und geschützten Räumen."
+  description="VitaLunaris in Buchs SG begleitet Dich in Tiefenarbeit, Integration und Transformation — mit klarem Vorgehen und geschützten Räumen."
   currentPath="/"
 >
   <Hero
-    eyebrow="Willkommen bei VitaLunaris"
+    eyebrow="Systemische Praxis & Ausbildung · Buchs SG"
     title="Erforsche die<br class='hero__br--md' /> Systeme der<br class='hero__br--md' />Seele"
-    subtitle="VitaLunaris ist dein Ort für systemische Aufstellungsarbeit, Hypnose, Numerologie und persönliche Entwicklung. Hier verbinden sich systemisches Wissen, intuitive Wahrnehmung und die Erfahrung aus jahrzehntelanger Arbeit mit Menschen – getragen von Theresia und Axel Jansen."
-    ctaText="Zu den Ausbildungen"
+    subtitle="VitaLunaris ist Dein Ort für systemische Aufstellungsarbeit, Hypnose, Numerologie und persönliche Entwicklung. Hier verbinden sich systemisches Wissen, intuitive Wahrnehmung und die Erfahrung aus jahrzehntelanger Arbeit mit Menschen – getragen von Theresia und Axel Jansen."
+    ctaText="Systemisches Aufstellen"
     ctaHref="/uebersicht"
-    secondaryCtaText="Zu den Angeboten"
+    secondaryCtaText="Praxisangebote"
     secondaryCtaHref="/praxisangebote"
     image="/images/placeholder/Placeholder_1.jpg"
   />
   
 
   <OfferCardsBlock
-    title="Wie können wir dir helfen?"
+    title="Was interessiert Dich?"
     offers={offers}
   />
 
@@ -142,7 +142,7 @@ const faqItems = [
     image="/images/placeholder/placeholder-3.jpg"
     imageAlt=""
     mediaAspect="16 / 10"
-    title={`“VitaLunaris ist ein Raum, in dem Veränderung möglich werden darf. Ein Raum für neue Perspektiven, ehrliche Begegnungen und tiefe Prozesse – auf eine Weise, die zu dir passt.”`}
+    title={`“VitaLunaris ist ein Raum, in dem Veränderung möglich werden darf. Ein Raum für neue Perspektiven, ehrliche Begegnungen und tiefe Prozesse – auf eine Weise, die zu Dir passt.”`}
     body="Theresia & Axel Jansen · VitaLunaris"
   />
 
@@ -154,8 +154,8 @@ const faqItems = [
 
   <NewsletterBlock
     eyebrow="Newsletter"
-    title="Impulse für deine<br />innere Reise."
-    body="Unser Newsletter ist kein gewöhnlicher Newsletter.Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia.Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.<br/> <br/>Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in deiner Inbox."
+    title="Impulse für Deine<br />innere Reise."
+    body="Unser Newsletter ist kein gewöhnlicher Newsletter.Unsere Geschichten. Axels Zahlenmagie. Die feinen Impulse von Theresia.Mal humorvoll. Mal tiefgründig. Manchmal beides gleichzeitig.<br/> <br/>Dazu neue Kurstermine, Podcast-Episoden, Inspirationen und kleine Einblicke hinter die Kulissen von VitaLunaris – direkt in Deiner Inbox."
     placeholder="E-mail adresse"
     submitText="Kostenlos abonnieren"
   />

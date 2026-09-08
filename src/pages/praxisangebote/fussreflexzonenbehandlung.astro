@@ -13,8 +13,8 @@ const bookingUrl = 'https://app.healthadvisor.ch/bookings/c815b59850574ec9b9a5f3
 
 const steps = [
   { number: '01', title: 'Buchen', description: 'Termin anfragen per Kontaktformular oder E-Mail. Behandlungen finden ausschliesslich in Präsenz statt.' },
-  { number: '02', title: 'Ankommen', description: 'Kurzes Erstgespräch: Wie geht es dir? Was beschäftigt dich? Marlen stimmt die Behandlung auf dein aktuelles Befinden ab.' },
-  { number: '03', title: 'Behandlung', description: 'Tiefe Entspannung durch gezielte Reflexzonenmassage. Marlen arbeitet intuitiv und präzise — dein Körper zeigt, was er braucht.' },
+  { number: '02', title: 'Ankommen', description: 'Kurzes Erstgespräch: Wie geht es Dir? Was beschäftigt Dich? Marlen stimmt die Behandlung auf Dein aktuelles Befinden ab.' },
+  { number: '03', title: 'Behandlung', description: 'Tiefe Entspannung durch gezielte Reflexzonenmassage. Marlen arbeitet intuitiv und präzise — Dein Körper zeigt, was er braucht.' },
   { number: '04', title: 'Nachruhen', description: 'Nach der Behandlung kurz zur Ruhe kommen. Viel Wasser trinken — der Körper braucht Zeit, um das Erlebte zu integrieren.' },
 ];
 
@@ -30,8 +30,8 @@ const faqItems = [
   { question: 'Ist die Behandlung schmerzhaft?', answer: 'Je nach Thema und Empfindlichkeit können einzelne Reflexzonen während der Behandlung intensiver spürbar sein. Viele Kundinnen und Kunden beschreiben dies als angenehmen „Wohlfühlschmerz“, der zeigt, dass an einer empfindlichen Stelle gearbeitet wird.<br /><br />Die Behandlung wird stets individuell angepasst und soll herausfordernd, aber nicht unangenehm sein.' },
   { question: 'Was ist der Unterschied zur klassischen Fussreflexzonenmassage?', answer: 'Ich arbeite auch mit den klassischen Elementen der Reflexzonenmassage. Zusätzlich fliessen jedoch Elemente der TCM, der Lymphreflexologie sowie das Wissen von Schwester Jeannine mit ein.<br /><br />Durch den gezielten Einsatz eines Therapiestäbchens können einzelne Reflexpunkte besonders präzise behandelt werden. So entsteht eine individuelle und ganzheitliche Behandlung, die auf die persönlichen Bedürfnisse abgestimmt ist.' },
   { question: 'Was macht Marlens Behandlung besonders?', answer: 'Marlen verbindet mehrere Methoden — unter anderem Reflexologie nach Schwester Jeannine, Fussreflexzonen-Therapie nach Marquardt und Lymphaktivierung — zu einer ganzheitlichen, intuitiv abgestimmten Behandlung.' },
-  { question: 'Wie viele Behandlungen sind sinnvoll?', answer: 'Das ist individuell. Manche kommen einmalig zur Erholung, andere regelmässig zur Begleitung — gemeinsam finden wir deinen Rhythmus.' },
-  { question: 'Muss ich etwas Spezielles zur Behandlung mitbringen?', answer: 'Nein. Komm einfach so, wie du bist. Plane nach der Behandlung etwas Zeit zum Nachruhen ein und trinke danach ausreichend Wasser.' },
+  { question: 'Wie viele Behandlungen sind sinnvoll?', answer: 'Das ist individuell. Manche kommen einmalig zur Erholung, andere regelmässig zur Begleitung — gemeinsam finden wir Deinen Rhythmus.' },
+  { question: 'Muss ich etwas Spezielles zur Behandlung mitbringen?', answer: 'Nein. Komm einfach so, wie Du bist. Plane nach der Behandlung etwas Zeit zum Nachruhen ein und trinke danach ausreichend Wasser.' },
 ];
 ---
 
@@ -46,7 +46,7 @@ const faqItems = [
     description="Die Füsse sind eine Landkarte des Körpers. Über ihre Reflexzonen lassen sich Organe, Drüsen und das Nervensystem erreichen — für tiefe Entspannung, energetische Balance und ganzheitliche Regeneration."
     durationMeta="Einzelbehandlung | 60 oder 75 Min. | Vor Ort"
     price="CHF 90.– (60 Min.) · CHF 110.– (75 Min.)"
-    note="60 Min. für CHF 90.– oder 75 Min. für CHF 110.– — du wählst die Dauer, die dir guttut."
+    note="60 Min. für CHF 90.– oder 75 Min. für CHF 110.– — Du wählst die Dauer, die Dir guttut."
     ctaText="Termin anfragen"
     ctaHref={bookingUrl}
     image="/images/praxis/fussreflexzonen.jpg"
@@ -93,13 +93,13 @@ const faqItems = [
 
   {/* ===================== Bio ===================== */}
   <PersonBio
-    eyebrow="Wer dich begleitet"
+    eyebrow="Wer Dich begleitet"
     name="Marlen Berger"
     paragraphs={[
       'Die Faszination für die Reflexologie begleitet mich schon seit vielen Jahren. Mich begeistert, wie viel sich über die Füsse erreichen lässt und wie positiv Menschen auf eine gezielte Reflexzonen-Behandlung reagieren.',
       'Besonders berührt mich immer wieder, wenn Entspannung, Wohlbefinden und neue Energie spürbar werden und körperliche Beschwerden sanft gelöst werden.',
       'In meiner Arbeit verbinde ich verschiedene Methoden der Reflexologie, darunter die Reflexologie nach Schwester Jeannine, die klassische Fussreflexzonen-Therapie sowie weitere ganzheitliche Ansätze.',
-      'Mir ist wichtig, dass du dich während der Behandlung wohl, gesehen und gut aufgehoben fühlst. Denn echte Regeneration beginnt dort, wo wir zur Ruhe kommen dürfen.',
+      'Mir ist wichtig, dass Du Dich während der Behandlung wohl, gesehen und gut aufgehoben fühlst. Denn echte Regeneration beginnt dort, wo wir zur Ruhe kommen dürfen.',
     ]}
     image="/images/persons/MarlenBerger-orig.jpg"
     imageSide="right"
@@ -108,7 +108,7 @@ const faqItems = [
   {/* ===================== Brand CTA ===================== */}
   <BrandCtaBlock
     title="Bereit, tiefer<br />zu gehen?"
-    body="Gönne dir eine Behandlung, die wirklich tief wirkt — körperlich, energetisch, ganzheitlich. Marlen ist da."
+    body="Gönne Dir eine Behandlung, die wirklich tief wirkt — körperlich, energetisch, ganzheitlich. Marlen ist da."
     ctaText="Termin anfragen"
     ctaHref={bookingUrl}
   />
@@ -120,7 +120,7 @@ const faqItems = [
   <NewsletterBlock
     eyebrow="Newsletter"
     title="Von Herzen empfohlen"
-    body="Als begeisterte Leserin freue ich mich jede Woche auf den VitaLunaris-Newsletter. Besonders liebe ich die Mischung aus persönlichen Geschichten, wertvollen Impulsen und Axels Zahlenmagie für das Wochenende.<br /><br />Oft genügt ein einziger Gedanke, um etwas in Bewegung zu bringen. Vielleicht ist auch für dich genau der richtige Impuls dabei."
+    body="Als begeisterte Leserin freue ich mich jede Woche auf den VitaLunaris-Newsletter. Besonders liebe ich die Mischung aus persönlichen Geschichten, wertvollen Impulsen und Axels Zahlenmagie für das Wochenende.<br /><br />Oft genügt ein einziger Gedanke, um etwas in Bewegung zu bringen. Vielleicht ist auch für Dich genau der richtige Impuls dabei."
     placeholder="E-Mail Adresse"
     submitText="Kostenlos anmelden"
   />

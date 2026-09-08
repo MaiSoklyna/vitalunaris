@@ -4,16 +4,17 @@ const year = new Date().getFullYear();
 /* Nav columns mirror the main navigation (Footer.jpg layout). */
 const columns = [
   {
-    title: 'Ausbildung',
+    title: 'Systemisches Aufstellen',
     links: [
       { href: '/uebersicht', label: 'Übersicht' },
-      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulwork Level 1' },
-      { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach Level 2' },
+      { href: '/ausbildung/soulcoach-level-1', label: 'Systemic Soulwork' },
+      { href: '/ausbildung/soulcoach-level-2', label: 'Systemic Soulcoach' },
+      { href: '/ausbildung/begleitung-kreis', label: 'Systemic SoulCircle' },
       { href: '/ausbildung/infoanlaesse', label: 'Infoanlässe' },
     ],
   },
   {
-    title: 'Kurse',
+    title: 'Workshops & Kurse',
     links: [
       { href: '/workshops-kurse/kalender-uebersicht', label: 'Kalender & Übersicht' },
     ],
@@ -26,12 +27,12 @@ const columns = [
       { href: '/praxisangebote/hypnose', label: 'Hypnose' },
       { href: '/praxisangebote/numerologieberatung', label: 'Numerologieberatung' },
       { href: '/praxisangebote/fussreflexzonenbehandlung', label: 'Fussreflexzonen' },
-      { href: '/jawort-by-jansen', label: 'Jawort by Jansen' },
     ],
   },
   {
     title: 'Weiteres',
     links: [
+      { href: '/jawort-by-jansen', label: 'Jawort by Jansen', external: true },
       { href: '/ueber-uns', label: 'Über uns' },
       { href: '/neuigkeiten', label: 'News' },
     ],
@@ -58,8 +59,17 @@ const legalLinks = [
           <div class="footer__col">
             <h4 class="footer__col-title">{col.title}</h4>
             <ul class="footer__list">
-              {col.links.map(({ href, label }) => (
-                <li><a href={href} class="footer__link">{label}</a></li>
+              {col.links.map(({ href, label, external }) => (
+                <li>
+                  <a href={href} class={`footer__link ${external ? 'footer__link--external' : ''}`}>
+                    {label}
+                    {external && (
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                        <path d="M2.5 7.5L7.5 2.5M7.5 2.5H3.5M7.5 2.5V6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    )}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
@@ -258,6 +268,17 @@ const legalLinks = [
   }
   .footer__link:hover { opacity: 0.7; text-decoration: underline; }
   @media (min-width: 1920px) { .footer__link { font-size: 23px; line-height: 150%; } }
+
+  /* Links that lead out of the main site carry a ↗ glyph. */
+  .footer__link--external {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .footer__link--external svg {
+    flex-shrink: 0;
+    transform: translateY(-1px);
+  }
 
   /* ----- Middle: contact + social ----- */
   .footer__mid {

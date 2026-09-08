@@ -7,26 +7,26 @@ import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
 
-/* ----- "Alles was du wissen musst." — fact cards ----- */
+/* ----- "Alles was Du wissen musst." — fact cards ----- */
 const infoCards = [
-  { eyebrow: 'Nächster Start', body: 'Immer' },
-  { eyebrow: 'Dauer', body: 'Kontinuierlich' },
-  { eyebrow: 'Gruppenformat', body: 'offline & online' },
-  { eyebrow: 'Investition', body: 'CHF 120 pro Monat' },
+  { eyebrow: 'Rhythmus', body: 'Einmal im Monat, online' },
+  { eyebrow: 'Dazwischen', body: 'Telegram-Gruppe' },
+  { eyebrow: 'Einstieg', body: 'Jederzeit — ab dem 1. Soulwork-Modul' },
+  { eyebrow: 'Investition', body: 'CHF 130.– pro Monat' },
 ];
 ---
 
 <BaseLayout
-  title="Begleitung & Circle – VitaLunaris"
-  description="Der Begleitung & Circle von VitaLunaris: einmal im Monat online oder vor Ort gemeinsam aufstellen, üben und austauschen. Exklusiv für Absolventinnen der Ausbildung Systemic Soulwork Level 1 oder Systemic Soulcoach Level 2."
+  title="Systemic SoulCircle — monatlich dranbleiben | VitaLunaris"
+  description="Der Systemic SoulCircle: einmal im Monat online zusammenkommen — ein Thema, kleine Aufstellungen, Impulse und Übungen. Dazwischen über Telegram verbunden. CHF 130.– pro Monat, jederzeit kündbar."
   currentPath="/ausbildung/begleitung-kreis"
 >
   <Hero
-    eyebrow="Systemic Soulcoach · Begleitung & Circle"
-    title="Die Ausbildung endet.<br />Der Weg geht weiter."
-    subtitle="Einmal im Monat treffen wir uns online oder vor Ort zum gemeinsamen Aufstellen, Üben, Vertiefen und Austauschen. Für alle, die das Gelernte lebendig halten, Sicherheit gewinnen und sich gemeinsam mit anderen weiterentwickeln möchten.<br /><br />Zugang exklusiv für Absolventinnen mit abgeschlossener Ausbildung Systemic Soulwork Level 1 oder Systemic Soulcoach Level 2."
-    ctaText="Jetzt für den Circle anmelden"
-    ctaHref="/kontakt"
+    eyebrow="Systemic SoulCircle"
+    title="Dranbleiben,<br />ohne allein zu sein."
+    subtitle="Nach einem Modul ist vieles in Bewegung — und dann? Im SoulCircle kommen wir einmal im Monat online zusammen: ein Thema, kleine Aufstellungen, Impulse und Übungen. Dazwischen bleiben wir über Telegram verbunden.<br /><br />Kein neuer Kurs, den Du Dir überlegen musst. Ein Ort, an dem Du einfach weiter dabei bist."
+    ctaText="Dabei sein — CHF 130.– im Monat"
+    ctaHref="#anmelden"
     image="/images/placeholder/Placeholder-9.jpg"
     imageFocus="center 15%"
   />
@@ -37,17 +37,17 @@ const infoCards = [
     imageSide="left"
     image="/images/placeholder/Placeholder-12.jpg"
     imageAlt=""
-    title="In der Praxis bleiben. Weiterlernen. Weiterwachsen."
-    body="Viele Ausbildungen enden mit einem Zertifikat. Die eigentliche Entwicklung beginnt oft erst danach.<br /><br />Genau dafür haben wir den Begleitung & Circle geschaffen. Einmal im Monat treffen wir uns online oder vor Ort — zum gemeinsamen Aufstellen, Üben und Austauschen. Ein geschützter Raum für Fragen aus der Praxis, eigene Themen und die Weiterentwicklung deiner Fähigkeiten als Begleiterin."
+    title="Was in Bewegung kam, darf weitergehen."
+    body="Ein Modul endet, Du gehst nach Hause — und das, was sich gerade geöffnet hat, läuft weiter. Genau dort setzt der SoulCircle an.<br /><br />Einmal im Monat kommen wir online zusammen. Wir schauen auf ein Thema, machen kleine Aufstellungen, Du bekommst Impulse und Übungen für den Alltag. Zwischen den Treffen bleiben wir über Telegram in Kontakt — für Fragen, kurze Rückmeldungen und das Gefühl, nicht allein damit zu sein.<br /><br />Kein Leistungsdruck, keine Hausaufgaben. Du kommst, wenn Du kannst, und steigst aus, wann Du willst."
     bulletGroups={[
       {
-        heading: 'Das erwartet dich:',
+        heading: 'Jeden Monat:',
         items: [
-          'Monatliche Treffen online oder in der Praxis',
-          'Gemeinsame Aufstellungen und Praxisübungen',
-          'Austausch mit anderen Systemic Soulcoaches',
-          'Raum für Fragen aus der eigenen Begleitungspraxis',
-          'Persönliche und fachliche Weiterentwicklung',
+          'Ein Online-Treffen zu einem bestimmten Thema',
+          'Kleine Aufstellungen in der Gruppe',
+          'Impulse und Übungen für zwischendurch',
+          'Telegram-Gruppe für die Zeit dazwischen',
+          'Austausch mit Menschen, die denselben Weg gehen',
         ],
       },
     ]}
@@ -58,12 +58,12 @@ const infoCards = [
     <div class="lehrerin__inner">
       <div class="lehrerin__content">
         <Heading variant="eyebrow" class="lehrerin__eyebrow">Theresia Jansen</Heading>
-        <Heading level={2} variant="h1" class="lehrerin__name">Das Handwerk von jemandem, der es täglich lebt.</Heading>
+        <Heading level={2} variant="h1" class="lehrerin__name">Ich bleibe an Deiner Seite.</Heading>
         <Text size="p1" class="lehrerin__body">
-          Theresia Jansen begleitet seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde. Im Circle gibt sie weiter, was sie selbst erprobt und verfeinert hat — kein importiertes Curriculum, sondern gelebte Praxis aus der Deutschschweiz.
+          Ich begleite seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde — gelebte Praxis aus der Deutschschweiz, nicht angelesen.
         </Text>
         <Text size="p1" class="lehrerin__body">
-          Im Circle begegnet dir Theresia auf Augenhöhe: als erfahrene Begleiterin, die mit dir übt, deine Fragen aus der Praxis aufnimmt und dich Schritt für Schritt weiterwachsen lässt.
+          Der SoulCircle ist mein Weg, dranzubleiben: Ich bringe jeden Monat ein Thema mit, nehme Deine Fragen auf und halte den Raum — auch für das, was zwischen den Treffen auftaucht.
         </Text>
       </div>
       <div class="lehrerin__media">
@@ -72,10 +72,10 @@ const infoCards = [
     </div>
   </section>
 
-  {/* ===================== Alles was du wissen musst. ===================== */}
+  {/* ===================== Alles was Du wissen musst. ===================== */}
   <section class="wissen">
     <div class="wissen__inner">
-      <Heading level={2} variant="h1" class="wissen__title">Alles was du wissen musst.</Heading>
+      <Heading level={2} variant="h1" class="wissen__title">Alles was Du wissen musst.</Heading>
     </div>
   </section>
 
@@ -84,12 +84,37 @@ const infoCards = [
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
       <Text size="p1" class="wissen-foot__caption">
-        Zugang exklusiv für Absolventinnen mit abgeschlossener Ausbildung oder Systemic Soulwork Level 1 oder Systemic Soulcoach Level 2.<br />
-        Man kann jederzeit auch wieder austreten.
+        Offen für alle, die mindestens ein Soulwork-Modul gemacht haben — und für Absolventinnen der Soulcoach-Ausbildung.<br />
+        Monatlich kündbar, ohne Mindestlaufzeit.
       </Text>
       <div class="wissen-foot__cta">
-        <Button href="/kontakt" variant="primary" size="lg" class="wissen-foot__btn">Jetzt für den Circle anmelden</Button>
+        <Button href="#anmelden" variant="primary" size="lg" class="wissen-foot__btn">Dabei sein</Button>
         <Button href="/kontakt" variant="header" size="lg" class="wissen-foot__btn">Fragen? Schreib uns.</Button>
+      </div>
+    </div>
+  </section>
+
+  {/* ===================== Anmeldung =====================
+       Alchemy-Formular "Anmeldung · Systemic SoulCircle" mit dem
+       Abo-Produkt (CHF 130.-/Monat) verknüpft: Absenden leitet zur
+       Payrexx-Zahlung weiter. Scribe (BaseLayout) skaliert den iframe. */}
+  <section class="circle-form" id="anmelden">
+    <div class="circle-form__inner">
+      <div class="circle-form__head">
+        <Heading variant="eyebrow" class="circle-form__eyebrow">Anmeldung</Heading>
+        <Heading level={2} variant="h1" class="circle-form__title">Beim SoulCircle dabei sein</Heading>
+        <Text size="p1" class="circle-form__intro">
+          CHF 130.– im Monat, monatlich kündbar. Trag Dich ein — Du bekommst die Zugänge und den nächsten Termin per E-Mail.
+        </Text>
+      </div>
+
+      <div class="circle-form__frame-wrap">
+        <iframe
+          class="circle-form__frame"
+          src="https://opus.alchemy.zuerich/api/f/zqE5fhFrIUKuzMPKSKpe1Q/page"
+          title="Anmeldung Systemic SoulCircle"
+          loading="lazy"
+        ></iframe>
       </div>
     </div>
   </section>
@@ -153,7 +178,7 @@ const infoCards = [
   .lehrerin__body { color: var(--c-cherrywood); font-size: var(--p1-size); line-height: 1.5; }
 
   /* ============================================================
-     WISSEN — "Alles was du wissen musst." (header + cards + footer)
+     WISSEN — "Alles was Du wissen musst." (header + cards + footer)
      ============================================================ */
   .wissen { background: var(--c-spring-wood); padding: 60px 20px 32px; }
   @media (min-width: 768px)  { .wissen { padding: 80px 32px 40px; } }
@@ -186,12 +211,52 @@ const infoCards = [
     width: 100%;
   }
   @media (min-width: 640px) { .wissen-foot__cta { flex-direction: row; justify-content: center; gap: 20px; } }
+  /* Only constrain the width on narrow screens — size and padding come from
+     the shared .btn--lg token so every button on the site matches. */
   .wissen-foot__cta :global(.btn) {
     width: 100%;
     max-width: 350px;
-    height: 52px;
-    min-height: 52px;
-    padding: 16px 28px;
-    border-radius: 100px;
   }
+  @media (min-width: 640px) {
+    /* Drop the cap too — otherwise a long label keeps hitting 320px and the
+       40px side padding gets squeezed even though the token still says 40px. */
+    .wissen-foot__cta :global(.btn) { width: auto; max-width: none; }
+  }
+
+  /* ============================================================
+     CIRCLE FORM — Mockup-Anmeldung (Platzhalter, sendet nicht)
+     ============================================================ */
+  .circle-form { background: var(--c-spring-wood); padding: 60px 20px; scroll-margin-top: 100px; }
+  @media (min-width: 768px)  { .circle-form { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .circle-form { padding: 90px 60px; } }
+
+  .circle-form__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .circle-form__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+  .circle-form__eyebrow { color: var(--c-cherrywood); }
+  .circle-form__title { color: var(--c-cherrywood); margin: 0; }
+  .circle-form__intro { color: var(--c-cherrywood); margin: 0; }
+
+  .circle-form__frame-wrap { width: 100%; }
+  .circle-form__frame {
+    width: 100%;
+    height: 520px;          /* sensible default before Scribe sizes it */
+    min-height: 420px;
+    border: 0;
+    display: block;
+    transition: height 200ms ease;
+  }
+
 </style>
