@@ -60,6 +60,13 @@ const pills = d.category_pills?.length ? d.category_pills : [
    pages) are excluded so only real, dated workshops appear. */
 const datedWorkshops = (workshopEntries ?? []).filter((e) => e.data?.date);
 
+/* "Nächste Kurse" heisst künftige Kurse: vergangene Termine ausblenden und
+   chronologisch sortieren, sonst rutscht ein alter Eintrag nach vorn. */
+const startOfToday = new Date(); startOfToday.setHours(0, 0, 0, 0);
+const upcomingWorkshops = datedWorkshops
+  .filter((e) => new Date(e.data.date) >= startOfToday)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
 const toCalEvent = (e) => ({
   date: e.data?.date,
   label: e.data?.title,
@@ -98,7 +105,7 @@ const calendars = pills.map((p) => ({
         : datedWorkshops.filter((e) => categoryOf(e) === p.label).map(toCalEvent),
 }));
 
-const upcoming = datedWorkshops.slice(0, 3).map((e) => ({
+const upcoming = upcomingWorkshops.slice(0, 3).map((e) => ({
   image: imageUrl(e.data?.card_image),
   eyebrow: e.data?.card_eyebrow,
   title: e.data?.card_title,
