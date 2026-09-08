@@ -28,7 +28,9 @@ const {
     </div>
 
     <div class="claim__content">
-      <Heading level={2} variant="h1" class="claim__title">{title}</Heading>
+      {/* Wie in allen anderen Blöcken: Titel als HTML rendern, damit
+          redaktionelle <br /> als Umbruch greifen statt als Text zu erscheinen. */}
+      <Heading level={2} variant="h1" class="claim__title"><Fragment set:html={title} /></Heading>
       {body && <p class="claim__body">{body}</p>}
       <div class="claim__cta">
         <Button href={ctaHref} variant="primary" size="lg" class="claim__cta-btn">{ctaText}</Button>
