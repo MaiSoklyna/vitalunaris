@@ -9,7 +9,9 @@ import Faq from '@organisms/Faq.astro';
 import Heading from '@atoms/Heading.astro';
 import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
+import WorkshopCheckout from '@organisms/WorkshopCheckout.astro';
 import { getEmDashEntry, getEmDashCollection } from 'emdash';
+import { workshopEvents } from '@/data/workshops';
 import { nl2br, jsonArray, imageUrl, textLines } from '@lib/cms';
 
 /* ============================================================
@@ -24,6 +26,10 @@ if (!entry) return new Response('Not found', { status: 404 });
 
 const { entries: all } = await getEmDashCollection('workshops', { orderBy: { date: 'asc' } });
 
+/* On-site checkout: is this workshop sold via Alchemy Commerce?
+   Product- und Formular-IDs liegen in src/data/workshops.ts, nicht im CMS —
+   nur wenn dort ein Produkt hinterlegt ist, springt der Hero-Button auf das
+   eingebettete Anmeldeformular statt auf /kontakt. */
 /* The "Aktueller Monats-Workshop" page always FEATURES the next upcoming dated
    workshop (soonest date >= today; falls back to the most recent if all are past),
    so it refreshes itself each month with no manual editing. Every other slug just
@@ -31,12 +37,22 @@ const { entries: all } = await getEmDashCollection('workshops', { orderBy: { dat
    out of the "Weitere Kurse" grid below). */
 let w: Record<string, any> = entry.data ?? {};
 let featuredId: string = slug!;
+/* Der Checkout hängt am tatsächlich gezeigten Workshop, nicht an der URL:
+   auf /aktueller-monatsworkshop ist das ein anderer als der Seiten-Slug. */
+let checkoutSlug: string = slug!;
 if (slug === 'aktueller-monatsworkshop') {
   const today = new Date().toISOString().slice(0, 10);
   const dated = (all ?? []).filter((e: any) => e.data?.date);
   const next = dated.find((e: any) => e.data.date >= today) ?? dated[dated.length - 1];
-  if (next) { w = next.data ?? {}; featuredId = next.id; }
+  if (next) { w = next.data ?? {}; featuredId = next.id; checkoutSlug = next.slug ?? next.id; }
 }
+
+/* On-site checkout: is this workshop sold via Alchemy Commerce?
+   Produkt- und Formular-IDs liegen in src/data/workshops.ts, nicht im CMS —
+   nur wenn dort ein Produkt hinterlegt ist, springt der Hero-Button auf das
+   eingebettete Anmeldeformular statt auf /kontakt. */
+const wsEvent = workshopEvents.find((e) => e.slug === checkoutSlug);
+const hasCheckout = Boolean(wsEvent?.productId);
 
 const bulletGroups = (w.narrative_bullet_groups ?? []).map((g: any) => ({
   heading: g.heading || undefined,
@@ -93,11 +109,13 @@ const faqItems = [
     description={w.hero_description}
     price={w.hero_price}
     ctaText="Jetzt anmelden"
-    ctaHref={w.hero_cta_href || '/kontakt'}
+    ctaHref={hasCheckout ? '#anmelden' : '/kontakt'}
     image={imageUrl(w.hero_image)}
   />
 
   <InfoCardsRow cards={w.info_cards ?? []} />
+
+  <WorkshopCheckout slug={checkoutSlug} />
 
   {/* ===================== Was wir anschauen — lavender ===================== */}
   <NarrativeBlock
