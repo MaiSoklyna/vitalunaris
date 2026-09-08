@@ -57,7 +57,7 @@ const columns = fc.length
       .map((head: any) => {
         const flatLinks = fc
           .filter((l) => l.parent && l.parent === head.label)
-          .map((l: any) => ({ href: l.href, label: l.label }));
+          .map((l: any) => ({ href: l.href, label: l.label, external: l.external || undefined }));
         const links = flatLinks.length ? flatLinks : jsonArray(head.links);
         return { title: head.label ?? head.title, links };
       })

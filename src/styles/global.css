@@ -202,6 +202,10 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* EmDash ships its own design system ("kumo") whose body rule sets a neutral
+   near-white background. It loads after this file, so scope ours to html>body
+   to win on specificity and keep the brand's Spring Wood ground. */
+html > body,
 body {
   margin: 0;
   font-family: 'ES Park', Georgia, serif;
