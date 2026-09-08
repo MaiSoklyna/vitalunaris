@@ -41,6 +41,7 @@ const stages = (d.stage_cards?.length ? d.stage_cards : [
     image: '/images/cards/card-3.jpg',
     eyebrow: 'Systemic SoulCircle',
     title: 'Zum Dranbleiben',
+    badge: 'Bald verfügbar',
     body: 'Einmal im Monat online zusammenkommen: ein Thema, kleine Aufstellungen, Impulse und Übungen — dazwischen über Telegram verbunden. Ab dem ersten Soulwork-Modul, CHF 130.– im Monat.',
     cta_href: '/ausbildung/begleitung-kreis',
   },
@@ -161,6 +162,7 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
           <article class="stage-card">
             <div class="stage-card__media">
               <img src={imageUrl(s.image)} alt="" loading="lazy" decoding="async" />
+              {s.badge && <span class="stage-card__badge">{s.badge}</span>}
             </div>
             <div class="stage-card__text">
               <Heading variant="eyebrow" class="stage-card__eyebrow">{s.eyebrow}</Heading>
@@ -302,6 +304,24 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
 
   .stages__title { color: var(--c-cherrywood); margin: 0; text-align: center; width: 100%; }
   .stages__intro { color: var(--c-cherrywood); text-align: center; width: 100%; }
+
+  /* Marker auf dem Kartenbild, z. B. "Bald verfügbar" — kommt aus dem CMS
+     (Feld `badge` auf der jeweiligen Karte), fehlt es, wird nichts gerendert. */
+  .stage-card__media { position: relative; }
+  .stage-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--c-fire);
+    color: var(--c-cherrywood);
+    font-family: 'ES Park', serif;
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  @media (min-width: 768px) { .stage-card__badge { top: 16px; left: 16px; } }
 
   .stages__grid {
     display: grid;
