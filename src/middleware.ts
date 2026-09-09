@@ -593,4 +593,65 @@ const scrollOnAdd = defineMiddleware(async (context, next) => {
  * sequence() runs spark first (injects before </head>), then scrollOnAdd
  * (injects before </body>); each returns a fresh Response, so both patches land.
  */
-export const onRequest = sequence(sparkEmdash(), scrollOnAdd);
+
+/* ============================================================
+   JAWORT-DOMAINS — hochzeitsrednerin.ch + theresiajansen.ch
+   ------------------------------------------------------------
+   Die Hochzeits-Seite tritt unter eigenen Domains auf, lebt aber
+   weiter in diesem Projekt (ein Worker, ein CMS, ein Deploy).
+
+   - hochzeitsrednerin.ch  = Hauptdomain, liefert die Seite aus
+   - theresiajansen.ch     = leitet per 301 auf die Hauptdomain
+   - "/" zeigt die Jawort-Seite, ohne dass sich die URL ändert
+     (interner Rewrite, damit keine /praxisangebote/... URL
+     unter der Hochzeitsdomain sichtbar wird)
+   - Alles andere unter diesen Domains gehört nicht zu Jawort und
+     wird auf vitalunaris.ch zurückgeleitet, damit die beiden
+     Auftritte nicht ungewollt Inhalte doppeln (Duplicate Content).
+   ============================================================ */
+const JAWORT_PRIMARY = 'hochzeitsrednerin.ch';
+const JAWORT_ALIAS = 'theresiajansen.ch';
+const JAWORT_PAGE = '/praxisangebote/jawort-by-jansen';
+/* Pfade, die auch unter der Hochzeitsdomain gültig bleiben. */
+const JAWORT_ALLOWED = new Set(['/impressum', '/datenschutz', '/agb']);
+
+const jawortDomains = defineMiddleware(async (context, next) => {
+  const url = new URL(context.request.url);
+  const host = url.hostname.replace(/^www\./, '');
+  const isPrimary = host === JAWORT_PRIMARY;
+  const isAlias = host === JAWORT_ALIAS;
+  if (!isPrimary && !isAlias) return next();
+
+  // Zweitdomain bündelt ihre Reputation auf der Hauptdomain.
+  if (isAlias) {
+    return Response.redirect(`https://${JAWORT_PRIMARY}${url.pathname}${url.search}`, 301);
+  }
+
+  // Assets, API und Admin unangetastet durchlassen.
+  if (
+    url.pathname.startsWith('/_') ||
+    url.pathname.startsWith('/images/') ||
+    url.pathname.startsWith('/fonts/') ||
+    url.pathname.startsWith('/logo/') ||
+    /\.[a-z0-9]+$/i.test(url.pathname)
+  ) {
+    return next();
+  }
+
+  // Die Startseite der Hochzeitsdomain IST die Jawort-Seite.
+  if (url.pathname === '/' || url.pathname === '/index.html') {
+    return context.rewrite(JAWORT_PAGE);
+  }
+
+  // Die alte Adresse innerhalb dieser Domain auf "/" normalisieren.
+  if (url.pathname === JAWORT_PAGE || url.pathname === JAWORT_PAGE + '/') {
+    return Response.redirect(`https://${JAWORT_PRIMARY}/`, 301);
+  }
+
+  if (JAWORT_ALLOWED.has(url.pathname)) return next();
+
+  // Alles Übrige gehört zu VitaLunaris.
+  return Response.redirect(`https://vitalunaris.ch${url.pathname}${url.search}`, 302);
+});
+
+export const onRequest = sequence(jawortDomains, sparkEmdash(), scrollOnAdd);

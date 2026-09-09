@@ -23,8 +23,20 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteBase = (Astro.site ?? new URL('https://vitalunaris.ch')).toString().replace(/\/$/, '');
-const canonical = new URL(currentPath, siteBase + '/').toString();
+/* Unter den eigenen Hochzeits-Domains ist die Seite ihre eigene Startseite:
+   Canonical, OG-URL und Sitemap müssen dorthin zeigen — sonst weist Google
+   die Adresse zurück auf vitalunaris.ch und die neue Domain rankt nicht.
+   Läuft die Seite (noch) unter vitalunaris.ch, bleibt alles wie gehabt. */
+const JAWORT_HOSTS = ['hochzeitsrednerin.ch', 'theresiajansen.ch'];
+const reqHost = Astro.url.hostname.replace(/^www\./, '');
+const onJawortDomain = JAWORT_HOSTS.includes(reqHost);
+
+const siteBase = onJawortDomain
+  ? 'https://hochzeitsrednerin.ch'
+  : (Astro.site ?? new URL('https://vitalunaris.ch')).toString().replace(/\/$/, '');
+/* Auf der eigenen Domain lebt die Seite unter "/", nicht unter /praxisangebote/... */
+const canonicalPath = onJawortDomain ? '/' : currentPath;
+const canonical = new URL(canonicalPath, siteBase + '/').toString();
 const ogImageAbs = new URL(ogImage, siteBase + '/').toString();
 
 /* Structured data scoped to the ceremony offering rather than the practice.
