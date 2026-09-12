@@ -25,7 +25,7 @@ const infoCards = [
     eyebrow="Systemic SoulCircle"
     title="Dranbleiben,<br />ohne allein zu sein."
     subtitle="Nach einem Modul ist vieles in Bewegung — und dann? Im SoulCircle kommen wir einmal im Monat online zusammen: ein Thema, kleine Aufstellungen, Impulse und Übungen. Dazwischen bleiben wir über Telegram verbunden.<br /><br />Kein neuer Kurs, den Du Dir überlegen musst. Ein Ort, an dem Du einfach weiter dabei bist."
-    ctaText="Interesse anmelden"
+    ctaText="Dabei sein — CHF 130.– im Monat"
     ctaHref="#anmelden"
     image="/images/ausbildung/aufstellung-theresia.jpg"
     imageFocus="center center"
@@ -88,35 +88,32 @@ const infoCards = [
         Monatlich kündbar, ohne Mindestlaufzeit.
       </Text>
       <div class="wissen-foot__cta">
-        <Button href="#anmelden" variant="primary" size="lg" class="wissen-foot__btn">Interesse anmelden</Button>
+        <Button href="#anmelden" variant="primary" size="lg" class="wissen-foot__btn">Dabei sein</Button>
       </div>
     </div>
   </section>
 
-  {/* ===================== Vormerkung =====================
-       ÜBERGANGSLÖSUNG: Das Abo-Formular (embed zqE5fhFrIUKuzMPKSKpe1Q,
-       verknüpft mit dem Abo-Produkt 8431af0a…) löst im Labs-Backend
-       keine Zahlung aus — der Formular-Submit startet den Checkout nur
-       bei `one_time`-Produkten, bei `subscription` gibt er redirect_url
-       null zurück. Bis das behoben ist, sammelt hier ein reines
-       Interessenten-Formular ohne Produkt. Danach: diesen Block wieder
-       auf das Abo-Formular zurückstellen. */}
+  {/* ===================== Anmeldung & Abo =====================
+       Abo-Formular (embed zqE5fhFrIUKuzMPKSKpe1Q) mit dem Abo-Produkt
+       verknüpft: Der Submit erzeugt eine Bestellung und leitet auf die
+       zahls.ch-Zahlseite weiter (CHF 130/Monat). */}
   <section class="circle-form" id="anmelden">
     <div class="circle-form__inner">
       <div class="circle-form__head">
-        <Heading variant="eyebrow" class="circle-form__eyebrow">Bald verfügbar</Heading>
-        <Heading level={2} variant="h1" class="circle-form__title">Sei von Anfang an dabei</Heading>
+        <Heading variant="eyebrow" class="circle-form__eyebrow">Anmeldung</Heading>
+        <Heading level={2} variant="h1" class="circle-form__title">Ab dem nächsten Treffen dabei</Heading>
         <Text size="p1" class="circle-form__intro">
-          Der SoulCircle startet in Kürze. Trag Dich ein, dann melden wir uns bei Dir, sobald es losgeht — unverbindlich und kostenlos.
+          Trag Dich ein und schliesse die Zahlung sicher über zahls.ch ab — CHF 130.– pro Monat, monatlich kündbar. Danach erhältst Du alle Infos und den Zugang zur Telegram-Gruppe.
         </Text>
       </div>
 
       <div class="circle-form__frame-wrap">
         <iframe
           class="circle-form__frame"
-          src="https://opus.alchemy.zuerich/api/f/8nHloAh5JQ7JssLnN276sg/page"
-          title="Interesse Systemic SoulCircle"
+          src="https://opus.alchemy.zuerich/api/f/zqE5fhFrIUKuzMPKSKpe1Q/page"
+          title="Anmeldung Systemic SoulCircle"
           loading="lazy"
+          allow="payment"
         ></iframe>
       </div>
     </div>
