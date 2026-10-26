@@ -20,7 +20,9 @@ export default defineConfig({
   // Ausbildung "Übersicht" moved under /ausbildung/ for route consistency.
   redirects: {
     '/uebersicht': '/aufstellen/uebersicht',
-    '/jawort-by-jansen': '/praxisangebote/jawort-by-jansen',
+    // Jawort by Jansen lebt seit September 2026 auf der eigenen Website (eigener Worker).
+    '/jawort-by-jansen': { status: 301, destination: 'https://hochzeitsrednerin.ch/' },
+    '/praxisangebote/jawort-by-jansen': { status: 301, destination: 'https://hochzeitsrednerin.ch/' },
     // Die Seiten unter «Systemisches Aufstellen» liegen seit Oktober 2026 unter
     // /aufstellen/… statt /ausbildung/…; alte Pfade (auch die früheren Level-URLs)
     // leiten weiter, damit geteilte Links und Suchtreffer nicht ins Leere laufen.

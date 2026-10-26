@@ -23,3 +23,10 @@ data.db.bak-*
 
 # Alchemy Labs credentials
 .env.alchemy*
+
+# EmDash CLI dumps media into the repo root when run from here — the real files
+# are tracked under uploads/ (byte-identical), so ignore the stray copies.
+/01*.png
+/01*.jpg
+# Stale local patch, superseded upstream
+/narrative-body-typeclasses.patch
