@@ -28,9 +28,17 @@ export interface Plaetze { max: number; belegt: number; frei: number; ausgebucht
 
 const cache = new Map<Angebot, { at: number; wert: Plaetze | null }>();
 
+/* Live (Worker mit nodejs_compat) liegt das Secret in process.env, wie bei
+   LABS_MAIL_KEY in emdash-plugin.ts; lokal kommt es aus .env. Astro 6 wirft beim
+   Zugriff auf locals.runtime.env einen Fehler, darum nur abgesichert als Rückfall. */
 function schluessel(locals: unknown): string | undefined {
-  const env = (locals as any)?.runtime?.env ?? {};
-  return env.LABS_ORDERS_KEY ?? (globalThis as any).process?.env?.LABS_ORDERS_KEY ?? import.meta.env.LABS_ORDERS_KEY;
+  const ausProzess = (globalThis as any).process?.env?.LABS_ORDERS_KEY ?? import.meta.env.LABS_ORDERS_KEY;
+  if (ausProzess) return ausProzess;
+  try {
+    return (locals as any)?.runtime?.env?.LABS_ORDERS_KEY;
+  } catch {
+    return undefined;
+  }
 }
 
 async function bezahlt(key: string, produkt: string): Promise<number> {
