@@ -32,7 +32,9 @@ const cache = new Map<Angebot, { at: number; wert: Plaetze | null }>();
    LABS_MAIL_KEY in emdash-plugin.ts; lokal kommt es aus .env. Astro 6 wirft beim
    Zugriff auf locals.runtime.env einen Fehler, darum nur abgesichert als Rückfall. */
 function schluessel(locals: unknown): string | undefined {
-  const ausProzess = (globalThis as any).process?.env?.LABS_ORDERS_KEY ?? import.meta.env.LABS_ORDERS_KEY;
+  // import.meta.env nur in dev: im Build würde Vite den Schlüssel sonst fest einsetzen.
+  const ausProzess = (globalThis as any).process?.env?.LABS_ORDERS_KEY
+    ?? (import.meta.env.DEV ? import.meta.env.LABS_ORDERS_KEY : undefined);
   if (ausProzess) return ausProzess;
   try {
     return (locals as any)?.runtime?.env?.LABS_ORDERS_KEY;
