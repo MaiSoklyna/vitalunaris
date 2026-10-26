@@ -24,25 +24,32 @@ const nar = sec('narrative'), stg = sec('stages'), out = sec('outcomes'),
    (labeled inputs + image upload per card — no JSON). Falls back to the original copy. */
 const stages = (d.stage_cards?.length ? d.stage_cards : [
   {
-    image: '/images/cards/card-1.jpg',
-    eyebrow: 'Systemic Soulwork',
-    title: 'Für Dich selbst',
-    body: 'Verstehen, warum sich bestimmte Dinge in Deinem Leben wiederholen. Drei Module à ca. einen Monat, einzeln buchbar — Arbeit an Deinem eigenen System, keine Ausbildung.',
-    cta_href: '/ausbildung/systemic-soulwork',
+    image: "/images/ausbildung/aufstellung-figur.jpg",
+    eyebrow: "Soulwork Experience",
+    title: "Zum Kennenlernen",
+    body: "Sechs Abende in einer festen Gruppe: Du stellst einmal Dein eigenes Anliegen auf und stehst an den anderen Abenden für die anderen. Ohne Vorgespräch direkt buchbar, CHF 690.–.",
+    cta_href: "/aufstellen/soulwork-experience",
   },
   {
-    image: '/images/cards/card-2.jpg',
-    eyebrow: 'Systemic Soulcoach',
-    title: 'Um andere zu begleiten',
-    body: 'Die Ausbildung für alle, die eigene Aufstellungsgruppen leiten wollen. Drei Monate als geschlossene Gruppe. Voraussetzung: alle drei Soulwork-Module.',
-    cta_href: '/ausbildung/systemic-soulcoach',
+    image: "/images/cards/card-1.jpg",
+    eyebrow: "Systemic Soulwork",
+    title: "Für Dich selbst",
+    body: "Die grosse Aufstellungsgruppe: drei Module von Januar bis Juni, eine feste Gruppe, intensive Begleitung. Arbeit an Deinem eigenen System, keine Ausbildung.",
+    cta_href: "/aufstellen/systemic-soulwork",
   },
   {
-    image: '/images/cards/card-3.jpg',
-    eyebrow: 'Systemic SoulCircle',
-    title: 'Zum Dranbleiben',
-    body: 'Einmal im Monat online zusammenkommen: ein Thema, kleine Aufstellungen, Impulse und Übungen — dazwischen über Telegram verbunden. Ab dem ersten Soulwork-Modul, CHF 130.– im Monat.',
-    cta_href: '/ausbildung/systemic-soulcircle',
+    image: "/images/cards/card-2.jpg",
+    eyebrow: "Systemic Soulcoach",
+    title: "Um andere zu begleiten",
+    body: "Die Ausbildung für alle, die andere mit Aufstellungen begleiten wollen. September bis Dezember als geschlossene Gruppe. Voraussetzung: die Aufstellungsgruppe Systemic Soulwork.",
+    cta_href: "/aufstellen/systemic-soulcoach",
+  },
+  {
+    image: "/images/cards/card-3.jpg",
+    eyebrow: "Systemic SoulCircle",
+    title: "Zum Dranbleiben",
+    body: "Einmal im Monat online zusammenkommen: ein Thema, kleine Aufstellungen, Impulse und Übungen. Für alle, die schon bei Theresia aufgestellt haben, jeder Abend einzeln buchbar, CHF 130.–.",
+    cta_href: "/aufstellen/systemic-soulcircle",
   },
 ]) as Array<Record<string, any>>;
 
@@ -90,7 +97,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   },
   {
     question: 'Was ist der Unterschied zwischen Soulwork und der Soulcoach-Ausbildung?',
-    answer: 'Soulwork ist Arbeit an Dir selbst: Du verstehst Dein eigenes System. Die Soulcoach-Ausbildung ist Handwerk: Du lernst, eigene Aufstellungsgruppen zu leiten. Voraussetzung dafür sind alle drei Soulwork-Module.',
+    answer: 'Soulwork ist Arbeit an Dir selbst: Du verstehst Dein eigenes System. Die Soulcoach-Ausbildung ist Handwerk: Du lernst, andere mit Aufstellungen zu begleiten. Voraussetzung dafür sind alle drei Soulwork-Module.',
   },
   {
     question: 'Brauche ich Vorkenntnisse?',
@@ -127,14 +134,14 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
 
 <BaseLayout
   title="Systemisches Aufstellen — Übersicht | VitaLunaris"
-  description="Systemisches Aufstellen bei VitaLunaris: Systemic Soulwork für Dich selbst, die Ausbildung zum Systemic Soulcoach für die Leitung eigener Gruppen und der SoulCircle zum Dranbleiben. Über 30 Jahre gelebte Praxis in der Deutschschweiz."
-  currentPath="/ausbildung/uebersicht"
+  description="Systemisches Aufstellen bei VitaLunaris: Systemic Soulwork für Dich selbst, die Ausbildung zum Systemic Soulcoach um andere zu begleiten und der SoulCircle zum Dranbleiben. Über 30 Jahre gelebte Praxis in der Deutschschweiz."
+  currentPath="/aufstellen/uebersicht"
 >
   <OverviewHero
     graphic="/images/ebene/Ebene-14.svg"
     eyebrow={d.hero_eyebrow || 'Systemisches Aufstellen'}
     title={d.hero_title || 'Systemisches Aufstellen.<br />Für Dich — oder<br />für Deine Arbeit.'}
-    subtitle={d.hero_subtitle || 'Manche kommen, um sich selbst zu verstehen. Andere, um eigene Aufstellungsgruppen zu leiten. Drei Wege, ein Fundament — über 30 Jahre gelebte Praxis in der Deutschschweiz.'}
+    subtitle={d.hero_subtitle || 'Manche kommen, um sich selbst zu verstehen. Andere, um selbst Menschen zu begleiten. Vier Wege, ein Fundament — über 30 Jahre gelebte Praxis in der Deutschschweiz.'}
   />
 
   {/* ===================== Methode. Haltung. Tiefe. ===================== */}
@@ -151,9 +158,9 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
   <section class="stages">
     <div class="stages__inner">
       <div class="stages__header">
-        <Heading level={2} variant="h1" class="stages__title">{stg.title || 'Drei Wege'}</Heading>
+        <Heading level={2} variant="h1" class="stages__title">{stg.title || 'Vier Wege'}</Heading>
         <Text size="p1" class="stages__intro">
-          {stg.body || 'Du wählst, was zu Dir passt. Systemic Soulwork ist der Einstieg — von dort führt der Weg weiter, wenn Du möchtest.'}
+          {stg.body || 'Du wählst, was zu Dir passt. Die Soulwork Experience ist der Einstieg — von dort führt der Weg weiter, wenn Du möchtest.'}
         </Text>
       </div>
       <div class="stages__grid">
@@ -329,7 +336,7 @@ const lehrerinParagraphs = (d.lehrerin_paragraphs?.length ? d.lehrerin_paragraph
     width: 100%;
   }
   @media (min-width: 768px)  { .stages__grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1280px) { .stages__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; } }
+  @media (min-width: 1280px) { .stages__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; } }
 
   .stage-card {
     box-sizing: border-box;

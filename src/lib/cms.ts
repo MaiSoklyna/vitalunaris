@@ -41,8 +41,8 @@ export async function getInfoCards(context: string): Promise<Array<{ eyebrow: st
  *   /                          → pages/home
  *   /praxisangebote            → praxisangebote/overview
  *   /praxisangebote/<slug>     → praxisangebote/<slug>
- *   /ausbildung                → pages/ausbildung-overview
- *   /ausbildung/<slug>         → ausbildung_programs/<slug>
+ *   /aufstellen                → pages/ausbildung-overview
+ *   /aufstellen/<slug>         → ausbildung_programs/<slug>
  *   /workshops-kurse/<slug>    → workshops/<slug>
  *   /impressum|/datenschutz|/agb → legal/<slug>
  *   /<slug>                    → pages/<slug>  (ueber-uns, kontakt, neuigkeiten)

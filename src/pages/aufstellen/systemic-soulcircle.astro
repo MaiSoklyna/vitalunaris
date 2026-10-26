@@ -8,24 +8,40 @@ import Text from '@atoms/Text.astro';
 import Button from '@atoms/Button.astro';
 
 /* ----- "Alles was Du wissen musst." — fact cards ----- */
+/* Soul Circle 2027: jeder Abend einzeln buchbar (kein Abo). Je Termin ein Labs-Formular
+   mit eigenem Produkt (CHF 130). */
+const termine = [
+  { date: '2027-01-11', label: 'Mo, 11. Januar', lang: 'Montag, 11. Januar 2027', embed: '-7TyAhPNVAPtngpSs4mEfA' },
+  { date: '2027-02-08', label: 'Mo, 8. Februar', lang: 'Montag, 8. Februar 2027', embed: 'yjxIY2MnHbv08tXl9XM5Cw' },
+  { date: '2027-03-08', label: 'Mo, 8. März', lang: 'Montag, 8. März 2027', embed: 'BvaQXwhlMfDNDvJSYdWsGA' },
+  { date: '2027-04-12', label: 'Mo, 12. April', lang: 'Montag, 12. April 2027', embed: 'Wzn7mLLnUdFnhDtIA7Cr0g' },
+  { date: '2027-05-03', label: 'Mo, 3. Mai', lang: 'Montag, 3. Mai 2027', embed: 'ls4QCS3g4Au8ge2ctn4CRw' },
+  { date: '2027-06-14', label: 'Mo, 14. Juni', lang: 'Montag, 14. Juni 2027', embed: 'Hx0IUMxfpjkhtFWiHT7Ijw' },
+  { date: '2027-07-05', label: 'Mo, 5. Juli', lang: 'Montag, 5. Juli 2027', embed: 'ESyqivi5p2OM1j1cbZP74w' },
+  { date: '2027-08-09', label: 'Mo, 9. August', lang: 'Montag, 9. August 2027', embed: 'T2F664lhDfr7XYYZmSNA_w' },
+  { date: '2027-09-13', label: 'Mo, 13. September', lang: 'Montag, 13. September 2027', embed: 'Ljyuu0137HieW4zb9GVbwg' },
+  { date: '2027-10-11', label: 'Mo, 11. Oktober', lang: 'Montag, 11. Oktober 2027', embed: 'YM98B9k3cnqKbYbKKt7cLA' },
+  { date: '2027-11-08', label: 'Mo, 8. November', lang: 'Montag, 8. November 2027', embed: 'gPwKNhymQfIN3ibclPsDcQ' },
+  { date: '2027-12-13', label: 'Mo, 13. Dezember', lang: 'Montag, 13. Dezember 2027', embed: 'j6HhaAxWHVzxxrtRwVK7TQ' },
+];
+
 const infoCards = [
   { eyebrow: 'Rhythmus', body: 'Einmal im Monat, online' },
-  { eyebrow: 'Dazwischen', body: 'Telegram-Gruppe' },
-  { eyebrow: 'Einstieg', body: 'Jederzeit — ab dem 1. Soulwork-Modul' },
-  { eyebrow: 'Investition', body: 'CHF 130.– pro Monat' },
+  { eyebrow: 'Für wen', body: 'Alle, die schon bei Theresia aufgestellt haben' },
+  { eyebrow: 'Investition', body: 'CHF 130.– pro Abend, einzeln buchbar' },
 ];
 ---
 
 <BaseLayout
   title="Systemic SoulCircle — monatlich dranbleiben | VitaLunaris"
-  description="Der Systemic SoulCircle: einmal im Monat online zusammenkommen — ein Thema, kleine Aufstellungen, Impulse und Übungen. Dazwischen über Telegram verbunden. CHF 130.– pro Monat, jederzeit kündbar."
-  currentPath="/ausbildung/systemic-soulcircle"
+  description="Der Systemic SoulCircle: einmal im Monat online zusammenkommen — ein Thema, kleine Aufstellungen, Impulse und Übungen. CHF 130.– pro Abend, einzeln buchbar."
+  currentPath="/aufstellen/systemic-soulcircle"
 >
   <Hero
     eyebrow="Systemic SoulCircle"
     title="Dranbleiben,<br />ohne allein zu sein."
-    subtitle="Nach einem Modul ist vieles in Bewegung — und dann? Im SoulCircle kommen wir einmal im Monat online zusammen: ein Thema, kleine Aufstellungen, Impulse und Übungen. Dazwischen bleiben wir über Telegram verbunden.<br /><br />Kein neuer Kurs, den Du Dir überlegen musst. Ein Ort, an dem Du einfach weiter dabei bist."
-    ctaText="Dabei sein — CHF 130.– im Monat"
+    subtitle="Nach einem Modul ist vieles in Bewegung — und dann? Im SoulCircle kommen wir einmal im Monat online zusammen: ein Thema, kleine Aufstellungen, Impulse und Übungen.<br /><br />Kein neuer Kurs, den Du Dir überlegen musst. Ein Ort, an dem Du einfach weiter dabei bist."
+    ctaText="Termin wählen — CHF 130.– pro Abend"
     ctaHref="#anmelden"
     image="/images/ausbildung/aufstellung-theresia.jpg"
     imageFocus="center center"
@@ -38,7 +54,7 @@ const infoCards = [
     image="/images/ausbildung/aufstellung-figur.jpg"
     imageAlt="Theresia Jansen beim Aufstellen mit dem Systembrett"
     title="Was in Bewegung kam, darf weitergehen."
-    body="Ein Modul endet, Du gehst nach Hause — und das, was sich gerade geöffnet hat, läuft weiter. Genau dort setzt der SoulCircle an.<br /><br />Einmal im Monat kommen wir online zusammen. Wir schauen auf ein Thema, machen kleine Aufstellungen, Du bekommst Impulse und Übungen für den Alltag. Zwischen den Treffen bleiben wir über Telegram in Kontakt — für Fragen, kurze Rückmeldungen und das Gefühl, nicht allein damit zu sein.<br /><br />Kein Leistungsdruck, keine Hausaufgaben. Du kommst, wenn Du kannst, und steigst aus, wann Du willst."
+    body="Ein Modul endet, Du gehst nach Hause — und das, was sich gerade geöffnet hat, läuft weiter. Genau dort setzt der SoulCircle an.<br /><br />Einmal im Monat kommen wir online zusammen. Wir schauen auf ein Thema, machen kleine Aufstellungen, Du bekommst Impulse und Übungen für den Alltag.<br /><br />Kein Leistungsdruck, keine Hausaufgaben. Du kommst, wenn Du kannst, und steigst aus, wann Du willst."
     bulletGroups={[
       {
         heading: 'Jeden Monat:',
@@ -46,7 +62,6 @@ const infoCards = [
           'Ein Online-Treffen zu einem bestimmten Thema',
           'Kleine Aufstellungen in der Gruppe',
           'Impulse und Übungen für zwischendurch',
-          'Telegram-Gruppe für die Zeit dazwischen',
           'Austausch mit Menschen, die denselben Weg gehen',
         ],
       },
@@ -84,8 +99,8 @@ const infoCards = [
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
       <Text size="p1" class="wissen-foot__caption">
-        Offen für alle, die mindestens ein Soulwork-Modul gemacht haben — und für Absolventinnen der Soulcoach-Ausbildung.<br />
-        Monatlich kündbar, ohne Mindestlaufzeit.
+        Offen für alle, die schon bei Theresia aufgestellt haben.<br />
+        Du buchst jeden Abend einzeln, ohne Abo.
       </Text>
       <div class="wissen-foot__cta">
         <Button href="#anmelden" variant="primary" size="lg" class="wissen-foot__btn">Dabei sein</Button>
@@ -93,31 +108,66 @@ const infoCards = [
     </div>
   </section>
 
-  {/* ===================== Anmeldung & Abo =====================
-       Abo-Formular (embed zqE5fhFrIUKuzMPKSKpe1Q) mit dem Abo-Produkt
-       verknüpft: Der Submit erzeugt eine Bestellung und leitet auf die
-       zahls.ch-Zahlseite weiter (CHF 130/Monat). */}
+  {/* ===================== Termin wählen & buchen =====================
+       Jeder Abend hat ein eigenes Labs-Formular mit Produkt (CHF 130).
+       Die Knöpfe schalten das Formular um; vergangene Abende sind gesperrt.
+       #termin-YYYY-MM-DD in der URL wählt einen Abend vor (Kalender-Links). */}
   <section class="circle-form" id="anmelden">
     <div class="circle-form__inner">
       <div class="circle-form__head">
         <Heading variant="eyebrow" class="circle-form__eyebrow">Anmeldung</Heading>
-        <Heading level={2} variant="h1" class="circle-form__title">Ab dem nächsten Treffen dabei</Heading>
+        <Heading level={2} variant="h1" class="circle-form__title">Termin wählen</Heading>
         <Text size="p1" class="circle-form__intro">
-          Trag Dich ein und schliesse die Zahlung sicher über zahls.ch ab — CHF 130.– pro Monat, monatlich kündbar. Danach erhältst Du alle Infos und den Zugang zur Telegram-Gruppe.
+          Wähl den Abend, an dem Du dabei sein möchtest, und schliesse die Zahlung sicher über zahls.ch ab — CHF 130.– pro Abend. Danach erhältst Du alle Infos per E-Mail.
         </Text>
       </div>
+
+      <div class="circle-dates" role="group" aria-label="Termine 2027" data-circle-dates>
+        {termine.map((t) => (
+          <button type="button" class="circle-dates__btn" data-date={t.date} data-embed={t.embed} data-lang={t.lang} aria-pressed="false">{t.label}</button>
+        ))}
+      </div>
+
+      <p class="circle-form__chosen" data-circle-chosen></p>
 
       <div class="circle-form__frame-wrap">
         <iframe
           class="circle-form__frame"
-          src="https://opus.alchemy.zuerich/api/f/zqE5fhFrIUKuzMPKSKpe1Q/page"
-          title="Anmeldung Systemic SoulCircle"
+          data-circle-frame
+          src={`https://opus.alchemy.zuerich/api/f/${termine[0].embed}/page`}
+          title="Anmeldung Soul Circle"
           loading="lazy"
           allow="payment"
         ></iframe>
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      var wrap = document.querySelector('[data-circle-dates]');
+      if (!wrap) return;
+      var btns = Array.prototype.slice.call(wrap.querySelectorAll('button'));
+      var frame = document.querySelector('[data-circle-frame]');
+      var chosen = document.querySelector('[data-circle-chosen]');
+      var today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Zurich' }).format(new Date());
+      btns.forEach(function (b) { if (b.dataset.date < today) { b.disabled = true; } });
+      function pick(b) {
+        if (!b || b.disabled) return;
+        btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        var src = 'https://opus.alchemy.zuerich/api/f/' + b.dataset.embed + '/page';
+        if (frame.getAttribute('src') !== src) frame.setAttribute('src', src);
+        chosen.textContent = 'Anmeldung für ' + b.dataset.lang + ', 17.00 – 20.00 Uhr';
+      }
+      btns.forEach(function (b) { b.addEventListener('click', function () { pick(b); }); });
+      var m = location.hash.match(/termin-(\d{4}-\d{2}-\d{2})/);
+      var pre = m && btns.find(function (b) { return b.dataset.date === m[1]; });
+      var next = btns.find(function (b) { return !b.disabled; });
+      if (!next) { chosen.textContent = 'Alle Termine 2027 sind vorbei.'; frame.hidden = true; return; }
+      pick(pre && !pre.disabled ? pre : next);
+      if (pre) document.getElementById('anmelden').scrollIntoView();
+    })();
+  </script>
 </BaseLayout>
 
 <style>
@@ -202,6 +252,7 @@ const infoCards = [
     gap: 32px;
   }
   .wissen-foot__caption { color: var(--c-cherrywood); text-align: center; }
+  .wissen-foot__link { color: inherit; text-decoration: underline; }
 
   .wissen-foot__cta {
     display: flex;
@@ -249,6 +300,18 @@ const infoCards = [
   .circle-form__title { color: var(--c-cherrywood); margin: 0; }
   .circle-form__intro { color: var(--c-cherrywood); margin: 0; }
 
+  .circle-dates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  @media (min-width: 640px) { .circle-dates { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .circle-dates__btn {
+    font-family: 'ES Park', serif; font-size: var(--p2-size); color: var(--c-cherrywood);
+    background: transparent; border: 1px solid var(--c-cherrywood); border-radius: 100px;
+    padding: 10px 12px; cursor: pointer; transition: background 200ms ease, color 200ms ease;
+  }
+  .circle-dates__btn:hover:not(:disabled) { background: rgba(96, 29, 29, 0.08); }
+  .circle-dates__btn[aria-pressed="true"] { background: var(--c-cherrywood); color: var(--c-spring-wood); }
+  .circle-dates__btn:disabled { cursor: default; text-decoration: line-through; border-color: rgba(96, 29, 29, 0.3); color: rgba(96, 29, 29, 0.45); }
+  .circle-dates__btn:focus-visible { outline: 2px solid var(--c-cherrywood); outline-offset: 2px; }
+  .circle-form__chosen { margin: 0; text-align: center; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--p1-size); }
   .circle-form__frame-wrap { width: 100%; }
   .circle-form__frame {
     width: 100%;
@@ -256,6 +319,8 @@ const infoCards = [
     min-height: 420px;
     border: 0;
     display: block;
+    border-radius: var(--radius-card);
+    overflow: hidden;
     transition: height 200ms ease;
   }
 

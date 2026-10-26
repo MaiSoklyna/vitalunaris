@@ -1,0 +1,210 @@
+---
+import PlaetzeHinweis from '@molecules/PlaetzeHinweis.astro';
+import { freiePlaetze } from '@lib/plaetze';
+const platz = await freiePlaetze('experience', Astro.locals);
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@organisms/Hero.astro';
+import NarrativeBlock from '@organisms/NarrativeBlock.astro';
+import InfoCardsRow from '@organisms/InfoCardsRow.astro';
+import ProcessSteps from '@organisms/ProcessSteps.astro';
+import Faq from '@organisms/Faq.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+import Button from '@atoms/Button.astro';
+
+/* Soulwork Experience (vormals "Soulwork Abendaufstellung"), Planung 2027.
+   Sechs Abende als ein Paket gebucht. Termine, Ort und Preis aus Theresias
+   Jahresplanung 2027 (nur regulärer Preis, kein Einführungspreis).
+   Buchung über Labs-Formular mit Produkt (zahls.ch). */
+
+/* Erster Durchgang 2027, jeweils Montag 17.00–20.00 Uhr */
+const termine = ['18. Januar', '25. Januar', '15. Februar', '1. März', '15. März', '5. April'];
+
+const steps = [
+  { number: '1', title: 'Du buchst', description: 'Du sicherst Dir einen der sechs Plätze für alle sechs Abende. Ein Vorgespräch braucht es nicht.', color: 'purple' },
+  { number: '2', title: 'Sechs Abende', description: 'An einem Abend stellst Du Dein eigenes Anliegen auf. An den anderen fünf stehst Du für die anderen in der Gruppe.', color: 'raspberry' },
+  { number: '3', title: 'Du entscheidest', description: 'Nach dem sechsten Abend ist Schluss. Ob und wie Du weitergehst, liegt ganz bei Dir.', color: 'aurora' },
+];
+
+/* ----- "Alles was Du wissen musst." — fact cards ----- */
+const infoCards = [
+  { eyebrow: 'Termine 2027', body: termine.map((t) => `Mo, ${t} · 17.00 – 20.00`).join('\n') },
+  { eyebrow: 'Wo', body: 'Praxis VitaLunaris\nEichenaustrasse 32\n9470 Buchs SG' },
+  { eyebrow: 'Gruppe', body: '6 Personen, 1 eigene Aufstellung pro Person' },
+  { eyebrow: 'Investition', body: 'CHF 690.– für alle 6 Abende' },
+];
+
+const faqItems = [
+  { question: 'Brauche ich Vorerfahrung?', answer: 'Nein. Die Soulwork Experience ist genau dafür da, Aufstellungsarbeit kennenzulernen.' },
+  { question: 'Muss ich vorher ein Gespräch führen?', answer: 'Nein. Du kannst die sechs Abende direkt buchen.' },
+  { question: 'Kann ich als Mann teilnehmen?', answer: 'Ja. Die Gruppe ist offen für Frauen und Männer.' },
+  { question: 'Was heisst Stellvertretung?', answer: 'Du stehst in der Aufstellung eines anderen Menschen für eine Person oder ein Thema aus seinem System. Du musst dafür nichts können. Du spürst hin und sagst, was Du wahrnimmst. Oft erkennst Du dabei auch etwas über Dich selbst.' },
+  { question: 'Kann ich einzelne Abende buchen?', answer: 'Nein. Die sechs Abende gehören zusammen, weil jede Person in der Gruppe einmal aufstellt und an den anderen Abenden für die anderen da ist.' },
+  { question: 'Verpflichte ich mich zu mehr?', answer: 'Nein. Du buchst die sechs Abende, danach ist Schluss. Eine weitere Begleitung gehört nicht dazu.' },
+  { question: 'Was ist der Unterschied zur grossen Aufstellungsgruppe?', answer: 'Die Soulwork Experience ist ein kleiner Rahmen zum Kennenlernen. Systemic Soulwork, die grosse Aufstellungsgruppe, läuft über ein halbes Jahr und begleitet Dich intensiv durch Deinen persönlichen Prozess. Danach kannst Du frei entscheiden, ob Du dorthin weitergehst.' },
+  { question: 'Reicht die Experience als Voraussetzung für die Systemic Soulcoach Ausbildung?', answer: 'Nein. Dafür brauchst Du die grosse Aufstellungsgruppe Systemic Soulwork.' },
+];
+---
+
+<BaseLayout
+  title="Soulwork Experience — Dein Anliegen an sechs Abenden | VitaLunaris"
+  description="Die Soulwork Experience: Du stellst Dein eigenes Anliegen auf, in einer festen Gruppe mit sechs Personen an sechs Abenden. Ohne Vorerfahrung, ohne Vorgespräch direkt buchbar."
+  currentPath="/aufstellen/soulwork-experience"
+>
+  <Hero
+    eyebrow="Soulwork Experience"
+    title="Schau Dein Thema<br />einmal von aussen an."
+    subtitle="Etwas beschäftigt Dich, und Du möchtest verstehen, was dahintersteckt. In der Soulwork Experience stellst Du Dein eigenes Anliegen auf, in einer kleinen, festen Gruppe an sechs Abenden."
+    ctaText="Platz sichern"
+    ctaHref="#buchen"
+    image="/images/ausbildung/aufstellung-theresia.jpg"
+    imageFocus="center center"
+  />
+
+  {/* ===================== Narrative — lavender gradient ===================== */}
+  <NarrativeBlock
+    tone="lavender-gradient"
+    imageSide="left"
+    image="/images/ausbildung/aufstellung-figur.jpg"
+    imageAlt="Figuren auf dem Systembrett"
+    title="Du siehst, was sonst verborgen bleibt."
+    body="An einem der sechs Abende ist Dein Anliegen dran. Menschen aus der Gruppe stehen für die Personen und Themen in Deinem System, und Du siehst von aussen, was Dich bewegt.<br /><br />An den anderen fünf Abenden stehst Du für andere. Oft erkennst Du gerade dort etwas über Dich selbst.<br /><br />Die Gruppe bleibt an allen Abenden dieselbe. So wächst Vertrauen, und Du kannst Dich von Abend zu Abend mehr einlassen."
+    bulletGroups={[
+      {
+        heading: 'Für Dich, wenn Du:',
+        items: [
+          'Aufstellungsarbeit zum ersten Mal erleben möchtest',
+          'ein eigenes Anliegen anschauen willst',
+          'einen klaren Rahmen ohne lange Verpflichtung suchst',
+          'spüren möchtest, ob die grosse Gruppe später zu Dir passt',
+        ],
+      },
+    ]}
+  />
+
+  <ProcessSteps
+    eyebrow="Der Ablauf"
+    title="So läuft es ab"
+    steps={steps}
+  />
+
+  {/* ===================== Alles was Du wissen musst. ===================== */}
+  <section class="wissen">
+    <div class="wissen__inner">
+      <Heading level={2} variant="h1" class="wissen__title">Alles was Du wissen musst.</Heading>
+    </div>
+  </section>
+
+  <InfoCardsRow cards={infoCards} />
+
+  <section class="wissen-foot">
+    <div class="wissen-foot__inner">
+      <div class="wissen-foot__cta">
+        <Button href="#buchen" variant="primary" size="lg">Platz sichern</Button>
+      </div>
+    </div>
+  </section>
+
+  {/* ===================== Buchung =====================
+       Formular (embed _CYSQODg7niAlEa6D6HgCw) mit dem Produkt
+       «Soulwork Experience · 6 Abende ab 18.01.2027» (CHF 690) verknüpft:
+       Der Submit erzeugt eine Bestellung und leitet auf die zahls.ch-Zahlseite. */}
+  <section class="buchen" id="buchen">
+    <div class="buchen__inner">
+      <Heading variant="eyebrow" class="buchen__eyebrow">Buchung</Heading>
+      <Heading level={2} variant="h1" class="buchen__title">Sichere Dir Deinen Platz</Heading>
+      <Text size="p1" class="buchen__intro">
+        Trag Dich ein und schliesse die Zahlung sicher über zahls.ch ab, CHF 690.– für alle sechs Abende. Danach erhältst Du alle Infos per E-Mail.
+      </Text>
+      <PlaetzeHinweis angebot="experience" />
+      {platz?.ausgebucht ? (
+        <div class="voll">
+          <p>Alle sechs Plätze sind vergeben. Möchtest Du auf die Warteliste oder beim nächsten Durchgang dabei sein? Schreib uns an <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a>.</p>
+        </div>
+      ) : (
+      <div class="buchen__frame-wrap">
+        <iframe
+          class="buchen__frame"
+          src="https://opus.alchemy.zuerich/api/f/_CYSQODg7niAlEa6D6HgCw/page"
+          title="Anmeldung Soulwork Experience"
+          loading="lazy"
+          allow="payment"
+        ></iframe>
+      </div>
+      )}
+    </div>
+  </section>
+
+  <Faq title="FAQ" items={faqItems} />
+</BaseLayout>
+
+<style>
+  /* ============================================================
+     WISSEN — "Alles was Du wissen musst." (header + cards + footer)
+     ============================================================ */
+  .wissen { background: var(--c-spring-wood); padding: 60px 20px 32px; }
+  @media (min-width: 768px)  { .wissen { padding: 80px 32px 40px; } }
+  @media (min-width: 1280px) { .wissen { padding: 90px 60px 48px; } }
+  @media (min-width: 1920px) { .wissen { padding: 120px 90px 64px; } }
+
+  .wissen__inner { max-width: 1740px; margin: 0 auto; }
+  .wissen__title { color: var(--c-cherrywood); text-align: center; margin: 0; }
+
+  /* Termine-Karte: ein Datum pro Zeile (Zeilenumbrüche im body) */
+  :global(.info-cards__body) { white-space: pre-line; }
+  /* Karten unterschiedlich hoch: Inhalt oben anschlagen statt mittig */
+  :global(section.info-cards .info-cards__card) { align-items: flex-start; }
+
+  .wissen-foot { background: var(--c-spring-wood); padding: 8px 20px 60px; }
+  @media (min-width: 768px)  { .wissen-foot { padding: 8px 32px 80px; } }
+  @media (min-width: 1280px) { .wissen-foot { padding: 8px 60px 90px; } }
+  @media (min-width: 1920px) { .wissen-foot { padding: 8px 90px 120px; } }
+
+  .wissen-foot__inner {
+    max-width: 1740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .wissen-foot__cta { display: flex; justify-content: center; width: 100%; }
+  .wissen-foot__cta :global(.btn) { width: 100%; max-width: 350px; }
+  @media (min-width: 640px) { .wissen-foot__cta :global(.btn) { width: auto; max-width: none; } }
+
+  /* ============================================================
+     BUCHEN — Labs-Formular mit Produkt (zahls.ch)
+     ============================================================ */
+  .buchen { background: var(--c-pale-gold); padding: 60px 20px; scroll-margin-top: 100px; }
+  @media (min-width: 768px)  { .buchen { padding: 80px 32px; } }
+  @media (min-width: 1280px) { .buchen { padding: 90px 60px; } }
+
+  .buchen__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+  .buchen__eyebrow { color: var(--c-cherrywood); }
+  .buchen__title { color: var(--c-cherrywood); margin: 0; }
+  .buchen__intro { color: var(--c-cherrywood); margin: 0 0 8px; }
+  .buchen__frame-wrap { width: 100%; }
+  .voll { border: 1px solid var(--c-cherrywood); border-radius: var(--radius-card); padding: 28px 24px; text-align: center; }
+  .voll p { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--p1-size); line-height: 1.5; }
+  .voll a { color: inherit; }
+
+  .buchen__frame {
+    width: 100%;
+    height: 520px;          /* sensible default before Scribe sizes it */
+    min-height: 420px;
+    border: 0;
+    display: block;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: height 200ms ease;
+  }
+</style>

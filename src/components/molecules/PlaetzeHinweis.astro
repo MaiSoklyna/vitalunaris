@@ -1,0 +1,36 @@
+---
+/* Zeigt «Noch X von 6 Plätzen frei» bzw. «Ausgebucht» für ein Angebot.
+   Rendert nichts, wenn die Platzzahl nicht abgefragt werden konnte. */
+import { freiePlaetze, plaetzeText, type Angebot } from '@lib/plaetze';
+
+interface Props { angebot: Angebot }
+const { angebot } = Astro.props;
+const p = await freiePlaetze(angebot, Astro.locals);
+const text = plaetzeText(p);
+---
+
+{text && (
+  <p class={`plaetze ${p?.ausgebucht ? 'plaetze--voll' : p && p.frei <= 2 ? 'plaetze--knapp' : ''}`}>
+    <span class="plaetze__dot" aria-hidden="true"></span>{text}
+  </p>
+)}
+
+<style>
+  .plaetze {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 6px 14px;
+    border: 1px solid var(--c-cherrywood);
+    border-radius: 100px;
+    font-family: 'ES Park', serif;
+    font-size: var(--p2-size);
+    color: var(--c-cherrywood);
+    background: var(--c-spring-wood);
+    align-self: center;
+  }
+  .plaetze__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-aurora); }
+  .plaetze--knapp .plaetze__dot { background: var(--c-fire); }
+  .plaetze--voll .plaetze__dot { background: var(--c-raspberry); }
+</style>

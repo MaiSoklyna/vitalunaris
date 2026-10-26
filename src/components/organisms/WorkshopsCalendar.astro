@@ -1,5 +1,5 @@
 ---
-type ChipColor = 'gold' | 'raspberry' | 'lavender' | 'fire';
+type ChipColor = 'gold' | 'raspberry' | 'lavender' | 'fire' | 'aurora' | 'sage';
 
 interface CalEvent {
   /** ISO date, YYYY-MM-DD */
@@ -7,6 +7,10 @@ interface CalEvent {
   label: string;
   color?: ChipColor;
   href?: string;
+  /** Small uppercase line above the title, e.g. 'Einzelkurs'. */
+  kind?: string;
+  /** Small line below the title, e.g. '18:15 Uhr · online'. */
+  meta?: string;
 }
 
 interface Props {
@@ -83,7 +87,7 @@ const months = monthKeys.map(buildMonth);
         </div>
 
         {months.map((month, i) => (
-          <div class="cal__days" data-cal-panel data-cal-label={month.label} hidden={i !== 0}>
+          <div class="cal__days" data-cal-panel data-cal-key={month.key} data-cal-label={month.label} hidden={i !== 0}>
             {month.cells.map((cell) =>
               cell === null ? (
                 <div class="cal__cell cal__cell--empty" aria-hidden="true"></div>
@@ -97,7 +101,9 @@ const months = monthKeys.map(buildMonth);
                         class={`cal__event cal__event--${ev.color ?? 'gold'}`}
                         {...(ev.href ? { href: ev.href } : {})}
                       >
-                        {ev.label}
+                        {ev.kind && <span class="cal__event-kind">{ev.kind}</span>}
+                        <span class="cal__event-title">{ev.label}</span>
+                        {ev.meta && <span class="cal__event-meta">{ev.meta}</span>}
                       </Tag>
                     );
                   })}
@@ -119,8 +125,12 @@ const months = monthKeys.map(buildMonth);
     const next = root.querySelector<HTMLButtonElement>('[data-cal-next]');
     if (!panels.length) return;
 
-    let i = panels.findIndex((p) => !p.hidden);
-    if (i < 0) i = 0;
+    /* Start im aktuellen Monat; liegt er ausserhalb, im nächsten Monat mit
+       Terminen (bzw. im letzten, wenn alles vorbei ist). */
+    const now = new Date();
+    const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    let i = panels.findIndex((p) => (p.dataset.calKey ?? '') >= thisMonth);
+    if (i < 0) i = panels.length - 1;
 
     const show = (n: number) => {
       i = Math.max(0, Math.min(panels.length - 1, n));
@@ -248,17 +258,32 @@ const months = monthKeys.map(buildMonth);
   }
 
   /* Event chips */
+  /* Höchstens ein Termin pro Tag: der Chip füllt die Zelle unter dem Datum. */
   .cal__event {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     align-self: stretch;
-    padding: 6px 10px;
-    border-radius: 8px;
+    flex: 1 1 auto;
+    padding: 10px 12px;
+    border-radius: 10px;
     font-family: 'ES Park', serif;
     font-weight: var(--weight-medium);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.25;
     text-decoration: none;
   }
+  @media (min-width: 1280px) { .cal__event { padding: 12px 14px; font-size: 16px; } }
+  .cal__event-kind {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  @media (min-width: 1280px) { .cal__event-kind { font-size: 11px; } }
+  .cal__event-title { overflow-wrap: anywhere; }
+  .cal__event-meta { font-size: 12px; font-weight: var(--weight-regular); }
+  @media (min-width: 1280px) { .cal__event-meta { font-size: 13px; } }
   a.cal__event { transition: filter 200ms ease; }
   a.cal__event:hover { filter: brightness(0.95); }
 
@@ -266,6 +291,8 @@ const months = monthKeys.map(buildMonth);
   .cal__event--raspberry { background: rgba(159, 75, 103, 0.18); color: var(--c-raspberry); }
   .cal__event--lavender  { background: rgba(142, 132, 182, 0.22); color: var(--c-lavender); }
   .cal__event--fire      { background: rgba(236, 159, 39, 0.20); color: var(--c-fire); }
+  .cal__event--aurora    { background: rgba(135, 198, 179, 0.30); color: #2F6B5A; }
+  .cal__event--sage      { background: rgba(180, 173, 39, 0.20); color: #6B6614; }
 
   .cal--empty {
     padding: 32px;

@@ -6,7 +6,8 @@
 @font-face {
   font-family: 'ES Park';
   src: url('/fonts/ESPark-Regular.woff2') format('woff2'),
-       url('/fonts/ESPark-Regular.woff') format('woff');
+       url('/fonts/ESPark-Regular.woff') format('woff'),
+       url('https://vitalunaris.ch/fonts/ESPark-Regular.woff2') format('woff2'); /* Fallback, falls lokal ohne CORS */
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -14,8 +15,54 @@
 @font-face {
   font-family: 'ES Park';
   src: url('/fonts/ESPark-Italic.woff2') format('woff2'),
-       url('/fonts/ESPark-Italic.woff') format('woff');
+       url('/fonts/ESPark-Italic.woff') format('woff'),
+       url('https://vitalunaris.ch/fonts/ESPark-Italic.woff2') format('woff2'); /* Fallback, falls lokal ohne CORS */
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
+
+/* ---- Gestaltung für die Labs-Formulare (lädt mit der Schrift mit) ----
+   Labs bietet für Auswahlfelder und den Fortschritt keine eigenen Einstellungen.
+   Diese Datei wird vom Formular ohnehin geladen, darum steht die Gestaltung hier.
+   Wirkt erst, wenn die Datei live ist (Deploy). */
+
+/* Auswahl als Karten untereinander: Kreis links, Text rechts (Zeilenumbrüche aus Labs bleiben) */
+.aw-field div:has(> .aw-pill) {
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+.aw-pill {
+  width: 100%;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  padding: 18px 22px !important;
+  border-radius: 18px !important;
+  text-align: left !important;
+  white-space: pre-line;
+  line-height: 1.4;
+}
+.aw-pill .check { margin-top: 3px; }
+/* Erste Zeile einer Option (z.B. «6 Monatsraten») hervorheben */
+.aw-pill > span:last-child::first-line { font-size: 1.12em; }
+
+/* Fortschritt als Stepper: der Balken wird in 12 Segmente geteilt. Die Lücken sitzen
+   mittig auf den Grenzen, so verschluckt sich das Runden des Fortschritts (ganze %).
+   (Anmeldung Systemic Soulwork hat 12 Schritte; andere Formulare sind einseitig). */
+.aw-progress {
+  height: 6px !important;
+  border-radius: 0 !important;
+  -webkit-mask: repeating-linear-gradient(90deg, transparent 0 4px, #000 4px calc(100% / 12 - 4px), transparent calc(100% / 12 - 4px) calc(100% / 12));
+          mask: repeating-linear-gradient(90deg, transparent 0 4px, #000 4px calc(100% / 12 - 4px), transparent calc(100% / 12 - 4px) calc(100% / 12));
+  opacity: 1;
+}
+.aw-progress { background: rgba(96, 29, 29, 0.18) !important; }
+
+/* Lesbarkeit: Info-Text, Fragen und Schritt-Titel grösser */
+.aw-page-title { font-size: 24px !important; font-weight: 400 !important; line-height: 1.2; margin-bottom: 14px !important; }
+.aw-page-subtitle { font-size: 17px !important; line-height: 1.55; margin-bottom: 28px !important; white-space: pre-line; } /* Absätze und • Listen aus Labs */
+.aw-label { font-size: 19px !important; font-weight: 400 !important; line-height: 1.35; margin-bottom: 14px !important; }
+.aw-pill { font-size: 17px !important; }
+.aw-field { margin-bottom: 32px !important; }

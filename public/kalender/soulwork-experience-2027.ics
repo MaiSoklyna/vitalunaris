@@ -1,0 +1,55 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//VitaLunaris//Soulwork Experience 2027//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Soulwork Experience 2027
+BEGIN:VEVENT
+UID:soulwork-experience-2027-1@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270118T160000Z
+DTEND:20270118T190000Z
+SUMMARY:Soulwork Experience · Abend 1 von 6
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:soulwork-experience-2027-2@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270125T160000Z
+DTEND:20270125T190000Z
+SUMMARY:Soulwork Experience · Abend 2 von 6
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:soulwork-experience-2027-3@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270215T160000Z
+DTEND:20270215T190000Z
+SUMMARY:Soulwork Experience · Abend 3 von 6
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:soulwork-experience-2027-4@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270301T160000Z
+DTEND:20270301T190000Z
+SUMMARY:Soulwork Experience · Abend 4 von 6
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:soulwork-experience-2027-5@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270315T160000Z
+DTEND:20270315T190000Z
+SUMMARY:Soulwork Experience · Abend 5 von 6
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:soulwork-experience-2027-6@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270405T150000Z
+DTEND:20270405T180000Z
+SUMMARY:Soulwork Experience · Abend 6 von 6
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+END:VCALENDAR

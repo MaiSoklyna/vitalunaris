@@ -1,0 +1,182 @@
+---
+import PlaetzeHinweis from '@molecules/PlaetzeHinweis.astro';
+import { freiePlaetze } from '@lib/plaetze';
+const platz = await freiePlaetze('soulwork', Astro.locals);
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Heading from '@atoms/Heading.astro';
+import Text from '@atoms/Text.astro';
+
+/* Versteckte Anmeldeseite (nicht verlinkt, noindex, nicht in der Sitemap).
+   Theresia schickt den Link nach dem Kennenlerngespräch. Formular (verbindliche
+   Anmeldung mit Teilnahmebedingungen, 12 Schritte) mit Labs-Produkt
+   «Systemic Soulwork 2027 · Anzahlung» (CHF 450.–) verknüpft:
+   Submit -> Bestellung -> zahls.ch -> Bestätigungsmail mit allen Terminen.
+   Den Restbetrag stellt Theresia je nach gewählter Zahlungsweise selbst in Rechnung. */
+const zahlweisen = [
+  { name: 'Einmalzahlung', rest: 'Rest CHF 3’350.–', total: 'gesamt CHF 3’800.–' },
+  { name: '6 Monatsraten', rest: 'Rest 6 × CHF 575.–', total: 'gesamt CHF 3’900.–' },
+  { name: '10 Monatsraten', rest: 'Rest 10 × CHF 355.–', total: 'gesamt CHF 4’000.–' },
+];
+const module = [
+  { name: 'Modul 1', tage: ['Do, 14. Januar · 10.00 – 17.00 · Online', 'Mi, 20. Januar · 09.15 – 17.00 · Präsenz', 'Do, 21. Januar · 09.15 – 17.00 · Präsenz', 'Mi, 27. Januar · 09.15 – 17.00 · Präsenz', 'Do, 28. Januar · 09.15 – 17.00 · Präsenz', 'Mi, 17. Februar · 10.00 – 17.00 · Online', 'Do, 18. Februar · 10.00 – 17.00 · Online'] },
+  { name: 'Modul 2', tage: ['Do, 4. März · 10.00 – 17.00 · Online', 'Mi, 10. März · 09.15 – 17.00 · Präsenz', 'Do, 11. März · 09.15 – 17.00 · Präsenz', 'Mi, 17. März · 09.15 – 17.00 · Präsenz', 'Do, 18. März · 09.15 – 17.00 · Präsenz', 'Mi, 31. März · 10.00 – 17.00 · Online', 'Do, 1. April · 10.00 – 17.00 · Online'] },
+  { name: 'Modul 3', tage: ['Do, 27. Mai · 10.00 – 17.00 · Online', 'Mi, 2. Juni · 09.15 – 17.00 · Präsenz', 'Do, 3. Juni · 09.15 – 17.00 · Präsenz', 'Mi, 9. Juni · 09.15 – 17.00 · Präsenz', 'Do, 10. Juni · 09.15 – 17.00 · Präsenz', 'Mi, 16. Juni · 10.00 – 17.00 · Online', 'Do, 17. Juni · 10.00 – 17.00 · Online (Abschluss)'] },
+];
+---
+
+<BaseLayout
+  title="Anmeldung Systemic Soulwork 2027 | VitaLunaris"
+  description="Verbindliche Anmeldung zur Aufstellungsgruppe Systemic Soulwork 2027."
+  currentPath="/aufstellen/systemic-soulwork"
+  noindex
+>
+  <section class="anm">
+    <div class="anm__inner">
+      <header class="anm__head">
+        <Heading variant="eyebrow" class="anm__eyebrow">Systemic Soulwork 2027</Heading>
+        <PlaetzeHinweis angebot="soulwork" />
+        <Heading level={1} class="anm__title">Deine Anmeldung</Heading>
+        <Text size="p1" class="anm__intro">
+          Schön, dass Du nach unserem Gespräch dabei bist. Mit der Anzahlung von CHF 450.– ist Dein Platz in der Gruppe verbindlich reserviert. Danach erhältst Du alle Termine und Infos per E-Mail.
+        </Text>
+      </header>
+
+      <div class="anm__facts">
+        <div class="anm__fact"><span class="anm__label">Zeitraum</span><p>14. Januar – 17. Juni 2027</p></div>
+        <div class="anm__fact"><span class="anm__label">Anzahlung</span><p>CHF 450.–</p></div>
+        <div class="anm__fact"><span class="anm__label">Gruppe</span><p>3 Module · 21 Tage</p></div>
+      </div>
+
+      <section class="abschnitt">
+        <div class="abschnitt__kopf"><span class="abschnitt__nr">01</span><h2 class="abschnitt__titel">Termine</h2></div>
+        <div class="anm__module">
+          {module.map((m) => (
+            <article class="anm__modul">
+              <h3 class="anm__modul-title">{m.name}</h3>
+              <ul class="anm__tage">{m.tage.map((d) => <li>{d}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+        <p class="abschnitt__text">Präsenztage in der Praxis VitaLunaris, Eichenaustrasse 32, 9470 Buchs SG.</p>
+      </section>
+
+      <section class="abschnitt">
+        <div class="abschnitt__kopf"><span class="abschnitt__nr">02</span><h2 class="abschnitt__titel">So bezahlst Du</h2></div>
+        <p class="abschnitt__text">Heute leistest Du die Anzahlung von CHF 450.–. Im Formular wählst Du, wie Du den Rest bezahlen möchtest, die Rechnung dafür schickt Dir Theresia nach der Anmeldung. Die nächste Zahlung ist am 10. Januar 2027 fällig, Raten jeweils am 10. des Folgemonats.</p>
+        <div class="zahl__optionen">
+          {zahlweisen.map((z) => (
+            <div class="zahl__option">
+              <span class="anm__label">{z.name}</span>
+              <p class="zahl__rest">{z.rest}</p>
+              <p class="zahl__total">{z.total}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="abschnitt">
+        <div class="abschnitt__kopf"><span class="abschnitt__nr">03</span><h2 class="abschnitt__titel">Anmeldung</h2></div>
+        <p class="abschnitt__text">Im Formular liest Du die Teilnahmebedingungen und bestätigst sie Schritt für Schritt mit einem Häkchen. Das dauert etwa 10 Minuten.</p>
+        <div class="vertraulich">
+          <span class="anm__label">Vertraulich</span>
+          <p class="vertraulich__text">Alle Deine Angaben, besonders die zur Gesundheit, werden streng vertraulich behandelt, nicht an Dritte weitergegeben und nur für die Durchführung der Gruppe verwendet.</p>
+        </div>
+
+        {platz?.ausgebucht ? (
+          <div class="voll">
+            <p>Die Gruppe ist ausgebucht, alle sechs Plätze sind vergeben. Schreib Theresia an <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a>, dann schauen wir gemeinsam weiter.</p>
+          </div>
+        ) : (
+        <iframe
+          class="anm__frame"
+          src="https://opus.alchemy.zuerich/api/f/mp-oPMywam16J0_WK8r2vQ/page?v=2"
+          title="Verbindliche Anmeldung Systemic Soulwork 2027"
+          loading="lazy"
+          allow="payment"
+          data-embed="mp-oPMywam16J0_WK8r2vQ"
+        ></iframe>
+        )}
+      </section>
+
+      <script>
+        /* Das Labs-Formular meldet seine Höhe und jeden Schrittwechsel per postMessage.
+           So wächst der Rahmen mit, und bei «Weiter» springt die Seite an den Formularanfang. */
+        const frame = document.querySelector<HTMLIFrameElement>('.anm__frame');
+        window.addEventListener('message', (e) => {
+          if (!frame || e.origin !== 'https://opus.alchemy.zuerich') return;
+          const d = e.data || {};
+          if (d.embedCode !== frame.dataset.embed) return;
+          if (d.type === 'alchemy-labs-form-resize' && d.height) frame.style.height = `${d.height}px`;
+          if (d.type === 'alchemy-labs-form-scroll') frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      </script>
+
+      <p class="anm__note">Fragen? <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .anm { background: var(--c-spring-wood); padding: 140px 20px 100px; }
+  @media (min-width: 768px)  { .anm { padding: 160px 32px 120px; } }
+  .anm__inner { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+
+  /* Kopf: linksbündig, Platzanzeige zwischen Dachzeile und Titel */
+  .anm__head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .anm__head :global(.plaetze) { align-self: flex-start; }
+  .anm__eyebrow, .anm__label {
+    display: block; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-weight: var(--weight-medium);
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--eyebrow-size);
+  }
+  .anm__title { color: var(--c-cherrywood); font-family: 'ES Park', serif; font-weight: var(--weight-regular); font-size: var(--h1-size); line-height: 1.1; margin: 0; }
+  .anm__intro { color: var(--c-cherrywood); max-width: 60ch; }
+
+  /* Eckdaten als ruhige Leiste */
+  .anm__facts {
+    display: grid; grid-template-columns: 1fr;
+    border-top: 1px solid var(--c-cherrywood); border-bottom: 1px solid var(--c-cherrywood);
+  }
+  @media (min-width: 768px) { .anm__facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .anm__fact { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; min-width: 0; }
+  .anm__fact + .anm__fact { border-top: 1px solid var(--c-cherrywood); }
+  @media (min-width: 768px) {
+    .anm__fact + .anm__fact { border-top: 0; border-left: 1px solid var(--c-cherrywood); padding-left: 24px; }
+  }
+  .anm__fact p { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--p1-size); line-height: 1.3; }
+
+  /* Abschnitte 01–03: Nummer + Titel links, Linie darüber */
+  .abschnitt { display: flex; flex-direction: column; gap: 20px; }
+  .abschnitt__kopf { display: flex; align-items: baseline; gap: 16px; padding-top: 18px; border-top: 1px solid var(--c-cherrywood); }
+  .abschnitt__nr { color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--eyebrow-size); letter-spacing: 0.08em; }
+  .abschnitt__titel { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-weight: var(--weight-regular); font-size: var(--h3-size); line-height: 1.1; }
+  .abschnitt__text { margin: 0; max-width: 64ch; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--p1-size); line-height: 1.5; }
+
+  .anm__module { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 960px) { .anm__module { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .anm__modul {
+    border: 1px solid var(--c-cherrywood); border-radius: var(--radius-card-sm); padding: 22px 22px 24px;
+    display: flex; flex-direction: column; gap: 14px; min-width: 0;
+  }
+  .anm__modul-title { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-weight: var(--weight-medium); text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--eyebrow-size); line-height: 1.2; }
+  .anm__tage { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .anm__tage li { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--p2-size); line-height: 1.5; }
+
+  .zahl__optionen { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { .zahl__optionen { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .zahl__option { border: 1px solid var(--c-cherrywood); border-radius: var(--radius-card-sm); padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .zahl__option p { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; line-height: 1.3; }
+  .zahl__rest { font-size: var(--p1-size); }
+  .zahl__total { font-size: var(--p2-size); }
+
+  /* Vertraulich: farbiger Block in Lavendel, volle Breite, heller Text wie im Lehrerinnen-Band */
+  .vertraulich { background: var(--c-lavender); border-radius: var(--radius-card-sm); padding: 28px 32px; display: flex; flex-direction: column; gap: 10px; }
+  .vertraulich .anm__label { color: var(--c-spring-wood); }
+  .vertraulich__text { margin: 0; max-width: 70ch; color: var(--c-spring-wood); font-family: 'ES Park', serif; font-size: var(--p1-size); line-height: 1.45; }
+
+  .anm__note { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--p2-size); }
+  .anm__note a { color: inherit; }
+  .voll { border: 1px solid var(--c-cherrywood); border-radius: var(--radius-card); padding: 28px 24px; }
+  .voll p { margin: 0; color: var(--c-cherrywood); font-family: 'ES Park', serif; font-size: var(--p1-size); line-height: 1.5; }
+  .voll a { color: inherit; }
+  .anm__frame { width: 100%; height: 900px; min-height: 420px; border: 0; display: block; border-radius: var(--radius-card); overflow: hidden; scroll-margin-top: 120px; }
+</style>

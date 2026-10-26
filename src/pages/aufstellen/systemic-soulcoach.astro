@@ -1,4 +1,5 @@
 ---
+import PlaetzeHinweis from '@molecules/PlaetzeHinweis.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@organisms/Hero.astro';
 import NarrativeBlock from '@organisms/NarrativeBlock.astro';
@@ -81,35 +82,45 @@ const reviews = _reviews.length ? _reviews : [
 
 /* ----- "Alles was Du wissen musst." — fact cards ----- */
 const infoCards = d.info_cards?.length ? d.info_cards : [
-  { eyebrow: 'Start', body: 'Einmal jährlich — im September' },
-  { eyebrow: 'Format', body: 'Geschlossener Block, 3 Monate' },
+  { eyebrow: 'Zeitraum', body: '9. September bis 2. Dezember 2027' },
+  { eyebrow: 'Format', body: 'Geschlossene Gruppe, 15 Tage + 3 Q&A' },
   { eyebrow: 'Durchführung', body: 'Hybrid — Präsenz + online, max. 6 Personen' },
-  { eyebrow: 'Investition', body: 'CHF 3’800.–' },
+  { eyebrow: 'Investition', body: 'CHF 3’800.– inkl. eigenem Aufstellungsbrett' },
+];
+
+/* ----- Termine 2027 (aus Theresias Jahresplanung) ----- */
+/* Zuordnung der Termine zu den 4 Modulen nach Monat (Annahme, von Theresia
+   zu bestätigen): Modul 1 September, 2 Oktober, 3 November, 4 Dezember. */
+const termine2027 = [
+  { eyebrow: 'Modul 1 · September', body: 'Do, 9. Sept. · 10.00 – 17.00 · Online (Start)\nMi, 15. Sept. · 09.15 – 17.00 · Präsenz\nDo, 16. Sept. · 09.15 – 17.00 · Präsenz\nMi, 22. Sept. · 09.15 – 17.00 · Präsenz\nDo, 23. Sept. · 09.15 – 17.00 · Präsenz\nDo, 30. Sept. · 17.00 – 18.00 · Q&A' },
+  { eyebrow: 'Modul 2 · Oktober', body: 'Mi, 6. Okt. · 10.00 – 17.00 · Online\nDo, 7. Okt. · 10.00 – 17.00 · Online\nMi, 20. Okt. · 09.15 – 17.00 · Präsenz\nDo, 21. Okt. · 09.15 – 17.00 · Präsenz\nDo, 28. Okt. · 17.00 – 18.00 · Q&A' },
+  { eyebrow: 'Modul 3 · November', body: 'Mi, 3. Nov. · 09.15 – 17.00 · Präsenz\nDo, 4. Nov. · 09.15 – 17.00 · Präsenz\nMi, 17. Nov. · 09.15 – 17.00 · Präsenz\nDo, 18. Nov. · 09.15 – 17.00 · Präsenz\nDo, 25. Nov. · 17.00 – 18.00 · Q&A' },
+  { eyebrow: 'Modul 4 · Dezember', body: 'Mi, 1. Dez. · 09.15 – 17.00 · Präsenz\nDo, 2. Dez. · 09.15 – 17.00 · Präsenz (Abschluss)' },
 ];
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
 const faqItems = d.faq_items?.length ? d.faq_items : [
-  { question: 'Was kann ich danach?', answer: 'Du leitest eigene systemische Aufstellungsgruppen — Einzelarbeit wie Gruppenformate. Du kennst die Methode, kannst Dynamiken lesen und weisst, wie Du einen Prozess sicher hältst.' },
-  { question: 'Welche Voraussetzung gibt es?', answer: 'Alle drei Soulwork-Module. Du kannst nur dorthin begleiten, wo Du selbst schon warst — deshalb steht die eigene Erfahrung am Anfang. Eine vergleichbare Selbsterfahrung anderswo ist nach Rücksprache möglich.' },
-  { question: 'Bekomme ich ein Zertifikat?', answer: 'Ja. Nach erfolgreichem Abschluss erhältst Du ein Zertifikat als Systemic Soulcoach.' },
+  { question: 'Was kann ich danach?', answer: 'Du begleitest Menschen selbstständig mit systemischen Aufstellungen — in Einzelbegleitungen, Gruppen und online. Du kennst die Methode, kannst Dynamiken lesen und weisst, wie Du einen Prozess sicher hältst.' },
+  { question: 'Welche Voraussetzung gibt es?', answer: 'Die abgeschlossene Aufstellungsgruppe Systemic Soulwork. Du kannst nur dorthin begleiten, wo Du selbst schon warst — deshalb steht die eigene Erfahrung am Anfang. Die sechs Abende der Soulwork Experience reichen dafür nicht aus.' },
+  { question: 'Bekomme ich ein Zertifikat?', answer: 'Ja. Nach erfolgreichem Abschluss erhältst Du das Zertifikat als Systemic Soulcoach. Dafür braucht es mindestens 80 % Anwesenheit und eine schriftliche Abschlussarbeit, in der Du zwei eigene Klientenprozesse begleitest und dokumentierst.' },
   { question: 'Kann ich damit selbständig arbeiten?', answer: 'Ja. Als eigene Praxis oder integriert in Deine bestehende Tätigkeit — als Beraterin, Therapeutin, Coach oder in der Begleitung von Teams.' },
-  { question: 'Wann startet die Ausbildung?', answer: 'Einmal im Jahr, jeweils im September. Die Gruppe geht die drei Monate gemeinsam durch — einen Zwischeneinstieg gibt es nicht.' },
-  { question: 'Wie ist die Ausbildung aufgebaut?', answer: 'Ein geschlossener Block über drei Monate — nicht einzeln buchbar. Die Gruppe geht den ganzen Weg zusammen: Aufstellen & Wahrnehmen, Nervensystem & Tiefe, Energie & Ahnenlinien, Prozessführung & Abschluss. Du leitest von Anfang an selbst, begleitet und mit Feedback.' },
-  { question: 'Kann ich rein online teilnehmen?', answer: 'Nein. Eine Gruppe zu leiten lernst Du nur im Raum mit echten Menschen. Die Präsenztage sind fester Bestandteil, ergänzt durch Online-Termine.' },
-  { question: 'Wie gross ist die Gruppe?', answer: 'Maximal 6 Personen. So kommt jede:r oft genug in die Leitungsrolle.' },
-  { question: 'Was kostet die Ausbildung?', answer: 'CHF 3’800.–. Ratenzahlung ist möglich — die Details besprechen wir im Erstgespräch.' },
+  { question: 'Wann startet die Ausbildung?', answer: 'Am 9. September 2027, Abschluss am 2. Dezember 2027. Die Gruppe geht den ganzen Weg gemeinsam — einen Zwischeneinstieg gibt es nicht.' },
+  { question: 'Wie ist die Ausbildung aufgebaut?', answer: 'Ein geschlossener Block von September bis Dezember — nicht einzeln buchbar. Die Gruppe geht den ganzen Weg zusammen: Aufstellen & Wahrnehmen, Nervensystem & Tiefe, Energie & Ahnenlinien, Prozessführung & Abschluss. Du begleitest von Anfang an selbst Aufstellungen, angeleitet und mit Feedback.' },
+  { question: 'Kann ich rein online teilnehmen?', answer: 'Nein. Aufstellungen zu begleiten lernst Du nur im Raum mit echten Menschen. Die Präsenztage sind fester Bestandteil, ergänzt durch Online-Termine.' },
+  { question: 'Wie gross ist die Gruppe?', answer: 'Maximal 6 Personen. So kommt jede oft genug selbst ins Begleiten.' },
+  { question: 'Was kostet die Ausbildung?', answer: 'CHF 3’800.– inklusive Deinem eigenen Aufstellungsbrett, bei Einmalzahlung. In Raten: 6 × CHF 575.– (gesamt CHF 3’900.–) oder 10 × CHF 355.– (gesamt CHF 4’000.–). Deinen Platz sicherst Du mit einer Anzahlung von CHF 450.–, die angerechnet wird.' },
 ];
 ---
 
 <BaseLayout
-  title="Systemic Soulcoach — Ausbildung zur Aufstellungsleitung | VitaLunaris"
-  description="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen — lerne, eigene systemische Aufstellungsgruppen zu leiten. Mit Methode, Haltung und über 30 Jahren Praxiserfahrung."
-  currentPath="/ausbildung/systemic-soulcoach"
+  title="Systemic Soulcoach — Ausbildung zur Aufstellungsbegleitung | VitaLunaris"
+  description="Die Ausbildung zum Systemic Soulcoach bei Theresia Jansen — lerne, Menschen selbstständig mit systemischen Aufstellungen zu begleiten. Mit Methode, Haltung und über 30 Jahren Praxiserfahrung."
+  currentPath="/aufstellen/systemic-soulcoach"
 >
   <Hero
     eyebrow={d.hero_eyebrow || 'Ausbildung · Systemic Soulcoach'}
-    title={d.hero_title || 'Leite Deine eigenen<br />Aufstellungs&shy;gruppen.'}
-    subtitle={d.hero_subtitle || 'Für alle, die systemisches Aufstellen nicht nur erleben, sondern selbst anleiten wollen. Du lernst, Gruppen sicher zu führen, Dynamiken im Raum zu lesen und Menschen verantwortungsvoll durch tiefe Prozesse zu begleiten.<br /><br />Drei Monate als geschlossene Gruppe. Am Ende leitest Du Deine eigenen Aufstellungsgruppen — als eigene Praxis oder als Teil Deiner bestehenden Arbeit.'}
+    title={d.hero_title || 'Begleite Menschen mit<br />systemischen Aufstellungen.'}
+    subtitle={d.hero_subtitle || 'Für alle, die systemisches Aufstellen nicht nur erleben, sondern selbst anleiten wollen. Du lernst, Aufstellungen sicher anzuleiten, Dynamiken im Raum zu lesen und Menschen verantwortungsvoll durch tiefe Prozesse zu begleiten.<br /><br />Von September bis Dezember 2027 als geschlossene Gruppe. Am Ende begleitest Du Menschen selbstständig mit Aufstellungen — einzeln, in Gruppen und online, als eigene Praxis oder als Teil Deiner bestehenden Arbeit.'}
     ctaText={CTA_ANMELDEN}
     ctaHref={CTA_HREF}
     image={imageUrl(d.hero_image) || '/images/placeholder/Placeholder-8.jpg'}
@@ -121,14 +132,14 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     imageSide="left"
     image={imageUrl(d.narrative_image) || '/images/placeholder/Placeholder-11.jpg'}
     imageAlt=""
-    title={d.narrative_title || 'Eine Aufstellung zu leiten heisst, den Raum zu halten.'}
+    title={d.narrative_title || 'Eine Aufstellung zu begleiten heisst, den Raum zu halten.'}
     body={nl2br(d.narrative_body) || 'Vielleicht kennst Du das Gefühl, wenn eine Aufstellung kippt und plötzlich etwas Echtes sichtbar wird. Diesen Moment zu halten — dafür braucht es mehr als eine Methode.<br /><br />Du lernst, Gruppen sicher zu führen: Dynamiken wahrnehmen, im richtigen Moment eingreifen und im richtigen Moment nichts tun. Sicherheit in der Gesprächsführung, auch wenn es emotional wird. Und die Verantwortung, die dazugehört, wenn Menschen sich vor Dir öffnen.<br /><br />Es geht nicht darum, eine Technik auswendig zu lernen. Sondern darum, Deinen eigenen Stil als Leiterin zu finden.'}
   />
 
   {/* ===================== In den drei Monaten — outcomes arc ===================== */}
   <section class="outcomes">
     <header class="outcomes__header">
-      <Heading level={2} variant="h1" class="outcomes__title">{d.outcomes_title || 'Was Du in den drei Monaten lernst:'}</Heading>
+      <Heading level={2} variant="h1" class="outcomes__title">{d.outcomes_title || 'Was Du in der Ausbildung lernst:'}</Heading>
     </header>
 
     {/* Desktop (≥1024px): single curve + absolutely positioned cards at ≥1072 */}
@@ -178,7 +189,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     image={imageUrl(d.narrative2_image) || '/images/ausbildung/soulcoach-danach.jpg'}
     imageAlt=""
     title={d.narrative2_title || 'Und danach?'}
-    body={nl2br(d.narrative2_body) || 'Du erhältst ein Zertifikat als Systemic Soulcoach und kannst eigene Aufstellungsgruppen leiten — als eigene Praxis oder integriert in Deine bestehende Arbeit als Beraterin, Therapeutin oder Coach.'}
+    body={nl2br(d.narrative2_body) || 'Du erhältst das Zertifikat als Systemic Soulcoach und begleitest Menschen selbstständig mit Aufstellungen — als eigene Praxis oder integriert in Deine bestehende Arbeit als Beraterin, Therapeutin oder Coach.'}
   />
 
   {/* ===================== Nach dieser Ausbildung arbeitest Du anders. ===================== */}
@@ -242,7 +253,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   <ProcessSteps
     title="So kommst Du rein"
     steps={[
-      { number: '1', title: 'Vorgespräch', description: 'Wir schauen gemeinsam, ob Du bereit bist für die Leitungsrolle — und ob es für uns beide passt.', color: 'purple' },
+      { number: '1', title: 'Vorgespräch', description: 'Wir schauen gemeinsam, ob Du bereit bist, andere zu begleiten — und ob es für uns beide passt.', color: 'purple' },
       { number: '2', title: 'Anmeldung', description: 'Wenn es stimmt, sicherst Du Dir Deinen Platz in der Gruppe.', color: 'raspberry' },
       { number: '3', title: 'Loslegen', description: 'Du erhältst alle Zugänge und startest am nächsten Startdatum.', color: 'aurora' },
     ]}
@@ -259,11 +270,22 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
 
   <InfoCardsRow cards={infoCards} />
 
+  {/* ===================== Termine 2027 ===================== */}
+  <section class="wissen">
+    <div class="wissen__inner">
+      <Heading level={2} variant="h1" class="wissen__title">Termine 2027.</Heading>
+    </div>
+  </section>
+
+  <InfoCardsRow cards={termine2027} />
+
+
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
       <Text size="p1" class="wissen-foot__caption">
-        <Fragment set:html={d.schedule_caption || 'Voraussetzung: alle drei Soulwork-Module — oder eine vergleichbare systemische Selbsterfahrung nach Rücksprache. Die Ausbildung läuft als geschlossener Block über drei Monate.'} />
+        <Fragment set:html={d.schedule_caption || 'Voraussetzung: die abgeschlossene Aufstellungsgruppe Systemic Soulwork.'} />
       </Text>
+      <PlaetzeHinweis angebot="soulcoach" />
       <div class="wissen-foot__cta">
         <Button href={CTA_HREF} variant="primary" size="lg" class="wissen-foot__btn">{CTA_ANMELDEN}</Button>
       </div>
@@ -275,7 +297,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     slug="soulcoach-level-2-gespraech"
     eyebrow="Dein Gespräch"
     title="Lass uns sprechen"
-    intro="45 Minuten, kostenlos und unverbindlich. Aufbau, Voraussetzungen — und ob Du bereit bist für die Leitungsrolle."
+    intro="45 Minuten, kostenlos und unverbindlich. Aufbau, Voraussetzungen — und ob Du bereit bist, andere zu begleiten."
   />
 
   {/* ===================== FAQ ===================== */}
@@ -288,7 +310,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
         <Heading variant="eyebrow" class="infoanlass__eyebrow">{d.infoanlass_eyebrow || 'Infoanlass'}</Heading>
         <Heading level={2} variant="h1" class="infoanlass__title"><Fragment set:html={d.infoanlass_title || 'Komm zum<br />nächsten Infoanlass.'} /></Heading>
         <Text size="p1" class="infoanlass__body">{d.infoanlass_body || 'Ein kostenloser Online-Abend via Zoom: ehrlicher Einblick in die Arbeit, den Aufbau — und Raum für Deine Fragen.'}</Text>
-        <a href="/ausbildung/infoanlaesse#anmelden" class="infoanlass__submit infoanlass__cta">Zum Infoanlass anmelden</a>
+        <a href="/aufstellen/infoanlaesse#anmelden" class="infoanlass__submit infoanlass__cta">Zum Infoanlass anmelden</a>
       </div>
     </div>
   </section>
@@ -689,4 +711,8 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     text-decoration: none;
     text-align: center;
   }
+
+  /* InfoCards: Zeilenumbrüche im Text (Termine), Inhalt oben anschlagen */
+  :global(.info-cards__body) { white-space: pre-line; }
+  :global(section.info-cards .info-cards__card) { align-items: flex-start; }
 </style>

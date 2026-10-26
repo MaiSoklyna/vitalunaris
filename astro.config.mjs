@@ -19,15 +19,32 @@ export default defineConfig({
   output: 'server',
   // Ausbildung "Übersicht" moved under /ausbildung/ for route consistency.
   redirects: {
-    '/uebersicht': '/ausbildung/uebersicht',
+    '/uebersicht': '/aufstellen/uebersicht',
     '/jawort-by-jansen': '/praxisangebote/jawort-by-jansen',
-    // Ausbildungsseiten heissen nach der Umbenennung wie die Angebote selbst;
-    // die alten Level-URLs bleiben als Weiterleitung bestehen, damit geteilte
-    // Links und Suchtreffer nicht ins Leere laufen.
-    '/ausbildung/soulcoach-level-1': '/ausbildung/systemic-soulwork',
-    '/ausbildung/soulcoach-level-2': '/ausbildung/systemic-soulcoach',
-    '/ausbildung/begleitung-kreis': '/ausbildung/systemic-soulcircle',
+    // Die Seiten unter «Systemisches Aufstellen» liegen seit Oktober 2026 unter
+    // /aufstellen/… statt /ausbildung/…; alte Pfade (auch die früheren Level-URLs)
+    // leiten weiter, damit geteilte Links und Suchtreffer nicht ins Leere laufen.
+    '/ausbildung': '/aufstellen/uebersicht',
+    '/aufstellen': '/aufstellen/uebersicht',
+    '/ausbildung/uebersicht': '/aufstellen/uebersicht',
+    '/ausbildung/soulwork-experience': '/aufstellen/soulwork-experience',
+    '/ausbildung/systemic-soulwork': '/aufstellen/systemic-soulwork',
+    '/ausbildung/systemic-soulcoach': '/aufstellen/systemic-soulcoach',
+    '/ausbildung/systemic-soulcircle': '/aufstellen/systemic-soulcircle',
+    '/ausbildung/infoanlaesse': '/aufstellen/infoanlaesse',
+    '/ausbildung/systemic-soulwork/anmeldung': '/aufstellen/systemic-soulwork/anmeldung',
+    '/ausbildung/systemic-soulwork/anmeldung-wiederholerin': '/aufstellen/systemic-soulwork/anmeldung',
+    // Wiederholerinnenpreis entfällt: Spezialpreise macht Theresia direkt ab.
+    '/aufstellen/systemic-soulwork/anmeldung-wiederholerin': '/aufstellen/systemic-soulwork/anmeldung',
+    '/ausbildung/systemic-soulcoach/anmeldung': '/aufstellen/systemic-soulcoach/anmeldung',
+    '/ausbildung/systemic-soulcoach/anmeldung-treuepreis': '/aufstellen/systemic-soulcoach/anmeldung',
+    // Treuepreis entfällt: Spezialpreise macht Theresia direkt ab.
+    '/aufstellen/systemic-soulcoach/anmeldung-treuepreis': '/aufstellen/systemic-soulcoach/anmeldung',
+    '/ausbildung/soulcoach-level-1': '/aufstellen/systemic-soulwork',
+    '/ausbildung/soulcoach-level-2': '/aufstellen/systemic-soulcoach',
+    '/ausbildung/begleitung-kreis': '/aufstellen/systemic-soulcircle',
   },
+
   adapter: useCloudflare
     ? cloudflare({ platformProxy: { enabled: true } })
     : node({ mode: 'standalone' }),
@@ -39,6 +56,8 @@ export default defineConfig({
     react(),
     sitemap({
       i18n: { defaultLocale: 'de', locales: { de: 'de-CH' } },
+      // Versteckte Anmeldeseiten (Link nur per Mail) nicht in die Sitemap
+      filter: (page) => !page.includes('/anmeldung'),
     }),
     emdash({
       database: useCloudflare

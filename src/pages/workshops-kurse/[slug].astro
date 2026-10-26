@@ -52,7 +52,11 @@ if (slug === 'aktueller-monatsworkshop') {
    nur wenn dort ein Produkt hinterlegt ist, springt der Hero-Button auf das
    eingebettete Anmeldeformular statt auf /kontakt. */
 const wsEvent = workshopEvents.find((e) => e.slug === checkoutSlug);
-const hasCheckout = Boolean(wsEvent?.productId);
+/* Vergangene Workshops: keine Anmeldung mehr anbieten. Datum in Schweizer Zeit,
+   damit ein Workshop am Kurstag selbst noch buchbar ist. */
+const todayZh = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Zurich' }).format(new Date());
+const isPast = Boolean(w.date) && String(w.date).slice(0, 10) < todayZh;
+const hasCheckout = Boolean(wsEvent?.productId) && !isPast;
 
 const bulletGroups = (w.narrative_bullet_groups ?? []).map((g: any) => ({
   heading: g.heading || undefined,
@@ -108,14 +112,24 @@ const faqItems = [
     title={w.title}
     description={w.hero_description}
     price={w.hero_price}
-    ctaText="Jetzt anmelden"
-    ctaHref={hasCheckout ? '#anmelden' : '/kontakt'}
+    ctaText={isPast ? 'Nächste Workshops ansehen' : 'Jetzt anmelden'}
+    ctaHref={isPast ? '/workshops-kurse/kalender-uebersicht' : hasCheckout ? '#anmelden' : '/kontakt'}
     image={imageUrl(w.hero_image)}
   />
 
   <InfoCardsRow cards={w.info_cards ?? []} />
 
-  <WorkshopCheckout slug={checkoutSlug} />
+  {isPast ? (
+    <section class="vorbei">
+      <div class="vorbei__inner">
+        <Heading variant="eyebrow" class="vorbei__eyebrow">Anmeldung geschlossen</Heading>
+        <Text size="p1" class="vorbei__text">Dieser Workshop hat bereits stattgefunden. Im Kalender findest Du die nächsten Termine.</Text>
+        <Button href="/workshops-kurse/kalender-uebersicht" variant="primary" size="lg">Zum Kalender</Button>
+      </div>
+    </section>
+  ) : (
+    <WorkshopCheckout slug={checkoutSlug} />
+  )}
 
   {/* ===================== Was wir anschauen — lavender ===================== */}
   <NarrativeBlock
@@ -266,4 +280,14 @@ const faqItems = [
   }
   @media (min-width: 640px)  { .further__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
   @media (min-width: 1024px) { .further__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  /* Vergangener Workshop: Hinweis statt Anmeldeformular */
+  .vorbei { background: var(--c-spring-wood); padding: 40px 20px 60px; }
+  @media (min-width: 768px) { .vorbei { padding: 48px 32px 80px; } }
+  .vorbei__inner {
+    max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;
+    gap: 16px; text-align: center; border: 1px solid var(--c-cherrywood); border-radius: var(--radius-card-sm); padding: 32px 24px;
+  }
+  .vorbei__eyebrow { color: var(--c-cherrywood); }
+  .vorbei__text { color: var(--c-cherrywood); margin: 0 0 8px; }
 </style>

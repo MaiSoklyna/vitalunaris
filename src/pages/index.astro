@@ -16,7 +16,7 @@ const FALLBACK_SECTIONS = [
     type: 'offer_cards',
     title: 'Welchen Weg möchtest Du gehen?',
     items: [
-      { icon: '/images/ebene/Ebene-14.svg', title: 'Ich will systemisch arbeiten', description: 'Für Dich selbst oder um andere zu begleiten. Drei Wege: Soulwork, die Soulcoach-Ausbildung und der SoulCircle.', ctaText: 'Systemisches Aufstellen →', ctaHref: '/ausbildung/uebersicht' },
+      { icon: '/images/ebene/Ebene-14.svg', title: 'Ich will systemisch arbeiten', description: 'Für Dich selbst oder um andere zu begleiten. Drei Wege: Soulwork, die Soulcoach-Ausbildung und der SoulCircle.', ctaText: 'Systemisches Aufstellen →', ctaHref: '/aufstellen/uebersicht' },
       { icon: '/images/ebene/Ebene_2.svg', title: 'Ich will meine Praxis vertiefen oder Neues lernen', description: 'Kurse und Weiterbildungen rund um Aufstellen, Numerologie, EFT und Hypnotic Selfcare — praxisnah aus jahrzehntelanger Erfahrung.', ctaText: 'Zu den Workshops & Kursen →', ctaHref: '/workshops-kurse/kalender-uebersicht' },
       { icon: '/images/ebene/Ebene_2-8.svg', title: 'Ich suche Veränderung oder Unterstützung', description: 'Etwas fühlt sich nicht mehr stimmig an, ein Muster wiederholt sich oder eine Entscheidung steht an. Wir schauen gemeinsam hin.', ctaText: 'Unsere Praxisangebote →', ctaHref: '/praxisangebote' },
     ],
@@ -84,7 +84,7 @@ const sections = baseSections.map((s: any) => {
     title={d.hero_title || "Erforsche die<br class='hero__br--md' /> Systeme der<br class='hero__br--md' />Seele"}
     subtitle={d.hero_subtitle || 'VitaLunaris ist Dein Ort für systemische Aufstellungsarbeit, Hypnose, Numerologie und persönliche Entwicklung. Hier verbinden sich systemisches Wissen, intuitive Wahrnehmung und die Erfahrung aus jahrzehntelanger Arbeit mit Menschen – getragen von Theresia und Axel Jansen.'}
     ctaText={d.hero_primary_cta_text || 'Systemisches Aufstellen'}
-    ctaHref={d.hero_primary_cta_href || '/ausbildung/uebersicht'}
+    ctaHref={d.hero_primary_cta_href || '/aufstellen/uebersicht'}
     secondaryCtaText={d.hero_secondary_cta_text || 'Praxisangebote'}
     secondaryCtaHref={d.hero_secondary_cta_href || '/praxisangebote'}
     image={imageUrl(d.hero_image) || '/images/placeholder/Placeholder_1.jpg'}

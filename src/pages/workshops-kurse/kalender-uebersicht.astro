@@ -24,12 +24,12 @@ const heroS = sec('hero'), deepS = sec('deep'), featuredS = sec('featured'), nlx
 const pills = d.category_pills?.length ? d.category_pills : [
   {
     label: 'Alle',
+    active: true,
     title: 'Alle Angebote',
     description: 'Von Monatsworkshops über systemisches Aufstellen, Hypnose und Numerologie bis hin zu Infoanlässen — hier findest Du alle unsere Kurse und Workshops auf einen Blick.',
   },
   {
     label: 'Monats-Workshops',
-    active: true,
     title: 'Monats-Workshops',
     description: 'Unsere Monatsworkshops orientieren sich am Rhythmus der Jahreszeiten und den Themen, die Menschen gerade bewegen — von persönlicher Entwicklung über Nervensystem und Energiearbeit bis hin zu Numerologie und praktischen Alltagswerkzeugen.',
   },
@@ -67,11 +67,23 @@ const upcomingWorkshops = datedWorkshops
   .filter((e) => new Date(e.data.date) >= startOfToday)
   .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
 
+/* Farbe im Kalender je Angebotsart, nicht je Eintrag: alle Einzel-Workshops
+   gold, Soulwork Experience raspberry, Systemic Soulwork fire, Systemic Soulcoach Ausbildung aurora,
+   Soul Circle sage, Infoanlässe lavender. */
 const toCalEvent = (e) => ({
   date: e.data?.date,
   label: e.data?.title,
-  color: e.data?.color,
+  color: 'gold',
   href: `/workshops-kurse/${e.id}`,
+  kind: 'Einzelkurs',
+  /* "05.01.2027 · 18:15 Uhr · 120 Min. · Online" -> "18:15 Uhr · Online"
+     (ältere Einträge trennen mit "|" und schreiben das Datum vor die Zeit) */
+  meta: (() => {
+    const raw = String(e.data?.duration_meta || '');
+    const time = raw.match(/\d{1,2}[:.]\d{2}\s*Uhr/)?.[0];
+    const place = raw.match(/online|vor ort|präsenz/i)?.[0];
+    return [time, place && place[0].toUpperCase() + place.slice(1)].filter(Boolean).join(' · ') || undefined;
+  })(),
 });
 
 /* Map a workshop to a filter-pill category. Workshops carry no dedicated
@@ -89,7 +101,49 @@ const categoryOf = (e) => {
 /* Infoanlässe aren't workshops (no checkout) — they live on the Infoabend page.
    Listed here so they appear in the calendar under the "Infoanlässe" filter. */
 const infoEvents = [
-  { date: '2026-08-17', label: 'Infoabend Systemic Soulwork', color: 'lavender', href: '/ausbildung/infoanlaesse' },
+  { date: '2026-08-17', label: 'Systemic Soulwork', kind: 'Infoabend', meta: '18:30 Uhr · Online', color: 'lavender', href: '/aufstellen/infoanlaesse' },
+];
+
+/* Angebote mit mehreren Terminen (keine Workshop-Seite, gebucht wird als Ganzes
+   auf der Angebotsseite). Jeder Termin führt auf die Angebotsseite. */
+const angebotEvents = [
+  ...['2027-01-18', '2027-01-25', '2027-02-15', '2027-03-01', '2027-03-15', '2027-04-05'].map((date, i) => ({
+    date, label: 'Soulwork Experience', kind: `Abend ${i + 1} von 6`, meta: '17:00 Uhr · Praxis Buchs',
+    color: 'raspberry', href: '/aufstellen/soulwork-experience',
+    category: 'Systemisches Aufstellen',
+  })),
+  /* Systemic Soulwork, grosse Aufstellungsgruppe 2027 (Jahresplanung Theresia) */
+  ...[
+    ['2027-01-14', 1, 'online'], ['2027-01-20', 1, 'praesenz'], ['2027-01-21', 1, 'praesenz'],
+    ['2027-01-27', 1, 'praesenz'], ['2027-01-28', 1, 'praesenz'], ['2027-02-17', 1, 'online'], ['2027-02-18', 1, 'online'],
+    ['2027-03-04', 2, 'online'], ['2027-03-10', 2, 'praesenz'], ['2027-03-11', 2, 'praesenz'],
+    ['2027-03-17', 2, 'praesenz'], ['2027-03-18', 2, 'praesenz'], ['2027-03-31', 2, 'online'], ['2027-04-01', 2, 'online'],
+    ['2027-05-27', 3, 'online'], ['2027-06-02', 3, 'praesenz'], ['2027-06-03', 3, 'praesenz'],
+    ['2027-06-09', 3, 'praesenz'], ['2027-06-10', 3, 'praesenz'], ['2027-06-16', 3, 'online'], ['2027-06-17', 3, 'online'],
+  ].map(([date, modul, art]) => ({
+    date, label: 'Systemic Soulwork', kind: `Modul ${modul} · ${art === 'online' ? 'Online' : 'Präsenz'}`,
+    meta: art === 'online' ? '10:00 Uhr · Online' : '09:15 Uhr · Praxis Buchs',
+    color: 'fire', href: '/aufstellen/systemic-soulwork', category: 'Systemisches Aufstellen',
+  })),
+  /* Systemic Soulcoach Ausbildung 2027 (Jahresplanung Theresia) */
+  ...[
+    ['2027-09-09', 'online'], ['2027-09-15', 'praesenz'], ['2027-09-16', 'praesenz'], ['2027-09-22', 'praesenz'],
+    ['2027-09-23', 'praesenz'], ['2027-09-30', 'qa'], ['2027-10-06', 'online'], ['2027-10-07', 'online'],
+    ['2027-10-20', 'praesenz'], ['2027-10-21', 'praesenz'], ['2027-10-28', 'qa'], ['2027-11-03', 'praesenz'],
+    ['2027-11-04', 'praesenz'], ['2027-11-17', 'praesenz'], ['2027-11-18', 'praesenz'], ['2027-11-25', 'qa'],
+    ['2027-12-01', 'praesenz'], ['2027-12-02', 'praesenz'],
+  ].map(([date, art]) => ({
+    date, label: 'Systemic Soulcoach Ausbildung',
+    kind: art === 'online' ? 'Ausbildung · Online' : art === 'qa' ? 'Ausbildung · Q&A' : 'Ausbildung · Präsenz',
+    meta: art === 'online' ? '10:00 Uhr · Online' : art === 'qa' ? '17:00 Uhr · Zoom' : '09:15 Uhr · Praxis Buchs',
+    color: 'aurora', href: '/aufstellen/systemic-soulcoach', category: 'Systemisches Aufstellen',
+  })),
+  /* Soul Circle 2027, einmal im Monat online (Jahresplanung Theresia) */
+  ...['2027-01-11', '2027-02-08', '2027-03-08', '2027-04-12', '2027-05-03', '2027-06-14',
+      '2027-07-05', '2027-08-09', '2027-09-13', '2027-10-11', '2027-11-08', '2027-12-13'].map((date) => ({
+    date, label: 'Soul Circle', kind: 'Einzeln buchbar · Online', meta: '17:00 Uhr · Online',
+    color: 'sage', href: `/aufstellen/systemic-soulcircle#termin-${date}`, category: 'Systemisches Aufstellen',
+  })),
 ];
 
 /* One calendar dataset per filter pill: "Alle" shows every course + Infoanlass,
@@ -99,10 +153,13 @@ const calendars = pills.map((p) => ({
   active: Boolean(p.active),
   events:
     p.label === 'Alle'
-      ? [...datedWorkshops.map(toCalEvent), ...infoEvents]
+      ? [...datedWorkshops.map(toCalEvent), ...infoEvents, ...angebotEvents]
       : p.label === 'Infoanlässe'
         ? infoEvents
-        : datedWorkshops.filter((e) => categoryOf(e) === p.label).map(toCalEvent),
+        : [
+            ...datedWorkshops.filter((e) => categoryOf(e) === p.label).map(toCalEvent),
+            ...angebotEvents.filter((e) => e.category === p.label),
+          ],
 }));
 
 const upcoming = upcomingWorkshops.slice(0, 3).map((e) => ({

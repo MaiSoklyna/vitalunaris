@@ -1,0 +1,175 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//VitaLunaris//Systemic Soulcoach Ausbildung 2027//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Systemic Soulcoach Ausbildung 2027
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-1@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270909T080000Z
+DTEND:20270909T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 1 (Online)
+LOCATION:Online via Zoom
+URL:https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8Dc1F5PsKUQV69nYZgOC
+ m.1
+DESCRIPTION:Zoom-Link: https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8
+ Dc1F5PsKUQV69nYZgOCm.1
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-2@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270915T071500Z
+DTEND:20270915T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 1 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-3@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270916T071500Z
+DTEND:20270916T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 1 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-4@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270922T071500Z
+DTEND:20270922T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 1 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-5@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270923T071500Z
+DTEND:20270923T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 1 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-6@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20270930T150000Z
+DTEND:20270930T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 1 (Q&A)
+LOCATION:Online via Zoom
+URL:https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8Dc1F5PsKUQV69nYZgOC
+ m.1
+DESCRIPTION:Zoom-Link: https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8
+ Dc1F5PsKUQV69nYZgOCm.1
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-7@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271006T080000Z
+DTEND:20271006T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 2 (Online)
+LOCATION:Online via Zoom
+URL:https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8Dc1F5PsKUQV69nYZgOC
+ m.1
+DESCRIPTION:Zoom-Link: https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8
+ Dc1F5PsKUQV69nYZgOCm.1
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-8@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271007T080000Z
+DTEND:20271007T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 2 (Online)
+LOCATION:Online via Zoom
+URL:https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8Dc1F5PsKUQV69nYZgOC
+ m.1
+DESCRIPTION:Zoom-Link: https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8
+ Dc1F5PsKUQV69nYZgOCm.1
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-9@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271020T071500Z
+DTEND:20271020T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 2 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-10@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271021T071500Z
+DTEND:20271021T150000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 2 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-11@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271028T150000Z
+DTEND:20271028T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 2 (Q&A)
+LOCATION:Online via Zoom
+URL:https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8Dc1F5PsKUQV69nYZgOC
+ m.1
+DESCRIPTION:Zoom-Link: https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8
+ Dc1F5PsKUQV69nYZgOCm.1
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-12@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271103T081500Z
+DTEND:20271103T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 3 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-13@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271104T081500Z
+DTEND:20271104T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 3 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-14@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271117T081500Z
+DTEND:20271117T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 3 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-15@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271118T081500Z
+DTEND:20271118T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 3 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-16@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271125T160000Z
+DTEND:20271125T170000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 3 (Q&A)
+LOCATION:Online via Zoom
+URL:https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8Dc1F5PsKUQV69nYZgOC
+ m.1
+DESCRIPTION:Zoom-Link: https://us06web.zoom.us/j/89870692032?pwd=7d2VKbpQC8
+ Dc1F5PsKUQV69nYZgOCm.1
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-17@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271201T081500Z
+DTEND:20271201T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 4 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+BEGIN:VEVENT
+UID:coach-ausbildung-2027-18@vitalunaris.ch
+DTSTAMP:20261023T000000Z
+DTSTART:20271202T081500Z
+DTEND:20271202T160000Z
+SUMMARY:Systemic Soulcoach Ausbildung · Modul 4 (Präsenz)
+LOCATION:Praxis VitaLunaris\, Eichenaustrasse 32\, 9470 Buchs SG
+END:VEVENT
+END:VCALENDAR

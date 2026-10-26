@@ -1,4 +1,5 @@
 ---
+import PlaetzeHinweis from '@molecules/PlaetzeHinweis.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@organisms/Hero.astro';
 import NarrativeBlock from '@organisms/NarrativeBlock.astro';
@@ -83,38 +84,45 @@ const modules = (d.modules?.length ? d.modules : [
 
 /* ----- Was in jedem Modul enthalten ist ----- */
 const moduleIncludes = d.module_includes?.length ? d.module_includes : [
-  { eyebrow: 'Präsenztage', body: '2 pro Modul, vor Ort' },
-  { eyebrow: 'Online-Nachmittage', body: '2 pro Modul' },
+  { eyebrow: 'Präsenztage', body: '4 pro Modul, in Buchs, 09.15 – 17.00 Uhr' },
+  { eyebrow: 'Online-Tage', body: '3 pro Modul, per Zoom, 10.00 – 17.00 Uhr' },
   { eyebrow: 'Dazwischen', body: 'Telegram-Gruppe zwischen den Terminen' },
   { eyebrow: 'Deine Aufstellungen', body: 'Garantiert 2 eigene Präsenz-Aufstellungen + mind. 1 online' },
 ];
 
 /* ----- "Alles was Du wissen musst." — fact cards ----- */
 const infoCards = d.info_cards?.length ? d.info_cards : [
-  { eyebrow: 'Start', body: 'Zweimal jährlich — Februar und September' },
-  { eyebrow: 'Aufbau', body: '3 Module à ca. 1 Monat' },
+  { eyebrow: 'Zeitraum', body: '14. Januar bis 17. Juni 2027' },
+  { eyebrow: 'Aufbau', body: '3 Module, zusammen gebucht' },
   { eyebrow: 'Durchführung', body: 'Hybrid — Präsenz + online, max. 6 Personen' },
-  { eyebrow: 'Investition', body: 'Einzelmodul CHF 1’390.– · Paket CHF 3’800.–' },
+  { eyebrow: 'Investition', body: 'CHF 3’800.–\noder in 6 bzw. 10 Monatsraten' },
+];
+
+/* ----- Termine 2027 je Modul (aus Theresias Jahresplanung) ----- */
+const termineModule = [
+  { eyebrow: 'Modul 1', body: 'Do, 14. Januar · 10.00 – 17.00 · Online\nMi, 20. Januar · 09.15 – 17.00 · Präsenz\nDo, 21. Januar · 09.15 – 17.00 · Präsenz\nMi, 27. Januar · 09.15 – 17.00 · Präsenz\nDo, 28. Januar · 09.15 – 17.00 · Präsenz\nMi, 17. Februar · 10.00 – 17.00 · Online\nDo, 18. Februar · 10.00 – 17.00 · Online' },
+  { eyebrow: 'Modul 2', body: 'Do, 4. März · 10.00 – 17.00 · Online\nMi, 10. März · 09.15 – 17.00 · Präsenz\nDo, 11. März · 09.15 – 17.00 · Präsenz\nMi, 17. März · 09.15 – 17.00 · Präsenz\nDo, 18. März · 09.15 – 17.00 · Präsenz\nMi, 31. März · 10.00 – 17.00 · Online\nDo, 1. April · 10.00 – 17.00 · Online' },
+  { eyebrow: 'Modul 3', body: 'Do, 27. Mai · 10.00 – 17.00 · Online\nMi, 2. Juni · 09.15 – 17.00 · Präsenz\nDo, 3. Juni · 09.15 – 17.00 · Präsenz\nMi, 9. Juni · 09.15 – 17.00 · Präsenz\nDo, 10. Juni · 09.15 – 17.00 · Präsenz\nMi, 16. Juni · 10.00 – 17.00 · Online\nDo, 17. Juni · 10.00 – 17.00 · Online (Abschluss)' },
 ];
 
 /* ----- FAQ — first 4 fill the left column, next 4 the right ----- */
 const faqItems = d.faq_items?.length ? d.faq_items : [
-  { question: 'Muss ich alle drei Module buchen?', answer: 'Nein. Du startest mit Modul 1 und entscheidest danach, ob Du weitergehst. Wer gleich alle drei nimmt, zahlt CHF 370.– weniger.' },
-  { question: 'Wann geht es los?', answer: 'Zweimal im Jahr, im Februar und im September. Modul 2 und 3 folgen in den Monaten danach — die genauen Daten bekommst Du im Gespräch.' },
+  { question: 'Muss ich alle drei Module buchen?', answer: 'Ja. Die drei Module bauen aufeinander auf und werden zusammen gebucht. Die Gruppe bleibt von Anfang bis Ende dieselbe.' },
+  { question: 'Wann geht es los?', answer: 'Am 14. Januar 2027. Die Gruppe läuft bis zum 17. Juni 2027, alle Termine stehen weiter oben.' },
   { question: 'Für wen ist das?', answer: 'Für alle, die sich selbst besser verstehen wollen. Du brauchst keinen fachlichen Hintergrund — nur Offenheit und die Bereitschaft, hinzuschauen.' },
   { question: 'Ist das eine Ausbildung?', answer: 'Nein. Systemic Soulwork ist Arbeit an Dir selbst. Wenn Du danach andere begleiten möchtest, ist der Systemic Soulcoach der nächste Schritt — muss aber nicht.' },
-  { question: 'Wie läuft ein Modul ab?', answer: '2 Präsenztage, 2 Online-Nachmittage und eine Telegram-Gruppe dazwischen. Du hast garantiert 2 eigene Aufstellungen vor Ort und mindestens eine online.' },
+  { question: 'Wie läuft ein Modul ab?', answer: '3 Online-Tage per Zoom (10.00–17.00 Uhr), 4 Präsenztage in Buchs (09.15–17.00 Uhr) und eine Telegram-Gruppe dazwischen.' },
   { question: 'Wie gross ist die Gruppe?', answer: 'Maximal 6 Personen. So bleibt für jede:n genug Raum.' },
-  { question: 'Kann ich rein online teilnehmen?', answer: 'Nein. Jedes Modul hat 2 Präsenztage vor Ort — dort finden Deine eigenen Aufstellungen statt, und die lassen sich nicht ersetzen. Die 2 Nachmittage dazwischen sind online.' },
-  { question: 'Was kostet es?', answer: 'Ein Modul CHF 1’390.–, alle drei im Paket CHF 3’800.– statt CHF 4’170.–. Ratenzahlung ist möglich.' },
+  { question: 'Kann ich rein online teilnehmen?', answer: 'Nein. Jedes Modul hat 4 Präsenztage vor Ort — dort finden Deine eigenen Aufstellungen statt, und die lassen sich nicht ersetzen. Die 3 Online-Tage sind per Zoom.' },
+  { question: 'Was kostet es?', answer: 'CHF 3’800.– bei Einmalzahlung. In Raten: 6 × CHF 575.– (gesamt CHF 3’900.–) oder 10 × CHF 355.– (gesamt CHF 4’000.–). Deinen Platz sicherst Du mit einer Anzahlung von CHF 450.–, die angerechnet wird.' },
   { question: 'Wie melde ich mich an?', answer: 'Immer über ein kostenloses Gespräch mit mir. 45 Minuten, unverbindlich — wir schauen gemeinsam, ob es passt und womit Du startest. Erst danach kommt die Anmeldung.' },
 ];
 ---
 
 <BaseLayout
   title="Systemic Soulwork — Persönliche Entwicklung in 3 Modulen | VitaLunaris"
-  description="Systemic Soulwork bei Theresia Jansen — persönliche Entwicklung in drei aufeinander aufbauenden Modulen. Einzeln buchbar ab CHF 1’390.– oder als Paket für CHF 3’800.–."
-  currentPath="/ausbildung/systemic-soulwork"
+  description="Systemic Soulwork bei Theresia Jansen — persönliche Entwicklung in drei aufeinander aufbauenden Modulen. Von Januar bis Juni 2027, CHF 3’800.– oder in Raten."
+  currentPath="/aufstellen/systemic-soulwork"
 >
   <Hero
     eyebrow={d.hero_eyebrow || 'Systemic Soulwork'}
@@ -200,7 +208,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   <ProcessSteps
     eyebrow="Der Aufbau"
     title="Drei Module"
-    intro="Jedes Modul dauert rund einen Monat und baut auf dem vorherigen auf. Du startest mit Modul 1 — einzeln buchbar oder gleich alle drei."
+    intro="Die drei Module bauen aufeinander auf und werden zusammen gebucht. Die Gruppe geht den ganzen Weg gemeinsam, von Januar bis Juni 2027."
     steps={modules}
   />
 
@@ -213,30 +221,47 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
 
   <InfoCardsRow cards={moduleIncludes} />
 
+  {/* ===================== Termine 2027 je Modul ===================== */}
+  <section class="wissen">
+    <div class="wissen__inner">
+      <Heading level={2} variant="h1" class="wissen__title">Termine 2027.</Heading>
+    </div>
+  </section>
+
+  <InfoCardsRow cards={termineModule} />
+
   {/* ===================== Preise ===================== */}
   <section class="preise">
     <div class="preise__inner">
       <header class="preise__header">
         <Heading variant="eyebrow" class="preise__eyebrow">Investition</Heading>
-        <Heading level={2} variant="h1" class="preise__title">Einzeln einsteigen oder den ganzen Weg gehen.</Heading>
+        <Heading level={2} variant="h1" class="preise__title">Drei Module, ein gemeinsamer Weg.</Heading>
       </header>
 
       <div class="preise__cards">
-        <article class="preise__card">
-          <Heading level={3} class="preise__card-title">Einzelmodul</Heading>
-          <p class="preise__price">CHF 1’390.–</p>
+        <article class="preise__card preise__card--featured">
+          <Heading level={3} class="preise__card-title">Einmalzahlung</Heading>
+          <p class="preise__price">CHF 3’800.–</p>
           <Text size="p1" class="preise__card-body">
-            Pro Modul. Steig ein, schau ob es passt — und entscheide danach weiter.
+            Alle drei Module, von Januar bis Juni 2027.
           </Text>
         </article>
 
-        <article class="preise__card preise__card--featured">
-          <span class="preise__badge">Du sparst CHF 370.–</span>
-          <Heading level={3} class="preise__card-title">Alle 3 Module</Heading>
-          <p class="preise__price">CHF 3’800.–</p>
-          <p class="preise__strike">statt CHF 4’170.– bei Einzelbuchung</p>
+        <article class="preise__card">
+          <Heading level={3} class="preise__card-title">6 Monatsraten</Heading>
+          <p class="preise__price">6 × CHF 575.–</p>
+          <p class="preise__strike">gesamt CHF 3’900.–</p>
           <Text size="p1" class="preise__card-body">
-            Alle drei Module, von Anfang an. Dein Platz ist sicher — und Du zahlst weniger.
+            Plus Anzahlung CHF 450.–, verteilt auf sechs Monate.
+          </Text>
+        </article>
+
+        <article class="preise__card">
+          <Heading level={3} class="preise__card-title">10 Monatsraten</Heading>
+          <p class="preise__price">10 × CHF 355.–</p>
+          <p class="preise__strike">gesamt CHF 4’000.–</p>
+          <Text size="p1" class="preise__card-body">
+            Plus Anzahlung CHF 450.–, verteilt auf zehn Monate.
           </Text>
         </article>
       </div>
@@ -244,7 +269,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
       <div class="preise__cta">
         <Button href="#termin" variant="primary" size="lg">Kostenloses Gespräch vereinbaren</Button>
         <Text size="p3" class="preise__note">
-          Jede Anmeldung beginnt mit einem Gespräch — 45 Minuten, unverbindlich. Danach entscheidest Du in Ruhe, welches Modul es wird. Ratenzahlung möglich.
+          Jede Anmeldung beginnt mit einem Gespräch — 45 Minuten, unverbindlich. Danach sicherst Du Deinen Platz mit einer Anzahlung von CHF 450.–, die angerechnet wird.
         </Text>
       </div>
     </div>
@@ -270,7 +295,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     steps={[
       { number: '1', title: 'Gespräch', description: '45 Minuten miteinander, kostenlos und unverbindlich. Du erzählst, wo Du stehst — gemeinsam schauen wir, ob und womit Du starten möchtest.', color: 'purple' },
       { number: '2', title: 'Anmeldung', description: 'Wenn es für uns beide stimmt, sicherst Du Dir Deinen Platz und bekommst alle Termine und Unterlagen.', color: 'raspberry' },
-      { number: '3', title: 'Loslegen', description: 'Du startest in der Gruppe — 2 Tage vor Ort, 2 Nachmittage online.', color: 'aurora' },
+      { number: '3', title: 'Loslegen', description: 'Am 14. Januar 2027 startest Du mit Deiner Gruppe.', color: 'aurora' },
     ]}
     ctaText={CTA_HERO}
     ctaHref={CTA_HREF}
@@ -288,8 +313,9 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
       <Text size="p1" class="wissen-foot__caption">
-        <Fragment set:html={d.schedule_caption || 'Jedes Modul verbindet 2 Präsenztage vor Ort mit 2 Online-Nachmittagen. Die Präsenztage sind fester Bestandteil — dort stellst Du auf.<br />Wir starten zweimal im Jahr, im Februar und im September — die genauen Daten besprechen wir im Gespräch.'} />
+        <Fragment set:html={d.schedule_caption || 'Jedes Modul verbindet 3 Online-Tage per Zoom mit 4 Präsenztagen in der Praxis in Buchs. Die Präsenztage sind fester Bestandteil — dort stellst Du auf.<br />Die nächste Gruppe läuft vom 14. Januar bis 17. Juni 2027.'} />
       </Text>
+      <PlaetzeHinweis angebot="soulwork" />
       <div class="wissen-foot__cta">
         <Button href={CTA_HREF} variant="primary" size="lg" class="wissen-foot__btn">{CTA_HERO}</Button>
       </div>
@@ -314,7 +340,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
         <Heading variant="eyebrow" class="infoanlass__eyebrow">{d.infoanlass_eyebrow || 'Infoanlass'}</Heading>
         <Heading level={2} variant="h1" class="infoanlass__title"><Fragment set:html={d.infoanlass_title || 'Komm zum<br />nächsten Infoanlass.'} /></Heading>
         <Text size="p1" class="infoanlass__body">{d.infoanlass_body || 'Ein kostenloser Online-Abend via Zoom: ehrlicher Einblick in die Arbeit, den Aufbau — und Raum für Deine Fragen.'}</Text>
-        <a href="/ausbildung/infoanlaesse#anmelden" class="infoanlass__submit infoanlass__cta">Zum Infoanlass anmelden</a>
+        <a href="/aufstellen/infoanlaesse#anmelden" class="infoanlass__submit infoanlass__cta">Zum Infoanlass anmelden</a>
       </div>
     </div>
   </section>
@@ -579,7 +605,7 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     gap: 20px;
     align-items: stretch;
   }
-  @media (min-width: 860px) { .preise__cards { grid-template-columns: 1fr 1fr; gap: 24px; } }
+  @media (min-width: 860px) { .preise__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
 
   .preise__card {
     position: relative;
@@ -634,6 +660,8 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     color: var(--c-cherrywood);
   }
   @media (min-width: 768px) { .preise__price { font-size: 52px; } }
+  /* Drei Karten nebeneinander: Preis auf einer Zeile halten */
+  @media (min-width: 860px) { .preise__price { font-size: clamp(28px, 2.9vw, 40px); white-space: nowrap; } }
 
   .preise__strike {
     font-family: 'ES Park', serif;
@@ -831,4 +859,8 @@ const faqItems = d.faq_items?.length ? d.faq_items : [
     text-decoration: none;
     text-align: center;
   }
+
+  /* InfoCards: Zeilenumbrüche im Text (Termine je Modul), Inhalt oben anschlagen */
+  :global(.info-cards__body) { white-space: pre-line; }
+  :global(section.info-cards .info-cards__card) { align-items: flex-start; }
 </style>
