@@ -26,43 +26,43 @@ const termine = [
 ];
 
 const infoCards = [
-  { eyebrow: 'Rhythmus', body: 'Einmal im Monat, online' },
-  { eyebrow: 'Für wen', body: 'Alle, die schon bei Theresia aufgestellt haben' },
-  { eyebrow: 'Investition', body: 'CHF 130.– pro Abend, einzeln buchbar' },
+  { eyebrow: 'Rhythmus', body: 'Einmal im Monat, online via Zoom' },
+  { eyebrow: 'Zeitrahmen', body: 'Ab 17.00 Uhr, bis zu 3 Stunden, je nach Verlauf des Abends' },
+  { eyebrow: 'Für wen', body: 'Für alle, keine Vorkenntnisse nötig' },
+  { eyebrow: 'Investition', body: 'CHF 130.– pro Abend\neinzeln buchbar, ohne Abo' },
 ];
 ---
 
 <BaseLayout
-  title="Systemic SoulCircle — monatlich dranbleiben | VitaLunaris"
-  description="Der Systemic SoulCircle: einmal im Monat online zusammenkommen — ein Thema, kleine Aufstellungen, Impulse und Übungen. CHF 130.– pro Abend, einzeln buchbar."
+  title="Systemic SoulCircle — online in Verbindung bleiben | VitaLunaris"
+  description="Der Systemic SoulCircle: einmal im Monat online via Zoom. Systemische Impulse, Deine Fragen, vielleicht eine Online-Aufstellung. Für alle, egal wo Du wohnst. CHF 130.– pro Abend, einzeln buchbar."
   currentPath="/aufstellen/systemic-soulcircle"
 >
   <Hero
     eyebrow="Systemic SoulCircle"
-    title="Dranbleiben,<br />ohne allein zu sein."
-    subtitle="Nach einem Modul ist vieles in Bewegung — und dann? Im SoulCircle kommen wir einmal im Monat online zusammen: ein Thema, kleine Aufstellungen, Impulse und Übungen.<br /><br />Kein neuer Kurs, den Du Dir überlegen musst. Ein Ort, an dem Du einfach weiter dabei bist."
+    title="Neue Perspektiven entdecken.<br />In Verbindung bleiben."
+    subtitle="Egal, wo Du bist.<br /><br />Du interessierst Dich für systemische Zusammenhänge? Du hast vielleicht schon eine Aufstellung bei mir erlebt und möchtest dranbleiben? Oder Du wohnst weiter weg und möchtest trotzdem ab und zu dabei sein? Dann ist der SoulCircle genau dafür gedacht."
     ctaText="Termin wählen — CHF 130.– pro Abend"
     ctaHref="#anmelden"
-    image="/images/ausbildung/aufstellung-theresia.jpg"
+    image="/images/ausbildung/soulcircle-laptop.jpg"
     imageFocus="center center"
   />
 
-  {/* ===================== Narrative — lavender gradient ===================== */}
+  {/* ===================== Was erwartet Dich? — lavender gradient ===================== */}
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/ausbildung/aufstellung-figur.jpg"
-    imageAlt="Theresia Jansen beim Aufstellen mit dem Systembrett"
-    title="Was in Bewegung kam, darf weitergehen."
-    body="Ein Modul endet, Du gehst nach Hause — und das, was sich gerade geöffnet hat, läuft weiter. Genau dort setzt der SoulCircle an.<br /><br />Einmal im Monat kommen wir online zusammen. Wir schauen auf ein Thema, machen kleine Aufstellungen, Du bekommst Impulse und Übungen für den Alltag.<br /><br />Kein Leistungsdruck, keine Hausaufgaben. Du kommst, wenn Du kannst, und steigst aus, wann Du willst."
+    image="/images/ausbildung/soulcircle-online.jpg"
+    imageAlt="Theresia Jansen online am Laptop"
+    title="Was erwartet Dich?"
+    body="Einmal im Monat treffen wir uns online. Ein Raum für systemisches Erleben, persönliche Fragen, neue Impulse und Begegnungen – ganz bequem von zu Hause aus. Du brauchst keine Vorkenntnisse. Neugier genügt.<br /><br />Jeder Abend ist anders. Ich bringe systemische Impulse mit, beantworte eure Fragen und greife auf, was euch gerade beschäftigt. Vielleicht entsteht eine Online-Aufstellung, vielleicht machen wir systemische Übungen oder betrachten gemeinsam ein Thema aus dem Alltag.<br /><br />Es gibt keinen festen Lehrplan. Wir lassen Raum für das, was sich zeigt."
     bulletGroups={[
       {
-        heading: 'Jeden Monat:',
+        heading: 'Du darfst:',
         items: [
-          'Ein Online-Treffen zu einem bestimmten Thema',
-          'Kleine Aufstellungen in der Gruppe',
-          'Impulse und Übungen für zwischendurch',
-          'Austausch mit Menschen, die denselben Weg gehen',
+          'Fragen stellen',
+          'eigene Erfahrungen einbringen',
+          'einfach zuhören und beobachten — auch durch das Miterleben können neue Erkenntnisse entstehen',
         ],
       },
     ]}
@@ -73,24 +73,24 @@ const infoCards = [
     <div class="lehrerin__inner">
       <div class="lehrerin__content">
         <Heading variant="eyebrow" class="lehrerin__eyebrow">Theresia Jansen</Heading>
-        <Heading level={2} variant="h1" class="lehrerin__name">Ich bleibe an Deiner Seite.</Heading>
+        <Heading level={2} variant="h1" class="lehrerin__name">Ich freue mich auf unsere Begegnungen.</Heading>
         <Text size="p1" class="lehrerin__body">
-          Ich begleite seit über 30 Jahren Menschen in systemischer Arbeit und Heilkunde — gelebte Praxis aus der Deutschschweiz, nicht angelesen.
+          Mir ist wichtig, dass wir auch über die Aufstellungen hinaus in Verbindung bleiben können. Und dass Menschen, die weiter entfernt wohnen oder meine Arbeit erst kennenlernen möchten, die Möglichkeit haben, dabei zu sein.
         </Text>
         <Text size="p1" class="lehrerin__body">
-          Der SoulCircle ist mein Weg, dranzubleiben: Ich bringe jeden Monat ein Thema mit, nehme Deine Fragen auf und halte den Raum — auch für das, was zwischen den Treffen auftaucht.
+          Ich freue mich auf eure Fragen, unsere Gespräche und die unterschiedlichen Perspektiven, die jeder Mensch mitbringt.
         </Text>
       </div>
       <div class="lehrerin__media">
-        <img src="/images/ausbildung/theresia-soulcircle.jpg" alt="Theresia Jansen" loading="lazy" decoding="async" />
+        <img src="/images/ausbildung/soulcircle-theresia.jpg" alt="Theresia Jansen" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
 
-  {/* ===================== Alles was Du wissen musst. ===================== */}
+  {/* ===================== Deine Teilnahme ===================== */}
   <section class="wissen">
     <div class="wissen__inner">
-      <Heading level={2} variant="h1" class="wissen__title">Alles was Du wissen musst.</Heading>
+      <Heading level={2} variant="h1" class="wissen__title">Deine Teilnahme</Heading>
     </div>
   </section>
 
@@ -99,8 +99,7 @@ const infoCards = [
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
       <Text size="p1" class="wissen-foot__caption">
-        Offen für alle, die schon bei Theresia aufgestellt haben.<br />
-        Du buchst jeden Abend einzeln, ohne Abo.
+        Für alle, die systemische Arbeit kennenlernen, neue Impulse für ihren Alltag mitnehmen oder ihre bisherigen Erfahrungen vertiefen möchten. Ganz unabhängig davon, wo sie wohnen.
       </Text>
       <div class="wissen-foot__cta">
         <Button href="#anmelden" variant="primary" size="lg" class="wissen-foot__btn">Dabei sein</Button>
@@ -120,6 +119,11 @@ const infoCards = [
         <Text size="p1" class="circle-form__intro">
           Wähl den Abend, an dem Du dabei sein möchtest, und schliesse die Zahlung sicher über zahls.ch ab — CHF 130.– pro Abend. Danach erhältst Du alle Infos per E-Mail.
         </Text>
+      </div>
+
+      <div class="gruppen">
+        <span class="gruppen__label">Für meine aktuellen Soulwork-Gruppen</span>
+        <p>Wenn Du aktuell an meiner Aufstellungsgruppe Systemic Soulwork oder der Systemic Soulcoach Ausbildung teilnimmst, kannst Du kostenlos am SoulCircle teilnehmen. Melde Dich dafür bitte direkt bei mir: <a href="mailto:info@vitalunaris.ch">info@vitalunaris.ch</a>. Die kostenlose Teilnahme gilt nicht für die Soulwork Experience.</p>
       </div>
 
       <div class="circle-dates" role="group" aria-label="Termine 2027" data-circle-dates>
@@ -157,7 +161,7 @@ const infoCards = [
         btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
         var src = 'https://opus.alchemy.zuerich/api/f/' + b.dataset.embed + '/page';
         if (frame.getAttribute('src') !== src) frame.setAttribute('src', src);
-        chosen.textContent = 'Anmeldung für ' + b.dataset.lang + ', 17.00 – 20.00 Uhr';
+        chosen.textContent = 'Anmeldung für ' + b.dataset.lang + ', ab 17.00 Uhr';
       }
       btns.forEach(function (b) { b.addEventListener('click', function () { pick(b); }); });
       var m = location.hash.match(/termin-(\d{4}-\d{2}-\d{2})/);
@@ -297,6 +301,11 @@ const infoCards = [
     text-align: center;
   }
   .circle-form__eyebrow { color: var(--c-cherrywood); }
+  /* Hinweis für laufende Gruppen: Lavendel-Block wie «Vertraulich» auf den Anmeldeseiten */
+  .gruppen { width: 100%; background: var(--c-lavender); border-radius: var(--radius-card-sm); padding: 24px 28px; display: flex; flex-direction: column; gap: 8px; text-align: left; }
+  .gruppen__label { color: var(--c-spring-wood); font-family: 'ES Park', serif; font-weight: var(--weight-medium); text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--eyebrow-size); }
+  .gruppen p { margin: 0; color: var(--c-spring-wood); font-family: 'ES Park', serif; font-size: var(--p1-size); line-height: 1.45; }
+  .gruppen a { color: inherit; }
   .circle-form__title { color: var(--c-cherrywood); margin: 0; }
   .circle-form__intro { color: var(--c-cherrywood); margin: 0; }
 

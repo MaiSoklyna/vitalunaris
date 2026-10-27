@@ -23,7 +23,7 @@ const termine = ['18. Januar', '25. Januar', '15. Februar', '1. März', '15. Mä
 const steps = [
   { number: '1', title: 'Du buchst', description: 'Du sicherst Dir einen der sechs Plätze für alle sechs Abende. Ein Vorgespräch braucht es nicht.', color: 'purple' },
   { number: '2', title: 'Sechs Abende', description: 'An einem Abend stellst Du Dein eigenes Anliegen auf. An den anderen fünf stehst Du für die anderen in der Gruppe.', color: 'raspberry' },
-  { number: '3', title: 'Du entscheidest', description: 'Nach dem sechsten Abend ist Schluss. Ob und wie Du weitergehst, liegt ganz bei Dir.', color: 'aurora' },
+  { number: '3', title: 'Du nimmst etwas mit', description: 'Nach sechs Abenden gehst Du mit neuen Perspektiven nach Hause, aus Deiner eigenen Aufstellung und aus denen der anderen. Möchtest Du tiefer gehen, ist die Aufstellungsgruppe Systemic Soulwork der nächste Schritt. Ob Du ihn gehst, entscheidest Du.', color: 'aurora' },
 ];
 
 /* ----- "Alles was Du wissen musst." — fact cards ----- */
@@ -31,7 +31,7 @@ const infoCards = [
   { eyebrow: 'Termine 2027', body: termine.map((t) => `Mo, ${t} · 17.00 – 20.00`).join('\n') },
   { eyebrow: 'Wo', body: 'Praxis VitaLunaris\nEichenaustrasse 32\n9470 Buchs SG' },
   { eyebrow: 'Gruppe', body: '6 Personen, 1 eigene Aufstellung pro Person' },
-  { eyebrow: 'Investition', body: 'CHF 690.– für alle 6 Abende' },
+  { eyebrow: 'Investition', body: 'CHF 590.– für alle 6 Abende\nEinführungspreis für den ersten Durchgang' },
 ];
 
 const faqItems = [
@@ -57,7 +57,7 @@ const faqItems = [
     subtitle="Etwas beschäftigt Dich, und Du möchtest verstehen, was dahintersteckt. In der Soulwork Experience stellst Du Dein eigenes Anliegen auf, in einer kleinen, festen Gruppe an sechs Abenden."
     ctaText="Platz sichern"
     ctaHref="#buchen"
-    image="/images/ausbildung/aufstellung-theresia.jpg"
+    image="/images/ausbildung/experience-gruppe.jpg"
     imageFocus="center center"
   />
 
@@ -65,18 +65,18 @@ const faqItems = [
   <NarrativeBlock
     tone="lavender-gradient"
     imageSide="left"
-    image="/images/ausbildung/aufstellung-figur.jpg"
-    imageAlt="Figuren auf dem Systembrett"
+    image="/images/ausbildung/experience-umarmung.jpg"
+    imageAlt="Zwei Teilnehmerinnen umarmen sich nach einem Abend"
     title="Du siehst, was sonst verborgen bleibt."
-    body="An einem der sechs Abende ist Dein Anliegen dran. Menschen aus der Gruppe stehen für die Personen und Themen in Deinem System, und Du siehst von aussen, was Dich bewegt.<br /><br />An den anderen fünf Abenden stehst Du für andere. Oft erkennst Du gerade dort etwas über Dich selbst.<br /><br />Die Gruppe bleibt an allen Abenden dieselbe. So wächst Vertrauen, und Du kannst Dich von Abend zu Abend mehr einlassen."
+    body="Manchmal gibt es Themen, die uns nicht loslassen. Eine Beziehung, eine Entscheidung oder etwas, das sich immer wiederholt. Vielleicht möchtest Du genauer hinschauen. Oder Du bist einfach neugierig, was eine Aufstellung bewirken kann.<br /><br />An einem der sechs Abende geht es um Dich und Dein persönliches Anliegen. Du darfst aus einer neuen Perspektive darauf schauen und entdecken, was bisher im Verborgenen lag.<br /><br />An den anderen fünf Abenden begleitest Du die Aufstellungen der anderen als Stellvertreterin oder Stellvertreter. Oft nehmen wir gerade daraus etwas Wertvolles für uns selbst mit."
     bulletGroups={[
       {
         heading: 'Für Dich, wenn Du:',
         items: [
-          'Aufstellungsarbeit zum ersten Mal erleben möchtest',
-          'ein eigenes Anliegen anschauen willst',
-          'einen klaren Rahmen ohne lange Verpflichtung suchst',
-          'spüren möchtest, ob die grosse Gruppe später zu Dir passt',
+          'ein Thema hast, das Dich beschäftigt',
+          'Zusammenhänge besser verstehen möchtest',
+          'neugierig auf Aufstellungsarbeit bist',
+          'Dir einen vertrauten Rahmen in einer kleinen Gruppe wünschst',
         ],
       },
     ]}
@@ -91,7 +91,7 @@ const faqItems = [
   {/* ===================== Alles was Du wissen musst. ===================== */}
   <section class="wissen">
     <div class="wissen__inner">
-      <Heading level={2} variant="h1" class="wissen__title">Alles was Du wissen musst.</Heading>
+      <Heading level={2} variant="h1" class="wissen__title">Sechs Menschen. Sechs Abende.<br />Ein Platz für Dich.</Heading>
     </div>
   </section>
 
@@ -99,6 +99,7 @@ const faqItems = [
 
   <section class="wissen-foot">
     <div class="wissen-foot__inner">
+      <Text size="p1" class="wissen-foot__caption">Im Preis sind alle sechs Abende: Deine eigene Aufstellung und fünf Abende als Stellvertreterin oder Stellvertreter, immer in derselben Gruppe.<br />Du brauchst keine Vorkenntnisse. Deine Neugier genügt.</Text>
       <div class="wissen-foot__cta">
         <Button href="#buchen" variant="primary" size="lg">Platz sichern</Button>
       </div>
@@ -107,14 +108,14 @@ const faqItems = [
 
   {/* ===================== Buchung =====================
        Formular (embed _CYSQODg7niAlEa6D6HgCw) mit dem Produkt
-       «Soulwork Experience · 6 Abende ab 18.01.2027» (CHF 690) verknüpft:
+       «Soulwork Experience · 6 Abende ab 18.01.2027» (CHF 590, Einführungspreis) verknüpft:
        Der Submit erzeugt eine Bestellung und leitet auf die zahls.ch-Zahlseite. */}
   <section class="buchen" id="buchen">
     <div class="buchen__inner">
       <Heading variant="eyebrow" class="buchen__eyebrow">Buchung</Heading>
       <Heading level={2} variant="h1" class="buchen__title">Sichere Dir Deinen Platz</Heading>
       <Text size="p1" class="buchen__intro">
-        Trag Dich ein und schliesse die Zahlung sicher über zahls.ch ab, CHF 690.– für alle sechs Abende. Danach erhältst Du alle Infos per E-Mail.
+        Trag Dich ein und schliesse die Zahlung sicher über zahls.ch ab, CHF 590.– für alle sechs Abende. Danach erhältst Du alle Infos per E-Mail.
       </Text>
       <PlaetzeHinweis angebot="experience" />
       {platz?.ausgebucht ? (
@@ -169,6 +170,7 @@ const faqItems = [
     gap: 32px;
   }
 
+  .wissen-foot__caption { color: var(--c-cherrywood); text-align: center; }
   .wissen-foot__cta { display: flex; justify-content: center; width: 100%; }
   .wissen-foot__cta :global(.btn) { width: 100%; max-width: 350px; }
   @media (min-width: 640px) { .wissen-foot__cta :global(.btn) { width: auto; max-width: none; } }

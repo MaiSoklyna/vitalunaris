@@ -16,7 +16,7 @@ const CACHE_MS = 60_000;
 export type Angebot = 'experience' | 'soulwork' | 'soulcoach';
 
 export const ANGEBOTE: Record<Angebot, { max: number; produkte: string[]; extern?: number }> = {
-  // Soulwork Experience 2027 (CHF 690)
+  // Soulwork Experience 2027 (CHF 590, Einführungspreis)
   experience: { max: 6, produkte: ['88b49953-4e5b-4867-884e-86633f7323d4'] },
   // Systemic Soulwork 2027: Anzahlung CHF 450.–
   soulwork: { max: 6, produkte: ['c6f78cbb-483c-4918-8247-ac57af2e4ab1'] },
